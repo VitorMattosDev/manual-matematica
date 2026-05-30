@@ -176,6 +176,7 @@ book:
         - volumes/v13-complexa/02-holomorfas-cauchy-riemann.qmd
         - volumes/v13-complexa/03-funcoes-elementares.qmd
         - volumes/v13-complexa/04-integracao-cauchy.qmd
+        - volumes/v13-complexa/05-formula-integral-cauchy.qmd
   appendices:
     - notacao.qmd
 

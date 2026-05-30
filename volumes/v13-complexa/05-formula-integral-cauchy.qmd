@@ -1,0 +1,137 @@
+# Fórmula integral de Cauchy {#sec-formula-integral-cauchy}
+
+## Motivação
+
+O teorema de Cauchy (@sec-integracao-cauchy) disse que integrais fechadas de funções
+holomorfas se anulam. Agora vem sua consequência mais espetacular — e talvez o resultado
+mais surpreendente de toda a matemática: o valor de uma função holomorfa **em um ponto
+interior** é completamente determinado por seus valores **na fronteira**, via uma
+integral.
+
+Essa **fórmula integral de Cauchy** revela a rigidez extraordinária das funções
+holomorfas: elas não têm liberdade local; conhecer a função num pequeno círculo a
+determina em todo o interior. Dela seguem fatos impossíveis no mundo real — que toda
+holomorfa é infinitamente derivável e analítica, e o teorema de Liouville. Este capítulo
+apresenta a fórmula e suas consequências quase mágicas.
+
+## A fórmula
+
+::: {#thm-formula-cauchy}
+## Fórmula integral de Cauchy
+Se $f$ é holomorfa num domínio contendo o interior de uma curva fechada $\gamma$ e $z_0$
+está dentro de $\gamma$, então
+$$
+f(z_0) = \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z - z_0}\,dz.
+$$
+:::
+
+::: {.callout-tip}
+## A fronteira determina o interior
+Leia com atenção: o valor $f(z_0)$ — em **qualquer** ponto interior — é uma média
+ponderada dos valores de $f$ **na borda** $\gamma$. A função no interior é refém da
+função na fronteira. Nenhuma função real tem essa propriedade; é a holomorfia, com sua
+exigência de derivabilidade em todas as direções (@sec-holomorfas-cauchy-riemann), que
+amarra tudo. O fator $2\pi i$ vem da integral fundamental $\oint\frac{dz}{z - z_0} =
+2\pi i$ (@exm-integral-base).
+:::
+
+::: {#exm-aplicacao-formula}
+## Calculando uma integral pela fórmula
+Para $\oint_\gamma \frac{e^z}{z}\,dz$ no círculo unitário: aqui $f(z) = e^z$ (holomorfa)
+e $z_0 = 0$ está dentro. Pela fórmula, $\frac{1}{2\pi i}\oint\frac{e^z}{z}dz = f(0) =
+e^0 = 1$, logo a integral vale $2\pi i$.
+:::
+
+## Derivadas de todas as ordens
+
+::: {#thm-formula-derivadas}
+## Fórmula de Cauchy para derivadas
+Nas mesmas condições, $f$ tem derivadas de **todas** as ordens, dadas por
+$$
+f^{(n)}(z_0) = \frac{n!}{2\pi i}\oint_\gamma \frac{f(z)}{(z - z_0)^{n+1}}\,dz.
+$$
+:::
+
+::: {.callout-note}
+## Holomorfa uma vez ⟹ holomorfa infinitas vezes
+Eis o milagre da análise complexa: basta $f$ ter **uma** derivada complexa (ser
+holomorfa) para ter **todas** — é automaticamente infinitamente derivável e, mais ainda,
+**analítica** (igual à sua série de Taylor, @sec-taylor). No real, isso é radicalmente
+falso: $f(x) = x^2\operatorname{sen}(1/x)$ é derivável uma vez mas não duas; há funções
+$C^\infty$ que não são analíticas. A holomorfia complexa é uma condição de outra ordem de
+rigidez.
+:::
+
+## O teorema de Liouville
+
+::: {#thm-liouville}
+## Teorema de Liouville
+Toda função **inteira** (holomorfa em todo $\mathbb{C}$) e **limitada** é **constante**.
+:::
+
+::: {.proof}
+*(Esboço.)* Pela fórmula das derivadas com $n = 1$ sobre um círculo de raio $R$, estima-se
+$|f'(z_0)| \leq \frac{M}{R}$, onde $M$ limita $|f|$. Fazendo $R \to \infty$ (possível por
+ser inteira), $|f'(z_0)| = 0$ para todo $z_0$. Derivada nula ⟹ $f$ constante.
+:::
+
+::: {.callout-tip}
+## Liouville prova o Teorema Fundamental da Álgebra
+Liouville dá a demonstração mais elegante do Teorema Fundamental da Álgebra
+(@thm-fundamental-algebra): se um polinômio $p$ não tivesse raízes, $\frac1p$ seria
+inteira e limitada, logo constante por Liouville — absurdo. Portanto todo polinômio tem
+raiz em $\mathbb{C}$. A análise complexa prova o fato algébrico que motivou a criação dos
+complexos — um círculo que se fecha de modo perfeito.
+:::
+
+::: {.callout-note}
+## E mais: o princípio do módulo máximo
+Outra consequência: uma função holomorfa não constante **não atinge máximo de $|f|$ no
+interior** — o máximo está sempre na fronteira (compare a propriedade da média das
+harmônicas, @sec-calor-onda-laplace). É o **princípio do módulo máximo**, usado em
+estimativas por toda a análise e na física.
+:::
+
+## Exercícios
+
+::: {#exr-fc-formula}
+Calcule $\oint_\gamma \frac{\cos z}{z}\,dz$ no círculo unitário usando a fórmula de
+Cauchy.
+:::
+
+::: {#exr-fc-derivada}
+Calcule $\oint_\gamma \frac{e^z}{z^2}\,dz$ no círculo unitário (use a fórmula para a
+primeira derivada).
+:::
+
+::: {#exr-fc-liouville}
+A função $f(z) = \operatorname{sen}z$ é inteira. Por que o teorema de Liouville **não**
+implica que ela seja constante?
+:::
+
+::: {#exr-fc-tfa}
+Esboce, em poucas linhas, como Liouville prova que todo polinômio de grau $\geq 1$ tem
+uma raiz complexa.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fc-formula
+$f(z) = \cos z$ holomorfa, $z_0 = 0$ dentro. Pela fórmula, $\oint\frac{\cos z}{z}dz =
+2\pi i\,f(0) = 2\pi i\cos 0 = 2\pi i$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fc-derivada
+Com $f = e^z$, $n = 1$, $z_0 = 0$: $f'(0) = \frac{1!}{2\pi i}\oint\frac{e^z}{z^2}dz$.
+Como $f'(0) = e^0 = 1$, a integral vale $2\pi i\cdot 1 = 2\pi i$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fc-liouville
+Liouville exige inteira **e limitada**. Mas $\operatorname{sen}z$ é **ilimitada** em
+$\mathbb{C}$ ($\operatorname{sen}(iy) = i\operatorname{senh}y \to \infty$,
+@sec-funcoes-elementares). Faltando a limitação, o teorema não se aplica — e de fato o
+seno não é constante.
+:::
