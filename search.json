@@ -1,0 +1,195 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Manual de Matemática",
+    "section": "",
+    "text": "Apresentação\nEste é o Manual de Matemática, o primeiro da série Manuais de Ciências. A proposta é cobrir a matemática de forma contínua — começando da aritmética elementar e subindo, volume a volume, até tópicos avançados como análise e geometria diferencial — num texto único, gratuito e em português.",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#para-quem-é-este-manual",
+    "href": "index.html#para-quem-é-este-manual",
+    "title": "Manual de Matemática",
+    "section": "Para quem é este manual",
+    "text": "Para quem é este manual\nO texto é escrito para um público misto: estudantes que estão vendo cada assunto pela primeira vez e autodidatas que querem uma referência completa. Por isso, cada conceito aparece primeiro de forma intuitiva e depois de forma rigorosa. Você não precisa ler tudo em ordem: use o mapa de pré-requisitos abaixo para navegar.",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#como-ler",
+    "href": "index.html#como-ler",
+    "title": "Manual de Matemática",
+    "section": "Como ler",
+    "text": "Como ler\nCada capítulo segue uma estrutura padrão:\n\nMotivação — por que o assunto existe e que problema ele resolve.\nDefinições e resultados — em destaque, numerados e referenciáveis.\nExemplos resolvidos — aplicando a teoria.\nExercícios — alguns com solução ao final.\n\nResultados são numerados por capítulo e podem ser citados de qualquer lugar do livro (por exemplo, “pelo Teorema 3.2”). Definições aparecem em caixas como a de Definição 1.\n\nDefinição 1 Uma definição é uma convenção que fixa o significado preciso de um termo. Ao longo do manual, definições aparecem destacadas como esta.",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#mapa-de-pré-requisitos",
+    "href": "index.html#mapa-de-pré-requisitos",
+    "title": "Manual de Matemática",
+    "section": "Mapa de pré-requisitos",
+    "text": "Mapa de pré-requisitos\nA matemática não é estritamente linear. O grafo abaixo mostra de que tópicos cada volume depende — use-o para montar seu próprio caminho de leitura.\n\n\n\n\n\nflowchart TD\n    V1[\"Vol. I — Fundamentos\"] --&gt; V2[\"Vol. II — Álgebra\"]\n    V1 --&gt; V3[\"Vol. III — Geometria\"]\n    V2 --&gt; V4[\"Vol. IV — Pré-cálculo\"]\n    V3 --&gt; V4\n    V4 --&gt; V5[\"Vol. V — Cálculo\"]\n    V2 --&gt; V6[\"Vol. VI — Álgebra Linear\"]\n    V5 --&gt; V8[\"Vol. VIII — Análise Real\"]\n    V6 --&gt; V8\n    V2 --&gt; V7[\"Vol. VII — Álgebra Abstrata\"]\n    V8 --&gt; V9[\"Vol. IX — Topologia\"]\n    V8 --&gt; V10[\"Vol. X — Geometria Diferencial\"]\n    V9 --&gt; V10\n    V6 --&gt; V10",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#como-contribuir",
+    "href": "index.html#como-contribuir",
+    "title": "Manual de Matemática",
+    "section": "Como contribuir",
+    "text": "Como contribuir\nO projeto é aberto. As convenções de escrita (como redigir uma definição, um teorema, um exercício) estão em PLANO.md. Correções e sugestões podem ser feitas pelos botões de edição e issue no canto superior direito de cada página.",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/01-logica.html",
+    "href": "volumes/v1-fundamentos/01-logica.html",
+    "title": "1  Lógica e demonstrações",
+    "section": "",
+    "text": "1.1 Motivação\nAntes de provar qualquer coisa sobre números, precisamos combinar o que conta como uma demonstração. Este capítulo apresenta a linguagem mínima da lógica: proposições, conectivos, quantificadores e os principais métodos de prova.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Lógica e demonstrações</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/01-logica.html#proposições-e-conectivos",
+    "href": "volumes/v1-fundamentos/01-logica.html#proposições-e-conectivos",
+    "title": "1  Lógica e demonstrações",
+    "section": "1.2 Proposições e conectivos",
+    "text": "1.2 Proposições e conectivos\nUma proposição é uma afirmação à qual se pode atribuir um único valor verdade: verdadeiro ou falso. A partir de proposições \\(p\\) e \\(q\\) formam-se novas proposições com os conectivos \\(\\lnot\\) (negação), \\(\\land\\) (e), \\(\\lor\\) (ou), \\(\\Rightarrow\\) (implica) e \\(\\Leftrightarrow\\) (se, e somente se).",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Lógica e demonstrações</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/01-logica.html#métodos-de-demonstração",
+    "href": "volumes/v1-fundamentos/01-logica.html#métodos-de-demonstração",
+    "title": "1  Lógica e demonstrações",
+    "section": "1.3 Métodos de demonstração",
+    "text": "1.3 Métodos de demonstração\n\nDireta: para provar \\(p \\Rightarrow q\\), supõe-se \\(p\\) e deduz-se \\(q\\).\nContrapositiva: prova-se \\(\\lnot q \\Rightarrow \\lnot p\\), que é equivalente.\nAbsurdo: supõe-se \\(\\lnot q\\) e chega-se a uma contradição.\nIndução: ver Capítulo 3.\n\n\nA escrever: tabelas-verdade, quantificadores \\(\\forall\\)/\\(\\exists\\) e exemplos resolvidos de cada método.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Lógica e demonstrações</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/02-conjuntos.html",
+    "href": "volumes/v1-fundamentos/02-conjuntos.html",
+    "title": "2  Conjuntos",
+    "section": "",
+    "text": "2.1 Motivação\nConjunto é a noção a partir da qual quase toda a matemática moderna é construída: números, funções, relações e estruturas são, no fundo, conjuntos.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Conjuntos</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/02-conjuntos.html#noções-básicas",
+    "href": "volumes/v1-fundamentos/02-conjuntos.html#noções-básicas",
+    "title": "2  Conjuntos",
+    "section": "2.2 Noções básicas",
+    "text": "2.2 Noções básicas\nUm conjunto é uma coleção de objetos, chamados seus elementos. Escrevemos \\(x \\in A\\) quando \\(x\\) é elemento de \\(A\\). Dois conjuntos são iguais quando têm exatamente os mesmos elementos.\n\nDefinição 2.1 Dizemos que \\(A\\) é subconjunto de \\(B\\), e escrevemos \\(A \\subseteq B\\), quando todo elemento de \\(A\\) também é elemento de \\(B\\).",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Conjuntos</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/02-conjuntos.html#operações",
+    "href": "volumes/v1-fundamentos/02-conjuntos.html#operações",
+    "title": "2  Conjuntos",
+    "section": "2.3 Operações",
+    "text": "2.3 Operações\nUnião \\(A \\cup B\\), interseção \\(A \\cap B\\), diferença \\(A \\setminus B\\) e complemento.\n\nA escrever: produto cartesiano, conjunto das partes, e as leis de De Morgan com demonstração.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Conjuntos</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/03-inducao.html",
+    "href": "volumes/v1-fundamentos/03-inducao.html",
+    "title": "3  Indução e Boa Ordenação",
+    "section": "",
+    "text": "3.1 Motivação\nMuitas afirmações em matemática são, na verdade, infinitas coleções de afirmações — uma para cada número natural. Por exemplo: “a soma dos \\(n\\) primeiros números ímpares é \\(n^2\\)” vale para \\(n = 1\\), para \\(n = 2\\), e assim por diante, sem fim. Não podemos verificar caso a caso para sempre. Precisamos de um método que prove, de uma só vez, infinitos casos. Esse método é a indução matemática, e sua justificativa está numa propriedade fundamental dos números naturais.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indução e Boa Ordenação</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/03-inducao.html#o-princípio-da-indução",
+    "href": "volumes/v1-fundamentos/03-inducao.html#o-princípio-da-indução",
+    "title": "3  Indução e Boa Ordenação",
+    "section": "3.2 O princípio da indução",
+    "text": "3.2 O princípio da indução\nTrabalhamos com o conjunto dos naturais \\(\\mathbb{N} = \\{1, 2, 3, \\dots\\}\\). O princípio a seguir é tomado como axioma (ele equivale ao axioma de boa ordenação, como veremos em Teorema 3.3).\n\nTeorema 3.1 (Princípio da Indução Finita) Seja \\(P(n)\\) uma afirmação sobre o natural \\(n\\). Suponha que:\n\n(base) \\(P(1)\\) é verdadeira; e\n(passo) para todo \\(k \\geq 1\\), se \\(P(k)\\) é verdadeira, então \\(P(k+1)\\) também é.\n\nEntão \\(P(n)\\) é verdadeira para todo \\(n \\in \\mathbb{N}\\).\n\nA ideia é a do dominó: a base derruba a primeira peça; o passo garante que cada peça derruba a seguinte; logo todas caem.\n\n\n\n\n\n\nAvisoErro comum\n\n\n\nProvar apenas o passo, sem a base, não prova nada. A implicação \\(P(k) \\Rightarrow P(k+1)\\) pode ser verdadeira mesmo que nenhum \\(P(n)\\) seja — faltaria a primeira peça para começar a queda.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indução e Boa Ordenação</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/03-inducao.html#primeiro-exemplo",
+    "href": "volumes/v1-fundamentos/03-inducao.html#primeiro-exemplo",
+    "title": "3  Indução e Boa Ordenação",
+    "section": "3.3 Primeiro exemplo",
+    "text": "3.3 Primeiro exemplo\n\nExemplo 3.1 (Soma dos ímpares) Vamos provar que, para todo \\(n \\geq 1\\), \\[\n1 + 3 + 5 + \\dots + (2n - 1) = n^2. \\tag{$\\ast$}\n\\]\n\n\nComprovação. Seja \\(P(n)\\) a afirmação \\((\\ast)\\).\nBase. Para \\(n = 1\\), o lado esquerdo é \\(1\\) e o direito é \\(1^2 = 1\\). Logo \\(P(1)\\) vale.\nPasso. Suponha \\(P(k)\\) verdadeira para algum \\(k \\geq 1\\) (hipótese de indução), isto é, \\(1 + 3 + \\dots + (2k-1) = k^2\\). Somando o próximo ímpar, \\(2(k+1) - 1 = 2k + 1\\), aos dois lados: \\[\n\\underbrace{1 + 3 + \\dots + (2k-1)}_{= \\, k^2} + (2k+1) = k^2 + 2k + 1 = (k+1)^2.\n\\] Isso é exatamente \\(P(k+1)\\). Pelo Teorema 3.1, \\(P(n)\\) vale para todo \\(n\\).\n\nO mesmo método prova a famosa fórmula da soma de Gauss, que registramos como proposição para uso futuro.\n\nProposição 3.1 (Soma de Gauss) Para todo \\(n \\geq 1\\), vale \\(\\displaystyle \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}\\).",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indução e Boa Ordenação</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/03-inducao.html#indução-forte",
+    "href": "volumes/v1-fundamentos/03-inducao.html#indução-forte",
+    "title": "3  Indução e Boa Ordenação",
+    "section": "3.4 Indução forte",
+    "text": "3.4 Indução forte\nÀs vezes, para provar \\(P(k+1)\\), não basta supor \\(P(k)\\): precisamos de todos os casos anteriores. Essa variante é igualmente válida.\n\nTeorema 3.2 (Princípio da Indução Forte) Seja \\(P(n)\\) uma afirmação sobre o natural \\(n\\). Suponha que, para todo \\(k \\geq 1\\), a validade de \\(P(1), P(2), \\dots, P(k-1)\\) implique \\(P(k)\\). Então \\(P(n)\\) é verdadeira para todo \\(n \\in \\mathbb{N}\\).\n\n\nExemplo 3.2 (Todo natural maior que 1 tem fator primo) Afirmamos que todo \\(n \\geq 2\\) é primo ou produto de primos.\n\n\nComprovação. Indução forte sobre \\(n\\). Se \\(n\\) é primo, acabou. Caso contrário, \\(n = a \\cdot b\\) com \\(1 &lt; a, b &lt; n\\). Por hipótese de indução (forte), tanto \\(a\\) quanto \\(b\\) são produtos de primos; logo \\(n\\) também é. Aplicando o Teorema 3.2, a afirmação vale para todo \\(n \\geq 2\\).",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indução e Boa Ordenação</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/03-inducao.html#boa-ordenação",
+    "href": "volumes/v1-fundamentos/03-inducao.html#boa-ordenação",
+    "title": "3  Indução e Boa Ordenação",
+    "section": "3.5 Boa ordenação",
+    "text": "3.5 Boa ordenação\nA indução é equivalente a um princípio aparentemente diferente.\n\nTeorema 3.3 (Princípio da Boa Ordenação) Todo subconjunto não vazio de \\(\\mathbb{N}\\) possui um menor elemento.\n\n\n\n\n\n\n\nNotaPor que indução e boa ordenação são equivalentes (esboço)\n\n\n\n\n\nSe a indução vale e \\(S \\subseteq \\mathbb{N}\\) não tivesse menor elemento, então, por indução, mostra-se que nenhum natural pertence a \\(S\\), logo \\(S = \\emptyset\\) — contradição. A recíproca é análoga. A demonstração completa fica como o Exercício 3.3.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indução e Boa Ordenação</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/03-inducao.html#exercícios",
+    "href": "volumes/v1-fundamentos/03-inducao.html#exercícios",
+    "title": "3  Indução e Boa Ordenação",
+    "section": "3.6 Exercícios",
+    "text": "3.6 Exercícios\n\nExercício 3.1 Prove que \\(\\displaystyle \\sum_{i=1}^{n} i^3 = \\left(\\frac{n(n+1)}{2}\\right)^2\\) para todo \\(n \\geq 1\\).\n\n\nExercício 3.2 Mostre que \\(n^3 - n\\) é divisível por \\(6\\) para todo \\(n \\geq 1\\).\n\n\nExercício 3.3 Demonstre, com detalhes, a equivalência entre o Teorema 3.1 e o Teorema 3.3.\n\n\nSoluções selecionadas\n\n\n\n\n\n\nDicaSolução do Exercício 3.2\n\n\n\n\n\nBase: para \\(n = 1\\), \\(1^3 - 1 = 0\\), divisível por \\(6\\). Passo: suponha \\(6 \\mid k^3 - k\\). Então \\[\n(k+1)^3 - (k+1) = (k^3 - k) + 3k(k+1).\n\\] O primeiro termo é divisível por \\(6\\) pela hipótese; e \\(3k(k+1)\\) é divisível por \\(6\\) porque \\(k(k+1)\\) é par (produto de dois inteiros consecutivos). Logo a soma é divisível por \\(6\\).",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indução e Boa Ordenação</span>"
+    ]
+  },
+  {
+    "objectID": "notacao.html",
+    "href": "notacao.html",
+    "title": "Notação",
+    "section": "",
+    "text": "Tabela de símbolos usados ao longo do manual. Mantenha-a atualizada conforme novos volumes forem escritos.\n\n\n\nSímbolo\nSignificado\n\n\n\n\n\\(\\mathbb{N}\\)\nnaturais \\(\\{1, 2, 3, \\dots\\}\\)\n\n\n\\(\\mathbb{Z}\\)\ninteiros\n\n\n\\(\\mathbb{Q}\\)\nracionais\n\n\n\\(\\mathbb{R}\\)\nreais\n\n\n\\(\\mathbb{C}\\)\ncomplexos\n\n\n\\(\\in,\\ \\notin\\)\npertence, não pertence\n\n\n\\(\\subseteq,\\ \\subset\\)\nsubconjunto, subconjunto próprio\n\n\n\\(\\cup,\\ \\cap\\)\nunião, interseção\n\n\n\\(\\Rightarrow,\\ \\Leftrightarrow\\)\nimplica, equivale\n\n\n\\(\\forall,\\ \\exists\\)\npara todo, existe\n\n\n\\(\\mid\\)\ndivide (\\(a \\mid b\\): \\(a\\) divide \\(b\\))\n\n\n\\(\\square\\)\nfim de demonstração",
+    "crumbs": [
+      "Apêndices",
+      "Notação"
+    ]
+  }
+]
