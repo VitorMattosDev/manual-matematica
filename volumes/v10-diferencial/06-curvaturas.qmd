@@ -1,0 +1,156 @@
+# Curvaturas gaussiana e média {#sec-curvaturas}
+
+## Motivação
+
+A curvatura normal de uma superfície varia com a direção (@sec-segunda-forma): numa
+sela, sobe num sentido e desce no outro. Como condensar essa informação direcional em
+poucos números? A álgebra linear responde: o operador de forma é autoadjunto, logo
+diagonalizável (@sec-teorema-espectral), e seus **dois autovalores** — as **curvaturas
+principais** — resumem toda a curvatura no ponto.
+
+Delas nascem as duas curvaturas centrais da teoria das superfícies: a **gaussiana**
+$K$ (o produto) e a **média** $H$ (a média). A gaussiana é a estrela: ela classifica os
+pontos em elípticos, hiperbólicos e planos, e — pelo Teorema Egregium do próximo
+capítulo — revela-se **intrínseca**, mensurável de dentro da superfície. A média, por
+sua vez, governa as superfícies mínimas (películas de sabão). Este capítulo define
+essas curvaturas e mostra como elas decidem a forma local da superfície.
+
+## Curvaturas principais
+
+::: {#def-curvaturas-principais}
+## Curvaturas e direções principais
+As **curvaturas principais** $k_1, k_2$ em um ponto são os **autovalores** do operador
+de forma $S_p$ (@def-operador-forma). As **direções principais** são os autovetores
+correspondentes — direções ortogonais ao longo das quais a curvatura normal é máxima e
+mínima.
+:::
+
+::: {.callout-note}
+## Máximo e mínimo da curvatura
+Pelo teorema espectral, $k_1$ e $k_2$ são os valores **extremos** da curvatura normal
+sobre todas as direções, atingidos em direções **perpendiculares** entre si. Toda outra
+direção tem curvatura entre $k_1$ e $k_2$ (fórmula de Euler). Assim, duas curvaturas e
+duas direções descrevem completamente o encurvamento local — a redução prometida pela
+diagonalização (@sec-diagonalizacao).
+:::
+
+## Curvatura gaussiana e média
+
+::: {#def-gaussiana-media}
+## Curvatura gaussiana e média
+Define-se a **curvatura gaussiana** e a **curvatura média** por
+$$
+K = k_1 k_2 = \det(S_p), \qquad H = \frac{k_1 + k_2}{2} = \frac{\operatorname{tr}(S_p)}
+{2}.
+$$
+Em coordenadas, $K = \dfrac{eg - f^2}{EG - F^2}$, razão dos determinantes das duas
+formas fundamentais.
+:::
+
+Reconhecemos aqui o **determinante** e o **traço** do operador de forma — os invariantes
+que, no Volume VI (@prp-traco-determinante), caracterizavam um operador independentemente
+de base. A geometria da superfície destila-se nesses dois números.
+
+::: {#exm-curvaturas-exemplos}
+## Curvaturas de superfícies conhecidas
+- **Plano**: $k_1 = k_2 = 0$, logo $K = 0$, $H = 0$.
+- **Esfera** de raio $r$: $k_1 = k_2 = \frac1r$, logo $K = \frac{1}{r^2} > 0$, $H =
+  \frac1r$.
+- **Cilindro** de raio $1$: $k_1 = 0$, $k_2 = 1$, logo $K = 0$, $H = \frac12$.
+:::
+
+::: {.callout-tip}
+## O cilindro tem curvatura gaussiana zero
+Surpresa: o cilindro, visivelmente curvo, tem $K = 0$, igual ao plano! Isso porque uma
+de suas curvaturas principais é nula (ao longo do eixo, ele é reto). E faz sentido: o
+cilindro **desenrola-se** no plano sem distorção (@exm-primeira-forma), e a gaussiana —
+veremos — é justamente o que se preserva sob isometrias. Já a esfera tem $K > 0$ e
+**não** se desenrola: por isso não há mapa-múndi perfeito.
+:::
+
+## Classificação dos pontos
+
+O sinal de $K$ determina a forma local da superfície.
+
+::: {#def-tipos-pontos}
+## Tipos de pontos
+Conforme a curvatura gaussiana, um ponto é:
+
+- **elíptico** se $K > 0$: a superfície fica de um só lado do plano tangente (como uma
+  cúpula);
+- **hiperbólico** se $K < 0$: tem forma de **sela**, atravessando o plano tangente;
+- **parabólico** se $K = 0$ mas $S_p \neq 0$ (como o cilindro);
+- **planar** se $S_p = 0$.
+:::
+
+::: {#exm-sela}
+## A sela tem curvatura negativa
+No ponto central de uma sela (parabolóide hiperbólico $z = x^2 - y^2$), uma curvatura
+principal é positiva (direção $x$, curva para cima) e a outra negativa (direção $y$,
+curva para baixo). Logo $K = k_1 k_2 < 0$ — ponto hiperbólico. A curvatura gaussiana
+negativa é a assinatura matemática de uma sela.
+:::
+
+## Superfícies mínimas
+
+A curvatura média governa um problema físico clássico.
+
+::: {#def-superficie-minima}
+## Superfície mínima
+Uma superfície é **mínima** se sua curvatura média $H = 0$ em todo ponto. Tais
+superfícies **minimizam a área** entre as que têm um dado bordo.
+:::
+
+::: {.callout-note}
+## A física das películas de sabão
+Uma película de sabão esticada num arame assume a forma de **menor área** possível —
+uma superfície mínima, com $H = 0$. As curvaturas principais são opostas ($k_1 = -k_2$),
+de modo que a tensão se equilibra em cada ponto. O **catenoide** e o **helicoide** são
+exemplos clássicos. A condição $H = 0$ conecta a geometria diferencial ao cálculo das
+variações e à física das superfícies.
+:::
+
+## Exercícios
+
+::: {#exr-cv-1-curv}
+Para um ponto com curvaturas principais $k_1 = 3$ e $k_2 = -1$, calcule $K$ e $H$ e
+classifique o ponto.
+:::
+
+::: {#exr-cv-toro}
+Explique por que um toro (rosca) tem pontos elípticos (na parte externa) e hiperbólicos
+(na parte interna).
+:::
+
+::: {#exr-cv-esfera}
+Mostre que numa esfera de raio $r$ **todo** ponto é elíptico e calcule $K$.
+:::
+
+::: {#exr-cv-minima}
+Verifique que, se $H = 0$ e $K < 0$ num ponto, então $k_2 = -k_1$ (curvaturas
+opostas).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cv-1-curv
+$K = k_1 k_2 = 3\cdot(-1) = -3 < 0$ e $H = \frac{3 + (-1)}{2} = 1$. Como $K < 0$, o
+ponto é **hiperbólico** (uma sela).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cv-toro
+Na parte **externa** do toro, a superfície curva-se no mesmo sentido em ambas as
+direções principais (ambas afastam do plano tangente para o mesmo lado): $K > 0$,
+elíptico. Na parte **interna** (voltada ao buraco), uma direção curva para dentro e a
+outra para fora — curvaturas de sinais opostos, $K < 0$, hiperbólico. A faixa superior e
+inferior ($K = 0$) separa as duas regiões.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cv-minima
+Se $H = \frac{k_1 + k_2}{2} = 0$, então $k_2 = -k_1$. Daí $K = k_1 k_2 = -k_1^2 \leq 0$,
+sendo $< 0$ quando $k_1 \neq 0$. Toda superfície mínima (não plana) tem, portanto,
+curvatura gaussiana **negativa** — só pontos de sela.
+:::
