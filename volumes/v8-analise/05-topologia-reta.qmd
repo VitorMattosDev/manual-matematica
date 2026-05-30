@@ -1,0 +1,172 @@
+# Topologia da reta {#sec-topologia-reta}
+
+## Motivação
+
+Até aqui, falamos de proximidade através de sequências e de $\varepsilon$. Mas há uma
+linguagem mais fundamental e flexível para descrever a "forma" da reta real: a
+**topologia** — o estudo dos conjuntos abertos, fechados e compactos. Ela captura
+noções como "estar perto da borda", "não ter buracos" e "ser limitado e fechado" de
+um modo que se generaliza a espaços muito além de $\mathbb{R}$ (Volume IX).
+
+O conceito central é o de **compacidade**, e seu teorema-chave, Heine-Borel, identifica
+os subconjuntos compactos de $\mathbb{R}$ como exatamente os fechados e limitados. A
+compacidade é a propriedade que faz funções contínuas se comportarem bem — atingirem
+máximos, serem uniformemente contínuas. Este capítulo introduz o vocabulário
+topológico da reta, traduzindo em conjuntos a teoria de limites que vínhamos fazendo
+com sequências, e preparando o terreno para a continuidade rigorosa
+(@sec-continuidade) e a topologia geral.
+
+## Conjuntos abertos
+
+::: {#def-aberto}
+## Conjunto aberto
+Um conjunto $A \subseteq \mathbb{R}$ é **aberto** se, em torno de cada um de seus
+pontos, cabe um intervalo inteiramente dentro de $A$: para todo $x \in A$ existe
+$\varepsilon > 0$ tal que $(x - \varepsilon, x + \varepsilon) \subseteq A$.
+:::
+
+::: {#exm-abertos}
+## Abertos e não abertos
+- Todo intervalo $(a, b)$ é aberto; $\mathbb{R}$ e $\emptyset$ são abertos.
+- $[a, b]$ **não** é aberto: em torno do extremo $a$ não cabe intervalo dentro
+  (qualquer vizinhança de $a$ contém pontos $< a$).
+- $\mathbb{Q}$ não é aberto, nem fechado.
+:::
+
+::: {#thm-uniao-abertos}
+## Estrutura dos abertos
+A união de **qualquer** coleção de abertos é aberta; a interseção de **finitos**
+abertos é aberta. (A interseção infinita pode falhar: $\bigcap_n (-\frac1n, \frac1n) =
+\{0\}$, que não é aberto.)
+:::
+
+## Conjuntos fechados
+
+::: {#def-fechado}
+## Conjunto fechado
+Um conjunto $F \subseteq \mathbb{R}$ é **fechado** se seu complementar $\mathbb{R}
+\setminus F$ é aberto. Equivalentemente: $F$ contém todos os seus **pontos de
+aderência** — se $x_n \to x$ com $x_n \in F$, então $x \in F$.
+:::
+
+::: {.callout-tip}
+## Fechado = "fechado sob limites"
+A caracterização por sequências é a mais útil: um conjunto é fechado quando **não se
+pode escapar dele por um limite**. Os pontos-limite de elementos de $F$ já estão em
+$F$. Por isso $[a,b]$ é fechado (limites de pontos do intervalo permanecem nele) e
+$(a, b)$ não é (pode-se convergir para $a \notin (a,b)$). Aberto e fechado **não** são
+opostos — há conjuntos nenhum dos dois, e dois ($\emptyset$, $\mathbb{R}$) que são
+ambos.
+:::
+
+::: {#def-fecho-interior}
+## Fecho, interior, fronteira
+O **fecho** $\overline{A}$ é o menor fechado contendo $A$ (acrescenta os pontos de
+aderência). O **interior** $A^\circ$ é o maior aberto contido em $A$. A **fronteira**
+$\partial A$ são os pontos que não estão nem no interior de $A$ nem no de seu
+complementar.
+:::
+
+::: {#exm-fecho}
+## Fechos
+$\overline{(0, 1)} = [0, 1]$; $\overline{\mathbb{Q}} = \mathbb{R}$ (os racionais são
+densos, @cor-densidade); o interior de $[0,1]$ é $(0,1)$ e sua fronteira é $\{0, 1\}$.
+:::
+
+## Pontos de acumulação
+
+::: {#def-acumulacao}
+## Ponto de acumulação
+Um ponto $x$ é **de acumulação** de $A$ se toda vizinhança de $x$ contém pontos de $A$
+**diferentes de $x$** — isto é, $x$ é aproximável por elementos de $A$ distintos dele.
+:::
+
+O teorema de Bolzano-Weierstrass (@thm-bolzano-weierstrass) reformula-se nessa
+linguagem: **todo conjunto infinito e limitado tem ao menos um ponto de acumulação**.
+
+## Compacidade e o teorema de Heine-Borel
+
+O conceito mais poderoso da topologia da reta.
+
+::: {#def-cobertura}
+## Cobertura aberta e compacidade
+Uma **cobertura aberta** de $K$ é uma coleção de abertos cuja união contém $K$. O
+conjunto $K$ é **compacto** se toda cobertura aberta de $K$ admite uma **subcobertura
+finita** — finitos dos abertos já bastam para cobrir $K$.
+:::
+
+::: {#thm-heine-borel}
+## Heine-Borel
+Um subconjunto $K \subseteq \mathbb{R}$ é **compacto se, e somente se, é fechado e
+limitado**.
+:::
+
+::: {.proof}
+*(Esboço.)* Se $K$ é fechado e limitado, está em algum $[a, b]$; dada uma cobertura,
+o argumento de bisseção (como em @thm-bolzano-weierstrass) extrai subcobertura finita.
+Reciprocamente, um compacto deve ser limitado (senão a cobertura por intervalos
+$(-n, n)$ não tem subcobertura finita) e fechado (senão um ponto de aderência fora
+geraria cobertura sem subcobertura finita).
+:::
+
+::: {.callout-note}
+## Por que compacidade é "a propriedade boa"
+Compacidade transforma o infinito em finito: qualquer cobertura, por maior que seja,
+reduz-se a finitos pedaços. É isso que garante que uma função contínua num compacto
+atinge máximo e mínimo (@sec-continuidade) e é uniformemente contínua. Em $\mathbb{R}$,
+"compacto" é sinônimo concreto de "fechado e limitado" (Heine-Borel), mas a definição
+por coberturas é a que sobrevive à generalização para espaços abstratos
+(@sec-compacidade) — onde fechado e limitado já não bastam.
+:::
+
+::: {#exm-compactos}
+## Compactos e não compactos
+- $[0, 1]$ é compacto (fechado e limitado).
+- $(0, 1)$ **não** é (não fechado): a cobertura $\{(\frac1n, 1)\}_n$ não tem
+  subcobertura finita.
+- $[0, \infty)$ **não** é (ilimitado).
+:::
+
+## Exercícios
+
+::: {#exr-top-1}
+Classifique como aberto, fechado, ambos ou nenhum: (a) $[0, 1)$; (b) $\{1, 2, 3\}$;
+(c) $\mathbb{Z}$.
+:::
+
+::: {#exr-top-fecho}
+Determine o fecho, o interior e a fronteira de $A = (0, 1] \cup \{2\}$.
+:::
+
+::: {#exr-top-acumulacao}
+Encontre os pontos de acumulação de $A = \left\{\frac1n : n \in \mathbb{N}\right\}$.
+:::
+
+::: {#exr-top-compacto}
+Mostre, exibindo uma cobertura sem subcobertura finita, que $(0, 1]$ não é compacto.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-top-1
+(a) $[0, 1)$: **nenhum** — não é aberto (extremo $0$) nem fechado (limite $1 \notin
+A$). (b) $\{1,2,3\}$: **fechado** (todo conjunto finito é fechado), não aberto. (c)
+$\mathbb{Z}$: **fechado** (complementar é união de intervalos abertos), não aberto.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-top-acumulacao
+O único ponto de acumulação é $\mathbf{0}$: toda vizinhança de $0$ contém infinitos
+$\frac1n$. Cada ponto $\frac1n$ é **isolado** (tem vizinhança sem outros pontos de
+$A$), logo não é de acumulação. Note que $0 \notin A$ — um conjunto não precisa conter
+seus pontos de acumulação.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-top-compacto
+A coleção $\left\{\left(\frac1n, 2\right) : n \in \mathbb{N}\right\}$ cobre $(0, 1]$
+(todo $x > 0$ está em algum). Mas qualquer subcoleção finita tem um maior $\frac1N$, e
+não cobre os pontos de $(0, \frac1N]$. Sem subcobertura finita, $(0,1]$ não é
+compacto — coerente com não ser fechado (@thm-heine-borel).
+:::
