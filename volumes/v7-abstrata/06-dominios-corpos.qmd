@@ -1,0 +1,179 @@
+# Domínios de integridade e corpos {#sec-dominios-corpos}
+
+## Motivação
+
+Os anéis (@sec-aneis) admitem patologias estranhas: produtos de elementos não nulos
+podem dar zero, e quase nenhum elemento tem inverso multiplicativo. Mas alguns anéis
+comportam-se exatamente como esperamos dos números — neles vale o cancelamento, e
+muitas vezes a divisão. Esses são os **domínios de integridade** e os **corpos**.
+
+Um corpo é a estrutura algébrica mais rica: nele as quatro operações funcionam
+plenamente, como em $\mathbb{Q}$, $\mathbb{R}$ e $\mathbb{C}$. Corpos são o cenário da
+álgebra linear (os escalares de @sec-espacos-vetoriais eram, implicitamente, um
+corpo), da geometria e da teoria de Galois (@sec-galois). Este capítulo refina a
+hierarquia anel → domínio → corpo, mostra a relação surpreendente entre elas no caso
+finito e constrói corpos novos a partir de ideais — preparando as extensões de corpos
+(@sec-extensoes-corpos).
+
+## Domínios de integridade
+
+::: {#def-dominio}
+## Domínio de integridade
+Um **domínio de integridade** é um anel comutativo com unidade ($1 \neq 0$) e **sem
+divisores de zero**: se $ab = 0$, então $a = 0$ ou $b = 0$.
+:::
+
+A ausência de divisores de zero restaura o cancelamento, a propriedade que faz a
+álgebra elementar funcionar.
+
+::: {#prp-cancelamento-dominio}
+## Cancelamento em domínios
+Num domínio de integridade, se $ab = ac$ e $a \neq 0$, então $b = c$.
+:::
+
+::: {.proof}
+De $ab = ac$ vem $a(b - c) = 0$. Como $a \neq 0$ e não há divisores de zero, $b - c =
+0$, isto é $b = c$.
+:::
+
+::: {#exm-dominios}
+## Domínios e não domínios
+- $\mathbb{Z}$ é o protótipo do domínio de integridade.
+- Todo corpo é domínio; $\mathbb{R}[x]$ é domínio.
+- $\mathbb{Z}_6$ **não** é domínio: $2\cdot 3 = 0$ (@sec-aneis).
+- $\mathbb{Z}_p$ **é** domínio quando $p$ é primo.
+:::
+
+## Corpos
+
+::: {#def-corpo}
+## Corpo
+Um **corpo** é um anel comutativo com unidade em que **todo elemento não nulo tem
+inverso multiplicativo**: para cada $a \neq 0$, existe $a^{-1}$ com $a a^{-1} = 1$.
+Equivalentemente, $(K \setminus \{0\}, \cdot)$ é um grupo abeliano.
+:::
+
+Num corpo, divide-se livremente (por qualquer não nulo): as quatro operações da
+aritmética funcionam sem restrição.
+
+::: {#prp-corpo-dominio}
+## Todo corpo é domínio
+Todo corpo é um domínio de integridade.
+:::
+
+::: {.proof}
+Se $ab = 0$ com $a \neq 0$, multiplique por $a^{-1}$: $b = a^{-1}(ab) = a^{-1}\cdot 0
+= 0$. Logo não há divisores de zero.
+:::
+
+::: {.callout-warning}
+## A recíproca falha — mas só no infinito
+Nem todo domínio é corpo: $\mathbb{Z}$ é domínio sem ser corpo ($2$ não tem inverso
+inteiro). Porém, como veremos, **para anéis finitos a distinção desaparece**. A
+hierarquia é: anéis ⊋ domínios ⊋ corpos, com $\mathbb{Z}$ separando as duas últimas
+classes.
+:::
+
+## O caso finito: domínio = corpo
+
+Um resultado elegante e nada óbvio une os dois conceitos quando há finitos elementos.
+
+::: {#thm-dominio-finito}
+## Todo domínio finito é corpo
+Um domínio de integridade **finito** é necessariamente um corpo.
+:::
+
+::: {.proof}
+Seja $a \neq 0$ no domínio finito $D$. A multiplicação por $a$, $x \mapsto ax$, é
+injetora (cancelamento, @prp-cancelamento-dominio); sendo $D$ finito, é também
+sobrejetora. Logo existe $b$ com $ab = 1$ — isto é, $a$ é invertível. Como $a$ era
+arbitrário, $D$ é corpo.
+:::
+
+::: {#cor-zp-corpo}
+## $\mathbb{Z}_p$ é corpo se, e só se, $p$ é primo
+$\mathbb{Z}_n$ é corpo exatamente quando $n$ é primo. Para $n$ composto há divisores
+de zero; para $n = p$ primo, $\mathbb{Z}_p$ é domínio finito, logo corpo
+(@thm-dominio-finito).
+:::
+
+::: {.callout-note}
+## Corpos finitos existem em toda potência de primo
+Os $\mathbb{Z}_p$ são os corpos finitos mais simples, mas não os únicos: existe um
+corpo finito com $q$ elementos exatamente quando $q = p^k$ é potência de um primo, e
+ele é **único** a menos de isomorfismo (o corpo de Galois $\mathbb{F}_q$). Esses
+corpos são a espinha dorsal da criptografia, dos códigos corretores de erro e da
+teoria de Galois.
+:::
+
+## Ideais maximais e construção de corpos
+
+A ligação entre ideais (@sec-aneis) e corpos permite **fabricar** corpos por
+quociente.
+
+::: {#def-ideal-maximal}
+## Ideal maximal
+Um ideal $M \neq R$ é **maximal** se não há ideal estritamente entre $M$ e $R$: os
+únicos ideais contendo $M$ são $M$ e o próprio $R$.
+:::
+
+::: {#thm-maximal-corpo}
+## Quociente por maximal é corpo
+Seja $R$ anel comutativo com unidade. O quociente $R/M$ é um **corpo** se, e somente
+se, $M$ é um ideal **maximal**.
+:::
+
+::: {#exm-construcao-corpo}
+## Construindo $\mathbb{C}$ e corpos finitos
+- Em $\mathbb{Z}$, os ideais maximais são exatamente os $p\mathbb{Z}$ com $p$ primo;
+  daí $\mathbb{Z}/p\mathbb{Z} = \mathbb{Z}_p$ ser corpo (@cor-zp-corpo).
+- Em $\mathbb{R}[x]$, o ideal $\langle x^2 + 1\rangle$ é maximal (pois $x^2 + 1$ não
+  tem raiz real, sendo irredutível), e o quociente
+$$
+\mathbb{R}[x]/\langle x^2 + 1\rangle \;\cong\; \mathbb{C}.
+$$
+  Os **números complexos** nascem de um quociente: adjuntar uma raiz de $x^2 + 1$.
+  Essa é a receita geral das extensões de corpos (@sec-extensoes-corpos).
+:::
+
+## Exercícios
+
+::: {#exr-dom-1}
+$\mathbb{Z}_{15}$ é um domínio de integridade? E um corpo? Justifique.
+:::
+
+::: {#exr-dom-inverso}
+Encontre o inverso multiplicativo de $3$ em $\mathbb{Z}_7$.
+:::
+
+::: {#exr-dom-corpo}
+Mostre que $\mathbb{Q}[\sqrt2] = \{a + b\sqrt2 : a, b \in \mathbb{Q}\}$ é um corpo.
+:::
+
+::: {#exr-dom-maximal}
+Por que $\langle x^2 - 1\rangle$ **não** é maximal em $\mathbb{R}[x]$? (Dica: $x^2 -
+1$ fatora.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dom-1
+**Não** é domínio: $15 = 3\cdot 5$ é composto, e $3\cdot 5 = 15 \equiv 0$ em
+$\mathbb{Z}_{15}$, com $3, 5 \neq 0$ (divisores de zero). Logo também não é corpo
+(@prp-corpo-dominio).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dom-inverso
+Buscamos $x$ com $3x \equiv 1 \pmod 7$. Testando, $3\cdot 5 = 15 \equiv 1$, logo
+$3^{-1} = 5$ em $\mathbb{Z}_7$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dom-maximal
+Como $x^2 - 1 = (x-1)(x+1)$ é redutível, o ideal $\langle x^2 - 1\rangle$ está
+contido propriamente em $\langle x - 1\rangle \neq \mathbb{R}[x]$. Havendo ideal
+estritamente entre ele e o anel, não é maximal — e de fato o quociente tem divisores
+de zero, não sendo corpo.
+:::
