@@ -101,6 +101,7 @@ book:
         - volumes/v7-abstrata/02-subgrupos-ciclicos.qmd
         - volumes/v7-abstrata/03-lagrange.qmd
         - volumes/v7-abstrata/04-quociente-isomorfismo.qmd
+        - volumes/v7-abstrata/05-aneis.qmd
   appendices:
     - notacao.qmd
 

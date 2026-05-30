@@ -1,0 +1,197 @@
+# Anéis e ideais {#sec-aneis}
+
+## Motivação
+
+Um grupo tem **uma** operação. Mas os objetos aritméticos que mais conhecemos — os
+inteiros, os polinômios, as matrizes — têm **duas**: soma e multiplicação, ligadas
+pela distributividade. Abstrair essa estrutura de "duas operações compatíveis" produz
+o conceito de **anel**, o segundo grande protagonista da álgebra abstrata.
+
+A teoria dos anéis generaliza a aritmética: noções como divisibilidade, fatoração e
+congruência, estudadas para inteiros no Volume I, ganham aqui uma forma geral que se
+aplica também a polinômios (@sec-aneis-polinomios) e além. O análogo dos subgrupos
+normais — os objetos pelos quais se pode formar quociente — são os **ideais**, e o
+quociente por um ideal generaliza a aritmética modular. Este capítulo introduz anéis,
+ideais e anéis quociente, abrindo a segunda metade do Volume VII.
+
+## Anéis
+
+::: {#def-anel}
+## Anel
+Um **anel** é um conjunto $R$ com duas operações, soma $+$ e produto $\cdot$, tais
+que:
+
+1. $(R, +)$ é um grupo **abeliano** (neutro $0$, inversos $-a$);
+2. o produto é **associativo**: $(ab)c = a(bc)$;
+3. valem as **distributivas**: $a(b + c) = ab + ac$ e $(a + b)c = ac + bc$.
+
+Se o produto é comutativo, $R$ é um **anel comutativo**; se existe neutro
+multiplicativo $1 \neq 0$, $R$ é um **anel com unidade**.
+:::
+
+::: {#exm-aneis}
+## Exemplos de anéis
+- $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$: anéis comutativos com
+  unidade.
+- $\mathbb{Z}_n$: o anel dos inteiros módulo $n$ (@sec-congruencias), com soma e
+  produto modulares.
+- $M_n(\mathbb{R})$: as matrizes $n\times n$ — anel com unidade, mas **não
+  comutativo** (@sec-matrizes).
+- $\mathbb{R}[x]$: os polinômios com coeficientes reais (@sec-aneis-polinomios).
+:::
+
+::: {.callout-note}
+## Por que a soma é abeliana, mas o produto não precisa ser
+A assimetria da definição reflete a experiência: somar é sempre comutativo e
+reversível (todo elemento tem oposto), mas multiplicar pode não comutar (matrizes) e
+nem todo elemento tem inverso multiplicativo (o $2$ em $\mathbb{Z}$). Um anel captura
+exatamente "uma soma perfeita e um produto que apenas se distribui sobre ela".
+:::
+
+## Propriedades básicas e divisores de zero
+
+::: {#prp-regras-anel}
+## Regras de cálculo
+Em qualquer anel: $a\cdot 0 = 0\cdot a = 0$, e $(-a)b = -(ab) = a(-b)$. Essas regras,
+familiares dos números, decorrem só dos axiomas.
+:::
+
+::: {.proof}
+$a\cdot 0 = a(0 + 0) = a\cdot 0 + a\cdot 0$; cancelando na soma (grupo abeliano),
+$a\cdot 0 = 0$. As demais saem de $0 = a(b + (-b)) = ab + a(-b)$.
+:::
+
+::: {#def-divisor-zero}
+## Divisor de zero
+Um elemento $a \neq 0$ é um **divisor de zero** se existe $b \neq 0$ com $ab = 0$.
+Anéis **sem** divisores de zero (comutativos, com unidade) chamam-se **domínios de
+integridade** (@sec-dominios-corpos).
+:::
+
+::: {.callout-warning}
+## Produto de não nulos pode dar zero
+Em $\mathbb{Z}_6$, $2\cdot 3 = 6 \equiv 0$, embora $2, 3 \neq 0$: são divisores de
+zero. Isso quebra intuições — não vale o cancelamento ($2\cdot 3 = 2\cdot 0$ mas $3
+\neq 0$). Os domínios de integridade são justamente os anéis onde essa patologia não
+ocorre, e por isso se comportam como $\mathbb{Z}$.
+:::
+
+## Ideais
+
+O análogo, para anéis, do subgrupo normal: o subconjunto pelo qual se pode formar
+quociente.
+
+::: {#def-ideal}
+## Ideal
+Um subconjunto $I \subseteq R$ (anel comutativo) é um **ideal** se:
+
+1. $(I, +)$ é subgrupo de $(R, +)$;
+2. **absorção**: para todo $r \in R$ e $a \in I$, o produto $ra \in I$.
+:::
+
+A absorção é mais forte que o mero fechamento: multiplicar um elemento do ideal por
+**qualquer** elemento do anel mantém-no dentro. É essa propriedade que faz o quociente
+funcionar.
+
+::: {#exm-ideais}
+## Ideais típicos
+- Em $\mathbb{Z}$, os múltiplos de $n$, $n\mathbb{Z}$, formam um ideal (e **todos** os
+  ideais de $\mathbb{Z}$ são desse tipo).
+- $\{0\}$ e o anel inteiro $R$ são ideais (os triviais).
+- O núcleo de um homomorfismo de anéis é sempre um ideal.
+:::
+
+::: {#def-ideal-principal}
+## Ideal principal
+O **ideal gerado** por $a \in R$ é $\langle a\rangle = \{ra : r \in R\}$, o menor
+ideal contendo $a$. Ideais dessa forma chamam-se **principais**. Um domínio em que
+todo ideal é principal é um **domínio de ideais principais** (DIP) — como
+$\mathbb{Z}$.
+:::
+
+## Anéis quociente
+
+::: {#thm-anel-quociente}
+## Anel quociente
+Se $I$ é ideal de $R$, o conjunto das classes $R/I = \{a + I : a \in R\}$ é um anel
+com
+$$
+(a + I) + (b + I) = (a + b) + I, \qquad (a + I)(b + I) = ab + I.
+$$
+A propriedade de absorção do ideal é o que torna o **produto** bem definido.
+:::
+
+::: {#exm-quociente-anel}
+## $\mathbb{Z}/n\mathbb{Z}$ como anel
+Tomando $R = \mathbb{Z}$ e $I = n\mathbb{Z}$, o anel quociente $\mathbb{Z}/n\mathbb{Z}$
+é precisamente $\mathbb{Z}_n$ **com sua estrutura de anel** — soma e produto módulo
+$n$. A aritmética modular do Volume I reaparece como o exemplo fundamental de anel
+quociente, agora também na multiplicação.
+:::
+
+::: {.callout-tip}
+## O paralelo grupo/anel
+A teoria dos anéis espelha a dos grupos: subgrupos normais ↔ ideais; grupos quociente
+↔ anéis quociente; e há um **primeiro teorema de isomorfismo para anéis** idêntico em
+forma ao de grupos (@thm-primeiro-isomorfismo): $R/\ker\varphi \cong
+\operatorname{Im}\varphi$ para todo homomorfismo de anéis $\varphi$. Aprender uma
+estrutura ilumina a outra.
+:::
+
+## Homomorfismos de anéis
+
+::: {#def-homomorfismo-anel}
+## Homomorfismo de anéis
+Uma função $\varphi: R \to S$ é um **homomorfismo de anéis** se preserva **ambas** as
+operações:
+$$
+\varphi(a + b) = \varphi(a) + \varphi(b), \qquad \varphi(ab) = \varphi(a)\varphi(b),
+$$
+(e $\varphi(1_R) = 1_S$, para anéis com unidade). Seu núcleo é um ideal e sua imagem
+é um subanel.
+:::
+
+## Exercícios
+
+::: {#exr-anel-1}
+Verifique que $2\mathbb{Z}$ (os inteiros pares) é um anel comutativo, mas **sem
+unidade**.
+:::
+
+::: {#exr-anel-divisores}
+Encontre todos os divisores de zero de $\mathbb{Z}_{12}$.
+:::
+
+::: {#exr-anel-ideal}
+Mostre que o conjunto dos polinômios com termo independente nulo é um ideal de
+$\mathbb{R}[x]$.
+:::
+
+::: {#exr-anel-quociente}
+Descreva os elementos do anel quociente $\mathbb{Z}/5\mathbb{Z}$ e diga se ele tem
+divisores de zero.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-anel-divisores
+Os divisores de zero de $\mathbb{Z}_{12}$ são os elementos não nulos $a$ com
+$\gcd(a, 12) > 1$: a saber $2, 3, 4, 6, 8, 9, 10$. Por exemplo $4\cdot 3 = 12 \equiv
+0$. Os demais ($1, 5, 7, 11$, coprimos com $12$) são invertíveis, não divisores de
+zero.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-anel-ideal
+Seja $I$ os polinômios $p$ com $p(0) = 0$. É subgrupo aditivo (a soma e a diferença
+preservam $p(0) = 0$). Absorção: se $p(0) = 0$ e $q$ é qualquer polinômio, então
+$(qp)(0) = q(0)p(0) = 0$, logo $qp \in I$. É ideal — de fato $I = \langle x\rangle$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-anel-quociente
+$\mathbb{Z}/5\mathbb{Z} = \{0, 1, 2, 3, 4\}$ com aritmética módulo $5$. Como $5$ é
+primo, **não há divisores de zero** (um produto $ab \equiv 0$ exige $5 \mid ab$, logo
+$5 \mid a$ ou $5 \mid b$). É, na verdade, um **corpo** (@sec-dominios-corpos).
+:::

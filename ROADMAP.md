@@ -117,7 +117,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v7-abstrata/02-subgrupos-ciclicos.qmd` — Subgrupos e grupos cíclicos.
 - [x] `volumes/v7-abstrata/03-lagrange.qmd` — Homomorfismos e teorema de Lagrange.
 - [x] `volumes/v7-abstrata/04-quociente-isomorfismo.qmd` — Grupos quociente e teoremas de isomorfismo.
-- [ ] `volumes/v7-abstrata/05-aneis.qmd` — Anéis e ideais.
+- [x] `volumes/v7-abstrata/05-aneis.qmd` — Anéis e ideais.
 - [ ] `volumes/v7-abstrata/06-dominios-corpos.qmd` — Domínios de integridade e corpos.
 - [ ] `volumes/v7-abstrata/07-aneis-polinomios.qmd` — Anéis de polinômios.
 - [ ] `volumes/v7-abstrata/08-extensoes-corpos.qmd` — Extensões de corpos.
