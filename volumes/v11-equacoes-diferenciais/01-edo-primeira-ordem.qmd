@@ -1,0 +1,160 @@
+# EDOs de primeira ordem {#sec-edo-primeira-ordem}
+
+## Motivação
+
+As leis da natureza raramente dizem **quanto** vale uma grandeza; dizem como ela
+**varia**. A segunda lei de Newton relaciona aceleração (uma derivada) à força; a
+desintegração radioativa diz que a taxa de decaimento é proporcional à quantidade
+presente; o resfriamento de um corpo depende da diferença de temperatura. Todas essas
+leis são **equações diferenciais**: equações cuja incógnita é uma *função*, e que
+envolvem suas derivadas.
+
+Resolver uma equação diferencial é o problema inverso do cálculo: dada uma relação entre
+uma função e suas taxas de variação (@sec-derivada), reconstruir a função. Este capítulo
+abre o Volume XI com as **EDOs de primeira ordem** — as que envolvem só a primeira
+derivada — e os três tipos que sabemos resolver explicitamente: separáveis, lineares e
+exatas. É a base de toda a física-matemática.
+
+## O que é uma EDO
+
+::: {#def-edo}
+## Equação diferencial ordinária
+Uma **equação diferencial ordinária** (EDO) de primeira ordem é uma relação
+$$
+y' = f(x, y),
+$$
+cuja **solução** é uma função $y(x)$ que a satisfaz. A **solução geral** envolve uma
+constante arbitrária $C$; fixá-la por uma **condição inicial** $y(x_0) = y_0$ dá a
+**solução particular** (um **problema de valor inicial**, PVI).
+:::
+
+::: {.callout-note}
+## Por que aparece uma constante
+Resolver $y' = f$ é, no fundo, integrar — e integrar introduz uma constante
+(@sec-tfc). Geometricamente, a EDO prescreve a **inclinação** da solução em cada ponto
+(um "campo de direções"); há uma família inteira de curvas com essas inclinações, e a
+condição inicial seleciona aquela que passa por $(x_0, y_0)$.
+:::
+
+## Equações separáveis
+
+::: {#def-separavel}
+## EDO separável
+Uma EDO é **separável** se pode ser escrita como $y' = g(x)\,h(y)$. Separando as
+variáveis e integrando (@sec-tecnicas-integracao):
+$$
+\int \frac{dy}{h(y)} = \int g(x)\,dx + C.
+$$
+:::
+
+::: {#exm-decaimento}
+## Decaimento radioativo
+A lei $y' = -ky$ (taxa proporcional à quantidade) é separável: $\int\frac{dy}{y} =
+-\int k\,dx$ dá $\ln|y| = -kx + C$, ou seja
+$$
+y(x) = y_0\,e^{-kx}.
+$$
+O decaimento exponencial — meia-vida de isótopos, descarga de capacitores — sai de uma
+linha. A mesma equação com $+k$ dá **crescimento** exponencial (populações, juros).
+:::
+
+## Equações lineares
+
+::: {#def-edo-linear}
+## EDO linear de primeira ordem
+Uma EDO é **linear** se tem a forma
+$$
+y' + P(x)\,y = Q(x).
+$$
+Resolve-se multiplicando pelo **fator integrante** $\mu(x) = e^{\int P\,dx}$, que torna
+o lado esquerdo a derivada de um produto:
+$$
+(\mu y)' = \mu Q \quad\Longrightarrow\quad y = \frac{1}{\mu}\left(\int \mu Q\,dx +
+C\right).
+$$
+:::
+
+::: {.callout-tip}
+## O truque do fator integrante
+A mágica: $\mu = e^{\int P}$ é escolhido para que $\mu y' + \mu P y$ seja exatamente
+$(\mu y)'$ — pela regra do produto, $(\mu y)' = \mu y' + \mu' y$ e $\mu' = \mu P$. Assim
+a equação vira $(\mu y)' = \mu Q$, que se integra direto. Toda EDO linear de primeira
+ordem cede a esse método.
+:::
+
+::: {#exm-linear}
+## Resolvendo uma linear
+Para $y' + 2y = e^{x}$: $P = 2$, $\mu = e^{2x}$. Então $(e^{2x}y)' = e^{2x}e^x =
+e^{3x}$, logo $e^{2x}y = \frac{e^{3x}}{3} + C$ e
+$$
+y = \frac{e^{x}}{3} + C\,e^{-2x}.
+$$
+:::
+
+## Equações exatas
+
+::: {#def-exata}
+## EDO exata
+A equação $M(x,y)\,dx + N(x,y)\,dy = 0$ é **exata** se $M_y = N_x$ — exatamente a
+condição de campo conservativo (@sec-campos-integrais-linha). Então existe $F$ com $F_x
+= M$, $F_y = N$, e a solução é $F(x, y) = C$.
+:::
+
+::: {.callout-note}
+## EDO exata = campo gradiente
+Reconhecemos a estrutura do Volume V: $M\,dx + N\,dy$ é uma 1-forma, e ser exata é ser
+$dF$ para algum potencial $F$ (@sec-campos-integrais-linha). As curvas-solução são as
+**curvas de nível** de $F$. Quando a equação não é exata, às vezes um fator integrante a
+torna exata — generalizando o método das lineares.
+:::
+
+## Existência e unicidade
+
+::: {#thm-existencia-edo}
+## Teorema de Picard-Lindelöf
+Se $f(x, y)$ e $\partial f/\partial y$ são contínuas numa vizinhança de $(x_0, y_0)$,
+então o PVI $y' = f(x, y)$, $y(x_0) = y_0$ tem **uma única** solução numa vizinhança de
+$x_0$.
+:::
+
+Este é o mesmo teorema visto na análise (@thm-picard), garantindo que as EDOs "bem
+postas" da física têm solução única — o futuro é determinado pelo estado presente.
+
+## Exercícios
+
+::: {#exr-ed1-separavel}
+Resolva $y' = xy$ com $y(0) = 1$.
+:::
+
+::: {#exr-ed1-linear}
+Resolva $y' + y = x$.
+:::
+
+::: {#exr-ed1-exata}
+Verifique que $(2xy)\,dx + (x^2 + 1)\,dy = 0$ é exata e resolva-a.
+:::
+
+::: {#exr-ed1-resfriamento}
+A lei do resfriamento de Newton é $T' = -k(T - T_a)$ ($T_a$ = temperatura ambiente).
+Resolva-a (é separável após a substituição $u = T - T_a$).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ed1-separavel
+Separável: $\int\frac{dy}{y} = \int x\,dx$, logo $\ln|y| = \frac{x^2}{2} + C$ e $y =
+A\,e^{x^2/2}$. Com $y(0) = 1$: $A = 1$, portanto $y = e^{x^2/2}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ed1-linear
+Linear com $P = 1$, $\mu = e^x$. $(e^x y)' = x e^x$, e $\int x e^x\,dx = (x-1)e^x$
+(@sec-tecnicas-integracao). Logo $e^x y = (x-1)e^x + C$ e $y = x - 1 + C e^{-x}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ed1-exata
+$M_y = 2x = N_x$ ✓. De $F_x = 2xy$, $F = x^2 y + g(y)$; $F_y = x^2 + g'(y) = x^2 + 1
+\Rightarrow g = y$. Solução implícita $x^2 y + y = C$.
+:::

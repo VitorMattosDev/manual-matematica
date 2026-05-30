@@ -198,7 +198,7 @@ não pelo número.
 ## Volume XI — Equações Diferenciais
 *Objetivo: EDOs e EDPs, base de toda a física-matemática. Pré-req.: Vols. V, VI.*
 
-- [ ] `volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.qmd` — EDOs de primeira ordem: separáveis, lineares, exatas.
+- [x] `volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.qmd` — EDOs de primeira ordem: separáveis, lineares, exatas.
 - [ ] `volumes/v11-equacoes-diferenciais/02-edo-segunda-ordem.qmd` — EDOs lineares de segunda ordem; coeficientes constantes.
 - [ ] `volumes/v11-equacoes-diferenciais/03-sistemas-edo.qmd` — Sistemas de EDOs lineares (via autovalores).
 - [ ] `volumes/v11-equacoes-diferenciais/04-laplace.qmd` — Transformada de Laplace.

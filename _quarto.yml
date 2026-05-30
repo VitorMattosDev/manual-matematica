@@ -148,6 +148,9 @@ book:
         - volumes/v10-diferencial/13-conexoes-derivada-covariante.qmd
         - volumes/v10-diferencial/14-transporte-geodesicas.qmd
         - volumes/v10-diferencial/15-curvatura-riemann.qmd
+    - part: "Volume XI — Equações Diferenciais"
+      chapters:
+        - volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.qmd
   appendices:
     - notacao.qmd
 
