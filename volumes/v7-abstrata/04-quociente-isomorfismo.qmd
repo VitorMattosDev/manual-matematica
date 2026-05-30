@@ -1,0 +1,181 @@
+# Grupos quociente e teoremas de isomorfismo {#sec-quociente-isomorfismo}
+
+## Motivação
+
+As classes laterais (@sec-lagrange) particionaram um grupo em pedaços de mesmo
+tamanho. Surge uma ideia ousada: e se tratarmos cada classe lateral como **um único
+objeto** e operarmos sobre elas? O resultado seria um grupo novo, menor, que "colapsa"
+$G$ identificando elementos que diferem por um subgrupo — um **grupo quociente**.
+
+É a mesma operação que constrói $\mathbb{Z}_n$ a partir de $\mathbb{Z}$ (colapsar
+inteiros que diferem por múltiplos de $n$, @sec-congruencias), agora generalizada. Mas
+há uma sutileza: nem todo subgrupo permite essa construção — só os **normais**. Quando
+ela funciona, o resultado é coroado pelo **primeiro teorema de isomorfismo**, talvez o
+teorema mais usado de toda a teoria de grupos: todo homomorfismo é, essencialmente,
+uma projeção sobre um quociente. Este capítulo constrói o quociente e enuncia os
+teoremas de isomorfismo que organizam a teoria.
+
+## Subgrupos normais
+
+::: {#def-normal}
+## Subgrupo normal
+Um subgrupo $N \leq G$ é **normal**, escreve-se $N \trianglelefteq G$, se as classes
+laterais à esquerda e à direita coincidem:
+$$
+gN = Ng \quad\text{para todo } g \in G,
+$$
+ou, equivalentemente, $gng^{-1} \in N$ para todos $g \in G$, $n \in N$.
+:::
+
+::: {.callout-note}
+## Por que a normalidade importa
+A condição $gN = Ng$ é **exatamente** o que torna a operação entre classes laterais
+bem definida. Sem ela, o produto de classes dependeria do representante escolhido —
+ambíguo, sem sentido. Em grupos **abelianos**, todo subgrupo é normal (pois $gn = ng$
+sempre), então a sutileza só aparece nos não abelianos.
+:::
+
+::: {#exm-normais}
+## Subgrupos normais
+- Em qualquer grupo, $\{e\}$ e $G$ são normais; todo subgrupo de um grupo abeliano é
+  normal.
+- O núcleo de qualquer homomorfismo é normal (veremos: é o exemplo universal).
+- As rotações $\{e, r, r^2\}$ em $D_3$ formam um subgrupo normal (índice $2$).
+:::
+
+::: {#prp-indice-2}
+## Subgrupos de índice 2 são normais
+Se $[G : H] = 2$, então $H \trianglelefteq G$. Pois só há duas classes laterais — $H$
+e seu complemento — e elas coincidem à esquerda e à direita.
+:::
+
+## O grupo quociente
+
+::: {#thm-grupo-quociente}
+## Grupo quociente
+Se $N \trianglelefteq G$, o conjunto das classes laterais
+$$
+G/N = \{gN : g \in G\}
+$$
+é um grupo sob a operação $(aN)(bN) = (ab)N$, com neutro $N = eN$ e inverso $(aN)^{-1}
+= a^{-1}N$. Sua ordem é o índice $[G : N] = |G|/|N|$ (no caso finito).
+:::
+
+::: {.proof}
+*(Esboço.)* A normalidade garante que a operação independe dos representantes: se $aN
+= a'N$ e $bN = b'N$, então $(ab)N = (a'b')N$. Os axiomas de grupo herdam-se de $G$
+diretamente.
+:::
+
+::: {#exm-quociente-z}
+## $\mathbb{Z}/n\mathbb{Z}$ é $\mathbb{Z}_n$
+O exemplo fundador: com $G = \mathbb{Z}$ e $N = n\mathbb{Z}$, as classes laterais são
+$\{0 + n\mathbb{Z}, 1 + n\mathbb{Z}, \dots, (n-1) + n\mathbb{Z}\}$ — exatamente as
+classes de congruência módulo $n$. O quociente $\mathbb{Z}/n\mathbb{Z}$ **é**
+$\mathbb{Z}_n$. A aritmética modular do Volume I era, o tempo todo, um grupo
+quociente.
+:::
+
+::: {.callout-tip}
+## Quociente = esquecer detalhes
+Formar $G/N$ é decidir tratar como "iguais" todos os elementos que diferem por algo
+em $N$ — esquecer a informação contida em $N$ e ficar só com o que resta. Em
+$\mathbb{Z}/n\mathbb{Z}$, esquecemos múltiplos de $n$ e guardamos apenas o resto. É
+uma das operações mais poderosas da matemática: simplificar removendo o que não
+interessa.
+:::
+
+## Os teoremas de isomorfismo
+
+O elo entre homomorfismos e quocientes — e o motivo de ambos existirem.
+
+::: {#thm-primeiro-isomorfismo}
+## Primeiro teorema de isomorfismo
+Seja $\varphi: G \to H$ um homomorfismo. Então $\ker\varphi \trianglelefteq G$ e
+$$
+G/\ker\varphi \;\cong\; \operatorname{Im}\varphi.
+$$
+:::
+
+::: {.proof}
+*(Esboço.)* Defina $\bar\varphi: G/\ker\varphi \to \operatorname{Im}\varphi$ por
+$\bar\varphi(g\ker\varphi) = \varphi(g)$. Está bem definida (dois representantes da
+mesma classe diferem por um elemento do núcleo, que $\varphi$ manda em $e_H$), é
+homomorfismo, é sobrejetora por construção, e injetora pois seu núcleo é trivial.
+Logo é isomorfismo.
+:::
+
+::: {.callout-note}
+## Todo homomorfismo é uma projeção
+O primeiro teorema diz que **qualquer** homomorfismo se decompõe em: colapsar o
+núcleo (projeção $G \to G/\ker\varphi$) e depois identificar com a imagem. A imagem de
+um homomorfismo é sempre uma cópia de um quociente do domínio. É a versão, para
+grupos, do teorema do núcleo e da imagem da álgebra linear (@thm-nucleo-imagem) — e o
+resultado mais aplicado de toda a teoria.
+:::
+
+::: {#exm-aplicacao-primeiro}
+## Identificando um quociente
+O determinante $\det: GL_n(\mathbb{R}) \to \mathbb{R}^*$ é homomorfismo sobrejetor
+(@exm-homomorfismos) com núcleo $SL_n(\mathbb{R})$ (matrizes de determinante $1$).
+Pelo primeiro teorema,
+$$
+GL_n(\mathbb{R}) / SL_n(\mathbb{R}) \;\cong\; \mathbb{R}^*.
+$$
+O quociente mede exatamente "qual determinante" uma matriz tem, esquecido todo o
+resto.
+:::
+
+::: {#thm-segundo-terceiro}
+## Segundo e terceiro teoremas
+Sejam $N, K \trianglelefteq G$ (com as inclusões apropriadas). Então:
+
+- **(2º)** para $H \leq G$ e $N \trianglelefteq G$: $\ H/(H\cap N) \cong HN/N$;
+- **(3º)** para $K \leq N$: $\ (G/K)/(N/K) \cong G/N$.
+:::
+
+O terceiro teorema é uma "regra de cancelamento" para quocientes, lembrando frações;
+juntos, os três teoremas formam o aparato padrão para calcular com grupos quociente.
+
+## Exercícios
+
+::: {#exr-quoc-1}
+Liste os elementos do grupo quociente $\mathbb{Z}/4\mathbb{Z}$ e escreva sua tábua de
+operação.
+:::
+
+::: {#exr-quoc-normal}
+Mostre que o centro $Z(G) = \{z \in G : zg = gz \text{ para todo } g\}$ é um subgrupo
+normal de $G$.
+:::
+
+::: {#exr-quoc-primeiro}
+Use o primeiro teorema de isomorfismo para mostrar que $\mathbb{Z}/6\mathbb{Z} \cong
+\mathbb{Z}_6$, exibindo o homomorfismo adequado.
+:::
+
+::: {#exr-quoc-ordem}
+Se $|G| = 20$ e $N \trianglelefteq G$ com $|N| = 5$, qual é a ordem de $G/N$?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-quoc-normal
+$Z(G)$ contém $e$, é fechado (se $z_1, z_2$ comutam com tudo, $z_1 z_2$ também) e
+fechado em inversos. É **normal** porque, para $z \in Z(G)$ e qualquer $g$, $gzg^{-1}
+= zgg^{-1} = z \in Z(G)$ (usando que $z$ comuta com $g$). Aliás, todo elemento de
+$Z(G)$ é fixado pela conjugação.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-quoc-primeiro
+Tome $\varphi: \mathbb{Z} \to \mathbb{Z}_6$, $\varphi(a) = a \bmod 6$ — homomorfismo
+sobrejetor com núcleo $6\mathbb{Z}$ (@exr-hom-1). Pelo @thm-primeiro-isomorfismo,
+$\mathbb{Z}/6\mathbb{Z} \cong \operatorname{Im}\varphi = \mathbb{Z}_6$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-quoc-ordem
+$|G/N| = [G : N] = |G|/|N| = 20/5 = 4$.
+:::
