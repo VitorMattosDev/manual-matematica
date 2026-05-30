@@ -1,0 +1,166 @@
+# Funções polinomiais {#sec-funcoes-polinomiais}
+
+## Motivação
+
+Até aqui tratamos um polinômio como uma *expressão* a manipular. Mas $p(x) = x^2 -
+5x + 6$ é também uma **regra**: a cada número $x$ associa um número $p(x)$. Sob
+esse olhar, o polinômio vira uma **função polinomial**, e perguntas novas surgem —
+quantas raízes ela tem? Como é seu gráfico? Quanto vale para $x$ muito grande?
+
+Este capítulo faz a transição da álgebra para a análise: olha os polinômios como
+funções, conta suas raízes com a ajuda dos teoremas do resto e de D'Alembert
+(@sec-polinomios), e fecha o Volume II preparando o terreno para o conceito geral
+de função, que abre o Volume IV. A noção plena de função será definida lá; aqui
+usamos a versão intuitiva — uma máquina que transforma entradas em saídas.
+
+## A função associada a um polinômio
+
+::: {#def-funcao-polinomial}
+## Função polinomial
+A **função polinomial** associada ao polinômio $p(x) = a_n x^n + \dots + a_1 x +
+a_0$ é a regra que a cada $x \in \mathbb{R}$ associa o valor numérico $p(x)$. Seu
+**gráfico** é o conjunto dos pontos $(x, p(x))$ no plano.
+:::
+
+Os primeiros graus já são conhecidos sob outros nomes: grau $1$ dá uma **reta**
+(função afim), grau $2$ dá uma **parábola**. As raízes de $p$ — os $x$ com $p(x) =
+0$ — são exatamente os pontos onde o gráfico **cruza o eixo horizontal**.
+
+::: {.callout-note}
+## Polinômios iguais, funções iguais
+Dois polinômios com os mesmos coeficientes definem a mesma função, e — sobre
+$\mathbb{R}$ — vale a recíproca: se duas funções polinomiais coincidem em todos os
+pontos, seus coeficientes são iguais. Isso permite **comparar coeficientes** ("dois
+polinômios são iguais quando os coeficientes de cada grau coincidem"), técnica que
+usaremos para determinar incógnitas.
+:::
+
+## Contando raízes
+
+Quantas raízes pode ter um polinômio? D'Alembert (@cor-dalembert) limita a
+resposta: cada raiz consome um fator de grau $1$, e o grau total não pode ser
+excedido.
+
+::: {#thm-numero-raizes}
+## Número de raízes
+Um polinômio de grau $n \geq 1$ tem **no máximo $n$ raízes reais** (contadas sem
+multiplicidade).
+:::
+
+::: {.proof}
+Indução em $n$. Se $n = 1$, $p(x) = a x + b$ tem a única raiz $-b/a$. Suponha o
+resultado para grau $n - 1$. Se $p$ (grau $n$) não tem raiz, nada a provar. Se tem
+uma raiz $r$, por D'Alembert $p(x) = (x - r) q(x)$ com $\deg q = n - 1$
+(@prp-grau). Toda outra raiz $s \neq r$ satisfaz $0 = p(s) = (s - r) q(s)$ com $s -
+r \neq 0$, logo $q(s) = 0$: é raiz de $q$. Pela hipótese de indução, $q$ tem no
+máximo $n - 1$ raízes, então $p$ tem no máximo $1 + (n - 1) = n$.
+:::
+
+::: {.callout-tip}
+## Uma consequência prática
+Um polinômio de grau $n$ que se anula em **mais** de $n$ pontos só pode ser o
+polinômio nulo. É por isso que, se dois polinômios de grau $\leq n$ coincidem em
+$n + 1$ pontos, eles são idênticos — princípio por trás da interpolação e da
+unicidade de muitas fórmulas.
+:::
+
+## Raízes racionais
+
+Para polinômios de coeficientes inteiros, há um filtro que reduz a busca por
+raízes a uma lista finita de candidatos.
+
+::: {#thm-raizes-racionais}
+## Teorema das raízes racionais
+Seja $p(x) = a_n x^n + \dots + a_1 x + a_0$ com coeficientes **inteiros**, $a_n,
+a_0 \neq 0$. Se a fração irredutível $\dfrac{u}{v}$ é raiz de $p$, então $u \mid
+a_0$ e $v \mid a_n$.
+:::
+
+::: {.proof}
+De $p(u/v) = 0$, multiplicando por $v^n$:
+$$
+a_n u^n + a_{n-1} u^{n-1} v + \dots + a_1 u v^{n-1} + a_0 v^n = 0.
+$$
+Isolando $a_0 v^n$, todos os demais termos têm fator $u$, logo $u \mid a_0 v^n$;
+como $\gcd(u, v) = 1$ (fração irredutível), $u$ é coprimo com $v^n$ e, pelo Lema de
+Euclid (@prp-euclid), $u \mid a_0$. Simetricamente, isolando $a_n u^n$, cada outro
+termo tem fator $v$, donde $v \mid a_n u^n$ e, de novo por coprimalidade, $v \mid
+a_n$.
+:::
+
+::: {#exm-raizes-racionais}
+## Caçando raízes racionais
+Procuremos raízes racionais de $p(x) = 2x^3 - 3x^2 - 3x + 2$. Aqui $a_0 = 2$ e
+$a_n = 2$, então $u \in \{\pm 1, \pm 2\}$ e $v \in \{\pm 1, \pm 2\}$; os candidatos
+$u/v$ são $\pm 1, \pm 2, \pm \tfrac12$. Testando, $p(2) = 16 - 12 - 6 + 2 = 0$:
+$x = 2$ é raiz. Dividindo por $x - 2$ obtém-se $2x^2 + x - 1 = (2x - 1)(x + 1)$,
+cujas raízes são $\tfrac12$ e $-1$. Assim
+$$
+p(x) = (x - 2)(2x - 1)(x + 1),
+$$
+e as três raízes — todas na lista de candidatos — são $2$, $\tfrac12$ e $-1$.
+:::
+
+## Comportamento e gráfico
+
+Mesmo sem o Cálculo, dois traços do gráfico de uma função polinomial já se leem
+dos dados algébricos: onde cruza o eixo (as raízes) e para onde vai nos extremos.
+
+::: {#prp-comportamento}
+## Sinal nos extremos
+Para $|x|$ muito grande, o sinal de $p(x)$ é o do termo líder $a_n x^n$. Em
+particular, se $n$ é ímpar, $p$ assume valores de sinais opostos para $x \to
+-\infty$ e $x \to +\infty$.
+:::
+
+::: {.callout-note}
+## Todo polinômio de grau ímpar tem raiz real
+A @prp-comportamento, combinada com a ideia de que o gráfico de um polinômio é uma
+curva **sem saltos**, força uma raiz: se $p$ é negativo de um lado e positivo do
+outro, em algum ponto cruza o zero. Esse argumento informal vira teorema — o
+**Teorema do Valor Intermediário** — quando a continuidade for definida com rigor
+no Volume V. Por ora, fica a conclusão: **todo polinômio de grau ímpar tem ao
+menos uma raiz real.**
+:::
+
+## Exercícios
+
+::: {#exr-coeficientes}
+Determine $a$ e $b$ para que os polinômios $x^2 + ax + 3$ e $x^2 - 2x + b$ definam
+a mesma função. (Sugestão: compare coeficientes.)
+:::
+
+::: {#exr-contar-raizes}
+Explique por que $p(x) = x^4 + x^2 + 1$ não tem nenhuma raiz real, apesar de ter
+grau $4$. (Sugestão: analise o sinal de $p(x)$.)
+:::
+
+::: {#exr-raizes-racionais}
+Liste os candidatos a raiz racional de $p(x) = x^3 - 2x^2 - 5x + 6$ e encontre
+todas as raízes.
+:::
+
+::: {#exr-grau-impar}
+Use a @prp-comportamento para argumentar que $p(x) = x^3 - x - 5$ tem pelo menos
+uma raiz real, indicando dois valores onde $p$ troca de sinal.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-contar-raizes
+Para todo real $x$, tem-se $x^4 \geq 0$ e $x^2 \geq 0$, logo
+$$
+p(x) = x^4 + x^2 + 1 \geq 0 + 0 + 1 = 1 > 0.
+$$
+Como $p(x)$ é sempre positivo, nunca se anula: não há raiz real. O grau $4$ apenas
+*permite* até $4$ raízes (@thm-numero-raizes), não as garante.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-raizes-racionais
+Como $a_n = 1$ e $a_0 = 6$, os candidatos $u/v$ têm $v \mid 1$ e $u \mid 6$: são os
+inteiros $\pm 1, \pm 2, \pm 3, \pm 6$. Testando, $p(1) = 1 - 2 - 5 + 6 = 0$, então
+$1$ é raiz. Dividindo por $x - 1$: $x^2 - x - 6 = (x - 3)(x + 2)$. As raízes são
+$1, 3$ e $-2$, e $p(x) = (x - 1)(x - 3)(x + 2)$.
+:::
