@@ -1,0 +1,162 @@
+# Conexões e derivada covariante {#sec-conexoes-derivada-covariante}
+
+## Motivação
+
+Como derivar um campo vetorial numa variedade curva? Em $\mathbb{R}^n$ derivamos
+componente a componente. Mas numa superfície curva — ou no espaço-tempo — comparar
+vetores em **pontos diferentes** é problemático: eles vivem em espaços tangentes
+distintos (@sec-campos-tensores), e não há como subtraí-los ingenuamente. A própria
+base $\partial_i$ muda de ponto a ponto.
+
+A solução é uma estrutura nova, a **conexão**, que diz como "conectar" espaços tangentes
+vizinhos e assim derivar tensores de forma geometricamente consistente — a **derivada
+covariante**. Seus coeficientes são os **símbolos de Christoffel**, que já espreitavam na
+equação das geodésicas (@sec-geodesicas). Numa variedade riemanniana
+(@sec-metricas-riemannianas) há uma conexão canônica determinada pela métrica. Este
+capítulo a constrói — é o motor de cálculo da geometria riemanniana e da relatividade.
+
+## O problema de derivar em variedades
+
+::: {.callout-warning}
+## A derivada ingênua não é tensorial
+Se simplesmente derivarmos as componentes $\partial_j v^i$ de um campo vetorial, o
+resultado **não** se transforma como tensor sob mudança de coordenadas — aparecem termos
+extras com segundas derivadas da transformação. Ou seja, "$\partial_j v^i$" não tem
+significado geométrico: depende das coordenadas. É preciso corrigir essa derivada.
+:::
+
+## Conexão e derivada covariante
+
+::: {#def-conexao}
+## Conexão afim
+Uma **conexão** $\nabla$ fornece, para cada par de campos $X, Y$, um novo campo
+$\nabla_X Y$ (a **derivada covariante** de $Y$ na direção $X$), $\mathbb{R}$-linear em
+$X$, aditiva em $Y$, e satisfazendo a regra de Leibniz
+$$
+\nabla_X(fY) = (Xf)\,Y + f\,\nabla_X Y.
+$$
+:::
+
+::: {#def-christoffel}
+## Símbolos de Christoffel
+Numa carta, a conexão fica determinada pelos **símbolos de Christoffel** $\Gamma^k_{ij}$,
+definidos por
+$$
+\nabla_{\partial_i}\partial_j = \Gamma^k_{ij}\,\partial_k.
+$$
+A derivada covariante de um campo $v = v^k\partial_k$ é então
+$$
+(\nabla_i v)^k = \partial_i v^k + \Gamma^k_{ij}\,v^j.
+$$
+O termo $\Gamma^k_{ij}v^j$ é a correção que torna a derivada **tensorial**.
+:::
+
+::: {.callout-tip}
+## O que os Christoffel medem
+Os $\Gamma^k_{ij}$ medem **como a base $\partial_i$ gira e estica** ao mover-se pela
+variedade. Em coordenadas cartesianas de $\mathbb{R}^n$ eles são **todos nulos** (a base
+é constante), e a derivada covariante vira a derivada usual. Em coordenadas curvas
+(polares, esféricas) ou numa variedade curva, eles são não nulos — capturam tanto a
+curvatura **real** quanto a "curvatura aparente" das coordenadas. Atenção: $\Gamma^k_{ij}$
+**não** é um tensor (não transforma como tal), justamente por causa do termo de correção.
+:::
+
+## A conexão de Levi-Civita
+
+Numa variedade riemanniana há uma escolha canônica e única.
+
+::: {#thm-levi-civita}
+## Teorema fundamental da geometria riemanniana
+Em toda variedade (pseudo-)riemanniana $(M, g)$ existe uma **única** conexão $\nabla$
+que é:
+
+1. **compatível com a métrica**: $\nabla g = 0$ (a métrica é "constante" sob $\nabla$);
+2. **simétrica** (sem torção): $\Gamma^k_{ij} = \Gamma^k_{ji}$.
+
+É a **conexão de Levi-Civita**, e seus símbolos saem da métrica:
+$$
+\Gamma^k_{ij} = \tfrac12\,g^{k\ell}\left(\partial_i g_{j\ell} + \partial_j g_{i\ell} -
+\partial_\ell g_{ij}\right).
+$$
+:::
+
+::: {.callout-note}
+## A geometria está na métrica
+A fórmula é decisiva: os Christoffel — e portanto toda a derivação covariante,
+geodésicas e curvatura — são **determinados pela métrica** e suas primeiras derivadas.
+Conhecer $g_{ij}$ é conhecer toda a geometria intrínseca, ecoando o Teorema Egregium
+(@sec-gauss-bonnet). É por isso que, na relatividade, basta o campo métrico $g_{\mu\nu}$
+para descrever toda a gravidade.
+:::
+
+::: {#exm-christoffel-polar}
+## Christoffel em coordenadas polares
+Para $g = dr^2 + r^2 d\theta^2$ (@sec-metricas-riemannianas), os únicos símbolos não
+nulos são
+$$
+\Gamma^r_{\theta\theta} = -r, \qquad \Gamma^\theta_{r\theta} = \Gamma^\theta_{\theta r}
+= \frac1r.
+$$
+Eles são não nulos apesar de o plano ser **plano** (curvatura zero): refletem a
+curvatura das *coordenadas*, não do espaço. Distinguir as duas é o papel do tensor de
+curvatura (@sec-curvatura-riemann).
+:::
+
+## Derivada covariante de tensores
+
+::: {#prp-cov-tensor}
+## Estendendo a campos tensoriais
+A derivada covariante estende-se a qualquer tensor: cada índice **contravariante** ganha
+um termo $+\Gamma$ e cada **covariante** um termo $-\Gamma$. Por exemplo, para um covetor,
+$$
+\nabla_i \omega_j = \partial_i\omega_j - \Gamma^k_{ij}\,\omega_k.
+$$
+O resultado é sempre um tensor de um grau covariante a mais.
+:::
+
+## Exercícios
+
+::: {#exr-cc-cartesiano}
+Explique por que todos os $\Gamma^k_{ij}$ são nulos em coordenadas cartesianas de
+$\mathbb{R}^n$.
+:::
+
+::: {#exr-cc-christoffel}
+Use a fórmula de Levi-Civita para confirmar $\Gamma^r_{\theta\theta} = -r$ na métrica
+polar (dica: $g_{\theta\theta} = r^2$, $g^{rr} = 1$).
+:::
+
+::: {#exr-cc-leibniz}
+Mostre, a partir da regra de Leibniz, que $\nabla_X(fY) - f\nabla_X Y = (Xf)Y$.
+:::
+
+::: {#exr-cc-simetria}
+O que significa geometricamente a condição "sem torção" $\Gamma^k_{ij} =
+\Gamma^k_{ji}$?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cc-cartesiano
+Em cartesianas, $g_{ij} = \delta_{ij}$ é **constante**, logo todas as derivadas
+$\partial_i g_{j\ell} = 0$. Pela fórmula de Levi-Civita (@thm-levi-civita), cada
+$\Gamma^k_{ij} = \tfrac12 g^{k\ell}(0+0-0) = 0$. A base não muda, não há correção a
+fazer.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cc-christoffel
+$\Gamma^r_{\theta\theta} = \tfrac12 g^{rr}(\partial_\theta g_{\theta r} +
+\partial_\theta g_{\theta r} - \partial_r g_{\theta\theta}) = \tfrac12\cdot 1\cdot(0 + 0
+- \partial_r r^2) = \tfrac12(-2r) = -r$. ✓
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cc-simetria
+A ausência de torção significa que derivar $Y$ na direção $X$ e $X$ na direção $Y$ diferem
+apenas pelo colchete $[X,Y]$ (a não-comutatividade dos fluxos), sem uma "rotação" extra.
+Geometricamente, paralelogramos infinitesimais fecham: transportar ao longo de $X$ depois
+$Y$ chega ao mesmo ponto que $Y$ depois $X$, a menos do colchete — não há "torção" do
+espaço.
+:::
