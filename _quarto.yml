@@ -128,6 +128,9 @@ book:
         - volumes/v9-topologia/06-compacidade.qmd
         - volumes/v9-topologia/07-separacao.qmd
         - volumes/v9-topologia/08-grupo-fundamental.qmd
+    - part: "Volume X — Geometria Diferencial"
+      chapters:
+        - volumes/v10-diferencial/01-curvas.qmd
   appendices:
     - notacao.qmd
 

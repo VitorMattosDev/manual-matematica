@@ -1,0 +1,167 @@
+# Curvas parametrizadas {#sec-curvas}
+
+## Motivação
+
+Chegamos ao volume final, onde as grandes linhas da obra convergem: o cálculo (Volumes
+V e VIII) aplica-se à geometria (Volume III), com a álgebra linear (Volume VI) como
+linguagem e a topologia (Volume IX) como pano de fundo. A **geometria diferencial**
+estuda objetos curvos — curvas, superfícies, e suas generalizações — usando as
+ferramentas do cálculo. Seu lema poderia ser: *aplicar a derivada à forma*.
+
+Começamos pelo objeto mais simples: a **curva**, o rastro de um ponto em movimento.
+Pensar numa curva como uma função do tempo — uma **parametrização** — permite usar
+derivadas para extrair sua velocidade, sua direção e, no próximo capítulo, sua
+curvatura. Este capítulo estabelece a linguagem das curvas parametrizadas, distingue o
+traço (a forma) da parametrização (o percurso), e introduz o comprimento de arco como o
+parâmetro geométrico natural — preparando o estudo da curvatura e do triedro de Frenet.
+
+## Curvas parametrizadas
+
+::: {#def-curva}
+## Curva parametrizada
+Uma **curva parametrizada diferenciável** é uma função $\alpha: I \to \mathbb{R}^n$
+(com $I \subseteq \mathbb{R}$ um intervalo) cujas coordenadas são deriváveis. O
+**vetor velocidade** (ou tangente) em $t$ é a derivada
+$$
+\alpha'(t) = (x_1'(t), \dots, x_n'(t)),
+$$
+e a **rapidez** é seu módulo $\|\alpha'(t)\|$.
+:::
+
+A imagem $\alpha(I) \subseteq \mathbb{R}^n$ é o **traço** da curva — a figura
+geométrica desenhada. A função $\alpha$ é o **percurso**, que carrega informação extra:
+direção, rapidez, eventuais idas e voltas.
+
+::: {#exm-curvas}
+## Curvas clássicas
+- **Reta**: $\alpha(t) = p + t\,v$ (ponto $p$, direção $v$).
+- **Círculo**: $\alpha(t) = (\cos t, \operatorname{sen}t)$, traço a circunferência
+  unitária, percorrida no sentido anti-horário.
+- **Hélice**: $\alpha(t) = (\cos t, \operatorname{sen}t, t)$ em $\mathbb{R}^3$ — sobe
+  enquanto gira.
+:::
+
+::: {.callout-warning}
+## Traço e parametrização são coisas diferentes
+A mesma figura admite infinitas parametrizações. $\alpha(t) = (\cos t,
+\operatorname{sen}t)$ e $\beta(t) = (\cos 2t, \operatorname{sen}2t)$ têm o **mesmo
+traço** (o círculo), mas $\beta$ o percorre com o dobro da rapidez. A geometria
+diferencial busca quantidades que dependem só do **traço** (intrínsecas à forma) e não
+da parametrização escolhida — o comprimento de arco é a primeira delas.
+:::
+
+## Curvas regulares
+
+Para fazer geometria, precisamos de uma tangente bem definida em cada ponto.
+
+::: {#def-regular}
+## Curva regular
+Uma curva $\alpha$ é **regular** se $\alpha'(t) \neq 0$ para todo $t$ — a velocidade
+nunca se anula. Em cada ponto de uma curva regular há uma **reta tangente** bem
+definida, na direção de $\alpha'(t)$.
+:::
+
+::: {.callout-note}
+## Por que exigir velocidade não nula
+Se $\alpha'(t_0) = 0$, a curva "para" em $t_0$ e pode formar um **bico** (vértice
+anguloso) mesmo sendo $\alpha$ suave. Exemplo: $\alpha(t) = (t^2, t^3)$ tem $\alpha'(0)
+= 0$ e seu traço tem uma cúspide na origem. A regularidade garante que a suavidade da
+função se traduza em suavidade **geométrica** do traço.
+:::
+
+## Comprimento de arco
+
+A medida intrínseca de uma curva — independente da parametrização.
+
+::: {#def-comprimento-arco}
+## Comprimento de arco
+O **comprimento** da curva $\alpha$ de $a$ a $b$ é a integral da rapidez:
+$$
+L = \int_a^b \|\alpha'(t)\|\,dt.
+$$
+:::
+
+Esta é a generalização vetorial da fórmula do comprimento do Cálculo
+(@thm-comprimento-arco): some os comprimentos $\|\alpha'(t)\|\,dt$ dos deslocamentos
+infinitesimais. O resultado **não depende** da parametrização — é uma propriedade do
+traço.
+
+::: {#exm-comprimento-helice}
+## Comprimento de uma volta da hélice
+Para $\alpha(t) = (\cos t, \operatorname{sen}t, t)$, $\alpha'(t) = (-\operatorname{sen}
+t, \cos t, 1)$, com $\|\alpha'(t)\| = \sqrt{\operatorname{sen}^2 t + \cos^2 t + 1} =
+\sqrt2$. Uma volta completa ($0 \leq t \leq 2\pi$) tem comprimento
+$$
+L = \int_0^{2\pi}\sqrt2\,dt = 2\pi\sqrt2.
+$$
+:::
+
+## Parametrização por comprimento de arco
+
+A parametrização "canônica", em que o parâmetro **é** a distância percorrida.
+
+::: {#def-parametrizacao-arco}
+## Parametrização por comprimento de arco
+Uma curva está **parametrizada por comprimento de arco** se $\|\alpha'(s)\| = 1$ para
+todo $s$ — rapidez unitária. Então o parâmetro $s$ mede exatamente o comprimento
+percorrido, e $\int_a^b \|\alpha'\|\,ds = b - a$.
+:::
+
+::: {#thm-reparametrizacao}
+## Toda curva regular se reparametriza por arco
+Toda curva regular admite uma reparametrização por comprimento de arco. Basta usar a
+função comprimento $s(t) = \int_{t_0}^t \|\alpha'(u)\|\,du$, que é invertível (sua
+derivada $\|\alpha'\| > 0$), e tomar $t$ como função de $s$.
+:::
+
+::: {.callout-tip}
+## Por que isso simplifica tudo
+Com rapidez unitária, a velocidade $\alpha'(s)$ é sempre um **vetor unitário** — o
+vetor tangente puro, sem "contaminação" pela rapidez. Toda a geometria da curva
+(curvatura, torção, @sec-frenet) fica isolada da forma como a percorremos. É como medir
+uma estrada em quilômetros percorridos, não em tempo de viagem: a descrição passa a ser
+puramente geométrica. Por isso assume-se, daqui em diante, parametrização por arco.
+:::
+
+## Exercícios
+
+::: {#exr-cv-1}
+Calcule o vetor velocidade e a rapidez de $\alpha(t) = (t, t^2)$ (uma parábola).
+:::
+
+::: {#exr-cv-comprimento}
+Calcule o comprimento do círculo $\alpha(t) = (r\cos t, r\operatorname{sen}t)$, $0
+\leq t \leq 2\pi$, e confirme que é $2\pi r$.
+:::
+
+::: {#exr-cv-regular}
+Mostre que $\alpha(t) = (t^3, t^2)$ **não** é regular e identifique o ponto
+problemático.
+:::
+
+::: {#exr-cv-arco}
+Reparametrize a reta $\alpha(t) = (1 + 2t, 3 - t)$ por comprimento de arco.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cv-comprimento
+$\alpha'(t) = (-r\operatorname{sen}t, r\cos t)$, $\|\alpha'(t)\| = r\sqrt{\operatorname
+{sen}^2 t + \cos^2 t} = r$. Logo $L = \int_0^{2\pi} r\,dt = 2\pi r$ — a circunferência,
+recuperando a fórmula clássica (@sec-circunferencia).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cv-regular
+$\alpha'(t) = (3t^2, 2t)$, que se anula em $t = 0$ (ambas as coordenadas zero). Logo
+$\alpha$ **não** é regular em $t = 0$; o traço tem uma cúspide na origem, apesar de
+$\alpha$ ser suave.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cv-arco
+$\alpha'(t) = (2, -1)$, $\|\alpha'\| = \sqrt5$ constante. O comprimento desde $t = 0$ é
+$s = \sqrt5\,t$, logo $t = s/\sqrt5$. A reparametrização é $\beta(s) = \left(1 +
+\frac{2s}{\sqrt5},\ 3 - \frac{s}{\sqrt5}\right)$, com $\|\beta'(s)\| = 1$.
+:::
