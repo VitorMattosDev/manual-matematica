@@ -67,7 +67,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v3-geometria/09-trigonometria-triangulo.qmd` — Trigonometria no triângulo retângulo; leis dos senos e cossenos.
 - [x] `volumes/v3-geometria/10-trigonometria-circulo.qmd` — Círculo trigonométrico, identidades e funções.
 - [x] `volumes/v3-geometria/11-geometria-analitica.qmd` — Geometria analítica: ponto, reta, circunferência.
-- [ ] `volumes/v3-geometria/12-conicas.qmd` — Cônicas: elipse, parábola, hipérbole.
+- [x] `volumes/v3-geometria/12-conicas.qmd` — Cônicas: elipse, parábola, hipérbole.
 
 ## Volume IV — Pré-cálculo (Funções)
 *Objetivo: a noção de função e as famílias fundamentais. Pré-req.: Vols. I–III.*

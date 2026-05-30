@@ -59,6 +59,7 @@ book:
         - volumes/v3-geometria/09-trigonometria-triangulo.qmd
         - volumes/v3-geometria/10-trigonometria-circulo.qmd
         - volumes/v3-geometria/11-geometria-analitica.qmd
+        - volumes/v3-geometria/12-conicas.qmd
   appendices:
     - notacao.qmd
 

@@ -1,0 +1,159 @@
+# Cônicas: elipse, parábola e hipérbole {#sec-conicas}
+
+## Motivação
+
+Corte um cone com um plano: conforme a inclinação, a interseção é uma
+circunferência, uma **elipse**, uma **parábola** ou uma **hipérbole**. Essas
+**cônicas**, estudadas pelos gregos como curiosidades geométricas, revelaram-se
+dois mil anos depois as formas do próprio cosmos — os planetas percorrem elipses
+(Kepler), os projéteis descrevem parábolas (Galileu), e as trajetórias de escape
+são hipérboles.
+
+Com a geometria analítica do capítulo anterior, cada cônica ganha uma **equação**
+e uma definição limpa por distâncias a pontos fixos, os **focos**. Este capítulo —
+que fecha o Volume III — apresenta as três curvas, suas equações reduzidas e suas
+propriedades focais, amarrando a geometria à álgebra do segundo grau
+(@sec-equacoes-2grau) e preparando as funções e o Cálculo dos volumes seguintes.
+
+## Elipse
+
+::: {#def-elipse}
+## Elipse
+A **elipse** é o lugar dos pontos cuja **soma** das distâncias a dois pontos fixos
+$F_1, F_2$ (os **focos**) é constante, igual a $2a$. Com os focos sobre o eixo $x$,
+simétricos em relação à origem, sua equação reduzida é
+$$
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1, \qquad a > b > 0,
+$$
+com $a^2 = b^2 + c^2$, onde $2c$ é a distância entre os focos.
+:::
+
+::: {.callout-note}
+## A construção do jardineiro
+A definição por soma constante dá um método físico: fixe as pontas de um barbante
+em dois pregos (os focos) e percorra com um lápis mantendo o barbante esticado — o
+traço é uma elipse. Quando os focos coincidem ($c = 0$), a soma constante vira
+"distância fixa ao centro": a elipse degenera numa **circunferência** de raio $a$,
+o caso $a = b$.
+:::
+
+::: {#exm-elipse}
+## Lendo uma elipse
+A elipse $\dfrac{x^2}{25} + \dfrac{y^2}{9} = 1$ tem $a^2 = 25$ e $b^2 = 9$, logo $a
+= 5$ e $b = 3$. De $c^2 = a^2 - b^2 = 16$ vem $c = 4$: os focos são $(\pm 4, 0)$. A
+curva estende-se de $-5$ a $5$ em $x$ (eixo maior) e de $-3$ a $3$ em $y$ (eixo
+menor).
+:::
+
+## Parábola
+
+::: {#def-parabola}
+## Parábola
+A **parábola** é o lugar dos pontos equidistantes de um ponto fixo $F$ (o **foco**)
+e de uma reta fixa $d$ (a **diretriz**). Com foco $(0, p)$ e diretriz $y = -p$, sua
+equação reduzida é
+$$
+y = \frac{1}{4p}\,x^2,
+$$
+ou, equivalentemente, $x^2 = 4p\,y$.
+:::
+
+A parábola é, assim, o gráfico da função quadrática do @sec-equacoes-2grau, vista
+agora por sua propriedade focal.
+
+::: {.callout-tip}
+## Por que as antenas são parabólicas
+A propriedade focal da parábola é técnica de ouro: todo raio paralelo ao eixo, ao
+refletir na curva, passa pelo **foco**. Por isso antenas, faróis e espelhos de
+telescópio têm seção parabólica — concentram no foco os sinais (ou a luz) que
+chegam paralelos, e vice-versa. Geometria que virou engenharia.
+:::
+
+## Hipérbole
+
+::: {#def-hiperbole}
+## Hipérbole
+A **hipérbole** é o lugar dos pontos cuja **diferença** (em módulo) das distâncias
+a dois focos $F_1, F_2$ é constante, igual a $2a$. Com focos sobre o eixo $x$, sua
+equação reduzida é
+$$
+\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1, \qquad c^2 = a^2 + b^2,
+$$
+e a curva tem dois ramos, aproximando-se das **assíntotas** $y = \pm\dfrac{b}{a}x$.
+:::
+
+A troca de um sinal em relação à elipse (soma vira diferença, $+$ vira $-$) muda
+tudo: a curva abre-se em dois ramos infinitos guiados pelas assíntotas.
+
+::: {#exm-hiperbole}
+## Lendo uma hipérbole
+A hipérbole $\dfrac{x^2}{9} - \dfrac{y^2}{16} = 1$ tem $a = 3$, $b = 4$, e $c^2 = 9
++ 16 = 25$, logo $c = 5$: focos $(\pm 5, 0)$. Suas assíntotas são $y = \pm\tfrac43
+x$, retas que a curva se aproxima sem nunca tocar.
+:::
+
+## A família das cônicas
+
+As três curvas, mais a circunferência, são exatamente as soluções de uma equação
+geral do segundo grau em duas variáveis.
+
+::: {#prp-equacao-geral}
+## Equação geral
+Toda cônica (com eixos paralelos aos coordenados) é descrita por uma equação da
+forma
+$$
+A x^2 + C y^2 + D x + E y + F = 0.
+$$
+O tipo é decidido pelos sinais de $A$ e $C$: **circunferência** se $A = C$;
+**elipse** se $A, C$ têm o mesmo sinal ($A \neq C$); **parábola** se um deles é
+zero; **hipérbole** se têm sinais opostos.
+:::
+
+::: {.callout-note}
+## Um fecho e três aberturas
+A geometria analítica encerra aqui o Volume III mostrando sua força: quatro curvas
+tão distintas — fechada, infinita aberta, infinita em dois ramos — são uma só
+família algébrica, distinguidas por dois sinais. Esse poder unificador é o legado
+de Descartes. As cônicas reaparecerão como gráficos no Volume IV, como trajetórias
+no Cálculo (Volume V) e, classificadas por **formas quadráticas**, na Álgebra
+Linear (Volume VI).
+:::
+
+## Exercícios
+
+::: {#exr-elipse}
+Determine os semieixos, os focos e os vértices da elipse $\dfrac{x^2}{16} +
+\dfrac{y^2}{4} = 1$.
+:::
+
+::: {#exr-parabola}
+Determine o foco e a diretriz da parábola $x^2 = 12y$.
+:::
+
+::: {#exr-hiperbole}
+Determine os focos e as assíntotas da hipérbole $\dfrac{x^2}{25} - \dfrac{y^2}{144}
+= 1$.
+:::
+
+::: {#exr-classificar-conica}
+Classifique cada cônica pela @prp-equacao-geral: (a) $4x^2 + 9y^2 - 36 = 0$; (b)
+$y^2 - 8x = 0$; (c) $x^2 - y^2 - 1 = 0$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-elipse
+De $\dfrac{x^2}{16} + \dfrac{y^2}{4} = 1$: $a^2 = 16$, $b^2 = 4$, logo $a = 4$
+(semieixo maior, em $x$) e $b = 2$ (semieixo menor). De $c^2 = a^2 - b^2 = 12$ vem
+$c = 2\sqrt3$. Os focos são $(\pm 2\sqrt3, 0)$ e os vértices do eixo maior são
+$(\pm 4, 0)$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-classificar-conica
+Pela @prp-equacao-geral, olham-se os coeficientes de $x^2$ e $y^2$:
+(a) $A = 4$, $C = 9$, mesmo sinal e $A \neq C$ → **elipse**;
+(b) coeficiente de $x^2$ é zero (só há $y^2$) → **parábola**;
+(c) $A = 1$, $C = -1$, sinais opostos → **hipérbole**.
+:::
