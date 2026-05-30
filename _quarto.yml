@@ -143,6 +143,7 @@ book:
         - volumes/v10-diferencial/08-gauss-bonnet.qmd
         - volumes/v10-diferencial/09-variedades.qmd
         - volumes/v10-diferencial/10-campos-tensores.qmd
+        - volumes/v10-diferencial/11-algebra-tensorial-formas.qmd
   appendices:
     - notacao.qmd
 

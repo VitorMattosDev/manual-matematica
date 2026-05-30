@@ -1,0 +1,143 @@
+# Álgebra tensorial e formas diferenciais {#sec-algebra-tensorial-formas}
+
+## Motivação
+
+Os tensores (@sec-campos-tensores) generalizaram vetores e covetores. Entre eles, uma
+família tem papel especial: os tensores **antissimétricos** — as **formas
+diferenciais**. Elas são o objeto natural a se integrar sobre curvas, superfícies e
+variedades, e por isso unificam todo o cálculo vetorial (@sec-green-stokes-divergencia)
+num só formalismo.
+
+A grande recompensa é a **derivada exterior** $d$ e o teorema de Stokes generalizado
+$\int_{\partial\Omega}\omega = \int_\Omega d\omega$, do qual Green, Stokes e a
+divergência são casos particulares. As formas também são a linguagem do eletromagnetismo
+(o tensor de Faraday é uma 2-forma) e da geometria moderna. Este capítulo desenvolve a
+álgebra exterior e as formas, preparando o cálculo em variedades curvas.
+
+## O produto exterior
+
+::: {#def-produto-exterior}
+## Formas alternadas e produto exterior
+Uma **$k$-forma** é um tensor do tipo $(0, k)$ **totalmente antissimétrico**: troca de
+sinal ao permutar dois argumentos. O **produto exterior** (ou wedge) $\alpha\wedge\beta$
+combina uma $k$-forma e uma $\ell$-forma numa $(k+\ell)$-forma, sendo **anticomutativo**:
+$$
+\alpha\wedge\beta = (-1)^{k\ell}\,\beta\wedge\alpha.
+$$
+Em particular, $dx^i\wedge dx^j = -\,dx^j\wedge dx^i$ e $dx^i\wedge dx^i = 0$.
+:::
+
+::: {.callout-tip}
+## Antissimetria = orientação e volume
+A antissimetria não é capricho: ela codifica **orientação** e **volume com sinal**. Uma
+$k$-forma mede o "volume $k$-dimensional orientado" de um paralelepípedo de vetores —
+exatamente o que o determinante faz (@sec-determinantes). Trocar dois vetores inverte a
+orientação, daí o sinal. É por isso que formas são o que se integra: elas já carregam o
+$dV$ orientado.
+:::
+
+::: {#exm-formas-r3}
+## Formas em $\mathbb{R}^3$
+- **0-formas**: funções $f$.
+- **1-formas**: $P\,dx + Q\,dy + R\,dz$ (como o integrando de linha,
+  @sec-campos-integrais-linha).
+- **2-formas**: $A\,dy\wedge dz + B\,dz\wedge dx + C\,dx\wedge dy$ (fluxo,
+  @sec-integrais-superficie).
+- **3-formas**: $f\,dx\wedge dy\wedge dz$ (densidade de volume).
+
+Em $\mathbb{R}^3$ não há formas de grau $> 3$ (só há três $dx^i$, e repetir anula).
+:::
+
+## A derivada exterior
+
+::: {#def-derivada-exterior}
+## Derivada exterior
+A **derivada exterior** $d$ leva uma $k$-forma numa $(k+1)$-forma, generalizando
+gradiente, rotacional e divergência. Sobre uma função (0-forma), $df = \frac{\partial f}
+{\partial x^i}dx^i$. Ela satisfaz a propriedade fundamental
+$$
+d(d\omega) = 0 \qquad (\text{"}d^2 = 0\text{"})
+$$
+para toda forma $\omega$.
+:::
+
+::: {.callout-note}
+## $d^2 = 0$ contém duas identidades clássicas
+A identidade $d^2 = 0$ unifica dois fatos do cálculo vetorial: $\operatorname{rot}(\nabla
+f) = \mathbf{0}$ e $\operatorname{div}(\operatorname{rot}\mathbf{F}) = 0$
+(@sec-green-stokes-divergencia). Em $\mathbb{R}^3$, $d$ sobre 0-formas é o gradiente,
+sobre 1-formas é o rotacional, sobre 2-formas é a divergência — e $d^2 = 0$ diz que
+aplicar dois passos seguidos sempre dá zero. Uma única equação no lugar de duas
+identidades decoradas.
+:::
+
+## Formas fechadas, exatas e Stokes generalizado
+
+::: {#def-fechada-exata}
+## Formas fechadas e exatas
+Uma forma é **fechada** se $d\omega = 0$; **exata** se $\omega = d\eta$ para alguma
+$\eta$. Como $d^2 = 0$, **toda exata é fechada**. A recíproca depende da topologia: em
+domínios simplesmente conexos (@sec-grupo-fundamental) toda forma fechada é exata (lema
+de Poincaré), mas buracos podem criar formas fechadas não exatas — é a **cohomologia de
+de Rham**.
+:::
+
+::: {#thm-stokes-generalizado}
+## Teorema de Stokes generalizado
+Seja $\omega$ uma $(k-1)$-forma e $\Omega$ uma região $k$-dimensional orientada com
+fronteira $\partial\Omega$. Então
+$$
+\int_{\partial\Omega}\omega = \int_\Omega d\omega.
+$$
+:::
+
+::: {.callout-tip}
+## O teorema que engole todos os outros
+Este enunciado, de uma linha, contém o **TFC** ($k=1$: $\int_a^b f' = f(b)-f(a)$), o
+**teorema de Green** ($k=2$ no plano), o **de Stokes** ($k=2$ no espaço) e o **da
+divergência** ($k=3$) — todos de @sec-green-stokes-divergencia. A "derivada" $d$ e a
+"fronteira" $\partial$ são adjuntas: integrar a derivada no interior é integrar a forma
+na borda. É difícil exagerar a importância dessa unificação para a matemática e a física
+modernas.
+:::
+
+## Exercícios
+
+::: {#exr-af-wedge}
+Calcule $(dx + dy)\wedge(dx - dy)$ em $\mathbb{R}^2$, usando $dx\wedge dx = 0$ e a
+anticomutatividade.
+:::
+
+::: {#exr-af-d}
+Para $f(x,y) = x^2 y$, calcule $df$ e verifique que $d(df) = 0$.
+:::
+
+::: {#exr-af-grau}
+Quantas componentes independentes tem uma 2-forma em $\mathbb{R}^4$? (Conte os pares
+$dx^i\wedge dx^j$ com $i < j$.)
+:::
+
+::: {#exr-af-fechada}
+Mostre que a 1-forma $\omega = y\,dx + x\,dy$ é exata, exibindo $f$ com $df = \omega$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-af-wedge
+$(dx+dy)\wedge(dx-dy) = dx\wedge dx - dx\wedge dy + dy\wedge dx - dy\wedge dy = 0 - dx
+\wedge dy - dx\wedge dy - 0 = -2\,dx\wedge dy$ (usando $dy\wedge dx = -dx\wedge dy$).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-af-grau
+Os pares $i<j$ em $\{1,2,3,4\}$ são $\binom{4}{2} = 6$: uma 2-forma em $\mathbb{R}^4$
+tem **6** componentes independentes. (É a dimensão do espaço de 2-formas.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-af-fechada
+Buscamos $f$ com $f_x = y$ e $f_y = x$. De $f_x = y$, $f = xy + g(y)$; então $f_y = x +
+g'(y) = x \Rightarrow g$ constante. Logo $f = xy$ e $df = y\,dx + x\,dy = \omega$:
+exata.
+:::

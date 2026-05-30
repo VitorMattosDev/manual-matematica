@@ -189,7 +189,7 @@ não pelo número.
 *Objetivo: a maquinaria geométrica da relatividade geral. Pré-req.: Vol. X cap. 1–9, Vol. VI.*
 
 - [x] `volumes/v10-diferencial/10-campos-tensores.qmd` — Espaço tangente, campos vetoriais e tensoriais em variedades.
-- [ ] `volumes/v10-diferencial/11-algebra-tensorial-formas.qmd` — Álgebra tensorial e formas diferenciais; produto exterior.
+- [x] `volumes/v10-diferencial/11-algebra-tensorial-formas.qmd` — Álgebra tensorial e formas diferenciais; produto exterior.
 - [ ] `volumes/v10-diferencial/12-metricas-riemannianas.qmd` — Métricas riemannianas e pseudo-riemannianas (caso lorentziano).
 - [ ] `volumes/v10-diferencial/13-conexoes-derivada-covariante.qmd` — Conexões, derivada covariante e símbolos de Christoffel.
 - [ ] `volumes/v10-diferencial/14-transporte-geodesicas.qmd` — Transporte paralelo e geodésicas em variedades.
