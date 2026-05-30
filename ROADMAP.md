@@ -91,7 +91,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v5-calculo/06-tfc.qmd` — Teorema Fundamental do Cálculo.
 - [x] `volumes/v5-calculo/07-tecnicas-integracao.qmd` — Técnicas de integração.
 - [x] `volumes/v5-calculo/08-aplicacoes-integral.qmd` — Aplicações da integral (áreas, volumes, comprimento de arco).
-- [ ] `volumes/v5-calculo/09-series.qmd` — Sequências e séries numéricas; critérios de convergência.
+- [x] `volumes/v5-calculo/09-series.qmd` — Sequências e séries numéricas; critérios de convergência.
 - [ ] `volumes/v5-calculo/10-taylor.qmd` — Séries de potências e séries de Taylor.
 - [ ] `volumes/v5-calculo/11-varias-variaveis.qmd` — Cálculo de várias variáveis: derivadas parciais, gradiente.
 - [ ] `volumes/v5-calculo/12-integrais-multiplas.qmd` — Integrais múltiplas.

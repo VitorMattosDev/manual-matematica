@@ -1,0 +1,229 @@
+# Sequências e séries numéricas {#sec-series}
+
+## Motivação
+
+Já somamos finitos termos — progressões aritméticas e geométricas (@sec-progressoes)
+têm fórmulas fechadas. Mas o que significa somar **infinitos** termos?
+$$
+1 + \frac12 + \frac14 + \frac18 + \cdots
+$$
+A intuição grega temia o infinito (o paradoxo de Zenão), mas o Cálculo o domestica
+com a mesma ideia de sempre: uma soma infinita é o **limite** das somas parciais
+finitas. Se esse limite existe, a série **converge** e tem um valor bem definido;
+caso contrário, **diverge**.
+
+Saber *quando* uma série converge é decisivo: é o que dá sentido a representar
+funções por séries de potências (@sec-taylor), a calcular $e$, $\pi$ e logaritmos
+com precisão arbitrária, e a fundamentar boa parte da análise. Este capítulo
+constrói a noção de convergência e os **critérios** práticos para decidi-la.
+
+## Sequências e seu limite
+
+Retomamos a noção informal de @sec-sequencias com mais precisão.
+
+::: {#def-limite-sequencia}
+## Limite de uma sequência
+Uma **sequência** $(a_n)$ associa a cada natural $n$ um número $a_n$. Dizemos que
+$(a_n)$ **converge** para $L$, e escrevemos $\lim_{n\to\infty} a_n = L$, se os
+termos ficam arbitrariamente próximos de $L$ para $n$ grande: dado qualquer
+$\varepsilon > 0$, existe $N$ tal que $|a_n - L| < \varepsilon$ sempre que $n > N$.
+Se nenhum tal $L$ existe, $(a_n)$ **diverge**.
+:::
+
+::: {#exm-sequencias}
+## Convergir e divergir
+- $a_n = \frac1n \to 0$: os termos $1, \tfrac12, \tfrac13, \dots$ encolhem para
+  zero.
+- $a_n = \frac{n}{n+1} \to 1$, pois $\frac{n}{n+1} = 1 - \frac{1}{n+1}$.
+- $a_n = (-1)^n$ **diverge**: oscila entre $-1$ e $1$ sem se fixar.
+- $a_n = n$ diverge (cresce sem limite).
+:::
+
+## Séries e somas parciais
+
+::: {#def-serie}
+## Série e convergência
+Dada uma sequência $(a_n)$, a **série** $\sum_{n=1}^{\infty} a_n$ é o limite das
+**somas parciais**
+$$
+s_N = a_1 + a_2 + \cdots + a_N = \sum_{n=1}^{N} a_n.
+$$
+Se $\lim_{N\to\infty} s_N = S$ existe e é finito, a série **converge** e $S$ é sua
+soma; caso contrário, **diverge**.
+:::
+
+::: {.callout-warning}
+## Termo e soma são coisas diferentes
+Não confunda a sequência dos **termos** $(a_n)$ com a sequência das **somas
+parciais** $(s_N)$. A série converge quando a segunda converge. Que os termos
+$a_n$ tendam a zero é **necessário**, mas longe de suficiente — veja a série
+harmônica adiante.
+:::
+
+## A série geométrica
+
+O exemplo fundamental, do qual quase tudo decorre, é a soma de uma PG infinita.
+
+::: {#thm-geometrica}
+## Série geométrica
+Para razão $|r| < 1$,
+$$
+\sum_{n=0}^{\infty} r^n = 1 + r + r^2 + \cdots = \frac{1}{1 - r}.
+$$
+Se $|r| \geq 1$, a série diverge.
+:::
+
+::: {.proof}
+A soma parcial de uma PG (@sec-progressoes) é $s_N = \frac{1 - r^{N+1}}{1 - r}$
+para $r \neq 1$. Se $|r| < 1$, então $r^{N+1} \to 0$ quando $N \to \infty$, logo
+$s_N \to \frac{1}{1 - r}$. Se $|r| \geq 1$, $r^{N+1}$ não tende a zero e $s_N$ não
+converge.
+:::
+
+::: {#exm-geometrica}
+## Somando os meios
+Com $r = \tfrac12$:
+$$
+\sum_{n=1}^{\infty} \frac{1}{2^n} = \frac12 + \frac14 + \frac18 + \cdots =
+\frac{1/2}{1 - 1/2} = 1.
+$$
+A flecha de Zenão chega ao alvo: infinitas etapas, soma finita.
+:::
+
+## O teste do termo geral e a série harmônica
+
+::: {#prp-termo-geral}
+## Teste da divergência
+Se $\sum a_n$ converge, então $a_n \to 0$. Equivalentemente: se $a_n \not\to 0$, a
+série **diverge**.
+:::
+
+::: {.proof}
+Se $s_N \to S$, então $a_N = s_N - s_{N-1} \to S - S = 0$.
+:::
+
+A recíproca é **falsa**, e o contraexemplo é célebre.
+
+::: {#thm-harmonica}
+## A série harmônica diverge
+A série $\displaystyle\sum_{n=1}^{\infty} \frac1n = 1 + \frac12 + \frac13 +
+\cdots$ diverge, embora $\frac1n \to 0$.
+:::
+
+::: {.proof}
+Agrupe os termos em blocos de tamanhos $1, 2, 4, 8, \dots$:
+$$
+1 + \frac12 + \underbrace{\left(\frac13 + \frac14\right)}_{> \,2\cdot\frac14 =
+\frac12} + \underbrace{\left(\frac15 + \cdots + \frac18\right)}_{> \,4\cdot\frac18
+= \frac12} + \cdots
+$$
+Cada bloco soma mais que $\frac12$. Como há infinitos blocos, as somas parciais
+ultrapassam qualquer valor — a série diverge.
+:::
+
+## Critérios de convergência
+
+Para séries de termos positivos, há ferramentas eficientes.
+
+::: {#thm-teste-comparacao}
+## Teste da comparação
+Sejam $0 \leq a_n \leq b_n$. Se $\sum b_n$ converge, então $\sum a_n$ converge; se
+$\sum a_n$ diverge, então $\sum b_n$ diverge.
+:::
+
+::: {#thm-teste-razao}
+## Teste da razão (d'Alembert)
+Seja $a_n > 0$ e $L = \lim_{n\to\infty} \frac{a_{n+1}}{a_n}$. Então:
+
+- se $L < 1$, a série $\sum a_n$ **converge**;
+- se $L > 1$, **diverge**;
+- se $L = 1$, o teste é **inconclusivo**.
+:::
+
+A intuição: se a razão entre termos consecutivos tende a $L < 1$, a série
+comporta-se, no fim, como uma geométrica de razão $L$, que converge.
+
+::: {#exm-razao}
+## Aplicando a razão
+Para $\sum \frac{1}{n!}$, temos $\frac{a_{n+1}}{a_n} = \frac{n!}{(n+1)!} =
+\frac{1}{n+1} \to 0 < 1$. Logo a série converge — sua soma, aliás, é $e - 1$
+(@sec-taylor).
+:::
+
+::: {.callout-note}
+## As $p$-séries
+A família $\sum \frac{1}{n^p}$ é um termômetro útil: **converge se $p > 1$ e
+diverge se $p \leq 1$**. A harmônica ($p = 1$) está exatamente na fronteira da
+divergência; já $\sum \frac{1}{n^2}$ ($p = 2$) converge — e vale
+$\frac{\pi^2}{6}$, um resultado surpreendente de Euler.
+:::
+
+## Séries alternadas
+
+Quando os sinais se alternam, a convergência fica mais fácil.
+
+::: {#thm-leibniz}
+## Critério de Leibniz
+Se $(b_n)$ é positiva, decrescente e $b_n \to 0$, então a série alternada
+$\sum (-1)^{n+1} b_n = b_1 - b_2 + b_3 - \cdots$ converge.
+:::
+
+::: {#exm-harmonica-alternada}
+## A harmônica alternada
+$1 - \frac12 + \frac13 - \frac14 + \cdots$ converge pelo critério de Leibniz
+(os $\frac1n$ decrescem a zero), embora a harmônica usual divirja. Sua soma é
+$\ln 2$. Esse contraste mostra que a alternância de sinais pode salvar uma série.
+:::
+
+## Exercícios
+
+::: {#exr-serie-geom}
+Some $\displaystyle\sum_{n=0}^{\infty} \frac{2}{3^n}$ e
+$\displaystyle\sum_{n=1}^{\infty} \left(\frac{-1}{2}\right)^{n}$.
+:::
+
+::: {#exr-divergencia}
+Mostre que $\displaystyle\sum_{n=1}^{\infty} \frac{n}{2n + 1}$ diverge.
+:::
+
+::: {#exr-razao-ex}
+Use o teste da razão para decidir a convergência de
+$\displaystyle\sum_{n=1}^{\infty} \frac{2^n}{n!}$.
+:::
+
+::: {#exr-comparacao}
+Use comparação para mostrar que $\displaystyle\sum_{n=1}^{\infty}
+\frac{1}{n^2 + n}$ converge.
+:::
+
+::: {#exr-dizima}
+Interprete a dízima $0{,}999\ldots$ como série geométrica e mostre que vale
+exatamente $1$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-divergencia
+Como $\frac{n}{2n+1} \to \frac12 \neq 0$, o termo geral não tende a zero. Pelo
+@prp-termo-geral (teste da divergência), a série diverge.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-razao-ex
+$$
+\frac{a_{n+1}}{a_n} = \frac{2^{n+1}}{(n+1)!}\cdot\frac{n!}{2^n} = \frac{2}{n+1}
+\to 0 < 1.
+$$
+Pelo @thm-teste-razao, a série converge.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dizima
+$$
+0{,}999\ldots = \sum_{n=1}^{\infty} \frac{9}{10^n} = \frac{9/10}{1 - 1/10} =
+\frac{9/10}{9/10} = 1.
+$$
+A dízima não é uma "aproximação" de $1$: ela **é** $1$, como soma de uma série
+geométrica de razão $\frac{1}{10}$.
+:::
