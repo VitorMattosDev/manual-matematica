@@ -1,0 +1,186 @@
+# Introdução à teoria de Galois {#sec-galois}
+
+## Motivação
+
+Chegamos ao ápice do Volume VII — e a uma das ideias mais belas de toda a
+matemática. Sabemos resolver equações do segundo grau desde a Babilônia
+(@sec-equacoes-2grau), e fórmulas para o terceiro e quarto graus foram descobertas no
+Renascimento. Por séculos buscou-se a fórmula para o quinto grau. Évariste Galois,
+morto em duelo aos 20 anos, provou que ela **não existe** — e, mais que isso,
+inventou a ferramenta que explica *por quê*.
+
+A ideia genial: associar a cada equação polinomial um **grupo** (@sec-grupos) — o
+grupo de simetrias de suas raízes — e traduzir uma pergunta sobre equações
+(resolubilidade por radicais) numa pergunta sobre grupos. Galois uniu as duas grandes
+estruturas do volume, grupos e corpos, numa correspondência exata. Este capítulo final
+esboça essa correspondência e seu corolário mais famoso, fechando o Volume VII e
+coroando a álgebra abstrata.
+
+## Corpos de decomposição e automorfismos
+
+::: {#def-corpo-decomposicao}
+## Corpo de decomposição
+O **corpo de decomposição** de um polinômio $p \in K[x]$ é a menor extensão de $K$
+(@sec-extensoes-corpos) na qual $p$ se fatora completamente em fatores lineares — ou
+seja, onde $p$ tem **todas** as suas raízes.
+:::
+
+::: {#def-grupo-galois}
+## Grupo de Galois
+Um **$K$-automorfismo** de uma extensão $L/K$ é um isomorfismo $\sigma: L \to L$ que
+**fixa $K$** ($\sigma(c) = c$ para todo $c \in K$). O conjunto desses automorfismos,
+sob composição, forma o **grupo de Galois** $\operatorname{Gal}(L/K)$.
+:::
+
+::: {.callout-note}
+## Automorfismos permutam raízes
+Um $K$-automorfismo deve levar raiz de $p$ em raiz de $p$ (pois fixa os coeficientes,
+que estão em $K$). Assim, $\operatorname{Gal}(L/K)$ age **permutando as raízes** de
+$p$ — é literalmente o grupo de simetrias das raízes. Toda a teoria nasce dessa
+observação simples.
+:::
+
+::: {#exm-galois-complexos}
+## O grupo de Galois de $\mathbb{C}/\mathbb{R}$
+$\operatorname{Gal}(\mathbb{C}/\mathbb{R})$ tem **dois** elementos: a identidade e a
+**conjugação complexa** $a + bi \mapsto a - bi$. A conjugação fixa $\mathbb{R}$ e
+troca as raízes $i, -i$ de $x^2 + 1$. O grupo é $\cong \mathbb{Z}_2$, e seu tamanho
+$2$ é exatamente $[\mathbb{C} : \mathbb{R}]$.
+:::
+
+## A correspondência de Galois
+
+O teorema central: uma "dicionário" perfeito entre subgrupos e subcorpos.
+
+::: {#thm-correspondencia-galois}
+## Correspondência de Galois
+Seja $L/K$ uma extensão de Galois finita com grupo $G = \operatorname{Gal}(L/K)$.
+Existe uma **bijeção que inverte inclusões** entre:
+
+- os **corpos intermediários** $K \subseteq F \subseteq L$, e
+- os **subgrupos** $H \leq G$,
+
+dada por $F \mapsto \operatorname{Gal}(L/F)$ e, no sentido inverso, $H \mapsto L^H$ (o
+corpo dos elementos fixados por $H$). Além disso, $[L : F] = |\operatorname{Gal}(L/F)|$
+e $|G| = [L : K]$.
+:::
+
+::: {.callout-tip}
+## Por que isso é revolucionário
+A correspondência **traduz** problemas sobre corpos (objetos infinitos, contínuos) em
+problemas sobre grupos finitos (objetos combinatórios, manejáveis). Quer entender os
+corpos intermediários de uma extensão? Liste os subgrupos do grupo de Galois — finito
+e calculável. É uma das pontes mais profundas da matemática: geometria das extensões
+de corpos virando combinatória de grupos. Subgrupos **normais** (@sec-quociente-isomorfismo),
+em particular, correspondem às subextensões que são, elas mesmas, de Galois.
+:::
+
+## Resolubilidade por radicais
+
+A aplicação que motivou tudo. "Resolver por radicais" significa expressar as raízes
+usando $+, -, \times, \div$ e **radicais** $\sqrt[n]{\ }$ — exatamente o que a fórmula
+de Bhaskara faz no grau 2.
+
+::: {#def-grupo-soluvel}
+## Grupo solúvel
+Um grupo $G$ é **solúvel** se possui uma cadeia de subgrupos
+$$
+\{e\} = G_0 \trianglelefteq G_1 \trianglelefteq \cdots \trianglelefteq G_n = G
+$$
+em que cada quociente $G_{i+1}/G_i$ é abeliano. Todo grupo abeliano é solúvel; os
+grupos $S_2, S_3, S_4$ são solúveis.
+:::
+
+::: {#thm-galois-radicais}
+## Teorema de Galois
+Um polinômio é **resolúvel por radicais** se, e somente se, seu grupo de Galois é um
+**grupo solúvel**.
+:::
+
+Este é o critério exato: a possibilidade de uma "fórmula" para as raízes equivale a
+uma propriedade puramente grupal. A pergunta de séculos torna-se: *o grupo de Galois é
+solúvel?*
+
+## A insolubilidade da quíntica
+
+::: {#thm-insolubilidade}
+## Insolubilidade do grau 5
+Para $n \geq 5$, o grupo simétrico $S_n$ **não é solúvel** (pois contém o grupo
+alternado $A_n$, que é **simples** e não abeliano). Existem polinômios de grau $5$
+cujo grupo de Galois é $S_5$; portanto **não há fórmula por radicais** para a equação
+geral do quinto grau.
+:::
+
+::: {.callout-note}
+## O fim de uma busca milenar
+Eis a resposta: a equação geral de grau $\geq 5$ não tem fórmula resolúvel por
+radicais — não por falta de engenho, mas por um obstáculo estrutural intransponível.
+O grupo $A_5$, com seus $60$ elementos, é o menor grupo simples não abeliano, e sua
+"indivisibilidade" é a razão algébrica precisa da impossibilidade. Galois transformou
+uma questão sobre fórmulas numa questão sobre a anatomia dos grupos finitos — e, ao
+fazê-lo, fundou a álgebra moderna.
+:::
+
+::: {#exm-quintica-soluvel}
+## Nem toda quíntica é insolúvel
+Atenção: equações **específicas** de grau $5$ podem ser resolúveis. Por exemplo, $x^5
+- 2 = 0$ tem raízes $\sqrt[5]2\cdot\zeta^k$ (com $\zeta$ raiz da unidade) — claramente
+por radicais; seu grupo de Galois é solúvel. O que não existe é uma fórmula **geral**,
+válida para todos os polinômios de grau $5$.
+:::
+
+## Encerramento do Volume VII
+
+Partimos de uma única operação (grupos, @sec-grupos), passamos a duas (anéis,
+@sec-aneis), refinamos até os corpos (@sec-dominios-corpos) e suas extensões
+(@sec-extensoes-corpos), e chegamos à síntese de Galois, onde grupos e corpos se
+espelham. A álgebra abstrata mostrou seu poder: estruturas definidas por punhados de
+axiomas resolvem problemas concretos e milenares — da construtibilidade geométrica à
+insolubilidade da quíntica. Essa linguagem estrutural permeia toda a matemática
+contemporânea, da topologia (@sec-grupo-fundamental, Volume IX) à teoria dos números.
+
+## Exercícios
+
+::: {#exr-gal-1}
+Determine o grupo de Galois de $x^2 - 2$ sobre $\mathbb{Q}$ e descreva seus
+automorfismos.
+:::
+
+::: {#exr-gal-2}
+Qual é a ordem de $\operatorname{Gal}(\mathbb{Q}(\sqrt2, \sqrt3)/\mathbb{Q})$?
+Identifique o grupo.
+:::
+
+::: {#exr-gal-soluvel}
+Mostre que todo grupo de ordem prima é solúvel.
+:::
+
+::: {#exr-gal-conceitual}
+Explique, em uma frase, por que a resolubilidade de $S_4$ está ligada à existência da
+fórmula para a equação do quarto grau.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gal-1
+O corpo de decomposição é $\mathbb{Q}(\sqrt2)$. Há dois automorfismos: a identidade e
+$\sigma: \sqrt2 \mapsto -\sqrt2$ (que fixa $\mathbb{Q}$ e troca as raízes). Logo
+$\operatorname{Gal} \cong \mathbb{Z}_2$, de ordem $2 = [\mathbb{Q}(\sqrt2) :
+\mathbb{Q}]$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gal-2
+A extensão tem grau $4$ (@exr-ext-torre), e ela é de Galois, então
+$|\operatorname{Gal}| = 4$. Os automorfismos enviam independentemente $\sqrt2 \mapsto
+\pm\sqrt2$ e $\sqrt3 \mapsto \pm\sqrt3$ — quatro combinações, cada uma de ordem $2$. O
+grupo é $\mathbb{Z}_2\times\mathbb{Z}_2$ (grupo de Klein), abeliano e solúvel.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gal-soluvel
+Um grupo $G$ de ordem prima $p$ é cíclico (@cor-ordem-prima), logo abeliano. A cadeia
+$\{e\} \trianglelefteq G$ tem quociente $G/\{e\} = G$ abeliano — portanto $G$ é
+**solúvel** pela @def-grupo-soluvel.
+:::
