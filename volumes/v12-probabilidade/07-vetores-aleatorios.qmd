@@ -1,0 +1,161 @@
+# Vetores aleatórios, covariância e correlação {#sec-vetores-aleatorios}
+
+## Motivação
+
+Até aqui estudamos uma variável aleatória de cada vez. Mas o interessante quase sempre
+está nas **relações** entre variáveis: altura e peso, educação e renda, preço e demanda.
+Será que crescem juntas? Uma prediz a outra? Para responder, precisamos estudar
+**vetores aleatórios** — várias variáveis observadas em conjunto — e medir como elas
+**covariam**.
+
+A ferramenta é a **covariância** e sua versão normalizada, a **correlação**. Elas
+quantificam a associação linear entre variáveis e são onipresentes em estatística,
+finanças (risco de carteiras) e aprendizado de máquina. A álgebra linear (Volume VI)
+reaparece com força: a estrutura de covariâncias de um vetor é uma **matriz simétrica**,
+e diagonalizá-la (@sec-teorema-espectral) é a base da análise de componentes principais.
+Este capítulo desenvolve esses conceitos.
+
+## Distribuição conjunta
+
+::: {#def-conjunta}
+## Distribuição conjunta e marginais
+Para duas variáveis, a **distribuição conjunta** descreve $P(X = x, Y = y)$ (ou a
+densidade conjunta $f(x,y)$). As **marginais** recuperam cada variável isoladamente,
+somando/integrando a outra:
+$$
+p_X(x) = \sum_y p(x, y), \qquad f_X(x) = \int f(x, y)\,dy.
+$$
+:::
+
+::: {#def-independencia-vars}
+## Independência de variáveis
+$X$ e $Y$ são **independentes** se a conjunta fatora nas marginais: $p(x,y) = p_X(x)
+p_Y(y)$ para todos $x, y$ — generalizando a independência de eventos
+(@sec-condicional-bayes). Então saber $X$ não informa nada sobre $Y$.
+:::
+
+## Covariância
+
+::: {#def-covariancia}
+## Covariância
+A **covariância** de $X$ e $Y$ mede sua variação conjunta:
+$$
+\operatorname{Cov}(X, Y) = E\big[(X - E[X])(Y - E[Y])\big] = E[XY] - E[X]E[Y].
+$$
+:::
+
+::: {.callout-tip}
+## O sinal conta a história
+$\operatorname{Cov} > 0$: quando $X$ está acima da média, $Y$ tende a estar também —
+crescem juntas. $\operatorname{Cov} < 0$: movem-se em sentidos opostos. $\operatorname
+{Cov} = 0$: sem associação **linear**. Note que $\operatorname{Cov}(X, X) = \operatorname
+{Var}(X)$ — a variância é a covariância de uma variável consigo mesma.
+:::
+
+::: {#prp-cov-independencia}
+## Independência implica covariância nula
+Se $X$ e $Y$ são independentes, então $E[XY] = E[X]E[Y]$, logo $\operatorname{Cov}(X,Y)
+= 0$. Isso explica a aditividade da variância sob independência
+(@prp-propriedades-variancia).
+:::
+
+::: {.callout-warning}
+## Covariância nula não implica independência
+A recíproca é **falsa**: variáveis podem ter $\operatorname{Cov} = 0$ e ainda assim ser
+dependentes — a covariância só detecta associação **linear**. Por exemplo, se $X$ é
+simétrica em torno de $0$ e $Y = X^2$, então $\operatorname{Cov}(X, Y) = 0$, mas $Y$ é
+**completamente determinada** por $X$! A independência é muito mais forte que descorrelação.
+:::
+
+## Correlação
+
+::: {#def-correlacao}
+## Coeficiente de correlação
+A **correlação** normaliza a covariância pelos desvios-padrão:
+$$
+\rho_{X,Y} = \frac{\operatorname{Cov}(X, Y)}{\sigma_X\,\sigma_Y}, \qquad -1 \leq \rho
+\leq 1.
+$$
+Ela é **adimensional** e mede a força da associação linear, independente das unidades.
+:::
+
+::: {.callout-note}
+## $\rho = \pm 1$ é Cauchy-Schwarz
+O fato de $|\rho| \leq 1$ é exatamente a **desigualdade de Cauchy-Schwarz**
+(@thm-cauchy-schwarz) aplicada ao produto interno $\langle X, Y\rangle = \operatorname
+{Cov}(X,Y)$ no espaço das variáveis aleatórias! E $\rho = \pm 1$ ocorre **se, e somente
+se**, $Y$ é função **linear** de $X$ (relação perfeita). A correlação é, literalmente, o
+cosseno do ângulo entre as variáveis vistas como vetores (@sec-produto-interno) — mais
+uma ponte com a álgebra linear.
+:::
+
+::: {.callout-warning}
+## Correlação não é causalidade
+O alerta mais importante da estatística: $\rho$ alto entre $X$ e $Y$ **não** significa que
+um causa o outro. Pode haver uma **causa comum** (vendas de sorvete e afogamentos
+correlacionam — ambos causados pelo calor) ou mera coincidência. Estabelecer causalidade
+exige experimentos controlados ou métodos especiais, não apenas correlação.
+:::
+
+## A matriz de covariância
+
+::: {#def-matriz-covariancia}
+## Matriz de covariância
+Para um vetor aleatório $(X_1, \dots, X_n)$, a **matriz de covariância** $\Sigma$ tem
+entradas $\Sigma_{ij} = \operatorname{Cov}(X_i, X_j)$. É **simétrica** e **positiva
+semidefinida** (@sec-teorema-espectral).
+:::
+
+::: {.callout-tip}
+## Diagonalizar Σ = encontrar as direções principais
+Como $\Sigma$ é simétrica, o teorema espectral (@thm-espectral) a diagonaliza por uma
+base ortonormal de autovetores. Esses autovetores são as **componentes principais**: as
+direções de **maior variância** dos dados, descorrelacionadas entre si. Projetar nas
+primeiras componentes (as de maiores autovalores) é a **PCA** — a técnica fundamental de
+redução de dimensionalidade, compressão de dados e visualização. A álgebra linear do
+Volume VI é, aqui, estatística aplicada.
+:::
+
+## Exercícios
+
+::: {#exr-va-cov}
+Para $X$ = resultado de um dado e $Y = X$, calcule $\operatorname{Cov}(X, Y)$.
+:::
+
+::: {#exr-va-independencia}
+Se $X, Y$ são independentes com $\operatorname{Var}(X) = 4$, $\operatorname{Var}(Y) =
+9$, quanto vale $\operatorname{Var}(X + Y)$? E $\operatorname{Var}(X - Y)$?
+:::
+
+::: {#exr-va-correlacao}
+Mostre que $\operatorname{Cov}(aX + b, Y) = a\operatorname{Cov}(X, Y)$ (a covariância é
+bilinear, e $\rho$ é invariante a mudanças de escala positivas).
+:::
+
+::: {#exr-va-naolinear}
+Seja $X$ uniforme em $\{-1, 0, 1\}$ e $Y = X^2$. Mostre que $\operatorname{Cov}(X, Y) =
+0$ embora $Y$ dependa de $X$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-va-cov
+$\operatorname{Cov}(X, X) = \operatorname{Var}(X) = \frac{35}{12}$ (@exr-ev-variancia).
+A covariância de uma variável consigo mesma é sua variância.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-va-independencia
+Por independência, $\operatorname{Cov} = 0$, então **ambas**: $\operatorname{Var}(X \pm
+Y) = \operatorname{Var}(X) + \operatorname{Var}(Y) = 4 + 9 = 13$. (O sinal de $Y$ não
+importa pois a variância usa $a^2$, @prp-propriedades-variancia.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-va-naolinear
+$E[X] = 0$ (simétrica). $\operatorname{Cov}(X, Y) = E[XY] - E[X]E[Y] = E[X^3] - 0$. Mas
+$X^3 = X$ nos valores $\{-1,0,1\}$, e $E[X] = 0$, logo $E[X^3] = 0$. Assim $\operatorname
+{Cov} = 0$, apesar de $Y = X^2$ ser função determinística de $X$ — descorrelação sem
+independência.
+:::

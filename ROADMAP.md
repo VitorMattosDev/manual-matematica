@@ -216,7 +216,7 @@ não pelo número.
 - [x] `volumes/v12-probabilidade/04-vars-continuas.qmd` — Variáveis aleatórias contínuas.
 - [x] `volumes/v12-probabilidade/05-distribuicoes.qmd` — Distribuições notáveis (binomial, Poisson, normal, etc.).
 - [x] `volumes/v12-probabilidade/06-esperanca-variancia.qmd` — Esperança, variância e momentos.
-- [ ] `volumes/v12-probabilidade/07-vetores-aleatorios.qmd` — Vetores aleatórios, covariância e correlação.
+- [x] `volumes/v12-probabilidade/07-vetores-aleatorios.qmd` — Vetores aleatórios, covariância e correlação.
 - [ ] `volumes/v12-probabilidade/08-lgn-tcl.qmd` — Leis dos grandes números e teorema central do limite.
 - [ ] `volumes/v12-probabilidade/09-estatistica-estimacao.qmd` — Estatística descritiva e estimação.
 - [ ] `volumes/v12-probabilidade/10-testes-hipotese.qmd` — Testes de hipótese e intervalos de confiança.
