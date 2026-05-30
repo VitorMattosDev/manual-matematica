@@ -43,7 +43,7 @@ Pré-requisitos: nenhum.*
 *Objetivo: manipulação simbólica, equações, polinômios. Pré-req.: Vol. I.*
 
 - [x] `volumes/v2-algebra/01-expressoes.qmd` — Expressões algébricas e manipulação.
-- [ ] `volumes/v2-algebra/02-equacoes-1grau.qmd` — Equações do primeiro grau.
+- [x] `volumes/v2-algebra/02-equacoes-1grau.qmd` — Equações do primeiro grau.
 - [ ] `volumes/v2-algebra/03-sistemas-lineares.qmd` — Sistemas lineares elementares (substituição, adição).
 - [ ] `volumes/v2-algebra/04-equacoes-2grau.qmd` — Equações do segundo grau; fórmula de Bhaskara, relações de Girard.
 - [ ] `volumes/v2-algebra/05-inequacoes.qmd` — Inequações e estudo de sinal.

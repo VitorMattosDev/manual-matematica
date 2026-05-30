@@ -1,0 +1,177 @@
+# Equações do primeiro grau {#sec-equacoes-1grau}
+
+## Motivação
+
+"Penso num número; multiplico por $3$ e somo $5$; obtenho $20$. Que número é?"
+Traduzido em símbolos, esse enigma vira $3x + 5 = 20$ — uma **equação**. Resolver
+equações é a tarefa mais básica e onipresente da álgebra: da regra de três aos
+balanços químicos, quase todo problema quantitativo desemboca em achar o valor de
+uma incógnita que torna uma igualdade verdadeira.
+
+Começamos pelo caso mais simples, em que a incógnita aparece apenas elevada à
+primeira potência: as **equações do primeiro grau**. Veremos que elas se resolvem
+por um procedimento infalível, baseado em dois princípios que preservam as
+soluções, e que sempre têm — exceto em casos degenerados bem identificados —
+**uma única** solução. A manipulação de expressões do @sec-expressoes é a
+ferramenta de trabalho.
+
+## Equações e equivalência
+
+::: {#def-equacao}
+## Equação e solução
+Uma **equação** na incógnita $x$ é uma igualdade entre duas expressões que se
+pretende verdadeira para certos valores de $x$. Uma **solução** (ou raiz) é um
+valor que, substituído em $x$, torna a igualdade verdadeira. O **conjunto
+solução** é o conjunto de todas as soluções.
+:::
+
+Por exemplo, $x = 5$ é solução de $3x + 5 = 20$, pois $3 \cdot 5 + 5 = 20$. Duas
+equações são **equivalentes** quando têm o mesmo conjunto solução — e resolver uma
+equação é transformá-la, por passos que preservam as soluções, numa equivalente
+trivial do tipo $x = c$.
+
+::: {#prp-principios}
+## Princípios de equivalência
+Seja dada uma equação. Obtém-se uma equação **equivalente** ao:
+
+1. somar (ou subtrair) uma mesma expressão aos dois lados;
+2. multiplicar (ou dividir) os dois lados por um mesmo número **não nulo**.
+:::
+
+::: {.proof}
+Se $A = B$ é verdadeira para certo $x$, então $A + C = B + C$ também é, e
+reciprocamente subtraindo $C$ — logo o conjunto solução não muda. Para o produto
+por $k \neq 0$: $A = B$ implica $kA = kB$; e como $k \neq 0$ tem inverso
+(@sec-reais), de $kA = kB$ recupera-se $A = B$ multiplicando por $1/k$. As duas
+equações têm as mesmas soluções.
+:::
+
+::: {.callout-warning}
+## Multiplicar por zero destrói a equação
+A exigência $k \neq 0$ é essencial. Multiplicar ambos os lados por $0$ produz $0 =
+0$, verdadeira para *todo* $x$ — perde-se toda a informação. Pela mesma razão,
+nunca se pode "dividir por $x$" sem saber se $x \neq 0$: pode-se perder a solução
+$x = 0$.
+:::
+
+## Resolução da equação do primeiro grau
+
+Toda equação do primeiro grau pode, reduzindo os termos semelhantes e passando
+tudo para um lado, ser posta na **forma canônica**
+$$
+a x + b = 0, \qquad a \neq 0.
+$$
+
+::: {#thm-equacao-1grau}
+## Solução da equação do primeiro grau
+Se $a \neq 0$, a equação $a x + b = 0$ tem **exatamente uma** solução,
+$$
+x = -\frac{b}{a}.
+$$
+:::
+
+::: {.proof}
+Pelos princípios de equivalência (@prp-principios): subtraindo $b$,
+$$
+a x + b = 0 \iff a x = -b;
+$$
+dividindo por $a \neq 0$,
+$$
+a x = -b \iff x = -\frac{b}{a}.
+$$
+A cadeia de equivalências mostra que $x = -b/a$ é a única solução. A existência do
+inverso de $a$ — garantida por $a \neq 0$ em $\mathbb{R}$ — é o que faz o método
+funcionar.
+:::
+
+::: {#exm-resolucao}
+## Resolvendo passo a passo
+Resolva $3x + 5 = 20$. Subtraindo $5$: $3x = 15$. Dividindo por $3$: $x = 5$.
+Conferindo, $3 \cdot 5 + 5 = 20$. ✓
+
+Um caso com incógnita nos dois lados: $5x - 3 = 2x + 9$. Subtraindo $2x$: $3x - 3
+= 9$. Somando $3$: $3x = 12$. Dividindo: $x = 4$.
+:::
+
+## Casos degenerados
+
+Quando o coeficiente de $x$ se anula, a forma $ax + b = 0$ deixa de ser do
+primeiro grau, e há dois desfechos.
+
+::: {#prp-degenerados}
+## Quando $a = 0$
+Na equação $a x + b = 0$ com $a = 0$:
+
+- se $b \neq 0$, não há solução (o conjunto solução é $\emptyset$) — a equação é
+  **impossível**;
+- se $b = 0$, todo número é solução (conjunto solução $\mathbb{R}$) — a equação é
+  **indeterminada**.
+:::
+
+::: {#exm-degenerado}
+## Reconhecendo o degenerado
+Ao resolver $2(x + 3) = 2x + 1$, expande-se: $2x + 6 = 2x + 1$. Subtraindo $2x$,
+sobra $6 = 1$, falsa — equação **impossível**, sem solução. Já $2(x + 3) = 2x + 6$
+leva a $6 = 6$, sempre verdadeira — **indeterminada**, todo real serve. O sinal de
+alerta é o desaparecimento simultâneo dos termos em $x$.
+:::
+
+## Aplicações
+
+O verdadeiro uso das equações é traduzir problemas. O roteiro é sempre o mesmo:
+nomear a incógnita, exprimir as condições como uma equação, resolver, interpretar.
+
+::: {#exm-problema}
+## De um enunciado a uma equação
+*Um pai tem $40$ anos e o filho, $10$. Em quantos anos a idade do pai será o dobro
+da do filho?* Seja $x$ o número de anos. Daqui a $x$ anos as idades serão $40 + x$
+e $10 + x$, e a condição é
+$$
+40 + x = 2(10 + x).
+$$
+Resolvendo: $40 + x = 20 + 2x$, logo $20 = x$. Em $20$ anos (pai com $60$, filho
+com $30$).
+:::
+
+## Exercícios
+
+::: {#exr-resolver-simples}
+Resolva $7x - 4 = 3x + 12$.
+:::
+
+::: {#exr-fracoes}
+Resolva $\dfrac{x}{2} + \dfrac{x}{3} = 5$. (Sugestão: multiplique os dois lados
+pelo MMC dos denominadores.)
+:::
+
+::: {#exr-classificar}
+Classifique como determinada, impossível ou indeterminada, resolvendo quando
+possível: (a) $3(x - 1) = 3x - 3$; (b) $4x + 7 = 4x - 2$; (c) $5x + 1 = 2x + 10$.
+:::
+
+::: {#exr-problema}
+A soma de três números inteiros consecutivos é $72$. Monte uma equação do primeiro
+grau e determine os números.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fracoes
+O MMC de $2$ e $3$ é $6$. Multiplicando os dois lados por $6$ (princípio 2, com
+$k = 6 \neq 0$):
+$$
+6 \cdot \frac{x}{2} + 6 \cdot \frac{x}{3} = 6 \cdot 5 \implies 3x + 2x = 30
+\implies 5x = 30 \implies x = 6.
+$$
+Conferindo: $\tfrac{6}{2} + \tfrac{6}{3} = 3 + 2 = 5$. ✓
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-problema
+Sejam os consecutivos $n$, $n + 1$ e $n + 2$. A soma é
+$$
+n + (n + 1) + (n + 2) = 3n + 3 = 72 \implies 3n = 69 \implies n = 23.
+$$
+Os números são $23, 24, 25$ (e de fato $23 + 24 + 25 = 72$).
+:::
