@@ -1,0 +1,149 @@
+# Integração complexa e teorema de Cauchy {#sec-integracao-cauchy}
+
+## Motivação
+
+Chegamos ao coração da análise complexa: a **integral de contorno**, ao longo de
+caminhos no plano. À primeira vista, é só uma integral de linha (@sec-campos-integrais-linha)
+com números complexos. Mas, para funções **holomorfas** (@sec-holomorfas-cauchy-riemann),
+ela revela uma propriedade espantosa, sem análogo real: a integral ao longo de qualquer
+curva **fechada** é **zero**.
+
+Esse é o **teorema de Cauchy**, a pedra angular de toda a teoria. Dele decorrem a fórmula
+integral de Cauchy (@sec-formula-integral-cauchy), o teorema dos resíduos
+(@sec-residuos) e a capacidade quase mágica de calcular integrais reais difíceis por
+métodos complexos. Este capítulo define a integral de contorno e demonstra o resultado
+que tudo sustenta.
+
+## A integral de contorno
+
+::: {#def-integral-contorno}
+## Integral de contorno
+Para $f$ contínua e um caminho $\gamma(t)$, $a \leq t \leq b$, no plano complexo, define-se
+$$
+\int_\gamma f(z)\,dz = \int_a^b f(\gamma(t))\,\gamma'(t)\,dt.
+$$
+É o análogo complexo da integral de linha (@sec-campos-integrais-linha), agora com
+multiplicação de números complexos.
+:::
+
+::: {#exm-integral-base}
+## A integral fundamental
+Sobre o círculo unitário $\gamma(t) = e^{it}$, $0 \leq t \leq 2\pi$:
+$$
+\oint_\gamma \frac{1}{z}\,dz = \int_0^{2\pi}\frac{1}{e^{it}}\,i e^{it}\,dt = \int_0^{2\pi}
+i\,dt = 2\pi i.
+$$
+Este valor — $2\pi i$ — é o número mais importante da teoria, e reaparecerá em toda
+parte.
+:::
+
+## O teorema de Cauchy
+
+::: {#thm-cauchy-goursat}
+## Teorema de Cauchy-Goursat
+Se $f$ é **holomorfa** num domínio simplesmente conexo (sem buracos,
+@sec-grupo-fundamental) e $\gamma$ é uma curva fechada nesse domínio, então
+$$
+\oint_\gamma f(z)\,dz = 0.
+$$
+:::
+
+::: {.proof}
+*(Esboço.)* Escrevendo $f = u + iv$ e $dz = dx + i\,dy$, a integral separa-se em duas
+integrais de linha reais. Aplicando o teorema de Green (@sec-green-stokes-divergencia) a
+cada uma e usando as equações de Cauchy-Riemann (@thm-cauchy-riemann) — que fazem os
+integrandos do tipo $Q_x - P_y$ se anularem —, ambas dão zero.
+:::
+
+::: {.callout-tip}
+## Holomorfia é "conservativa"
+O teorema de Cauchy diz que toda função holomorfa se comporta como um campo conservativo
+(@sec-campos-integrais-linha): a integral fechada é nula, e a integral entre dois pontos
+**independe do caminho**. As equações de Cauchy-Riemann são precisamente a versão
+complexa da condição "rotacional nulo". É por isso que se pode **deformar** contornos
+livremente sem mudar o valor da integral — a ferramenta mais poderosa do cálculo de
+integrais complexas.
+:::
+
+## Independência do caminho e primitivas
+
+::: {#thm-primitiva-complexa}
+## Existência de primitiva
+Num domínio simplesmente conexo, toda função holomorfa $f$ tem uma **primitiva** $F$ (com
+$F' = f$), e
+$$
+\int_\gamma f(z)\,dz = F(z_1) - F(z_0),
+$$
+dependendo só dos extremos — o TFC complexo (compare @sec-tfc-linha).
+:::
+
+::: {.callout-warning}
+## O buraco muda tudo
+Por que $\oint \frac1z\,dz = 2\pi i \neq 0$ (@exm-integral-base), se Cauchy diz que dá
+zero? Porque $\frac1z$ **não é holomorfa na origem** — há um buraco no domínio, que deixa
+de ser simplesmente conexo! O teorema de Cauchy exige holomorfia em **todo** o interior
+da curva. Quando há singularidades dentro, a integral capta justamente o que acontece
+nelas — e isso, longe de ser um defeito, é o que torna a integração complexa tão
+poderosa (o teorema dos resíduos, @sec-residuos).
+:::
+
+## Deformação de contornos
+
+::: {#prp-deformacao}
+## Princípio da deformação
+Se $f$ é holomorfa entre duas curvas fechadas $\gamma_1$ e $\gamma_2$ (uma dentro da
+outra), então $\oint_{\gamma_1} f = \oint_{\gamma_2} f$. Pode-se **deformar** o contorno
+através da região onde $f$ é holomorfa sem alterar a integral.
+:::
+
+::: {.callout-note}
+## Encolher contornos até as singularidades
+Este princípio é a tática central: para integrar em torno de uma curva complicada,
+deforma-se até pequenos círculos ao redor de cada singularidade. A integral total vira a
+soma das contribuições locais das singularidades — exatamente o que o teorema dos
+resíduos (@sec-residuos) formaliza. A topologia (o que está "dentro" de quê,
+@sec-grupo-fundamental) governa a integração complexa.
+:::
+
+## Exercícios
+
+::: {#exr-ic-base}
+Calcule $\oint_\gamma z^2\,dz$ no círculo unitário (dica: $z^2$ é holomorfa em toda
+parte).
+:::
+
+::: {#exr-ic-primitiva}
+Calcule $\int_\gamma e^z\,dz$ de $0$ a $i\pi$ por qualquer caminho (use a primitiva).
+:::
+
+::: {#exr-ic-buraco}
+Por que $\oint \frac{1}{z}\,dz \neq 0$ no círculo unitário, apesar do teorema de Cauchy?
+:::
+
+::: {#exr-ic-deformacao}
+Use o princípio da deformação para argumentar que $\oint \frac1z\,dz = 2\pi i$ em
+**qualquer** curva fechada simples ao redor da origem.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ic-base
+$z^2$ é holomorfa em todo o plano (simplesmente conexo); pelo teorema de Cauchy
+(@thm-cauchy-goursat), $\oint_\gamma z^2\,dz = 0$ em qualquer curva fechada. (Alternativa:
+tem primitiva $z^3/3$.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ic-primitiva
+$e^z$ tem primitiva $e^z$, holomorfa em todo o plano. Logo $\int_\gamma e^z\,dz = e^{i\pi}
+- e^0 = -1 - 1 = -2$, independente do caminho (@thm-primitiva-complexa).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ic-deformacao
+Dada qualquer curva fechada simples em torno da origem, ela pode ser deformada
+continuamente no círculo unitário **sem cruzar** a origem (única singularidade de
+$\frac1z$). Pelo princípio da deformação (@prp-deformacao), a integral é a mesma do
+círculo, $2\pi i$.
+:::
