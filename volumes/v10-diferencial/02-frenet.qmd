@@ -1,0 +1,180 @@
+# Curvatura, torção e triedro de Frenet {#sec-frenet}
+
+## Motivação
+
+Com a parametrização por comprimento de arco (@sec-curvas), isolamos a geometria pura
+de uma curva. Agora extraímos dela os números que a descrevem: **quanto** ela se curva
+e **quanto** ela se torce para fora de um plano. Esses são a **curvatura** e a
+**torção** — e o teorema fundamental das curvas afirma que elas determinam a curva por
+completo, a menos de posição no espaço.
+
+A ferramenta é o **triedro de Frenet**: três vetores ortonormais que acompanham a curva
+como um sistema de coordenadas móvel, "pilotando" ao longo dela. Suas taxas de variação
+codificam toda a geometria local. Este é um dos resultados mais elegantes do volume:
+duas funções escalares — curvatura e torção — capturam integralmente a forma de uma
+curva no espaço. Este capítulo constrói o triedro, define as duas funções e enuncia o
+teorema fundamental.
+
+## Curvatura
+
+::: {#def-curvatura}
+## Curvatura
+Seja $\alpha$ parametrizada por comprimento de arco, com vetor tangente unitário
+$T(s) = \alpha'(s)$. A **curvatura** é
+$$
+\kappa(s) = \|\alpha''(s)\| = \|T'(s)\|,
+$$
+a taxa com que a direção tangente muda. Quanto maior $\kappa$, mais acentuada a curva.
+:::
+
+::: {.callout-note}
+## Por que $\alpha''$ mede o curvamento
+Com rapidez unitária, $\|T(s)\| = 1$ é constante, então $T$ só pode **girar**, não
+mudar de tamanho. A derivada $T'(s) = \alpha''(s)$ mede precisamente a velocidade desse
+giro — a aceleração é puramente "centrípeta", perpendicular à curva. Seu módulo é a
+curvatura. Uma reta tem $T$ constante, logo $\kappa = 0$; um círculo curva-se
+uniformemente.
+:::
+
+::: {#exm-curvatura-circulo}
+## A curvatura do círculo
+Para o círculo de raio $r$, parametrizado por arco como $\alpha(s) = (r\cos\frac sr,
+r\operatorname{sen}\frac sr)$, calcula-se $\kappa = \frac1r$. A curvatura é o **inverso
+do raio**: círculos pequenos curvam muito, círculos grandes pouco. O raio $\frac1\kappa$
+chama-se **raio de curvatura**.
+:::
+
+## O triedro de Frenet
+
+Os três vetores que formam o referencial móvel.
+
+::: {#def-triedro}
+## Triedro de Frenet
+Para uma curva em $\mathbb{R}^3$ com $\kappa \neq 0$, define-se em cada ponto:
+
+- o **vetor tangente** $T = \alpha'$ (unitário);
+- o **vetor normal** $N = \dfrac{T'}{\|T'\|}$ (direção em que a curva vira);
+- o **vetor binormal** $B = T \times N$ (perpendicular ao plano da curva).
+
+Os três são **ortonormais** e formam uma base de $\mathbb{R}^3$ em cada ponto — o
+referencial que "voa" ao longo da curva.
+:::
+
+::: {.callout-tip}
+## Um cockpit que viaja na curva
+Imagine pilotar um avião ao longo da curva: $T$ aponta para a frente (direção do voo),
+$N$ para o lado (para onde você vira), e $B$ para cima (eixo das asas). À medida que se
+avança, esse triedro gira, e o modo como gira **é** a geometria da curva. Curvatura e
+torção são as taxas desse giro.
+:::
+
+## Torção
+
+::: {#def-torcao}
+## Torção
+A **torção** $\tau(s)$ mede a taxa com que o vetor binormal $B$ varia — ou seja, quão
+rapidamente a curva **escapa do plano** osculador (o plano de $T$ e $N$):
+$$
+B'(s) = -\tau(s)\,N(s).
+$$
+:::
+
+Curvas **planas** (contidas num plano) têm torção **nula**: o binormal é constante, o
+plano não muda. A torção é o que distingue uma curva espacial genuína de uma curva
+plana entortada.
+
+::: {#exm-torcao-helice}
+## Curvatura e torção da hélice
+Para a hélice $\alpha(t) = (a\cos t, a\operatorname{sen}t, bt)$, ambas são
+**constantes**:
+$$
+\kappa = \frac{a}{a^2 + b^2}, \qquad \tau = \frac{b}{a^2 + b^2}.
+$$
+A hélice é, de fato, a **única** curva com curvatura e torção constantes não nulas —
+um análogo espacial do círculo (que tem $\kappa$ constante e $\tau = 0$).
+:::
+
+## As fórmulas de Frenet-Serret
+
+O sistema que rege a evolução do triedro — o coração da teoria.
+
+::: {#thm-frenet-serret}
+## Fórmulas de Frenet-Serret
+As derivadas do triedro exprimem-se nele mesmo, via curvatura e torção:
+$$
+\begin{aligned}
+T' &= \phantom{-}\kappa N \\
+N' &= -\kappa T \phantom{ + \tau B} + \tau B \\
+B' &= \phantom{-\kappa T} - \tau N
+\end{aligned}
+$$
+:::
+
+Em forma matricial, a matriz que governa o sistema é **antissimétrica** — um fato que
+reflete a ortonormalidade do triedro (o triedro gira rigidamente, @sec-teorema-espectral).
+Tudo o que a curva faz localmente está nessas três equações.
+
+## O teorema fundamental das curvas
+
+A recompensa: curvatura e torção determinam a curva.
+
+::: {#thm-fundamental-curvas}
+## Teorema fundamental das curvas
+Dadas funções $\kappa(s) > 0$ e $\tau(s)$ (suaves), existe uma curva parametrizada por
+arco com exatamente essa curvatura e essa torção. Ela é **única a menos de movimento
+rígido** (rotação + translação) do espaço.
+:::
+
+::: {.callout-note}
+## Duas funções capturam uma forma
+Este teorema é notável: toda a geometria de uma curva no espaço — por mais complicada
+que seja — reduz-se a **duas funções escalares**, $\kappa(s)$ e $\tau(s)$, chamadas
+**equações intrínsecas** da curva. Conhecê-las é conhecer a curva, a menos de onde ela
+está e como está orientada. É a versão para curvas da ideia que reaparecerá nas
+superfícies: descrever a forma por invariantes diferenciais, independentes de
+coordenadas.
+:::
+
+## Exercícios
+
+::: {#exr-fr-1}
+Calcule a curvatura de uma reta e explique geometricamente por que ela é zero.
+:::
+
+::: {#exr-fr-circulo}
+Verifique, por cálculo direto, que o círculo de raio $r$ tem curvatura $\frac1r$ e
+torção $0$.
+:::
+
+::: {#exr-fr-plana}
+Mostre que uma curva com torção identicamente nula está contida em um plano.
+:::
+
+::: {#exr-fr-helice}
+Para a hélice com $a = b = 1$, calcule $\kappa$ e $\tau$ usando as fórmulas de
+@exm-torcao-helice.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fr-1
+Numa reta $\alpha(s) = p + sv$ (com $\|v\| = 1$), tem-se $T = v$ constante, logo $T' =
+0$ e $\kappa = \|T'\| = 0$. Geometricamente: a direção tangente nunca muda, não há
+curvamento.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fr-plana
+Se $\tau \equiv 0$, então $B' = -\tau N = 0$, logo $B$ é um vetor **constante** $B_0$.
+Considere $f(s) = (\alpha(s) - \alpha(0))\cdot B_0$. Então $f'(s) = \alpha'(s)\cdot B_0
+= T \cdot B_0 = 0$ (pois $T \perp B$). Assim $f$ é constante igual a $f(0) = 0$, ou
+seja, $\alpha(s)$ satisfaz $(\alpha - \alpha(0))\cdot B_0 = 0$ — a equação de um
+**plano** perpendicular a $B_0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fr-helice
+Com $a = b = 1$: $\kappa = \frac{1}{1 + 1} = \frac12$ e $\tau = \frac{1}{1+1} =
+\frac12$. Curvatura e torção iguais e constantes — a hélice "equilibrada".
+:::

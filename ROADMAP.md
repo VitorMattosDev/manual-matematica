@@ -153,7 +153,7 @@ Pré-requisitos: nenhum.*
 *Objetivo: curvas, superfícies e variedades. Pré-req.: Vols. V, VI, IX.*
 
 - [x] `volumes/v10-diferencial/01-curvas.qmd` — Curvas parametrizadas.
-- [ ] `volumes/v10-diferencial/02-frenet.qmd` — Curvatura, torção e triedro de Frenet.
+- [x] `volumes/v10-diferencial/02-frenet.qmd` — Curvatura, torção e triedro de Frenet.
 - [ ] `volumes/v10-diferencial/03-superficies.qmd` — Superfícies regulares.
 - [ ] `volumes/v10-diferencial/04-primeira-forma.qmd` — Primeira forma fundamental.
 - [ ] `volumes/v10-diferencial/05-segunda-forma.qmd` — Aplicação de Gauss e segunda forma fundamental.

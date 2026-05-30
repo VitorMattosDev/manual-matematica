@@ -131,6 +131,7 @@ book:
     - part: "Volume X — Geometria Diferencial"
       chapters:
         - volumes/v10-diferencial/01-curvas.qmd
+        - volumes/v10-diferencial/02-frenet.qmd
   appendices:
     - notacao.qmd
 
