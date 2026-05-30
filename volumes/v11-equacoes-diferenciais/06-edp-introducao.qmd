@@ -1,0 +1,139 @@
+# Introdução às EDPs {#sec-edp-introducao}
+
+## Motivação
+
+As EDOs descrevem sistemas com **uma** variável independente (em geral o tempo). Mas
+calor numa barra, ondas numa corda, o campo eletromagnético — tudo isso varia no
+**espaço e no tempo simultaneamente**. A grandeza depende de várias variáveis, e a lei
+envolve suas **derivadas parciais** (@sec-varias-variaveis): é uma **equação diferencial
+parcial** (EDP).
+
+As EDPs são a linguagem da física dos meios contínuos, e em geral muito mais difíceis que
+as EDOs. Mas há um método clássico que reduz uma classe importante de EDPs a EDOs já
+conhecidas: a **separação de variáveis**. Ele transforma o problema em achar "modos" — e
+prepara o aparecimento das séries de Fourier (@sec-series-fourier) e das grandes equações
+da física (@sec-calor-onda-laplace). Este capítulo introduz as EDPs e essa técnica.
+
+## O que é uma EDP
+
+::: {#def-edp}
+## Equação diferencial parcial
+Uma **EDP** é uma equação envolvendo uma função de **várias** variáveis e suas
+derivadas parciais. A **ordem** é a da derivada mais alta. É **linear** se a função
+incógnita e suas derivadas aparecem linearmente.
+:::
+
+::: {#exm-edps-classicas}
+## As três EDPs lineares clássicas de segunda ordem
+- **Equação do calor**: $u_t = \alpha\,u_{xx}$ — difusão de temperatura.
+- **Equação da onda**: $u_{tt} = c^2\,u_{xx}$ — vibração, som, luz.
+- **Equação de Laplace**: $u_{xx} + u_{yy} = 0$ — estados estacionários, potencial.
+
+Notação: $u_t = \partial u/\partial t$, $u_{xx} = \partial^2 u/\partial x^2$, etc.
+:::
+
+::: {.callout-note}
+## Condições de contorno e iniciais
+Diferente das EDOs (que pedem valores num ponto), as EDPs pedem dados na **fronteira** do
+domínio (condições de contorno — as extremidades da barra) e, se houver tempo, no
+**instante inicial** (condições iniciais — a forma e a velocidade iniciais da corda). A
+escolha dessas condições é parte essencial do problema físico.
+:::
+
+## Separação de variáveis
+
+A ideia central: procurar soluções que são **produtos** de funções de uma variável cada.
+
+::: {#thm-separacao}
+## Método da separação de variáveis
+Para uma EDP linear, busca-se $u(x, t) = X(x)\,T(t)$. Substituindo, a equação separa-se
+em duas **EDOs** — uma para $X$, outra para $T$ — ligadas por uma **constante de
+separação** $\lambda$. Resolvem-se as EDOs (Volume XI, caps. anteriores) e combinam-se as
+soluções.
+:::
+
+::: {#exm-separacao-calor}
+## Separando a equação do calor
+Em $u_t = \alpha u_{xx}$, ponha $u = X(x)T(t)$: então $X T' = \alpha X'' T$, e dividindo
+por $\alpha XT$,
+$$
+\frac{T'}{\alpha T} = \frac{X''}{X} = -\lambda \quad(\text{constante}).
+$$
+O lado esquerdo só depende de $t$, o direito só de $x$; iguais, devem ser **constantes**.
+Resulta $T' = -\alpha\lambda T$ (decaimento exponencial) e $X'' + \lambda X = 0$
+(oscilador, @sec-edo-segunda-ordem).
+:::
+
+::: {.callout-tip}
+## Por que a constante de separação
+O argumento "função de $t$ = função de $x$ ⟹ ambas constantes" é o coração do método:
+duas expressões com variáveis independentes diferentes só podem ser iguais se forem a
+mesma constante. Essa constante $\lambda$ torna-se um **autovalor** do problema de
+contorno para $X$ — conectando EDPs à álgebra linear (@sec-autovalores) e gerando os
+**modos** do sistema.
+:::
+
+## Problemas de autovalor e modos
+
+::: {#def-problema-sturm-liouville}
+## Problema de contorno e autovalores
+As condições de contorno (ex.: $X(0) = X(L) = 0$, extremidades fixas) só admitem solução
+não trivial de $X'' + \lambda X = 0$ para valores **discretos** de $\lambda$ — os
+**autovalores** $\lambda_n = (n\pi/L)^2$ — com **autofunções** $X_n(x) = \operatorname{sen}
+(n\pi x/L)$. Cada par é um **modo**.
+:::
+
+::: {.callout-note}
+## Modos: o vocabulário da física ondulatória
+Os modos $\operatorname{sen}(n\pi x/L)$ são as formas de vibração "puras" de uma corda
+presa nas pontas — o modo fundamental e os harmônicos. A solução geral será uma
+**superposição** desses modos (princípio da superposição, @thm-estrutura-solucoes), com
+pesos determinados pelas condições iniciais. Encontrar esses pesos é o problema que as
+**séries de Fourier** (@sec-series-fourier) resolvem. A separação de variáveis reduz
+assim uma EDP a um problema de autovalores mais uma expansão em série.
+:::
+
+## Exercícios
+
+::: {#exr-edp-classificar}
+Classifique como calor, onda ou Laplace: (a) $u_{tt} = 4u_{xx}$; (b) $u_t = u_{xx}$;
+(c) $u_{xx} + u_{yy} = 0$.
+:::
+
+::: {#exr-edp-separar}
+Separe a equação da onda $u_{tt} = c^2 u_{xx}$ em duas EDOs, exibindo a constante de
+separação.
+:::
+
+::: {#exr-edp-autovalores}
+Resolva $X'' + \lambda X = 0$ com $X(0) = X(\pi) = 0$ e ache os autovalores $\lambda_n$
+e autofunções $X_n$.
+:::
+
+::: {#exr-edp-produto}
+Verifique que $u(x,t) = e^{-\alpha t}\operatorname{sen}x$ resolve a equação do calor
+$u_t = \alpha u_{xx}$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-edp-classificar
+(a) duas derivadas em $t$ e em $x$ → **onda** ($c = 2$). (b) primeira em $t$, segunda em
+$x$ → **calor**. (c) soma de segundas derivadas espaciais igual a zero → **Laplace**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-edp-autovalores
+A solução geral de $X'' + \lambda X = 0$ (para $\lambda > 0$) é $X = A\cos\sqrt\lambda x
++ B\operatorname{sen}\sqrt\lambda x$. De $X(0) = 0$ vem $A = 0$; de $X(\pi) = 0$,
+$\operatorname{sen}(\sqrt\lambda\,\pi) = 0$, logo $\sqrt\lambda = n$. Autovalores
+$\lambda_n = n^2$, autofunções $X_n = \operatorname{sen}(nx)$, $n = 1, 2, \dots$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-edp-produto
+$u_t = -\alpha e^{-\alpha t}\operatorname{sen}x$ e $u_{xx} = -e^{-\alpha t}\operatorname
+{sen}x$, logo $\alpha u_{xx} = -\alpha e^{-\alpha t}\operatorname{sen}x = u_t$. ✓ — é um
+modo da equação do calor.
+:::

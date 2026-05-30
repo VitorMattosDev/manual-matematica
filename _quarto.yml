@@ -155,6 +155,7 @@ book:
         - volumes/v11-equacoes-diferenciais/03-sistemas-edo.qmd
         - volumes/v11-equacoes-diferenciais/04-laplace.qmd
         - volumes/v11-equacoes-diferenciais/05-solucoes-serie.qmd
+        - volumes/v11-equacoes-diferenciais/06-edp-introducao.qmd
   appendices:
     - notacao.qmd
 
