@@ -1,0 +1,164 @@
+# A derivada {#sec-derivada}
+
+## Motivação
+
+Retomemos a pergunta que abriu o volume: qual a **velocidade instantânea** de um
+móvel? A velocidade média num intervalo é a distância percorrida dividida pelo tempo
+gasto — mas "no instante" o intervalo é nulo e a razão vira $0/0$. A saída,
+descoberta por Newton e Leibniz, é tomar o **limite** dessa razão quando o intervalo
+encolhe a zero. Esse limite é a **derivada**, e responde não só sobre velocidade,
+mas sobre **toda taxa de variação instantânea**.
+
+Geometricamente, a derivada é a **inclinação da reta tangente** ao gráfico — o
+coeficiente angular (@sec-analitica) que melhor descreve a função num ponto. Este
+capítulo define a derivada como limite (@sec-limites), interpreta-a nas duas
+linguagens (física e geométrica) e calcula-a para as primeiras funções, abrindo o
+caminho para as regras de derivação do próximo capítulo.
+
+## Definição
+
+::: {#def-derivada}
+## Derivada
+A **derivada** de $f$ no ponto $a$ é o limite
+$$
+f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h},
+$$
+quando ele existe. Nesse caso, diz-se que $f$ é **derivável** em $a$.
+:::
+
+A fração $\dfrac{f(a+h) - f(a)}{h}$ é a **taxa de variação média** entre $a$ e $a +
+h$ — variação da saída sobre variação da entrada. Tomar $h \to 0$ transforma a média
+no valor **instantâneo**. É uma indeterminação $\frac00$ (numerador e denominador
+vão a zero) resolvida pelo limite, como antecipamos em @sec-limites.
+
+::: {#exm-derivada-quadratica}
+## Derivada de $x^2$
+Para $f(x) = x^2$, calculamos $f'(a)$ pela definição:
+$$
+\frac{(a + h)^2 - a^2}{h} = \frac{a^2 + 2ah + h^2 - a^2}{h} = \frac{2ah + h^2}{h} =
+2a + h,
+$$
+usando o produto notável (@sec-expressoes) e cancelando $h \neq 0$. Quando $h \to
+0$, isso tende a $2a$. Logo $f'(a) = 2a$: a derivada de $x^2$ é $2x$.
+:::
+
+## Interpretação geométrica
+
+::: {#def-reta-tangente}
+## Reta tangente
+A **reta tangente** ao gráfico de $f$ no ponto $(a, f(a))$ é a reta de inclinação
+$f'(a)$ que passa por esse ponto:
+$$
+y = f(a) + f'(a)(x - a).
+$$
+:::
+
+A razão $\dfrac{f(a+h) - f(a)}{h}$ é a inclinação da reta **secante** que liga dois
+pontos do gráfico. Ao fazer $h \to 0$, o segundo ponto desliza até o primeiro, e a
+secante gira até a posição-limite: a **tangente**. A derivada é a inclinação dessa
+tangente.
+
+::: {.callout-tip}
+## A derivada como "ampliação"
+Há uma terceira leitura, poderosa: perto de $a$, a função é **aproximadamente
+linear**, e $f'(a)$ é a inclinação dessa reta. Ampliando o gráfico em torno de um
+ponto onde $f$ é derivável, a curva fica indistinguível de sua tangente — é
+**localmente reta**. Essa "linearização" é a ideia que organiza todas as aplicações
+da derivada (@sec-aplicacoes-derivada) e se generaliza ao gradiente em várias
+variáveis, ao final deste volume.
+:::
+
+## Derivada e continuidade
+
+A derivabilidade é uma condição mais forte que a continuidade: exige, além de não
+haver saltos, que não haja "bicos".
+
+::: {#thm-derivavel-continua}
+## Derivável implica contínua
+Se $f$ é derivável em $a$, então $f$ é contínua em $a$.
+:::
+
+::: {.proof}
+Precisamos de $\lim_{h\to 0}[f(a+h) - f(a)] = 0$. Escreva, para $h \neq 0$,
+$$
+f(a+h) - f(a) = \frac{f(a+h) - f(a)}{h} \cdot h.
+$$
+Quando $h \to 0$, o primeiro fator tende a $f'(a)$ (existe, por hipótese) e o
+segundo a $0$; pelo produto de limites (@prp-regras-limite-funcao), o produto tende
+a $f'(a) \cdot 0 = 0$. Logo $f(a + h) \to f(a)$, isto é, $f$ é contínua em $a$.
+:::
+
+::: {.callout-warning}
+## A recíproca é falsa: o bico do módulo
+Continuidade **não** garante derivabilidade. A função $f(x) = |x|$ (@sec-modular) é
+contínua em $0$, mas não derivável ali: o limite lateral pela esquerda dá $-1$
+(inclinação do ramo descendente) e pela direita dá $+1$, e como diferem
+(@def-limites-laterais), não há derivada. No "bico" da origem, não existe uma única
+reta tangente. Derivável é mais que contínuo: é **liso**.
+:::
+
+## A função derivada
+
+Fazendo $a$ variar, a derivada vira ela própria uma função.
+
+::: {#def-funcao-derivada}
+## Função derivada
+A **função derivada** $f'$ associa a cada ponto $x$ (onde $f$ é derivável) o valor
+$f'(x)$. Calculá-la é **derivar** $f$. Notações usuais: $f'(x)$, $\dfrac{df}{dx}$,
+$\dfrac{dy}{dx}$.
+:::
+
+::: {#exm-derivadas-basicas}
+## Primeiras derivadas
+Pela definição obtêm-se as derivadas fundamentais:
+$$
+(x^n)' = n x^{n-1}, \qquad (\text{constante})' = 0, \qquad (\operatorname{sen}x)' =
+\cos x, \qquad (e^x)' = e^x.
+$$
+A última explica por que $e$ é a base "natural" (@sec-exponencial): $e^x$ é a única
+exponencial igual à própria derivada. Essas fórmulas, mais as regras do próximo
+capítulo, permitem derivar qualquer função elementar sem voltar ao limite.
+:::
+
+## Exercícios
+
+::: {#exr-derivada-definicao}
+Use a definição (limite) para calcular a derivada de $f(x) = 3x^2 - 1$ num ponto
+$a$ qualquer.
+:::
+
+::: {#exr-reta-tangente}
+Determine a equação da reta tangente ao gráfico de $f(x) = x^2$ no ponto de abscissa
+$x = 3$. (Use $f'(x) = 2x$.)
+:::
+
+::: {#exr-derivada-cubo}
+Use a definição para mostrar que a derivada de $f(x) = x^3$ é $f'(x) = 3x^2$.
+(Sugestão: expanda $(a+h)^3$.)
+:::
+
+::: {#exr-nao-derivavel}
+Explique por que $f(x) = |x - 2|$ não é derivável em $x = 2$, calculando os limites
+laterais da razão incremental.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-derivada-definicao
+Pela definição (@def-derivada),
+$$
+\frac{f(a+h) - f(a)}{h} = \frac{[3(a+h)^2 - 1] - [3a^2 - 1]}{h} = \frac{3(2ah +
+h^2)}{h} = 6a + 3h.
+$$
+Quando $h \to 0$, tende a $6a$. Logo $f'(a) = 6a$, isto é, $f'(x) = 6x$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-reta-tangente
+Com $f(x) = x^2$ e $f'(x) = 2x$: no ponto $x = 3$, tem-se $f(3) = 9$ e inclinação
+$f'(3) = 6$. A reta tangente (@def-reta-tangente) é
+$$
+y = 9 + 6(x - 3) = 6x - 9.
+$$
+:::

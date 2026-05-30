@@ -72,6 +72,7 @@ book:
     - part: "Volume V — Cálculo"
       chapters:
         - volumes/v5-calculo/01-limites.qmd
+        - volumes/v5-calculo/02-derivada.qmd
   appendices:
     - notacao.qmd
 

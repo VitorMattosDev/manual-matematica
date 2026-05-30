@@ -53,4 +53,6 @@ novos volumes forem escritos.
 | $\prod_{i} a_i$ | produtório (produto dos $a_i$) |
 | $(a_n)$ | sequência de termo geral $a_n$ |
 | $\lim_{n\to\infty} a_n$ | limite da sequência |
+| $\lim_{x\to a} f(x)$ | limite de função |
+| $f'(x),\ \frac{df}{dx}$ | derivada de $f$ |
 | $\square$ | fim de demonstração |

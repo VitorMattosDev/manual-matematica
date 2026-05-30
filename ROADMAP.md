@@ -84,7 +84,7 @@ Pré-requisitos: nenhum.*
 *Objetivo: limites, derivadas, integrais e séries. Pré-req.: Vol. IV.*
 
 - [x] `volumes/v5-calculo/01-limites.qmd` — Limites e continuidade.
-- [ ] `volumes/v5-calculo/02-derivada.qmd` — A derivada: definição e interpretação.
+- [x] `volumes/v5-calculo/02-derivada.qmd` — A derivada: definição e interpretação.
 - [ ] `volumes/v5-calculo/03-regras-derivacao.qmd` — Regras de derivação; regra da cadeia.
 - [ ] `volumes/v5-calculo/04-aplicacoes-derivada.qmd` — Aplicações: otimização, esboço de gráficos, L'Hôpital.
 - [ ] `volumes/v5-calculo/05-integral.qmd` — A integral definida e somas de Riemann.
