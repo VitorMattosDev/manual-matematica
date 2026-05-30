@@ -100,7 +100,7 @@ Pré-requisitos: nenhum.*
 *Objetivo: espaços vetoriais e transformações lineares. Pré-req.: Vols. II, V.*
 
 - [x] `volumes/v6-linear/01-sistemas-gauss.qmd` — Sistemas lineares e eliminação de Gauss.
-- [ ] `volumes/v6-linear/02-matrizes.qmd` — Matrizes e operações.
+- [x] `volumes/v6-linear/02-matrizes.qmd` — Matrizes e operações.
 - [ ] `volumes/v6-linear/03-determinantes.qmd` — Determinantes.
 - [ ] `volumes/v6-linear/04-espacos-vetoriais.qmd` — Espaços vetoriais e subespaços.
 - [ ] `volumes/v6-linear/05-base-dimensao.qmd` — Independência linear, bases e dimensão.

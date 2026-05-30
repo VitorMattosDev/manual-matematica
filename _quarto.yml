@@ -86,6 +86,7 @@ book:
     - part: "Volume VI — Álgebra Linear"
       chapters:
         - volumes/v6-linear/01-sistemas-gauss.qmd
+        - volumes/v6-linear/02-matrizes.qmd
   appendices:
     - notacao.qmd
 

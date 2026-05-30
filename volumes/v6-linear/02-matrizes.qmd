@@ -1,0 +1,221 @@
+# Matrizes e operações {#sec-matrizes}
+
+## Motivação
+
+A matriz aumentada (@sec-sistemas-gauss) já mostrou o poder de arrumar números numa
+tabela retangular. Mas a matriz é muito mais que um depósito de coeficientes: é um
+**objeto matemático** com aritmética própria. Pode-se somar matrizes, multiplicá-las
+e — surpreendentemente — essa multiplicação codifica a **composição de
+transformações**.
+
+Uma matriz é, ao mesmo tempo, um sistema de equações comprimido, uma transformação
+do espaço e uma tabela de dados (uma planilha é uma matriz; uma imagem digital é uma
+matriz de pixels). Dominar a álgebra das matrizes é a base de tudo o que segue:
+determinantes, autovalores, e a visão de sistemas lineares como uma única equação
+$Ax = b$. Este capítulo monta essa álgebra do zero.
+
+## O que é uma matriz
+
+::: {#def-matriz}
+## Matriz
+Uma **matriz** $m \times n$ é um arranjo retangular de números em $m$ linhas e $n$
+colunas:
+$$
+A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots &
+a_{2n} \\ \vdots & & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}.
+$$
+O número $a_{ij}$ é a **entrada** na linha $i$, coluna $j$. Escreve-se $A =
+(a_{ij})$. Se $m = n$, a matriz é **quadrada** de ordem $n$.
+:::
+
+::: {#def-matrizes-especiais}
+## Matrizes notáveis
+- **Nula** $O$: todas as entradas zero.
+- **Identidade** $I_n$: quadrada com $1$ na diagonal ($a_{ii} = 1$) e $0$ fora.
+- **Diagonal**: quadrada com entradas não nulas só na diagonal.
+- **Transposta** $A^T$: troca linhas por colunas, $(A^T)_{ij} = a_{ji}$.
+:::
+
+## Soma e multiplicação por escalar
+
+As operações mais simples agem **entrada a entrada** — e só fazem sentido entre
+matrizes do mesmo tamanho.
+
+::: {#def-soma-escalar}
+## Soma e produto por escalar
+Para $A, B$ de mesmo tamanho e $c$ escalar:
+$$
+(A + B)_{ij} = a_{ij} + b_{ij}, \qquad (cA)_{ij} = c\,a_{ij}.
+$$
+:::
+
+Essas operações satisfazem as propriedades esperadas — comutatividade e
+associatividade da soma, distributividade do escalar — fazendo do conjunto das
+matrizes $m \times n$ um exemplo do que o @sec-espacos-vetoriais chamará de **espaço
+vetorial**.
+
+::: {#exm-soma}
+## Somando matrizes
+$$
+\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} + \begin{bmatrix} 0 & -1 \\ 5 & 2
+\end{bmatrix} = \begin{bmatrix} 1 & 1 \\ 8 & 6 \end{bmatrix}, \qquad 3\begin{bmatrix}
+1 & 0 \\ -2 & 4 \end{bmatrix} = \begin{bmatrix} 3 & 0 \\ -6 & 12 \end{bmatrix}.
+$$
+:::
+
+## O produto de matrizes
+
+Aqui está a operação central — e a menos óbvia. O produto **não** é entrada a
+entrada; é "linha por coluna".
+
+::: {#def-produto}
+## Produto de matrizes
+Se $A$ é $m \times p$ e $B$ é $p \times n$, o produto $AB$ é a matriz $m \times n$ de
+entradas
+$$
+(AB)_{ij} = \sum_{k=1}^{p} a_{ik}\,b_{kj} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots +
+a_{ip}b_{pj}.
+$$
+A entrada $(i, j)$ é o "produto escalar" da **linha $i$ de $A$** pela **coluna $j$ de
+$B$**.
+:::
+
+::: {.callout-warning}
+## As dimensões têm de casar
+O produto $AB$ só existe quando o número de **colunas de $A$** é igual ao número de
+**linhas de $B$**. O tamanho do resultado é (linhas de $A$) × (colunas de $B$). Uma
+regra mnemônica: $(m\times \underline{p})(\underline{p}\times n) = m\times n$ — os
+$p$ internos somem, os externos ficam.
+:::
+
+::: {#exm-produto}
+## Calculando um produto
+$$
+\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}\begin{bmatrix} 5 & 6 \\ 7 & 8
+\end{bmatrix} = \begin{bmatrix} 1\cdot5 + 2\cdot7 & 1\cdot6 + 2\cdot8 \\ 3\cdot5 +
+4\cdot7 & 3\cdot6 + 4\cdot8 \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50
+\end{bmatrix}.
+$$
+:::
+
+## O sistema $Ax = b$
+
+A grande recompensa da definição estranha: um sistema linear inteiro vira **uma só
+equação matricial**.
+
+::: {#prp-sistema-matricial}
+## Forma matricial de um sistema
+O sistema de @def-sistema-linear escreve-se $Ax = b$, onde $A = (a_{ij})$ é a
+**matriz de coeficientes**, $x = (x_1, \dots, x_n)^T$ o vetor das incógnitas e $b =
+(b_1, \dots, b_m)^T$ o dos termos independentes.
+:::
+
+::: {.callout-tip}
+## Por que a definição de produto é "essa"
+A multiplicação linha-por-coluna foi feita sob medida para que $Ax$ reproduza
+exatamente os lados esquerdos do sistema. Mais ainda: se $A$ representa uma
+transformação e $B$ outra, então $AB$ representa **fazer $B$ e depois $A$**. O
+produto de matrizes *é* a composição de transformações (@sec-transformacoes-lineares)
+— por isso ele é tão central.
+:::
+
+## Propriedades (e uma armadilha)
+
+::: {#thm-propriedades-produto}
+## Propriedades do produto
+Quando os tamanhos permitem:
+
+- **associatividade**: $(AB)C = A(BC)$;
+- **distributividade**: $A(B + C) = AB + AC$;
+- **elemento neutro**: $AI = IA = A$;
+- mas, em geral, **$AB \neq BA$** — o produto **não é comutativo**.
+:::
+
+::: {.callout-warning}
+## Matrizes não comutam
+Com $A = \left[\begin{smallmatrix} 0 & 1 \\ 0 & 0 \end{smallmatrix}\right]$ e $B =
+\left[\begin{smallmatrix} 0 & 0 \\ 1 & 0 \end{smallmatrix}\right]$: $AB =
+\left[\begin{smallmatrix} 1 & 0 \\ 0 & 0 \end{smallmatrix}\right]$ mas $BA =
+\left[\begin{smallmatrix} 0 & 0 \\ 0 & 1 \end{smallmatrix}\right]$. A ordem importa!
+Também é possível $AB = O$ com $A, B$ não nulas — outra surpresa em relação aos
+números.
+:::
+
+## A matriz inversa
+
+Dividir não existe entre matrizes, mas há um análogo: a inversa, que desfaz a
+multiplicação.
+
+::: {#def-inversa}
+## Matriz inversa
+Uma matriz quadrada $A$ é **invertível** (ou não singular) se existe $A^{-1}$ com
+$$
+A A^{-1} = A^{-1} A = I.
+$$
+Quando existe, a inversa é única. Para a matriz $2\times 2$,
+$$
+A = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \Rightarrow A^{-1} = \frac{1}{ad -
+bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix},
+$$
+desde que $ad - bc \neq 0$.
+:::
+
+A quantidade $ad - bc$ que decide a invertibilidade é o **determinante**, o tema do
+@sec-determinantes. Com a inversa, o sistema $Ax = b$ resolve-se de uma vez:
+$x = A^{-1}b$.
+
+::: {#exm-inversa}
+## Uma inversa $2\times 2$
+Para $A = \left[\begin{smallmatrix} 2 & 1 \\ 1 & 1 \end{smallmatrix}\right]$, tem-se
+$ad - bc = 2 - 1 = 1$, logo $A^{-1} = \left[\begin{smallmatrix} 1 & -1 \\ -1 & 2
+\end{smallmatrix}\right]$. Confira: $AA^{-1} = \left[\begin{smallmatrix} 1 & 0 \\ 0 &
+1 \end{smallmatrix}\right]$. ✓
+:::
+
+## Exercícios
+
+::: {#exr-mat-soma}
+Calcule $2A - B$ para $A = \left[\begin{smallmatrix} 1 & 2 \\ 0 & 3
+\end{smallmatrix}\right]$ e $B = \left[\begin{smallmatrix} 4 & 0 \\ -1 & 5
+\end{smallmatrix}\right]$.
+:::
+
+::: {#exr-mat-produto}
+Calcule $AB$ e $BA$ para $A = \left[\begin{smallmatrix} 1 & 0 & 2 \\ -1 & 3 & 1
+\end{smallmatrix}\right]$ e $B = \left[\begin{smallmatrix} 1 & 1 \\ 0 & 2 \\ 1 & 0
+\end{smallmatrix}\right]$, observando os tamanhos.
+:::
+
+::: {#exr-mat-transposta}
+Mostre, num exemplo $2\times 2$, que $(AB)^T = B^T A^T$ (a transposta inverte a
+ordem).
+:::
+
+::: {#exr-mat-inversa}
+Determine a inversa de $A = \left[\begin{smallmatrix} 3 & 5 \\ 1 & 2
+\end{smallmatrix}\right]$ e use-a para resolver $Ax = \left[\begin{smallmatrix} 1
+\\ 1 \end{smallmatrix}\right]$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-mat-produto
+$A$ é $2\times 3$ e $B$ é $3\times 2$, logo $AB$ é $2\times 2$ e $BA$ é $3\times 3$
+— já têm tamanhos diferentes. Calculando,
+$$
+AB = \begin{bmatrix} 1\cdot1 + 0 + 2\cdot1 & 1\cdot1 + 0 + 0 \\ -1 + 0 + 1 & -1 + 6
++ 0 \end{bmatrix} = \begin{bmatrix} 3 & 1 \\ 0 & 5 \end{bmatrix}.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-mat-inversa
+$ad - bc = 3\cdot2 - 5\cdot1 = 1$, logo $A^{-1} = \left[\begin{smallmatrix} 2 & -5
+\\ -1 & 3 \end{smallmatrix}\right]$. Então
+$$
+x = A^{-1}b = \begin{bmatrix} 2 & -5 \\ -1 & 3 \end{bmatrix}\begin{bmatrix} 1 \\ 1
+\end{bmatrix} = \begin{bmatrix} -3 \\ 2 \end{bmatrix}.
+$$
+:::
