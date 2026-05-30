@@ -1,0 +1,184 @@
+# Derivação rigorosa e o teorema do valor médio {#sec-derivacao}
+
+## Motivação
+
+A derivada foi apresentada no Cálculo (@sec-derivada) como inclinação da tangente e
+taxa de variação, calculada por limites de quocientes. Aceitamos sem prova fatos como
+"derivada nula implica função constante" ou "derivada positiva implica crescimento".
+Agora, com o limite ε-δ (@sec-continuidade) e a completude (@sec-supremo-completude),
+podemos **demonstrá-los** — e descobrir que todos dependem de um único teorema.
+
+Esse teorema é o **valor médio** (TVM): entre dois pontos de um gráfico suave, há um
+ponto onde a tangente é paralela à secante. Parece geométrico e modesto, mas é o
+cavalo de batalha de toda a análise diferencial: dele saem o critério de monotonia, a
+unicidade da antiderivada que sustenta o TFC (@sec-tfc), a regra de L'Hôpital, e as
+estimativas de erro de Taylor. Este capítulo funda a derivada rigorosamente e extrai
+do TVM suas consequências.
+
+## A derivada
+
+::: {#def-derivada-rigorosa}
+## Derivada
+A função $f$ é **derivável** em $a$ se existe o limite
+$$
+f'(a) = \lim_{h\to 0} \frac{f(a + h) - f(a)}{h}.
+$$
+O valor $f'(a)$ é a **derivada** de $f$ em $a$.
+:::
+
+::: {#thm-derivavel-continua}
+## Derivável implica contínua
+Se $f$ é derivável em $a$, então $f$ é contínua em $a$.
+:::
+
+::: {.proof}
+$f(a + h) - f(a) = \frac{f(a+h) - f(a)}{h}\cdot h \to f'(a)\cdot 0 = 0$ quando $h \to
+0$. Logo $f(a + h) \to f(a)$, isto é, $f$ é contínua em $a$.
+:::
+
+::: {.callout-warning}
+## A recíproca é dramaticamente falsa
+Continuidade **não** implica derivabilidade: $f(x) = |x|$ é contínua mas não derivável
+em $0$ (o quociente tende a $+1$ pela direita e $-1$ pela esquerda). Pior: Weierstrass
+exibiu uma função **contínua em toda a reta e derivável em nenhum ponto** — um gráfico
+todo feito de "bicos", infinitamente rugoso. A intuição de que funções contínuas são
+"quase suaves" está errada; é preciso o rigor para navegar esse terreno.
+:::
+
+## Extremos e o teorema de Fermat
+
+::: {#thm-fermat-interior}
+## Teorema de Fermat (ponto crítico)
+Se $f$ tem um **extremo local** em um ponto interior $c$ e é derivável em $c$, então
+$f'(c) = 0$.
+:::
+
+::: {.proof}
+Num máximo local, $\frac{f(c+h) - f(c)}{h} \geq 0$ para $h < 0$ e $\leq 0$ para $h >
+0$. Passando ao limite pelos dois lados, $f'(c) \geq 0$ e $f'(c) \leq 0$, logo $f'(c)
+= 0$.
+:::
+
+Pontos onde $f' = 0$ são os **candidatos** a extremo — base de toda otimização
+(@sec-aplicacoes-derivada), agora rigorosa.
+
+## Os teoremas do valor médio
+
+::: {#thm-rolle}
+## Teorema de Rolle
+Se $f$ é contínua em $[a, b]$, derivável em $(a, b)$ e $f(a) = f(b)$, então existe
+$c \in (a, b)$ com $f'(c) = 0$.
+:::
+
+::: {.proof}
+Por Weierstrass (@thm-weierstrass), $f$ atinge máximo e mínimo em $[a,b]$. Se ambos
+ocorrem nos extremos, $f$ é constante e $f' = 0$ em todo ponto. Senão, há um extremo
+no interior, onde $f' = 0$ por Fermat (@thm-fermat-interior).
+:::
+
+::: {#thm-valor-medio}
+## Teorema do valor médio (Lagrange)
+Se $f$ é contínua em $[a, b]$ e derivável em $(a, b)$, então existe $c \in (a, b)$ tal
+que
+$$
+f'(c) = \frac{f(b) - f(a)}{b - a}.
+$$
+Há um ponto cuja **tangente** é paralela à **secante** que liga $(a, f(a))$ a $(b,
+f(b))$.
+:::
+
+::: {.proof}
+Aplique Rolle à função auxiliar $g(x) = f(x) - \left[f(a) + \frac{f(b) - f(a)}{b - a}
+(x - a)\right]$, que mede a distância vertical de $f$ à secante. Como $g(a) = g(b) =
+0$, Rolle dá $c$ com $g'(c) = 0$, isto é $f'(c) = \frac{f(b) - f(a)}{b - a}$.
+:::
+
+::: {.callout-note}
+## O teorema que tudo sustenta
+O TVM é o elo que falta entre a derivada (informação **local**, num ponto) e o
+comportamento **global** da função (num intervalo). Quase todo resultado do cálculo
+diferencial é um corolário seu. Sua demonstração, por sua vez, repousa em Weierstrass,
+que repousa na compacidade, que repousa na completude — toda a torre da análise
+sustentando uma afirmação que parece evidente no desenho.
+:::
+
+## Consequências do TVM
+
+::: {#cor-monotonia}
+## Sinal da derivada e monotonia
+Seja $f$ derivável em $(a, b)$. Então:
+
+- $f' = 0$ em todo ponto $\iff$ $f$ é **constante**;
+- $f' > 0$ $\implies$ $f$ é **estritamente crescente**;
+- $f' < 0$ $\implies$ $f$ é **estritamente decrescente**.
+:::
+
+::: {.proof}
+Para dois pontos $x_1 < x_2$, o TVM dá $f(x_2) - f(x_1) = f'(c)(x_2 - x_1)$ para algum
+$c$. O sinal de $f'(c)$ determina o sinal da diferença — daí a monotonia. Se $f'
+\equiv 0$, toda diferença é nula, logo $f$ é constante.
+:::
+
+::: {.callout-tip}
+## Aqui se fecha o TFC
+O primeiro item — "derivada nula implica constante" — é exatamente o fato que usamos
+no Teorema Fundamental do Cálculo (@sec-tfc) para garantir que duas antiderivadas
+diferem por uma constante. Lá foi assumido; aqui está **provado**, como corolário do
+TVM. A análise rigorosa fecha as lacunas que o Cálculo deixou em aberto.
+:::
+
+::: {#thm-lhopital}
+## Regra de L'Hôpital
+Se $f, g$ são deriváveis perto de $a$, com $\lim f = \lim g = 0$ (ou $\pm\infty$) e
+$g' \neq 0$, então
+$$
+\lim_{x\to a}\frac{f(x)}{g(x)} = \lim_{x\to a}\frac{f'(x)}{g'(x)},
+$$
+quando o segundo limite existe. (Demonstra-se pelo TVM de Cauchy, versão generalizada
+do TVM.)
+:::
+
+## Exercícios
+
+::: {#exr-der-1}
+Calcule pela definição a derivada de $f(x) = x^2$ em um ponto $a$ qualquer.
+:::
+
+::: {#exr-der-rolle}
+Verifique as hipóteses de Rolle para $f(x) = x^2 - 4x + 3$ em $[1, 3]$ e encontre o
+ponto $c$.
+:::
+
+::: {#exr-der-tvm}
+Aplique o TVM a $f(x) = \sqrt x$ em $[1, 4]$ e encontre o $c$ correspondente.
+:::
+
+::: {#exr-der-desigualdade}
+Use o TVM para mostrar que $|\operatorname{sen}x - \operatorname{sen}y| \leq |x - y|$
+para todos $x, y$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-der-1
+$$
+f'(a) = \lim_{h\to 0}\frac{(a+h)^2 - a^2}{h} = \lim_{h\to 0}\frac{2ah + h^2}{h} =
+\lim_{h\to 0}(2a + h) = 2a.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-der-tvm
+$f'(x) = \frac{1}{2\sqrt x}$. O TVM pede $f'(c) = \frac{\sqrt4 - \sqrt1}{4 - 1} =
+\frac{2 - 1}{3} = \frac13$. Então $\frac{1}{2\sqrt c} = \frac13$, donde $\sqrt c =
+\frac32$ e $c = \frac94 = 2{,}25 \in (1, 4)$. ✓
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-der-desigualdade
+Pelo TVM aplicado a $\operatorname{sen}$ em $[y, x]$: existe $c$ com
+$\operatorname{sen}x - \operatorname{sen}y = \cos(c)\,(x - y)$. Como $|\cos c| \leq
+1$, segue $|\operatorname{sen}x - \operatorname{sen}y| = |\cos c|\,|x - y| \leq |x -
+y|$. (A função seno é **1-Lipschitz**.)
+:::

@@ -132,7 +132,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v8-analise/04-series.qmd` — Séries numéricas (rigoroso).
 - [x] `volumes/v8-analise/05-topologia-reta.qmd` — Topologia da reta: abertos, fechados, compactos.
 - [x] `volumes/v8-analise/06-continuidade.qmd` — Limites e continuidade (ε-δ).
-- [ ] `volumes/v8-analise/07-derivacao.qmd` — Derivação rigorosa; teorema do valor médio.
+- [x] `volumes/v8-analise/07-derivacao.qmd` — Derivação rigorosa; teorema do valor médio.
 - [ ] `volumes/v8-analise/08-integral-riemann.qmd` — A integral de Riemann.
 - [ ] `volumes/v8-analise/09-sequencias-funcoes.qmd` — Sequências e séries de funções.
 - [ ] `volumes/v8-analise/10-convergencia-uniforme.qmd` — Convergência uniforme.
