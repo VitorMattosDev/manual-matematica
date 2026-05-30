@@ -1,0 +1,173 @@
+# Geometria analítica: ponto, reta e circunferência {#sec-analitica}
+
+## Motivação
+
+Descartes teve uma ideia que mudou a matemática: identificar cada ponto do plano
+com um **par de números**, suas coordenadas. Com isso, figuras geométricas viram
+**equações**, e problemas de geometria — provar que três pontos são colineares,
+achar onde duas retas se cruzam — viram contas algébricas. A geometria sintética
+dos capítulos anteriores ganha um motor de cálculo.
+
+Este capítulo funde os dois mundos construídos até aqui: a geometria do plano e a
+álgebra dos Volumes I–II. Coordenadas transformam a distância em Pitágoras
+algébrico (@sec-pitagoras), a reta numa equação do primeiro grau
+(@sec-equacoes-1grau) e a circunferência numa equação do segundo grau. É a
+linguagem em que o Cálculo e a Álgebra Linear (Volume VI) descreverão tudo.
+
+## O plano cartesiano
+
+::: {#def-coordenadas}
+## Coordenadas
+Fixados dois eixos perpendiculares (horizontal $x$ e vertical $y$) com origem
+comum, cada ponto $P$ do plano corresponde a um par ordenado $(x, y)$ — sua
+**abscissa** e sua **ordenada**. Essa correspondência entre pontos e pares de
+$\mathbb{R}^2$ (@sec-conjuntos) é a base da geometria analítica.
+:::
+
+As duas medidas fundamentais — distância e ponto médio — saem direto das
+coordenadas.
+
+::: {#prp-distancia-ponto-medio}
+## Distância e ponto médio
+Para $A = (x_1, y_1)$ e $B = (x_2, y_2)$:
+$$
+\overline{AB} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}, \qquad
+M = \left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right).
+$$
+:::
+
+::: {.proof}
+A fórmula da distância é o teorema de Pitágoras (@prp-distancia) aplicado ao
+triângulo retângulo de catetos $|x_2 - x_1|$ e $|y_2 - y_1|$. O ponto médio tem,
+em cada coordenada, a média das coordenadas — pois avança metade do caminho em $x$
+e metade em $y$.
+:::
+
+## A equação da reta
+
+::: {#def-equacao-reta}
+## Equação da reta
+Uma **reta** não vertical tem equação
+$$
+y = m x + n,
+$$
+em que $m$ é o **coeficiente angular** (a inclinação) e $n$ o **coeficiente
+linear** (onde cruza o eixo $y$). Retas verticais têm equação $x = c$.
+:::
+
+O coeficiente angular mede a inclinação como razão entre a variação vertical e a
+horizontal — e, por isso, calcula-se a partir de dois pontos.
+
+::: {#prp-coef-angular}
+## Coeficiente angular por dois pontos
+A reta por $A = (x_1, y_1)$ e $B = (x_2, y_2)$, com $x_1 \neq x_2$, tem
+$$
+m = \frac{y_2 - y_1}{x_2 - x_1}.
+$$
+:::
+
+::: {.callout-note}
+## Inclinação é tangente
+O coeficiente angular é a **tangente** do ângulo que a reta faz com o eixo
+horizontal (@sec-trigonometria-triangulo): $m = \operatorname{tg}\theta$. Uma reta
+que "sobe a $45°$" tem $m = 1$; quanto mais íngreme, maior $m$. O sinal indica o
+sentido: $m > 0$ sobe, $m < 0$ desce.
+:::
+
+::: {#prp-paralelas-perpendiculares}
+## Paralelas e perpendiculares
+Duas retas não verticais de coeficientes angulares $m_1$ e $m_2$ são **paralelas**
+se, e somente se, $m_1 = m_2$; e **perpendiculares** se, e somente se, $m_1 m_2 =
+-1$.
+:::
+
+::: {#exm-reta}
+## Determinando uma reta
+A reta por $A = (1, 2)$ e $B = (3, 8)$ tem coeficiente angular $m = \dfrac{8 - 2}{3
+- 1} = 3$. Substituindo $A$ em $y = 3x + n$: $2 = 3 \cdot 1 + n$, logo $n = -1$. A
+equação é $y = 3x - 1$. A reta **perpendicular** a ela por $A$ tem coeficiente $m'
+= -\tfrac13$ (pois $3 \cdot (-\tfrac13) = -1$).
+:::
+
+## A equação da circunferência
+
+A definição de circunferência (lugar dos pontos a distância fixa do centro)
+traduz-se imediatamente pela fórmula da distância.
+
+::: {#thm-equacao-circunferencia}
+## Equação da circunferência
+A circunferência de centro $C = (a, b)$ e raio $r$ tem equação
+$$
+(x - a)^2 + (y - b)^2 = r^2.
+$$
+:::
+
+::: {.proof}
+Um ponto $(x, y)$ está na circunferência exatamente quando sua distância ao centro
+é $r$, isto é, $\sqrt{(x - a)^2 + (y - b)^2} = r$ (@prp-distancia-ponto-medio).
+Elevando ao quadrado, $(x - a)^2 + (y - b)^2 = r^2$.
+:::
+
+::: {#exm-circunferencia}
+## Reconhecendo uma circunferência
+A equação $x^2 + y^2 - 6x + 4y - 12 = 0$ é uma circunferência. Completando os
+quadrados (@thm-bhaskara usa a mesma técnica):
+$$
+(x^2 - 6x) + (y^2 + 4y) = 12 \implies (x - 3)^2 + (y + 2)^2 = 12 + 9 + 4 = 25.
+$$
+É a circunferência de centro $(3, -2)$ e raio $\sqrt{25} = 5$.
+:::
+
+::: {.callout-tip}
+## Geometria virou álgebra
+Veja o que aconteceu: "achar onde uma reta corta uma circunferência" virou
+"resolver um sistema de uma equação do primeiro grau e uma do segundo"
+(@sec-equacoes-2grau) — substitui-se $y = mx + n$ na equação do círculo e cai-se
+numa equação do segundo grau em $x$, cujo discriminante diz se a reta é secante
+($\Delta > 0$), tangente ($\Delta = 0$) ou exterior ($\Delta < 0$). A geometria
+toda se resolve com a álgebra dos volumes anteriores.
+:::
+
+## Exercícios
+
+::: {#exr-distancia-analitica}
+Calcule a distância entre $A = (-2, 1)$ e $B = (4, 9)$ e as coordenadas do ponto
+médio de $\overline{AB}$.
+:::
+
+::: {#exr-reta-analitica}
+Determine a equação da reta que passa por $(2, -1)$ e $(5, 5)$, e a equação da
+reta perpendicular a ela que passa por $(2, -1)$.
+:::
+
+::: {#exr-circunferencia}
+Determine o centro e o raio da circunferência $x^2 + y^2 - 10x + 6y + 18 = 0$.
+:::
+
+::: {#exr-interseccao}
+Determine os pontos de interseção da reta $y = x + 1$ com a circunferência $x^2 +
+y^2 = 25$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-circunferencia
+Completam-se os quadrados em $x$ e em $y$:
+$$
+(x^2 - 10x) + (y^2 + 6y) = -18 \implies (x - 5)^2 + (y + 3)^2 = -18 + 25 + 9 = 16.
+$$
+O centro é $(5, -3)$ e o raio é $\sqrt{16} = 4$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-interseccao
+Substituindo $y = x + 1$ na equação do círculo:
+$$
+x^2 + (x + 1)^2 = 25 \implies 2x^2 + 2x + 1 = 25 \implies 2x^2 + 2x - 24 = 0
+\implies x^2 + x - 12 = 0.
+$$
+As raízes (soma $-1$, produto $-12$) são $x = 3$ e $x = -4$. Os pontos de
+interseção são $(3, 4)$ e $(-4, -3)$. Como há **dois**, a reta é secante (de fato
+o discriminante era positivo).
+:::
