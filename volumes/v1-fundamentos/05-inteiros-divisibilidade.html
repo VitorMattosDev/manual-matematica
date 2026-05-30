@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Lógica e demonstrações – Manual de Matemática</title>
+<title>5&nbsp; Inteiros e divisibilidade – Manual de Matemática</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../volumes/v1-fundamentos/02-conjuntos.html" rel="next">
-<link href="../../index.html" rel="prev">
+<link href="../../volumes/v1-fundamentos/06-mdc-euclides.html" rel="next">
+<link href="../../volumes/v1-fundamentos/04-naturais.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -115,7 +115,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html">Volume I — Fundamentos: Lógica e Aritmética</a></li><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html">Volume I — Fundamentos: Lógica e Aritmética</a></li><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/05-inteiros-divisibilidade.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inteiros e divisibilidade</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -160,7 +160,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../volumes/v1-fundamentos/01-logica.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../volumes/v1-fundamentos/01-logica.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></span></a>
   </div>
 </li>
@@ -184,7 +184,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../volumes/v1-fundamentos/05-inteiros-divisibilidade.html" class="sidebar-item-text sidebar-link">
+  <a href="../../volumes/v1-fundamentos/05-inteiros-divisibilidade.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inteiros e divisibilidade</span></span></a>
   </div>
 </li>
@@ -868,32 +868,23 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação"><span class="header-section-number">1.1</span> Motivação</a></li>
-  <li><a href="#proposições-e-valor-verdade" id="toc-proposições-e-valor-verdade" class="nav-link" data-scroll-target="#proposições-e-valor-verdade"><span class="header-section-number">1.2</span> Proposições e valor-verdade</a></li>
-  <li><a href="#conectivos-lógicos" id="toc-conectivos-lógicos" class="nav-link" data-scroll-target="#conectivos-lógicos"><span class="header-section-number">1.3</span> Conectivos lógicos</a></li>
-  <li><a href="#equivalências-lógicas" id="toc-equivalências-lógicas" class="nav-link" data-scroll-target="#equivalências-lógicas"><span class="header-section-number">1.4</span> Equivalências lógicas</a></li>
-  <li><a href="#quantificadores" id="toc-quantificadores" class="nav-link" data-scroll-target="#quantificadores"><span class="header-section-number">1.5</span> Quantificadores</a></li>
-  <li><a href="#métodos-de-demonstração" id="toc-métodos-de-demonstração" class="nav-link" data-scroll-target="#métodos-de-demonstração"><span class="header-section-number">1.6</span> Métodos de demonstração</a>
-  <ul class="collapse">
-  <li><a href="#demonstração-direta" id="toc-demonstração-direta" class="nav-link" data-scroll-target="#demonstração-direta"><span class="header-section-number">1.6.1</span> Demonstração direta</a></li>
-  <li><a href="#demonstração-por-contrapositiva" id="toc-demonstração-por-contrapositiva" class="nav-link" data-scroll-target="#demonstração-por-contrapositiva"><span class="header-section-number">1.6.2</span> Demonstração por contrapositiva</a></li>
-  <li><a href="#demonstração-por-absurdo" id="toc-demonstração-por-absurdo" class="nav-link" data-scroll-target="#demonstração-por-absurdo"><span class="header-section-number">1.6.3</span> Demonstração por absurdo</a></li>
-  <li><a href="#demonstração-por-casos" id="toc-demonstração-por-casos" class="nav-link" data-scroll-target="#demonstração-por-casos"><span class="header-section-number">1.6.4</span> Demonstração por casos</a></li>
-  <li><a href="#refutação-por-contraexemplo" id="toc-refutação-por-contraexemplo" class="nav-link" data-scroll-target="#refutação-por-contraexemplo"><span class="header-section-number">1.6.5</span> Refutação por contraexemplo</a></li>
-  </ul></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">1.7</span> Exercícios</a>
+  <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação"><span class="header-section-number">5.1</span> Motivação</a></li>
+  <li><a href="#construção-dos-inteiros" id="toc-construção-dos-inteiros" class="nav-link" data-scroll-target="#construção-dos-inteiros"><span class="header-section-number">5.2</span> Construção dos inteiros</a></li>
+  <li><a href="#divisibilidade" id="toc-divisibilidade" class="nav-link" data-scroll-target="#divisibilidade"><span class="header-section-number">5.3</span> Divisibilidade</a></li>
+  <li><a href="#divisão-euclidiana" id="toc-divisão-euclidiana" class="nav-link" data-scroll-target="#divisão-euclidiana"><span class="header-section-number">5.4</span> Divisão euclidiana</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.5</span> Exercícios</a>
   <ul class="collapse">
   <li><a href="#soluções-selecionadas" id="toc-soluções-selecionadas" class="nav-link" data-scroll-target="#soluções-selecionadas">Soluções selecionadas</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v1-fundamentos/01-logica.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v1-fundamentos/05-inteiros-divisibilidade.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html">Volume I — Fundamentos: Lógica e Aritmética</a></li><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html">Volume I — Fundamentos: Lógica e Aritmética</a></li><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/05-inteiros-divisibilidade.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inteiros e divisibilidade</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-logica" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></span></h1>
+<h1 class="title"><span id="sec-inteiros" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inteiros e divisibilidade</span></span></h1>
 </div>
 
 
@@ -910,346 +901,125 @@ window.Quarto = {
 </header>
 
 
-<section id="motivação" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="motivação"><span class="header-section-number">1.1</span> Motivação</h2>
-<p>Antes de provar qualquer coisa sobre números, precisamos combinar o que conta como uma <em>demonstração</em>. Em matemática, afirmar algo não basta: uma afirmação só entra no acervo de verdades depois de ser <strong>deduzida</strong>, por uma cadeia de passos inquestionáveis, a partir do que já se aceita. Para que essa cadeia seja inquestionável, a própria linguagem em que ela é escrita precisa ser precisa.</p>
-<p>Este capítulo apresenta essa linguagem mínima: as <strong>proposições</strong>, os <strong>conectivos</strong> que as combinam, os <strong>quantificadores</strong> que falam de “todos” e de “algum”, e — sobretudo — os <strong>métodos de demonstração</strong> que reaparecerão em todos os capítulos seguintes. Nada aqui é difícil; o objetivo é deixar explícito o que normalmente se usa de modo implícito.</p>
+<section id="motivação" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="motivação"><span class="header-section-number">5.1</span> Motivação</h2>
+<p>Os naturais do <a href="04-naturais.html" class="quarto-xref"><span>Capítulo 4</span></a> somam e multiplicam sem sair de casa, mas tropeçam na subtração: <span class="math inline">\(3 - 5\)</span> não é natural. Para que a equação <span class="math inline">\(a + x = b\)</span> tenha <em>sempre</em> solução, é preciso ampliar <span class="math inline">\(\mathbb{N}\)</span> — acrescentar o zero e os simétricos <span class="math inline">\(-1, -2, -3, \dots\)</span> —, obtendo os <strong>inteiros</strong> <span class="math inline">\(\mathbb{Z}\)</span>.</p>
+<p>Faremos isso sem “inventar” números negativos por decreto: vamos <em>construí-los</em> a partir de pares de naturais, com a mesma disciplina do capítulo anterior. Em seguida, com <span class="math inline">\(\mathbb{Z}\)</span> em mãos, estudamos a relação que organiza toda a aritmética que vem pela frente — a <strong>divisibilidade</strong> — e provamos seu resultado fundador, a <strong>divisão euclidiana</strong>, que mais adiante sustentará o algoritmo de Euclides, os primos e as congruências.</p>
 </section>
-<section id="proposições-e-valor-verdade" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="proposições-e-valor-verdade"><span class="header-section-number">1.2</span> Proposições e valor-verdade</h2>
-<div id="def-proposicao" class="theorem definition">
-<p><span class="theorem-title"><strong>Definição 1.1 (Proposição)</strong></span> Uma <strong>proposição</strong> é uma afirmação à qual se pode atribuir um único <strong>valor verdade</strong>: verdadeiro (V) ou falso (F), mas não ambos.</p>
+<section id="construção-dos-inteiros" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="construção-dos-inteiros"><span class="header-section-number">5.2</span> Construção dos inteiros</h2>
+<p>A ideia-guia é simples: um inteiro deve representar uma <em>diferença</em> <span class="math inline">\(a - b\)</span> de naturais. Mas <span class="math inline">\(3 - 5\)</span>, <span class="math inline">\(1 - 3\)</span> e <span class="math inline">\(10 - 12\)</span> deveriam dar o mesmo inteiro (<span class="math inline">\(-2\)</span>). Então um inteiro não é um par, e sim <em>toda uma família</em> de pares que exprimem a mesma diferença. Para identificá-los sem usar a subtração (que ainda não temos), reescrevemos “<span class="math inline">\(a - b = c - d\)</span>” como “<span class="math inline">\(a + d = b + c\)</span>”.</p>
+<div id="def-relacao-inteiros" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 5.1 (A relação dos pares)</strong></span> Em <span class="math inline">\(\mathbb{N} \times \mathbb{N}\)</span>, escrevemos <span class="math inline">\((a, b) \sim (c, d)\)</span> quando <span class="math display">\[
+a + d = b + c.
+\]</span> Intuitivamente, <span class="math inline">\((a, b)\)</span> representa a diferença <span class="math inline">\(a - b\)</span>.</p>
 </div>
-<p>São proposições “<span class="math inline">\(2 + 2 = 4\)</span>” (verdadeira) e “<span class="math inline">\(7\)</span> é par” (falsa). Não são proposições uma pergunta (“quanto vale <span class="math inline">\(x\)</span>?”), uma ordem (“some os dois lados”) nem uma frase ambígua.</p>
+<div id="prp-equivalencia" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposição 5.1 (<span class="math inline">\(\sim\)</span> é uma equivalência)</strong></span> A relação <span class="math inline">\(\sim\)</span> é <strong>reflexiva</strong> (<span class="math inline">\((a,b) \sim (a,b)\)</span>), <strong>simétrica</strong> (<span class="math inline">\((a,b) \sim
+(c,d) \Rightarrow (c,d) \sim (a,b)\)</span>) e <strong>transitiva</strong>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Comprovação</em>. </span>Reflexividade: <span class="math inline">\(a + b = b + a\)</span> pela comutatividade da soma (<a href="04-naturais.html" class="quarto-xref"><span>Capítulo 4</span></a>). Simetria: <span class="math inline">\(a + d = b + c\)</span> é o mesmo que <span class="math inline">\(c + b = d + a\)</span>. Transitividade: se <span class="math inline">\(a + d
+= b + c\)</span> e <span class="math inline">\(c + f = d + e\)</span>, somando as duas igualdades e cancelando <span class="math inline">\(c + d\)</span> (lei do cancelamento, <a href="04-naturais.html" class="quarto-xref"><span>Capítulo 4</span></a>) obtém-se <span class="math inline">\(a + f = b + e\)</span>, isto é, <span class="math inline">\((a, b) \sim (e,
+f)\)</span>.</p>
+</div>
+<p>Uma relação de equivalência reparte o conjunto em <strong>classes</strong>: a classe de <span class="math inline">\((a,b)\)</span>, denotada <span class="math inline">\([a, b]\)</span>, reúne todos os pares equivalentes a ele. Cada classe é um inteiro.</p>
+<div id="def-inteiros" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 5.2 (Inteiros)</strong></span> O conjunto dos <strong>inteiros</strong> é <span class="math display">\[
+\mathbb{Z} = \{\, [a, b] : (a, b) \in \mathbb{N} \times \mathbb{N} \,\},
+\]</span> o conjunto das classes de <span class="math inline">\(\sim\)</span>. Definem-se a soma e o produto por <span class="math display">\[
+[a, b] + [c, d] = [\,a + c,\ b + d\,], \qquad
+[a, b] \cdot [c, d] = [\,a c + b d,\ a d + b c\,].
+\]</span></p>
+</div>
+<p>As fórmulas vêm de expandir <span class="math inline">\((a - b) + (c - d)\)</span> e <span class="math inline">\((a - b)(c - d)\)</span>. Como cada inteiro foi representado por <em>vários</em> pares, é preciso verificar que o resultado não depende do representante escolhido — a operação está <strong>bem definida</strong> (ver <a href="#exr-bem-definida" class="quarto-xref">Exercício&nbsp;<span>5.1</span></a>).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Frases abertas
+<span class="screen-reader-only">Nota</span>Zero, simétricos e o reencontro com <span class="math inline">\(\mathbb{N}\)</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Uma frase como “<span class="math inline">\(x &gt; 3\)</span>” não é, por si só, uma proposição: seu valor verdade depende de <span class="math inline">\(x\)</span>. Chamamos isso de <strong>frase aberta</strong> (ou predicado) e a denotamos <span class="math inline">\(P(x)\)</span>. Ela só vira proposição quando substituímos <span class="math inline">\(x\)</span> por um valor concreto — <span class="math inline">\(P(5)\)</span> é verdadeira, <span class="math inline">\(P(1)\)</span> é falsa — ou quando a fechamos com um quantificador, como veremos adiante.</p>
+<p>O <strong>zero</strong> é <span class="math inline">\(0 = [a, a]\)</span> (a diferença nula), e o <strong>simétrico</strong> de <span class="math inline">\([a, b]\)</span> é <span class="math inline">\(-[a, b] = [b, a]\)</span>, pois <span class="math inline">\([a,b] + [b,a] = [a+b, a+b] = 0\)</span>. Cada natural <span class="math inline">\(n\)</span> identifica-se com a classe <span class="math inline">\([\,n + 1,\ 1\,]\)</span> (a diferença <span class="math inline">\(n\)</span>), e isso mergulha <span class="math inline">\(\mathbb{N}\)</span> dentro de <span class="math inline">\(\mathbb{Z}\)</span> preservando soma e produto. A partir daqui podemos esquecer os pares e voltar à notação de sempre: <span class="math inline">\(\dots, -2, -1, 0, 1, 2,
+\dots\)</span></p>
 </div>
 </div>
+<p>Com essas operações, <span class="math inline">\(\mathbb{Z}\)</span> herda as boas propriedades de <span class="math inline">\(\mathbb{N}\)</span> — soma e produto comutativos e associativos, distributividade — e ganha a que motivou tudo: <strong>todo inteiro tem simétrico</strong>, logo a subtração <span class="math inline">\(a - b := a + (-b)\)</span> está sempre definida. Estende-se também a ordem: <span class="math inline">\(a &lt; b\)</span> quando <span class="math inline">\(b - a\)</span> é um natural (um inteiro positivo). Não há divisores de zero — se <span class="math inline">\(a b = 0\)</span> então <span class="math inline">\(a = 0\)</span> ou <span class="math inline">\(b = 0\)</span> —, fato que usaremos livremente.</p>
 </section>
-<section id="conectivos-lógicos" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="conectivos-lógicos"><span class="header-section-number">1.3</span> Conectivos lógicos</h2>
-<p>A partir de proposições <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span> formam-se novas proposições com os <strong>conectivos</strong> <span class="math inline">\(\lnot\)</span> (negação), <span class="math inline">\(\land\)</span> (conjunção, “e”), <span class="math inline">\(\lor\)</span> (disjunção, “ou”), <span class="math inline">\(\Rightarrow\)</span> (condicional, “implica”) e <span class="math inline">\(\Leftrightarrow\)</span> (bicondicional, “se, e somente se”). O significado de cada um fica completamente determinado por sua <strong>tabela-verdade</strong>, que lista o valor do resultado para cada combinação dos valores de <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span>.</p>
-<div id="def-conectivos" class="theorem definition">
-<p><span class="theorem-title"><strong>Definição 1.2 (Conectivos)</strong></span> Os conectivos são definidos pelas tabelas-verdade:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \land q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \lor q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \Rightarrow q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \Leftrightarrow q\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-</tbody>
-</table>
+<section id="divisibilidade" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="divisibilidade"><span class="header-section-number">5.3</span> Divisibilidade</h2>
+<p>Dentro de <span class="math inline">\(\mathbb{Z}\)</span> a divisão nem sempre é exata; é justamente <em>quando</em> ela é exata que reside a aritmética interessante.</p>
+<div id="def-divide" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 5.3 (Divisibilidade)</strong></span> Sejam <span class="math inline">\(a, b \in \mathbb{Z}\)</span>. Dizemos que <span class="math inline">\(a\)</span> <strong>divide</strong> <span class="math inline">\(b\)</span>, e escrevemos <span class="math inline">\(a \mid
+b\)</span>, quando existe <span class="math inline">\(c \in \mathbb{Z}\)</span> tal que <span class="math inline">\(b = a c\)</span>. Nesse caso, <span class="math inline">\(a\)</span> é um <strong>divisor</strong> de <span class="math inline">\(b\)</span>, e <span class="math inline">\(b\)</span> um <strong>múltiplo</strong> de <span class="math inline">\(a\)</span>.</p>
 </div>
-<p>Em palavras: <span class="math inline">\(\lnot p\)</span> inverte o valor de <span class="math inline">\(p\)</span>; a conjunção <span class="math inline">\(p \land q\)</span> só é verdadeira quando ambas o são; a disjunção <span class="math inline">\(p \lor q\)</span> é falsa apenas quando ambas são falsas; a bicondicional <span class="math inline">\(p \Leftrightarrow q\)</span> é verdadeira quando <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span> têm o mesmo valor.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Aviso</span>Dois erros comuns
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p>Por exemplo, <span class="math inline">\(3 \mid 12\)</span> (pois <span class="math inline">\(12 = 3 \cdot 4\)</span>) e <span class="math inline">\(5 \nmid 12\)</span>. Note que <span class="math inline">\(a \mid
+0\)</span> para todo <span class="math inline">\(a\)</span> (já que <span class="math inline">\(0 = a \cdot 0\)</span>), e que <span class="math inline">\(1 \mid b\)</span> para todo <span class="math inline">\(b\)</span>.</p>
+<p>As propriedades a seguir são a caixa de ferramentas básica; quase toda manipulação com divisibilidade se reduz a elas.</p>
+<div id="prp-divide-props" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposição 5.2 (Propriedades da divisão)</strong></span> Para quaisquer <span class="math inline">\(a, b, c \in \mathbb{Z}\)</span>:</p>
 <ol type="1">
-<li><strong>O “ou” é inclusivo.</strong> Em matemática, <span class="math inline">\(p \lor q\)</span> é verdadeira também quando <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span> são <em>ambas</em> verdadeiras. “Inteiro par ou positivo” inclui o <span class="math inline">\(4\)</span>.</li>
-<li><strong>A condicional com hipótese falsa é verdadeira.</strong> Quando <span class="math inline">\(p\)</span> é falsa, <span class="math inline">\(p \Rightarrow q\)</span> é verdadeira <em>qualquer que seja</em> <span class="math inline">\(q\)</span> — dizemos que vale por <em>vacuidade</em>. A condicional só é falsa no único caso em que a hipótese é verdadeira e a conclusão é falsa (linha V/F). Por isso, para refutar <span class="math inline">\(p \Rightarrow q\)</span>, basta exibir uma situação com <span class="math inline">\(p\)</span> verdadeira e <span class="math inline">\(q\)</span> falsa.</li>
+<li>(reflexiva) <span class="math inline">\(a \mid a\)</span>; e <span class="math inline">\(1 \mid a\)</span>, <span class="math inline">\(a \mid 0\)</span>.</li>
+<li>(transitiva) se <span class="math inline">\(a \mid b\)</span> e <span class="math inline">\(b \mid c\)</span>, então <span class="math inline">\(a \mid c\)</span>.</li>
+<li>(combinações) se <span class="math inline">\(a \mid b\)</span> e <span class="math inline">\(a \mid c\)</span>, então <span class="math inline">\(a \mid (b x + c y)\)</span> para quaisquer <span class="math inline">\(x, y \in \mathbb{Z}\)</span>.</li>
 </ol>
 </div>
-</div>
-</section>
-<section id="equivalências-lógicas" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="equivalências-lógicas"><span class="header-section-number">1.4</span> Equivalências lógicas</h2>
-<p>Duas proposições compostas podem ter exatamente a mesma tabela-verdade, ainda que escritas de forma diferente. Quando isso acontece, podemos trocar uma pela outra em qualquer demonstração — e é justamente essa troca que está por trás de vários métodos de prova.</p>
-<div id="def-equivalencia" class="theorem definition">
-<p><span class="theorem-title"><strong>Definição 1.3 (Equivalência lógica)</strong></span> Dizemos que duas proposições compostas são <strong>logicamente equivalentes</strong>, e escrevemos <span class="math inline">\(p \equiv q\)</span>, quando têm o mesmo valor verdade para toda combinação de valores das proposições que as compõem (ou seja, tabelas-verdade idênticas).</p>
-</div>
-<p>A equivalência mais útil em demonstrações relaciona uma condicional com sua <strong>contrapositiva</strong>.</p>
-<div id="prp-contrapositiva" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposição 1.1 (Contrapositiva)</strong></span> Para quaisquer proposições <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span>, <span class="math display">\[
-(p \Rightarrow q) \equiv (\lnot q \Rightarrow \lnot p).
-\]</span></p>
-</div>
 <div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Comparamos as tabelas-verdade das duas expressões:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \Rightarrow q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot q \Rightarrow \lnot p\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-</tbody>
-</table>
-<p>As colunas de <span class="math inline">\(p \Rightarrow q\)</span> e de <span class="math inline">\(\lnot q \Rightarrow \lnot p\)</span> coincidem linha a linha. Logo as proposições são equivalentes.</p>
+<p><span class="proof-title"><em>Comprovação</em>. </span></p>
+<ol start="2" type="1">
+<li><p>Existem <span class="math inline">\(u, v\)</span> com <span class="math inline">\(b = a u\)</span> e <span class="math inline">\(c = b v\)</span>. Então <span class="math inline">\(c = (a u) v = a (u v)\)</span>, e como <span class="math inline">\(u v \in \mathbb{Z}\)</span>, segue <span class="math inline">\(a \mid c\)</span>.</p></li>
+<li><p>Existem <span class="math inline">\(u, v\)</span> com <span class="math inline">\(b = a u\)</span> e <span class="math inline">\(c = a v\)</span>. Logo <span class="math display">\[
+b x + c y = a u x + a v y = a (u x + v y),
+\]</span> e <span class="math inline">\(u x + v y \in \mathbb{Z}\)</span>; portanto <span class="math inline">\(a \mid (b x + c y)\)</span>. As afirmações de (1) são imediatas da <a href="#def-divide" class="quarto-xref">Definição&nbsp;<span>5.3</span></a>.</p></li>
+</ol>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Aviso</span>Contrapositiva <em>não</em> é recíproca
+<span class="screen-reader-only">Dica</span>Combinações lineares: o caso mais usado
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A contrapositiva de <span class="math inline">\(p \Rightarrow q\)</span> é <span class="math inline">\(\lnot q \Rightarrow \lnot p\)</span>, e é equivalente à original. Já a <strong>recíproca</strong>, <span class="math inline">\(q \Rightarrow p\)</span>, <strong>não</strong> é equivalente: confira nas tabelas que <span class="math inline">\(q \Rightarrow p\)</span> é falsa na linha F/V, onde <span class="math inline">\(p \Rightarrow q\)</span> é verdadeira. Provar a recíproca é provar um teorema diferente.</p>
+<p>O item (3) diz que um divisor comum de <span class="math inline">\(b\)</span> e <span class="math inline">\(c\)</span> divide <em>qualquer</em> combinação <span class="math inline">\(bx + cy\)</span>. Em particular, divide <span class="math inline">\(b + c\)</span> e <span class="math inline">\(b - c\)</span>. É a engrenagem central do algoritmo de Euclides, que veremos no próximo capítulo.</p>
 </div>
 </div>
-<p>As leis seguintes descrevem como a negação atravessa a conjunção e a disjunção. Elas serão reaproveitadas, com conjuntos no lugar de proposições, em <a href="02-conjuntos.html" class="quarto-xref"><span>Capítulo 2</span></a>.</p>
-<div id="prp-demorgan-logica" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposição 1.2 (Leis de De Morgan (lógica))</strong></span> Para quaisquer proposições <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span>, <span class="math display">\[
-\lnot(p \land q) \equiv (\lnot p) \lor (\lnot q),
-\qquad
-\lnot(p \lor q) \equiv (\lnot p) \land (\lnot q).
+<p>A divisibilidade quase ordena <span class="math inline">\(\mathbb{Z}\)</span>: se dois inteiros se dividem mutuamente, diferem no máximo por sinal.</p>
+<div id="prp-divisao-mutua" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposição 5.3 (Divisão mútua)</strong></span> Se <span class="math inline">\(a \mid b\)</span> e <span class="math inline">\(b \mid a\)</span>, com <span class="math inline">\(a, b \neq 0\)</span>, então <span class="math inline">\(a = b\)</span> ou <span class="math inline">\(a = -b\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Comprovação</em>. </span>Existem <span class="math inline">\(u, v\)</span> com <span class="math inline">\(b = a u\)</span> e <span class="math inline">\(a = b v\)</span>. Substituindo, <span class="math inline">\(a = a u v\)</span>, e como <span class="math inline">\(a \neq 0\)</span> cancela-se: <span class="math inline">\(u v = 1\)</span>. Os únicos inteiros com produto <span class="math inline">\(1\)</span> são <span class="math inline">\(1
+\cdot 1\)</span> e <span class="math inline">\((-1)(-1)\)</span>, logo <span class="math inline">\(u = v = 1\)</span> ou <span class="math inline">\(u = v = -1\)</span>. No primeiro caso <span class="math inline">\(b = a\)</span>; no segundo <span class="math inline">\(b = -a\)</span>.</p>
+</div>
+</section>
+<section id="divisão-euclidiana" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="divisão-euclidiana"><span class="header-section-number">5.4</span> Divisão euclidiana</h2>
+<p>Mesmo quando <span class="math inline">\(a \nmid b\)</span>, dividir deixa um <strong>resto</strong> controlado. Este é o teorema que organiza toda a aritmética dos inteiros — e sua existência repousa, mais uma vez, sobre a boa ordenação dos naturais (<a href="03-inducao.html#thm-boa-ordem" class="quarto-xref">Teorema&nbsp;<span>3.3</span></a>).</p>
+<div id="thm-divisao-euclidiana" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 5.1 (Divisão euclidiana)</strong></span> Sejam <span class="math inline">\(a \in \mathbb{Z}\)</span> e <span class="math inline">\(b \in \mathbb{N}\)</span>, com <span class="math inline">\(b &gt; 0\)</span>. Então existem inteiros <strong>únicos</strong> <span class="math inline">\(q\)</span> (quociente) e <span class="math inline">\(r\)</span> (resto) tais que <span class="math display">\[
+a = b q + r, \qquad 0 \leq r &lt; b.
 \]</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Verificamos a primeira equivalência pela tabela-verdade; a segunda é análoga.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \land q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot(p \land q)\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot p \lor \lnot q\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-</tbody>
-</table>
-<p>As colunas de <span class="math inline">\(\lnot(p \land q)\)</span> e de <span class="math inline">\(\lnot p \lor \lnot q\)</span> são idênticas. A segunda lei prova-se trocando os papéis de <span class="math inline">\(\land\)</span> e <span class="math inline">\(\lor\)</span>.</p>
+<p><span class="proof-title"><em>Comprovação</em>. </span><strong>Existência.</strong> Considere o conjunto dos restos não negativos possíveis, <span class="math display">\[
+R = \{\, a - b q : q \in \mathbb{Z} \,\} \cap \{\, n \in \mathbb{Z} : n \geq 0 \,\}.
+\]</span> <span class="math inline">\(R\)</span> é não vazio: tomando <span class="math inline">\(q\)</span> inteiro suficientemente pequeno (por exemplo <span class="math inline">\(q \leq
+a/b\)</span>), o valor <span class="math inline">\(a - bq\)</span> fica <span class="math inline">\(\geq 0\)</span>. Como <span class="math inline">\(R\)</span> é um conjunto não vazio de inteiros <span class="math inline">\(\geq 0\)</span>, a boa ordenação (<a href="03-inducao.html#thm-boa-ordem" class="quarto-xref">Teorema&nbsp;<span>3.3</span></a>) garante que ele tem um <strong>menor elemento</strong> <span class="math inline">\(r = a - b q \geq 0\)</span>. Resta ver que <span class="math inline">\(r &lt; b\)</span>. Se fosse <span class="math inline">\(r \geq b\)</span>, então <span class="math display">\[
+a - b (q + 1) = (a - b q) - b = r - b \geq 0
+\]</span> estaria em <span class="math inline">\(R\)</span> e seria menor que <span class="math inline">\(r\)</span> — contradizendo a minimalidade. Logo <span class="math inline">\(0 \leq r &lt; b\)</span>.</p>
+<p><strong>Unicidade.</strong> Suponha <span class="math inline">\(a = b q + r = b q' + r'\)</span> com <span class="math inline">\(0 \leq r, r' &lt; b\)</span>. Então <span class="math inline">\(b(q - q') = r' - r\)</span>, de modo que <span class="math inline">\(b \mid (r' - r)\)</span>. Mas <span class="math inline">\(|r' - r| &lt; b\)</span>, e o único múltiplo de <span class="math inline">\(b\)</span> com valor absoluto menor que <span class="math inline">\(b\)</span> é <span class="math inline">\(0\)</span>; logo <span class="math inline">\(r' = r\)</span> e, em seguida, <span class="math inline">\(q' = q\)</span>.</p>
 </div>
-</section>
-<section id="quantificadores" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="quantificadores"><span class="header-section-number">1.5</span> Quantificadores</h2>
-<p>Frases abertas viram proposições quando dizemos <em>para quantos</em> valores elas valem. Os dois quantificadores fundamentais são o <strong>universal</strong> <span class="math inline">\(\forall\)</span> (“para todo”) e o <strong>existencial</strong> <span class="math inline">\(\exists\)</span> (“existe”).</p>
-<div id="def-quantificadores" class="theorem definition">
-<p><span class="theorem-title"><strong>Definição 1.4 (Quantificadores)</strong></span> Seja <span class="math inline">\(P(x)\)</span> uma frase aberta sobre os elementos de um conjunto <span class="math inline">\(A\)</span>.</p>
-<ul>
-<li><span class="math inline">\(\forall x \in A,\ P(x)\)</span> é a proposição “<span class="math inline">\(P(x)\)</span> é verdadeira para <strong>todo</strong> <span class="math inline">\(x \in A\)</span>”.</li>
-<li><span class="math inline">\(\exists x \in A,\ P(x)\)</span> é a proposição “<strong>existe</strong> ao menos um <span class="math inline">\(x \in A\)</span> para o qual <span class="math inline">\(P(x)\)</span> é verdadeira”.</li>
-</ul>
-</div>
-<p>Por exemplo, “<span class="math inline">\(\forall n \in \mathbb{N},\ n \geq 1\)</span>” é verdadeira, enquanto “<span class="math inline">\(\exists n \in \mathbb{N},\ n + 1 = 1\)</span>” é falsa.</p>
-<p>Negar uma proposição quantificada troca o quantificador e nega a frase aberta — uma regra que usaremos constantemente nas demonstrações por absurdo.</p>
-<div id="prp-negacao-quantificadores" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposição 1.3 (Negação de quantificadores)</strong></span> Para qualquer frase aberta <span class="math inline">\(P(x)\)</span> sobre um conjunto <span class="math inline">\(A\)</span>, <span class="math display">\[
-\lnot\bigl(\forall x \in A,\ P(x)\bigr) \equiv \exists x \in A,\ \lnot P(x),
-\]</span> <span class="math display">\[
-\lnot\bigl(\exists x \in A,\ P(x)\bigr) \equiv \forall x \in A,\ \lnot P(x).
-\]</span></p>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Lendo as negações
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>“Nem todo <span class="math inline">\(x\)</span> satisfaz <span class="math inline">\(P\)</span>” significa “existe um <span class="math inline">\(x\)</span> que não satisfaz <span class="math inline">\(P\)</span>”: para derrubar um <em>para todo</em>, basta um contraexemplo. E “não existe <span class="math inline">\(x\)</span> satisfazendo <span class="math inline">\(P\)</span>” significa “todo <span class="math inline">\(x\)</span> deixa de satisfazer <span class="math inline">\(P\)</span>”.</p>
-</div>
-</div>
-<div id="exm-traducao" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.1 (Traduzir e negar)</strong></span> Considere a afirmação “todo número natural é menor que algum natural”: <span class="math display">\[
-\forall n \in \mathbb{N},\ \exists m \in \mathbb{N},\ n &lt; m.
-\]</span> Sua negação, aplicando <a href="#prp-negacao-quantificadores" class="quarto-xref">Proposição&nbsp;<span>1.3</span></a> duas vezes, é <span class="math display">\[
-\exists n \in \mathbb{N},\ \forall m \in \mathbb{N},\ n \geq m,
-\]</span> isto é, “existe um natural maior ou igual a todos” — a existência de um maior natural. Como essa negação é falsa (sempre há <span class="math inline">\(m = n + 1 &gt; n\)</span>), a afirmação original é verdadeira.</p>
-</div>
-</section>
-<section id="métodos-de-demonstração" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="métodos-de-demonstração"><span class="header-section-number">1.6</span> Métodos de demonstração</h2>
-<p>Quase todo teorema tem a forma <span class="math inline">\(p \Rightarrow q\)</span>. Os métodos a seguir são as maneiras-padrão de prová-lo; a escolha entre eles é estratégica, não lógica — uma prova por qualquer um deles é igualmente válida.</p>
-<section id="demonstração-direta" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="demonstração-direta"><span class="header-section-number">1.6.1</span> Demonstração direta</h3>
-<p>Para provar <span class="math inline">\(p \Rightarrow q\)</span>, supõe-se <span class="math inline">\(p\)</span> e deduz-se <span class="math inline">\(q\)</span> por uma cadeia de implicações.</p>
-<div id="exm-direta" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.2 (Soma de pares)</strong></span> Se <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> são inteiros pares, então <span class="math inline">\(a + b\)</span> é par.</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Suponha <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> pares. Por definição, existem inteiros <span class="math inline">\(j\)</span> e <span class="math inline">\(k\)</span> com <span class="math inline">\(a = 2j\)</span> e <span class="math inline">\(b = 2k\)</span>. Então <span class="math display">\[
-a + b = 2j + 2k = 2(j + k),
-\]</span> e <span class="math inline">\(j + k\)</span> é inteiro; logo <span class="math inline">\(a + b\)</span> é múltiplo de <span class="math inline">\(2\)</span>, ou seja, par.</p>
-</div>
-</section>
-<section id="demonstração-por-contrapositiva" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="demonstração-por-contrapositiva"><span class="header-section-number">1.6.2</span> Demonstração por contrapositiva</h3>
-<p>Por <a href="#prp-contrapositiva" class="quarto-xref">Proposição&nbsp;<span>1.1</span></a>, provar <span class="math inline">\(p \Rightarrow q\)</span> equivale a provar <span class="math inline">\(\lnot q \Rightarrow \lnot p\)</span>. Isso ajuda quando negar a conclusão dá uma hipótese mais concreta para manipular.</p>
-<div id="exm-contrapositiva" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.3 (Quadrado par)</strong></span> Seja <span class="math inline">\(n\)</span> um inteiro. Se <span class="math inline">\(n^2\)</span> é par, então <span class="math inline">\(n\)</span> é par.</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Provamos a contrapositiva: se <span class="math inline">\(n\)</span> é ímpar, então <span class="math inline">\(n^2\)</span> é ímpar. Suponha <span class="math inline">\(n\)</span> ímpar, digamos <span class="math inline">\(n = 2k + 1\)</span> com <span class="math inline">\(k\)</span> inteiro. Então <span class="math display">\[
-n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1,
-\]</span> que é ímpar. Pela contrapositiva, fica provado o enunciado original.</p>
-</div>
-</section>
-<section id="demonstração-por-absurdo" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="demonstração-por-absurdo"><span class="header-section-number">1.6.3</span> Demonstração por absurdo</h3>
-<p>Para provar uma afirmação, supõe-se que ela é <strong>falsa</strong> e deriva-se uma contradição — uma proposição que é, ao mesmo tempo, verdadeira e falsa. Como nenhuma situação consistente produz contradição, a suposição era insustentável.</p>
-<div id="exm-absurdo" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.4 (Irracionalidade de <span class="math inline">\(\sqrt{2}\)</span>)</strong></span> Não existe número racional cujo quadrado seja <span class="math inline">\(2\)</span>.</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Suponha, por absurdo, que exista um racional com quadrado <span class="math inline">\(2\)</span>. Escreva-o como fração irredutível <span class="math inline">\(\tfrac{a}{b}\)</span> (sem fatores comuns), com <span class="math inline">\(a^2 = 2b^2\)</span>. Então <span class="math inline">\(a^2\)</span> é par, e por <a href="#exm-contrapositiva" class="quarto-xref">Exemplo&nbsp;<span>1.3</span></a> <span class="math inline">\(a\)</span> é par, digamos <span class="math inline">\(a = 2c\)</span>. Substituindo, <span class="math inline">\(4c^2 = 2b^2\)</span>, ou seja, <span class="math inline">\(b^2 = 2c^2\)</span>; logo <span class="math inline">\(b^2\)</span> é par e, de novo, <span class="math inline">\(b\)</span> é par. Mas então <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> são ambos pares, contradizendo a escolha da fração irredutível. A suposição é insustentável, e nenhum racional tem quadrado <span class="math inline">\(2\)</span>.</p>
+<div id="exm-divisao" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 5.1 (Calculando quociente e resto)</strong></span> Para <span class="math inline">\(a = 17\)</span> e <span class="math inline">\(b = 5\)</span>: <span class="math inline">\(17 = 5 \cdot 3 + 2\)</span>, logo <span class="math inline">\(q = 3\)</span> e <span class="math inline">\(r = 2\)</span>. Para <span class="math inline">\(a = -17\)</span> e <span class="math inline">\(b = 5\)</span>, o resto deve ser não negativo, então <span class="math display">\[
+-17 = 5 \cdot (-4) + 3, \qquad q = -4,\ r = 3,
+\]</span> e <strong>não</strong> <span class="math inline">\(-17 = 5 \cdot (-3) - 2\)</span>, pois <span class="math inline">\(-2\)</span> não está no intervalo <span class="math inline">\(0 \leq r &lt;
+5\)</span>. O cuidado com o sinal do quociente é o erro mais comum aqui.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1261,87 +1031,60 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A existência de um <em>número</em> — não racional — com quadrado <span class="math inline">\(2\)</span> é outra questão, retomada na introdução aos reais ao final deste volume.</p>
+<p>O resto <span class="math inline">\(r\)</span> é <span class="math inline">\(0\)</span> exatamente quando <span class="math inline">\(b \mid a\)</span>. Assim, a divisibilidade do <a href="#def-divide" class="quarto-xref">Definição&nbsp;<span>5.3</span></a> é o caso particular “resto zero” da divisão euclidiana — e a <strong>paridade</strong> de um inteiro é apenas seu resto na divisão por <span class="math inline">\(2\)</span>.</p>
 </div>
 </div>
 </section>
-<section id="demonstração-por-casos" class="level3" data-number="1.6.4">
-<h3 data-number="1.6.4" class="anchored" data-anchor-id="demonstração-por-casos"><span class="header-section-number">1.6.4</span> Demonstração por casos</h3>
-<p>Quando a hipótese se desdobra em situações que esgotam todas as possibilidades, prova-se a conclusão em cada uma delas separadamente.</p>
-<div id="exm-casos" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.5 (Produto consecutivo é par)</strong></span> Para todo inteiro <span class="math inline">\(n\)</span>, o produto <span class="math inline">\(n(n+1)\)</span> é par.</p>
+<section id="exercícios" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.5</span> Exercícios</h2>
+<div id="exr-bem-definida" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 5.1</strong></span> Mostre que a soma de <span class="math inline">\(\mathbb{Z}\)</span> está bem definida: se <span class="math inline">\((a, b) \sim (a', b')\)</span> e <span class="math inline">\((c, d) \sim (c', d')\)</span>, então <span class="math inline">\([a + c, b + d] = [a' + c', b' + d']\)</span>.</p>
 </div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Há dois casos, que esgotam as possibilidades. Se <span class="math inline">\(n\)</span> é par, então <span class="math inline">\(n(n+1)\)</span> é múltiplo de <span class="math inline">\(n\)</span>, logo par. Se <span class="math inline">\(n\)</span> é ímpar, então <span class="math inline">\(n + 1\)</span> é par, e <span class="math inline">\(n(n+1)\)</span> é múltiplo de <span class="math inline">\(n+1\)</span>, logo par. Em ambos os casos o produto é par.</p>
+<div id="exr-divide-produto" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 5.2</strong></span> Prove que, se <span class="math inline">\(a \mid b\)</span>, então <span class="math inline">\(a \mid b c\)</span> para todo <span class="math inline">\(c \in \mathbb{Z}\)</span>. Conclua que <span class="math inline">\(a \mid b\)</span> e <span class="math inline">\(a \mid c\)</span> implicam <span class="math inline">\(a \mid (b + c)\)</span> e <span class="math inline">\(a \mid (b - c)\)</span>.</p>
 </div>
-</section>
-<section id="refutação-por-contraexemplo" class="level3" data-number="1.6.5">
-<h3 data-number="1.6.5" class="anchored" data-anchor-id="refutação-por-contraexemplo"><span class="header-section-number">1.6.5</span> Refutação por contraexemplo</h3>
-<p>Para mostrar que uma afirmação <strong>universal</strong> <span class="math inline">\(\forall x,\ P(x)\)</span> é falsa, não se demonstra nada de geral: basta exibir um único <span class="math inline">\(x\)</span> com <span class="math inline">\(P(x)\)</span> falsa — um <strong>contraexemplo</strong>. É a leitura prática de <a href="#prp-negacao-quantificadores" class="quarto-xref">Proposição&nbsp;<span>1.3</span></a>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div id="exr-divisores-limitados" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 5.3</strong></span> Mostre que, se <span class="math inline">\(a \mid b\)</span> e <span class="math inline">\(b \neq 0\)</span>, então <span class="math inline">\(|a| \leq |b|\)</span>. Conclua que todo inteiro não nulo tem apenas um número <em>finito</em> de divisores.</p>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>Provar exige geral; refutar basta um
+<div id="exr-paridade" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 5.4</strong></span> Use a divisão euclidiana por <span class="math inline">\(2\)</span> para provar que todo inteiro é par ou ímpar, mas nunca ambos.</p>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>“Todo número primo é ímpar” é falsa, e o contraexemplo <span class="math inline">\(2\)</span> encerra o assunto. Mas um contraexemplo nunca <em>prova</em> uma afirmação universal — para isso é preciso um argumento que cubra todos os casos, e quando os casos são infinitos recorremos à <strong>indução</strong> (<a href="03-inducao.html" class="quarto-xref"><span>Capítulo 3</span></a>).</p>
-</div>
-</div>
-</section>
-</section>
-<section id="exercícios" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">1.7</span> Exercícios</h2>
-<div id="exr-tabela" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 1.1</strong></span> Construa a tabela-verdade de <span class="math inline">\((p \Rightarrow q) \land (q \Rightarrow p)\)</span> e verifique que ela coincide com a de <span class="math inline">\(p \Leftrightarrow q\)</span>.</p>
-</div>
-<div id="exr-negar" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 1.2</strong></span> Escreva em símbolos e negue, simplificando até que a negação não incida sobre nenhum quantificador: “todo inteiro par maior que <span class="math inline">\(2\)</span> é soma de dois primos”.</p>
-</div>
-<div id="exr-contrapositiva" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 1.3</strong></span> Seja <span class="math inline">\(n\)</span> um inteiro. Prove, por contrapositiva, que se <span class="math inline">\(n^2\)</span> é ímpar então <span class="math inline">\(n\)</span> é ímpar.</p>
-</div>
-<div id="exr-absurdo" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 1.4</strong></span> Prove, por absurdo, que existem infinitos números naturais. (Sugestão: suponha que o conjunto dos naturais seja finito e considere seu maior elemento.)</p>
+<div id="exr-resto-quadrado" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 5.5</strong></span> Mostre que o quadrado de qualquer inteiro deixa resto <span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span> na divisão por <span class="math inline">\(4\)</span>. (Sugestão: escreva o inteiro como <span class="math inline">\(2k\)</span> ou <span class="math inline">\(2k + 1\)</span>.)</p>
 </div>
 <section id="soluções-selecionadas" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="soluções-selecionadas">Soluções selecionadas</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-negar" class="quarto-xref">Exercício&nbsp;<span>1.2</span></a>
+<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-divisores-limitados" class="quarto-xref">Exercício&nbsp;<span>5.3</span></a>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Sejam <span class="math inline">\(P\)</span> os inteiros pares maiores que <span class="math inline">\(2\)</span>. A afirmação é <span class="math display">\[
-\forall n \in P,\ \exists\, p, q \text{ primos},\ n = p + q.
-\]</span> Negando com <a href="#prp-negacao-quantificadores" class="quarto-xref">Proposição&nbsp;<span>1.3</span></a>, o <span class="math inline">\(\forall\)</span> vira <span class="math inline">\(\exists\)</span> e a negação recai sobre o <span class="math inline">\(\exists\)</span> interno, que vira <span class="math inline">\(\forall\)</span>: <span class="math display">\[
-\exists n \in P,\ \forall\, p, q \text{ primos},\ n \neq p + q,
-\]</span> ou seja, “existe um inteiro par maior que <span class="math inline">\(2\)</span> que não é soma de dois primos”. (Que essa negação seja verdadeira ou falsa é a conjectura de Goldbach, em aberto.)</p>
+<p>Se <span class="math inline">\(a \mid b\)</span>, existe <span class="math inline">\(c\)</span> com <span class="math inline">\(b = a c\)</span>. Como <span class="math inline">\(b \neq 0\)</span>, também <span class="math inline">\(a \neq 0\)</span> e <span class="math inline">\(c \neq 0\)</span>, logo <span class="math inline">\(|c| \geq 1\)</span>. Então <span class="math inline">\(|b| = |a| \, |c| \geq |a| \cdot 1 = |a|\)</span>, isto é, <span class="math inline">\(|a| \leq |b|\)</span>. Em consequência, todo divisor <span class="math inline">\(a\)</span> de <span class="math inline">\(b\)</span> satisfaz <span class="math inline">\(-|b| \leq a \leq |b|\)</span>; há apenas finitos inteiros nesse intervalo, logo <span class="math inline">\(b\)</span> tem finitos divisores.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-contrapositiva" class="quarto-xref">Exercício&nbsp;<span>1.3</span></a>
+<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-resto-quadrado" class="quarto-xref">Exercício&nbsp;<span>5.5</span></a>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A contrapositiva de “se <span class="math inline">\(n^2\)</span> é ímpar então <span class="math inline">\(n\)</span> é ímpar” é “se <span class="math inline">\(n\)</span> é par então <span class="math inline">\(n^2\)</span> é par”. Suponha <span class="math inline">\(n\)</span> par, <span class="math inline">\(n = 2k\)</span>. Então <span class="math inline">\(n^2 = 4k^2 = 2(2k^2)\)</span> é par. Provada a contrapositiva, vale o enunciado original. Note que ele e <a href="#exm-contrapositiva" class="quarto-xref">Exemplo&nbsp;<span>1.3</span></a> são as duas metades de “<span class="math inline">\(n^2\)</span> é par <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(n\)</span> é par”.</p>
+<p>Pela divisão euclidiana por <span class="math inline">\(2\)</span>, todo inteiro <span class="math inline">\(n\)</span> é <span class="math inline">\(2k\)</span> ou <span class="math inline">\(2k + 1\)</span>. No primeiro caso, <span class="math inline">\(n^2 = 4k^2\)</span>, resto <span class="math inline">\(0\)</span>. No segundo, <span class="math display">\[
+n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 4(k^2 + k) + 1,
+\]</span> resto <span class="math inline">\(1\)</span>. Logo <span class="math inline">\(n^2\)</span> deixa resto <span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span> módulo <span class="math inline">\(4\)</span> — em particular, nenhum quadrado deixa resto <span class="math inline">\(2\)</span> ou <span class="math inline">\(3\)</span>.</p>
 </div>
 </div>
 </div>
@@ -1753,13 +1496,13 @@ Nota
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../index.html" class="pagination-link" aria-label="Apresentação">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Apresentação</span>
+      <a href="../../volumes/v1-fundamentos/04-naturais.html" class="pagination-link" aria-label="Números naturais">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Números naturais</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../volumes/v1-fundamentos/02-conjuntos.html" class="pagination-link" aria-label="Conjuntos">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conjuntos</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../volumes/v1-fundamentos/06-mdc-euclides.html" class="pagination-link" aria-label="MDC, MMC e o algoritmo de Euclides">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MDC, MMC e o algoritmo de Euclides</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1771,7 +1514,7 @@ Nota
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v1-fundamentos/01-logica.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v1-fundamentos/05-inteiros-divisibilidade.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Construído com <a href="https://quarto.org">Quarto</a>.</p>
 </div>

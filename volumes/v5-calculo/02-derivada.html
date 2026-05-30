@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Lógica e demonstrações – Manual de Matemática</title>
+<title>41&nbsp; A derivada – Manual de Matemática</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../volumes/v1-fundamentos/02-conjuntos.html" rel="next">
-<link href="../../index.html" rel="prev">
+<link href="../../volumes/v5-calculo/03-regras-derivacao.html" rel="next">
+<link href="../../volumes/v5-calculo/01-limites.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -115,7 +115,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html">Volume I — Fundamentos: Lógica e Aritmética</a></li><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v5-calculo/01-limites.html">Volume V — Cálculo</a></li><li class="breadcrumb-item"><a href="../../volumes/v5-calculo/02-derivada.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">A derivada</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -151,16 +151,16 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Volume I — Fundamentos: Lógica e Aritmética</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../volumes/v1-fundamentos/01-logica.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../volumes/v1-fundamentos/01-logica.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></span></a>
   </div>
 </li>
@@ -429,13 +429,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Volume V — Cálculo</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../volumes/v5-calculo/01-limites.html" class="sidebar-item-text sidebar-link">
@@ -444,7 +444,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../volumes/v5-calculo/02-derivada.html" class="sidebar-item-text sidebar-link">
+  <a href="../../volumes/v5-calculo/02-derivada.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">A derivada</span></span></a>
   </div>
 </li>
@@ -868,32 +868,24 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação"><span class="header-section-number">1.1</span> Motivação</a></li>
-  <li><a href="#proposições-e-valor-verdade" id="toc-proposições-e-valor-verdade" class="nav-link" data-scroll-target="#proposições-e-valor-verdade"><span class="header-section-number">1.2</span> Proposições e valor-verdade</a></li>
-  <li><a href="#conectivos-lógicos" id="toc-conectivos-lógicos" class="nav-link" data-scroll-target="#conectivos-lógicos"><span class="header-section-number">1.3</span> Conectivos lógicos</a></li>
-  <li><a href="#equivalências-lógicas" id="toc-equivalências-lógicas" class="nav-link" data-scroll-target="#equivalências-lógicas"><span class="header-section-number">1.4</span> Equivalências lógicas</a></li>
-  <li><a href="#quantificadores" id="toc-quantificadores" class="nav-link" data-scroll-target="#quantificadores"><span class="header-section-number">1.5</span> Quantificadores</a></li>
-  <li><a href="#métodos-de-demonstração" id="toc-métodos-de-demonstração" class="nav-link" data-scroll-target="#métodos-de-demonstração"><span class="header-section-number">1.6</span> Métodos de demonstração</a>
-  <ul class="collapse">
-  <li><a href="#demonstração-direta" id="toc-demonstração-direta" class="nav-link" data-scroll-target="#demonstração-direta"><span class="header-section-number">1.6.1</span> Demonstração direta</a></li>
-  <li><a href="#demonstração-por-contrapositiva" id="toc-demonstração-por-contrapositiva" class="nav-link" data-scroll-target="#demonstração-por-contrapositiva"><span class="header-section-number">1.6.2</span> Demonstração por contrapositiva</a></li>
-  <li><a href="#demonstração-por-absurdo" id="toc-demonstração-por-absurdo" class="nav-link" data-scroll-target="#demonstração-por-absurdo"><span class="header-section-number">1.6.3</span> Demonstração por absurdo</a></li>
-  <li><a href="#demonstração-por-casos" id="toc-demonstração-por-casos" class="nav-link" data-scroll-target="#demonstração-por-casos"><span class="header-section-number">1.6.4</span> Demonstração por casos</a></li>
-  <li><a href="#refutação-por-contraexemplo" id="toc-refutação-por-contraexemplo" class="nav-link" data-scroll-target="#refutação-por-contraexemplo"><span class="header-section-number">1.6.5</span> Refutação por contraexemplo</a></li>
-  </ul></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">1.7</span> Exercícios</a>
+  <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação"><span class="header-section-number">41.1</span> Motivação</a></li>
+  <li><a href="#definição" id="toc-definição" class="nav-link" data-scroll-target="#definição"><span class="header-section-number">41.2</span> Definição</a></li>
+  <li><a href="#interpretação-geométrica" id="toc-interpretação-geométrica" class="nav-link" data-scroll-target="#interpretação-geométrica"><span class="header-section-number">41.3</span> Interpretação geométrica</a></li>
+  <li><a href="#derivada-e-continuidade" id="toc-derivada-e-continuidade" class="nav-link" data-scroll-target="#derivada-e-continuidade"><span class="header-section-number">41.4</span> Derivada e continuidade</a></li>
+  <li><a href="#a-função-derivada" id="toc-a-função-derivada" class="nav-link" data-scroll-target="#a-função-derivada"><span class="header-section-number">41.5</span> A função derivada</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">41.6</span> Exercícios</a>
   <ul class="collapse">
   <li><a href="#soluções-selecionadas" id="toc-soluções-selecionadas" class="nav-link" data-scroll-target="#soluções-selecionadas">Soluções selecionadas</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v1-fundamentos/01-logica.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v5-calculo/02-derivada.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html">Volume I — Fundamentos: Lógica e Aritmética</a></li><li class="breadcrumb-item"><a href="../../volumes/v1-fundamentos/01-logica.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v5-calculo/01-limites.html">Volume V — Cálculo</a></li><li class="breadcrumb-item"><a href="../../volumes/v5-calculo/02-derivada.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">A derivada</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-logica" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></span></h1>
+<h1 class="title"><span id="sec-derivada" class="quarto-section-identifier"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">A derivada</span></span></h1>
 </div>
 
 
@@ -910,438 +902,138 @@ window.Quarto = {
 </header>
 
 
-<section id="motivação" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="motivação"><span class="header-section-number">1.1</span> Motivação</h2>
-<p>Antes de provar qualquer coisa sobre números, precisamos combinar o que conta como uma <em>demonstração</em>. Em matemática, afirmar algo não basta: uma afirmação só entra no acervo de verdades depois de ser <strong>deduzida</strong>, por uma cadeia de passos inquestionáveis, a partir do que já se aceita. Para que essa cadeia seja inquestionável, a própria linguagem em que ela é escrita precisa ser precisa.</p>
-<p>Este capítulo apresenta essa linguagem mínima: as <strong>proposições</strong>, os <strong>conectivos</strong> que as combinam, os <strong>quantificadores</strong> que falam de “todos” e de “algum”, e — sobretudo — os <strong>métodos de demonstração</strong> que reaparecerão em todos os capítulos seguintes. Nada aqui é difícil; o objetivo é deixar explícito o que normalmente se usa de modo implícito.</p>
+<section id="motivação" class="level2" data-number="41.1">
+<h2 data-number="41.1" class="anchored" data-anchor-id="motivação"><span class="header-section-number">41.1</span> Motivação</h2>
+<p>Retomemos a pergunta que abriu o volume: qual a <strong>velocidade instantânea</strong> de um móvel? A velocidade média num intervalo é a distância percorrida dividida pelo tempo gasto — mas “no instante” o intervalo é nulo e a razão vira <span class="math inline">\(0/0\)</span>. A saída, descoberta por Newton e Leibniz, é tomar o <strong>limite</strong> dessa razão quando o intervalo encolhe a zero. Esse limite é a <strong>derivada</strong>, e responde não só sobre velocidade, mas sobre <strong>toda taxa de variação instantânea</strong>.</p>
+<p>Geometricamente, a derivada é a <strong>inclinação da reta tangente</strong> ao gráfico — o coeficiente angular (<a href="../v3-geometria/11-geometria-analitica.html" class="quarto-xref"><span>Capítulo 31</span></a>) que melhor descreve a função num ponto. Este capítulo define a derivada como limite (<a href="01-limites.html" class="quarto-xref"><span>Capítulo 40</span></a>), interpreta-a nas duas linguagens (física e geométrica) e calcula-a para as primeiras funções, abrindo o caminho para as regras de derivação do próximo capítulo.</p>
 </section>
-<section id="proposições-e-valor-verdade" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="proposições-e-valor-verdade"><span class="header-section-number">1.2</span> Proposições e valor-verdade</h2>
-<div id="def-proposicao" class="theorem definition">
-<p><span class="theorem-title"><strong>Definição 1.1 (Proposição)</strong></span> Uma <strong>proposição</strong> é uma afirmação à qual se pode atribuir um único <strong>valor verdade</strong>: verdadeiro (V) ou falso (F), mas não ambos.</p>
+<section id="definição" class="level2" data-number="41.2">
+<h2 data-number="41.2" class="anchored" data-anchor-id="definição"><span class="header-section-number">41.2</span> Definição</h2>
+<div id="def-derivada" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 41.1 (Derivada)</strong></span> A <strong>derivada</strong> de <span class="math inline">\(f\)</span> no ponto <span class="math inline">\(a\)</span> é o limite <span class="math display">\[
+f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h},
+\]</span> quando ele existe. Nesse caso, diz-se que <span class="math inline">\(f\)</span> é <strong>derivável</strong> em <span class="math inline">\(a\)</span>.</p>
 </div>
-<p>São proposições “<span class="math inline">\(2 + 2 = 4\)</span>” (verdadeira) e “<span class="math inline">\(7\)</span> é par” (falsa). Não são proposições uma pergunta (“quanto vale <span class="math inline">\(x\)</span>?”), uma ordem (“some os dois lados”) nem uma frase ambígua.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Frases abertas
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Uma frase como “<span class="math inline">\(x &gt; 3\)</span>” não é, por si só, uma proposição: seu valor verdade depende de <span class="math inline">\(x\)</span>. Chamamos isso de <strong>frase aberta</strong> (ou predicado) e a denotamos <span class="math inline">\(P(x)\)</span>. Ela só vira proposição quando substituímos <span class="math inline">\(x\)</span> por um valor concreto — <span class="math inline">\(P(5)\)</span> é verdadeira, <span class="math inline">\(P(1)\)</span> é falsa — ou quando a fechamos com um quantificador, como veremos adiante.</p>
-</div>
+<p>A fração <span class="math inline">\(\dfrac{f(a+h) - f(a)}{h}\)</span> é a <strong>taxa de variação média</strong> entre <span class="math inline">\(a\)</span> e <span class="math inline">\(a +
+h\)</span> — variação da saída sobre variação da entrada. Tomar <span class="math inline">\(h \to 0\)</span> transforma a média no valor <strong>instantâneo</strong>. É uma indeterminação <span class="math inline">\(\frac00\)</span> (numerador e denominador vão a zero) resolvida pelo limite, como antecipamos em <a href="01-limites.html" class="quarto-xref"><span>Capítulo 40</span></a>.</p>
+<div id="exm-derivada-quadratica" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 41.1 (Derivada de <span class="math inline">\(x^2\)</span>)</strong></span> Para <span class="math inline">\(f(x) = x^2\)</span>, calculamos <span class="math inline">\(f'(a)\)</span> pela definição: <span class="math display">\[
+\frac{(a + h)^2 - a^2}{h} = \frac{a^2 + 2ah + h^2 - a^2}{h} = \frac{2ah + h^2}{h} =
+2a + h,
+\]</span> usando o produto notável (<a href="../v2-algebra/01-expressoes.html" class="quarto-xref"><span>Capítulo 11</span></a>) e cancelando <span class="math inline">\(h \neq 0\)</span>. Quando <span class="math inline">\(h \to
+0\)</span>, isso tende a <span class="math inline">\(2a\)</span>. Logo <span class="math inline">\(f'(a) = 2a\)</span>: a derivada de <span class="math inline">\(x^2\)</span> é <span class="math inline">\(2x\)</span>.</p>
 </div>
 </section>
-<section id="conectivos-lógicos" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="conectivos-lógicos"><span class="header-section-number">1.3</span> Conectivos lógicos</h2>
-<p>A partir de proposições <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span> formam-se novas proposições com os <strong>conectivos</strong> <span class="math inline">\(\lnot\)</span> (negação), <span class="math inline">\(\land\)</span> (conjunção, “e”), <span class="math inline">\(\lor\)</span> (disjunção, “ou”), <span class="math inline">\(\Rightarrow\)</span> (condicional, “implica”) e <span class="math inline">\(\Leftrightarrow\)</span> (bicondicional, “se, e somente se”). O significado de cada um fica completamente determinado por sua <strong>tabela-verdade</strong>, que lista o valor do resultado para cada combinação dos valores de <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span>.</p>
-<div id="def-conectivos" class="theorem definition">
-<p><span class="theorem-title"><strong>Definição 1.2 (Conectivos)</strong></span> Os conectivos são definidos pelas tabelas-verdade:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \land q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \lor q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \Rightarrow q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \Leftrightarrow q\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Em palavras: <span class="math inline">\(\lnot p\)</span> inverte o valor de <span class="math inline">\(p\)</span>; a conjunção <span class="math inline">\(p \land q\)</span> só é verdadeira quando ambas o são; a disjunção <span class="math inline">\(p \lor q\)</span> é falsa apenas quando ambas são falsas; a bicondicional <span class="math inline">\(p \Leftrightarrow q\)</span> é verdadeira quando <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span> têm o mesmo valor.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Aviso</span>Dois erros comuns
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li><strong>O “ou” é inclusivo.</strong> Em matemática, <span class="math inline">\(p \lor q\)</span> é verdadeira também quando <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span> são <em>ambas</em> verdadeiras. “Inteiro par ou positivo” inclui o <span class="math inline">\(4\)</span>.</li>
-<li><strong>A condicional com hipótese falsa é verdadeira.</strong> Quando <span class="math inline">\(p\)</span> é falsa, <span class="math inline">\(p \Rightarrow q\)</span> é verdadeira <em>qualquer que seja</em> <span class="math inline">\(q\)</span> — dizemos que vale por <em>vacuidade</em>. A condicional só é falsa no único caso em que a hipótese é verdadeira e a conclusão é falsa (linha V/F). Por isso, para refutar <span class="math inline">\(p \Rightarrow q\)</span>, basta exibir uma situação com <span class="math inline">\(p\)</span> verdadeira e <span class="math inline">\(q\)</span> falsa.</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="equivalências-lógicas" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="equivalências-lógicas"><span class="header-section-number">1.4</span> Equivalências lógicas</h2>
-<p>Duas proposições compostas podem ter exatamente a mesma tabela-verdade, ainda que escritas de forma diferente. Quando isso acontece, podemos trocar uma pela outra em qualquer demonstração — e é justamente essa troca que está por trás de vários métodos de prova.</p>
-<div id="def-equivalencia" class="theorem definition">
-<p><span class="theorem-title"><strong>Definição 1.3 (Equivalência lógica)</strong></span> Dizemos que duas proposições compostas são <strong>logicamente equivalentes</strong>, e escrevemos <span class="math inline">\(p \equiv q\)</span>, quando têm o mesmo valor verdade para toda combinação de valores das proposições que as compõem (ou seja, tabelas-verdade idênticas).</p>
-</div>
-<p>A equivalência mais útil em demonstrações relaciona uma condicional com sua <strong>contrapositiva</strong>.</p>
-<div id="prp-contrapositiva" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposição 1.1 (Contrapositiva)</strong></span> Para quaisquer proposições <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span>, <span class="math display">\[
-(p \Rightarrow q) \equiv (\lnot q \Rightarrow \lnot p).
+<section id="interpretação-geométrica" class="level2" data-number="41.3">
+<h2 data-number="41.3" class="anchored" data-anchor-id="interpretação-geométrica"><span class="header-section-number">41.3</span> Interpretação geométrica</h2>
+<div id="def-reta-tangente" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 41.2 (Reta tangente)</strong></span> A <strong>reta tangente</strong> ao gráfico de <span class="math inline">\(f\)</span> no ponto <span class="math inline">\((a, f(a))\)</span> é a reta de inclinação <span class="math inline">\(f'(a)\)</span> que passa por esse ponto: <span class="math display">\[
+y = f(a) + f'(a)(x - a).
 \]</span></p>
 </div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Comparamos as tabelas-verdade das duas expressões:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \Rightarrow q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot q \Rightarrow \lnot p\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-</tbody>
-</table>
-<p>As colunas de <span class="math inline">\(p \Rightarrow q\)</span> e de <span class="math inline">\(\lnot q \Rightarrow \lnot p\)</span> coincidem linha a linha. Logo as proposições são equivalentes.</p>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Aviso</span>Contrapositiva <em>não</em> é recíproca
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A contrapositiva de <span class="math inline">\(p \Rightarrow q\)</span> é <span class="math inline">\(\lnot q \Rightarrow \lnot p\)</span>, e é equivalente à original. Já a <strong>recíproca</strong>, <span class="math inline">\(q \Rightarrow p\)</span>, <strong>não</strong> é equivalente: confira nas tabelas que <span class="math inline">\(q \Rightarrow p\)</span> é falsa na linha F/V, onde <span class="math inline">\(p \Rightarrow q\)</span> é verdadeira. Provar a recíproca é provar um teorema diferente.</p>
-</div>
-</div>
-<p>As leis seguintes descrevem como a negação atravessa a conjunção e a disjunção. Elas serão reaproveitadas, com conjuntos no lugar de proposições, em <a href="02-conjuntos.html" class="quarto-xref"><span>Capítulo 2</span></a>.</p>
-<div id="prp-demorgan-logica" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposição 1.2 (Leis de De Morgan (lógica))</strong></span> Para quaisquer proposições <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span>, <span class="math display">\[
-\lnot(p \land q) \equiv (\lnot p) \lor (\lnot q),
-\qquad
-\lnot(p \lor q) \equiv (\lnot p) \land (\lnot q).
-\]</span></p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Verificamos a primeira equivalência pela tabela-verdade; a segunda é análoga.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(p \land q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot(p \land q)\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot p\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot q\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\lnot p \lor \lnot q\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">F</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-<td style="text-align: center;">V</td>
-</tr>
-</tbody>
-</table>
-<p>As colunas de <span class="math inline">\(\lnot(p \land q)\)</span> e de <span class="math inline">\(\lnot p \lor \lnot q\)</span> são idênticas. A segunda lei prova-se trocando os papéis de <span class="math inline">\(\land\)</span> e <span class="math inline">\(\lor\)</span>.</p>
-</div>
-</section>
-<section id="quantificadores" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="quantificadores"><span class="header-section-number">1.5</span> Quantificadores</h2>
-<p>Frases abertas viram proposições quando dizemos <em>para quantos</em> valores elas valem. Os dois quantificadores fundamentais são o <strong>universal</strong> <span class="math inline">\(\forall\)</span> (“para todo”) e o <strong>existencial</strong> <span class="math inline">\(\exists\)</span> (“existe”).</p>
-<div id="def-quantificadores" class="theorem definition">
-<p><span class="theorem-title"><strong>Definição 1.4 (Quantificadores)</strong></span> Seja <span class="math inline">\(P(x)\)</span> uma frase aberta sobre os elementos de um conjunto <span class="math inline">\(A\)</span>.</p>
-<ul>
-<li><span class="math inline">\(\forall x \in A,\ P(x)\)</span> é a proposição “<span class="math inline">\(P(x)\)</span> é verdadeira para <strong>todo</strong> <span class="math inline">\(x \in A\)</span>”.</li>
-<li><span class="math inline">\(\exists x \in A,\ P(x)\)</span> é a proposição “<strong>existe</strong> ao menos um <span class="math inline">\(x \in A\)</span> para o qual <span class="math inline">\(P(x)\)</span> é verdadeira”.</li>
-</ul>
-</div>
-<p>Por exemplo, “<span class="math inline">\(\forall n \in \mathbb{N},\ n \geq 1\)</span>” é verdadeira, enquanto “<span class="math inline">\(\exists n \in \mathbb{N},\ n + 1 = 1\)</span>” é falsa.</p>
-<p>Negar uma proposição quantificada troca o quantificador e nega a frase aberta — uma regra que usaremos constantemente nas demonstrações por absurdo.</p>
-<div id="prp-negacao-quantificadores" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposição 1.3 (Negação de quantificadores)</strong></span> Para qualquer frase aberta <span class="math inline">\(P(x)\)</span> sobre um conjunto <span class="math inline">\(A\)</span>, <span class="math display">\[
-\lnot\bigl(\forall x \in A,\ P(x)\bigr) \equiv \exists x \in A,\ \lnot P(x),
-\]</span> <span class="math display">\[
-\lnot\bigl(\exists x \in A,\ P(x)\bigr) \equiv \forall x \in A,\ \lnot P(x).
-\]</span></p>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Lendo as negações
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>“Nem todo <span class="math inline">\(x\)</span> satisfaz <span class="math inline">\(P\)</span>” significa “existe um <span class="math inline">\(x\)</span> que não satisfaz <span class="math inline">\(P\)</span>”: para derrubar um <em>para todo</em>, basta um contraexemplo. E “não existe <span class="math inline">\(x\)</span> satisfazendo <span class="math inline">\(P\)</span>” significa “todo <span class="math inline">\(x\)</span> deixa de satisfazer <span class="math inline">\(P\)</span>”.</p>
-</div>
-</div>
-<div id="exm-traducao" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.1 (Traduzir e negar)</strong></span> Considere a afirmação “todo número natural é menor que algum natural”: <span class="math display">\[
-\forall n \in \mathbb{N},\ \exists m \in \mathbb{N},\ n &lt; m.
-\]</span> Sua negação, aplicando <a href="#prp-negacao-quantificadores" class="quarto-xref">Proposição&nbsp;<span>1.3</span></a> duas vezes, é <span class="math display">\[
-\exists n \in \mathbb{N},\ \forall m \in \mathbb{N},\ n \geq m,
-\]</span> isto é, “existe um natural maior ou igual a todos” — a existência de um maior natural. Como essa negação é falsa (sempre há <span class="math inline">\(m = n + 1 &gt; n\)</span>), a afirmação original é verdadeira.</p>
-</div>
-</section>
-<section id="métodos-de-demonstração" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="métodos-de-demonstração"><span class="header-section-number">1.6</span> Métodos de demonstração</h2>
-<p>Quase todo teorema tem a forma <span class="math inline">\(p \Rightarrow q\)</span>. Os métodos a seguir são as maneiras-padrão de prová-lo; a escolha entre eles é estratégica, não lógica — uma prova por qualquer um deles é igualmente válida.</p>
-<section id="demonstração-direta" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="demonstração-direta"><span class="header-section-number">1.6.1</span> Demonstração direta</h3>
-<p>Para provar <span class="math inline">\(p \Rightarrow q\)</span>, supõe-se <span class="math inline">\(p\)</span> e deduz-se <span class="math inline">\(q\)</span> por uma cadeia de implicações.</p>
-<div id="exm-direta" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.2 (Soma de pares)</strong></span> Se <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> são inteiros pares, então <span class="math inline">\(a + b\)</span> é par.</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Suponha <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> pares. Por definição, existem inteiros <span class="math inline">\(j\)</span> e <span class="math inline">\(k\)</span> com <span class="math inline">\(a = 2j\)</span> e <span class="math inline">\(b = 2k\)</span>. Então <span class="math display">\[
-a + b = 2j + 2k = 2(j + k),
-\]</span> e <span class="math inline">\(j + k\)</span> é inteiro; logo <span class="math inline">\(a + b\)</span> é múltiplo de <span class="math inline">\(2\)</span>, ou seja, par.</p>
-</div>
-</section>
-<section id="demonstração-por-contrapositiva" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="demonstração-por-contrapositiva"><span class="header-section-number">1.6.2</span> Demonstração por contrapositiva</h3>
-<p>Por <a href="#prp-contrapositiva" class="quarto-xref">Proposição&nbsp;<span>1.1</span></a>, provar <span class="math inline">\(p \Rightarrow q\)</span> equivale a provar <span class="math inline">\(\lnot q \Rightarrow \lnot p\)</span>. Isso ajuda quando negar a conclusão dá uma hipótese mais concreta para manipular.</p>
-<div id="exm-contrapositiva" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.3 (Quadrado par)</strong></span> Seja <span class="math inline">\(n\)</span> um inteiro. Se <span class="math inline">\(n^2\)</span> é par, então <span class="math inline">\(n\)</span> é par.</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Provamos a contrapositiva: se <span class="math inline">\(n\)</span> é ímpar, então <span class="math inline">\(n^2\)</span> é ímpar. Suponha <span class="math inline">\(n\)</span> ímpar, digamos <span class="math inline">\(n = 2k + 1\)</span> com <span class="math inline">\(k\)</span> inteiro. Então <span class="math display">\[
-n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1,
-\]</span> que é ímpar. Pela contrapositiva, fica provado o enunciado original.</p>
-</div>
-</section>
-<section id="demonstração-por-absurdo" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="demonstração-por-absurdo"><span class="header-section-number">1.6.3</span> Demonstração por absurdo</h3>
-<p>Para provar uma afirmação, supõe-se que ela é <strong>falsa</strong> e deriva-se uma contradição — uma proposição que é, ao mesmo tempo, verdadeira e falsa. Como nenhuma situação consistente produz contradição, a suposição era insustentável.</p>
-<div id="exm-absurdo" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.4 (Irracionalidade de <span class="math inline">\(\sqrt{2}\)</span>)</strong></span> Não existe número racional cujo quadrado seja <span class="math inline">\(2\)</span>.</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Suponha, por absurdo, que exista um racional com quadrado <span class="math inline">\(2\)</span>. Escreva-o como fração irredutível <span class="math inline">\(\tfrac{a}{b}\)</span> (sem fatores comuns), com <span class="math inline">\(a^2 = 2b^2\)</span>. Então <span class="math inline">\(a^2\)</span> é par, e por <a href="#exm-contrapositiva" class="quarto-xref">Exemplo&nbsp;<span>1.3</span></a> <span class="math inline">\(a\)</span> é par, digamos <span class="math inline">\(a = 2c\)</span>. Substituindo, <span class="math inline">\(4c^2 = 2b^2\)</span>, ou seja, <span class="math inline">\(b^2 = 2c^2\)</span>; logo <span class="math inline">\(b^2\)</span> é par e, de novo, <span class="math inline">\(b\)</span> é par. Mas então <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> são ambos pares, contradizendo a escolha da fração irredutível. A suposição é insustentável, e nenhum racional tem quadrado <span class="math inline">\(2\)</span>.</p>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A existência de um <em>número</em> — não racional — com quadrado <span class="math inline">\(2\)</span> é outra questão, retomada na introdução aos reais ao final deste volume.</p>
-</div>
-</div>
-</section>
-<section id="demonstração-por-casos" class="level3" data-number="1.6.4">
-<h3 data-number="1.6.4" class="anchored" data-anchor-id="demonstração-por-casos"><span class="header-section-number">1.6.4</span> Demonstração por casos</h3>
-<p>Quando a hipótese se desdobra em situações que esgotam todas as possibilidades, prova-se a conclusão em cada uma delas separadamente.</p>
-<div id="exm-casos" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 1.5 (Produto consecutivo é par)</strong></span> Para todo inteiro <span class="math inline">\(n\)</span>, o produto <span class="math inline">\(n(n+1)\)</span> é par.</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Comprovação</em>. </span>Há dois casos, que esgotam as possibilidades. Se <span class="math inline">\(n\)</span> é par, então <span class="math inline">\(n(n+1)\)</span> é múltiplo de <span class="math inline">\(n\)</span>, logo par. Se <span class="math inline">\(n\)</span> é ímpar, então <span class="math inline">\(n + 1\)</span> é par, e <span class="math inline">\(n(n+1)\)</span> é múltiplo de <span class="math inline">\(n+1\)</span>, logo par. Em ambos os casos o produto é par.</p>
-</div>
-</section>
-<section id="refutação-por-contraexemplo" class="level3" data-number="1.6.5">
-<h3 data-number="1.6.5" class="anchored" data-anchor-id="refutação-por-contraexemplo"><span class="header-section-number">1.6.5</span> Refutação por contraexemplo</h3>
-<p>Para mostrar que uma afirmação <strong>universal</strong> <span class="math inline">\(\forall x,\ P(x)\)</span> é falsa, não se demonstra nada de geral: basta exibir um único <span class="math inline">\(x\)</span> com <span class="math inline">\(P(x)\)</span> falsa — um <strong>contraexemplo</strong>. É a leitura prática de <a href="#prp-negacao-quantificadores" class="quarto-xref">Proposição&nbsp;<span>1.3</span></a>.</p>
+<p>A razão <span class="math inline">\(\dfrac{f(a+h) - f(a)}{h}\)</span> é a inclinação da reta <strong>secante</strong> que liga dois pontos do gráfico. Ao fazer <span class="math inline">\(h \to 0\)</span>, o segundo ponto desliza até o primeiro, e a secante gira até a posição-limite: a <strong>tangente</strong>. A derivada é a inclinação dessa tangente.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>Provar exige geral; refutar basta um
+<span class="screen-reader-only">Dica</span>A derivada como “ampliação”
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>“Todo número primo é ímpar” é falsa, e o contraexemplo <span class="math inline">\(2\)</span> encerra o assunto. Mas um contraexemplo nunca <em>prova</em> uma afirmação universal — para isso é preciso um argumento que cubra todos os casos, e quando os casos são infinitos recorremos à <strong>indução</strong> (<a href="03-inducao.html" class="quarto-xref"><span>Capítulo 3</span></a>).</p>
+<p>Há uma terceira leitura, poderosa: perto de <span class="math inline">\(a\)</span>, a função é <strong>aproximadamente linear</strong>, e <span class="math inline">\(f'(a)\)</span> é a inclinação dessa reta. Ampliando o gráfico em torno de um ponto onde <span class="math inline">\(f\)</span> é derivável, a curva fica indistinguível de sua tangente — é <strong>localmente reta</strong>. Essa “linearização” é a ideia que organiza todas as aplicações da derivada (<a href="04-aplicacoes-derivada.html" class="quarto-xref"><span>Capítulo 43</span></a>) e se generaliza ao gradiente em várias variáveis, ao final deste volume.</p>
 </div>
 </div>
 </section>
+<section id="derivada-e-continuidade" class="level2" data-number="41.4">
+<h2 data-number="41.4" class="anchored" data-anchor-id="derivada-e-continuidade"><span class="header-section-number">41.4</span> Derivada e continuidade</h2>
+<p>A derivabilidade é uma condição mais forte que a continuidade: exige, além de não haver saltos, que não haja “bicos”.</p>
+<div id="thm-derivavel-continua" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 41.1 (Derivável implica contínua)</strong></span> Se <span class="math inline">\(f\)</span> é derivável em <span class="math inline">\(a\)</span>, então <span class="math inline">\(f\)</span> é contínua em <span class="math inline">\(a\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Comprovação</em>. </span>Precisamos de <span class="math inline">\(\lim_{h\to 0}[f(a+h) - f(a)] = 0\)</span>. Escreva, para <span class="math inline">\(h \neq 0\)</span>, <span class="math display">\[
+f(a+h) - f(a) = \frac{f(a+h) - f(a)}{h} \cdot h.
+\]</span> Quando <span class="math inline">\(h \to 0\)</span>, o primeiro fator tende a <span class="math inline">\(f'(a)\)</span> (existe, por hipótese) e o segundo a <span class="math inline">\(0\)</span>; pelo produto de limites (<a href="01-limites.html#prp-regras-limite-funcao" class="quarto-xref">Proposição&nbsp;<span>40.1</span></a>), o produto tende a <span class="math inline">\(f'(a) \cdot 0 = 0\)</span>. Logo <span class="math inline">\(f(a + h) \to f(a)\)</span>, isto é, <span class="math inline">\(f\)</span> é contínua em <span class="math inline">\(a\)</span>.</p>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>A recíproca é falsa: o bico do módulo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Continuidade <strong>não</strong> garante derivabilidade. A função <span class="math inline">\(f(x) = |x|\)</span> (<a href="../v4-precalculo/03-modular.html" class="quarto-xref"><span>Capítulo 35</span></a>) é contínua em <span class="math inline">\(0\)</span>, mas não derivável ali: o limite lateral pela esquerda dá <span class="math inline">\(-1\)</span> (inclinação do ramo descendente) e pela direita dá <span class="math inline">\(+1\)</span>, e como diferem (<a href="01-limites.html#def-limites-laterais" class="quarto-xref">Definição&nbsp;<span>40.2</span></a>), não há derivada. No “bico” da origem, não existe uma única reta tangente. Derivável é mais que contínuo: é <strong>liso</strong>.</p>
+</div>
+</div>
 </section>
-<section id="exercícios" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">1.7</span> Exercícios</h2>
-<div id="exr-tabela" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 1.1</strong></span> Construa a tabela-verdade de <span class="math inline">\((p \Rightarrow q) \land (q \Rightarrow p)\)</span> e verifique que ela coincide com a de <span class="math inline">\(p \Leftrightarrow q\)</span>.</p>
+<section id="a-função-derivada" class="level2" data-number="41.5">
+<h2 data-number="41.5" class="anchored" data-anchor-id="a-função-derivada"><span class="header-section-number">41.5</span> A função derivada</h2>
+<p>Fazendo <span class="math inline">\(a\)</span> variar, a derivada vira ela própria uma função.</p>
+<div id="def-funcao-derivada" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 41.3 (Função derivada)</strong></span> A <strong>função derivada</strong> <span class="math inline">\(f'\)</span> associa a cada ponto <span class="math inline">\(x\)</span> (onde <span class="math inline">\(f\)</span> é derivável) o valor <span class="math inline">\(f'(x)\)</span>. Calculá-la é <strong>derivar</strong> <span class="math inline">\(f\)</span>. Notações usuais: <span class="math inline">\(f'(x)\)</span>, <span class="math inline">\(\dfrac{df}{dx}\)</span>, <span class="math inline">\(\dfrac{dy}{dx}\)</span>.</p>
 </div>
-<div id="exr-negar" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 1.2</strong></span> Escreva em símbolos e negue, simplificando até que a negação não incida sobre nenhum quantificador: “todo inteiro par maior que <span class="math inline">\(2\)</span> é soma de dois primos”.</p>
+<div id="exm-derivadas-basicas" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 41.2 (Primeiras derivadas)</strong></span> Pela definição obtêm-se as derivadas fundamentais: <span class="math display">\[
+(x^n)' = n x^{n-1}, \qquad (\text{constante})' = 0, \qquad (\operatorname{sen}x)' =
+\cos x, \qquad (e^x)' = e^x.
+\]</span> A última explica por que <span class="math inline">\(e\)</span> é a base “natural” (<a href="../v4-precalculo/04-exponencial.html" class="quarto-xref"><span>Capítulo 36</span></a>): <span class="math inline">\(e^x\)</span> é a única exponencial igual à própria derivada. Essas fórmulas, mais as regras do próximo capítulo, permitem derivar qualquer função elementar sem voltar ao limite.</p>
 </div>
-<div id="exr-contrapositiva" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 1.3</strong></span> Seja <span class="math inline">\(n\)</span> um inteiro. Prove, por contrapositiva, que se <span class="math inline">\(n^2\)</span> é ímpar então <span class="math inline">\(n\)</span> é ímpar.</p>
+</section>
+<section id="exercícios" class="level2" data-number="41.6">
+<h2 data-number="41.6" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">41.6</span> Exercícios</h2>
+<div id="exr-derivada-definicao" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 41.1</strong></span> Use a definição (limite) para calcular a derivada de <span class="math inline">\(f(x) = 3x^2 - 1\)</span> num ponto <span class="math inline">\(a\)</span> qualquer.</p>
 </div>
-<div id="exr-absurdo" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 1.4</strong></span> Prove, por absurdo, que existem infinitos números naturais. (Sugestão: suponha que o conjunto dos naturais seja finito e considere seu maior elemento.)</p>
+<div id="exr-reta-tangente" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 41.2</strong></span> Determine a equação da reta tangente ao gráfico de <span class="math inline">\(f(x) = x^2\)</span> no ponto de abscissa <span class="math inline">\(x = 3\)</span>. (Use <span class="math inline">\(f'(x) = 2x\)</span>.)</p>
+</div>
+<div id="exr-derivada-cubo" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 41.3</strong></span> Use a definição para mostrar que a derivada de <span class="math inline">\(f(x) = x^3\)</span> é <span class="math inline">\(f'(x) = 3x^2\)</span>. (Sugestão: expanda <span class="math inline">\((a+h)^3\)</span>.)</p>
+</div>
+<div id="exr-nao-derivavel" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 41.4</strong></span> Explique por que <span class="math inline">\(f(x) = |x - 2|\)</span> não é derivável em <span class="math inline">\(x = 2\)</span>, calculando os limites laterais da razão incremental.</p>
 </div>
 <section id="soluções-selecionadas" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="soluções-selecionadas">Soluções selecionadas</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-negar" class="quarto-xref">Exercício&nbsp;<span>1.2</span></a>
+<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-derivada-definicao" class="quarto-xref">Exercício&nbsp;<span>41.1</span></a>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Sejam <span class="math inline">\(P\)</span> os inteiros pares maiores que <span class="math inline">\(2\)</span>. A afirmação é <span class="math display">\[
-\forall n \in P,\ \exists\, p, q \text{ primos},\ n = p + q.
-\]</span> Negando com <a href="#prp-negacao-quantificadores" class="quarto-xref">Proposição&nbsp;<span>1.3</span></a>, o <span class="math inline">\(\forall\)</span> vira <span class="math inline">\(\exists\)</span> e a negação recai sobre o <span class="math inline">\(\exists\)</span> interno, que vira <span class="math inline">\(\forall\)</span>: <span class="math display">\[
-\exists n \in P,\ \forall\, p, q \text{ primos},\ n \neq p + q,
-\]</span> ou seja, “existe um inteiro par maior que <span class="math inline">\(2\)</span> que não é soma de dois primos”. (Que essa negação seja verdadeira ou falsa é a conjectura de Goldbach, em aberto.)</p>
+<p>Pela definição (<a href="#def-derivada" class="quarto-xref">Definição&nbsp;<span>41.1</span></a>), <span class="math display">\[
+\frac{f(a+h) - f(a)}{h} = \frac{[3(a+h)^2 - 1] - [3a^2 - 1]}{h} = \frac{3(2ah +
+h^2)}{h} = 6a + 3h.
+\]</span> Quando <span class="math inline">\(h \to 0\)</span>, tende a <span class="math inline">\(6a\)</span>. Logo <span class="math inline">\(f'(a) = 6a\)</span>, isto é, <span class="math inline">\(f'(x) = 6x\)</span>.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-contrapositiva" class="quarto-xref">Exercício&nbsp;<span>1.3</span></a>
+<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-reta-tangente" class="quarto-xref">Exercício&nbsp;<span>41.2</span></a>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A contrapositiva de “se <span class="math inline">\(n^2\)</span> é ímpar então <span class="math inline">\(n\)</span> é ímpar” é “se <span class="math inline">\(n\)</span> é par então <span class="math inline">\(n^2\)</span> é par”. Suponha <span class="math inline">\(n\)</span> par, <span class="math inline">\(n = 2k\)</span>. Então <span class="math inline">\(n^2 = 4k^2 = 2(2k^2)\)</span> é par. Provada a contrapositiva, vale o enunciado original. Note que ele e <a href="#exm-contrapositiva" class="quarto-xref">Exemplo&nbsp;<span>1.3</span></a> são as duas metades de “<span class="math inline">\(n^2\)</span> é par <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(n\)</span> é par”.</p>
+<p>Com <span class="math inline">\(f(x) = x^2\)</span> e <span class="math inline">\(f'(x) = 2x\)</span>: no ponto <span class="math inline">\(x = 3\)</span>, tem-se <span class="math inline">\(f(3) = 9\)</span> e inclinação <span class="math inline">\(f'(3) = 6\)</span>. A reta tangente (<a href="#def-reta-tangente" class="quarto-xref">Definição&nbsp;<span>41.2</span></a>) é <span class="math display">\[
+y = 9 + 6(x - 3) = 6x - 9.
+\]</span></p>
 </div>
 </div>
 </div>
@@ -1753,13 +1445,13 @@ Nota
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../index.html" class="pagination-link" aria-label="Apresentação">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Apresentação</span>
+      <a href="../../volumes/v5-calculo/01-limites.html" class="pagination-link" aria-label="Limites e continuidade">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Limites e continuidade</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../volumes/v1-fundamentos/02-conjuntos.html" class="pagination-link" aria-label="Conjuntos">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conjuntos</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../volumes/v5-calculo/03-regras-derivacao.html" class="pagination-link" aria-label="Regras de derivação">
+        <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Regras de derivação</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1771,7 +1463,7 @@ Nota
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v1-fundamentos/01-logica.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v5-calculo/02-derivada.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Construído com <a href="https://quarto.org">Quarto</a>.</p>
 </div>
