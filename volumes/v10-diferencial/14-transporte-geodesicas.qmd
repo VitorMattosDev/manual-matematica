@@ -1,0 +1,144 @@
+# Transporte paralelo e geodésicas {#sec-transporte-geodesicas}
+
+## Motivação
+
+Com a derivada covariante (@sec-conexoes-derivada-covariante) em mãos, podemos
+finalmente responder a duas perguntas geométricas fundamentais numa variedade curva: o
+que significa mover um vetor "sem girá-lo" ao longo de um caminho? E qual é o caminho
+"mais reto possível"?
+
+A primeira é o **transporte paralelo**; a segunda, a **geodésica**, agora definida
+intrinsecamente (generalizando @sec-geodesicas das superfícies). Ambas revelam a
+curvatura: num espaço curvo, transportar um vetor em torno de um laço fechado o devolve
+**girado** — e essa rotação é a assinatura da curvatura (@sec-curvatura-riemann). As
+geodésicas, por sua vez, são as trajetórias de partículas livres na relatividade: a Terra
+orbita o Sol seguindo uma geodésica do espaço-tempo curvo. Este capítulo constrói os dois
+conceitos.
+
+## Transporte paralelo
+
+::: {#def-transporte-paralelo}
+## Transporte paralelo
+Um campo vetorial $V$ ao longo de uma curva $\gamma(t)$ é **paralelamente transportado**
+se sua derivada covariante ao longo da curva é nula:
+$$
+\nabla_{\dot\gamma} V = 0, \qquad\text{em componentes}\qquad \frac{dV^k}{dt} +
+\Gamma^k_{ij}\,\dot\gamma^i\,V^j = 0.
+$$
+:::
+
+::: {.callout-tip}
+## "Mover sem girar", segundo a conexão
+Em $\mathbb{R}^n$, transportar paralelamente é manter o vetor com componentes constantes
+— a seta apontando sempre para o mesmo lado. Numa variedade curva não há "mesmo lado"
+global; a conexão define localmente o que é "não girar". A equação diz: a única mudança
+permitida em $V$ é a correção $\Gamma$ imposta pela curvatura das coordenadas, nada além.
+:::
+
+::: {#prp-transporte-preserva}
+## O transporte preserva comprimentos e ângulos
+Com a conexão de Levi-Civita (@thm-levi-civita), o transporte paralelo **preserva o
+produto interno**: se $V$ e $W$ são transportados ao longo de $\gamma$, então
+$g(V, W)$ é constante. Em particular, normas e ângulos não mudam.
+:::
+
+::: {.callout-note}
+## A holonomia revela a curvatura
+Eis o fenômeno central: transportar um vetor paralelamente ao longo de um **laço
+fechado** numa variedade curva o devolve **girado** em relação ao original. O ângulo de
+rotação (a **holonomia**) mede a curvatura encerrada pelo laço. Numa esfera, leve um
+vetor do equador ao polo, lateralmente de volta e desça: ele volta apontando para outra
+direção. No plano (curvatura zero), o transporte em qualquer laço devolve o vetor
+intacto. Essa é a definição operacional de curvatura (@sec-curvatura-riemann).
+:::
+
+## Geodésicas
+
+A curva que transporta paralelamente seu **próprio** vetor tangente — a mais reta
+possível.
+
+::: {#def-geodesica-var}
+## Geodésica
+Uma curva $\gamma$ é uma **geodésica** se seu vetor tangente é paralelamente transportado
+ao longo dela, $\nabla_{\dot\gamma}\dot\gamma = 0$. Em coordenadas, a **equação das
+geodésicas**:
+$$
+\ddot\gamma^k + \Gamma^k_{ij}\,\dot\gamma^i\dot\gamma^j = 0.
+$$
+:::
+
+Esta é a versão intrínseca e geral da equação que vimos para superfícies
+(@sec-geodesicas): "aceleração covariante nula". Em $\mathbb{R}^n$ ($\Gamma = 0$) reduz-se
+a $\ddot\gamma = 0$, isto é, as **retas** — geodésicas do espaço plano.
+
+::: {#exm-geodesicas-esfera}
+## Geodésicas da esfera
+Resolvendo a equação para a métrica da esfera (@sec-metricas-riemannianas), as soluções
+são os **grandes círculos** — confirmando, agora por cálculo intrínseco, o que
+observamos geometricamente em @sec-geodesicas. As rotas de avião seguem essas geodésicas.
+:::
+
+::: {.callout-tip}
+## Princípio variacional: geodésicas extremizam comprimento
+Equivalentemente, geodésicas são os pontos críticos do funcional comprimento $\int ds$
+(@sec-metricas-riemannianas) — os caminhos de comprimento extremo entre dois pontos. Essa
+formulação variacional conecta a geometria ao **princípio da mínima ação** da física:
+partículas livres seguem geodésicas porque extremizam uma ação.
+:::
+
+## Geodésicas no espaço-tempo
+
+::: {.callout-note}
+## Gravidade é geodésia
+Na relatividade geral, uma partícula em **queda livre** (só sob gravidade) percorre uma
+**geodésica** da métrica lorentziana do espaço-tempo (@sec-metricas-riemannianas). Não há
+"força" gravitacional: a matéria curva o espaço-tempo (via @sec-curvatura-riemann), e os
+corpos seguem as linhas mais retas dessa geometria curva. A maçã que cai, a Lua que
+orbita e a luz que se desvia perto do Sol — todas seguem geodésicas. A equação
+$\ddot\gamma^k + \Gamma^k_{ij}\dot\gamma^i\dot\gamma^j = 0$ é, nesse contexto, a
+**equação do movimento** da gravitação.
+:::
+
+## Exercícios
+
+::: {#exr-tg-reta}
+Mostre que, em $\mathbb{R}^n$ com a métrica euclidiana, as geodésicas são retas.
+:::
+
+::: {#exr-tg-transporte}
+No plano euclidiano, descreva o que acontece a um vetor transportado paralelamente ao
+longo de um quadrado fechado.
+:::
+
+::: {#exr-tg-norma}
+Use @prp-transporte-preserva para explicar por que um vetor transportado paralelamente
+sobre a esfera mantém seu comprimento.
+:::
+
+::: {#exr-tg-variacional}
+Explique em uma frase por que "geodésica" pode ser definida tanto por
+$\nabla_{\dot\gamma}\dot\gamma = 0$ quanto por extremizar o comprimento.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tg-reta
+Em cartesianas, $\Gamma^k_{ij} = 0$ (@exr-cc-cartesiano), então a equação das geodésicas
+vira $\ddot\gamma^k = 0$. Integrando, $\gamma^k(t) = a^k t + b^k$ — uma **reta**
+parametrizada linearmente.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tg-transporte
+No plano ($\Gamma = 0$, curvatura zero), o transporte mantém as componentes constantes.
+Ao percorrer o quadrado e voltar ao ponto inicial, o vetor retorna **idêntico** — sem
+rotação. A holonomia é trivial, refletindo curvatura nula.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tg-norma
+A conexão de Levi-Civita é compatível com a métrica, logo o transporte paralelo preserva
+$g(V,V)$ (@prp-transporte-preserva). Como a norma é $\sqrt{g(V,V)}$, ela é constante ao
+longo do transporte — mesmo que a **direção** do vetor mude (holonomia).
+:::

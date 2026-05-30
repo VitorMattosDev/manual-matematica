@@ -192,7 +192,7 @@ não pelo número.
 - [x] `volumes/v10-diferencial/11-algebra-tensorial-formas.qmd` — Álgebra tensorial e formas diferenciais; produto exterior.
 - [x] `volumes/v10-diferencial/12-metricas-riemannianas.qmd` — Métricas riemannianas e pseudo-riemannianas (caso lorentziano).
 - [x] `volumes/v10-diferencial/13-conexoes-derivada-covariante.qmd` — Conexões, derivada covariante e símbolos de Christoffel.
-- [ ] `volumes/v10-diferencial/14-transporte-geodesicas.qmd` — Transporte paralelo e geodésicas em variedades.
+- [x] `volumes/v10-diferencial/14-transporte-geodesicas.qmd` — Transporte paralelo e geodésicas em variedades.
 - [ ] `volumes/v10-diferencial/15-curvatura-riemann.qmd` — Tensor de curvatura de Riemann, tensor de Ricci e curvatura escalar.
 
 ## Volume XI — Equações Diferenciais
