@@ -1,0 +1,199 @@
+# Cálculo de várias variáveis {#sec-varias-variaveis}
+
+## Motivação
+
+Até aqui, o Cálculo tratou funções de **uma** variável: uma entrada $x$, uma saída
+$f(x)$, um gráfico no plano. Mas o mundo raramente é unidimensional. A temperatura
+numa sala depende de três coordenadas $(x, y, z)$; o lucro de uma fábrica depende
+de dezenas de insumos; a altitude de um terreno é uma função $z = f(x, y)$ de duas
+variáveis cujo "gráfico" é uma **superfície**.
+
+Como medir taxas de variação quando há várias direções para variar? A resposta é a
+**derivada parcial**: varie uma variável de cada vez, congelando as outras. Disso
+nasce o **gradiente**, um vetor que aponta a direção de subida mais íngreme — a
+bússola da otimização, da física e do aprendizado de máquina. Este capítulo
+estende as ideias do Volume V ao espaço de várias dimensões.
+
+## Funções de várias variáveis
+
+::: {#def-funcao-varias}
+## Função de duas variáveis
+Uma **função de duas variáveis** $f: D \to \mathbb{R}$, com $D \subseteq
+\mathbb{R}^2$, associa a cada par $(x, y)$ um número real $z = f(x, y)$. Seu
+**gráfico** é a superfície $\{(x, y, z) : z = f(x, y)\}$ em $\mathbb{R}^3$.
+:::
+
+::: {#exm-superficies}
+## Algumas superfícies
+- $f(x, y) = x^2 + y^2$: um **paraboloide**, tigela com vértice na origem.
+- $f(x, y) = \sqrt{1 - x^2 - y^2}$: a **semiesfera** superior de raio $1$.
+- $f(x, y) = ax + by + c$: um **plano**.
+:::
+
+::: {.callout-tip}
+## Curvas de nível: o mapa topográfico
+Difícil desenhar superfícies à mão. Em vez disso, fixe alturas $z = k$ e desenhe
+no plano as **curvas de nível** $f(x, y) = k$ — exatamente como um mapa de relevo
+mostra montanhas por linhas de mesma altitude. Para o paraboloide, as curvas de
+nível são círculos $x^2 + y^2 = k$.
+:::
+
+## Derivadas parciais
+
+A ideia central: para derivar em $x$, trate $y$ como constante, e vice-versa.
+
+::: {#def-derivada-parcial}
+## Derivadas parciais
+A **derivada parcial** de $f$ em relação a $x$ é
+$$
+\frac{\partial f}{\partial x}(x, y) = \lim_{h\to 0} \frac{f(x + h, y) - f(x, y)}
+{h},
+$$
+o limite tomado com $y$ fixo. Analogamente para $\frac{\partial f}{\partial y}$,
+variando $y$ e fixando $x$. Notações: $f_x$, $\partial_x f$, $\frac{\partial f}
+{\partial x}$.
+:::
+
+Na prática, **não** se calcula o limite: aplica-se as regras usuais de derivação
+(@sec-regras-derivacao), tratando a outra variável como número.
+
+::: {#exm-parciais}
+## Calculando parciais
+Seja $f(x, y) = x^2 y + 3xy^3$. Então
+$$
+\frac{\partial f}{\partial x} = 2xy + 3y^3 \quad (\text{$y$ constante}), \qquad
+\frac{\partial f}{\partial y} = x^2 + 9xy^2 \quad (\text{$x$ constante}).
+$$
+:::
+
+Geometricamente, $f_x(a, b)$ é a inclinação da superfície na direção do eixo $x$,
+no ponto $(a, b)$ — a inclinação da curva obtida cortando a superfície pelo plano
+$y = b$.
+
+## O gradiente
+
+Reunir as parciais num vetor concentra toda a informação de primeira ordem.
+
+::: {#def-gradiente}
+## Vetor gradiente
+O **gradiente** de $f$ é o vetor das derivadas parciais:
+$$
+\nabla f(x, y) = \left(\frac{\partial f}{\partial x},\ \frac{\partial f}{\partial
+y}\right).
+$$
+:::
+
+::: {#thm-gradiente-direcao}
+## O gradiente aponta a subida mais íngreme
+Em cada ponto, o vetor $\nabla f$ aponta na **direção de maior crescimento** de
+$f$, e seu módulo $\|\nabla f\|$ é a taxa de crescimento nessa direção. Além
+disso, $\nabla f$ é **perpendicular** à curva de nível que passa pelo ponto.
+:::
+
+::: {.callout-note}
+## A bússola da otimização
+A perpendicularidade do gradiente às curvas de nível é a chave do **método do
+gradiente** (gradient descent): para *minimizar* uma função, caminha-se na
+direção $-\nabla f$ (descida mais íngreme), repetidamente. É assim que se treina
+boa parte dos modelos de aprendizado de máquina — milhões de parâmetros ajustados
+seguindo gradientes.
+:::
+
+::: {#exm-gradiente}
+## Gradiente do paraboloide
+Para $f(x, y) = x^2 + y^2$, $\nabla f = (2x, 2y)$. No ponto $(1, 1)$, $\nabla f =
+(2, 2)$: aponta para fora, na direção radial — exatamente onde a tigela sobe mais
+rápido. Na origem, $\nabla f = (0, 0)$: o fundo da tigela, um ponto de mínimo.
+:::
+
+## Derivadas de ordem superior
+
+Derivando uma parcial de novo, obtêm-se as **parciais de segunda ordem**:
+$f_{xx}$, $f_{yy}$ e as **mistas** $f_{xy}$, $f_{yx}$.
+
+::: {#thm-clairaut}
+## Teorema de Clairaut (Schwarz)
+Se as derivadas parciais mistas de $f$ são contínuas, então a ordem de derivação
+não importa:
+$$
+\frac{\partial^2 f}{\partial x\,\partial y} = \frac{\partial^2 f}{\partial y\,
+\partial x}.
+$$
+:::
+
+::: {#exm-segunda-ordem}
+## Conferindo Clairaut
+Para $f(x, y) = x^2 y + 3xy^3$ (do @exm-parciais): de $f_x = 2xy + 3y^3$,
+$f_{xy} = 2x + 9y^2$; de $f_y = x^2 + 9xy^2$, $f_{yx} = 2x + 9y^2$. De fato
+coincidem.
+:::
+
+## Pontos críticos e otimização
+
+Como em uma variável, extremos no interior ocorrem onde a derivada se anula — agora
+o gradiente inteiro.
+
+::: {#def-ponto-critico}
+## Ponto crítico
+Um **ponto crítico** de $f$ é um $(a, b)$ onde $\nabla f(a, b) = (0, 0)$, isto é,
+$f_x = f_y = 0$ simultaneamente. Máximos e mínimos locais (no interior do domínio)
+são pontos críticos.
+:::
+
+Nem todo ponto crítico é extremo: pode ser um **ponto de sela** (mínimo numa
+direção, máximo em outra — como um passo de montanha). O **teste da segunda
+derivada** usa o discriminante $D = f_{xx}f_{yy} - (f_{xy})^2$ para classificá-los.
+
+::: {.callout-warning}
+## Sela: nem morro, nem vale
+A função $f(x, y) = x^2 - y^2$ tem $\nabla f = (2x, -2y)$, nulo na origem. Mas ali
+não há extremo: ao longo do eixo $x$ é um mínimo ($x^2$), ao longo do eixo $y$ é um
+máximo ($-y^2$). O gráfico é uma sela de cavalo. Anular o gradiente é necessário,
+não suficiente, para extremo.
+:::
+
+## Exercícios
+
+::: {#exr-parciais-1}
+Calcule $f_x$ e $f_y$ para (a) $f(x,y) = x^3 + 2x^2y - y^2$; (b) $f(x, y) =
+e^{xy}$.
+:::
+
+::: {#exr-gradiente-1}
+Determine $\nabla f$ de $f(x, y) = x^2 y$ no ponto $(2, 3)$ e diga em que direção
+$f$ cresce mais rápido ali.
+:::
+
+::: {#exr-clairaut-1}
+Verifique o teorema de Clairaut para $f(x, y) = \operatorname{sen}(xy)$.
+:::
+
+::: {#exr-criticos-1}
+Encontre os pontos críticos de $f(x, y) = x^2 + y^2 - 4x + 6y$.
+:::
+
+::: {#exr-nivel}
+Descreva as curvas de nível de $f(x, y) = y - x^2$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-parciais-1
+(a) $f_x = 3x^2 + 4xy$ e $f_y = 2x^2 - 2y$. (b) Tratando $y$ como constante,
+$f_x = y\,e^{xy}$; tratando $x$ como constante, $f_y = x\,e^{xy}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-criticos-1
+$f_x = 2x - 4 = 0 \Rightarrow x = 2$; $f_y = 2y + 6 = 0 \Rightarrow y = -3$. Há um
+único ponto crítico, $(2, -3)$. Completando quadrados, $f = (x-2)^2 + (y+3)^2 -
+13$, então é um **mínimo** global, de valor $-13$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-nivel
+Pondo $y - x^2 = k$, ou seja $y = x^2 + k$, cada curva de nível é uma **parábola**
+de mesmo formato, deslocada verticalmente por $k$. A superfície é uma "calha
+parabólica" inclinada.
+:::
