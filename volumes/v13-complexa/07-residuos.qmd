@@ -1,0 +1,136 @@
+# Teorema dos resíduos e aplicações {#sec-residuos}
+
+## Motivação
+
+Chegamos à recompensa de toda a teoria: o **teorema dos resíduos**, que reduz qualquer
+integral de contorno à simples soma dos resíduos (@def-residuo) das singularidades
+encerradas. É o ápice da síntese iniciada com o teorema de Cauchy
+(@sec-integracao-cauchy): integrar é localizar singularidades e somar coeficientes.
+
+Mas a aplicação mais espetacular é inesperada: o teorema dos resíduos calcula **integrais
+reais** que resistem a todos os métodos do cálculo real (@sec-tecnicas-integracao) — como
+$\int_{-\infty}^\infty \frac{dx}{1 + x^2}$ ou $\int_0^{2\pi}\frac{d\theta}{2 + \cos
+\theta}$. Sobe-se ao plano complexo, fecha-se um contorno, somam-se resíduos, e a
+resposta cai. Este capítulo apresenta o teorema e essa técnica notável.
+
+## O teorema dos resíduos
+
+::: {#thm-residuos}
+## Teorema dos resíduos
+Se $f$ é holomorfa numa região, exceto em singularidades isoladas $z_1, \dots, z_k$ no
+interior de uma curva fechada $\gamma$ (orientada positivamente), então
+$$
+\oint_\gamma f(z)\,dz = 2\pi i\sum_{j=1}^{k} \operatorname{Res}(f, z_j).
+$$
+:::
+
+::: {.proof}
+*(Esboço.)* Pelo princípio da deformação (@prp-deformacao), deforma-se $\gamma$ em
+pequenos círculos em torno de cada $z_j$. A integral em cada círculo vale $2\pi i
+\operatorname{Res}(f, z_j)$ (pela série de Laurent, @def-residuo). Somando, obtém-se o
+resultado.
+:::
+
+::: {.callout-tip}
+## Integração = contar singularidades
+Eis a essência: a integral de contorno **não vê** o caminho exato, só **quais
+singularidades estão dentro** e seus resíduos. É um resultado de natureza topológica
+(@sec-grupo-fundamental) — o que importa é o que a curva encerra. Calcular uma integral
+complicada vira: localizar polos, computar resíduos, somar. Um problema de análise
+reduzido a aritmética local.
+:::
+
+## Calculando resíduos
+
+::: {#prp-calculo-residuos}
+## Fórmulas para resíduos em polos
+- **Polo simples** em $z_0$: $\operatorname{Res}(f, z_0) = \lim_{z\to z_0}(z - z_0)f(z)$.
+- Para $f = \frac{p}{q}$ com polo simples ($q(z_0) = 0$, $q'(z_0) \neq 0$):
+  $\operatorname{Res} = \frac{p(z_0)}{q'(z_0)}$.
+- **Polo de ordem $m$**: $\operatorname{Res}(f, z_0) = \frac{1}{(m-1)!}\lim_{z\to z_0}
+  \frac{d^{m-1}}{dz^{m-1}}\big[(z - z_0)^m f(z)\big]$.
+:::
+
+::: {#exm-residuo-simples}
+## Resíduo em polo simples
+Para $f(z) = \frac{1}{z^2 + 1} = \frac{1}{(z-i)(z+i)}$, o resíduo em $z = i$ é
+$$
+\operatorname{Res}(f, i) = \lim_{z\to i}(z - i)\frac{1}{(z-i)(z+i)} = \frac{1}{2i}.
+$$
+:::
+
+## Aplicação: integrais reais impróprias
+
+A técnica que mais impressiona: integrais reais via contornos complexos.
+
+::: {#exm-integral-real}
+## Uma integral real por resíduos
+Calcular $\displaystyle\int_{-\infty}^{\infty}\frac{dx}{1 + x^2}$. Fecha-se o contorno com
+um **semicírculo** no semiplano superior; o único polo dentro é $z = i$, com resíduo
+$\frac{1}{2i}$ (@exm-residuo-simples). A integral sobre o semicírculo tende a zero
+(o integrando decai), logo
+$$
+\int_{-\infty}^{\infty}\frac{dx}{1 + x^2} = 2\pi i\cdot\frac{1}{2i} = \pi.
+$$
+Confere com o valor real $[\arctan x]_{-\infty}^{\infty} = \pi$ — mas obtido sem
+antiderivada, só com um resíduo.
+:::
+
+::: {.callout-tip}
+## A estratégia geral
+Para integrais reais difíceis: **(1)** veja a integral como parte de uma integral de
+contorno no plano complexo; **(2)** feche o contorno (semicírculo, retângulo, setor)
+de modo que a parte "extra" se anule no limite; **(3)** some os resíduos dentro. Funciona
+para $\int_{-\infty}^\infty \frac{p}{q}$, integrais trigonométricas $\int_0^{2\pi}R(\cos,
+\operatorname{sen})$ (via $z = e^{i\theta}$), e integrais com $e^{ix}$ (transformadas de
+Fourier, @sec-series-fourier). É arsenal indispensável da física-matemática.
+:::
+
+::: {#exm-integral-trigonometrica}
+## Integral trigonométrica
+$\int_0^{2\pi}\frac{d\theta}{2 + \cos\theta}$ transforma-se, com $z = e^{i\theta}$
+(círculo unitário), numa integral de contorno de uma função racional, resolvida pelos
+resíduos dentro do círculo — dando $\frac{2\pi}{\sqrt3}$. O cálculo real direto seria
+penoso; por resíduos, é mecânico.
+:::
+
+## Exercícios
+
+::: {#exr-re-residuo}
+Calcule o resíduo de $\frac{e^z}{z - 1}$ em $z = 1$.
+:::
+
+::: {#exr-re-contorno}
+Use o teorema dos resíduos para calcular $\oint_\gamma \frac{1}{z^2 + 1}\,dz$ num círculo
+de raio $2$ centrado na origem.
+:::
+
+::: {#exr-re-real}
+Calcule $\displaystyle\int_{-\infty}^{\infty}\frac{dx}{x^2 + 4}$ por resíduos.
+:::
+
+::: {#exr-re-ordem}
+Determine o resíduo de $\frac{1}{z^2(z-1)}$ em $z = 0$ (polo de ordem 2).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-re-residuo
+Polo simples em $z = 1$: $\operatorname{Res} = \lim_{z\to 1}(z-1)\frac{e^z}{z-1} = e^1 =
+e$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-re-contorno
+$\frac{1}{z^2+1}$ tem polos em $\pm i$, **ambos** dentro do círculo de raio $2$. Resíduos:
+$\frac{1}{2i}$ em $i$ e $\frac{1}{-2i}$ em $-i$, que somam $0$. Logo $\oint = 2\pi i\cdot
+0 = 0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-re-real
+Polos em $\pm 2i$; fechando por cima, só $z = 2i$ conta, com resíduo $\frac{1}{2\cdot 2i}
+= \frac{1}{4i}$. Logo $\int_{-\infty}^\infty\frac{dx}{x^2+4} = 2\pi i\cdot\frac{1}{4i} =
+\frac{\pi}{2}$.
+:::

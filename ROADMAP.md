@@ -230,7 +230,7 @@ não pelo número.
 - [x] `volumes/v13-complexa/04-integracao-cauchy.qmd` — Integração complexa e teorema de Cauchy.
 - [x] `volumes/v13-complexa/05-formula-integral-cauchy.qmd` — Fórmula integral de Cauchy.
 - [x] `volumes/v13-complexa/06-taylor-laurent.qmd` — Séries de Taylor e de Laurent.
-- [ ] `volumes/v13-complexa/07-residuos.qmd` — Teorema dos resíduos e aplicações.
+- [x] `volumes/v13-complexa/07-residuos.qmd` — Teorema dos resíduos e aplicações.
 - [ ] `volumes/v13-complexa/08-aplicacoes-conformes.qmd` — Aplicações conformes.
 
 ---
