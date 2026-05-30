@@ -126,6 +126,7 @@ book:
         - volumes/v9-topologia/04-continuidade-homeomorfismos.qmd
         - volumes/v9-topologia/05-conexidade.qmd
         - volumes/v9-topologia/06-compacidade.qmd
+        - volumes/v9-topologia/07-separacao.qmd
   appendices:
     - notacao.qmd
 

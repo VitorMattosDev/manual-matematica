@@ -146,7 +146,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v9-topologia/04-continuidade-homeomorfismos.qmd` — Continuidade e homeomorfismos.
 - [x] `volumes/v9-topologia/05-conexidade.qmd` — Conexidade.
 - [x] `volumes/v9-topologia/06-compacidade.qmd` — Compacidade.
-- [ ] `volumes/v9-topologia/07-separacao.qmd` — Axiomas de separação (Hausdorff etc.).
+- [x] `volumes/v9-topologia/07-separacao.qmd` — Axiomas de separação (Hausdorff etc.).
 - [ ] `volumes/v9-topologia/08-grupo-fundamental.qmd` — Introdução à topologia algébrica: grupo fundamental.
 
 ## Volume X — Geometria Diferencial

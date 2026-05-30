@@ -1,0 +1,163 @@
+# Axiomas de separação {#sec-separacao}
+
+## Motivação
+
+A definição de espaço topológico (@sec-espacos-topologicos) é tão geral que admite
+espaços patológicos: na topologia caótica, dois pontos distintos são
+topologicamente indistinguíveis, e sequências podem convergir para **vários** limites
+ao mesmo tempo. Para fazer análise séria, precisamos garantir que o espaço tenha
+"abertos suficientes para separar coisas".
+
+Os **axiomas de separação** — batizados $T_0, T_1, T_2, \dots$ — formam uma hierarquia
+de exigências crescentes sobre a capacidade de distinguir pontos e conjuntos por
+abertos. O mais importante é $T_2$, ou **Hausdorff**, que garante unicidade de limites
+e é satisfeito por todos os espaços da análise e da geometria. Este capítulo organiza
+essa hierarquia, explica por que Hausdorff é a fronteira do "comportamento civilizado",
+e culmina no lema de Urysohn, que conecta separação topológica à existência de funções
+contínuas.
+
+## A hierarquia $T_0$, $T_1$, $T_2$
+
+::: {#def-t0-t1-t2}
+## Axiomas de separação
+Um espaço $X$ é:
+
+- **$T_0$** se, para cada par de pontos distintos, **algum** aberto contém um e não o
+  outro;
+- **$T_1$** se, para cada par $x \neq y$, há um aberto contendo $x$ mas não $y$ (e
+  vice-versa) — equivale a: todo conjunto **unitário é fechado**;
+- **$T_2$** (**Hausdorff**) se quaisquer dois pontos distintos têm vizinhanças
+  **disjuntas**: existem abertos $U \ni x$, $V \ni y$ com $U \cap V = \emptyset$.
+:::
+
+Cada axioma implica o anterior: $T_2 \Rightarrow T_1 \Rightarrow T_0$. A força cresce:
+$T_0$ apenas distingue pontos; $T_2$ os **isola** em vizinhanças separadas.
+
+::: {#exm-separacao}
+## A hierarquia em ação
+- Todo espaço **métrico** é Hausdorff: pontos $x \neq y$ têm bolas disjuntas de raio
+  $\frac{d(x,y)}{2}$ (@sec-espacos-metricos).
+- A topologia **cofinita** em um conjunto infinito é $T_1$ mas **não** $T_2$ (dois
+  abertos não vazios sempre se intersectam).
+- A topologia de **Sierpiński** $\{\emptyset, \{a\}, X\}$ é $T_0$ mas não $T_1$.
+- A **caótica** (com $\geq 2$ pontos) não é nem $T_0$.
+:::
+
+## Por que Hausdorff é a fronteira
+
+::: {#thm-hausdorff-limite-unico}
+## Unicidade do limite em Hausdorff
+Em um espaço de Hausdorff, toda sequência convergente tem **limite único**.
+:::
+
+::: {.proof}
+Se $x_n \to a$ e $x_n \to b$ com $a \neq b$, tome abertos disjuntos $U \ni a$, $V \ni
+b$ (Hausdorff). A partir de certo índice, $x_n \in U$ e simultaneamente $x_n \in V$ —
+impossível, pois $U \cap V = \emptyset$. Logo $a = b$.
+:::
+
+::: {.callout-note}
+## O mínimo para a análise funcionar
+Sem Hausdorff, a noção de limite desmorona: na topologia caótica, **toda** sequência
+converge para **todo** ponto. A unicidade do limite — que tomávamos por óbvia na reta
+(@prp-unicidade-limite) — é, na verdade, a propriedade $T_2$. Por isso, na prática,
+"espaço topológico" quase sempre significa "espaço de Hausdorff": é o piso abaixo do
+qual os conceitos analíticos perdem sentido. Vimos sua importância na compacidade
+(@thm-compacto-fechado): compactos em Hausdorff são fechados.
+:::
+
+## Regularidade e normalidade
+
+Subindo na hierarquia, separa-se pontos de **conjuntos fechados**, e fechados entre si.
+
+::: {#def-regular-normal}
+## $T_3$ e $T_4$
+Um espaço $T_1$ é:
+
+- **regular** ($T_3$) se um ponto e um fechado que não o contém podem ser separados
+  por abertos disjuntos;
+- **normal** ($T_4$) se dois fechados **disjuntos** podem ser separados por abertos
+  disjuntos.
+:::
+
+::: {#thm-metrico-normal}
+## Métricos e compactos Hausdorff são normais
+Todo espaço métrico é normal. Todo espaço compacto e Hausdorff é normal.
+:::
+
+Esses são exatamente os espaços onde a topologia "se comporta": métricos (a análise
+clássica) e compactos Hausdorff (a geometria). Neles vale o resultado mais poderoso da
+teoria de separação.
+
+## O lema de Urysohn
+
+A ponte entre separação por abertos e separação por **funções contínuas**.
+
+::: {#thm-urysohn}
+## Lema de Urysohn
+Em um espaço **normal**, para quaisquer dois fechados disjuntos $A$ e $B$ existe uma
+função **contínua** $f: X \to [0, 1]$ com $f = 0$ em $A$ e $f = 1$ em $B$.
+:::
+
+::: {.callout-tip}
+## Topologia gerando análise
+O lema de Urysohn é surpreendente: de uma hipótese puramente topológica (normalidade)
+ele **produz uma função contínua** com valores prescritos. É a fonte de funções
+"bump", partições da unidade (essenciais em geometria diferencial, Volume X), e do
+**teorema de extensão de Tietze** — toda função contínua definida num fechado se
+estende continuamente ao espaço todo. Separação topológica e existência de funções
+contínuas são, via Urysohn, duas faces da mesma moeda.
+:::
+
+::: {#exm-urysohn-metrico}
+## Urysohn explícito em espaços métricos
+Num espaço métrico, a função de Urysohn pode ser escrita à mão:
+$$
+f(x) = \frac{d(x, A)}{d(x, A) + d(x, B)},
+$$
+onde $d(x, A) = \inf_{a \in A} d(x, a)$. Ela é contínua, vale $0$ em $A$ e $1$ em $B$ —
+uma realização concreta do lema.
+:::
+
+## Exercícios
+
+::: {#exr-sep-1}
+Mostre que todo espaço métrico é $T_1$ (conjuntos unitários são fechados).
+:::
+
+::: {#exr-sep-cofinita}
+Verifique que a topologia cofinita num conjunto infinito é $T_1$ mas não $T_2$.
+:::
+
+::: {#exr-sep-subespaco}
+Mostre que um subespaço de um espaço de Hausdorff é Hausdorff.
+:::
+
+::: {#exr-sep-urysohn}
+Use a fórmula de @exm-urysohn-metrico para construir uma função contínua em
+$\mathbb{R}$ que vale $0$ em $(-\infty, 0]$ e $1$ em $[1, +\infty)$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sep-cofinita
+$T_1$: dado $x \neq y$, o aberto $X \setminus \{y\}$ (complementar de finito) contém
+$x$ e não $y$. Não $T_2$: dois abertos não vazios são complementares de conjuntos
+finitos, e num conjunto infinito sua interseção (complementar de finito) é não vazia —
+nunca disjuntos.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sep-subespaco
+Sejam $x, y$ pontos distintos de $A \subseteq X$. Em $X$ (Hausdorff) há abertos
+disjuntos $U \ni x$, $V \ni y$. Então $U \cap A$ e $V \cap A$ são abertos do subespaço
+(@def-subespaco-topologico), contêm $x$ e $y$, e são disjuntos. Logo $A$ é Hausdorff.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sep-urysohn
+Com $A = (-\infty, 0]$ e $B = [1, \infty)$: $d(x, A) = \max(x, 0)$ e $d(x, B) =
+\max(1 - x, 0)$. A função $f(x) = \frac{d(x,A)}{d(x,A) + d(x,B)}$ vale $0$ para $x \leq
+0$, $x$ para $0 \leq x \leq 1$, e $1$ para $x \geq 1$ — contínua, como previsto.
+:::
