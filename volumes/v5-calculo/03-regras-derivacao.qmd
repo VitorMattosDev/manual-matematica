@@ -1,0 +1,182 @@
+# Regras de derivação {#sec-regras-derivacao}
+
+## Motivação
+
+Calcular toda derivada pela definição — montando o limite da razão incremental
+(@sec-derivada) — seria insuportável para funções complicadas. Felizmente, a
+derivada **respeita a estrutura** das funções: há regras para derivar somas,
+produtos, quocientes e composições, que reduzem qualquer função elementar a uma
+combinação de derivadas básicas já conhecidas.
+
+Este capítulo é a "caixa de ferramentas" do Cálculo diferencial. Com meia dúzia de
+regras — em especial a poderosa **regra da cadeia**, que deriva composições —
+deriva-se mecanicamente qualquer expressão construída a partir de polinômios,
+exponenciais, logaritmos e funções trigonométricas. É o que torna a derivada não só
+um conceito, mas um **algoritmo**, pronto para as aplicações dos próximos capítulos.
+
+## Linearidade e derivadas básicas
+
+::: {#thm-linearidade}
+## Linearidade da derivada
+Se $f$ e $g$ são deriváveis e $c$ é constante, então
+$$
+(f + g)' = f' + g', \qquad (c f)' = c f'.
+$$
+:::
+
+::: {.proof}
+Para a soma, a razão incremental separa-se:
+$$
+\frac{(f+g)(x+h) - (f+g)(x)}{h} = \frac{f(x+h)-f(x)}{h} + \frac{g(x+h)-g(x)}{h}.
+$$
+Tomando $h \to 0$, pela regra da soma de limites (@prp-regras-limite-funcao), o
+limite é $f'(x) + g'(x)$. O fator constante sai de modo análogo, pois $\frac{c
+f(x+h) - cf(x)}{h} = c\,\frac{f(x+h)-f(x)}{h}$.
+:::
+
+Combinando a linearidade com a derivada das potências $(x^n)' = n x^{n-1}$
+(@sec-derivada), deriva-se qualquer **polinômio** de imediato.
+
+::: {#exm-derivar-polinomio}
+## Derivando um polinômio
+$$
+\frac{d}{dx}\bigl(4x^3 - 5x^2 + 2x - 7\bigr) = 4 \cdot 3x^2 - 5 \cdot 2x + 2 = 12x^2
+- 10x + 2,
+$$
+derivando termo a termo (linearidade) e aplicando $(x^n)' = nx^{n-1}$ a cada
+potência. A constante $-7$ tem derivada nula.
+:::
+
+## Produto e quociente
+
+O produto **não** se deriva multiplicando derivadas — há uma regra própria.
+
+::: {#thm-produto}
+## Regra do produto
+Se $f$ e $g$ são deriváveis,
+$$
+(f g)' = f' g + f g'.
+$$
+:::
+
+::: {.callout-warning}
+## $(fg)' \neq f'g'$
+A tentação de derivar um produto multiplicando as derivadas leva a erro. Teste com
+$f = g = x$: $(x \cdot x)' = (x^2)' = 2x$, mas $f'g' = 1 \cdot 1 = 1 \neq 2x$. A
+regra correta soma **dois** termos: deriva-se um fator de cada vez, mantendo o
+outro.
+:::
+
+::: {#thm-quociente}
+## Regra do quociente
+Se $f$ e $g$ são deriváveis e $g(x) \neq 0$,
+$$
+\left(\frac{f}{g}\right)' = \frac{f' g - f g'}{g^2}.
+$$
+:::
+
+::: {#exm-produto-quociente}
+## Aplicando as regras
+Para $h(x) = x^2 e^x$, pela regra do produto (com $(e^x)' = e^x$):
+$$
+h'(x) = (x^2)' e^x + x^2 (e^x)' = 2x\,e^x + x^2 e^x = e^x(x^2 + 2x).
+$$
+Para $k(x) = \dfrac{x}{x + 1}$, pela regra do quociente:
+$$
+k'(x) = \frac{1 \cdot (x+1) - x \cdot 1}{(x+1)^2} = \frac{1}{(x+1)^2}.
+$$
+:::
+
+## A regra da cadeia
+
+A regra mais importante deriva **composições** (@sec-funcoes) — funções dentro de
+funções, onipresentes na prática.
+
+::: {#thm-cadeia}
+## Regra da cadeia
+Se $g$ é derivável em $x$ e $f$ é derivável em $g(x)$, então a composta $f \circ g$
+é derivável e
+$$
+(f \circ g)'(x) = f'\bigl(g(x)\bigr) \cdot g'(x).
+$$
+:::
+
+::: {.callout-tip}
+## "Deriva de fora para dentro"
+A regra da cadeia lê-se assim: deriva-se a função **externa** (mantendo o interior
+intacto) e multiplica-se pela derivada do **interior**. Na notação de Leibniz fica
+transparente — $\dfrac{dy}{dx} = \dfrac{dy}{du}\cdot\dfrac{du}{dx}$ —, como se as
+"frações" se cancelassem. É a regra que aparece em toda aplicação composta: taxas
+relacionadas, otimização, e a própria mudança de variável da integral
+(@sec-tecnicas-integracao).
+:::
+
+::: {#exm-cadeia}
+## Usando a cadeia
+Para derivar $y = (x^2 + 1)^5$, identifique o exterior $u^5$ e o interior $u = x^2 +
+1$:
+$$
+y' = 5(x^2 + 1)^4 \cdot (x^2 + 1)' = 5(x^2 + 1)^4 \cdot 2x = 10x(x^2 + 1)^4.
+$$
+Para $y = e^{3x}$: exterior $e^u$, interior $3x$, logo $y' = e^{3x} \cdot 3 =
+3e^{3x}$. Para $y = \operatorname{sen}(x^2)$: $y' = \cos(x^2)\cdot 2x$.
+:::
+
+## Tabela de derivadas
+
+Reunindo tudo, deriva-se qualquer função elementar.
+
+::: {#prp-tabela-derivadas}
+## Derivadas elementares
+$$
+(x^n)' = n x^{n-1}, \quad (e^x)' = e^x, \quad (\ln x)' = \frac1x, \quad
+(\operatorname{sen}x)' = \cos x, \quad (\cos x)' = -\operatorname{sen}x.
+$$
+:::
+
+::: {.callout-note}
+## Derivar é mecânico; o que se faz com isso, não
+Com a tabela e as quatro regras (linearidade, produto, quociente, cadeia), a
+derivação torna-se um procedimento que um computador executa. A riqueza do Cálculo
+está no **uso** da derivada — encontrar máximos, esboçar curvas, modelar movimento —
+e na operação inversa, a **integral**. Os próximos capítulos exploram exatamente
+isso.
+:::
+
+## Exercícios
+
+::: {#exr-polinomio}
+Derive: (a) $f(x) = 5x^4 - 3x^2 + 7x$; (b) $g(x) = \dfrac{2}{x} + \sqrt{x}$.
+(Sugestão: escreva como potências, $\frac1x = x^{-1}$ e $\sqrt x = x^{1/2}$.)
+:::
+
+::: {#exr-produto}
+Derive $h(x) = (x^2 + 1)\,\ln x$ usando a regra do produto.
+:::
+
+::: {#exr-quociente}
+Derive $k(x) = \dfrac{x^2 - 1}{x^2 + 1}$ usando a regra do quociente.
+:::
+
+::: {#exr-cadeia}
+Derive: (a) $y = (3x - 2)^7$; (b) $y = e^{x^2}$; (c) $y = \cos(5x)$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-polinomio
+(a) Termo a termo: $f'(x) = 20x^3 - 6x + 7$. (b) Escrevendo $g(x) = 2x^{-1} +
+x^{1/2}$ e aplicando $(x^n)' = nx^{n-1}$:
+$$
+g'(x) = 2(-1)x^{-2} + \tfrac12 x^{-1/2} = -\frac{2}{x^2} + \frac{1}{2\sqrt{x}}.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cadeia
+(a) Exterior $u^7$, interior $3x - 2$: $y' = 7(3x - 2)^6 \cdot 3 = 21(3x - 2)^6$.
+(b) Exterior $e^u$, interior $x^2$: $y' = e^{x^2}\cdot 2x = 2x\,e^{x^2}$.
+(c) Exterior $\cos u$, interior $5x$: $y' = -\operatorname{sen}(5x)\cdot 5 =
+-5\operatorname{sen}(5x)$.
+:::
