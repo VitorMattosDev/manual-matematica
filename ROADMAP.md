@@ -224,7 +224,7 @@ não pelo número.
 ## Volume XIII — Análise Complexa
 *Objetivo: funções de variável complexa. Pré-req.: Vols. V, VIII.*
 
-- [ ] `volumes/v13-complexa/01-numeros-complexos.qmd` — Números complexos e o plano complexo.
+- [x] `volumes/v13-complexa/01-numeros-complexos.qmd` — Números complexos e o plano complexo.
 - [ ] `volumes/v13-complexa/02-holomorfas-cauchy-riemann.qmd` — Funções holomorfas e equações de Cauchy-Riemann.
 - [ ] `volumes/v13-complexa/03-funcoes-elementares.qmd` — Funções elementares complexas.
 - [ ] `volumes/v13-complexa/04-integracao-cauchy.qmd` — Integração complexa e teorema de Cauchy.

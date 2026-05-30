@@ -170,6 +170,9 @@ book:
         - volumes/v12-probabilidade/08-lgn-tcl.qmd
         - volumes/v12-probabilidade/09-estatistica-estimacao.qmd
         - volumes/v12-probabilidade/10-testes-hipotese.qmd
+    - part: "Volume XIII — Análise Complexa"
+      chapters:
+        - volumes/v13-complexa/01-numeros-complexos.qmd
   appendices:
     - notacao.qmd
 
