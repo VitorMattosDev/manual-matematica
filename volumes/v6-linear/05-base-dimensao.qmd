@@ -51,7 +51,7 @@ colunas (ou linhas) tem **determinante não nulo** (@thm-det-invertivel).
 
 ## Bases
 
-::: {#def-base}
+::: {#def-base-vetorial}
 ## Base
 Uma **base** de um espaço vetorial $V$ é um conjunto de vetores que é, ao mesmo
 tempo,

@@ -63,7 +63,7 @@ funcional**.
 :::
 
 ::: {#thm-completude-c}
-## $C[a, b]$ é completo
+## O espaço das funções contínuas é completo
 O espaço $C[a, b]$ das funções contínuas, com a norma do supremo, é **completo**: toda
 sequência de Cauchy (uniforme) de funções contínuas converge para uma função contínua.
 :::

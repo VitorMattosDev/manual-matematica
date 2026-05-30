@@ -195,7 +195,7 @@ Calcule $\displaystyle\int x^2 e^x\,dx$ (aplique a integração por partes duas
 vezes).
 :::
 
-::: {#exr-fracoes}
+::: {#exr-fracoes-int}
 Decomponha em frações parciais e integre
 $\displaystyle\int \frac{3x + 1}{x^2 + x}\,dx$.
 :::
@@ -225,7 +225,7 @@ $$
 :::
 
 ::: {.callout-tip collapse="true"}
-## Solução do @exr-fracoes
+## Solução do @exr-fracoes-int
 Fatore $x^2 + x = x(x+1)$ e escreva $\frac{3x+1}{x(x+1)} = \frac{A}{x} +
 \frac{B}{x+1}$. Então $3x + 1 = A(x+1) + Bx$. Em $x = 0$: $1 = A$. Em $x = -1$:
 $-2 = -B$, logo $B = 2$. Assim

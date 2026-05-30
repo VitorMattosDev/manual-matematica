@@ -26,7 +26,7 @@ $$
 O valor $f'(a)$ é a **derivada** de $f$ em $a$.
 :::
 
-::: {#thm-derivavel-continua}
+::: {#thm-derivavel-continua-rig}
 ## Derivável implica contínua
 Se $f$ é derivável em $a$, então $f$ é contínua em $a$.
 :::
@@ -127,7 +127,7 @@ diferem por uma constante. Lá foi assumido; aqui está **provado**, como corol�
 TVM. A análise rigorosa fecha as lacunas que o Cálculo deixou em aberto.
 :::
 
-::: {#thm-lhopital}
+::: {#thm-lhopital-rig}
 ## Regra de L'Hôpital
 Se $f, g$ são deriváveis perto de $a$, com $\lim f = \lim g = 0$ (ou $\pm\infty$) e
 $g' \neq 0$, então

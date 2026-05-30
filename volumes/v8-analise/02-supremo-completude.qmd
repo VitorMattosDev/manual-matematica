@@ -35,7 +35,7 @@ mesmo quando o máximo falta.
 
 ## Supremo e ínfimo
 
-::: {#def-supremo}
+::: {#def-supremo-analise}
 ## Supremo e ínfimo
 O **supremo** de $A$, denotado $\sup A$, é a **menor** das cotas superiores de $A$:
 um número $s$ tal que (i) $s$ é cota superior e (ii) nenhuma cota superior é menor que
@@ -49,7 +49,7 @@ supremo em $\mathbb{R}$. (Dualmente, todo conjunto não vazio limitado inferiorm
 possui ínfimo.)
 :::
 
-Esta é a propriedade demonstrada na construção dos reais (@thm-completude), aqui
+Esta é a propriedade demonstrada na construção dos reais (@thm-completude-reais), aqui
 adotada como o **axioma central** da análise. Tudo o que segue brota dela.
 
 ::: {#exm-supremos}
@@ -121,7 +121,7 @@ completude). Dado $\varepsilon > 0$, por @prp-caracterizacao-sup há $N$ com $a_
 Este teorema é uma das ferramentas mais usadas da análise: garante convergência sem
 exibir o limite, apenas da monotonia e da limitação. Dele se demonstram a existência
 do número $e$, a convergência de séries de termos positivos e muito mais
-(@sec-sequencias).
+(@sec-sequencias-precalculo).
 
 ## Exercícios
 

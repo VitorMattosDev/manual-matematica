@@ -151,7 +151,7 @@ Sabendo que $\operatorname{sen}\theta = \dfrac{3}{5}$ e que $\theta$ está no
 segundo quadrante, determine $\cos\theta$ e $\operatorname{tg}\theta$.
 :::
 
-::: {#exr-adicao}
+::: {#exr-adicao-trig}
 Calcule $\operatorname{sen}75°$ usando a fórmula de adição com $75° = 45° + 30°$.
 :::
 

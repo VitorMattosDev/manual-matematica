@@ -2,7 +2,7 @@
 
 ## Motivação
 
-Sequências e seu limite já apareceram informalmente no Cálculo (@sec-sequencias) e na
+Sequências e seu limite já apareceram informalmente no Cálculo (@sec-sequencias-precalculo) e na
 discussão de séries (@sec-series). Agora os tratamos com o rigor que a análise exige:
 a definição **ε–N** de limite, sem apelo a "ficar próximo" ou "tender a". Essa
 precisão não é preciosismo — é o que permite **demonstrar** os fatos que antes apenas

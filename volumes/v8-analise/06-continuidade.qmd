@@ -18,7 +18,7 @@ rigorosa.
 
 ## Limite de uma função
 
-::: {#def-limite-funcao}
+::: {#def-limite-funcao-analise}
 ## Limite (ε-δ)
 Seja $f$ definida perto de $a$ (ponto de acumulação do domínio). Diz-se que
 $\lim_{x\to a} f(x) = L$ se:
@@ -39,7 +39,7 @@ perto de $L$ quanto se queira, bastando $x$ perto de $a$".
 
 ## Continuidade
 
-::: {#def-continuidade}
+::: {#def-continuidade-analise}
 ## Função contínua
 $f$ é **contínua em $a$** se $\lim_{x\to a} f(x) = f(a)$ — ou seja, o limite existe e
 **coincide com o valor** da função. Em ε-δ: para todo $\varepsilon > 0$ existe
@@ -69,7 +69,7 @@ detectado pela caracterização sequencial.
 
 O primeiro grande teorema: continuidade impede saltos.
 
-::: {#thm-tvi}
+::: {#thm-tvi-rigoroso}
 ## Teorema do valor intermediário (TVI)
 Se $f$ é contínua em $[a, b]$ e $y$ está entre $f(a)$ e $f(b)$, então existe $c \in
 [a, b]$ com $f(c) = y$. Uma função contínua assume **todos** os valores
@@ -176,7 +176,7 @@ $|f(x) - f(2)| = |3x + 1 - 7| = 3|x - 2|$. Dado $\varepsilon > 0$, tome $\delta 
 ::: {.callout-tip collapse="true"}
 ## Solução do @exr-cont-tvi
 Seja $f(x) = x^3 - x - 1$, contínua. $f(1) = -1 < 0$ e $f(2) = 5 > 0$. Como $0$ está
-entre $f(1)$ e $f(2)$, o TVI (@thm-tvi) garante $c \in [1, 2]$ com $f(c) = 0$.
+entre $f(1)$ e $f(2)$, o TVI (@thm-tvi-rigoroso) garante $c \in [1, 2]$ com $f(c) = 0$.
 :::
 
 ::: {.callout-tip collapse="true"}

@@ -48,7 +48,7 @@ constantes não nulas — exatamente como em $\mathbb{Z}$ os únicos invertívei
 
 A propriedade que faz toda a aritmética funcionar: dividir com resto de grau menor.
 
-::: {#thm-divisao-polinomios}
+::: {#thm-divisao-poli-corpo}
 ## Algoritmo da divisão
 Sejam $f, g \in K[x]$ com $g \neq 0$. Existem **únicos** $q$ (quociente) e $r$
 (resto) em $K[x]$ tais que
@@ -57,7 +57,7 @@ f = q\,g + r, \qquad \text{com } r = 0 \text{ ou } \deg r < \deg g.
 $$
 :::
 
-É o análogo exato da divisão de inteiros (@sec-mdc-euclides), com o grau no papel do
+É o análogo exato da divisão de inteiros (@sec-mdc), com o grau no papel do
 "tamanho". Dela decorre tudo o que segue.
 
 ::: {#cor-raiz-fator}
@@ -75,7 +75,7 @@ $n$ raízes** em $K$.
 Com divisão euclidiana, repete-se passo a passo a teoria de $\mathbb{Z}$.
 
 ::: {#thm-kx-dip}
-## $K[x]$ é domínio de ideais principais
+## O anel de polinômios é um DIP
 Em $K[x]$, todo ideal é **principal**: gerado por um único polinômio (o de menor grau
 no ideal). Consequentemente, dois polinômios têm um **mdc**, calculável pelo algoritmo
 de Euclides, e vale a identidade de Bézout.

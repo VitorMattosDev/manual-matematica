@@ -17,7 +17,7 @@ construção, indispensáveis para os capítulos seguintes.
 
 ## Bases
 
-::: {#def-base}
+::: {#def-base-topologia}
 ## Base de uma topologia
 Uma coleção $\mathcal B$ de abertos de $(X, \tau)$ é uma **base** se todo aberto é
 **união** de elementos de $\mathcal B$. Equivalentemente: para todo aberto $U$ e todo

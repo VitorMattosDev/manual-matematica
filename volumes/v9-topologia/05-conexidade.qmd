@@ -81,7 +81,7 @@ contra a hipótese. Logo $f(X)$ é conexo.
 
 ::: {#cor-tvi-topologico}
 ## O TVI é topologia
-O **teorema do valor intermediário** (@thm-tvi) é corolário: se $f: [a, b] \to
+O **teorema do valor intermediário** (@thm-tvi-rigoroso) é corolário: se $f: [a, b] \to
 \mathbb{R}$ é contínua, $f([a,b])$ é conexo (imagem de conexo), logo um intervalo
 (@thm-conexos-reta) — e um intervalo contendo $f(a)$ e $f(b)$ contém **todos** os
 valores entre eles.

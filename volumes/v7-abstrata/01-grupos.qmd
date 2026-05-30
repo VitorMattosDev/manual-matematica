@@ -26,7 +26,7 @@ $(a, b)$ de elementos de $G$ associa um elemento $a * b$ **de $G$**. A exigênci
 que $a * b$ pertença a $G$ chama-se **fechamento**.
 :::
 
-::: {#exm-operacoes}
+::: {#exm-operacoes-grupo}
 ## Operações e não operações
 - A adição em $\mathbb{Z}$ é operação binária; a subtração também.
 - A divisão **não** é operação binária em $\mathbb{Z}$: $1 \div 2 \notin \mathbb{Z}$
@@ -138,7 +138,7 @@ capítulos (@sec-subgrupos-ciclicos, @sec-lagrange), organiza toda a teoria.
 
 ## Ordem de um grupo e de um elemento
 
-::: {#def-ordem}
+::: {#def-ordem-grupo}
 ## Ordem
 A **ordem** de um grupo $G$, denotada $|G|$, é seu número de elementos (pode ser
 infinita). A **ordem de um elemento** $a$ é o menor inteiro positivo $k$ tal que

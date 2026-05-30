@@ -133,7 +133,7 @@ coincidem.
 Como em uma variável, extremos no interior ocorrem onde a derivada se anula — agora
 o gradiente inteiro.
 
-::: {#def-ponto-critico}
+::: {#def-ponto-critico-multi}
 ## Ponto crítico
 Um **ponto crítico** de $f$ é um $(a, b)$ onde $\nabla f(a, b) = (0, 0)$, isto é,
 $f_x = f_y = 0$ simultaneamente. Máximos e mínimos locais (no interior do domínio)

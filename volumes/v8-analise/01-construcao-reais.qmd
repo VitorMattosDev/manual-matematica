@@ -2,7 +2,7 @@
 
 ## Motivação
 
-No Volume I, apresentamos os números reais de modo intuitivo (@sec-reais-introducao):
+No Volume I, apresentamos os números reais de modo intuitivo (@sec-reais):
 a "reta sem buracos", onde $\sqrt2$ e $\pi$ moram. O Cálculo inteiro (Volume V) foi
 construído sobre essa intuição. Mas a análise rigorosa exige mais: **o que é, afinal,
 um número real?** Dizer "um ponto da reta" é geometria, não definição. E a propriedade
@@ -27,7 +27,7 @@ Não existe número racional $r$ com $r^2 = 2$.
 ::: {.proof}
 Suponha $r = p/q$ irredutível com $p^2 = 2q^2$. Então $p^2$ é par, logo $p$ é par,
 $p = 2k$; daí $4k^2 = 2q^2$, isto é $q^2 = 2k^2$, e $q$ também é par — contradizendo a
-irredutibilidade (@sec-reais-introducao). Logo nenhum racional satisfaz $r^2 = 2$.
+irredutibilidade (@sec-reais). Logo nenhum racional satisfaz $r^2 = 2$.
 :::
 
 ::: {.callout-note}
@@ -111,7 +111,7 @@ uma é questão de gosto — o objeto resultante é único.
 
 O que tudo isso conquista, e que $\mathbb{Q}$ não tinha:
 
-::: {#thm-completude}
+::: {#thm-completude-reais}
 ## Completude
 O corpo $\mathbb{R}$ construído (por qualquer dos métodos) é **completo**: todo
 subconjunto não vazio e limitado superiormente possui **supremo** (menor cota
@@ -170,5 +170,5 @@ têm máximo. O maior entre esse máximo e $|a_{N+1}| + 1$ limita toda a sequên
 Qualquer cota superior racional $c$ com $c^2 > 2$ pode ser substituída por uma menor
 ainda maior que todos os elementos (aproximando $\sqrt2$ por cima), então não há
 **menor** cota racional — sem supremo em $\mathbb{Q}$. Em $\mathbb{R}$, a completude
-(@thm-completude) garante o supremo: é exatamente $\sqrt2$.
+(@thm-completude-reais) garante o supremo: é exatamente $\sqrt2$.
 :::

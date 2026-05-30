@@ -3,7 +3,7 @@
 ## Motivação
 
 No Volume II resolvemos sistemas pequenos por substituição e adição
-(@sec-sistemas-lineares) — duas equações, duas incógnitas, manipuladas no olho. Mas
+(@sec-sistemas) — duas equações, duas incógnitas, manipuladas no olho. Mas
 e um sistema com cinco, dez, mil equações? A engenharia, a economia e a computação
 gráfica produzem sistemas gigantescos, e o método artesanal desmorona.
 
@@ -33,7 +33,7 @@ Os $a_{ij}$ são os **coeficientes** e os $b_i$ os **termos independentes**. Uma
 
 Quanto às soluções, há exatamente três possibilidades — nunca duas, nunca quatro.
 
-::: {#thm-classificacao}
+::: {#thm-classificacao-sistemas}
 ## Classificação dos sistemas
 Todo sistema linear é de um dos tipos:
 

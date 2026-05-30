@@ -68,7 +68,7 @@ $$
 É o menor subgrupo de $G$ que contém $a$.
 :::
 
-A ordem do elemento $a$ (@def-ordem) é exatamente o tamanho de $\langle a\rangle$:
+A ordem do elemento $a$ (@def-ordem-grupo) é exatamente o tamanho de $\langle a\rangle$:
 se $a$ tem ordem $k$, então $\langle a\rangle = \{e, a, a^2, \dots, a^{k-1}\}$ tem
 $k$ elementos.
 
@@ -119,7 +119,7 @@ espelha perfeitamente a dos divisores de $12$.
 ## Geradores e a função de Euler
 
 Quais elementos geram todo o grupo cíclico? A resposta vem da aritmética
-(@sec-mdc-euclides).
+(@sec-mdc).
 
 ::: {#prp-geradores}
 ## Geradores de $\mathbb{Z}_n$
@@ -136,7 +136,7 @@ repetidamente, percorre todos os doze elementos.
 
 ## Exercícios
 
-::: {#exr-sub-1}
+::: {#exr-subgrupo-1}
 Verifique se $H = \{0, 2, 4\}$ é subgrupo de $(\mathbb{Z}_6, +)$.
 :::
 
@@ -155,7 +155,7 @@ Quantos e quais são os geradores de $\mathbb{Z}_9$?
 ### Soluções selecionadas {.unnumbered}
 
 ::: {.callout-tip collapse="true"}
-## Solução do @exr-sub-1
+## Solução do @exr-subgrupo-1
 Contém $0$; é fechado ($2 + 2 = 4$, $2 + 4 = 0$, $4 + 4 = 2$, todos em $H$); os
 inversos estão lá ($-2 = 4$, $-4 = 2$). Logo **é subgrupo** — é $\langle 2\rangle$,
 de ordem $3$.

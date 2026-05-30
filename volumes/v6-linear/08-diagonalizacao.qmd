@@ -87,7 +87,7 @@ diagonalização falha — exigindo formas mais gerais, como a forma de Jordan.
 
 A recompensa mais imediata: potências saem de graça.
 
-::: {#thm-potencia}
+::: {#thm-potencia-matriz}
 ## Potência via diagonalização
 Se $A = PDP^{-1}$, então para todo inteiro $k \geq 1$
 $$

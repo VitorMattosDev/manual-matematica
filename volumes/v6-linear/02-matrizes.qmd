@@ -69,7 +69,7 @@ $$
 Aqui está a operação central — e a menos óbvia. O produto **não** é entrada a
 entrada; é "linha por coluna".
 
-::: {#def-produto}
+::: {#def-produto-matriz}
 ## Produto de matrizes
 Se $A$ é $m \times p$ e $B$ é $p \times n$, o produto $AB$ é a matriz $m \times n$ de
 entradas
@@ -89,7 +89,7 @@ regra mnemônica: $(m\times \underline{p})(\underline{p}\times n) = m\times n$ �
 $p$ internos somem, os externos ficam.
 :::
 
-::: {#exm-produto}
+::: {#exm-produto-matriz}
 ## Calculando um produto
 $$
 \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}\begin{bmatrix} 5 & 6 \\ 7 & 8
@@ -147,7 +147,7 @@ números.
 Dividir não existe entre matrizes, mas há um análogo: a inversa, que desfaz a
 multiplicação.
 
-::: {#def-inversa}
+::: {#def-inversa-matriz}
 ## Matriz inversa
 Uma matriz quadrada $A$ é **invertível** (ou não singular) se existe $A^{-1}$ com
 $$

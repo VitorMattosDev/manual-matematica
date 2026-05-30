@@ -114,7 +114,7 @@ Seja $f$ contínua em $[a, b]$.
 
 ::: {.proof}
 *(Parte 1.)* Para $h > 0$, $\frac{F(x+h) - F(x)}{h} = \frac1h\int_x^{x+h} f(t)\,dt$.
-Pelo teorema do valor médio para integrais (consequência do TVI, @thm-tvi), esse valor
+Pelo teorema do valor médio para integrais (consequência do TVI, @thm-tvi-rigoroso), esse valor
 é $f(\xi_h)$ para algum $\xi_h \in [x, x+h]$. Quando $h \to 0$, $\xi_h \to x$ e, pela
 continuidade de $f$, $f(\xi_h) \to f(x)$. Logo $F'(x) = f(x)$. *(Parte 2)* segue da 1
 e do corolário do TVM (@cor-monotonia): $G$ e $F$ diferem por constante.

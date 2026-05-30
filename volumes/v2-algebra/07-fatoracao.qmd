@@ -20,7 +20,7 @@ fatorou inteiros em primos, tem aqui seu análogo para expressões.
 A fatoração mais básica põe em evidência um fator presente em todos os termos —
 distributividade ao contrário.
 
-::: {#exm-fator-comum}
+::: {#exm-fator-comum-fatoracao}
 ## Fator comum
 $$
 6x^3 - 9x^2 + 3x = 3x\,(2x^2 - 3x + 1).

@@ -60,7 +60,7 @@ muda de sinal). É um **ponto de inflexão** com tangente horizontal. Sempre con
 mudança de sinal, não apenas o anulamento.
 :::
 
-::: {#exm-otimizacao}
+::: {#exm-otimizacao-derivada}
 ## A caixa de maior volume
 De uma folha quadrada de lado $12$, cortam-se quadrados de lado $x$ nos cantos e
 dobra-se uma caixa. O volume é $V(x) = x(12 - 2x)^2$, com $0 < x < 6$. Derivando
@@ -121,12 +121,12 @@ L'Hôpital só se aplica a indeterminações; usá-lo fora delas leva a erro.)
 
 ## Exercícios
 
-::: {#exr-monotonia}
+::: {#exr-monotonia-derivada}
 Determine os intervalos de crescimento e decrescimento de $f(x) = x^3 - 3x$, e
 classifique seus pontos críticos.
 :::
 
-::: {#exr-otimizacao}
+::: {#exr-otimizacao-derivada}
 Entre todos os retângulos de perímetro $20$, determine, via derivada, o de maior
 área. (Compare com o resultado obtido por vértice em @sec-afim-quadratica.)
 :::
@@ -142,7 +142,7 @@ Calcule $\displaystyle \lim_{x \to 0} \frac{e^x - 1}{x}$ pela regra de L'Hôpita
 ### Soluções selecionadas {.unnumbered}
 
 ::: {.callout-tip collapse="true"}
-## Solução do @exr-monotonia
+## Solução do @exr-monotonia-derivada
 A derivada é $f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)$, com zeros em $x = \pm 1$. O sinal
 de $f'$: positiva para $x < -1$, negativa em $-1 < x < 1$, positiva para $x > 1$.
 Logo $f$ **cresce** em $(-\infty, -1)$, **decresce** em $(-1, 1)$ e **cresce** em
@@ -151,7 +151,7 @@ $(1, \infty)$. Por @thm-teste-primeira-derivada, $x = -1$ é **máximo** local e
 :::
 
 ::: {.callout-tip collapse="true"}
-## Solução do @exr-otimizacao
+## Solução do @exr-otimizacao-derivada
 Se um lado mede $x$, o outro mede $10 - x$ (semiperímetro), e a área é $A(x) = x(10
 - x) = 10x - x^2$. Derivando: $A'(x) = 10 - 2x$, que se anula em $x = 5$. Como
 $A''(x) = -2 < 0$, é máximo. O retângulo é o **quadrado** de lado $5$, área $25$ —

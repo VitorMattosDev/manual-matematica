@@ -96,7 +96,7 @@ $$
 Considere os triângulos $\triangle PAC$ e $\triangle PDB$. Eles têm o ângulo em
 $P$ comum (ou opostos pelo vértice, conforme $P$ seja externo ou interno) e os
 ângulos inscritos $\hat{ACP}$ e $\hat{DBP}$ iguais, pois ambos subtendem o mesmo
-arco $\overarc{AD}$ (@cor-arco-capaz). Por dois ângulos iguais, $\triangle PAC \sim
+arco $\overset{\frown}{AD}$ (@cor-arco-capaz). Por dois ângulos iguais, $\triangle PAC \sim
 \triangle PDB$ (caso AA, @thm-caso-aa). Da proporção entre lados correspondentes,
 $$
 \frac{\overline{PA}}{\overline{PD}} = \frac{\overline{PC}}{\overline{PB}} \implies

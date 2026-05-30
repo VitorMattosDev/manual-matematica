@@ -125,7 +125,7 @@ negativa definida → máximo; indefinida → **ponto de sela**. O teorema espec
 portanto, o motor por trás do teste de extremos em dimensão qualquer.
 :::
 
-::: {#exm-classificacao}
+::: {#exm-classificacao-forma}
 ## Classificando uma forma
 $q(x, y) = 2x^2 + 2y^2 - 2xy$ tem matriz $\left[\begin{smallmatrix} 2 & -1 \\ -1 & 2
 \end{smallmatrix}\right]$, autovalores $1$ e $3$ — ambos positivos. Logo $q$ é

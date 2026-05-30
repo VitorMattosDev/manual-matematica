@@ -19,7 +19,7 @@ constrói a noção de convergência e os **critérios** práticos para decidi-l
 
 ## Sequências e seu limite
 
-Retomamos a noção informal de @sec-sequencias com mais precisão.
+Retomamos a noção informal de @sec-sequencias-precalculo com mais precisão.
 
 ::: {#def-limite-sequencia}
 ## Limite de uma sequência
@@ -30,7 +30,7 @@ $\varepsilon > 0$, existe $N$ tal que $|a_n - L| < \varepsilon$ sempre que $n > 
 Se nenhum tal $L$ existe, $(a_n)$ **diverge**.
 :::
 
-::: {#exm-sequencias}
+::: {#exm-sequencias-series}
 ## Convergir e divergir
 - $a_n = \frac1n \to 0$: os termos $1, \tfrac12, \tfrac13, \dots$ encolhem para
   zero.
