@@ -121,6 +121,7 @@ book:
     - part: "Volume IX — Topologia"
       chapters:
         - volumes/v9-topologia/01-espacos-metricos.qmd
+        - volumes/v9-topologia/02-espacos-topologicos.qmd
   appendices:
     - notacao.qmd
 

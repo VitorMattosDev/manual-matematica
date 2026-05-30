@@ -1,0 +1,159 @@
+# Espaços topológicos {#sec-espacos-topologicos}
+
+## Motivação
+
+O capítulo anterior (@sec-espacos-metricos) revelou algo curioso: a continuidade pode
+ser definida só com **conjuntos abertos** — "pré-imagem de aberto é aberta" — sem
+mencionar distância. Se a distância é dispensável, por que carregá-la? A topologia dá o
+passo final da abstração: esquece a métrica e fica apenas com a **coleção de abertos**,
+elevada a estrutura primitiva.
+
+Por que abandonar a distância? Porque há noções fundamentalmente "elásticas" —
+conexidade, compacidade, convergência, continuidade — que não dependem de medidas, mas
+de quais conjuntos são "vizinhanças". A topologia é a geometria da deformação contínua:
+não distingue um círculo de um quadrado (deformáveis um no outro), mas distingue ambos
+de uma reta. Essa flexibilidade torna a topologia a linguagem comum da análise, da
+geometria e da álgebra modernas. Este capítulo define espaços topológicos e mostra que
+eles generalizam genuinamente os métricos.
+
+## A definição de topologia
+
+::: {#def-topologia}
+## Espaço topológico
+Uma **topologia** num conjunto $X$ é uma coleção $\tau$ de subconjuntos de $X$ (os
+**abertos**) tal que:
+
+1. $\emptyset$ e $X$ pertencem a $\tau$;
+2. a **união** de qualquer família de abertos é aberta;
+3. a **interseção** de **finitos** abertos é aberta.
+
+O par $(X, \tau)$ é um **espaço topológico**.
+:::
+
+Esses são exatamente os três fatos que provamos sobre os abertos da reta
+(@thm-uniao-abertos) — agora **promovidos a axiomas**. Em vez de derivar as
+propriedades dos abertos a partir de uma métrica, declaramos uma coleção de abertos e
+exigimos só essas três regras.
+
+::: {.callout-warning}
+## A assimetria união/interseção é essencial
+União **arbitrária** de abertos é aberta, mas só interseção **finita**. A diferença não
+é técnica: na reta, $\bigcap_n (-\frac1n, \frac1n) = \{0\}$ não é aberto
+(@sec-topologia-reta). Inverter os papéis (uniões finitas, interseções arbitrárias)
+definiria os **fechados**, não os abertos. Guardar essa assimetria é guardar a essência
+da topologia.
+:::
+
+## Exemplos de topologias
+
+::: {#exm-topologias}
+## Topologias num mesmo conjunto
+Num conjunto $X$ podem coexistir muitas topologias:
+
+- a **discreta**: $\tau$ = todos os subconjuntos (tudo é aberto);
+- a **caótica** (ou indiscreta): $\tau = \{\emptyset, X\}$ (só os obrigatórios);
+- a **usual** em $\mathbb{R}^n$: os abertos da métrica euclidiana;
+- a **cofinita**: abertos são $\emptyset$ e os complementares de conjuntos finitos.
+:::
+
+A discreta é a "mais fina" (mais abertos, distingue tudo); a caótica é a "mais grossa"
+(menos abertos, distingue nada). Entre elas vivem todas as topologias úteis.
+
+::: {#def-metrizavel}
+## Topologia métrica e espaços metrizáveis
+Toda métrica $d$ em $X$ induz uma topologia: os abertos métricos (@def-bola). Um
+espaço topológico é **metrizável** se sua topologia provém de alguma métrica.
+:::
+
+::: {#exm-nao-metrizavel}
+## Nem toda topologia vem de uma métrica
+A topologia caótica em um conjunto com dois ou mais pontos **não** é metrizável: numa
+métrica, pontos distintos $x \neq y$ teriam $d(x,y) > 0$ e bolas disjuntas em torno de
+cada um — abertos que separam os pontos. A caótica não tem tais abertos. Logo a
+topologia é estritamente mais geral que a métrica: há espaços topológicos que nenhuma
+distância descreve.
+:::
+
+## Vizinhanças, fecho e interior
+
+Os conceitos da topologia da reta sobrevivem intactos, definidos só com abertos.
+
+::: {#def-vizinhanca}
+## Vizinhança
+Uma **vizinhança** de $x$ é qualquer conjunto que contém um aberto contendo $x$. O
+**interior** $A^\circ$ é a união de todos os abertos contidos em $A$; o **fecho**
+$\overline A$ é a interseção de todos os fechados contendo $A$.
+:::
+
+::: {#def-ponto-aderencia}
+## Pontos de aderência
+$x \in \overline A$ se, e somente se, **toda** vizinhança de $x$ intersecta $A$. Um
+conjunto $D$ é **denso** em $X$ se $\overline D = X$ — todo ponto de $X$ é aderente a
+$D$.
+:::
+
+::: {.callout-note}
+## A topologia mede "proximidade qualitativa"
+Sem distância, não se pode dizer "quão perto", mas pode-se dizer "arbitrariamente
+perto": $x \in \overline A$ significa que $x$ é inseparável de $A$ por abertos. A
+densidade de $\mathbb{Q}$ em $\mathbb{R}$ (@cor-densidade), por exemplo, é uma afirmação
+puramente topológica. A topologia retém o **qualitativo** da proximidade, descartando o
+quantitativo.
+:::
+
+## Bases de uma topologia
+
+Na prática, especifica-se uma topologia por uma coleção menor que a gera.
+
+::: {#def-base-preview}
+## Base (prévia)
+Uma **base** de uma topologia é uma coleção $\mathcal B$ de abertos tal que **todo**
+aberto é união de elementos de $\mathcal B$. Por exemplo, os intervalos abertos formam
+base da topologia usual de $\mathbb{R}$; as bolas, base de um espaço métrico.
+:::
+
+A teoria de bases — como gerar topologias economicamente e compará-las — é o tema do
+próximo capítulo (@sec-base-subbase).
+
+## Exercícios
+
+::: {#exr-et-1}
+Verifique que a coleção $\tau = \{\emptyset, \{a\}, \{a, b\}, \{a, b, c\}\}$ é uma
+topologia em $X = \{a, b, c\}$.
+:::
+
+::: {#exr-et-cofinita}
+Mostre que a topologia cofinita em um conjunto **infinito** satisfaz os três axiomas.
+:::
+
+::: {#exr-et-fecho}
+Na topologia usual de $\mathbb{R}$, determine o fecho de $A = \{1/n : n \in
+\mathbb{N}\}$.
+:::
+
+::: {#exr-et-comparacao}
+Quantas topologias distintas existem num conjunto de dois elementos $\{a, b\}$?
+Liste-as.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-et-1
+Contém $\emptyset$ e $X = \{a,b,c\}$. Uniões: por exemplo $\{a\}\cup\{a,b\} = \{a,b\}
+\in \tau$; todas as uniões de membros caem na lista. Interseções: $\{a\}\cap\{a,b\} =
+\{a\} \in \tau$, etc. Os três axiomas valem — **é topologia**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-et-fecho
+Os pontos $\frac1n$ acumulam-se em $0$ (única vizinhança que sempre intersecta $A$).
+Cada $\frac1n$ já está em $A$, e $0$ é aderente mas não pertence. Logo $\overline A = A
+\cup \{0\} = \{1/n : n \in \mathbb{N}\} \cup \{0\}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-et-comparacao
+São **quatro**: a caótica $\{\emptyset, X\}$; a discreta $\{\emptyset, \{a\}, \{b\},
+X\}$; e as duas de Sierpiński $\{\emptyset, \{a\}, X\}$ e $\{\emptyset, \{b\}, X\}$.
+:::
