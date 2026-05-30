@@ -1,0 +1,159 @@
+# Primeira forma fundamental {#sec-primeira-forma}
+
+## Motivação
+
+Temos superfícies e seus planos tangentes (@sec-superficies). Mas como **medir** sobre
+uma superfície curva? Qual o comprimento de uma curva traçada sobre a esfera? O ângulo
+entre dois caminhos? A área de uma região? Todas essas medidas decorrem de uma única
+estrutura: o **produto interno** (@sec-produto-interno) restrito ao plano tangente em
+cada ponto — a **primeira forma fundamental**.
+
+A primeira forma é a "régua e o transferidor" intrínsecos da superfície. Ela codifica
+toda a **geometria métrica** que um habitante bidimensional da superfície poderia medir
+sem jamais sair dela. Essa distinção — entre o que se mede de dentro (intrínseco) e o
+que depende do espaço ambiente (extrínseco) — é a grande descoberta deste volume, e
+culminará no Teorema Egregium de Gauss (@sec-gauss-bonnet). Este capítulo define a
+primeira forma e mostra como dela saem comprimentos, ângulos e áreas.
+
+## A primeira forma fundamental
+
+::: {#def-primeira-forma}
+## Primeira forma fundamental
+A **primeira forma fundamental** em um ponto $p$ de uma superfície $S$ é o produto
+interno de $\mathbb{R}^3$ **restrito ao plano tangente** $T_pS$. Para vetores tangentes
+$w_1, w_2$, é simplesmente $\langle w_1, w_2\rangle$.
+Em termos de uma parametrização, definem-se os **coeficientes**
+$$
+E = \langle \mathbf{x}_u, \mathbf{x}_u\rangle, \quad F = \langle \mathbf{x}_u,
+\mathbf{x}_v\rangle, \quad G = \langle \mathbf{x}_v, \mathbf{x}_v\rangle.
+$$
+:::
+
+Um vetor tangente $w = a\,\mathbf{x}_u + b\,\mathbf{x}_v$ tem quadrado de comprimento
+$$
+\langle w, w\rangle = E\,a^2 + 2F\,ab + G\,b^2.
+$$
+É uma **forma quadrática** (@sec-teorema-espectral) nos coeficientes $(a, b)$ — daí o
+nome "forma".
+
+::: {#exm-primeira-forma}
+## Coeficientes em exemplos
+- **Plano** $\mathbf{x}(u,v) = (u, v, 0)$: $E = 1$, $F = 0$, $G = 1$ — a métrica usual
+  do plano.
+- **Cilindro** $\mathbf{x}(u,v) = (\cos u, \operatorname{sen}u, v)$: também $E = 1$, $F
+  = 0$, $G = 1$. **Idêntico ao plano!**
+- **Esfera** de raio $r$, em coordenadas esféricas: $E = r^2$, $F = 0$, $G = r^2
+  \operatorname{sen}^2 u$.
+:::
+
+::: {.callout-tip}
+## O cilindro tem a métrica do plano
+Que cilindro e plano tenham a **mesma** primeira forma não é coincidência: um cilindro é
+um plano **enrolado**, sem esticar nem rasgar. Um habitante da superfície não notaria a
+diferença medindo distâncias e ângulos — localmente, são indistinguíveis. Diz-se que são
+**localmente isométricos**. A esfera, em contraste, tem métrica genuinamente diferente:
+não pode ser desenrolada no plano sem distorção (por isso todo mapa-múndi distorce).
+:::
+
+## Comprimento, ângulo e área
+
+Toda a geometria métrica sai dos coeficientes $E, F, G$.
+
+::: {#thm-comprimento-superficie}
+## Comprimento de curva na superfície
+Uma curva $\alpha(t) = \mathbf{x}(u(t), v(t))$ sobre a superfície tem comprimento
+$$
+L = \int_a^b \sqrt{E\,u'^2 + 2F\,u'v' + G\,v'^2}\,dt.
+$$
+:::
+
+::: {#prp-angulo-area}
+## Ângulo e área
+- O **ângulo** $\theta$ entre duas curvas que se cruzam satisfaz $\cos\theta =
+  \frac{\langle w_1, w_2\rangle}{\|w_1\|\,\|w_2\|}$, calculado pela primeira forma.
+- A **área** de uma região $R = \mathbf{x}(Q)$ é
+$$
+A = \iint_Q \sqrt{EG - F^2}\,du\,dv,
+$$
+onde $\sqrt{EG - F^2} = \|\mathbf{x}_u \times \mathbf{x}_v\|$ é o fator de área.
+:::
+
+::: {.callout-note}
+## Tudo é intrínseco
+Note que comprimentos, ângulos e áreas dependem **apenas** de $E, F, G$ — não da forma
+como a superfície está mergulhada no espaço. São quantidades **intrínsecas**: mensuráveis
+por quem vive na superfície, sem acesso à terceira dimensão. A primeira forma fundamental
+**é** a geometria intrínseca da superfície, condensada em três funções.
+:::
+
+## Área da esfera, revisitada
+
+::: {#exm-area-esfera}
+## A área da esfera pela primeira forma
+Com $E = r^2$, $F = 0$, $G = r^2\operatorname{sen}^2 u$, o fator de área é $\sqrt{EG -
+F^2} = \sqrt{r^4\operatorname{sen}^2 u} = r^2\operatorname{sen}u$ (com $0 \leq u \leq
+\pi$). Integrando sobre a esfera toda:
+$$
+A = \int_0^{2\pi}\!\int_0^\pi r^2\operatorname{sen}u\,du\,dv = r^2\cdot 2\pi\cdot
+[-\cos u]_0^\pi = r^2\cdot 2\pi\cdot 2 = 4\pi r^2.
+$$
+A clássica área da esfera (@sec-volumes), agora deduzida da primeira forma fundamental e
+das integrais múltiplas (@sec-integrais-multiplas).
+:::
+
+## Isometrias
+
+::: {#def-isometria}
+## Isometria
+Uma aplicação entre superfícies é uma **isometria** se preserva a primeira forma
+fundamental — logo, todos os comprimentos, ângulos e áreas. Superfícies **isométricas**
+têm a mesma geometria intrínseca, embora possam parecer diferentes no espaço.
+:::
+
+Plano e cilindro são localmente isométricos (@exm-primeira-forma); plano e esfera não.
+A pergunta "quais superfícies são isométricas?" é central, e sua resposta profunda virá
+com a curvatura gaussiana (@sec-curvaturas) e o Teorema Egregium.
+
+## Exercícios
+
+::: {#exr-pf-1}
+Calcule os coeficientes $E, F, G$ da primeira forma para o gráfico $z = f(u, v)$.
+:::
+
+::: {#exr-pf-cone}
+Determine $E, F, G$ para o cone $\mathbf{x}(u, v) = (u\cos v, u\operatorname{sen}v, u)$.
+:::
+
+::: {#exr-pf-comprimento}
+Use a primeira forma da esfera para calcular o comprimento de um meridiano (de $u = 0$
+a $u = \pi$, com $v$ fixo), de raio $r$.
+:::
+
+::: {#exr-pf-area}
+Calcule a área da porção do cilindro de raio $1$ entre $v = 0$ e $v = h$, usando a
+primeira forma.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pf-1
+Com $\mathbf{x}_u = (1, 0, f_u)$ e $\mathbf{x}_v = (0, 1, f_v)$ (@exr-sf-grafico):
+$$
+E = 1 + f_u^2, \qquad F = f_u f_v, \qquad G = 1 + f_v^2.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pf-comprimento
+Num meridiano, $v$ é constante ($v' = 0$) e $u$ varia. O integrando é $\sqrt{E} =
+\sqrt{r^2} = r$. Logo $L = \int_0^\pi r\,du = \pi r$ — metade da circunferência máxima,
+como esperado.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pf-area
+Para o cilindro, $E = 1, F = 0, G = 1$, logo $\sqrt{EG - F^2} = 1$. A área é $\int_0^h
+\int_0^{2\pi} 1\,du\,dv = 2\pi h$ — coincide com "desenrolar" o cilindro num retângulo
+$2\pi \times h$, confirmando que ele é localmente isométrico ao plano.
+:::

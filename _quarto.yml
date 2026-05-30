@@ -133,6 +133,7 @@ book:
         - volumes/v10-diferencial/01-curvas.qmd
         - volumes/v10-diferencial/02-frenet.qmd
         - volumes/v10-diferencial/03-superficies.qmd
+        - volumes/v10-diferencial/04-primeira-forma.qmd
   appendices:
     - notacao.qmd
 
