@@ -1,0 +1,178 @@
+# Extensões de corpos {#sec-extensoes-corpos}
+
+## Motivação
+
+Vimos como adjuntar a raiz de um polinômio irredutível produz um corpo maior
+(@sec-aneis-polinomios): $\mathbb{C}$ a partir de $\mathbb{R}$, $\mathbb{F}_9$ a
+partir de $\mathbb{Z}_3$. Esse processo — **estender** um corpo para nele resolver
+equações antes insolúveis — é o coração da teoria dos corpos e a antessala da teoria
+de Galois (@sec-galois).
+
+A grande sacada deste capítulo é unir álgebra abstrata e álgebra linear: um corpo
+maior $L$, contendo um menor $K$, é automaticamente um **espaço vetorial sobre $K$**
+(@sec-espacos-vetoriais). Sua dimensão — o **grau** da extensão — torna-se uma medida
+precisa de "quão maior" $L$ é, e obedece a uma regra multiplicativa elegante. Com
+essa ferramenta resolvem-se, de uma vez, problemas que atormentaram os gregos por dois
+milênios: a impossibilidade de trissectar o ângulo ou duplicar o cubo com régua e
+compasso. Este capítulo constrói a teoria das extensões e suas aplicações
+geométricas.
+
+## Extensões e grau
+
+::: {#def-extensao}
+## Extensão de corpos
+Se $K$ é um subcorpo de $L$ (mesmas operações), diz-se que $L$ é uma **extensão** de
+$K$, escreve-se $L/K$. Então $L$ é um **espaço vetorial sobre $K$**, e o **grau** da
+extensão é sua dimensão,
+$$
+[L : K] = \dim_K L.
+$$
+A extensão é **finita** se esse grau é finito.
+:::
+
+::: {#exm-graus}
+## Graus de extensões
+- $[\mathbb{C} : \mathbb{R}] = 2$: $\{1, i\}$ é base de $\mathbb{C}$ sobre
+  $\mathbb{R}$ (todo complexo é $a + bi$).
+- $[\mathbb{Q}(\sqrt2) : \mathbb{Q}] = 2$: base $\{1, \sqrt2\}$.
+- $[\mathbb{R} : \mathbb{Q}] = \infty$: $\mathbb{R}$ é uma extensão infinita (e nem
+  enumerável) de $\mathbb{Q}$.
+:::
+
+## Elementos algébricos e o polinômio minimal
+
+::: {#def-algebrico}
+## Elemento algébrico
+Seja $L/K$ e $\alpha \in L$. O elemento $\alpha$ é **algébrico** sobre $K$ se é raiz
+de algum polinômio não nulo de $K[x]$; caso contrário, é **transcendente**. O
+polinômio mônico irredutível de menor grau que tem $\alpha$ por raiz é o **polinômio
+minimal** de $\alpha$.
+:::
+
+::: {#thm-grau-minimal}
+## Grau da extensão simples
+Se $\alpha$ é algébrico sobre $K$ com polinômio minimal de grau $n$, então
+$$
+K(\alpha) \cong K[x]/\langle p\rangle \quad\text{e}\quad [K(\alpha) : K] = n,
+$$
+com base $\{1, \alpha, \alpha^2, \dots, \alpha^{n-1}\}$ sobre $K$.
+:::
+
+::: {.callout-note}
+## Grau da extensão = grau do polinômio
+Adjuntar uma raiz de um irredutível de grau $n$ cria uma extensão de grau exatamente
+$n$. Assim $\sqrt2$ (minimal $x^2 - 2$) dá grau $2$; $\sqrt[3]2$ (minimal $x^3 - 2$)
+dá grau $3$; $i$ (minimal $x^2 + 1$) dá grau $2$. O grau do polinômio que define o
+elemento mede diretamente o tamanho da extensão — a ponte entre @sec-aneis-polinomios
+e a álgebra linear.
+:::
+
+::: {#exm-minimal}
+## Um polinômio minimal
+O minimal de $\sqrt2 + \sqrt3$ sobre $\mathbb{Q}$ é $x^4 - 10x^2 + 1$ (grau $4$). De
+fato $\mathbb{Q}(\sqrt2 + \sqrt3) = \mathbb{Q}(\sqrt2, \sqrt3)$, uma extensão de grau
+$4$ obtida adjuntando duas raízes quadradas.
+:::
+
+## A torre de graus
+
+O resultado estrutural central: graus se multiplicam ao empilhar extensões.
+
+::: {#thm-torre}
+## Teorema da torre (multiplicatividade do grau)
+Se $K \subseteq F \subseteq L$ são corpos com $[F : K]$ e $[L : F]$ finitos, então
+$$
+[L : K] = [L : F]\cdot[F : K].
+$$
+:::
+
+::: {.proof}
+*(Esboço.)* Se $\{u_i\}$ é base de $F$ sobre $K$ e $\{v_j\}$ é base de $L$ sobre $F$,
+então os produtos $\{u_i v_j\}$ formam base de $L$ sobre $K$. Contando, há $[F:K]
+\cdot[L:F]$ deles.
+:::
+
+::: {#cor-grau-divide}
+## O grau de um elemento divide o grau da extensão
+Numa extensão finita $L/K$, o grau do polinômio minimal de qualquer $\alpha \in L$
+**divide** $[L : K]$. (É o análogo, para corpos, do teorema de Lagrange,
+@thm-lagrange.)
+:::
+
+## Aplicação: construções com régua e compasso
+
+A teoria das extensões resolve problemas geométricos clássicos. A chave: cada novo
+ponto construtível com régua e compasso resolve, no máximo, uma equação de grau $2$.
+
+::: {#thm-construtibilidade}
+## Critério de construtibilidade
+Um número real $\alpha$ é **construtível** com régua e compasso (a partir de um
+segmento unitário) somente se $[\mathbb{Q}(\alpha) : \mathbb{Q}]$ é uma **potência de
+$2$**.
+:::
+
+Esse critério, puramente algébrico, sepulta três problemas que os gregos não
+conseguiram resolver — e prova que eram **impossíveis**, não apenas difíceis.
+
+::: {#exm-impossibilidades}
+## Os problemas clássicos, resolvidos pela álgebra
+- **Duplicação do cubo:** exige construir $\sqrt[3]2$, cujo grau sobre $\mathbb{Q}$ é
+  $3$ — não potência de $2$. **Impossível.**
+- **Trissecção do ângulo:** trissectar $60^\circ$ leva a um irredutível de grau $3$.
+  **Impossível** em geral.
+- **Quadratura do círculo:** exige $\sqrt\pi$; como $\pi$ é **transcendente**
+  (Lindemann), não é algébrico de grau algum. **Impossível.**
+:::
+
+::: {.callout-tip}
+## Por que a álgebra resolve geometria
+Régua e compasso só permitem interseções de retas e círculos — equações de grau $\leq
+2$. Cada passo de construção, portanto, dobra (no máximo) o grau da extensão, mantendo-o
+uma potência de $2$ (@thm-torre). Um número cujo grau **não** é potência de $2$ jamais
+pode ser alcançado. Dois mil anos de tentativas frustradas explicados por um teorema
+sobre dimensões de espaços vetoriais.
+:::
+
+## Exercícios
+
+::: {#exr-ext-grau}
+Determine $[\mathbb{Q}(\sqrt5) : \mathbb{Q}]$ e exiba uma base.
+:::
+
+::: {#exr-ext-minimal}
+Encontre o polinômio minimal de $\sqrt[3]2$ sobre $\mathbb{Q}$ e o grau da extensão.
+:::
+
+::: {#exr-ext-torre}
+Use o teorema da torre para calcular $[\mathbb{Q}(\sqrt2, \sqrt3) : \mathbb{Q}]$.
+:::
+
+::: {#exr-ext-construtivel}
+Explique, via grau de extensão, por que não se pode duplicar o cubo com régua e
+compasso.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ext-minimal
+$\sqrt[3]2$ é raiz de $x^3 - 2$, irredutível sobre $\mathbb{Q}$ (sem raízes
+racionais, pelo critério de Eisenstein com $p = 2$). Logo o minimal é $x^3 - 2$ e
+$[\mathbb{Q}(\sqrt[3]2) : \mathbb{Q}] = 3$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ext-torre
+$\mathbb{Q} \subseteq \mathbb{Q}(\sqrt2) \subseteq \mathbb{Q}(\sqrt2, \sqrt3)$. Tem-se
+$[\mathbb{Q}(\sqrt2) : \mathbb{Q}] = 2$ e $[\mathbb{Q}(\sqrt2,\sqrt3) :
+\mathbb{Q}(\sqrt2)] = 2$ (pois $\sqrt3 \notin \mathbb{Q}(\sqrt2)$, minimal $x^2 - 3$).
+Pelo @thm-torre, o grau total é $2\cdot 2 = 4$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ext-construtivel
+Duplicar o cubo exige construir $\sqrt[3]2$, de grau $3$ sobre $\mathbb{Q}$
+(@exr-ext-minimal). Como $3$ não é potência de $2$, o @thm-construtibilidade garante
+que $\sqrt[3]2$ não é construtível — logo a duplicação é **impossível** com régua e
+compasso.
+:::

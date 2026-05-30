@@ -120,7 +120,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v7-abstrata/05-aneis.qmd` — Anéis e ideais.
 - [x] `volumes/v7-abstrata/06-dominios-corpos.qmd` — Domínios de integridade e corpos.
 - [x] `volumes/v7-abstrata/07-aneis-polinomios.qmd` — Anéis de polinômios.
-- [ ] `volumes/v7-abstrata/08-extensoes-corpos.qmd` — Extensões de corpos.
+- [x] `volumes/v7-abstrata/08-extensoes-corpos.qmd` — Extensões de corpos.
 - [ ] `volumes/v7-abstrata/09-galois.qmd` — Introdução à teoria de Galois.
 
 ## Volume VIII — Análise Real
