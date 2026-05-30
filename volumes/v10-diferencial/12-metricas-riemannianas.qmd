@@ -1,0 +1,159 @@
+# Métricas riemannianas e pseudo-riemannianas {#sec-metricas-riemannianas}
+
+## Motivação
+
+Uma variedade (@sec-variedades) sozinha é "elástica": sabe-se quem está perto, mas não
+**quão longe**. Para medir comprimentos, ângulos e volumes — para fazer geometria —
+falta uma régua. Essa régua é a **métrica riemanniana**: um produto interno
+(@sec-produto-interno) em cada espaço tangente, variando suavemente de ponto a ponto.
+
+A métrica é o objeto central da geometria diferencial moderna e da relatividade geral.
+Ela generaliza a primeira forma fundamental das superfícies (@sec-primeira-forma) a
+dimensão qualquer e, crucialmente, admite uma variante de sinal indefinido — a métrica
+**lorentziana** — que descreve o espaço-tempo, onde tempo e espaço entram com sinais
+opostos. Este capítulo define métricas, mostra como medir com elas, e introduz o caso
+pseudo-riemanniano da física.
+
+## A métrica como tensor
+
+::: {#def-metrica-riemanniana}
+## Métrica riemanniana
+Uma **métrica riemanniana** $g$ numa variedade $M$ é um campo tensorial do tipo $(0,2)$
+(@sec-campos-tensores) que, em cada ponto, é um produto interno: **simétrico**
+($g_{ij} = g_{ji}$) e **positivo definido** (@sec-teorema-espectral). Em coordenadas,
+$$
+g = g_{ij}\,dx^i\otimes dx^j, \qquad \langle u, v\rangle = g_{ij}\,u^i v^j.
+$$
+O par $(M, g)$ é uma **variedade riemanniana**.
+:::
+
+::: {#exm-metricas}
+## Métricas conhecidas
+- **Euclidiana** em $\mathbb{R}^n$: $g_{ij} = \delta_{ij}$ (identidade), recuperando o
+  produto escalar usual.
+- **Esfera** de raio $a$: $g = a^2(d\theta^2 + \operatorname{sen}^2\theta\,d\varphi^2)$
+  — a primeira forma fundamental (@sec-primeira-forma) em notação métrica.
+- **Polares** em $\mathbb{R}^2$: $g = dr^2 + r^2 d\theta^2$.
+:::
+
+::: {.callout-tip}
+## O elemento de linha $ds^2$
+A métrica é quase sempre escrita como o **elemento de linha**
+$$
+ds^2 = g_{ij}\,dx^i dx^j,
+$$
+que dá o quadrado do comprimento de um deslocamento infinitesimal. É a receita para medir
+tudo: o comprimento de uma curva é $\int ds = \int\sqrt{g_{ij}\dot x^i\dot x^j}\,dt$
+(@sec-curvas), e ângulos saem do produto interno. Conhecer $ds^2$ **é** conhecer a
+geometria.
+:::
+
+## Medindo com a métrica
+
+::: {#thm-comprimento-metrica}
+## Comprimento, ângulo e volume
+Numa variedade riemanniana, a métrica determina:
+
+- **comprimento** de curva: $L = \int_a^b \sqrt{g_{ij}\,\dot x^i\dot x^j}\,dt$;
+- **ângulo** entre vetores: $\cos\theta = \dfrac{g_{ij}u^i v^j}{\|u\|\,\|v\|}$;
+- **elemento de volume**: $dV = \sqrt{\det(g_{ij})}\;dx^1\cdots dx^n$.
+:::
+
+O fator $\sqrt{\det g}$ generaliza o $\sqrt{EG - F^2}$ das superfícies
+(@sec-primeira-forma) e o $r$ das coordenadas polares — é o que corrige a distorção das
+coordenadas ao integrar.
+
+## Subir e descer índices
+
+A métrica fornece um isomorfismo entre vetores e covetores.
+
+::: {#def-subir-descer}
+## Isomorfismo musical
+A métrica $g_{ij}$ e sua inversa $g^{ij}$ (com $g^{ij}g_{jk} = \delta^i_k$) permitem
+**baixar** e **subir** índices:
+$$
+v_i = g_{ij}\,v^j \quad(\text{vetor}\to\text{covetor}), \qquad \omega^i = g^{ij}\,
+\omega_j \quad(\text{covetor}\to\text{vetor}).
+$$
+:::
+
+::: {.callout-note}
+## Por que isso importa na física
+Sem métrica, vetores (contravariantes) e covetores (covariantes) são objetos
+**diferentes** (@sec-campos-tensores). A métrica os identifica, e é por isso que na
+física se fala livremente em "componentes covariantes e contravariantes do mesmo vetor"
+— como $v^\mu$ e $v_\mu$ em relatividade. O **gradiente** de uma função, naturalmente um
+covetor $df$, vira o vetor $\nabla f$ exatamente subindo o índice com $g^{ij}$.
+:::
+
+## Métricas pseudo-riemannianas e o espaço-tempo
+
+::: {#def-pseudo-riemanniana}
+## Métrica pseudo-riemanniana
+Uma **métrica pseudo-riemanniana** abandona a positividade: exige-se apenas que $g$ seja
+simétrica e **não degenerada**. A **assinatura** (número de sinais $+$ e $-$) classifica-a.
+A métrica **lorentziana** tem assinatura $(-,+,+,+)$ (ou $(+,-,-,-)$).
+:::
+
+::: {.callout-tip}
+## A geometria do espaço-tempo
+A relatividade especial vive na métrica de **Minkowski**
+$$
+ds^2 = -c^2\,dt^2 + dx^2 + dy^2 + dz^2,
+$$
+em que o tempo entra com **sinal oposto** ao espaço. Esse sinal é tudo: ele separa os
+deslocamentos em **tipo-tempo** ($ds^2 < 0$, percorríveis por matéria), **tipo-luz**
+($ds^2 = 0$, a trajetória da luz) e **tipo-espaço** ($ds^2 > 0$). Na relatividade
+**geral**, a métrica lorentziana varia de ponto a ponto — e essa variação **é** a
+gravidade (@sec-curvatura-riemann).
+:::
+
+::: {#exm-cone-luz}
+## O cone de luz
+Em Minkowski, os vetores com $ds^2 = 0$ formam o **cone de luz** em cada ponto:
+$-c^2 t^2 + x^2 + y^2 + z^2 = 0$. Ele divide o espaço-tempo em futuro, passado e
+"alhures" causalmente inacessível — a estrutura causal nasce da assinatura da métrica.
+:::
+
+## Exercícios
+
+::: {#exr-mr-comprimento}
+Use a métrica polar $ds^2 = dr^2 + r^2 d\theta^2$ para calcular o comprimento do arco
+$r = 1$, $0 \leq \theta \leq \pi$.
+:::
+
+::: {#exr-mr-volume}
+Para a métrica esférica $ds^2 = a^2(d\theta^2 + \operatorname{sen}^2\theta\,d\varphi^2)$,
+calcule $\sqrt{\det g}$ e escreva o elemento de área.
+:::
+
+::: {#exr-mr-minkowski}
+Classifique em tipo-tempo, tipo-luz ou tipo-espaço o vetor $(t,x,y,z) = (1,1,0,0)$ em
+Minkowski com $c = 1$.
+:::
+
+::: {#exr-mr-subir}
+Em $\mathbb{R}^2$ euclidiano ($g_{ij} = \delta_{ij}$), mostre que subir/descer índices
+não muda as componentes (covetores e vetores coincidem numericamente).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-mr-comprimento
+Em $r = 1$ (constante), $dr = 0$ e $ds = \sqrt{0 + 1\cdot d\theta^2} = d\theta$. Logo
+$L = \int_0^\pi d\theta = \pi$ — meia circunferência de raio $1$. ✓
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-mr-volume
+$\det g = a^2\cdot a^2\operatorname{sen}^2\theta = a^4\operatorname{sen}^2\theta$, logo
+$\sqrt{\det g} = a^2\operatorname{sen}\theta$ e $dV = a^2\operatorname{sen}\theta\,
+d\theta\,d\varphi$ — o elemento de área da esfera (@sec-integrais-superficie).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-mr-minkowski
+$ds^2 = -t^2 + x^2 + y^2 + z^2 = -1 + 1 = 0$: o vetor é **tipo-luz**. Ele jaz sobre o
+cone de luz — é a trajetória possível de um raio de luz.
+:::
