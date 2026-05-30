@@ -108,7 +108,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v6-linear/07-autovalores.qmd` — Autovalores e autovetores.
 - [x] `volumes/v6-linear/08-diagonalizacao.qmd` — Diagonalização.
 - [x] `volumes/v6-linear/09-produto-interno.qmd` — Espaços com produto interno; ortogonalidade.
-- [ ] `volumes/v6-linear/10-teorema-espectral.qmd` — Formas quadráticas e teorema espectral.
+- [x] `volumes/v6-linear/10-teorema-espectral.qmd` — Formas quadráticas e teorema espectral.
 
 ## Volume VII — Álgebra Abstrata
 *Objetivo: grupos, anéis, corpos. Pré-req.: Vols. I, VI.*

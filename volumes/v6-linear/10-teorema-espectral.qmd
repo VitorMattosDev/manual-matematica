@@ -1,0 +1,190 @@
+# Formas quadráticas e teorema espectral {#sec-teorema-espectral}
+
+## Motivação
+
+Reunimos agora as duas grandes linhas do Volume VI: a diagonalização
+(@sec-diagonalizacao), que simplifica transformações via autovetores, e o produto
+interno (@sec-produto-interno), que traz geometria — ângulos e ortogonalidade. O
+**teorema espectral** é o ponto onde elas se encontram da forma mais perfeita
+possível: para matrizes simétricas, existe sempre uma base **ortonormal** de
+autovetores.
+
+A aplicação que coroa o volume são as **formas quadráticas** — expressões como $3x^2
++ 2xy + 3y^2$, que generalizam as cônicas (@sec-conicas) e aparecem em otimização,
+estatística (matrizes de covariância) e física (energia, momentos de inércia). O
+teorema espectral mostra que toda forma quadrática, vista no sistema de coordenadas
+certo, é apenas uma soma de quadrados — revelando de imediato sua natureza
+geométrica. Este capítulo fecha o Volume VI amarrando a teoria à sua aplicação mais
+elegante.
+
+## O teorema espectral
+
+::: {#thm-espectral}
+## Teorema espectral (matrizes simétricas reais)
+Se $A$ é uma matriz real **simétrica** ($A^T = A$), então:
+
+1. todos os seus autovalores são **reais**;
+2. autovetores de autovalores distintos são **ortogonais**;
+3. $A$ é **diagonalizável por uma matriz ortogonal**: existe $Q$ com $Q^T Q = I$ e
+   diagonal $D$ tais que
+$$
+A = Q D Q^T.
+$$
+:::
+
+::: {.proof}
+*(Esboço.)* Para (2): se $Au = \lambda u$ e $Av = \mu v$ com $\lambda \neq \mu$,
+então $\lambda\langle u, v\rangle = \langle Au, v\rangle = \langle u, A^T v\rangle =
+\langle u, Av\rangle = \mu\langle u, v\rangle$, usando $A^T = A$. Logo $(\lambda -
+\mu)\langle u, v\rangle = 0$, e como $\lambda \neq \mu$, $\langle u, v\rangle = 0$.
+A existência de uma base ortonormal completa de autovetores (mesmo com autovalores
+repetidos) usa indução sobre a dimensão e o processo de Gram-Schmidt
+(@thm-gram-schmidt).
+:::
+
+::: {.callout-note}
+## "Ortogonalmente diagonalizável" é exatamente "simétrica"
+A recíproca também vale: se $A = QDQ^T$ com $Q$ ortogonal e $D$ diagonal, então $A^T
+= (QDQ^T)^T = QD^TQ^T = QDQ^T = A$. Logo **uma matriz real é ortogonalmente
+diagonalizável se, e somente se, é simétrica**. As simétricas são precisamente as
+matrizes "geometricamente perfeitas".
+:::
+
+::: {#exm-espectral}
+## Diagonalização ortogonal
+Para $A = \left[\begin{smallmatrix} 2 & 1 \\ 1 & 2 \end{smallmatrix}\right]$
+(simétrica), já achamos (@exm-calculo-autovalores) autovalores $1, 3$ e autovetores
+$(1, -1), (1, 1)$ — ortogonais. Normalizando, $q_1 = \frac{1}{\sqrt2}(1, -1)$ e
+$q_2 = \frac{1}{\sqrt2}(1, 1)$, donde
+$$
+Q = \frac{1}{\sqrt2}\begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix}, \quad D =
+\begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}, \quad A = QDQ^T.
+$$
+:::
+
+## Formas quadráticas
+
+::: {#def-forma-quadratica}
+## Forma quadrática
+Uma **forma quadrática** em $n$ variáveis é uma função $q(x) = x^T A x$, com $A$
+simétrica. Em duas variáveis,
+$$
+q(x, y) = a x^2 + 2b\,xy + c y^2 = \begin{bmatrix} x & y \end{bmatrix}
+\begin{bmatrix} a & b \\ b & c \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}.
+$$
+:::
+
+O termo cruzado $xy$ é o que complica — ele corresponde às entradas fora da diagonal
+de $A$. Eliminá-lo é diagonalizar $A$.
+
+::: {#thm-eixos-principais}
+## Teorema dos eixos principais
+Toda forma quadrática $q(x) = x^T A x$ pode ser escrita, na base ortonormal de
+autovetores de $A$ (nova coordenada $y = Q^T x$), como **soma de quadrados sem termos
+cruzados**:
+$$
+q = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2,
+$$
+onde os $\lambda_i$ são os autovalores de $A$.
+:::
+
+::: {.proof}
+Com $A = QDQ^T$ e $y = Q^T x$: $q = x^T A x = x^T Q D Q^T x = (Q^Tx)^T D (Q^T x) =
+y^T D y = \sum_i \lambda_i y_i^2$, pois $D$ é diagonal.
+:::
+
+::: {#exm-conica-rotacao}
+## Reconhecendo uma cônica
+A curva $5x^2 - 4xy + 5y^2 = 9$ tem matriz $A = \left[\begin{smallmatrix} 5 & -2 \\
+-2 & 5 \end{smallmatrix}\right]$, de autovalores $3$ e $7$. Nos eixos principais ela
+vira $3y_1^2 + 7y_2^2 = 9$ — uma **elipse** (@sec-conicas), girada $45^\circ$ em
+relação aos eixos originais. O teorema espectral *endireita* a cônica.
+:::
+
+## Classificação e positividade
+
+O sinal dos autovalores classifica a forma — e, com ela, a natureza de pontos
+críticos em otimização.
+
+::: {#def-positiva-definida}
+## Definição de sinal
+A forma $q(x) = x^T A x$ (e a matriz simétrica $A$) é:
+
+- **positiva definida** se $q(x) > 0$ para todo $x \neq 0$ — equivale a **todos os
+  autovalores positivos**;
+- **negativa definida** se todos os autovalores são negativos;
+- **indefinida** se há autovalores de sinais opostos.
+:::
+
+::: {.callout-tip}
+## O teste da segunda derivada, revisitado
+Em otimização de várias variáveis (@sec-varias-variaveis), classificar um ponto
+crítico é olhar o sinal da forma quadrática dada pela **matriz Hessiana** (das
+segundas derivadas, simétrica por Clairaut). Positiva definida → mínimo local;
+negativa definida → máximo; indefinida → **ponto de sela**. O teorema espectral é,
+portanto, o motor por trás do teste de extremos em dimensão qualquer.
+:::
+
+::: {#exm-classificacao}
+## Classificando uma forma
+$q(x, y) = 2x^2 + 2y^2 - 2xy$ tem matriz $\left[\begin{smallmatrix} 2 & -1 \\ -1 & 2
+\end{smallmatrix}\right]$, autovalores $1$ e $3$ — ambos positivos. Logo $q$ é
+**positiva definida**: a origem é mínimo estrito, e as curvas de nível $q = c$ são
+elipses.
+:::
+
+## Encerramento do Volume VI
+
+Percorremos o caminho completo: de sistemas lineares e matrizes
+(@sec-sistemas-gauss, @sec-matrizes) a determinantes (@sec-determinantes), à estrutura
+abstrata de espaços vetoriais, bases e dimensão (@sec-espacos-vetoriais,
+@sec-base-dimensao), às transformações lineares como matrizes
+(@sec-transformacoes-lineares), e finalmente à diagonalização e ao teorema espectral.
+A álgebra linear que construímos é a linguagem da análise multivariável, da álgebra
+abstrata (@sec-grupos, no Volume VII) e da análise funcional. Os "eixos principais"
+que aprendemos a encontrar reaparecerão em toda a matemática avançada.
+
+## Exercícios
+
+::: {#exr-esp-1}
+Diagonalize ortogonalmente $A = \left[\begin{smallmatrix} 3 & 1 \\ 1 & 3
+\end{smallmatrix}\right]$ (ache $Q$ e $D$).
+:::
+
+::: {#exr-esp-forma}
+Escreva a forma quadrática $q(x, y) = x^2 + 6xy + y^2$ como soma de quadrados nos
+eixos principais e classifique-a.
+:::
+
+::: {#exr-esp-conica}
+Identifique a cônica $2x^2 + 2xy + 2y^2 = 1$ usando autovalores.
+:::
+
+::: {#exr-esp-positiva}
+Mostre que $A = \left[\begin{smallmatrix} 2 & 1 \\ 1 & 1 \end{smallmatrix}\right]$ é
+positiva definida (via autovalores ou via determinantes).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-esp-1
+$\det(A - \lambda I) = (3-\lambda)^2 - 1 = (\lambda - 2)(\lambda - 4)$. Autovalores
+$2, 4$; autovetores $(1, -1)$ e $(1, 1)$, ortogonais. Normalizando, $Q =
+\frac{1}{\sqrt2}\left[\begin{smallmatrix} 1 & 1 \\ -1 & 1 \end{smallmatrix}\right]$,
+$D = \left[\begin{smallmatrix} 2 & 0 \\ 0 & 4 \end{smallmatrix}\right]$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-esp-forma
+Matriz $\left[\begin{smallmatrix} 1 & 3 \\ 3 & 1 \end{smallmatrix}\right]$,
+autovalores $4$ e $-2$. Logo $q = 4y_1^2 - 2y_2^2$: como há autovalores de sinais
+opostos, $q$ é **indefinida** (curvas de nível são hipérboles; a origem é sela).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-esp-positiva
+Autovalores: $\det(A - \lambda I) = \lambda^2 - 3\lambda + 1 = 0$, raízes $\frac{3
+\pm\sqrt5}{2}$, ambas positivas. (Alternativa: $\det A = 1 > 0$ e entrada $a_{11} = 2
+> 0$, critério dos menores principais.) Logo $A$ é **positiva definida**.
+:::
