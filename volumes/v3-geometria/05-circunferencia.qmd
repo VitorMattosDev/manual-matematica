@@ -1,0 +1,159 @@
+# Circunferência: ângulos e potência de ponto {#sec-circunferencia}
+
+## Motivação
+
+Depois da reta e do triângulo, a **circunferência** é a curva fundamental da
+geometria — o lugar dos pontos equidistantes de um centro. Sua perfeita simetria
+gera relações de rara elegância: ângulos que se mantêm constantes, produtos de
+segmentos que se conservam, retas que a tocam num único ponto. Essas propriedades
+sustentam desde a astronomia antiga até as engrenagens e órbitas.
+
+Este capítulo estabelece as relações entre **ângulos** numa circunferência —
+central, inscrito — e culmina em dois resultados de grande poder: o **ângulo
+inscrito** (que vê uma corda sempre sob o mesmo ângulo) e a **potência de ponto**
+(que torna constante um produto de segmentos). As demonstrações reúnem o triângulo
+isósceles (@sec-triangulos) e a semelhança (@sec-semelhanca), mostrando como os
+capítulos anteriores convergem.
+
+## Elementos e ângulos
+
+::: {#def-circunferencia}
+## Circunferência
+A **circunferência** de centro $O$ e raio $r$ é o conjunto dos pontos do plano à
+distância $r$ de $O$. Uma **corda** é um segmento entre dois de seus pontos; a
+corda que passa pelo centro é um **diâmetro**. Um arco subtende a corda
+correspondente.
+:::
+
+Dois tipos de ângulo lêem um mesmo arco a partir de posições diferentes.
+
+::: {#def-angulos-circulo}
+## Ângulo central e ângulo inscrito
+O **ângulo central** tem vértice no centro $O$; sua medida é, por definição, a
+medida do **arco** que ele subtende. O **ângulo inscrito** tem vértice **sobre** a
+circunferência e lados que são cordas.
+:::
+
+## O teorema do ângulo inscrito
+
+O resultado central da geometria do círculo relaciona os dois ângulos.
+
+::: {#thm-angulo-inscrito}
+## Ângulo inscrito
+Um ângulo inscrito mede **metade** do ângulo central que subtende o mesmo arco.
+:::
+
+::: {.proof}
+Tratamos o caso em que um lado do ângulo inscrito passa pelo centro (o caso geral
+reduz-se a este somando ou subtraindo dois casos). Seja $\hat{A}$ o ângulo
+inscrito de vértice $A$, com o lado $\overline{AB}$ passando por $O$, e seja $C$ o
+outro ponto. O triângulo $\triangle OAC$ é **isósceles**, pois $\overline{OA} =
+\overline{OC} = r$; logo seus ângulos da base são iguais (@thm-isosceles):
+$\hat{OAC} = \hat{OCA} = \alpha$. O ângulo central $\hat{COB}$ é externo ao
+triângulo em $O$, igual à soma dos dois não adjacentes: $\hat{COB} = \alpha +
+\alpha = 2\alpha$. Como o ângulo inscrito é $\alpha$ e o central é $2\alpha$, o
+inscrito é a metade.
+:::
+
+::: {#cor-arco-capaz}
+## Ângulos que veem a mesma corda
+Todos os ângulos inscritos que subtendem o **mesmo arco** são iguais. Em
+particular, todo ângulo inscrito num **semicírculo** é reto (o **teorema de
+Tales** do círculo).
+:::
+
+::: {.proof}
+Todos subtendem o mesmo arco, logo o mesmo ângulo central; pelo
+@thm-angulo-inscrito, todos valem metade dele — são iguais entre si. Se a corda é
+um **diâmetro**, o ângulo central é o raso $180°$, e o inscrito mede $\dfrac{180°}
+{2} = 90°$.
+:::
+
+::: {.callout-tip}
+## Por que a bola entra sob ângulo constante
+O @cor-arco-capaz explica um fato esportivo: ao correr ao longo de um arco, um
+jogador vê o gol (uma corda fixa) sempre sob o mesmo ângulo. O lugar dos pontos
+que veem um segmento sob ângulo dado é um arco — o **arco capaz** —, ferramenta de
+construções geométricas e de navegação.
+:::
+
+## Potência de ponto
+
+A última relação fixa um **produto** de segmentos, e não um ângulo. Por um ponto
+fixo, toda reta que corta a circunferência determina dois segmentos cujo produto
+não depende da reta.
+
+::: {#thm-potencia}
+## Potência de ponto
+Por um ponto $P$, duas retas cortam uma circunferência em $A, B$ e em $C, D$
+respectivamente. Então
+$$
+\overline{PA} \cdot \overline{PB} = \overline{PC} \cdot \overline{PD}.
+$$
+:::
+
+::: {.proof}
+Considere os triângulos $\triangle PAC$ e $\triangle PDB$. Eles têm o ângulo em
+$P$ comum (ou opostos pelo vértice, conforme $P$ seja externo ou interno) e os
+ângulos inscritos $\hat{ACP}$ e $\hat{DBP}$ iguais, pois ambos subtendem o mesmo
+arco $\overarc{AD}$ (@cor-arco-capaz). Por dois ângulos iguais, $\triangle PAC \sim
+\triangle PDB$ (caso AA, @thm-caso-aa). Da proporção entre lados correspondentes,
+$$
+\frac{\overline{PA}}{\overline{PD}} = \frac{\overline{PC}}{\overline{PB}} \implies
+\overline{PA} \cdot \overline{PB} = \overline{PC} \cdot \overline{PD}.
+$$
+:::
+
+::: {#exm-potencia}
+## Usando a potência
+De um ponto $P$ externo, uma secante corta a circunferência em $A$ e $B$ com
+$\overline{PA} = 4$ e $\overline{PB} = 9$. Outra secante a corta em $C$ e $D$ com
+$\overline{PC} = 3$. Quanto vale $\overline{PD}$? Pela potência de ponto,
+$$
+4 \cdot 9 = 3 \cdot \overline{PD} \implies \overline{PD} = 12.
+$$
+:::
+
+## Exercícios
+
+::: {#exr-inscrito}
+Numa circunferência, um ângulo central mede $110°$. Quanto mede um ângulo inscrito
+que subtende o mesmo arco?
+:::
+
+::: {#exr-semicirculo}
+Um triângulo está inscrito numa circunferência de modo que um de seus lados é um
+diâmetro. Se os catetos medem $6$ e $8$, qual o raio da circunferência?
+:::
+
+::: {#exr-potencia}
+De um ponto $P$ externo a uma circunferência, uma secante a corta em $A$ e $B$ com
+$\overline{PA} = 5$ e $\overline{AB} = 7$. Uma segunda secante a corta em $C$ e $D$
+com $\overline{PC} = 4$. Determine $\overline{PD}$.
+:::
+
+::: {#exr-tangente}
+Prove que duas tangentes traçadas de um mesmo ponto externo a uma circunferência
+têm comprimentos iguais. (Sugestão: use o raio perpendicular à tangente e o caso
+de congruência adequado.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-semicirculo
+Como um lado do triângulo inscrito é um diâmetro, o ângulo oposto é reto
+(@cor-arco-capaz): o triângulo é retângulo, e o diâmetro é a **hipotenusa**. Por
+Pitágoras (@thm-pitagoras), a hipotenusa mede $\sqrt{6^2 + 8^2} = 10$. Logo o
+diâmetro é $10$ e o raio é $5$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-potencia
+A primeira secante dá $\overline{PB} = \overline{PA} + \overline{AB} = 5 + 7 =
+12$. Pela potência de ponto (@thm-potencia),
+$$
+\overline{PA} \cdot \overline{PB} = \overline{PC} \cdot \overline{PD} \implies 5
+\cdot 12 = 4 \cdot \overline{PD} \implies \overline{PD} = 15.
+$$
+:::
