@@ -1,0 +1,61 @@
+# Apresentação {.unnumbered}
+
+Este é o **Manual de Matemática**, o primeiro da série *Manuais de Ciências*.
+A proposta é cobrir a matemática de forma contínua — começando da aritmética
+elementar e subindo, volume a volume, até tópicos avançados como análise e
+geometria diferencial — num texto único, gratuito e em português.
+
+## Para quem é este manual
+
+O texto é escrito para um público misto: estudantes que estão vendo cada assunto
+pela primeira vez e autodidatas que querem uma referência completa. Por isso,
+cada conceito aparece primeiro de forma intuitiva e depois de forma rigorosa.
+Você não precisa ler tudo em ordem: use o **mapa de pré-requisitos** abaixo para
+navegar.
+
+## Como ler
+
+Cada capítulo segue uma estrutura padrão:
+
+- **Motivação** — por que o assunto existe e que problema ele resolve.
+- **Definições e resultados** — em destaque, numerados e referenciáveis.
+- **Exemplos resolvidos** — aplicando a teoria.
+- **Exercícios** — alguns com solução ao final.
+
+Resultados são numerados por capítulo e podem ser citados de qualquer lugar do
+livro (por exemplo, "pelo @thm-inducao-forte"). Definições aparecem em caixas
+como a de @def-exemplo-apresentacao.
+
+::: {#def-exemplo-apresentacao}
+Uma **definição** é uma convenção que fixa o significado preciso de um termo.
+Ao longo do manual, definições aparecem destacadas como esta.
+:::
+
+## Mapa de pré-requisitos
+
+A matemática não é estritamente linear. O grafo abaixo mostra de que tópicos
+cada volume depende — use-o para montar seu próprio caminho de leitura.
+
+```{mermaid}
+flowchart TD
+    V1["Vol. I — Fundamentos"] --> V2["Vol. II — Álgebra"]
+    V1 --> V3["Vol. III — Geometria"]
+    V2 --> V4["Vol. IV — Pré-cálculo"]
+    V3 --> V4
+    V4 --> V5["Vol. V — Cálculo"]
+    V2 --> V6["Vol. VI — Álgebra Linear"]
+    V5 --> V8["Vol. VIII — Análise Real"]
+    V6 --> V8
+    V2 --> V7["Vol. VII — Álgebra Abstrata"]
+    V8 --> V9["Vol. IX — Topologia"]
+    V8 --> V10["Vol. X — Geometria Diferencial"]
+    V9 --> V10
+    V6 --> V10
+```
+
+## Como contribuir
+
+O projeto é aberto. As convenções de escrita (como redigir uma definição, um
+teorema, um exercício) estão em `PLANO.md`. Correções e sugestões podem ser
+feitas pelos botões de *edição* e *issue* no canto superior direito de cada
+página.

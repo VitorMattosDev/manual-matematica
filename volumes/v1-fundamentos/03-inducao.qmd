@@ -1,0 +1,148 @@
+# Indução e Boa Ordenação {#sec-inducao}
+
+> **Capítulo-modelo.** Este capítulo está totalmente escrito para servir de
+> referência de estilo: ele mostra como usar motivação, definições, teoremas,
+> demonstrações, exemplos e exercícios. Use-o como gabarito ao escrever os
+> demais.
+
+## Motivação
+
+Muitas afirmações em matemática são, na verdade, *infinitas* coleções de
+afirmações — uma para cada número natural. Por exemplo: "a soma dos $n$
+primeiros números ímpares é $n^2$" vale para $n = 1$, para $n = 2$, e assim por
+diante, sem fim. Não podemos verificar caso a caso para sempre. Precisamos de um
+método que prove, de uma só vez, infinitos casos. Esse método é a **indução
+matemática**, e sua justificativa está numa propriedade fundamental dos números
+naturais.
+
+## O princípio da indução
+
+Trabalhamos com o conjunto dos naturais $\mathbb{N} = \{1, 2, 3, \dots\}$.
+O princípio a seguir é tomado como axioma (ele equivale ao axioma de boa
+ordenação, como veremos em @thm-boa-ordem).
+
+::: {#thm-inducao}
+## Princípio da Indução Finita
+
+Seja $P(n)$ uma afirmação sobre o natural $n$. Suponha que:
+
+1. **(base)** $P(1)$ é verdadeira; e
+2. **(passo)** para todo $k \geq 1$, se $P(k)$ é verdadeira, então $P(k+1)$
+   também é.
+
+Então $P(n)$ é verdadeira para todo $n \in \mathbb{N}$.
+:::
+
+A ideia é a do dominó: a base derruba a primeira peça; o passo garante que cada
+peça derruba a seguinte; logo todas caem.
+
+::: {.callout-warning}
+## Erro comum
+Provar apenas o passo, sem a base, não prova nada. A implicação
+$P(k) \Rightarrow P(k+1)$ pode ser verdadeira mesmo que *nenhum* $P(n)$ seja —
+faltaria a primeira peça para começar a queda.
+:::
+
+## Primeiro exemplo
+
+::: {#exm-soma-impares}
+## Soma dos ímpares
+Vamos provar que, para todo $n \geq 1$,
+$$
+1 + 3 + 5 + \dots + (2n - 1) = n^2. \tag{$\ast$}
+$$
+:::
+
+::: {.proof}
+Seja $P(n)$ a afirmação $(\ast)$.
+
+**Base.** Para $n = 1$, o lado esquerdo é $1$ e o direito é $1^2 = 1$. Logo
+$P(1)$ vale.
+
+**Passo.** Suponha $P(k)$ verdadeira para algum $k \geq 1$ (hipótese de
+indução), isto é, $1 + 3 + \dots + (2k-1) = k^2$. Somando o próximo ímpar,
+$2(k+1) - 1 = 2k + 1$, aos dois lados:
+$$
+\underbrace{1 + 3 + \dots + (2k-1)}_{= \, k^2} + (2k+1) = k^2 + 2k + 1 = (k+1)^2.
+$$
+Isso é exatamente $P(k+1)$. Pelo @thm-inducao, $P(n)$ vale para todo $n$.
+:::
+
+O mesmo método prova a famosa fórmula da soma de Gauss, que registramos como
+proposição para uso futuro.
+
+::: {#prp-gauss}
+## Soma de Gauss
+Para todo $n \geq 1$, vale $\displaystyle \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$.
+:::
+
+## Indução forte
+
+Às vezes, para provar $P(k+1)$, não basta supor $P(k)$: precisamos de *todos* os
+casos anteriores. Essa variante é igualmente válida.
+
+::: {#thm-inducao-forte}
+## Princípio da Indução Forte
+Seja $P(n)$ uma afirmação sobre o natural $n$. Suponha que, para todo
+$k \geq 1$, a validade de $P(1), P(2), \dots, P(k-1)$ implique $P(k)$. Então
+$P(n)$ é verdadeira para todo $n \in \mathbb{N}$.
+:::
+
+::: {#exm-fatoracao}
+## Todo natural maior que 1 tem fator primo
+Afirmamos que todo $n \geq 2$ é primo ou produto de primos.
+:::
+
+::: {.proof}
+Indução forte sobre $n$. Se $n$ é primo, acabou. Caso contrário, $n = a \cdot b$
+com $1 < a, b < n$. Por hipótese de indução (forte), tanto $a$ quanto $b$ são
+produtos de primos; logo $n$ também é. Aplicando o @thm-inducao-forte, a
+afirmação vale para todo $n \geq 2$.
+:::
+
+## Boa ordenação
+
+A indução é equivalente a um princípio aparentemente diferente.
+
+::: {#thm-boa-ordem}
+## Princípio da Boa Ordenação
+Todo subconjunto não vazio de $\mathbb{N}$ possui um menor elemento.
+:::
+
+::: {.callout-note collapse="true"}
+## Por que indução e boa ordenação são equivalentes (esboço)
+Se a indução vale e $S \subseteq \mathbb{N}$ não tivesse menor elemento, então,
+por indução, mostra-se que nenhum natural pertence a $S$, logo $S = \emptyset$ —
+contradição. A recíproca é análoga. A demonstração completa fica como o
+@exr-equivalencia.
+:::
+
+## Exercícios
+
+::: {#exr-cubos}
+Prove que $\displaystyle \sum_{i=1}^{n} i^3 = \left(\frac{n(n+1)}{2}\right)^2$
+para todo $n \geq 1$.
+:::
+
+::: {#exr-divisibilidade}
+Mostre que $n^3 - n$ é divisível por $6$ para todo $n \geq 1$.
+:::
+
+::: {#exr-equivalencia}
+Demonstre, com detalhes, a equivalência entre o @thm-inducao e o
+@thm-boa-ordem.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-divisibilidade
+Base: para $n = 1$, $1^3 - 1 = 0$, divisível por $6$. Passo: suponha
+$6 \mid k^3 - k$. Então
+$$
+(k+1)^3 - (k+1) = (k^3 - k) + 3k(k+1).
+$$
+O primeiro termo é divisível por $6$ pela hipótese; e $3k(k+1)$ é divisível por
+$6$ porque $k(k+1)$ é par (produto de dois inteiros consecutivos). Logo a soma é
+divisível por $6$.
+:::

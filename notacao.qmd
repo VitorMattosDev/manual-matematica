@@ -1,0 +1,19 @@
+# Notação {#sec-notacao .unnumbered}
+
+Tabela de símbolos usados ao longo do manual. Mantenha-a atualizada conforme
+novos volumes forem escritos.
+
+| Símbolo | Significado |
+|---|---|
+| $\mathbb{N}$ | naturais $\{1, 2, 3, \dots\}$ |
+| $\mathbb{Z}$ | inteiros |
+| $\mathbb{Q}$ | racionais |
+| $\mathbb{R}$ | reais |
+| $\mathbb{C}$ | complexos |
+| $\in,\ \notin$ | pertence, não pertence |
+| $\subseteq,\ \subset$ | subconjunto, subconjunto próprio |
+| $\cup,\ \cap$ | união, interseção |
+| $\Rightarrow,\ \Leftrightarrow$ | implica, equivale |
+| $\forall,\ \exists$ | para todo, existe |
+| $\mid$ | divide ($a \mid b$: $a$ divide $b$) |
+| $\square$ | fim de demonstração |

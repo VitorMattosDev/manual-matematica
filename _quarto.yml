@@ -1,0 +1,74 @@
+project:
+  type: book
+  output-dir: _book
+
+lang: pt
+
+book:
+  title: "Manual de Matemática"
+  subtitle: "Da aritmética à geometria diferencial"
+  author: "Projeto Manuais de Ciências"
+  date: today
+  search: true
+  # Troque SEU-USUARIO pelo seu usuário/organização do GitHub:
+  repo-url: https://github.com/VitorMattosDev/manual-matematica
+  repo-branch: main
+  repo-actions: [edit, issue]
+  sidebar:
+    style: docked
+    collapse-level: 1
+  page-footer:
+    left: "Manual de Matemática — licença CC BY-SA 4.0"
+    right: "Construído com [Quarto](https://quarto.org)."
+  chapters:
+    - index.qmd
+    - part: "Volume I — Fundamentos: Lógica e Aritmética"
+      chapters:
+        - volumes/v1-fundamentos/01-logica.qmd
+        - volumes/v1-fundamentos/02-conjuntos.qmd
+        - volumes/v1-fundamentos/03-inducao.qmd
+    # ----------------------------------------------------------------
+    # Os próximos volumes estão planejados em PLANO.md. Para ativá-los,
+    # crie os arquivos .qmd correspondentes e descomente os blocos abaixo.
+    # ----------------------------------------------------------------
+    # - part: "Volume II — Álgebra Elementar"
+    #   chapters:
+    #     - volumes/v2-algebra/01-equacoes.qmd
+    # - part: "Volume III — Geometria e Trigonometria"
+    #   chapters:
+    #     - volumes/v3-geometria/01-geometria-euclidiana.qmd
+  appendices:
+    - notacao.qmd
+
+bibliography: references.bib
+
+# Rótulos em português para os ambientes de teorema, prova, etc.
+language:
+  crossref-thm-title: "Teorema"
+  crossref-lem-title: "Lema"
+  crossref-cor-title: "Corolário"
+  crossref-prp-title: "Proposição"
+  crossref-def-title: "Definição"
+  crossref-exm-title: "Exemplo"
+  crossref-exr-title: "Exercício"
+  proof-title: "Demonstração"
+  remark-title: "Observação"
+  solution-title: "Solução"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    # MathJax (padrão) lida melhor com notação avançada do que KaTeX.
+  pdf:
+    documentclass: scrbook
+    papersize: a4
+    number-sections: true
+    toc: true
+    include-in-header:
+      text: |
+        \usepackage{amsmath,amssymb,amsthm}

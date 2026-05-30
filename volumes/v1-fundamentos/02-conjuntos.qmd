@@ -1,0 +1,29 @@
+# Conjuntos {#sec-conjuntos}
+
+::: {.callout-note}
+Capítulo inicial (esboço). A estrutura completa de um capítulo está em
+@sec-inducao.
+:::
+
+## Motivação
+
+Conjunto é a noção a partir da qual quase toda a matemática moderna é
+construída: números, funções, relações e estruturas são, no fundo, conjuntos.
+
+## Noções básicas
+
+Um **conjunto** é uma coleção de objetos, chamados seus *elementos*. Escrevemos
+$x \in A$ quando $x$ é elemento de $A$. Dois conjuntos são iguais quando têm
+exatamente os mesmos elementos.
+
+::: {#def-subconjunto}
+Dizemos que $A$ é **subconjunto** de $B$, e escrevemos $A \subseteq B$, quando
+todo elemento de $A$ também é elemento de $B$.
+:::
+
+## Operações
+
+União $A \cup B$, interseção $A \cap B$, diferença $A \setminus B$ e complemento.
+
+> *A escrever:* produto cartesiano, conjunto das partes, e as leis de De Morgan
+> com demonstração.

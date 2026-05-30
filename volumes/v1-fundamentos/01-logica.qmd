@@ -1,0 +1,29 @@
+# Lógica e demonstrações {#sec-logica}
+
+::: {.callout-note}
+Capítulo inicial (esboço). A estrutura completa de um capítulo está em
+@sec-inducao.
+:::
+
+## Motivação
+
+Antes de provar qualquer coisa sobre números, precisamos combinar o que conta
+como uma *demonstração*. Este capítulo apresenta a linguagem mínima da lógica:
+proposições, conectivos, quantificadores e os principais métodos de prova.
+
+## Proposições e conectivos
+
+Uma **proposição** é uma afirmação à qual se pode atribuir um único valor
+verdade: verdadeiro ou falso. A partir de proposições $p$ e $q$ formam-se novas
+proposições com os conectivos $\lnot$ (negação), $\land$ (e), $\lor$ (ou),
+$\Rightarrow$ (implica) e $\Leftrightarrow$ (se, e somente se).
+
+## Métodos de demonstração
+
+- **Direta:** para provar $p \Rightarrow q$, supõe-se $p$ e deduz-se $q$.
+- **Contrapositiva:** prova-se $\lnot q \Rightarrow \lnot p$, que é equivalente.
+- **Absurdo:** supõe-se $\lnot q$ e chega-se a uma contradição.
+- **Indução:** ver @sec-inducao.
+
+> *A escrever:* tabelas-verdade, quantificadores $\forall$/$\exists$ e exemplos
+> resolvidos de cada método.

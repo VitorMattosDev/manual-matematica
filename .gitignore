@@ -1,0 +1,6 @@
+/_book/
+/.quarto/
+*.pdf
+.DS_Store
+
+**/*.quarto_ipynb
