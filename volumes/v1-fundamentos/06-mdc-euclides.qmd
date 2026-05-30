@@ -1,0 +1,227 @@
+# MDC, MMC e o algoritmo de Euclides {#sec-mdc}
+
+## Motivação
+
+Dois inteiros compartilham divisores: $12$ e $18$ são ambos divisíveis por $1, 2,
+3$ e $6$. O maior desses divisores comuns, o **máximo divisor comum**, é uma das
+quantidades mais úteis da aritmética — aparece ao simplificar frações, ao resolver
+equações com incógnitas inteiras e, no próximo capítulo, na própria estrutura dos
+números primos.
+
+A pergunta prática é: como calculá-lo sem listar todos os divisores? A resposta,
+com mais de dois mil anos, é o **algoritmo de Euclides**, que extrai o MDC apenas
+com divisões sucessivas. E a resposta teórica é ainda mais reveladora: o MDC de
+$a$ e $b$ pode sempre ser escrito como $a x + b y$ — a **identidade de Bézout** —,
+um fato que carrega quase toda a teoria que vem a seguir. Tudo isso se apoia na
+divisão euclidiana do @sec-inteiros.
+
+## Máximo divisor comum
+
+::: {#def-mdc}
+## Máximo divisor comum
+Sejam $a, b \in \mathbb{Z}$, não ambos nulos. O **máximo divisor comum** de $a$ e
+$b$, denotado $\gcd(a, b)$, é o maior inteiro $d$ tal que $d \mid a$ e $d \mid b$.
+:::
+
+O MDC existe e é positivo: os divisores comuns de $a$ e $b$ são em número finito
+(@sec-inteiros) e $1$ é sempre um deles, logo há um maior. Quando $\gcd(a, b) =
+1$, dizemos que $a$ e $b$ são **primos entre si** (ou coprimos): não têm divisor
+comum além de $\pm 1$.
+
+A chave para calcular o MDC é a observação de que ele não muda quando trocamos
+$a$ pelo seu resto na divisão por $b$.
+
+::: {#lem-euclides}
+## Lema de Euclides (redução)
+Se $a = b q + r$, então $\gcd(a, b) = \gcd(b, r)$.
+:::
+
+::: {.proof}
+Basta mostrar que os pares $(a, b)$ e $(b, r)$ têm **exatamente os mesmos
+divisores comuns** — daí o maior deles coincide. Se $d \mid a$ e $d \mid b$,
+então $d$ divide a combinação $r = a - b q$ (propriedade das combinações lineares,
+@sec-inteiros); logo $d$ é divisor comum de $b$ e $r$. Reciprocamente, se $d \mid
+b$ e $d \mid r$, então $d \mid (b q + r) = a$, e $d$ é divisor comum de $a$ e $b$.
+Os conjuntos de divisores comuns coincidem, portanto $\gcd(a, b) = \gcd(b, r)$.
+:::
+
+## O algoritmo de Euclides
+
+O @lem-euclides transforma o problema $\gcd(a, b)$ no problema menor $\gcd(b, r)$,
+com $0 \leq r < b$. Repetindo, os segundos argumentos $b > r > \dots \geq 0$
+formam uma sequência estritamente decrescente de naturais, que por boa ordenação
+(@thm-boa-ordem) não pode descer para sempre: em algum momento o resto é $0$.
+Quando isso acontece, $\gcd(\,\cdot\,, 0)$ é o próprio primeiro argumento — e esse
+é o MDC procurado.
+
+::: {#exm-euclides}
+## Calculando $\gcd(48, 18)$
+Aplicamos divisões sucessivas, cada linha alimentando a próxima com o divisor e o
+resto:
+$$
+\begin{aligned}
+48 &= 18 \cdot 2 + 12, &\quad &\gcd(48, 18) = \gcd(18, 12),\\
+18 &= 12 \cdot 1 + 6,  &\quad &\phantom{\gcd(48, 18)} = \gcd(12, 6),\\
+12 &= 6 \cdot 2 + 0,   &\quad &\phantom{\gcd(48, 18)} = \gcd(6, 0) = 6.
+\end{aligned}
+$$
+O último resto não nulo é $6$, e de fato $\gcd(48, 18) = 6$.
+:::
+
+::: {.callout-tip}
+## Por que o algoritmo termina e está correto
+Dois fatos sustentam o método: ele **termina**, porque os restos decrescem em
+$\mathbb{N}$ e não há sequência infinita decrescente (boa ordenação); e ele dá a
+resposta **certa**, porque cada passo preserva o MDC (@lem-euclides). Terminação
+e correção — é o que se exige de qualquer algoritmo.
+:::
+
+## A identidade de Bézout
+
+O resultado a seguir é o coração aritmético do capítulo: o MDC não é só o maior
+divisor comum, é também a menor combinação positiva dos dois números.
+
+::: {#thm-bezout}
+## Identidade de Bézout
+Sejam $a, b \in \mathbb{Z}$, não ambos nulos, e $d = \gcd(a, b)$. Então existem
+inteiros $x, y$ tais que
+$$
+a x + b y = d.
+$$
+:::
+
+::: {.proof}
+Considere o conjunto das combinações lineares **positivas**,
+$$
+S = \{\, a x + b y : x, y \in \mathbb{Z},\ a x + b y > 0 \,\}.
+$$
+$S$ é não vazio (por exemplo $|a| = a \cdot (\pm 1) + b \cdot 0 \in S$). Sendo $S$
+um conjunto não vazio de naturais, a boa ordenação (@thm-boa-ordem) fornece um
+menor elemento $g = a x_0 + b y_0$. Mostremos que $g = d$.
+
+*$g$ é divisor comum.* Pela divisão euclidiana, $a = g q + r$ com $0 \leq r < g$.
+Então
+$$
+r = a - g q = a - (a x_0 + b y_0) q = a(1 - x_0 q) + b(- y_0 q),
+$$
+que é uma combinação linear de $a$ e $b$. Se fosse $r > 0$, $r$ estaria em $S$ e
+seria menor que $g$ — impossível. Logo $r = 0$, isto é, $g \mid a$; de modo
+idêntico $g \mid b$.
+
+*$g$ é o maior.* Qualquer divisor comum $c$ de $a$ e $b$ divide a combinação
+$a x_0 + b y_0 = g$, donde $c \leq |g| = g$. Assim $g$ é divisor comum e é
+$\geq$ todo divisor comum: $g = \gcd(a, b) = d$. Tomando $x = x_0$, $y = y_0$,
+vale $a x + b y = d$.
+:::
+
+::: {.callout-note}
+## Bézout não dá os coeficientes — o algoritmo estendido dá
+A demonstração garante que $x$ e $y$ *existem*, mas não os exibe. Para obtê-los na
+prática, percorre-se o algoritmo de Euclides "de trás para frente", isolando cada
+resto. No @exm-euclides: $6 = 18 - 12 \cdot 1 = 18 - (48 - 18 \cdot 2) = 18 \cdot
+3 + 48 \cdot (-1)$, ou seja, $x = -1$, $y = 3$.
+:::
+
+Bézout tem consequências imediatas e poderosas. A primeira caracteriza os
+coprimos; a segunda é o lema que, no próximo capítulo, fará os primos se
+comportarem.
+
+::: {#cor-coprimos}
+## Caracterização dos coprimos
+Os inteiros $a$ e $b$ são primos entre si se, e somente se, existem $x, y \in
+\mathbb{Z}$ com $a x + b y = 1$.
+:::
+
+::: {.proof}
+Se $\gcd(a, b) = 1$, a @thm-bezout dá $x, y$ com $a x + b y = 1$.
+Reciprocamente, se $a x + b y = 1$ para alguns $x, y$, então todo divisor comum de
+$a$ e $b$ divide $1$, logo é $\pm 1$; portanto $\gcd(a, b) = 1$.
+:::
+
+::: {#prp-euclid}
+## Lema de Euclid
+Se $a \mid b c$ e $\gcd(a, b) = 1$, então $a \mid c$.
+:::
+
+::: {.proof}
+Por @cor-coprimos existem $x, y$ com $a x + b y = 1$. Multiplicando por $c$,
+$$
+c = a c x + b c y.
+$$
+O primeiro termo é múltiplo de $a$; o segundo também, pois $a \mid b c$ por
+hipótese. Logo $a$ divide a soma $c$.
+:::
+
+## Mínimo múltiplo comum
+
+A noção dual do MDC é o menor múltiplo positivo compartilhado.
+
+::: {#def-mmc}
+## Mínimo múltiplo comum
+Sejam $a, b$ inteiros não nulos. O **mínimo múltiplo comum** $\operatorname{mmc}(a,
+b)$ é o menor inteiro positivo que é múltiplo de $a$ e de $b$.
+:::
+
+MDC e MMC não são independentes: o produto dos dois recupera o produto dos
+números.
+
+::: {#prp-mdc-mmc}
+## Relação entre MDC e MMC
+Para $a, b$ inteiros positivos,
+$$
+\gcd(a, b) \cdot \operatorname{mmc}(a, b) = a b.
+$$
+:::
+
+::: {#exm-mmc}
+## Usando a relação
+Para $a = 48$ e $b = 18$, já calculamos $\gcd(48, 18) = 6$. Logo
+$$
+\operatorname{mmc}(48, 18) = \frac{48 \cdot 18}{6} = \frac{864}{6} = 144.
+$$
+Calcular o MMC reduz-se, assim, a uma divisão depois do algoritmo de Euclides.
+:::
+
+## Exercícios
+
+::: {#exr-bezout-calculo}
+Calcule $\gcd(252, 198)$ pelo algoritmo de Euclides e, revertendo os passos,
+encontre inteiros $x, y$ com $252 x + 198 y = \gcd(252, 198)$.
+:::
+
+::: {#exr-coprimos-consecutivos}
+Prove que dois inteiros consecutivos $n$ e $n + 1$ são sempre primos entre si.
+(Sugestão: exiba uma combinação linear igual a $1$.)
+:::
+
+::: {#exr-divide-coprimos}
+Sejam $a, b, c$ inteiros com $a \mid c$, $b \mid c$ e $\gcd(a, b) = 1$. Prove que
+$a b \mid c$.
+:::
+
+::: {#exr-mdc-multiplo}
+Mostre que, para todo inteiro $m > 0$, vale $\gcd(m a, m b) = m \gcd(a, b)$.
+:::
+
+::: {#exr-equacao-diofantina}
+Mostre que a equação $a x + b y = c$ tem solução em inteiros $x, y$ se, e somente
+se, $\gcd(a, b) \mid c$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-coprimos-consecutivos
+Tome a combinação $(n + 1) \cdot 1 + n \cdot (-1) = 1$. Pela @cor-coprimos, a
+existência de inteiros $x, y$ com $(n+1) x + n y = 1$ já garante $\gcd(n, n + 1) =
+1$. Alternativamente, todo divisor comum de $n$ e $n + 1$ divide a diferença
+$(n + 1) - n = 1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-divide-coprimos
+Como $a \mid c$, escreva $c = a k$. Como $b \mid c = a k$ e $\gcd(a, b) = 1$, o
+@prp-euclid (Lema de Euclid) dá $b \mid k$, digamos $k = b j$. Então $c = a k =
+a b j$, ou seja, $a b \mid c$. (A hipótese de coprimalidade é essencial: $4 \mid
+12$ e $6 \mid 12$, mas $24 \nmid 12$, pois $\gcd(4, 6) = 2 \neq 1$.)
+:::

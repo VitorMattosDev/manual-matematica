@@ -33,7 +33,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v1-fundamentos/03-inducao.qmd` — Indução e boa ordenação. **(gabarito de estilo)**
 - [x] `volumes/v1-fundamentos/04-naturais.qmd` — Números naturais: axiomas de Peano, adição, multiplicação, ordem.
 - [x] `volumes/v1-fundamentos/05-inteiros-divisibilidade.qmd` — Inteiros e divisibilidade: construção de ℤ, relação de divisão, propriedades.
-- [ ] `volumes/v1-fundamentos/06-mdc-euclides.qmd` — MDC, MMC e algoritmo de Euclides; identidade de Bézout.
+- [x] `volumes/v1-fundamentos/06-mdc-euclides.qmd` — MDC, MMC e algoritmo de Euclides; identidade de Bézout.
 - [ ] `volumes/v1-fundamentos/07-primos-tfa.qmd` — Números primos e o Teorema Fundamental da Aritmética; infinitude dos primos.
 - [ ] `volumes/v1-fundamentos/08-congruencias.qmd` — Congruências e aritmética modular; pequeno teorema de Fermat.
 - [ ] `volumes/v1-fundamentos/09-racionais.qmd` — Números racionais: construção, densidade, representação decimal.

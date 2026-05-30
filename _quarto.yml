@@ -29,6 +29,7 @@ book:
         - volumes/v1-fundamentos/03-inducao.qmd
         - volumes/v1-fundamentos/04-naturais.qmd
         - volumes/v1-fundamentos/05-inteiros-divisibilidade.qmd
+        - volumes/v1-fundamentos/06-mdc-euclides.qmd
     # ----------------------------------------------------------------
     # Os próximos volumes estão planejados em PLANO.md. Para ativá-los,
     # crie os arquivos .qmd correspondentes e descomente os blocos abaixo.
