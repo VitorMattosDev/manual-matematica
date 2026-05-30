@@ -1,0 +1,178 @@
+# Tensor de curvatura de Riemann {#sec-curvatura-riemann}
+
+## Motivação
+
+Toda a maquinaria construída — variedades, tensores, métricas, conexões, transporte
+paralelo (@sec-campos-tensores a @sec-transporte-geodesicas) — converge aqui, no objeto
+que mede quão curvo um espaço é em **qualquer** dimensão: o **tensor de curvatura de
+Riemann**. Ele generaliza a curvatura gaussiana das superfícies (@sec-curvaturas) a
+variedades de dimensão arbitrária e é o coração matemático da relatividade geral.
+
+A ideia operacional já apareceu: transportar um vetor paralelamente em torno de um laço
+fechado o devolve girado, e esse giro mede a curvatura (@sec-transporte-geodesicas). O
+tensor de Riemann codifica exatamente isso. Dele se extraem o tensor de **Ricci** e a
+**curvatura escalar**, que entram na equação de Einstein. Este capítulo final da obra
+fecha o círculo: a geometria que começou com a soma de ângulos de um triângulo
+desemboca na descrição da gravidade.
+
+## O tensor de curvatura
+
+::: {#def-tensor-riemann}
+## Tensor de curvatura de Riemann
+A **curvatura** mede a falha da comutatividade das derivadas covariantes
+(@sec-conexoes-derivada-covariante):
+$$
+R(X, Y)Z = \nabla_X\nabla_Y Z - \nabla_Y\nabla_X Z - \nabla_{[X,Y]}Z.
+$$
+É um tensor do tipo $(1,3)$, de componentes $R^{\ell}_{\ ijk}$, expressas pelos símbolos
+de Christoffel e suas derivadas.
+:::
+
+::: {.callout-tip}
+## Curvatura = derivadas covariantes não comutam
+Em $\mathbb{R}^n$ as derivadas parciais comutam ($\partial_i\partial_j =
+\partial_j\partial_i$). Numa variedade curva, as derivadas **covariantes** geralmente
+**não** comutam, e o tensor de Riemann mede exatamente essa diferença. Equivale ao
+transporte em torno de um laço (@sec-transporte-geodesicas): $R(X,Y)Z$ é o giro
+infinitesimal sofrido por $Z$ ao circular um paralelogramo de lados $X, Y$. Curvatura
+nula ⟺ transporte sem holonomia ⟺ espaço localmente plano.
+:::
+
+::: {#thm-riemann-zero-plano}
+## Curvatura nula significa plano
+Uma variedade tem tensor de Riemann **identicamente nulo** se, e somente se, é
+**localmente isométrica** ao espaço euclidiano (ou de Minkowski, no caso lorentziano) —
+isto é, existem coordenadas em que $g_{ij}$ é constante.
+:::
+
+::: {#exm-curvatura-exemplos}
+## Curvo e plano
+- O **plano** e o **cilindro** têm $R = 0$ — ambos localmente isométricos a
+  $\mathbb{R}^2$ (o cilindro se desenrola, @sec-primeira-forma).
+- A **esfera** de raio $a$ tem curvatura constante positiva; seu Riemann é não nulo,
+  proporcional a $1/a^2$ — coerente com a gaussiana $K = 1/a^2$ (@sec-curvaturas).
+:::
+
+## Simetrias e a ligação com Gauss
+
+::: {#prp-simetrias-riemann}
+## Simetrias do tensor de Riemann
+O tensor $R_{\ell ijk}$ (com índice baixado pela métrica) satisfaz
+$$
+R_{\ell ijk} = -R_{i\ell jk} = -R_{\ell ikj}, \qquad R_{\ell ijk} = R_{jk\ell i},
+$$
+além da **primeira identidade de Bianchi** $R_{\ell ijk} + R_{\ell jki} + R_{\ell kij} =
+0$. Essas simetrias reduzem drasticamente o número de componentes independentes.
+:::
+
+::: {.callout-note}
+## Em 2D, Riemann é a curvatura gaussiana
+Numa superfície (dimensão 2), as simetrias deixam o tensor de Riemann com **uma única**
+componente independente — e ela é exatamente a **curvatura gaussiana** $K$
+(@sec-curvaturas). Assim o tensor de Riemann é a generalização literal de $K$ a dimensão
+qualquer, e o Teorema Egregium (@sec-gauss-bonnet) — "$K$ é intrínseca" — reaparece como
+o fato de que Riemann se constrói só da métrica.
+:::
+
+## Ricci e curvatura escalar
+
+Contraindo o tensor de Riemann (@def-operacoes-tensores) obtêm-se resumos de curvatura.
+
+::: {#def-ricci-escalar}
+## Tensor de Ricci e curvatura escalar
+O **tensor de Ricci** é a contração $R_{ij} = R^{k}_{\ ikj}$, um tensor simétrico
+$(0,2)$. A **curvatura escalar** é sua contração com a métrica, $R = g^{ij}R_{ij}$ — um
+único número em cada ponto.
+:::
+
+::: {.callout-tip}
+## Cada nível resume a curvatura
+- **Riemann** $R^\ell_{\ ijk}$: toda a informação de curvatura (giro em cada plano).
+- **Ricci** $R_{ij}$: como volumes de pequenas bolas geodésicas desviam do caso plano em
+  cada direção.
+- **Escalar** $R$: o desvio total de volume, um número por ponto.
+
+A passagem Riemann → Ricci → escalar troca detalhe por simplicidade, cada um útil em seu
+contexto.
+:::
+
+## A equação de Einstein
+
+::: {#def-equacao-einstein}
+## Equação de campo de Einstein
+A relatividade geral resume-se a uma equação tensorial relacionando a curvatura do
+espaço-tempo à matéria-energia:
+$$
+R_{\mu\nu} - \tfrac12 R\,g_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu},
+$$
+onde $R_{\mu\nu}$ é Ricci, $R$ a curvatura escalar, $g_{\mu\nu}$ a métrica, $\Lambda$ a
+constante cosmológica e $T_{\mu\nu}$ o tensor de energia-momento.
+:::
+
+::: {.callout-note}
+## "A matéria diz ao espaço como se curvar; o espaço diz à matéria como se mover"
+O lado esquerdo é pura **geometria** (curvatura da métrica); o direito, a **matéria**.
+A frase de Wheeler resume tudo: a energia-momento $T_{\mu\nu}$ curva o espaço-tempo
+(determinando $g_{\mu\nu}$ via esta equação), e a matéria livre move-se pelas
+**geodésicas** dessa métrica curva (@sec-transporte-geodesicas). Toda a obra — dos
+naturais do Volume I aos tensores de curvatura — culmina nesta linha, onde a matemática
+pura encontra a estrutura do universo.
+:::
+
+## Encerramento da obra
+
+Da contagem e da lógica das demonstrações (Volume I) ao tensor de curvatura que governa
+a gravidade, percorremos a matemática como um **edifício único**: a aritmética e a
+álgebra deram os objetos; a geometria e o cálculo, o espaço e o movimento; a álgebra
+linear e abstrata, a estrutura; a análise, o rigor; a topologia, a forma; a geometria
+diferencial, a síntese. As extensões da Fase 2 — cálculo vetorial, tensorial, equações
+diferenciais, probabilidade e análise complexa — abrem as portas da física-matemática
+contemporânea. O fim de um manual é sempre o começo de outro.
+
+## Exercícios
+
+::: {#exr-cr-plano}
+Explique por que o cilindro, embora pareça curvo, tem tensor de Riemann nulo.
+:::
+
+::: {#exr-cr-2d}
+Quantas componentes independentes tem o tensor de Riemann em dimensão $2$? Relacione com
+a curvatura gaussiana.
+:::
+
+::: {#exr-cr-ricci}
+A partir do tensor de Riemann, descreva como se obtêm o tensor de Ricci e a curvatura
+escalar por contração.
+:::
+
+::: {#exr-cr-einstein}
+Identifique, na equação de Einstein, qual lado é geometria e qual é matéria, e o que
+significa $T_{\mu\nu} = 0$ (vácuo).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-plano
+O cilindro é **localmente isométrico** ao plano: desenrola-se sem esticar nem rasgar
+(@sec-primeira-forma), logo existe carta com $g_{ij}$ constante. Pelo
+@thm-riemann-zero-plano, seu tensor de Riemann é nulo. A "curvatura" que vemos é
+extrínseca (como ele se mergulha em $\mathbb{R}^3$), não intrínseca.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-2d
+Em dimensão $2$, as simetrias (@prp-simetrias-riemann) deixam **uma** componente
+independente, $R_{1212}$. Ela é proporcional à curvatura gaussiana: $K = R_{1212}/\det
+g$. Toda a curvatura de uma superfície está nesse único número — o tensor de Riemann é a
+generalização de $K$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-einstein
+O lado esquerdo ($R_{\mu\nu} - \tfrac12 R g_{\mu\nu} + \Lambda g_{\mu\nu}$) é **geometria**
+(curvatura); o direito ($\frac{8\pi G}{c^4}T_{\mu\nu}$) é **matéria-energia**. Em
+**vácuo** ($T_{\mu\nu} = 0$), a equação vira $R_{\mu\nu} = \Lambda g_{\mu\nu}$ (ou
+$R_{\mu\nu}=0$ se $\Lambda = 0$): o espaço-tempo ainda pode ser curvo (ondas
+gravitacionais, buracos negros), mas sem fontes de matéria.
+:::

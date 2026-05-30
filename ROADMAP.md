@@ -193,7 +193,7 @@ não pelo número.
 - [x] `volumes/v10-diferencial/12-metricas-riemannianas.qmd` — Métricas riemannianas e pseudo-riemannianas (caso lorentziano).
 - [x] `volumes/v10-diferencial/13-conexoes-derivada-covariante.qmd` — Conexões, derivada covariante e símbolos de Christoffel.
 - [x] `volumes/v10-diferencial/14-transporte-geodesicas.qmd` — Transporte paralelo e geodésicas em variedades.
-- [ ] `volumes/v10-diferencial/15-curvatura-riemann.qmd` — Tensor de curvatura de Riemann, tensor de Ricci e curvatura escalar.
+- [x] `volumes/v10-diferencial/15-curvatura-riemann.qmd` — Tensor de curvatura de Riemann, tensor de Ricci e curvatura escalar.
 
 ## Volume XI — Equações Diferenciais
 *Objetivo: EDOs e EDPs, base de toda a física-matemática. Pré-req.: Vols. V, VI.*
