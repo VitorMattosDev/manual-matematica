@@ -33,9 +33,10 @@ Ao longo do manual, definições aparecem destacadas como esta.
 
 ## Mapa de pré-requisitos
 
-A matemática não é estritamente linear. O grafo abaixo mostra de que tópicos
+A matemática não é estritamente linear. O mapa abaixo mostra de que tópicos
 cada volume depende — use-o para montar seu próprio caminho de leitura.
 
+::: {.content-visible when-format="html"}
 ```{mermaid}
 flowchart TD
     V1["Vol. I — Fundamentos"] --> V2["Vol. II — Álgebra"]
@@ -51,7 +52,31 @@ flowchart TD
     V8 --> V10["Vol. X — Geometria Diferencial"]
     V9 --> V10
     V6 --> V10
+    V5 --> V11["Vol. XI — Equações Diferenciais"]
+    V6 --> V11
+    V2 --> V12["Vol. XII — Probabilidade"]
+    V5 --> V12
+    V5 --> V13["Vol. XIII — Análise Complexa"]
+    V8 --> V13
 ```
+:::
+
+::: {.content-visible unless-format="html"}
+Pré-requisitos de cada volume (o diagrama interativo está na versão em HTML):
+
+- **Vol. I — Fundamentos:** nenhum.
+- **Vol. II — Álgebra** e **Vol. III — Geometria:** Vol. I.
+- **Vol. IV — Pré-cálculo:** Vols. II e III.
+- **Vol. V — Cálculo:** Vol. IV.
+- **Vol. VI — Álgebra Linear:** Vols. II e V.
+- **Vol. VII — Álgebra Abstrata:** Vols. I e VI.
+- **Vol. VIII — Análise Real:** Vols. V e VI.
+- **Vol. IX — Topologia:** Vol. VIII.
+- **Vol. X — Geometria Diferencial:** Vols. V, VI e IX.
+- **Vol. XI — Equações Diferenciais:** Vols. V e VI.
+- **Vol. XII — Probabilidade e Estatística:** Vols. II e V.
+- **Vol. XIII — Análise Complexa:** Vols. V e VIII.
+:::
 
 ## Como contribuir
 

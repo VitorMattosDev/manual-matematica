@@ -5,6 +5,10 @@
 
 **/*.quarto_ipynb
 
+# artefatos de render local (LaTeX intermediario + figuras)
+*.tex
+*_files/
+
 # logs de build/diagnostico locais
 *.log
 _runwatch.log
