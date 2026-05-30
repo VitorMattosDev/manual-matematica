@@ -1,0 +1,192 @@
+# Homomorfismos e teorema de Lagrange {#sec-lagrange}
+
+## Motivação
+
+Dois temas se entrelaçam neste capítulo. O primeiro: como **comparar** grupos? A
+resposta são os **homomorfismos** — funções entre grupos que preservam a operação,
+exatamente como as transformações lineares preservavam a estrutura dos espaços
+vetoriais (@sec-transformacoes-lineares). Eles permitem transportar informação de um
+grupo a outro e dizer quando dois grupos têm "a mesma forma".
+
+O segundo: por que um grupo de ordem $12$ não pode ter um subgrupo de ordem $5$? A
+resposta é o **teorema de Lagrange**, um dos primeiros resultados profundos da
+álgebra: a ordem de qualquer subgrupo **divide** a ordem do grupo. Esse fato, simples
+de enunciar, restringe drasticamente as estruturas possíveis e tem consequências que
+chegam até a aritmética (uma nova prova do pequeno teorema de Fermat,
+@sec-congruencias). A ferramenta-chave para demonstrá-lo são as **classes laterais**.
+Este capítulo reúne os dois assuntos.
+
+## Homomorfismos
+
+::: {#def-homomorfismo}
+## Homomorfismo
+Uma função $\varphi: G \to H$ entre grupos é um **homomorfismo** se preserva a
+operação:
+$$
+\varphi(a * b) = \varphi(a) * \varphi(b) \quad\text{para todos } a, b \in G.
+$$
+Um homomorfismo **bijetor** é um **isomorfismo**; quando existe um, $G$ e $H$ são
+**isomorfos**, $G \cong H$ — idênticos em estrutura, embora seus elementos possam
+ter nomes diferentes.
+:::
+
+::: {#prp-homomorfismo-propriedades}
+## Propriedades elementares
+Todo homomorfismo $\varphi: G \to H$ leva neutro em neutro, $\varphi(e_G) = e_H$, e
+inverso em inverso, $\varphi(a^{-1}) = \varphi(a)^{-1}$.
+:::
+
+::: {.proof}
+De $\varphi(e_G) = \varphi(e_G * e_G) = \varphi(e_G)*\varphi(e_G)$, cancelando
+(@prp-cancelamento) vem $\varphi(e_G) = e_H$. E $\varphi(a)*\varphi(a^{-1}) =
+\varphi(a*a^{-1}) = \varphi(e_G) = e_H$, logo $\varphi(a^{-1}) = \varphi(a)^{-1}$.
+:::
+
+::: {#exm-homomorfismos}
+## Exemplos de homomorfismos
+- $\exp: (\mathbb{R}, +) \to (\mathbb{R}^*_{>0}, \cdot)$, $x \mapsto e^x$, com
+  $e^{x+y} = e^x e^y$ — de fato um **isomorfismo** (inverso: $\ln$).
+- $\det: GL_n(\mathbb{R}) \to (\mathbb{R}^*, \cdot)$, pois $\det(AB) = \det A \det B$
+  (@thm-propriedades-det).
+- A redução módulo $n$, $\mathbb{Z} \to \mathbb{Z}_n$, $a \mapsto a \bmod n$.
+:::
+
+## Núcleo e imagem
+
+Como na álgebra linear, dois subconjuntos medem o homomorfismo.
+
+::: {#def-nucleo-grupo}
+## Núcleo e imagem
+O **núcleo** de $\varphi: G \to H$ é $\ker\varphi = \{g \in G : \varphi(g) = e_H\}$.
+A **imagem** é $\operatorname{Im}\varphi = \{\varphi(g) : g \in G\}$. O núcleo é
+subgrupo de $G$ e a imagem é subgrupo de $H$.
+:::
+
+::: {#thm-injetivo-nucleo}
+## Injetividade via núcleo
+Um homomorfismo $\varphi$ é injetor se, e somente se, $\ker\varphi = \{e_G\}$.
+:::
+
+::: {.proof}
+Se $\varphi$ é injetor, só $e_G$ vai para $e_H$. Reciprocamente, se $\ker\varphi =
+\{e_G\}$ e $\varphi(a) = \varphi(b)$, então $\varphi(a*b^{-1}) = e_H$, logo $a*b^{-1}
+= e_G$, isto é $a = b$.
+:::
+
+## Classes laterais
+
+A ideia geométrica por trás de Lagrange: um subgrupo "particiona" o grupo em pedaços
+de tamanho igual.
+
+::: {#def-classe-lateral}
+## Classe lateral
+Dado $H \leq G$ e $a \in G$, a **classe lateral à esquerda** é
+$$
+aH = \{a * h : h \in H\}.
+$$
+As classes laterais de $H$ **particionam** $G$: cada elemento está em exatamente uma,
+e duas classes ou coincidem ou são disjuntas.
+:::
+
+::: {#prp-classes-mesmo-tamanho}
+## Todas as classes têm o mesmo tamanho
+Para todo $a$, existe uma bijeção entre $H$ e $aH$ (a saber, $h \mapsto a*h$). Logo
+todas as classes laterais têm exatamente $|H|$ elementos.
+:::
+
+::: {.callout-tip}
+## A imagem mental
+Pense em $H$ como um "molde" e nas classes laterais $aH$ como cópias deslocadas dele,
+todas do mesmo tamanho, ladrilhando $G$ sem sobreposição nem buracos. Se cada
+ladrilho tem $|H|$ peças e eles cobrem as $|G|$ peças do grupo, o número de peças por
+ladrilho **tem** de dividir o total. É a essência de Lagrange.
+:::
+
+## O teorema de Lagrange
+
+::: {#thm-lagrange}
+## Teorema de Lagrange
+Se $G$ é um grupo **finito** e $H \leq G$, então $|H|$ **divide** $|G|$. O quociente
+$[G : H] = |G| / |H|$ é o **índice** de $H$ (o número de classes laterais).
+:::
+
+::: {.proof}
+As classes laterais de $H$ particionam $G$ (@def-classe-lateral) e todas têm $|H|$
+elementos (@prp-classes-mesmo-tamanho). Se há $[G:H]$ classes, então $|G| = [G:H]
+\cdot |H|$, donde $|H|$ divide $|G|$.
+:::
+
+::: {#cor-ordem-elemento-divide}
+## A ordem de um elemento divide a do grupo
+Para todo $a$ em um grupo finito $G$, a ordem de $a$ divide $|G|$. Em particular,
+$a^{|G|} = e$.
+:::
+
+::: {.proof}
+A ordem de $a$ é $|\langle a\rangle|$ (@sec-subgrupos-ciclicos), que divide $|G|$ por
+Lagrange. Logo $|G|$ é múltiplo da ordem e $a^{|G|} = e$.
+:::
+
+## Consequências
+
+::: {#cor-ordem-prima}
+## Grupos de ordem prima são cíclicos
+Se $|G| = p$ é primo, então $G$ é cíclico (e isomorfo a $\mathbb{Z}_p$). Pois
+qualquer $a \neq e$ tem ordem dividindo $p$ e maior que $1$, logo ordem $p$ —
+gerando todo $G$.
+:::
+
+::: {.callout-note}
+## Fermat, de novo — e mais barato
+Aplicando o @cor-ordem-elemento-divide ao grupo $(\mathbb{Z}_p^*, \cdot)$ dos
+inteiros não nulos módulo um primo $p$, que tem $p - 1$ elementos, obtém-se $a^{p-1}
+\equiv 1 \pmod p$ para todo $a$ não divisível por $p$: é o **pequeno teorema de
+Fermat** (@sec-congruencias), agora como simples corolário de Lagrange. A mesma ideia
+dá o teorema de Euler, $a^{\varphi(n)} \equiv 1 \pmod n$. A teoria de grupos unifica e
+explica resultados que antes pareciam truques aritméticos.
+:::
+
+## Exercícios
+
+::: {#exr-hom-1}
+Verifique que $\varphi: \mathbb{Z} \to \mathbb{Z}_n$, $\varphi(a) = a \bmod n$, é um
+homomorfismo e determine seu núcleo.
+:::
+
+::: {#exr-hom-2}
+Mostre que $\varphi: (\mathbb{R}, +) \to (\mathbb{R}, +)$ dada por $\varphi(x) = 2x$
+é um isomorfismo.
+:::
+
+::: {#exr-lagrange-1}
+Um grupo tem ordem $15$. Quais são as ordens possíveis de seus subgrupos? E de seus
+elementos?
+:::
+
+::: {#exr-lagrange-2}
+Use o teorema de Lagrange para mostrar que um grupo de ordem $7$ não tem subgrupos
+próprios não triviais.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-hom-1
+$\varphi(a + b) = (a + b)\bmod n = (a\bmod n) + (b\bmod n) = \varphi(a) +
+\varphi(b)$ em $\mathbb{Z}_n$ — é homomorfismo. O núcleo são os $a$ com $a \equiv 0
+\pmod n$, isto é $\ker\varphi = n\mathbb{Z}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lagrange-1
+Pelo teorema de Lagrange, as ordens de subgrupos dividem $15$: podem ser $1, 3, 5,
+15$. As ordens dos elementos também dividem $15$ (@cor-ordem-elemento-divide): $1, 3,
+5$ ou $15$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lagrange-2
+$7$ é primo, então as únicas ordens de subgrupo que dividem $7$ são $1$ e $7$ —
+correspondendo a $\{e\}$ e ao grupo todo. Não há subgrupos próprios não triviais; o
+grupo é cíclico (@cor-ordem-prima).
+:::

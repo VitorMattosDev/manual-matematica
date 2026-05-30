@@ -99,6 +99,7 @@ book:
       chapters:
         - volumes/v7-abstrata/01-grupos.qmd
         - volumes/v7-abstrata/02-subgrupos-ciclicos.qmd
+        - volumes/v7-abstrata/03-lagrange.qmd
   appendices:
     - notacao.qmd
 
