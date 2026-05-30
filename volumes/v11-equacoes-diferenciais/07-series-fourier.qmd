@@ -1,0 +1,138 @@
+# Séries de Fourier {#sec-series-fourier}
+
+## Motivação
+
+A separação de variáveis (@sec-edp-introducao) reduziu as EDPs a uma superposição de
+**modos** $\operatorname{sen}(n\pi x/L)$. Mas resta o passo decisivo: dada a condição
+inicial — a forma exata de uma corda dedilhada, o perfil de temperatura inicial —, com
+que pesos combinar os modos para reproduzi-la? A resposta é a **série de Fourier**: a
+afirmação revolucionária de que **qualquer** função periódica razoável é uma soma de
+senos e cossenos.
+
+Essa ideia, que Fourier introduziu para resolver a equação do calor, transformou a
+matemática e a tecnologia. Decompor um sinal em suas frequências é a base do
+processamento de áudio e imagem (MP3, JPEG), da análise de vibrações e da mecânica
+quântica. Aqui formalizamos a série, calculamos seus coeficientes via ortogonalidade
+(@sec-produto-interno) e a aplicamos.
+
+## A série de Fourier
+
+::: {#def-serie-fourier}
+## Série de Fourier
+Uma função $f$ periódica de período $2L$ tem **série de Fourier**
+$$
+f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{\infty}\left[a_n\cos\frac{n\pi x}{L} + b_n
+\operatorname{sen}\frac{n\pi x}{L}\right],
+$$
+com **coeficientes de Fourier**
+$$
+a_n = \frac1L\int_{-L}^{L} f(x)\cos\frac{n\pi x}{L}\,dx, \qquad b_n = \frac1L\int_{-L}^{L}
+f(x)\operatorname{sen}\frac{n\pi x}{L}\,dx.
+$$
+:::
+
+::: {.callout-tip}
+## As fórmulas vêm da ortogonalidade
+As fórmulas dos coeficientes não são mágicas: senos e cossenos de frequências diferentes
+são **ortogonais** no produto interno $\langle f, g\rangle = \int_{-L}^L fg\,dx$
+(@sec-produto-interno) — suas integrais de produto se anulam. Os coeficientes são, então,
+**projeções** de $f$ sobre cada modo (como as coordenadas numa base ortogonal,
+@sec-base-dimensao): $a_n \propto \langle f, \cos\frac{n\pi x}{L}\rangle$. A análise de
+Fourier é álgebra linear em dimensão infinita.
+:::
+
+::: {#exm-onda-quadrada}
+## A onda quadrada
+A função que vale $+1$ em $(0, \pi)$ e $-1$ em $(-\pi, 0)$ tem série
+$$
+f(x) = \frac{4}{\pi}\sum_{k=0}^{\infty}\frac{\operatorname{sen}((2k+1)x)}{2k+1} =
+\frac4\pi\left(\operatorname{sen}x + \frac{\operatorname{sen}3x}{3} + \frac{\operatorname
+{sen}5x}{5} + \cdots\right).
+$$
+Senos suaves somam-se para formar uma descontinuidade abrupta — notável.
+:::
+
+## Convergência
+
+::: {#thm-convergencia-fourier}
+## Teorema de convergência (Dirichlet)
+Se $f$ é periódica e seccionalmente suave, sua série de Fourier **converge** em cada
+ponto: para $f(x)$ onde $f$ é contínua, e para a **média** $\frac{f(x^+) + f(x^-)}{2}$
+dos limites laterais nos saltos.
+:::
+
+::: {.callout-warning}
+## O fenômeno de Gibbs
+Perto de uma descontinuidade, as somas parciais de Fourier **ultrapassam** o valor da
+função, com um "chifre" de cerca de 9% que não some ao aumentar os termos — apenas
+estreita. É o **fenômeno de Gibbs**, consequência de a convergência não ser uniforme
+(@sec-convergencia-uniforme) perto de saltos. Ele tem efeitos reais: artefatos de
+"toque" em bordas nítidas de imagens comprimidas por JPEG.
+:::
+
+## Forma complexa e além
+
+::: {#def-fourier-complexa}
+## Forma exponencial
+Usando a fórmula de Euler (@sec-taylor), a série assume a forma compacta
+$$
+f(x) = \sum_{n=-\infty}^{\infty} c_n\,e^{i n\pi x/L}, \qquad c_n = \frac{1}{2L}
+\int_{-L}^{L} f(x)\,e^{-i n\pi x/L}\,dx.
+$$
+:::
+
+::: {.callout-note}
+## Da série à transformada de Fourier
+Quando o período $L \to \infty$ (função não periódica), a soma discreta sobre $n$ vira
+uma **integral** sobre todas as frequências: a **transformada de Fourier**
+$\hat f(\xi) = \int_{-\infty}^\infty f(x)e^{-i\xi x}dx$. Ela decompõe sinais aperiódicos
+em um espectro contínuo, e é a ferramenta universal do processamento de sinais, da óptica
+e da resolução de EDPs em domínios infinitos. A série de Fourier é seu caso periódico.
+:::
+
+## Exercícios
+
+::: {#exr-sf-coef}
+Calcule os coeficientes $a_0$, $a_n$ de Fourier da função $f(x) = x$ em $(-\pi, \pi)$
+(função ímpar — antecipe quais coeficientes se anulam).
+:::
+
+::: {#exr-sf-par-impar}
+Explique por que uma função **par** só tem cossenos e uma **ímpar** só tem senos na sua
+série de Fourier.
+:::
+
+::: {#exr-sf-parseval}
+A identidade de Parseval diz $\frac1L\int_{-L}^L f^2\,dx = \frac{a_0^2}{2} + \sum(a_n^2
++ b_n^2)$. Interprete-a como "teorema de Pitágoras" no espaço de funções.
+:::
+
+::: {#exr-sf-gibbs}
+Em uma frase, explique por que mais termos de Fourier não eliminam o excesso de Gibbs num
+salto.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-coef
+$f(x) = x$ é **ímpar**, logo todos os $a_n = 0$ (inclusive $a_0$): cossenos são pares e o
+produto ímpar×par integra a zero em intervalo simétrico. Só sobram os $b_n$ — de fato
+$b_n = \frac{2(-1)^{n+1}}{n}$, a série $2(\operatorname{sen}x - \frac{\operatorname{sen}
+2x}{2} + \cdots)$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-par-impar
+Numa integral simétrica $\int_{-L}^L$, o produto de funções de paridades opostas é ímpar
+e integra a zero. Para $f$ **par**: $f\cdot\operatorname{sen}$ é ímpar ⟹ $b_n = 0$ (só
+cossenos). Para $f$ **ímpar**: $f\cdot\cos$ é ímpar ⟹ $a_n = 0$ (só senos).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-parseval
+Os modos $\{\cos\frac{n\pi x}{L}, \operatorname{sen}\frac{n\pi x}{L}\}$ formam uma base
+**ortogonal** (@sec-produto-interno). Parseval diz que o "comprimento ao quadrado" de $f$
+(sua energia $\int f^2$) é a soma dos quadrados das componentes nessa base — exatamente o
+teorema de Pitágoras (@thm-pitagoras-abstrato) em dimensão infinita.
+:::
