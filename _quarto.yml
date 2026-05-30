@@ -51,6 +51,7 @@ book:
         - volumes/v3-geometria/01-euclidiana-axiomas.qmd
         - volumes/v3-geometria/02-triangulos.qmd
         - volumes/v3-geometria/03-semelhanca-tales.qmd
+        - volumes/v3-geometria/04-pitagoras.qmd
   appendices:
     - notacao.qmd
 

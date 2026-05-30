@@ -1,0 +1,176 @@
+# Teorema de Pitágoras e relações métricas {#sec-pitagoras}
+
+## Motivação
+
+Talvez nenhum teorema seja tão conhecido quanto o de **Pitágoras**: num triângulo
+retângulo, o quadrado da hipotenusa é a soma dos quadrados dos catetos. Ele é a
+ponte entre a geometria e o número — converte uma figura (o ângulo reto) numa
+equação ($a^2 + b^2 = c^2$) — e por isso reaparece em toda a matemática, da
+distância entre dois pontos do plano (@sec-euclidiana) à norma dos vetores do
+Volume VI.
+
+Neste capítulo demonstramos Pitágoras usando a **semelhança** do @sec-semelhanca,
+o que de quebra produz todas as **relações métricas** do triângulo retângulo (a
+altura, as projeções dos catetos). Veremos também a recíproca — que caracteriza os
+ângulos retos — e como tudo se traduz em cálculos algébricos. É o capítulo que
+mais aproxima a geometria sintética da aritmética dos volumes anteriores.
+
+## As relações métricas
+
+Num triângulo retângulo, a altura traçada do ângulo reto até a hipotenusa cria uma
+configuração riquíssima: ela divide o triângulo em dois menores, ambos semelhantes
+ao original.
+
+::: {#def-elementos-retangulo}
+## Elementos do triângulo retângulo
+Num triângulo retângulo de hipotenusa $a$ e catetos $b, c$, a **altura** $h$
+relativa à hipotenusa divide-a em duas **projeções**: $m$ (projeção do cateto $b$)
+e $n$ (projeção do cateto $c$), com $m + n = a$.
+:::
+
+::: {#prp-semelhanca-retangulo}
+## Os três triângulos semelhantes
+A altura relativa à hipotenusa divide o triângulo retângulo em dois triângulos,
+ambos semelhantes ao triângulo original (e entre si).
+:::
+
+::: {.proof}
+Seja $\triangle ABC$ retângulo em $A$, com altura $\overline{AH}$ sobre a
+hipotenusa $\overline{BC}$. O triângulo menor $\triangle ABH$ tem o ângulo reto em
+$H$ e compartilha o ângulo $\hat B$ com $\triangle ABC$; tendo dois ângulos iguais,
+é semelhante a $\triangle ABC$ pelo caso AA (@thm-caso-aa). Da mesma forma,
+$\triangle ACH$ compartilha $\hat C$ e é semelhante a $\triangle ABC$. Logo os três
+são semelhantes.
+:::
+
+Da semelhança, escrevendo as proporções entre lados correspondentes, extraem-se as
+relações métricas.
+
+::: {#thm-relacoes-metricas}
+## Relações métricas
+Com a notação acima,
+$$
+b^2 = a m, \qquad c^2 = a n, \qquad h^2 = m n, \qquad b c = a h.
+$$
+:::
+
+::: {.proof}
+Da semelhança $\triangle ABH \sim \triangle CBA$ (mesma hipotenusa-cateto), a
+proporção $\dfrac{b}{a} = \dfrac{m}{b}$ dá $b^2 = a m$; analogamente $c^2 = a n$.
+Da semelhança $\triangle ABH \sim \triangle CAH$, $\dfrac{h}{n} = \dfrac{m}{h}$ dá
+$h^2 = m n$. Por fim, comparando áreas (base $\times$ altura), $b c = a h$.
+:::
+
+## O teorema de Pitágoras
+
+Pitágoras agora cai como uma simples **soma** das duas primeiras relações.
+
+::: {#thm-pitagoras}
+## Teorema de Pitágoras
+Num triângulo retângulo de hipotenusa $a$ e catetos $b, c$,
+$$
+a^2 = b^2 + c^2.
+$$
+:::
+
+::: {.proof}
+Pelas relações métricas (@thm-relacoes-metricas), $b^2 = a m$ e $c^2 = a n$.
+Somando,
+$$
+b^2 + c^2 = a m + a n = a(m + n) = a \cdot a = a^2,
+$$
+pois $m + n = a$ (a altura divide a hipotenusa em duas projeções que a recompõem).
+:::
+
+::: {#exm-pitagoras}
+## O triângulo $3$–$4$–$5$
+Com catetos $3$ e $4$, a hipotenusa $a$ satisfaz $a^2 = 3^2 + 4^2 = 9 + 16 = 25$,
+logo $a = 5$. Os ternos de inteiros como $(3, 4, 5)$, $(5, 12, 13)$ que satisfazem
+$a^2 = b^2 + c^2$ chamam-se **ternos pitagóricos** — exatamente as soluções
+inteiras estudadas com as ferramentas do Volume I.
+:::
+
+A recíproca também vale, e é o que faz de Pitágoras um **teste** de ângulo reto.
+
+::: {#thm-reciproca-pitagoras}
+## Recíproca de Pitágoras
+Se num triângulo de lados $a, b, c$ vale $a^2 = b^2 + c^2$, então o ângulo oposto
+ao lado $a$ é reto.
+:::
+
+::: {.callout-tip}
+## O esquadro de corda dos egípcios
+A recíproca tem uso milenar: uma corda com $12$ nós igualmente espaçados, formando
+lados $3$–$4$–$5$, produz um ângulo reto exato — pois $3^2 + 4^2 = 5^2$. Assim os
+agrimensores do Egito demarcavam terrenos sem instrumentos, séculos antes da
+demonstração grega. Geometria a serviço da medida.
+:::
+
+## A distância no plano
+
+Pitágoras é a semente da geometria analítica do Volume III adiante: a distância
+entre dois pontos é a hipotenusa de um triângulo retângulo de catetos horizontal e
+vertical.
+
+::: {#prp-distancia}
+## Distância entre dois pontos
+A distância entre $P = (x_1, y_1)$ e $Q = (x_2, y_2)$ no plano cartesiano é
+$$
+\overline{PQ} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}.
+$$
+:::
+
+::: {.callout-note}
+## A fórmula que viaja por toda a matemática
+Os catetos $|x_2 - x_1|$ e $|y_2 - y_1|$ medem os deslocamentos horizontal e
+vertical; a distância é a hipotenusa, por Pitágoras. Essa expressão define a
+**distância euclidiana**, que generaliza para o espaço ($+ (z_2 - z_1)^2$), para
+$\mathbb{R}^n$ e, abstraída, para a **norma** de vetores (Volume VI) e a métrica
+dos espaços do Volume IX. Tudo isso é Pitágoras vestido de álgebra.
+:::
+
+## Exercícios
+
+::: {#exr-hipotenusa}
+Um triângulo retângulo tem catetos $6$ e $8$. Calcule a hipotenusa, a altura
+relativa à hipotenusa e as duas projeções dos catetos.
+:::
+
+::: {#exr-reciproca}
+Um triângulo tem lados $9, 12, 15$. Verifique se é retângulo e, em caso
+afirmativo, indique qual ângulo é reto.
+:::
+
+::: {#exr-diagonal}
+Calcule a diagonal de um quadrado de lado $\ell$ e a diagonal de um retângulo de
+lados $5$ e $12$.
+:::
+
+::: {#exr-distancia}
+Determine a distância entre os pontos $A = (1, 2)$ e $B = (4, 6)$ e verifique se o
+triângulo de vértices $A$, $B$ e $C = (1, 6)$ é retângulo.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-hipotenusa
+Hipotenusa: $a = \sqrt{6^2 + 8^2} = \sqrt{100} = 10$. As projeções saem de
+$b^2 = a m$ e $c^2 = a n$ (@thm-relacoes-metricas):
+$$
+m = \frac{6^2}{10} = 3{,}6, \qquad n = \frac{8^2}{10} = 6{,}4
+$$
+(e $m + n = 10 = a$ ✓). A altura: $h = \dfrac{bc}{a} = \dfrac{6 \cdot 8}{10} =
+4{,}8$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-reciproca
+O maior lado é $15$. Testando a relação de Pitágoras com ele como hipotenusa:
+$$
+9^2 + 12^2 = 81 + 144 = 225 = 15^2.
+$$
+Como vale $15^2 = 9^2 + 12^2$, pela recíproca (@thm-reciproca-pitagoras) o
+triângulo é retângulo, e o ângulo reto é o **oposto ao lado $15$**. (É o terno
+$3$–$4$–$5$ multiplicado por $3$.)
+:::
