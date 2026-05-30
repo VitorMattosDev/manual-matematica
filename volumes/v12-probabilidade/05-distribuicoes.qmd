@@ -1,0 +1,134 @@
+# Distribuições notáveis {#sec-distribuicoes}
+
+## Motivação
+
+Certas distribuições aparecem repetidamente, em contextos completamente diferentes — não
+por acaso, mas porque correspondem a **mecanismos** universais de geração de
+aleatoriedade. Contar sucessos em tentativas independentes sempre dá uma binomial; eventos
+raros num intervalo dão uma Poisson; somas de muitos efeitos pequenos dão uma normal.
+
+Conhecer esse "catálogo" de distribuições é como conhecer as funções elementares do
+cálculo: cada uma tem sua fórmula, sua média, sua variância e seu domínio de aplicação.
+Reconhecer qual distribuição modela um fenômeno é metade do trabalho da estatística
+aplicada. Este capítulo apresenta as distribuições discretas e contínuas mais
+importantes, com ênfase na **normal**, a rainha da estatística.
+
+## Distribuições discretas
+
+::: {#def-bernoulli-binomial}
+## Bernoulli e binomial
+- **Bernoulli($p$)**: um único ensaio com sucesso (prob. $p$) ou fracasso. $E[X] = p$.
+- **Binomial($n, p$)**: número de sucessos em $n$ ensaios independentes. Sua fmp usa o
+  coeficiente binomial (@sec-combinatoria):
+$$
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \qquad E[X] = np, \quad \operatorname{Var}(X) =
+np(1-p).
+$$
+:::
+
+::: {#def-poisson}
+## Distribuição de Poisson
+A **Poisson($\lambda$)** modela o número de eventos raros num intervalo (chamadas,
+acidentes, decaimentos), com fmp
+$$
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \qquad E[X] = \operatorname{Var}(X) =
+\lambda.
+$$
+:::
+
+::: {.callout-note}
+## Poisson é o limite da binomial
+A Poisson surge da binomial quando há **muitos** ensaios ($n \to \infty$) com sucesso
+**raro** ($p \to 0$), mantendo $np = \lambda$ fixo. Por isso modela "eventos raros em
+muitas oportunidades": cada segundo há uma chance ínfima de uma chamada, mas há muitos
+segundos. A presença de $e^{-\lambda}$ e $k!$ vem diretamente do limite da fórmula
+binomial (e da série da exponencial, @sec-taylor).
+:::
+
+## A distribuição normal
+
+::: {#def-normal}
+## Distribuição normal (gaussiana)
+A **normal** $N(\mu, \sigma^2)$ tem densidade
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac{(x - \mu)^2}{2\sigma^2}},
+$$
+a célebre **curva em sino**, centrada em $\mu$ (média) e com largura $\sigma$
+(desvio-padrão). A $N(0, 1)$ é a **normal padrão**.
+:::
+
+::: {.callout-tip}
+## A regra 68–95–99,7
+Para qualquer normal: cerca de **68%** dos dados caem a $1\sigma$ da média, **95%** a
+$2\sigma$ e **99,7%** a $3\sigma$. Essa regra prática governa controle de qualidade,
+notas padronizadas e margens de erro. A curva nunca toca o eixo, mas decai tão rápido
+(como $e^{-x^2}$) que praticamente tudo está a $3\sigma$.
+:::
+
+::: {.callout-warning}
+## A integral que não fecha
+A densidade normal envolve $e^{-x^2}$, cuja antiderivada **não é elementar**
+(@sec-tecnicas-integracao). Por isso probabilidades normais não têm fórmula fechada — são
+tabeladas (a função $\Phi$) ou calculadas numericamente. Notavelmente, a integral sobre
+**toda** a reta fecha: $\int_{-\infty}^\infty e^{-x^2}dx = \sqrt\pi$, um resultado que
+exige a integral dupla e coordenadas polares (@sec-integrais-multiplas).
+:::
+
+## Por que a normal é universal
+
+::: {.callout-note}
+## O teorema central do limite (prévia)
+A normal domina a estatística por uma razão profunda: a **soma de muitas variáveis
+aleatórias independentes** — quaisquer que sejam suas distribuições individuais — tende a
+uma normal. Esse é o **teorema central do limite** (@sec-lgn-tcl). Altura, erro de
+medida, ruído: tudo que resulta de muitos pequenos efeitos somados é aproximadamente
+normal. É por isso que a curva em sino aparece em toda parte na natureza.
+:::
+
+::: {#exm-padronizacao}
+## Padronização
+Qualquer normal converte-se na padrão pela transformação $Z = \frac{X - \mu}{\sigma}$,
+que tem $N(0,1)$. Assim uma única tabela (a de $Z$) serve para todas as normais — calcula-se
+"quantos desvios-padrão" um valor está da média (o **escore-z**) e consulta-se $\Phi$.
+:::
+
+## Exercícios
+
+::: {#exr-di-binomial}
+Numa prova de 10 questões de múltipla escolha (4 opções), respondendo ao acaso, qual a
+probabilidade de acertar exatamente 3? Qual o número esperado de acertos?
+:::
+
+::: {#exr-di-poisson}
+Um call center recebe em média 2 chamadas por minuto. Qual a probabilidade de receber
+exatamente 0 chamadas num dado minuto?
+:::
+
+::: {#exr-di-normal}
+Notas seguem $N(70, 10^2)$. Que fração dos alunos tem nota entre 60 e 80? (Use a regra
+68–95–99,7.)
+:::
+
+::: {#exr-di-padronizar}
+Para $X \sim N(100, 15^2)$, calcule o escore-z de $X = 130$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-di-binomial
+Binomial($10, \tfrac14$): $P(X=3) = \binom{10}{3}(\tfrac14)^3(\tfrac34)^7 = 120\cdot
+\frac{1}{64}\cdot\frac{2187}{16384} \approx 0{,}250$. Esperado: $E[X] = np = 10\cdot
+\tfrac14 = 2{,}5$ acertos.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-di-poisson
+Poisson($\lambda = 2$): $P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0{,}135$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-di-normal
+$60$ e $80$ estão a $1\sigma = 10$ da média $70$. Pela regra 68–95–99,7, cerca de
+**68%** dos alunos têm nota nesse intervalo.
+:::
