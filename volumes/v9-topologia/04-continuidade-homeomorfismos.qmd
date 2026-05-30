@@ -1,0 +1,172 @@
+# Continuidade e homeomorfismos {#sec-continuidade-homeomorfismos}
+
+## Motivação
+
+Em cada estrutura matemática, há um tipo de função que a "respeita": homomorfismos
+preservam operações de grupos (@sec-lagrange), transformações lineares preservam soma e
+escalar (@sec-transformacoes-lineares). Em topologia, as funções que respeitam a
+estrutura são as **contínuas** — e as que a preservam perfeitamente, identificando dois
+espaços como topologicamente idênticos, são os **homeomorfismos**.
+
+A definição topológica de continuidade — "pré-imagem de aberto é aberta" — é uma das
+mais elegantes da matemática: captura toda a ideia de ε-δ usando só abertos
+(@sec-espacos-topologicos). E o homeomorfismo formaliza a célebre piada de que "um
+topólogo não distingue uma xícara de uma rosca": objetos deformáveis um no outro,
+sem cortar nem colar, são o mesmo para a topologia. Este capítulo estabelece o que
+significa dois espaços terem a "mesma forma" e as propriedades que essa forma preserva.
+
+## Continuidade
+
+::: {#def-continuidade-topologica}
+## Função contínua
+Uma função $f: (X, \tau_X) \to (Y, \tau_Y)$ é **contínua** se a **pré-imagem de todo
+aberto é aberta**: $V \in \tau_Y \implies f^{-1}(V) \in \tau_X$.
+:::
+
+Em espaços métricos, essa definição coincide com a ε-δ (@def-continuidade-metrica) —
+mas a versão topológica não menciona distância, sendo portanto mais geral.
+
+::: {#prp-continuidade-fechados-base}
+## Caracterizações equivalentes
+$f$ é contínua se, e somente se, qualquer uma vale:
+
+- a pré-imagem de todo **fechado** é fechada;
+- a pré-imagem de todo elemento de uma **base** (ou subbase) de $Y$ é aberta;
+- $f(\overline A) \subseteq \overline{f(A)}$ para todo $A \subseteq X$.
+:::
+
+A segunda caracterização é a mais prática: basta checar os elementos de uma base
+(@sec-base-subbase), não todos os abertos.
+
+::: {#exm-continuas-topologicas}
+## Continuidade em casos extremos
+- **Toda** função de um espaço **discreto** é contínua (toda pré-imagem é aberta,
+  @exr-em-continuidade).
+- **Toda** função **para** um espaço **caótico** é contínua (os únicos abertos do
+  contradomínio são $\emptyset$ e $Y$).
+- Funções constantes e a identidade são sempre contínuas.
+:::
+
+::: {#thm-composta-continua}
+## Composta de contínuas
+Se $f: X \to Y$ e $g: Y \to Z$ são contínuas, então $g \circ f: X \to Z$ é contínua.
+:::
+
+::: {.proof}
+Para $W$ aberto em $Z$: $(g\circ f)^{-1}(W) = f^{-1}(g^{-1}(W))$. Como $g$ é contínua,
+$g^{-1}(W)$ é aberto; como $f$ é contínua, sua pré-imagem é aberta. Logo $g\circ f$ é
+contínua.
+:::
+
+## Homeomorfismos
+
+::: {#def-homeomorfismo}
+## Homeomorfismo
+Uma função $f: X \to Y$ é um **homeomorfismo** se é **bijetora**, **contínua** e sua
+inversa $f^{-1}$ também é **contínua**. Quando existe um, $X$ e $Y$ são
+**homeomorfos**, $X \cong Y$ — topologicamente indistinguíveis.
+:::
+
+::: {.callout-warning}
+## Bijeção contínua não basta
+É **essencial** exigir que a inversa também seja contínua. Existem bijeções contínuas
+cuja inversa não é — por exemplo, $f: [0, 2\pi) \to S^1$ (círculo), $t \mapsto
+(\cos t, \operatorname{sen}t)$, é bijeção contínua, mas sua inversa "rasga" o círculo
+num ponto, não sendo contínua. O intervalo e o círculo **não** são homeomorfos. Sem a
+exigência sobre a inversa, perderíamos a noção de equivalência genuína.
+:::
+
+::: {#exm-homeomorfismos}
+## Espaços homeomorfos e não homeomorfos
+- $(a, b) \cong \mathbb{R}$: qualquer intervalo aberto é homeomorfo à reta inteira
+  (via uma função como a tangente).
+- Um **quadrado** e um **círculo** (as curvas) são homeomorfos — deformáveis um no
+  outro.
+- A famosa **xícara** $\cong$ **rosca** (toro): ambos têm exatamente um "buraco".
+- $\mathbb{R} \not\cong \mathbb{R}^2$: retirar um ponto desconecta a reta, mas não o
+  plano (@sec-conexidade).
+:::
+
+## Propriedades topológicas
+
+A pergunta-chave: o que se preserva sob homeomorfismo?
+
+::: {#def-propriedade-topologica}
+## Propriedade topológica
+Uma **propriedade topológica** (ou invariante) é uma propriedade preservada por
+homeomorfismos: se $X$ a tem e $X \cong Y$, então $Y$ também a tem.
+:::
+
+::: {.callout-note}
+## O kit de ferramentas do topólogo
+São invariantes topológicos, entre outros: **conexidade** (@sec-conexidade),
+**compacidade** (@sec-compacidade), os **axiomas de separação** (@sec-separacao), e o
+**grupo fundamental** (@sec-grupo-fundamental). Eles são a maneira de **distinguir**
+espaços: se dois espaços diferem em algum invariante, não podem ser homeomorfos. Provar
+que dois espaços **são** homeomorfos exige exibir a função; provar que **não são** basta
+achar um invariante que os separe — como o "número de buracos".
+:::
+
+::: {#exm-invariante-distingue}
+## Distinguindo por invariantes
+Os intervalos $[0, 1]$ e $(0, 1)$ não são homeomorfos: $[0, 1]$ é **compacto**
+(@thm-heine-borel) e $(0, 1)$ não. Como a compacidade é invariante topológico, nenhum
+homeomorfismo pode existir entre eles. Um único invariante resolve a questão.
+:::
+
+## Subespaços
+
+Toda parte de um espaço topológico herda uma topologia natural.
+
+::: {#def-subespaco-topologico}
+## Topologia de subespaço
+Se $A \subseteq X$, a **topologia de subespaço** em $A$ tem por abertos as interseções
+$U \cap A$, com $U$ aberto em $X$. A inclusão $A \hookrightarrow X$ é então contínua, e
+$A$ torna-se um espaço topológico por direito próprio.
+:::
+
+É assim que o círculo $S^1 \subseteq \mathbb{R}^2$, a esfera $S^2 \subseteq
+\mathbb{R}^3$ e qualquer figura geométrica adquirem topologia — herdada do espaço
+ambiente, e independente dele a menos de homeomorfismo.
+
+## Exercícios
+
+::: {#exr-ch-1}
+Mostre que $f: \mathbb{R} \to \mathbb{R}$, $f(x) = x^3$, é um homeomorfismo.
+:::
+
+::: {#exr-ch-intervalo}
+Exiba um homeomorfismo explícito entre $(-1, 1)$ e $\mathbb{R}$.
+:::
+
+::: {#exr-ch-composta}
+Use a caracterização por base para mostrar que $f: \mathbb{R} \to \mathbb{R}^2$,
+$f(t) = (t, t^2)$, é contínua.
+:::
+
+::: {#exr-ch-nao-homeo}
+Explique por que $[0, 1]$ e $[0, 1) \cup [2, 3]$ não são homeomorfos.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ch-intervalo
+A função $f(x) = \frac{x}{1 - x^2}$ leva $(-1, 1)$ bijetivamente em $\mathbb{R}$, é
+contínua e tem inversa contínua. (Alternativa: $f(x) = \tan\left(\frac{\pi x}{2}
+\right)$.) Logo $(-1, 1) \cong \mathbb{R}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ch-1
+$f(x) = x^3$ é bijetora (estritamente crescente) e contínua. Sua inversa $f^{-1}(y) =
+\sqrt[3]{y}$ também é contínua. Bijeção contínua com inversa contínua: é
+**homeomorfismo**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ch-nao-homeo
+$[0,1]$ é **conexo** (@sec-conexidade), mas $[0, 1) \cup [2, 3]$ é a união disjunta de
+dois pedaços separados — **desconexo**. Como conexidade é invariante topológico, não
+há homeomorfismo entre eles.
+:::

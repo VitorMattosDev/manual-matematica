@@ -123,6 +123,7 @@ book:
         - volumes/v9-topologia/01-espacos-metricos.qmd
         - volumes/v9-topologia/02-espacos-topologicos.qmd
         - volumes/v9-topologia/03-base-subbase.qmd
+        - volumes/v9-topologia/04-continuidade-homeomorfismos.qmd
   appendices:
     - notacao.qmd
 
