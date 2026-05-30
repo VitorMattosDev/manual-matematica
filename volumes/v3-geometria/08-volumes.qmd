@@ -1,0 +1,172 @@
+# Volumes e sólidos de revolução {#sec-volumes}
+
+## Motivação
+
+Quanto cabe num tanque? Quanto pesa uma coluna? O **volume** mede a extensão de uma
+região do espaço, e suas fórmulas — do prisma à esfera — são indispensáveis na
+engenharia, na física e no comércio. Este capítulo é o análogo tridimensional do
+capítulo de áreas (@sec-areas): partimos de uma convenção (o volume do bloco
+retangular) e derivamos o resto por decomposição e aproximação.
+
+Duas ideias organizam tudo. O **princípio de Cavalieri** reduz o cálculo de
+volumes à comparação de seções, dando de imediato o volume de qualquer prisma ou
+cilindro. E o método de **exaustão** — fatiar e somar, refinando ao infinito —
+produz pirâmide, cone e esfera, antecipando a integral do Volume V. A lei de escala
+vira agora $k^3$.
+
+## Volume do bloco e o princípio de Cavalieri
+
+::: {#def-volume-bloco}
+## Volume do paralelepípedo
+O **volume** de um paralelepípedo retângulo (bloco) de arestas $a$, $b$, $c$ é o
+produto
+$$
+V = a \cdot b \cdot c.
+$$
+Em particular, o cubo de aresta $\ell$ tem volume $\ell^3$.
+:::
+
+Daqui em diante, nada de novas convenções: tudo decorre, e a ferramenta central é
+o princípio a seguir.
+
+::: {#thm-cavalieri}
+## Princípio de Cavalieri
+Se dois sólidos, apoiados num mesmo plano, têm seções de **áreas iguais** em toda
+altura, então têm o **mesmo volume**.
+:::
+
+::: {.callout-note}
+## Pilhas de moedas
+A imagem é a de uma pilha de moedas: inclinando-a, o sólido muda de forma mas não
+de volume, pois cada fatia (cada moeda) mantém sua área. Cavalieri transforma um
+problema de volume num problema de **áreas de seções** — exatamente a ideia que a
+integral do Volume V tornará um algoritmo: somar áreas de fatias infinitamente
+finas.
+:::
+
+::: {#prp-prisma-cilindro}
+## Volume de prismas e cilindros
+Todo prisma ou cilindro de área da base $A_b$ e altura $h$ tem volume
+$$
+V = A_b \cdot h.
+$$
+:::
+
+::: {.proof}
+Um prisma de base $A_b$ e altura $h$ tem, em toda altura, uma seção igual à base,
+de área $A_b$ — as mesmas seções de um bloco de base $A_b$ e altura $h$, cujo
+volume é $A_b h$ (@def-volume-bloco). Por Cavalieri (@thm-cavalieri), os volumes
+são iguais. O cilindro é o caso de base circular, com $V = \pi r^2 h$.
+:::
+
+## Pirâmide e cone
+
+Sólidos que afunilam têm volume **um terço** do prisma ou cilindro de mesma base e
+altura — um fator que exige um argumento de fatiamento.
+
+::: {#thm-piramide-cone}
+## Volume da pirâmide e do cone
+Uma pirâmide (ou cone) de área da base $A_b$ e altura $h$ tem volume
+$$
+V = \frac{1}{3} A_b \cdot h.
+$$
+:::
+
+::: {.callout-tip}
+## De onde vem o $\frac13$
+Um cubo decompõe-se em **três** pirâmides congruentes de mesma base e altura
+iguais à do cubo — o que já dá $V = \frac13 A_b h$ nesse caso. Para a forma geral,
+fatia-se a pirâmide horizontalmente: a seção à altura $t$ é semelhante à base com
+razão proporcional a $t$, logo sua área escala com $t^2$ (@prp-area-escala).
+Somando as fatias $\propto t^2$ do topo à base — uma soma que o Cálculo escreve
+como $\int_0^h t^2\,dt = \frac{h^3}{3}$ — surge o fator $\frac13$. É exaustão, como
+no círculo de Arquimedes.
+:::
+
+::: {#exm-cone}
+## Volume de um cone
+Um cone de raio da base $3$ e altura $7$ tem base de área $A_b = \pi \cdot 3^2 =
+9\pi$, logo volume
+$$
+V = \frac13 \cdot 9\pi \cdot 7 = 21\pi \approx 65{,}97.
+$$
+:::
+
+## A esfera
+
+O volume da esfera coroa o capítulo, obtido por Cavalieri num confronto engenhoso.
+
+::: {#thm-esfera}
+## Volume da esfera
+Uma esfera de raio $r$ tem volume
+$$
+V = \frac{4}{3}\pi r^3.
+$$
+:::
+
+::: {.callout-note}
+## A esfera, o cilindro e o cone de Arquimedes
+Arquimedes comparou, por Cavalieri, uma **semiesfera** de raio $r$ com um cilindro
+de raio e altura $r$ do qual se removeu um cone. Em cada altura, as áreas das
+seções coincidem (um cálculo com Pitágoras: $\pi(r^2 - t^2)$ dos dois lados). Logo
+têm o mesmo volume, e o da semiesfera resulta $\pi r^3 - \frac13\pi r^3 = \frac23
+\pi r^3$; a esfera inteira, o dobro, $\frac43\pi r^3$. Arquimedes orgulhou-se tanto
+do feito que pediu a figura em seu túmulo.
+:::
+
+## Volumes e semelhança
+
+::: {#prp-volume-escala}
+## Escala dos volumes
+Se um sólido é ampliado por um fator $k$, seu volume fica multiplicado por $k^3$.
+:::
+
+::: {.callout-warning}
+## Por que gigantes não existem
+A lei $k^3$ tem consequência física: ao dobrar todas as dimensões de um animal, seu
+**peso** (proporcional ao volume) cresce $8$ vezes, mas a **resistência** dos
+ossos (proporcional à área da seção) só cresce $4$ vezes (@prp-area-escala). Por
+isso não há insetos do tamanho de elefantes — a estrutura não suportaria. As leis
+de escala $k^2$ e $k^3$ governam a forma dos seres vivos.
+:::
+
+## Exercícios
+
+::: {#exr-cilindro}
+Calcule o volume de um cilindro de raio $5$ e altura $12$.
+:::
+
+::: {#exr-piramide}
+Uma pirâmide tem base quadrada de lado $6$ e altura $10$. Calcule seu volume.
+:::
+
+::: {#exr-esfera}
+Calcule o volume de uma esfera de raio $3$ e a razão entre esse volume e o do
+cilindro que a circunscreve (raio $3$, altura $6$).
+:::
+
+::: {#exr-escala-volume}
+Dois cubos têm arestas na razão $1 : 2$. Qual a razão entre seus volumes? E se a
+razão das arestas fosse $2 : 3$?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-esfera
+Volume da esfera: $V = \frac43 \pi \cdot 3^3 = \frac43 \pi \cdot 27 = 36\pi$. O
+cilindro circunscrito tem $V_{\text{cil}} = \pi \cdot 3^2 \cdot 6 = 54\pi$. A razão
+é
+$$
+\frac{36\pi}{54\pi} = \frac{2}{3}.
+$$
+A esfera ocupa exatamente $\frac23$ do cilindro que a contém — o resultado de
+Arquimedes.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-escala-volume
+Pela @prp-volume-escala, a razão dos volumes é o **cubo** da razão das arestas.
+Para arestas $1:2$, os volumes estão na razão $1^3 : 2^3 = 1 : 8$. Para arestas $2
+: 3$, a razão é $2^3 : 3^3 = 8 : 27$.
+:::
