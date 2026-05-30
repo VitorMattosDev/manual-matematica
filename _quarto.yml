@@ -33,6 +33,7 @@ book:
         - volumes/v1-fundamentos/07-primos-tfa.qmd
         - volumes/v1-fundamentos/08-congruencias.qmd
         - volumes/v1-fundamentos/09-racionais.qmd
+        - volumes/v1-fundamentos/10-reais-introducao.qmd
     # ----------------------------------------------------------------
     # Os próximos volumes estão planejados em PLANO.md. Para ativá-los,
     # crie os arquivos .qmd correspondentes e descomente os blocos abaixo.

@@ -29,6 +29,8 @@ novos volumes forem escritos.
 | $\mathbb{Z}/n\mathbb{Z}$ | classes residuais módulo $n$ |
 | $\mathbb{Z}^{*}$ | inteiros não nulos |
 | $0{,}\overline{d}$ | dízima periódica (período sob a barra) |
+| $\mathbb{R} \setminus \mathbb{Q}$ | números irracionais |
+| $\sup S,\ \inf S$ | supremo (menor cota superior), ínfimo |
 | $\forall,\ \exists$ | para todo, existe |
 | $\mid,\ \nmid$ | divide, não divide ($a \mid b$: $a$ divide $b$) |
 | $|x|$ | valor absoluto de $x$ |

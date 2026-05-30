@@ -1,0 +1,169 @@
+# Os números reais {#sec-reais}
+
+## Motivação
+
+Fechamos o capítulo anterior com uma inquietação: $\mathbb{Q}$ é denso, sem saltos
+visíveis, e ainda assim *furado*. Não existe racional cujo quadrado seja $2$
+(@sec-primos), embora exista um segmento — a diagonal do quadrado de lado $1$ —
+cujo comprimento elevado ao quadrado dá exatamente $2$. Há um ponto na reta que
+deveria se chamar $\sqrt 2$ e que nenhum racional ocupa.
+
+Os **números reais** $\mathbb{R}$ são a estrutura que tapa esses buracos: a reta
+completa, sem furos, onde todo comprimento, toda diagonal e todo limite têm
+endereço. Este capítulo é uma introdução *intuitiva* — a construção rigorosa
+(cortes de Dedekind, sequências de Cauchy) fica para o Volume VIII. Aqui o
+objetivo é entender **o que falta a $\mathbb{Q}$** e qual propriedade,
+a **completude**, caracteriza $\mathbb{R}$ e o distingue de tudo o que veio antes.
+
+## Um buraco em $\mathbb{Q}$
+
+Vale a pena reencontrar o problema de perto. Já sabemos que $\sqrt 2$ não é
+racional; o que segue mostra que ele *quase* é — pode ser cercado por racionais
+tão de perto quanto se queira, embora nunca atingido.
+
+::: {#exm-cerco}
+## Cercando $\sqrt 2$
+Considere os racionais que se aproximam por baixo e por cima:
+$$
+1{,}4;\ 1{,}41;\ 1{,}414;\ 1{,}4142;\ \dots \qquad \text{e} \qquad
+1{,}5;\ 1{,}42;\ 1{,}415;\ 1{,}4143;\ \dots
+$$
+Os da esquerda têm quadrado $< 2$, os da direita têm quadrado $> 2$, e os dois
+lados se aproximam indefinidamente. Defina os conjuntos
+$$
+A = \{\, x \in \mathbb{Q} : x > 0,\ x^2 < 2 \,\}, \qquad
+B = \{\, x \in \mathbb{Q} : x > 0,\ x^2 > 2 \,\}.
+$$
+Todo elemento de $A$ é menor que todo elemento de $B$, e juntos eles deixam de
+fora **exatamente um** ponto da reta. Em $\mathbb{Q}$, esse ponto não existe: $A$
+não tem maior elemento, $B$ não tem menor, e nada os separa. É o buraco.
+:::
+
+::: {.callout-note}
+## O problema, em uma frase
+$\mathbb{Q}$ tem subconjuntos limitados superiormente — como $A$ acima — que **não
+têm menor cota superior** dentro de $\mathbb{Q}$. Tapar esse tipo de buraco é,
+precisamente, o que a completude exige.
+:::
+
+## Supremo e completude
+
+Para enunciar a propriedade que falta, precisamos de duas noções: cota superior e
+a *menor* delas.
+
+::: {#def-supremo}
+## Cota superior e supremo
+Seja $S$ um conjunto de números e $S \neq \emptyset$. Um número $M$ é **cota
+superior** de $S$ se $x \leq M$ para todo $x \in S$. O **supremo** de $S$,
+denotado $\sup S$, é a **menor** das cotas superiores: é cota superior e nenhum
+número menor que ele o é. (Analogamente, o **ínfimo** $\inf S$ é a maior cota
+inferior.)
+:::
+
+Em $\mathbb{Q}$, o conjunto $A$ do @exm-cerco é limitado superiormente (por $2$,
+por exemplo) mas **não tem supremo racional** — seu supremo "deveria" ser $\sqrt
+2$, que não está lá. A propriedade que define $\mathbb{R}$ é justamente proibir
+esse fracasso.
+
+::: {#thm-completude}
+## Completude de $\mathbb{R}$ (axioma do supremo)
+Todo subconjunto não vazio de $\mathbb{R}$ que é limitado superiormente possui
+supremo em $\mathbb{R}$.
+:::
+
+Esta é a propriedade que separa $\mathbb{R}$ de $\mathbb{Q}$. Tomamo-la aqui como
+o **axioma** que caracteriza os reais; no Volume VIII, ela será um *teorema*,
+demonstrado a partir de uma construção explícita de $\mathbb{R}$. Intuitivamente,
+ela diz que a reta real não tem furos: todo conjunto que "empurra para cima" até
+um limite encontra esse limite já presente em $\mathbb{R}$.
+
+::: {.callout-tip}
+## Por que isso "preenche" a reta
+Com a completude, o conjunto $A = \{ x > 0 : x^2 < 2\}$ — agora tomado em
+$\mathbb{R}$ — tem supremo $\alpha = \sup A$. Mostra-se que $\alpha^2 = 2$: não
+pode ser $\alpha^2 < 2$ (haveria racional ligeiramente maior ainda em $A$, e
+$\alpha$ não seria cota superior) nem $\alpha^2 > 2$ (haveria cota superior
+menor). Logo $\alpha = \sqrt 2$ **existe** em $\mathbb{R}$. O mesmo argumento
+produz $\sqrt[n]{a}$ para todo $a > 0$ — todas as raízes que faltavam.
+:::
+
+## A reta real
+
+Reunindo as peças: $\mathbb{R}$ é um **corpo ordenado** (soma, produto, inversos e
+ordem, como $\mathbb{Q}$) que, além disso, é **completo** (@thm-completude). Os
+elementos de $\mathbb{R}$ que não estão em $\mathbb{Q}$ são os **números
+irracionais**, $\mathbb{R} \setminus \mathbb{Q}$ — como $\sqrt 2$, e também $\pi$ e
+$e$, que reencontraremos no Cálculo.
+
+Cada real corresponde a uma **expansão decimal infinita**, e a periodicidade do
+@sec-racionais ganha seu fecho: os decimais periódicos são exatamente os
+racionais, e os **não periódicos** são exatamente os irracionais. Assim, $\sqrt 2
+= 1{,}41421356\dots$ nunca entra em ciclo — e é essa ausência de período a marca
+visível de sua irracionalidade.
+
+::: {.callout-note}
+## Densos, mas de "tamanhos" diferentes
+Tanto $\mathbb{Q}$ quanto $\mathbb{R} \setminus \mathbb{Q}$ são densos na reta —
+ambos aparecem em todo intervalo. Surpreendentemente, porém, há *muito mais*
+irracionais que racionais: os racionais podem ser enfileirados numa lista
+(são **enumeráveis**), os reais não. Esse contraste, descoberto por Cantor, é o
+ponto de partida da teoria dos conjuntos infinitos — um tema que o Volume VIII
+retoma com rigor.
+:::
+
+::: {.callout-warning}
+## "Intuitivo" não é "vago"
+Tudo aqui pode — e será, no Volume VIII — ser tornado preciso. A completude não é
+uma metáfora sobre "não ter furos": é o enunciado exato do @thm-completude, com
+consequências demonstráveis (existência de raízes, de limites, de máximos de
+funções contínuas). A intuição da reta cheia é o guia; o axioma do supremo é o
+conteúdo.
+:::
+
+## Exercícios
+
+::: {#exr-sup-simples}
+Determine $\sup S$ e $\inf S$, quando existirem, para $S = \left\{\, 1 - \dfrac{1}
+{n} : n \in \mathbb{N} \,\right\}$. O supremo pertence a $S$?
+:::
+
+::: {#exr-raiz3-irracional}
+Adapte o argumento da irracionalidade de $\sqrt 2$ para provar que $\sqrt 3$ é
+irracional. Onde o argumento falharia se tentássemos "provar" que $\sqrt 4$ é
+irracional?
+:::
+
+::: {#exr-sup-cota}
+Seja $S \neq \emptyset$ limitado superiormente e $\alpha = \sup S$. Prove que,
+para todo $\varepsilon > 0$, existe $x \in S$ com $x > \alpha - \varepsilon$.
+(Isto é: nenhum número menor que $\alpha$ é cota superior.)
+:::
+
+::: {#exr-densidade-irracionais}
+Use a densidade de $\mathbb{Q}$ (@thm-densidade) e o fato de $\sqrt 2$ ser
+irracional para mostrar que entre dois reais quaisquer há um irracional.
+(Sugestão: some $\sqrt 2$ convenientemente reduzido a um racional do intervalo.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sup-simples
+Os elementos $1 - \tfrac1n$ valem $0, \tfrac12, \tfrac23, \tfrac34, \dots$,
+crescendo e aproximando-se de $1$ sem nunca atingi-lo. O ínfimo é $\inf S = 0$
+(atingido em $n = 1$, logo $0 \in S$). Toda parcela é $< 1$, então $1$ é cota
+superior; e nenhum número $M < 1$ é cota superior, pois tomando $n$ grande o
+bastante tem-se $1 - \tfrac1n > M$. Logo $\sup S = 1$, mas $1 \notin S$ — o
+supremo existe (graças à completude) sem pertencer ao conjunto.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-raiz3-irracional
+Suponha $\sqrt 3 = \tfrac{a}{b}$ irredutível, com $a^2 = 3 b^2$. Então $3 \mid
+a^2$; como $3$ é primo, $3 \mid a$ (@sec-primos), digamos $a = 3c$. Substituindo,
+$9c^2 = 3b^2$, ou $b^2 = 3c^2$, donde $3 \mid b$ — contradizendo a irredutibilidade
+de $\tfrac{a}{b}$. Logo $\sqrt 3$ é irracional. O argumento usa que **$3$ é
+primo** (para passar de $3 \mid a^2$ a $3 \mid a$); com $\sqrt 4$ ele falha,
+pois $4$ não é primo e $4 \mid a^2$ não força $4 \mid a$ — coerente com o fato de
+$\sqrt 4 = 2$ ser racional.
+:::
