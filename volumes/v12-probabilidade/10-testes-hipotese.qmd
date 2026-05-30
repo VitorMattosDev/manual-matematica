@@ -1,0 +1,158 @@
+# Testes de hipótese e intervalos de confiança {#sec-testes-hipotese}
+
+## Motivação
+
+A pergunta final da estatística é a da **decisão**: o novo remédio funciona, ou a
+melhora foi sorte? A moeda é viciada, ou foi coincidência darem 60 caras em 100? Os
+dados nunca são conclusivos — há sempre acaso. O **teste de hipótese** é o protocolo
+rigoroso para decidir, à luz da incerteza, se uma evidência é forte o bastante para
+mudar de ideia.
+
+Junto com os **intervalos de confiança** (que quantificam a precisão de uma estimativa),
+os testes formam o aparato da inferência estatística usado em toda ciência experimental.
+Eles transformam a pergunta vaga "isso é significativo?" numa conta precisa. Este
+capítulo fecha o Volume XII apresentando essa lógica — e seus mal-entendidos mais
+perigosos.
+
+## Intervalos de confiança
+
+::: {#def-intervalo-confianca}
+## Intervalo de confiança
+Um **intervalo de confiança** de nível $1 - \alpha$ para um parâmetro é um intervalo,
+calculado da amostra, que contém o parâmetro verdadeiro com probabilidade $1 - \alpha$.
+Para a média, usando o TCL (@thm-tcl):
+$$
+\bar X \pm z_{\alpha/2}\,\frac{\sigma}{\sqrt n},
+$$
+onde $z_{\alpha/2}$ vem da normal padrão (ex.: $1{,}96$ para $95\%$).
+:::
+
+::: {.callout-warning}
+## O que "95% de confiança" realmente significa
+**Não** significa "há 95% de chance de o parâmetro estar neste intervalo" — o parâmetro
+é fixo, não aleatório; o **intervalo** é que é aleatório. Significa: se repetíssemos a
+amostragem muitas vezes, **95% dos intervalos** construídos conteriam o parâmetro
+verdadeiro. A confiança está no **procedimento**, não num intervalo particular. É a
+interpretação mais incompreendida da estatística.
+:::
+
+## A lógica do teste de hipótese
+
+::: {#def-hipoteses}
+## Hipótese nula e alternativa
+Formulam-se duas hipóteses: a **nula** $H_0$ (o "status quo": sem efeito, moeda justa) e
+a **alternativa** $H_1$ (o que se quer demonstrar). O teste assume $H_0$ e verifica se os
+dados são **incompatíveis** demais com ela.
+:::
+
+::: {#def-erros-teste}
+## Os dois tipos de erro
+- **Erro tipo I** (falso positivo): rejeitar $H_0$ sendo ela verdadeira. Sua
+  probabilidade é o **nível de significância** $\alpha$ (tipicamente $0{,}05$).
+- **Erro tipo II** (falso negativo): não rejeitar $H_0$ sendo ela falsa. Sua
+  probabilidade é $\beta$; $1 - \beta$ é o **poder** do teste.
+:::
+
+::: {.callout-tip}
+## Presunção de inocência
+O teste de hipótese é como um julgamento: $H_0$ ("inocente") é mantida a menos que as
+evidências sejam **fortes o suficiente** para rejeitá-la. Exigir $\alpha$ pequeno é como
+exigir prova "além da dúvida razoável" — protege contra condenar um inocente (erro
+tipo I). Mas isso aumenta a chance de absolver um culpado (erro tipo II): os dois erros
+se contrabalançam, e reduzir um aumenta o outro (para $n$ fixo).
+:::
+
+## O valor-p
+
+::: {#def-valor-p}
+## Valor-p
+O **valor-p** é a probabilidade de observar dados **tão ou mais extremos** que os
+obtidos, **supondo $H_0$ verdadeira**. Se $p < \alpha$, rejeita-se $H_0$ (resultado
+"estatisticamente significativo").
+:::
+
+::: {.callout-warning}
+## O que o valor-p NÃO é
+O valor-p **não** é "a probabilidade de $H_0$ ser verdadeira" — esse é o erro mais comum
+e grave. Ele é calculado *assumindo* $H_0$, e mede a surpresa dos dados sob ela. Um $p =
+0{,}03$ não diz "97% de chance de o efeito ser real". Além disso, **significância
+estatística não é importância prática**: com amostra enorme, efeitos minúsculos e
+irrelevantes ficam "significativos". O abuso do valor-p (o *p-hacking*) é uma das raízes
+da crise de reprodutibilidade na ciência.
+:::
+
+::: {#exm-teste-moeda}
+## A moeda é viciada?
+Em $100$ lançamentos saíram $62$ caras. Sob $H_0$ (moeda justa, $p = 0{,}5$), o número de
+caras é $\approx N(50, 25)$ pelo TCL, com desvio $5$. O escore-z é $\frac{62 - 50}{5} =
+2{,}4$, cujo valor-p (bicaudal) é $\approx 0{,}016 < 0{,}05$. **Rejeita-se** $H_0$: há
+evidência de viés. (Com $55$ caras, $z = 1$, $p \approx 0{,}32$ — não rejeitaria.)
+:::
+
+## Testes comuns
+
+::: {#prp-testes-comuns}
+## Um catálogo
+- **teste z / teste t**: para médias (t quando $\sigma$ é desconhecido e $n$ pequeno);
+- **teste qui-quadrado**: para ajuste de distribuições e tabelas de contingência;
+- **ANOVA**: para comparar médias de vários grupos;
+- **regressão**: para relações entre variáveis (@sec-vetores-aleatorios).
+:::
+
+## Encerramento do Volume XII
+
+::: {.callout-note}
+## Da incerteza à decisão
+O Volume XII percorreu o arco completo: dos axiomas de Kolmogorov
+(@sec-espacos-probabilidade) às variáveis aleatórias e distribuições, às leis-limite que
+explicam a regularidade do acaso (@sec-lgn-tcl), e enfim à inferência — extrair conclusões
+de dados com incerteza quantificada. Essa é a matemática que sustenta a ciência
+experimental, a medicina baseada em evidências, a economia e o aprendizado de máquina. A
+probabilidade ensina a raciocinar quando não se sabe — talvez a habilidade matemática
+mais importante para o mundo real.
+:::
+
+## Exercícios
+
+::: {#exr-th-ic}
+Uma amostra de $n = 100$ tem $\bar x = 50$ e $\sigma = 10$. Construa o intervalo de
+confiança de $95\%$ para $\mu$ (use $z = 1{,}96$).
+:::
+
+::: {#exr-th-erros}
+Num teste médico, o que é o erro tipo I e o erro tipo II? Qual costuma ser mais grave num
+teste de doença séria?
+:::
+
+::: {#exr-th-valorp}
+Um estudo reporta $p = 0{,}04$. Critique a afirmação: "Logo, há 96% de chance de o efeito
+ser real."
+:::
+
+::: {#exr-th-moeda}
+Em $100$ lançamentos saem $58$ caras. Calcule o escore-z sob $H_0: p = 0{,}5$ e decida,
+a $\alpha = 0{,}05$ (z crítico $1{,}96$), se rejeita a hipótese de moeda justa.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-th-ic
+$\bar x \pm 1{,}96\frac{\sigma}{\sqrt n} = 50 \pm 1{,}96\cdot\frac{10}{10} = 50 \pm
+1{,}96$, ou seja $[48{,}04,\ 51{,}96]$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-th-valorp
+Errado: o $p = 0{,}04$ é calculado **assumindo** que não há efeito ($H_0$), e mede a
+probabilidade de dados tão extremos sob essa suposição — **não** a probabilidade de $H_0$
+ser falsa. "96% de chance de ser real" confunde $P(\text{dados}\mid H_0)$ com $P(H_1\mid
+\text{dados})$, que exigiria Bayes (@thm-bayes) e uma probabilidade a priori.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-th-moeda
+Sob $H_0$, caras $\approx N(50, 25)$, desvio $5$. $z = \frac{58 - 50}{5} = 1{,}6$. Como
+$|1{,}6| < 1{,}96$, o valor-p $> 0{,}05$: **não** se rejeita $H_0$. $58$ caras é
+compatível com uma moeda justa.
+:::

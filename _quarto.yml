@@ -169,6 +169,7 @@ book:
         - volumes/v12-probabilidade/07-vetores-aleatorios.qmd
         - volumes/v12-probabilidade/08-lgn-tcl.qmd
         - volumes/v12-probabilidade/09-estatistica-estimacao.qmd
+        - volumes/v12-probabilidade/10-testes-hipotese.qmd
   appendices:
     - notacao.qmd
 

@@ -219,7 +219,7 @@ não pelo número.
 - [x] `volumes/v12-probabilidade/07-vetores-aleatorios.qmd` — Vetores aleatórios, covariância e correlação.
 - [x] `volumes/v12-probabilidade/08-lgn-tcl.qmd` — Leis dos grandes números e teorema central do limite.
 - [x] `volumes/v12-probabilidade/09-estatistica-estimacao.qmd` — Estatística descritiva e estimação.
-- [ ] `volumes/v12-probabilidade/10-testes-hipotese.qmd` — Testes de hipótese e intervalos de confiança.
+- [x] `volumes/v12-probabilidade/10-testes-hipotese.qmd` — Testes de hipótese e intervalos de confiança.
 
 ## Volume XIII — Análise Complexa
 *Objetivo: funções de variável complexa. Pré-req.: Vols. V, VIII.*
