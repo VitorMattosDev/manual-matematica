@@ -1,0 +1,176 @@
+# Equações do segundo grau {#sec-equacoes-2grau}
+
+## Motivação
+
+Se um terreno retangular tem $3$ metros a mais de comprimento que de largura e
+área $40\,\text{m}^2$, qual a largura? Chamando-a de $x$, a condição é $x(x + 3) =
+40$, ou seja, $x^2 + 3x - 40 = 0$ — uma equação em que a incógnita aparece ao
+**quadrado**. Equações assim, do **segundo grau**, governam áreas, trajetórias de
+projéteis, otimizações, e não cedem aos métodos lineares do capítulo anterior.
+
+Felizmente há uma fórmula fechada que resolve *qualquer* equação do segundo grau —
+a fórmula resolutiva, conhecida no Brasil como **fórmula de Bhaskara**. Vamos
+deduzi-la completando quadrados, entender o que seu discriminante revela sobre o
+número de soluções, e descobrir as elegantes **relações de Girard** entre as
+raízes e os coeficientes. A manipulação de produtos notáveis do @sec-expressoes é
+o motor da dedução.
+
+## A equação e a forma canônica
+
+::: {#def-equacao-2grau}
+## Equação do segundo grau
+Uma **equação do segundo grau** na incógnita $x$ é toda equação que se reduz à
+forma
+$$
+a x^2 + b x + c = 0, \qquad a \neq 0,
+$$
+com $a, b, c \in \mathbb{R}$. O coeficiente $a$ é o **líder**; quando $b = 0$ ou
+$c = 0$, a equação diz-se **incompleta**.
+:::
+
+A exigência $a \neq 0$ é o que a distingue da equação do primeiro grau. As
+incompletas resolvem-se diretamente: $ax^2 + c = 0$ dá $x^2 = -c/a$ (extraindo
+raiz, quando $-c/a \geq 0$), e $ax^2 + bx = 0$ fatora-se como $x(ax + b) = 0$,
+dando $x = 0$ ou $x = -b/a$.
+
+## A fórmula resolutiva
+
+A chave para o caso geral é **completar o quadrado**: reescrever $ax^2 + bx + c$ de
+modo que a incógnita apareça dentro de um quadrado perfeito, isolável por raiz.
+
+::: {#thm-bhaskara}
+## Fórmula resolutiva (Bhaskara)
+As soluções de $a x^2 + b x + c = 0$ (com $a \neq 0$) são dadas por
+$$
+x = \frac{-b \pm \sqrt{\Delta}}{2a}, \qquad \Delta = b^2 - 4ac.
+$$
+:::
+
+::: {.proof}
+Como $a \neq 0$, divide-se por $a$ e isola-se o termo constante:
+$$
+x^2 + \frac{b}{a} x = -\frac{c}{a}.
+$$
+Para completar o quadrado, soma-se $\left(\dfrac{b}{2a}\right)^2$ aos dois lados —
+o termo que falta para formar $(a + b)^2$ (@prp-produtos-notaveis):
+$$
+x^2 + \frac{b}{a} x + \left(\frac{b}{2a}\right)^2 = -\frac{c}{a} +
+\frac{b^2}{4a^2}.
+$$
+O lado esquerdo é o quadrado perfeito $\left(x + \dfrac{b}{2a}\right)^2$; o direito
+reduz-se a $\dfrac{b^2 - 4ac}{4a^2} = \dfrac{\Delta}{4a^2}$. Assim
+$$
+\left(x + \frac{b}{2a}\right)^2 = \frac{\Delta}{4a^2}.
+$$
+Extraindo a raiz quadrada (quando $\Delta \geq 0$), $x + \dfrac{b}{2a} = \pm
+\dfrac{\sqrt\Delta}{2a}$, donde $x = \dfrac{-b \pm \sqrt\Delta}{2a}$.
+:::
+
+## O discriminante
+
+A quantidade $\Delta = b^2 - 4ac$ dentro da raiz decide tudo sobre as soluções
+reais — por isso chama-se **discriminante**.
+
+::: {#prp-discriminante}
+## O que $\Delta$ revela
+Para $a x^2 + b x + c = 0$ com coeficientes reais:
+
+- se $\Delta > 0$, há **duas** raízes reais distintas;
+- se $\Delta = 0$, há **uma** raiz real (dupla), $x = -\dfrac{b}{2a}$;
+- se $\Delta < 0$, **não há** raiz real (a raiz de número negativo não existe em
+  $\mathbb{R}$).
+:::
+
+::: {.callout-note}
+## O caso $\Delta < 0$ e os complexos
+A ausência de raízes reais quando $\Delta < 0$ não é o fim da história: ampliando
+$\mathbb{R}$ para os números **complexos** $\mathbb{C}$ — onde existe $i$ com $i^2
+= -1$ — toda equação do segundo grau passa a ter duas raízes. Essa ampliação, e o
+Teorema Fundamental da Álgebra que a coroa, são tema de capítulos futuros.
+:::
+
+::: {#exm-bhaskara}
+## Aplicando a fórmula
+Resolva $x^2 + 3x - 40 = 0$ (o terreno da motivação). Aqui $a = 1$, $b = 3$, $c =
+-40$, logo
+$$
+\Delta = 3^2 - 4 \cdot 1 \cdot (-40) = 9 + 160 = 169, \qquad \sqrt\Delta = 13.
+$$
+Então $x = \dfrac{-3 \pm 13}{2}$, dando $x = 5$ ou $x = -8$. Como largura é
+positiva, a resposta do problema é $5$ metros (a raiz $-8$ é descartada pelo
+contexto, embora resolva a equação).
+:::
+
+## Relações de Girard
+
+Raízes e coeficientes guardam uma relação direta, que muitas vezes dispensa a
+fórmula.
+
+::: {#thm-girard}
+## Relações de Girard
+Se $x_1$ e $x_2$ são as raízes de $a x^2 + b x + c = 0$, então
+$$
+x_1 + x_2 = -\frac{b}{a}, \qquad x_1 \cdot x_2 = \frac{c}{a}.
+$$
+:::
+
+::: {.proof}
+Pela fórmula resolutiva, $x_1 = \dfrac{-b + \sqrt\Delta}{2a}$ e $x_2 = \dfrac{-b -
+\sqrt\Delta}{2a}$. Somando, os termos $\pm\sqrt\Delta$ cancelam-se:
+$$
+x_1 + x_2 = \frac{-b + \sqrt\Delta - b - \sqrt\Delta}{2a} = \frac{-2b}{2a} =
+-\frac{b}{a}.
+$$
+Multiplicando, usa-se a diferença de quadrados (@prp-produtos-notaveis):
+$$
+x_1 x_2 = \frac{(-b)^2 - (\sqrt\Delta)^2}{4a^2} = \frac{b^2 - \Delta}{4a^2} =
+\frac{b^2 - (b^2 - 4ac)}{4a^2} = \frac{4ac}{4a^2} = \frac{c}{a}.
+$$
+:::
+
+::: {.callout-tip}
+## Achar raízes "de cabeça"
+Para $x^2 - 5x + 6 = 0$ ($a = 1$), Girard pede dois números cuja **soma** seja $5$
+e cujo **produto** seja $6$: são $2$ e $3$. Pronto, sem fórmula. Esse truque
+resolve rapidamente as equações de coeficientes inteiros pequenos e está por trás
+da fatoração de trinômios do próximo volume.
+:::
+
+## Exercícios
+
+::: {#exr-completa}
+Resolva $2x^2 - 7x + 3 = 0$ pela fórmula resolutiva.
+:::
+
+::: {#exr-incompleta}
+Resolva sem usar Bhaskara: (a) $3x^2 - 27 = 0$; (b) $x^2 - 5x = 0$.
+:::
+
+::: {#exr-discriminante}
+Para que valores de $k$ a equação $x^2 + 4x + k = 0$ tem: (a) duas raízes
+distintas; (b) uma raiz dupla; (c) nenhuma raiz real?
+:::
+
+::: {#exr-girard}
+Sem resolver, determine a soma e o produto das raízes de $3x^2 - 12x + 7 = 0$, e
+calcule $\dfrac{1}{x_1} + \dfrac{1}{x_2}$. (Sugestão: $\tfrac{1}{x_1} +
+\tfrac{1}{x_2} = \tfrac{x_1 + x_2}{x_1 x_2}$.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-completa
+Com $a = 2$, $b = -7$, $c = 3$: $\Delta = (-7)^2 - 4 \cdot 2 \cdot 3 = 49 - 24 =
+25$, $\sqrt\Delta = 5$. Logo
+$$
+x = \frac{7 \pm 5}{4} \implies x = 3 \ \text{ ou } \ x = \frac{1}{2}.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-discriminante
+O discriminante é $\Delta = 16 - 4k$. (a) Duas raízes distintas exigem $\Delta >
+0$, isto é, $16 - 4k > 0 \iff k < 4$. (b) Raiz dupla exige $\Delta = 0 \iff k =
+4$. (c) Nenhuma raiz real exige $\Delta < 0 \iff k > 4$.
+:::
