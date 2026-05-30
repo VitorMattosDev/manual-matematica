@@ -1,0 +1,190 @@
+# Transformações lineares e matriz associada {#sec-transformacoes-lineares}
+
+## Motivação
+
+Construímos espaços vetoriais (@sec-espacos-vetoriais) e suas bases
+(@sec-base-dimensao). Falta a peça que dá vida à estrutura: as **funções entre
+espaços vetoriais** que respeitam suas operações. Não qualquer função, mas as que
+preservam soma e escalar — as **transformações lineares**.
+
+São elas que descrevem rotações, projeções, reflexões e dilatações do espaço; a
+derivada como operação que leva funções em funções; e o próprio produto $Ax$ de uma
+matriz por um vetor. O ponto culminante deste capítulo — e, num sentido, de toda a
+álgebra linear — é que, fixadas bases, **toda transformação linear entre espaços de
+dimensão finita é uma matriz**. Matrizes e transformações lineares são duas faces do
+mesmo objeto; isso explica, finalmente, por que o produto de matrizes (@sec-matrizes)
+foi definido daquele jeito.
+
+## Definição
+
+::: {#def-transformacao-linear}
+## Transformação linear
+Uma função $T: V \to W$ entre espaços vetoriais é uma **transformação linear** se,
+para todos $u, v \in V$ e todo escalar $c$:
+$$
+T(u + v) = T(u) + T(v) \qquad\text{e}\qquad T(cv) = c\,T(v).
+$$
+Equivalentemente, $T(au + bv) = a\,T(u) + b\,T(v)$: $T$ **preserva combinações
+lineares**.
+:::
+
+Uma consequência imediata: $T(0) = 0$ (faça $c = 0$). Toda transformação linear leva
+o nulo no nulo — por isso translações ($x \mapsto x + b$, $b \neq 0$) **não** são
+lineares.
+
+::: {#exm-transformacoes}
+## Exemplos e contraexemplos
+- **Lineares:** rotação do plano em torno da origem; projeção $(x, y) \mapsto (x,
+  0)$; a derivada $D(p) = p'$ em $P_n$; a multiplicação $x \mapsto Ax$.
+- **Não lineares:** $T(x) = x^2$ (não preserva soma); $T(x) = x + 1$ (não fixa o
+  zero).
+:::
+
+## A matriz de uma transformação
+
+Aqui está o teorema que organiza tudo. Uma transformação linear fica **completamente
+determinada** pelo que faz com os vetores de uma base.
+
+::: {#thm-determinada-base}
+## Linearidade é determinada na base
+Se $\{v_1, \dots, v_n\}$ é base de $V$, então uma transformação linear $T: V \to W$
+fica **totalmente determinada** pelos valores $T(v_1), \dots, T(v_n)$. Pois qualquer
+$v = \sum c_i v_i$ tem imagem forçada
+$$
+T(v) = c_1 T(v_1) + \cdots + c_n T(v_n).
+$$
+:::
+
+Em $\mathbb{R}^n \to \mathbb{R}^m$, basta saber as imagens dos vetores canônicos —
+e essas imagens, postas como **colunas**, formam a matriz de $T$.
+
+::: {#def-matriz-transformacao}
+## Matriz canônica
+A **matriz** de $T: \mathbb{R}^n \to \mathbb{R}^m$ é a matriz $m\times n$
+$$
+A = \bigl[\, T(e_1) \mid T(e_2) \mid \cdots \mid T(e_n)\,\bigr],
+$$
+cujas colunas são as imagens dos vetores da base canônica. Então $T(x) = Ax$ para
+todo $x$.
+:::
+
+::: {#exm-matriz-rotacao}
+## A matriz da rotação
+A rotação de ângulo $\theta$ no plano leva $e_1 = (1,0)$ em $(\cos\theta,
+\operatorname{sen}\theta)$ e $e_2 = (0,1)$ em $(-\operatorname{sen}\theta,
+\cos\theta)$. Logo sua matriz é
+$$
+R_\theta = \begin{bmatrix} \cos\theta & -\operatorname{sen}\theta \\
+\operatorname{sen}\theta & \cos\theta \end{bmatrix}.
+$$
+:::
+
+::: {.callout-tip}
+## Composição é produto; eis o porquê
+Se $T$ tem matriz $A$ e $S$ tem matriz $B$, então a composta $T \circ S$ (fazer $S$,
+depois $T$) tem matriz $AB$. A definição "linha por coluna" do produto (@sec-matrizes)
+foi escolhida exatamente para que isso funcionasse. Por exemplo, $R_\alpha R_\beta =
+R_{\alpha + \beta}$ — compor duas rotações soma os ângulos, e o produto das matrizes
+reproduz isso (recuperando, de quebra, as fórmulas de seno e cosseno da soma).
+:::
+
+## Núcleo e imagem
+
+Duas subestruturas medem o que $T$ "apaga" e o que $T$ "alcança".
+
+::: {#def-nucleo-imagem}
+## Núcleo e imagem
+- O **núcleo** (kernel) de $T$ é $\ker T = \{v \in V : T(v) = 0\}$ — os vetores
+  levados ao nulo.
+- A **imagem** de $T$ é $\operatorname{Im} T = \{T(v) : v \in V\}$ — tudo o que é
+  atingido.
+
+Ambos são subespaços (de $V$ e de $W$, respectivamente).
+:::
+
+::: {#thm-nucleo-imagem}
+## Teorema do núcleo e da imagem
+Para $T: V \to W$ com $\dim V = n$ (finita),
+$$
+\dim(\ker T) + \dim(\operatorname{Im} T) = n.
+$$
+A dimensão da imagem chama-se **posto** de $T$ (coincide com o posto da matriz,
+@def-posto); a do núcleo, **nulidade**.
+:::
+
+::: {.callout-note}
+## A conservação de dimensão
+O teorema diz que $T$ não pode "criar nem destruir" dimensão livremente: cada
+dimensão da entrada ou sobrevive na imagem, ou é colapsada no núcleo. É a versão
+abstrata da contagem pivôs (posto) + variáveis livres (nulidade) = número de
+incógnitas, que já tínhamos no escalonamento (@sec-base-dimensao).
+:::
+
+## Injetividade, sobrejetividade e isomorfismo
+
+::: {#thm-injetiva-nucleo}
+## Critérios via núcleo e imagem
+Uma transformação linear $T: V \to W$ é:
+
+- **injetora** se, e só se, $\ker T = \{0\}$ (só o nulo vai para o nulo);
+- **sobrejetora** se, e só se, $\operatorname{Im} T = W$;
+- **isomorfismo** (bijetora) se for ambas — caso em que $V$ e $W$ são
+  *estruturalmente idênticos*, $V \cong W$.
+:::
+
+::: {.callout-note}
+## Todo espaço de dimensão $n$ "é" $\mathbb{R}^n$
+Escolher uma base de $V$ ($\dim V = n$) é o mesmo que fixar um isomorfismo $V \cong
+\mathbb{R}^n$: cada vetor vira sua lista de coordenadas (@thm-coordenadas). Por isso
+$\mathbb{R}^n$ é o modelo universal de todo espaço real de dimensão $n$ — polinômios,
+matrizes, tudo se reduz a ele a menos de isomorfismo.
+:::
+
+## Exercícios
+
+::: {#exr-tl-1}
+Verifique se $T(x, y) = (x + y, 2x - y)$ é linear e, em caso afirmativo, escreva sua
+matriz.
+:::
+
+::: {#exr-tl-2}
+Mostre que $T(x, y) = (x + 1, y)$ **não** é linear.
+:::
+
+::: {#exr-tl-nucleo}
+Encontre o núcleo e a imagem de $T(x, y, z) = (x + y + z, \ x + y + z)$, e verifique
+o @thm-nucleo-imagem.
+:::
+
+::: {#exr-tl-composta}
+Sejam $T$ a projeção $(x,y)\mapsto(x,0)$ e $S$ a rotação de $90^\circ$. Calcule as
+matrizes de $T\circ S$ e $S\circ T$ e note que diferem.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tl-1
+Ela preserva soma e escalar (cada coordenada da saída é combinação linear de $x, y$),
+logo é linear. As imagens dos canônicos são $T(1,0) = (1, 2)$ e $T(0,1) = (1, -1)$,
+colunas da matriz:
+$$
+A = \begin{bmatrix} 1 & 1 \\ 2 & -1 \end{bmatrix}.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tl-nucleo
+$\ker T$: precisa de $x + y + z = 0$, um plano, $\dim = 2$. $\operatorname{Im} T$:
+todos os vetores da forma $(t, t)$, a reta $y = x$, $\dim = 1$. De fato $2 + 1 = 3 =
+\dim \mathbb{R}^3$. ✓
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tl-composta
+Matrizes: $T = \left[\begin{smallmatrix} 1 & 0 \\ 0 & 0 \end{smallmatrix}\right]$,
+$S = \left[\begin{smallmatrix} 0 & -1 \\ 1 & 0 \end{smallmatrix}\right]$. Então
+$TS = \left[\begin{smallmatrix} 0 & -1 \\ 0 & 0 \end{smallmatrix}\right]$ e $ST =
+\left[\begin{smallmatrix} 0 & 0 \\ 1 & 0 \end{smallmatrix}\right]$ — diferentes,
+confirmando que a ordem da composição importa.
+:::

@@ -104,7 +104,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v6-linear/03-determinantes.qmd` — Determinantes.
 - [x] `volumes/v6-linear/04-espacos-vetoriais.qmd` — Espaços vetoriais e subespaços.
 - [x] `volumes/v6-linear/05-base-dimensao.qmd` — Independência linear, bases e dimensão.
-- [ ] `volumes/v6-linear/06-transformacoes-lineares.qmd` — Transformações lineares e matriz associada.
+- [x] `volumes/v6-linear/06-transformacoes-lineares.qmd` — Transformações lineares e matriz associada.
 - [ ] `volumes/v6-linear/07-autovalores.qmd` — Autovalores e autovetores.
 - [ ] `volumes/v6-linear/08-diagonalizacao.qmd` — Diagonalização.
 - [ ] `volumes/v6-linear/09-produto-interno.qmd` — Espaços com produto interno; ortogonalidade.
