@@ -89,6 +89,7 @@ book:
         - volumes/v6-linear/02-matrizes.qmd
         - volumes/v6-linear/03-determinantes.qmd
         - volumes/v6-linear/04-espacos-vetoriais.qmd
+        - volumes/v6-linear/05-base-dimensao.qmd
   appendices:
     - notacao.qmd
 

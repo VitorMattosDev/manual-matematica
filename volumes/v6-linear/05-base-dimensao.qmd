@@ -1,0 +1,192 @@
+# Independência linear, bases e dimensão {#sec-base-dimensao}
+
+## Motivação
+
+O span de um conjunto de vetores (@sec-espacos-vetoriais) descreve tudo o que se
+pode construir a partir deles. Mas surge uma pergunta de economia: **quantos vetores
+são realmente necessários** para gerar um dado espaço? Se um deles já é combinação
+dos outros, ele é supérfluo — pode ser jogado fora sem perder nada.
+
+Levar essa ideia ao extremo — um conjunto que gera o espaço **sem nenhum
+desperdício** — produz o conceito mais importante da álgebra linear: a **base**. E o
+número de vetores numa base, sempre o mesmo qualquer que seja a base escolhida, é a
+**dimensão** do espaço. A dimensão captura, num único inteiro, o "tamanho" de um
+espaço vetorial: quantos graus de liberdade ele tem. Este capítulo constrói esses
+conceitos a partir da noção de independência linear.
+
+## Dependência e independência linear
+
+::: {#def-independencia}
+## Independência linear
+Os vetores $v_1, \dots, v_k$ são **linearmente independentes** (LI) se a única
+combinação linear que dá o vetor nulo é a trivial:
+$$
+c_1 v_1 + c_2 v_2 + \cdots + c_k v_k = 0 \implies c_1 = c_2 = \cdots = c_k = 0.
+$$
+Caso exista alguma combinação **não trivial** dando zero, eles são **linearmente
+dependentes** (LD).
+:::
+
+::: {.callout-tip}
+## O que dependência realmente significa
+Vetores são LD exatamente quando **um deles é combinação linear dos demais** — ou
+seja, é redundante, já está no span dos outros. Independência é, portanto, "nenhuma
+redundância": cada vetor traz uma direção genuinamente nova. Dois vetores são LD
+quando são paralelos; três em $\mathbb{R}^3$ são LD quando coplanares.
+:::
+
+::: {#exm-independencia}
+## Testando independência
+- $(1, 0), (0, 1)$ são LI: $c_1(1,0) + c_2(0,1) = (c_1, c_2) = 0$ força $c_1 = c_2 =
+  0$.
+- $(1, 2), (2, 4)$ são LD: $2(1,2) - (2,4) = 0$, combinação não trivial.
+- $(1,0,0), (0,1,0), (1,1,0)$ são LD: o terceiro é a soma dos dois primeiros.
+:::
+
+::: {#prp-independencia-determinante}
+## Independência via determinante
+$n$ vetores em $\mathbb{R}^n$ são LI se, e somente se, a matriz que os tem por
+colunas (ou linhas) tem **determinante não nulo** (@thm-det-invertivel).
+:::
+
+## Bases
+
+::: {#def-base}
+## Base
+Uma **base** de um espaço vetorial $V$ é um conjunto de vetores que é, ao mesmo
+tempo,
+
+1. **linearmente independente**, e
+2. **gerador** de $V$ (seu span é todo $V$).
+:::
+
+Uma base é, então, o conjunto "perfeito": grande o bastante para gerar tudo, pequeno
+o bastante para não ter sobras. Sua propriedade definidora é a unicidade da
+representação.
+
+::: {#thm-coordenadas}
+## Unicidade das coordenadas
+Se $\{v_1, \dots, v_n\}$ é base de $V$, então **todo** $v \in V$ se escreve de
+**uma única** maneira como $v = c_1 v_1 + \cdots + c_n v_n$. Os escalares $c_i$ são
+as **coordenadas** de $v$ na base.
+:::
+
+::: {.proof}
+A existência vem de a base gerar $V$. Para a unicidade, se $v = \sum c_i v_i = \sum
+c_i' v_i$, subtraindo obtém-se $\sum (c_i - c_i') v_i = 0$; como os $v_i$ são LI,
+cada $c_i - c_i' = 0$, isto é $c_i = c_i'$.
+:::
+
+::: {#exm-base-canonica}
+## A base canônica
+Em $\mathbb{R}^n$, os vetores $e_1 = (1,0,\dots,0)$, $e_2 = (0,1,0,\dots,0)$, …,
+$e_n = (0,\dots,0,1)$ formam a **base canônica**. As coordenadas de um vetor nessa
+base são suas próprias entradas: $(3, -1, 5) = 3e_1 - e_2 + 5e_3$. Mas há infinitas
+outras bases — por exemplo $\{(1,1), (1,-1)\}$ em $\mathbb{R}^2$.
+:::
+
+## Dimensão
+
+O fato central, nada óbvio, é que todas as bases têm o mesmo tamanho.
+
+::: {#thm-dimensao}
+## Invariância da dimensão
+Todas as bases de um mesmo espaço vetorial $V$ têm o **mesmo número de elementos**.
+Esse número é a **dimensão** de $V$, denotada $\dim V$.
+:::
+
+::: {.callout-note}
+## Dimensão = graus de liberdade
+$\dim \mathbb{R}^n = n$; $\dim M_{m\times n} = mn$; $\dim P_n = n + 1$ (a base $1, x,
+x^2, \dots, x^n$). A dimensão conta quantos números independentes são precisos para
+especificar um vetor — os graus de liberdade do espaço. O espaço trivial $\{0\}$ tem
+dimensão $0$.
+:::
+
+::: {#thm-base-criterio}
+## Atalhos em dimensão conhecida
+Seja $\dim V = n$. Então:
+
+- qualquer conjunto LI com $n$ vetores **já é** base;
+- qualquer conjunto gerador com $n$ vetores **já é** base;
+- mais de $n$ vetores são sempre LD; menos de $n$ nunca geram $V$.
+:::
+
+Esses atalhos poupam trabalho: em $\mathbb{R}^3$, basta checar que três vetores são
+LI (por exemplo via @prp-independencia-determinante) para garantir que formam base —
+não é preciso verificar separadamente que geram.
+
+::: {#exm-verificar-base}
+## Três vetores formam base?
+Os vetores $(1,0,1), (1,1,0), (0,1,1)$ em $\mathbb{R}^3$: o determinante da matriz
+formada por eles é
+$$
+\begin{vmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{vmatrix} = 1(1) - 1(-1) + 0
+= 2 \neq 0.
+$$
+Logo são LI e, sendo três em $\mathbb{R}^3$ ($\dim = 3$), formam uma **base**
+(@thm-base-criterio).
+:::
+
+## Posto de uma matriz
+
+A dimensão dá sentido preciso a quantas equações de um sistema são "genuínas".
+
+::: {#def-posto}
+## Posto
+O **posto** de uma matriz $A$ é a dimensão do espaço gerado por suas linhas
+(igual ao gerado por suas colunas). Na prática, é o **número de pivôs** na forma
+escalonada (@sec-sistemas-gauss).
+:::
+
+O posto reaparece no **teorema do núcleo e da imagem** (@sec-transformacoes-lineares):
+para uma matriz $m\times n$,
+$$
+\text{posto}(A) + \dim(\text{núcleo de } A) = n,
+$$
+contabilizando exatamente as variáveis com pivô (posto) e as livres (núcleo) que
+vimos no escalonamento.
+
+## Exercícios
+
+::: {#exr-li-1}
+Os vetores $(1, 2, 3), (0, 1, 4), (0, 0, 5)$ são LI? Justifique.
+:::
+
+::: {#exr-li-2}
+Determine se $(1, -1, 0), (2, 0, 1), (0, 2, 1)$ são LI ou LD.
+:::
+
+::: {#exr-base-1}
+Verifique se $\{(2, 1), (1, 3)\}$ é base de $\mathbb{R}^2$ e ache as coordenadas de
+$(5, 5)$ nessa base.
+:::
+
+::: {#exr-dim-1}
+Qual a dimensão do subespaço $W = \{(x, y, z) : x + y + z = 0\}$ de $\mathbb{R}^3$?
+Exiba uma base.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-li-1
+A matriz com esses vetores por linhas é triangular, com diagonal $1, 1, 5$; seu
+determinante é $1\cdot1\cdot5 = 5 \neq 0$ (@prp-triangular). Pelo
+@prp-independencia-determinante, são **LI**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-base-1
+$\det\left[\begin{smallmatrix} 2 & 1 \\ 1 & 3 \end{smallmatrix}\right] = 6 - 1 = 5
+\neq 0$, logo é base. Coordenadas $(a, b)$ de $(5,5)$: $\begin{cases} 2a + b = 5 \\
+a + 3b = 5 \end{cases}$. Resolvendo, $a = 2$, $b = 1$. Assim $(5,5) = 2(2,1) +
+1(1,3)$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dim-1
+A condição $x + y + z = 0$ dá $x = -y - z$, com $y, z$ livres. Então $(x,y,z) =
+y(-1, 1, 0) + z(-1, 0, 1)$. Os vetores $(-1,1,0)$ e $(-1,0,1)$ geram $W$ e são LI,
+logo formam base e $\dim W = 2$ (um plano pela origem).
+:::
