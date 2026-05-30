@@ -4,6 +4,26 @@ Primeiro título da série *Manuais de Ciências* — um livro aberto que vai da
 aritmética à geometria diferencial. Construído com [Quarto](https://quarto.org)
 e publicado no GitHub Pages.
 
+## Conteúdo
+
+A obra está **completa**, em 10 volumes que vão dos fundamentos à geometria
+diferencial:
+
+| Vol. | Tema |
+|------|------|
+| I    | Fundamentos: lógica e aritmética |
+| II   | Álgebra elementar |
+| III  | Geometria e trigonometria |
+| IV   | Pré-cálculo (funções) |
+| V    | Cálculo |
+| VI   | Álgebra linear |
+| VII  | Álgebra abstrata |
+| VIII | Análise real |
+| IX   | Topologia |
+| X    | Geometria diferencial |
+
+A sequência detalhada, capítulo a capítulo e com status, está em `ROADMAP.md`.
+
 ## Setup em uma máquina nova
 
 Para rodar o projeto localmente em qualquer máquina, são necessários:
@@ -46,7 +66,8 @@ Configuração inicial (uma vez só):
 
 1. Crie um repositório no GitHub chamado `manual-matematica` e envie estes
    arquivos para a branch `main`.
-2. Troque `SEU-USUARIO` no `_quarto.yml` pelo seu usuário/organização.
+2. O `repo-url` no `_quarto.yml` já aponta para
+   `VitorMattosDev/manual-matematica` (ajuste se você fez um fork).
 3. **Inicialize a branch `gh-pages`** rodando uma vez, localmente:
    ```bash
    quarto publish gh-pages
@@ -64,7 +85,7 @@ renderiza o livro e atualiza o site. O Action já instala o TinyTeX na nuvem
 (`tinytex: true`), então **o PDF é gerado no deploy automático mesmo que a
 máquina local não tenha TeX**.
 
-O site ficará em `https://SEU-USUARIO.github.io/manual-matematica/`.
+O site ficará em `https://vitormattosdev.github.io/manual-matematica/`.
 
 ## Estrutura
 
@@ -72,9 +93,13 @@ O site ficará em `https://SEU-USUARIO.github.io/manual-matematica/`.
 _quarto.yml      configuração do livro (estrutura, formatos, rótulos PT)
 index.qmd        apresentação + mapa de pré-requisitos
 notacao.qmd      apêndice de notação
-PLANO.md         roadmap dos volumes + guia de estilo
-volumes/         capítulos, organizados por volume
-.github/         deploy automático
+volumes/         capítulos, organizados por volume (v1-fundamentos … v10-diferencial)
+ROADMAP.md       sequência completa de volumes e capítulos (fila de trabalho), com status
+PLANO.md         guia de estilo e convenções de escrita
+CLAUDE.md        instruções e convenções do projeto para colaboradores/agentes
+references.bib   referências bibliográficas
+styles.css       estilos do site (HTML)
+.github/         deploy automático (GitHub Action)
 ```
 
 ## Licença
