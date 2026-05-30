@@ -1,0 +1,236 @@
+# Técnicas de integração {#sec-tecnicas-integracao}
+
+## Motivação
+
+O Teorema Fundamental do Cálculo (@sec-tfc) reduziu o cálculo de integrais a um
+problema aparentemente simples: **encontrar uma antiderivada**. Mas há uma
+assimetria cruel entre derivar e integrar. Derivar é mecânico — basta aplicar as
+regras (@sec-regras-derivacao) e qualquer expressão elementar tem derivada
+elementar. Integrar é uma arte: não existe algoritmo que sempre funcione, e há
+funções inocentes, como $e^{-x^2}$, cuja antiderivada **não é** elementar.
+
+Este capítulo reúne as três técnicas que resolvem a maioria das integrais que
+aparecem na prática. Cada uma nasce de ler uma regra de derivação ao contrário:
+
+- a **substituição** desfaz a regra da cadeia;
+- a **integração por partes** desfaz a regra do produto;
+- as **frações parciais** quebram quocientes de polinômios em pedaços integráveis.
+
+A meta não é decorar receitas, mas reconhecer, diante de uma integral, qual porta
+abrir.
+
+## Substituição
+
+::: {#thm-substituicao}
+## Mudança de variável
+Se $u = g(x)$ é derivável e $f$ é contínua, então
+$$
+\int f(g(x))\,g'(x)\,dx = \int f(u)\,du.
+$$
+Para a integral definida, mudam-se também os limites:
+$$
+\int_a^b f(g(x))\,g'(x)\,dx = \int_{g(a)}^{g(b)} f(u)\,du.
+$$
+:::
+
+::: {.proof}
+Seja $F$ uma antiderivada de $f$. Pela regra da cadeia (@sec-regras-derivacao),
+$\frac{d}{dx}F(g(x)) = F'(g(x))\,g'(x) = f(g(x))\,g'(x)$. Logo $F(g(x))$ é uma
+antiderivada do lado esquerdo, e pelo TFC ela vale $F(g(b)) - F(g(a))$, que é
+exatamente $\int_{g(a)}^{g(b)} f(u)\,du$.
+:::
+
+A regra diz, na prática: se dentro da integral aparece uma função $g(x)$ **e** sua
+derivada $g'(x)$ (a menos de constante), troque $u = g(x)$, $du = g'(x)\,dx$, e a
+integral encolhe.
+
+::: {#exm-sub-basica}
+## Uma substituição direta
+Para calcular $\displaystyle\int 2x\,e^{x^2}\,dx$, note que a derivada de $x^2$ é
+$2x$, que já está presente. Pondo $u = x^2$, $du = 2x\,dx$:
+$$
+\int 2x\,e^{x^2}\,dx = \int e^u\,du = e^u + C = e^{x^2} + C.
+$$
+Confira derivando: $(e^{x^2})' = e^{x^2}\cdot 2x$. ✓
+:::
+
+::: {#exm-sub-limites}
+## Substituição com troca de limites
+$$
+\int_0^1 x\,(x^2 + 1)^3\,dx.
+$$
+Com $u = x^2 + 1$, $du = 2x\,dx$, ou seja $x\,dx = \tfrac12\,du$. Quando $x = 0$,
+$u = 1$; quando $x = 1$, $u = 2$. Logo
+$$
+\int_0^1 x\,(x^2+1)^3\,dx = \frac12\int_1^2 u^3\,du = \frac12\left[\frac{u^4}{4}
+\right]_1^2 = \frac12\cdot\frac{16 - 1}{4} = \frac{15}{8}.
+$$
+:::
+
+::: {.callout-tip}
+## Como escolher $u$
+Procure uma "função interna" cuja derivada também apareça no integrando. Bons
+candidatos: o que está dentro de uma potência, de uma raiz, de um expoente ou de
+um logaritmo. Se sobrar exatamente o $du$ de que você precisa (a menos de
+constante), a escolha foi certa.
+:::
+
+## Integração por partes
+
+A regra do produto, $(uv)' = u'v + uv'$, integrada dos dois lados, fornece a
+técnica para integrar **produtos** de naturezas diferentes — um polinômio vezes
+uma exponencial, por exemplo.
+
+::: {#thm-por-partes}
+## Integração por partes
+Se $u$ e $v$ são deriváveis, então
+$$
+\int u\,dv = uv - \int v\,du.
+$$
+:::
+
+::: {.proof}
+Da regra do produto, $u\,dv + v\,du = d(uv)$. Integrando, $\int u\,dv + \int
+v\,du = uv$, donde $\int u\,dv = uv - \int v\,du$.
+:::
+
+A aposta é que a nova integral $\int v\,du$ seja **mais simples** que a original.
+Para isso, escolhe-se $u$ como a parte que *simplifica ao derivar* e $dv$ como a
+que *sabemos integrar*.
+
+::: {#exm-partes-xex}
+## O caso clássico
+$$
+\int x\,e^x\,dx.
+$$
+Tome $u = x$ (deriva para $1$, mais simples) e $dv = e^x\,dx$ (integra para
+$e^x$). Então $du = dx$ e $v = e^x$:
+$$
+\int x\,e^x\,dx = x\,e^x - \int e^x\,dx = x\,e^x - e^x + C = (x - 1)e^x + C.
+$$
+:::
+
+::: {#exm-partes-ln}
+## Integrando o logaritmo
+A função $\ln x$ não tem antiderivada óbvia, mas por partes sai de imediato.
+Tome $u = \ln x$, $dv = dx$; então $du = \frac1x\,dx$ e $v = x$:
+$$
+\int \ln x\,dx = x\ln x - \int x\cdot\frac1x\,dx = x\ln x - \int 1\,dx = x\ln x
+- x + C.
+$$
+:::
+
+::: {.callout-note}
+## Uma regra de bolso: LIATE
+Na dúvida sobre quem é $u$, a ordem **L**ogarítmica, **I**nversa
+trigonométrica, **A**lgébrica (polinômios), **T**rigonométrica, **E**xponencial
+sugere a prioridade para $u$: o que vem primeiro nessa lista costuma ser a
+escolha que simplifica. Em $\int x\,e^x\,dx$, "A" (o $x$) vem antes de "E" (o
+$e^x$), por isso $u = x$.
+:::
+
+## Frações parciais
+
+Toda função racional $\frac{P(x)}{Q(x)}$ (quociente de polinômios) pode ser
+**decomposta** numa soma de frações simples, cada uma integrável de imediato. A
+base algébrica é a fatoração de $Q$ (@sec-fatoracao) e a teoria de polinômios do
+Volume II.
+
+::: {#exm-fracoes-parciais}
+## Decompondo um quociente
+$$
+\int \frac{1}{x^2 - 1}\,dx.
+$$
+Fatorando, $x^2 - 1 = (x-1)(x+1)$. Buscamos constantes $A, B$ com
+$$
+\frac{1}{(x-1)(x+1)} = \frac{A}{x-1} + \frac{B}{x+1}.
+$$
+Multiplicando por $(x-1)(x+1)$: $1 = A(x+1) + B(x-1)$. Pondo $x = 1$: $1 = 2A$,
+logo $A = \tfrac12$. Pondo $x = -1$: $1 = -2B$, logo $B = -\tfrac12$. Assim
+$$
+\int \frac{dx}{x^2-1} = \frac12\int\frac{dx}{x-1} - \frac12\int\frac{dx}{x+1} =
+\frac12\ln|x-1| - \frac12\ln|x+1| + C = \frac12\ln\left|\frac{x-1}{x+1}\right|
++ C.
+$$
+:::
+
+::: {.callout-warning}
+## Primeiro divida, depois decomponha
+A decomposição em frações parciais só se aplica a frações **próprias** (grau do
+numerador menor que o do denominador). Se não for o caso, faça primeiro a divisão
+de polinômios (@sec-polinomios): por exemplo, $\frac{x^2}{x-1} = x + 1 +
+\frac{1}{x-1}$, e só então integre cada parcela.
+:::
+
+## Uma estratégia geral
+
+Diante de uma integral indefinida, vale percorrer mentalmente:
+
+1. **É imediata?** Confira a tabela de @prp-integrais-basicas.
+2. **Há uma função e sua derivada?** Tente **substituição**.
+3. **É um produto de tipos diferentes?** Tente **por partes** (use LIATE).
+4. **É uma fração de polinômios?** Use **frações parciais** (dividindo antes, se
+   imprópria).
+5. **Nenhuma funcionou?** Talvez a antiderivada não seja elementar — nesse caso,
+   recorre-se a métodos numéricos ou a séries (@sec-taylor).
+
+## Exercícios
+
+::: {#exr-sub-1}
+Calcule por substituição: (a) $\displaystyle\int \cos(3x)\,dx$; (b)
+$\displaystyle\int \frac{x}{\sqrt{x^2 + 4}}\,dx$.
+:::
+
+::: {#exr-sub-def}
+Calcule $\displaystyle\int_0^{\pi/2} \operatorname{sen}^2 x\,\cos x\,dx$ por
+substituição, trocando os limites.
+:::
+
+::: {#exr-partes-1}
+Use integração por partes para calcular $\displaystyle\int x\cos x\,dx$.
+:::
+
+::: {#exr-partes-2}
+Calcule $\displaystyle\int x^2 e^x\,dx$ (aplique a integração por partes duas
+vezes).
+:::
+
+::: {#exr-fracoes}
+Decomponha em frações parciais e integre
+$\displaystyle\int \frac{3x + 1}{x^2 + x}\,dx$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sub-def
+Ponha $u = \operatorname{sen}x$, $du = \cos x\,dx$. Quando $x = 0$, $u = 0$;
+quando $x = \pi/2$, $u = 1$. Então
+$$
+\int_0^{\pi/2}\operatorname{sen}^2 x\,\cos x\,dx = \int_0^1 u^2\,du =
+\left[\frac{u^3}{3}\right]_0^1 = \frac13.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-partes-2
+Tome $u = x^2$, $dv = e^x\,dx$, logo $du = 2x\,dx$, $v = e^x$:
+$$
+\int x^2 e^x\,dx = x^2 e^x - 2\int x\,e^x\,dx.
+$$
+A integral restante é a do @exm-partes-xex, que vale $(x-1)e^x + C$. Portanto
+$$
+\int x^2 e^x\,dx = x^2 e^x - 2(x-1)e^x + C = (x^2 - 2x + 2)\,e^x + C.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fracoes
+Fatore $x^2 + x = x(x+1)$ e escreva $\frac{3x+1}{x(x+1)} = \frac{A}{x} +
+\frac{B}{x+1}$. Então $3x + 1 = A(x+1) + Bx$. Em $x = 0$: $1 = A$. Em $x = -1$:
+$-2 = -B$, logo $B = 2$. Assim
+$$
+\int \frac{3x+1}{x^2+x}\,dx = \int\frac{dx}{x} + 2\int\frac{dx}{x+1} = \ln|x| +
+2\ln|x+1| + C.
+$$
+:::
