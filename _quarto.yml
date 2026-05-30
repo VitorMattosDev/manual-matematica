@@ -167,6 +167,7 @@ book:
         - volumes/v12-probabilidade/05-distribuicoes.qmd
         - volumes/v12-probabilidade/06-esperanca-variancia.qmd
         - volumes/v12-probabilidade/07-vetores-aleatorios.qmd
+        - volumes/v12-probabilidade/08-lgn-tcl.qmd
   appendices:
     - notacao.qmd
 

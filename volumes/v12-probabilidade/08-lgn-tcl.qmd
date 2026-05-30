@@ -1,0 +1,136 @@
+# Leis dos grandes números e teorema central do limite {#sec-lgn-tcl}
+
+## Motivação
+
+Por que a probabilidade **funciona**? Por que a média de muitos lançamentos de moeda se
+aproxima de $0{,}5$? Por que a curva em sino (@sec-distribuicoes) aparece em toda parte?
+As respostas são os dois teoremas-limite que coroam a teoria da probabilidade: a **lei
+dos grandes números** e o **teorema central do limite**.
+
+A lei dos grandes números justifica a própria interpretação frequentista — garante que
+médias amostrais convergem para a esperança. O teorema central do limite vai além e
+explica a universalidade da normal: somas de muitas variáveis independentes, **qualquer
+que seja sua distribuição**, tornam-se gaussianas. Juntos, eles fundamentam toda a
+inferência estatística (@sec-estatistica-estimacao) e conectam a teoria à prática. Este
+capítulo os enuncia e ilumina.
+
+## A lei dos grandes números
+
+::: {#thm-lgn}
+## Lei (fraca) dos grandes números
+Sejam $X_1, X_2, \dots$ variáveis **independentes e identicamente distribuídas** (iid),
+com média $\mu$ e variância finita. A **média amostral** $\bar X_n = \frac{1}{n}\sum_{i=1}
+^n X_i$ converge para $\mu$: para todo $\varepsilon > 0$,
+$$
+P\big(|\bar X_n - \mu| \geq \varepsilon\big) \xrightarrow{n\to\infty} 0.
+$$
+:::
+
+::: {.proof}
+*(Esboço.)* A média amostral tem $E[\bar X_n] = \mu$ e $\operatorname{Var}(\bar X_n) =
+\frac{\sigma^2}{n}$ (variância da soma de independentes dividida por $n^2$,
+@prp-propriedades-variancia). Por Chebyshev (@thm-chebyshev), $P(|\bar X_n - \mu| \geq
+\varepsilon) \leq \frac{\sigma^2}{n\varepsilon^2} \to 0$.
+:::
+
+::: {.callout-note}
+## Por que cassinos sempre ganham
+A LGN garante que a média de muitas repetições se aproxima da esperança — a aleatoriedade
+individual se "lava" no agregado. É por isso que seguradoras e cassinos, operando em
+**larga escala**, têm resultados quase determinísticos: cada aposta é incerta, mas a
+média de milhões delas converge ao valor esperado (favorável à casa, @exr-vd-jogo). A LGN
+é a base matemática da própria ideia de que "probabilidade = frequência a longo prazo".
+:::
+
+::: {.callout-warning}
+## A falácia do apostador
+A LGN diz que a **média** converge, **não** que o acaso "compensa" desvios. Após 10 caras
+seguidas, a 11ª ainda tem prob. $\frac12$ de ser cara — a moeda não "deve" coroas. O
+equilíbrio surge por **diluição** dos desvios num número crescente de jogadas, não por
+correção dos passados. Acreditar no contrário é a **falácia do apostador**.
+:::
+
+## O teorema central do limite
+
+::: {#thm-tcl}
+## Teorema central do limite (TCL)
+Sejam $X_1, X_2, \dots$ iid com média $\mu$ e variância $\sigma^2$ finita. Então a soma
+padronizada converge em distribuição para a **normal padrão**:
+$$
+\frac{\bar X_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} N(0, 1) \qquad (n\to\infty).
+$$
+Equivalentemente, $\bar X_n \approx N\!\left(\mu, \frac{\sigma^2}{n}\right)$ para $n$
+grande.
+:::
+
+::: {.callout-tip}
+## O teorema mais surpreendente da probabilidade
+O espantoso: **não importa** a distribuição das $X_i$ — uniformes, exponenciais,
+binárias, qualquer uma (com variância finita) — a soma de muitas delas é
+**aproximadamente normal**. A forma individual é esquecida; só sobrevivem média e
+variância. Isso explica por que a curva em sino governa erros de medida, alturas, ruído e
+médias amostrais: cada um é a soma de muitos efeitos pequenos e independentes. O TCL é a
+razão profunda da onipresença da normal (@sec-distribuicoes).
+:::
+
+::: {#exm-tcl-dados}
+## A média de dados vira normal
+A distribuição de um único dado é uniforme (nada parecido com um sino). Mas a **média de
+30 dados** já tem distribuição quase perfeitamente normal, centrada em $3{,}5$
+(@exm-esperanca-dado) e com desvio $\frac{\sigma}{\sqrt{30}}$. Some-os e o sino emerge —
+visível em qualquer simulação.
+:::
+
+## Por que $\sqrt{n}$
+
+::: {.callout-note}
+## A escala da incerteza
+O TCL revela que o erro da média amostral encolhe como $\frac{\sigma}{\sqrt{n}}$ — não
+como $\frac1n$. Para **dobrar** a precisão, é preciso **quadruplicar** a amostra. Esse
+$\sqrt{n}$ governa o tamanho de amostras em pesquisas, a margem de erro das urnas
+eleitorais e a incerteza experimental. É a lei fundamental de quanto "mais dados"
+ajudam — com retornos decrescentes.
+:::
+
+## Exercícios
+
+::: {#exr-lt-lgn}
+Ao lançar uma moeda justa $n$ vezes, para que valor converge a fração de caras quando
+$n \to \infty$? Por quê?
+:::
+
+::: {#exr-lt-erro}
+Uma pesquisa quer reduzir a margem de erro pela metade. Por qual fator deve aumentar o
+tamanho da amostra?
+:::
+
+::: {#exr-lt-tcl}
+A vida de uma lâmpada tem média $1000$ h e desvio $200$ h. Aproxime a distribuição da
+vida **média** de $100$ lâmpadas (média e desvio).
+:::
+
+::: {#exr-lt-falacia}
+Critique a afirmação: "Saíram 5 vermelhos seguidos na roleta, então o próximo tem mais
+chance de ser preto."
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lt-lgn
+Converge para $\frac12$, a esperança de uma Bernoulli($\frac12$). Pela LGN
+(@thm-lgn), a média amostral (= fração de caras) tende à média teórica $\mu = \frac12$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lt-erro
+A margem é $\propto \frac{1}{\sqrt n}$. Para dividi-la por 2, precisa $\sqrt{n}$ dobrar,
+ou seja $n$ **quadruplicar** (4×).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lt-tcl
+Pelo TCL, a média de $100$ lâmpadas é aproximadamente $N(1000, (200/\sqrt{100})^2) =
+N(1000, 20^2)$ — média $1000$ h, desvio **$20$ h**. A média de muitas é muito mais
+previsível que uma única.
+:::
