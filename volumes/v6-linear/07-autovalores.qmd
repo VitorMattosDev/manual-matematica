@@ -1,0 +1,177 @@
+# Autovalores e autovetores {#sec-autovalores}
+
+## Motivação
+
+Uma transformação linear (@sec-transformacoes-lineares) geralmente embaralha o
+espaço: gira, estica e cisalha vetores em todas as direções. Mas quase toda
+transformação tem **direções especiais** que ela não muda — apenas alonga ou encurta.
+Um vetor nessas direções, ao ser transformado, continua apontando para o mesmo lado
+(ou o exato oposto), só com comprimento diferente.
+
+Esses vetores privilegiados são os **autovetores**, e os fatores de
+alongamento são os **autovalores**. Encontrá-los é, de certo modo, descobrir os
+"eixos naturais" da transformação — aqueles em que ela age da forma mais simples
+possível, como mera multiplicação por um número. Autovalores governam a estabilidade
+de sistemas dinâmicos, as frequências de vibração de uma estrutura, o PageRank do
+Google e a mecânica quântica. Este capítulo os define e ensina a calculá-los,
+preparando a diagonalização (@sec-diagonalizacao).
+
+## Definição
+
+::: {#def-autovalor}
+## Autovalor e autovetor
+Seja $A$ uma matriz quadrada. Um escalar $\lambda$ é um **autovalor** de $A$ se
+existe um vetor **não nulo** $v$ tal que
+$$
+Av = \lambda v.
+$$
+O vetor $v$ é um **autovetor** associado a $\lambda$. A condição $v \neq 0$ é
+essencial — o vetor nulo satisfaz a equação trivialmente para qualquer $\lambda$ e
+não conta.
+:::
+
+::: {.callout-note}
+## A geometria
+$Av = \lambda v$ diz que $A$ leva $v$ num **múltiplo de si mesmo**: a direção de $v$
+é preservada. Se $\lambda > 1$, $v$ é alongado; se $0 < \lambda < 1$, encurtado; se
+$\lambda < 0$, invertido; se $\lambda = 0$, colapsado na origem ($v$ está no núcleo).
+Todos os demais vetores mudam de direção sob $A$.
+:::
+
+::: {#exm-autovetor-direto}
+## Verificando um autovetor
+Para $A = \left[\begin{smallmatrix} 2 & 0 \\ 0 & 3 \end{smallmatrix}\right]$, o vetor
+$e_1 = (1, 0)$ satisfaz $Ae_1 = (2, 0) = 2 e_1$: autovetor de autovalor $2$.
+Analogamente $e_2$ tem autovalor $3$. Numa matriz diagonal, os autovalores são a
+própria diagonal e os autovetores são os canônicos.
+:::
+
+## O polinômio característico
+
+Como encontrar os autovalores sem adivinhar? Reescrevemos a equação. De $Av =
+\lambda v$ vem $(A - \lambda I)v = 0$, um sistema homogêneo. Ele tem solução **não
+nula** exatamente quando a matriz $A - \lambda I$ é singular — isto é, quando seu
+determinante se anula.
+
+::: {#thm-polinomio-caracteristico}
+## Equação característica
+Os autovalores de $A$ são exatamente as raízes do **polinômio característico**
+$$
+p(\lambda) = \det(A - \lambda I) = 0.
+$$
+:::
+
+::: {.proof}
+$\lambda$ é autovalor $\iff$ existe $v \neq 0$ com $(A - \lambda I)v = 0$ $\iff$ o
+sistema homogêneo tem solução não trivial $\iff$ $A - \lambda I$ não é invertível
+$\iff$ $\det(A - \lambda I) = 0$ (@thm-det-invertivel).
+:::
+
+::: {#exm-calculo-autovalores}
+## Calculando autovalores e autovetores
+Seja $A = \left[\begin{smallmatrix} 2 & 1 \\ 1 & 2 \end{smallmatrix}\right]$. O
+polinômio característico:
+$$
+\det(A - \lambda I) = \begin{vmatrix} 2 - \lambda & 1 \\ 1 & 2 - \lambda
+\end{vmatrix} = (2 - \lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda - 1)
+(\lambda - 3).
+$$
+Autovalores: $\lambda = 1$ e $\lambda = 3$. Para $\lambda = 3$, resolve-se $(A - 3I)v
+= 0$: $\left[\begin{smallmatrix} -1 & 1 \\ 1 & -1 \end{smallmatrix}\right]v = 0$ dá
+$v = (1, 1)$. Para $\lambda = 1$: $v = (1, -1)$.
+:::
+
+## Autoespaços e multiplicidade
+
+::: {#def-autoespaco}
+## Autoespaço
+Para cada autovalor $\lambda$, o conjunto de **todos** os autovetores associados
+(mais o vetor nulo) é o **autoespaço** $E_\lambda = \ker(A - \lambda I)$ — um
+subespaço. Sua dimensão é a **multiplicidade geométrica** de $\lambda$.
+:::
+
+A **multiplicidade algébrica** de $\lambda$ é quantas vezes ele aparece como raiz de
+$p(\lambda)$. Vale sempre $1 \leq (\text{geométrica}) \leq (\text{algébrica})$ — uma
+desigualdade que será decisiva para a diagonalização.
+
+::: {.callout-warning}
+## Quando faltam autovetores
+A matriz $A = \left[\begin{smallmatrix} 1 & 1 \\ 0 & 1 \end{smallmatrix}\right]$ tem
+$p(\lambda) = (1 - \lambda)^2$: o autovalor $1$ tem multiplicidade algébrica $2$. Mas
+$(A - I)v = 0$ só dá a reta gerada por $(1, 0)$ — multiplicidade geométrica $1$.
+Faltou um autovetor. Essa "deficiência" é o que impede certas matrizes de serem
+diagonalizadas (@sec-diagonalizacao).
+:::
+
+## Propriedades úteis
+
+::: {#prp-traco-determinante}
+## Traço e determinante
+Para uma matriz $n\times n$ com autovalores $\lambda_1, \dots, \lambda_n$ (contados
+com multiplicidade):
+$$
+\lambda_1 + \cdots + \lambda_n = \operatorname{tr}(A), \qquad \lambda_1 \cdots
+\lambda_n = \det(A),
+$$
+onde o **traço** $\operatorname{tr}(A)$ é a soma da diagonal. São checagens rápidas
+dos cálculos.
+:::
+
+::: {#exm-conferencia}
+## Conferindo pelo traço e determinante
+No @exm-calculo-autovalores, $\lambda_1 + \lambda_2 = 1 + 3 = 4 =
+\operatorname{tr}(A) = 2 + 2$ ✓, e $\lambda_1 \lambda_2 = 3 = \det A = 4 - 1$ ✓.
+:::
+
+::: {.callout-note}
+## Autovetores de autovalores distintos são independentes
+Um fato central: autovetores associados a autovalores **diferentes** são sempre
+linearmente independentes (@sec-base-dimensao). Por isso, uma matriz $n\times n$ com
+$n$ autovalores distintos possui $n$ autovetores LI — uma base inteira de
+autovetores, o cenário ideal da diagonalização.
+:::
+
+## Exercícios
+
+::: {#exr-autoval-1}
+Encontre os autovalores de $A = \left[\begin{smallmatrix} 4 & 1 \\ 2 & 3
+\end{smallmatrix}\right]$.
+:::
+
+::: {#exr-autoval-2}
+Para $A = \left[\begin{smallmatrix} 0 & -1 \\ 1 & 0 \end{smallmatrix}\right]$
+(rotação de $90^\circ$), mostre que não há autovalores reais e interprete
+geometricamente.
+:::
+
+::: {#exr-autovetor}
+Determine os autovetores de $A = \left[\begin{smallmatrix} 3 & 0 \\ 1 & 2
+\end{smallmatrix}\right]$.
+:::
+
+::: {#exr-autoval-traco}
+Uma matriz $2\times 2$ tem $\operatorname{tr}(A) = 5$ e $\det A = 6$. Quais são seus
+autovalores?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-autoval-1
+$\det(A - \lambda I) = (4 - \lambda)(3 - \lambda) - 2 = \lambda^2 - 7\lambda + 10 =
+(\lambda - 2)(\lambda - 5)$. Autovalores $\lambda = 2$ e $\lambda = 5$. (Confira:
+soma $7 = \operatorname{tr}$, produto $10 = \det$.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-autoval-2
+$\det(A - \lambda I) = \lambda^2 + 1 = 0$ não tem raiz real. Faz sentido: uma rotação
+de $90^\circ$ muda a direção de **todo** vetor não nulo, logo nenhum vetor real é
+levado num múltiplo de si mesmo. (Sobre os complexos, os autovalores seriam $\pm i$.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-autoval-traco
+Os autovalores satisfazem $\lambda^2 - (\operatorname{tr})\lambda + \det = \lambda^2
+- 5\lambda + 6 = (\lambda - 2)(\lambda - 3) = 0$. Logo $\lambda = 2$ e $\lambda = 3$.
+:::
