@@ -151,6 +151,7 @@ book:
     - part: "Volume XI — Equações Diferenciais"
       chapters:
         - volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.qmd
+        - volumes/v11-equacoes-diferenciais/02-edo-segunda-ordem.qmd
   appendices:
     - notacao.qmd
 

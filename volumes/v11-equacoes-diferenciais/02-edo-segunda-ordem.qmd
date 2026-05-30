@@ -1,0 +1,154 @@
+# EDOs lineares de segunda ordem {#sec-edo-segunda-ordem}
+
+## Motivação
+
+A segunda lei de Newton, $F = ma$, envolve a **aceleração** — a *segunda* derivada da
+posição. Por isso a física é dominada por equações de **segunda ordem**: a massa numa
+mola, o pêndulo, o circuito elétrico RLC, as vibrações de uma corda. Compreender as EDOs
+lineares de segunda ordem é compreender a oscilação e a ressonância — fenômenos
+onipresentes na natureza e na tecnologia.
+
+Felizmente, há uma teoria completa para o caso de **coeficientes constantes**, e ela
+revela uma bela conexão: resolver a EDO reduz-se a resolver uma equação **algébrica** (a
+equação característica), e suas raízes — reais, repetidas ou complexas — correspondem a
+movimentos amortecidos, críticos ou oscilatórios. Este capítulo desenvolve essa teoria,
+apoiada na estrutura de espaço vetorial (@sec-espacos-vetoriais) das soluções.
+
+## A estrutura das soluções
+
+::: {#def-edo-linear-2}
+## EDO linear de segunda ordem
+Tem a forma
+$$
+y'' + p(x)\,y' + q(x)\,y = g(x).
+$$
+É **homogênea** se $g = 0$. A teoria separa a **solução geral da homogênea** (com duas
+constantes) de uma **solução particular** da completa.
+:::
+
+::: {#thm-estrutura-solucoes}
+## Princípio da superposição
+As soluções da homogênea $y'' + p y' + q y = 0$ formam um **espaço vetorial de dimensão
+2** (@sec-base-dimensao): existem duas soluções linearmente independentes $y_1, y_2$ (um
+**sistema fundamental**), e toda solução é $y = c_1 y_1 + c_2 y_2$. A solução geral da
+equação completa é
+$$
+y = c_1 y_1 + c_2 y_2 + y_p,
+$$
+onde $y_p$ é qualquer solução particular.
+:::
+
+::: {.callout-note}
+## Por que dimensão 2
+Uma EDO de ordem $n$ tem espaço de soluções de dimensão $n$: precisa-se de $n$ condições
+iniciais (posição, velocidade, … até a derivada $n-1$) para fixar a solução. Para segunda
+ordem, **duas** — posição e velocidade iniciais —, refletindo as duas constantes. A
+álgebra linear (@sec-transformacoes-lineares) organiza tudo: o operador $L[y] = y'' + py'
++ qy$ é linear, e o espaço de soluções é seu núcleo.
+:::
+
+## Coeficientes constantes: a equação característica
+
+::: {#thm-caracteristica}
+## Equação característica
+Para $y'' + b y' + c y = 0$ (coeficientes constantes), busca-se $y = e^{rx}$. Substituindo,
+obtém-se a **equação característica**
+$$
+r^2 + b r + c = 0.
+$$
+As raízes determinam o sistema fundamental, em três casos.
+:::
+
+::: {#prp-tres-casos}
+## Os três casos
+Seja $\Delta = b^2 - 4c$ o discriminante (@sec-equacoes-2grau):
+
+- **Raízes reais distintas** $r_1 \neq r_2$ ($\Delta > 0$): $y = c_1 e^{r_1 x} + c_2
+  e^{r_2 x}$ — amortecimento forte.
+- **Raiz dupla** $r$ ($\Delta = 0$): $y = (c_1 + c_2 x)\,e^{rx}$ — amortecimento crítico.
+- **Raízes complexas** $\alpha \pm i\beta$ ($\Delta < 0$): $y = e^{\alpha x}(c_1\cos\beta
+  x + c_2\operatorname{sen}\beta x)$ — **oscilação**.
+:::
+
+::: {.callout-tip}
+## Por que complexas geram oscilação
+Quando a característica tem raízes $\alpha\pm i\beta$, a fórmula de Euler $e^{i\beta x} =
+\cos\beta x + i\operatorname{sen}\beta x$ (@sec-taylor) converte as exponenciais
+complexas em senos e cossenos reais. A parte real $\alpha$ controla o
+amortecimento/crescimento da amplitude; a imaginária $\beta$, a frequência. Uma equação
+algébrica do segundo grau decide se o sistema **oscila** ou apenas **relaxa** — a
+álgebra do Volume II governando a dinâmica.
+:::
+
+## O oscilador harmônico
+
+::: {#exm-oscilador}
+## Massa-mola
+A massa numa mola sem atrito obedece a $y'' + \omega^2 y = 0$. A característica $r^2 +
+\omega^2 = 0$ dá $r = \pm i\omega$, logo
+$$
+y = c_1\cos(\omega t) + c_2\operatorname{sen}(\omega t) = A\cos(\omega t - \varphi).
+$$
+Oscilação pura de frequência $\omega$ — o **movimento harmônico simples**, modelo de
+tudo que vibra.
+:::
+
+## Equações não homogêneas
+
+::: {#prp-metodos-particular}
+## Achando uma solução particular
+Para $y'' + by' + cy = g(x)$, duas técnicas:
+
+- **Coeficientes a determinar**: para $g$ polinomial, exponencial ou
+  seno/cosseno, supõe-se $y_p$ da mesma forma e ajustam-se os coeficientes.
+- **Variação de parâmetros**: método geral que constrói $y_p$ a partir do sistema
+  fundamental $y_1, y_2$, válido para qualquer $g$.
+:::
+
+::: {.callout-warning}
+## Ressonância
+Quando a força externa $g$ oscila na **frequência natural** do sistema, a solução
+particular cresce sem limite (amplitude $\propto t$): é a **ressonância**. Matematicamente,
+$g$ "coincide" com uma solução da homogênea, e $y_p$ ganha um fator $x$. Fisicamente, é o
+que faz uma ponte balançar perigosamente ao vento ou um copo estilhaçar com a nota certa —
+um fenômeno que a teoria prevê com exatidão.
+:::
+
+## Exercícios
+
+::: {#exr-ed2-reais}
+Resolva $y'' - 5y' + 6y = 0$.
+:::
+
+::: {#exr-ed2-complexas}
+Resolva $y'' + 4y = 0$ e identifique a frequência de oscilação.
+:::
+
+::: {#exr-ed2-dupla}
+Resolva $y'' - 2y' + y = 0$ (raiz dupla).
+:::
+
+::: {#exr-ed2-particular}
+Encontre uma solução particular de $y'' + y = x$ por coeficientes a determinar.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ed2-reais
+Característica $r^2 - 5r + 6 = (r-2)(r-3) = 0$, raízes $2, 3$. Solução geral $y = c_1
+e^{2x} + c_2 e^{3x}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ed2-complexas
+$r^2 + 4 = 0 \Rightarrow r = \pm 2i$. Logo $y = c_1\cos 2x + c_2\operatorname{sen}2x$,
+oscilação de frequência $\omega = 2$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ed2-particular
+A homogênea tem $\cos x, \operatorname{sen}x$; para $g = x$ (polinômio, não ressonante),
+tente $y_p = ax + b$. Então $y_p'' = 0$ e $y_p'' + y_p = ax + b = x$, dando $a = 1$, $b =
+0$. Logo $y_p = x$ (e a geral é $c_1\cos x + c_2\operatorname{sen}x + x$).
+:::
