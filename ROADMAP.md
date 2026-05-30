@@ -74,7 +74,7 @@ Pré-requisitos: nenhum.*
 
 - [x] `volumes/v4-precalculo/01-funcoes.qmd` — O conceito de função; domínio, imagem, composição, inversa.
 - [x] `volumes/v4-precalculo/02-afim-quadratica.qmd` — Funções afim e quadrática.
-- [ ] `volumes/v4-precalculo/03-modular.qmd` — Função modular.
+- [x] `volumes/v4-precalculo/03-modular.qmd` — Função modular.
 - [ ] `volumes/v4-precalculo/04-exponencial.qmd` — Função exponencial.
 - [ ] `volumes/v4-precalculo/05-logaritmo.qmd` — Logaritmos e função logarítmica.
 - [ ] `volumes/v4-precalculo/06-trigonometricas.qmd` — Funções trigonométricas e inversas.
