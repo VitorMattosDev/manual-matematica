@@ -188,7 +188,7 @@ não pelo número.
 ## Extensão do Volume X — Cálculo Tensorial e Geometria Riemanniana
 *Objetivo: a maquinaria geométrica da relatividade geral. Pré-req.: Vol. X cap. 1–9, Vol. VI.*
 
-- [ ] `volumes/v10-diferencial/10-campos-tensores.qmd` — Espaço tangente, campos vetoriais e tensoriais em variedades.
+- [x] `volumes/v10-diferencial/10-campos-tensores.qmd` — Espaço tangente, campos vetoriais e tensoriais em variedades.
 - [ ] `volumes/v10-diferencial/11-algebra-tensorial-formas.qmd` — Álgebra tensorial e formas diferenciais; produto exterior.
 - [ ] `volumes/v10-diferencial/12-metricas-riemannianas.qmd` — Métricas riemannianas e pseudo-riemannianas (caso lorentziano).
 - [ ] `volumes/v10-diferencial/13-conexoes-derivada-covariante.qmd` — Conexões, derivada covariante e símbolos de Christoffel.

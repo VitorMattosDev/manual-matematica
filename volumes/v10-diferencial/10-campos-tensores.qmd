@@ -1,0 +1,166 @@
+# Espaço tangente, campos vetoriais e tensoriais {#sec-campos-tensores}
+
+## Motivação
+
+As variedades diferenciáveis (@sec-variedades) deram-nos espaços que, localmente,
+parecem $\mathbb{R}^n$, sem precisar de um espaço ambiente. Para fazer física e
+geometria sobre elas — descrever velocidades, forças, o campo gravitacional —
+precisamos de objetos que vivam **na própria variedade** e se comportem bem sob mudança
+de coordenadas. Esses objetos são os **tensores**.
+
+A relatividade geral é escrita em tensores justamente porque eles têm significado
+**independente do observador** (do sistema de coordenadas). Um vetor tangente é o
+exemplo mais simples; a métrica (@sec-metricas-riemannianas) e a curvatura
+(@sec-curvatura-riemann) são tensores mais ricos. Este capítulo abre a extensão de
+geometria riemanniana do Volume X, construindo o espaço tangente de modo intrínseco e
+definindo campos vetoriais e tensoriais.
+
+## O espaço tangente, intrinsecamente
+
+Numa superfície em $\mathbb{R}^3$ (@sec-superficies), o plano tangente era um subespaço
+do espaço ambiente. Numa variedade abstrata não há ambiente — precisamos de outra
+definição.
+
+::: {#def-vetor-tangente-deriv}
+## Vetor tangente como derivação
+Um **vetor tangente** em um ponto $p$ de uma variedade $M$ é um operador $v$ que a cada
+função suave $f$ associa um número $v(f)$ (a **derivada direcional** de $f$ na direção
+$v$), satisfazendo linearidade e a regra de Leibniz:
+$$
+v(fg) = f(p)\,v(g) + g(p)\,v(f).
+$$
+O conjunto desses operadores é o **espaço tangente** $T_pM$, um espaço vetorial
+(@sec-espacos-vetoriais) de dimensão $n = \dim M$.
+:::
+
+::: {.callout-tip}
+## Vetor = "como derivar nesta direção"
+A ideia é genial: sem espaço ambiente, identifica-se um vetor com **aquilo que ele faz**
+— derivar funções. Numa carta com coordenadas $(x^1, \dots, x^n)$, os operadores
+$\partial/\partial x^i$ formam uma **base** de $T_pM$, e todo vetor é $v = \sum_i v^i
+\frac{\partial}{\partial x^i}$. Os números $v^i$ são as **componentes** do vetor naquela
+carta.
+:::
+
+## Mudança de coordenadas e a convenção de Einstein
+
+::: {#def-mudanca-componentes}
+## Lei de transformação dos vetores
+Sob mudança de coordenadas $x^i \to \tilde{x}^j$, as componentes de um vetor tangente
+transformam-se por
+$$
+\tilde{v}^j = \sum_i \frac{\partial \tilde{x}^j}{\partial x^i}\,v^i.
+$$
+:::
+
+::: {.callout-note}
+## A convenção de soma de Einstein
+A partir daqui adota-se a **convenção de Einstein**: índices repetidos (um em cima,
+outro embaixo) são **somados** automaticamente, omitindo o $\sum$. Assim $v =
+v^i\partial_i$ e $\tilde{v}^j = \frac{\partial\tilde{x}^j}{\partial x^i}v^i$. Índices
+**em cima** (contravariantes) e **embaixo** (covariantes) transformam-se de modos
+opostos — é o que dá aos tensores seu significado geométrico invariante.
+:::
+
+## Covetores e campos
+
+::: {#def-covetor}
+## Espaço cotangente
+O **espaço cotangente** $T_p^*M$ é o dual de $T_pM$: o conjunto das funções lineares
+$\omega: T_pM \to \mathbb{R}$ (os **covetores** ou 1-formas). A diferencial $df$ de uma
+função é o exemplo central: $df(v) = v(f)$. As $dx^i$ formam a base dual de
+$\partial_i$.
+:::
+
+::: {#def-campo-vetorial-var}
+## Campos vetoriais e tensoriais
+Um **campo vetorial** atribui suavemente um vetor $X_p \in T_pM$ a cada ponto $p$; um
+**campo de covetores** (1-forma), um covetor a cada ponto. Mais geralmente, um **campo
+tensorial** atribui um tensor a cada ponto.
+:::
+
+## Tensores
+
+::: {#def-tensor}
+## Tensor do tipo $(r, s)$
+Um **tensor** do tipo $(r, s)$ em $p$ é uma função **multilinear** que recebe $r$
+covetores e $s$ vetores e devolve um número. Em componentes (convenção de Einstein),
+$$
+T = T^{i_1\cdots i_r}_{\;\;j_1\cdots j_s}\;\partial_{i_1}\otimes\cdots\otimes
+dx^{j_s},
+$$
+com $r$ índices **contravariantes** (em cima) e $s$ **covariantes** (embaixo).
+:::
+
+::: {#exm-tensores}
+## Tensores conhecidos
+- Tipo $(1,0)$: um **vetor**. Tipo $(0,1)$: um **covetor**.
+- Tipo $(0,2)$ simétrico: a **métrica** $g_{ij}$ (@sec-metricas-riemannianas), que mede
+  comprimentos.
+- Tipo $(1,1)$: uma **transformação linear** de $T_pM$ (como o operador de forma,
+  @sec-segunda-forma).
+- Tipo $(1,3)$: o **tensor de curvatura de Riemann** (@sec-curvatura-riemann).
+:::
+
+::: {.callout-tip}
+## O que faz um tensor ser tensor
+O essencial não é a lista de componentes, mas a **lei de transformação**: cada índice
+contravariante transforma como $\frac{\partial\tilde x}{\partial x}$ e cada covariante
+como $\frac{\partial x}{\partial\tilde x}$. Por isso uma equação tensorial verdadeira em
+um sistema de coordenadas é verdadeira em **todos** — tensores expressam leis físicas
+independentes do observador, o princípio da relatividade.
+:::
+
+## Operações
+
+::: {#def-operacoes-tensores}
+## Produto tensorial e contração
+O **produto tensorial** $T\otimes U$ combina um $(r,s)$ e um $(r',s')$ num $(r+r',
+s+s')$. A **contração** soma um índice de cima com um de baixo (convenção de Einstein),
+baixando o tipo para $(r-1, s-1)$ — generaliza o traço de uma matriz
+(@prp-traco-determinante).
+:::
+
+## Exercícios
+
+::: {#exr-ct-leibniz}
+Verifique que, em $\mathbb{R}$, o operador $v = \frac{d}{dx}\big|_{p}$ satisfaz a regra
+de Leibniz $v(fg) = f(p)v(g) + g(p)v(f)$.
+:::
+
+::: {#exr-ct-tipo}
+Classifique pelo tipo $(r,s)$: (a) um vetor velocidade; (b) a diferencial $df$; (c) a
+métrica $g_{ij}$.
+:::
+
+::: {#exr-ct-transformacao}
+Em $\mathbb{R}^2$, da mudança para coordenadas polares, escreva a matriz $\frac{\partial
+\tilde x^j}{\partial x^i}$ que transforma as componentes de um vetor.
+:::
+
+::: {#exr-ct-contracao}
+Mostre que contrair o tensor $(1,1)$ de componentes $T^i_{\ j}$ devolve um escalar igual
+ao traço da matriz $(T^i_{\ j})$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ct-leibniz
+$v(fg) = (fg)'(p) = f'(p)g(p) + f(p)g'(p) = g(p)v(f) + f(p)v(g)$, pela regra do produto
+(@sec-regras-derivacao). É a regra de Leibniz — a derivada **é** o protótipo de vetor
+tangente.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ct-tipo
+(a) vetor velocidade: tipo $(1,0)$. (b) $df$: covetor, tipo $(0,1)$. (c) métrica
+$g_{ij}$: dois índices covariantes, tipo $(0,2)$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ct-contracao
+A contração de $T^i_{\ j}$ é $T^i_{\ i} = \sum_i T^i_{\ i}$ (Einstein) — a soma dos
+elementos diagonais, isto é, o **traço**. Por ser uma contração, o resultado é um
+escalar invariante por mudança de coordenadas.
+:::
