@@ -1,0 +1,153 @@
+# Semelhança e o teorema de Tales {#sec-semelhanca}
+
+## Motivação
+
+Uma fotografia ampliada, uma maquete, um mapa: todos representam algo com as
+**mesmas formas** em **tamanho diferente**. Essa relação — mesma forma, escala
+distinta — é a **semelhança**, e é o que permite medir o inalcançável. Tales,
+diz-se, calculou a altura da pirâmide de Quéops comparando sua sombra com a de uma
+vara; o mesmo princípio leva astrônomos a distâncias estelares.
+
+A semelhança refina a congruência do @sec-triangulos: em vez de lados *iguais*,
+lados **proporcionais**. Seu alicerce é o **teorema de Tales**, sobre paralelas
+que cortam transversais em segmentos proporcionais. Deduziremos dele os casos de
+semelhança de triângulos e veremos como a proporcionalidade transforma problemas
+geométricos em equações algébricas (@sec-equacoes-1grau) — preparando o teorema de
+Pitágoras do próximo capítulo.
+
+## O teorema de Tales
+
+::: {#thm-tales}
+## Teorema de Tales
+Se um feixe de retas **paralelas** é cortado por duas transversais, então os
+segmentos determinados numa transversal são **proporcionais** aos segmentos
+correspondentes na outra.
+:::
+
+Em símbolos, se três paralelas cortam uma transversal nos pontos $A, B, C$ e a
+outra em $A', B', C'$, então
+$$
+\frac{\overline{AB}}{\overline{BC}} = \frac{\overline{A'B'}}{\overline{B'C'}}.
+$$
+
+::: {.callout-note}
+## Proporção, não igualdade
+Tales não diz que os segmentos são iguais — diz que estão na mesma **razão**. Os
+pedaços de uma transversal podem ser muito maiores que os da outra; o que se
+conserva é a *proporção* entre eles. É essa passagem da igualdade (congruência)
+para a razão (semelhança) que abre a geometria à medida indireta.
+:::
+
+::: {#exm-tales}
+## Dividindo em proporção
+Três paralelas cortam uma transversal em segmentos de $4$ e $6$, e cortam a outra
+de modo que o primeiro segmento mede $6$. Quanto mede o segundo? Por Tales,
+$$
+\frac{4}{6} = \frac{6}{x} \implies 4x = 36 \implies x = 9.
+$$
+O segundo segmento da outra transversal mede $9$.
+:::
+
+## Triângulos semelhantes
+
+::: {#def-semelhanca}
+## Triângulos semelhantes
+Dois triângulos são **semelhantes** quando têm os ângulos respectivamente iguais e
+os lados correspondentes proporcionais. Escreve-se $\triangle ABC \sim \triangle
+DEF$, e a razão constante $k = \dfrac{\overline{AB}}{\overline{DE}} = \dots$ entre
+lados correspondentes é a **razão de semelhança**.
+:::
+
+Como na congruência, não é preciso verificar tudo. O caso fundamental segue
+diretamente de Tales: basta a igualdade dos ângulos.
+
+::: {#thm-caso-aa}
+## Caso AA (ângulo–ângulo)
+Se dois triângulos têm dois ângulos respectivamente iguais, então são semelhantes.
+:::
+
+::: {.proof}
+Tendo dois ângulos iguais, o terceiro também é igual (a soma é $180°$,
+@def-triangulo), logo os ângulos correspondem. Resta a proporcionalidade dos
+lados. Sobreponha o menor triângulo ao maior fazendo coincidir um ângulo igual: o
+lado oposto fica **paralelo** ao lado correspondente do maior (pois formam ângulos
+iguais com as transversais). Pelo teorema de Tales (@thm-tales), os lados que
+partem do vértice comum ficam divididos em proporção, donde os lados
+correspondentes são proporcionais. Assim os triângulos são semelhantes.
+:::
+
+::: {#exm-altura-piramide}
+## Medindo o inacessível
+Uma vara de $2\,\text{m}$ projeta sombra de $3\,\text{m}$; no mesmo instante, uma
+torre projeta sombra de $45\,\text{m}$. Os raios solares fazem o mesmo ângulo com
+o chão, então os triângulos (objeto–sombra) têm dois ângulos iguais — são
+semelhantes pelo @thm-caso-aa. Logo
+$$
+\frac{\text{altura da torre}}{45} = \frac{2}{3} \implies \text{altura} = 30\,
+\text{m}.
+$$
+É o método de Tales para a pirâmide.
+:::
+
+## Razão de semelhança e áreas
+
+A razão de semelhança propaga-se de modo previsível dos lados para outras
+grandezas.
+
+::: {#prp-razao-areas}
+## Áreas de figuras semelhantes
+Se dois triângulos (ou polígonos) semelhantes têm razão de semelhança $k$ entre
+os lados, então a razão entre suas **áreas** é $k^2$.
+:::
+
+::: {.callout-tip}
+## Dobrar o lado quadruplica a área
+A @prp-razao-areas explica por que ampliar uma figura ao dobro (k = 2) multiplica
+sua área por $4$, não por $2$. Comprimentos escalam por $k$, áreas por $k^2$ — e,
+em três dimensões, volumes por $k^3$ (@sec-euclidiana antecipa o Volume sobre
+sólidos). Confundir essas escalas é um erro clássico de estimativa.
+:::
+
+## Exercícios
+
+::: {#exr-tales}
+Três paralelas determinam, numa transversal, segmentos de $5$ e $8$. Na outra
+transversal, o segmento correspondente ao de $5$ mede $7{,}5$. Determine o segmento
+correspondente ao de $8$.
+:::
+
+::: {#exr-semelhanca-lados}
+Dois triângulos são semelhantes com razão $\dfrac{2}{3}$. Os lados do menor medem
+$4, 6, 8$. Determine os lados do maior.
+:::
+
+::: {#exr-sombra}
+Um prédio projeta sombra de $24\,\text{m}$ quando um poste de $3\,\text{m}$ projeta
+sombra de $4\,\text{m}$. Qual a altura do prédio?
+:::
+
+::: {#exr-area-semelhanca}
+Dois triângulos semelhantes têm razão de semelhança $3$. Se o menor tem área
+$12\,\text{cm}^2$, qual a área do maior?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-semelhanca-lados
+A razão menor : maior é $\tfrac23$, então cada lado do maior é o do menor
+multiplicado por $\tfrac32$:
+$$
+4 \cdot \tfrac32 = 6, \qquad 6 \cdot \tfrac32 = 9, \qquad 8 \cdot \tfrac32 = 12.
+$$
+Os lados do maior medem $6, 9, 12$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-area-semelhanca
+Pela @prp-razao-areas, a razão entre áreas é o quadrado da razão de semelhança:
+$k^2 = 3^2 = 9$. Logo a área do maior é
+$$
+9 \times 12\,\text{cm}^2 = 108\,\text{cm}^2.
+$$
+:::

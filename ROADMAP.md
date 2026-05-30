@@ -58,7 +58,7 @@ Pré-requisitos: nenhum.*
 
 - [x] `volumes/v3-geometria/01-euclidiana-axiomas.qmd` — Geometria euclidiana: axiomas, pontos, retas, ângulos.
 - [x] `volumes/v3-geometria/02-triangulos.qmd` — Triângulos e casos de congruência.
-- [ ] `volumes/v3-geometria/03-semelhanca-tales.qmd` — Semelhança e teorema de Tales.
+- [x] `volumes/v3-geometria/03-semelhanca-tales.qmd` — Semelhança e teorema de Tales.
 - [ ] `volumes/v3-geometria/04-pitagoras.qmd` — Teorema de Pitágoras e relações métricas.
 - [ ] `volumes/v3-geometria/05-circunferencia.qmd` — Circunferência, ângulos e potência de ponto.
 - [ ] `volumes/v3-geometria/06-areas.qmd` — Áreas de figuras planas.
