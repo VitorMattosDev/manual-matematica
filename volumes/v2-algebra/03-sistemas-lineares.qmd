@@ -1,0 +1,163 @@
+# Sistemas lineares elementares {#sec-sistemas}
+
+## Motivação
+
+Uma equação com duas incógnitas, como $x + y = 10$, tem infinitas soluções — para
+cada $x$ há um $y$. Mas se *duas* condições valem ao mesmo tempo,
+$$
+x + y = 10 \qquad \text{e} \qquad x - y = 4,
+$$
+as possibilidades se cruzam e em geral sobra uma só: $x = 7$, $y = 3$. Esse é um
+**sistema de equações lineares**, e resolvê-lo é encontrar os valores que
+satisfazem *todas* as equações simultaneamente.
+
+Sistemas aparecem sempre que várias quantidades se relacionam por várias
+restrições: misturas, circuitos, equilíbrio de preços. Neste capítulo tratamos os
+casos elementares — duas equações, duas incógnitas — pelos métodos da
+**substituição** e da **adição**, e classificamos os sistemas conforme tenham uma,
+nenhuma ou infinitas soluções. As técnicas gerais (eliminação de Gauss, matrizes)
+virão no Volume VI; aqui constrói-se a intuição.
+
+## Sistemas e soluções
+
+::: {#def-sistema}
+## Sistema linear $2 \times 2$
+Um **sistema linear** de duas equações e duas incógnitas é
+$$
+\begin{cases}
+a_1 x + b_1 y = c_1, \\
+a_2 x + b_2 y = c_2,
+\end{cases}
+$$
+com coeficientes reais. Uma **solução** é um par $(x, y)$ que satisfaz as **duas**
+equações. Resolver o sistema é determinar todas as soluções.
+:::
+
+Cada equação $a x + b y = c$ (com $a, b$ não ambos nulos) descreve uma **reta** no
+plano; uma solução do sistema é um ponto comum às duas retas. Essa leitura
+geométrica antecipa a classificação: duas retas ou se cruzam num ponto, ou são
+paralelas distintas, ou são a mesma reta.
+
+## Método da substituição
+
+A ideia: isolar uma incógnita numa equação e substituí-la na outra, reduzindo o
+problema a uma única equação do primeiro grau (@sec-equacoes-1grau).
+
+::: {#exm-substituicao}
+## Resolvendo por substituição
+$$
+\begin{cases} x + y = 10, \\ x - y = 4. \end{cases}
+$$
+Da primeira equação, $x = 10 - y$. Substituindo na segunda:
+$$
+(10 - y) - y = 4 \implies 10 - 2y = 4 \implies y = 3.
+$$
+Voltando, $x = 10 - 3 = 7$. A solução é $(x, y) = (7, 3)$, e conferimos: $7 + 3 =
+10$ e $7 - 3 = 4$. ✓
+:::
+
+## Método da adição
+
+A ideia: somar as equações (eventualmente multiplicadas por constantes) de modo
+que uma incógnita se cancele. É a base do método de eliminação geral.
+
+::: {#exm-adicao}
+## Resolvendo por adição
+$$
+\begin{cases} 3x + 2y = 16, \\ 5x - 2y = 8. \end{cases}
+$$
+Os coeficientes de $y$ são opostos; somando as duas equações, $y$ desaparece:
+$$
+(3x + 2y) + (5x - 2y) = 16 + 8 \implies 8x = 24 \implies x = 3.
+$$
+Substituindo em $3x + 2y = 16$: $9 + 2y = 16$, logo $y = \tfrac{7}{2}$. A solução
+é $\left(3, \tfrac{7}{2}\right)$. Quando os coeficientes não são opostos,
+multiplica-se cada equação por um fator que os torne opostos antes de somar.
+:::
+
+::: {.callout-tip}
+## Os dois métodos preservam as soluções
+Tanto isolar e substituir quanto somar um múltiplo de uma equação à outra são
+aplicações dos princípios de equivalência (@prp-principios): produzem um sistema
+**equivalente**, com o mesmo conjunto solução. Por isso a resposta encontrada é
+necessariamente a do sistema original.
+:::
+
+## Classificação
+
+Nem todo sistema tem solução única. A leitura geométrica das retas dá os três
+casos.
+
+::: {#thm-classificacao}
+## Os três tipos de sistema
+Um sistema linear $2 \times 2$ é exatamente de um dos tipos:
+
+- **possível e determinado:** uma única solução (retas concorrentes);
+- **impossível:** nenhuma solução (retas paralelas distintas);
+- **possível e indeterminado:** infinitas soluções (retas coincidentes).
+:::
+
+O sinal algébrico que distingue os casos aparece ao eliminar uma incógnita: se
+sobra uma equação do primeiro grau legítima, o sistema é determinado; se sobra uma
+igualdade falsa ($0 = k$, $k \neq 0$), é impossível; se sobra uma identidade ($0 =
+0$), é indeterminado — exatamente os casos degenerados do @sec-equacoes-1grau.
+
+::: {#exm-classificacao}
+## Reconhecendo cada tipo
+O sistema $\begin{cases} x + y = 3 \\ 2x + 2y = 7 \end{cases}$ é **impossível**:
+multiplicando a primeira por $2$ obtém-se $2x + 2y = 6$, incompatível com $2x + 2y
+= 7$ (seria $6 = 7$). Já $\begin{cases} x + y = 3 \\ 2x + 2y = 6 \end{cases}$ é
+**indeterminado**: a segunda equação é a primeira dobrada, não acrescenta
+informação, e há infinitas soluções $(x, 3 - x)$.
+:::
+
+::: {.callout-note}
+## O critério dos coeficientes
+Comparando $\dfrac{a_1}{a_2}$, $\dfrac{b_1}{b_2}$ e $\dfrac{c_1}{c_2}$ (quando
+definidos): se $\dfrac{a_1}{a_2} \neq \dfrac{b_1}{b_2}$, o sistema é determinado;
+se as três razões são iguais, é indeterminado; se as duas primeiras coincidem mas
+diferem da terceira, é impossível. No Volume VI esse critério ganha forma limpa
+com o **determinante** da matriz dos coeficientes.
+:::
+
+## Exercícios
+
+::: {#exr-substituicao}
+Resolva por substituição: $\begin{cases} y = 2x - 1 \\ 3x + y = 14 \end{cases}$.
+:::
+
+::: {#exr-adicao}
+Resolva por adição: $\begin{cases} 2x + 3y = 7 \\ 4x - 3y = 5 \end{cases}$.
+:::
+
+::: {#exr-classificar-sistema}
+Classifique e resolva, quando possível:
+$\begin{cases} 3x - y = 2 \\ 6x - 2y = 5 \end{cases}$.
+:::
+
+::: {#exr-problema-sistema}
+Em uma lanchonete, $2$ sucos e $3$ salgados custam R\$ $23$, e $1$ suco e $2$
+salgados custam R\$ $13$. Monte um sistema e determine o preço de cada item.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-adicao
+Os coeficientes de $y$ já são opostos ($+3$ e $-3$). Somando as equações:
+$$
+(2x + 3y) + (4x - 3y) = 7 + 5 \implies 6x = 12 \implies x = 2.
+$$
+Substituindo em $2x + 3y = 7$: $4 + 3y = 7$, logo $y = 1$. Solução: $(2, 1)$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-problema-sistema
+Sejam $s$ o preço do suco e $g$ o do salgado. As condições dão
+$$
+\begin{cases} 2s + 3g = 23, \\ s + 2g = 13. \end{cases}
+$$
+Da segunda, $s = 13 - 2g$. Substituindo na primeira: $2(13 - 2g) + 3g = 23
+\implies 26 - g = 23 \implies g = 3$. Então $s = 13 - 6 = 7$. O suco custa R\$ $7$
+e o salgado R\$ $3$.
+:::

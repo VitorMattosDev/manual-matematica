@@ -38,6 +38,7 @@ book:
       chapters:
         - volumes/v2-algebra/01-expressoes.qmd
         - volumes/v2-algebra/02-equacoes-1grau.qmd
+        - volumes/v2-algebra/03-sistemas-lineares.qmd
     # ----------------------------------------------------------------
     # Os próximos volumes estão planejados em PLANO.md/ROADMAP.md. Para
     # ativá-los, crie os arquivos .qmd e descomente os blocos abaixo.
