@@ -1,0 +1,159 @@
+# Superfícies regulares {#sec-superficies}
+
+## Motivação
+
+Curvas (@sec-curvas) são objetos unidimensionais — um parâmetro basta para percorrê-las.
+Subimos agora uma dimensão: as **superfícies**, objetos bidimensionais mergulhados no
+espaço, como a esfera, o cilindro, a sela. Descrevê-las exige **dois** parâmetros, e a
+geometria fica mais rica: há direções diferentes em cada ponto, e a curvatura passa a
+depender da direção em que se olha.
+
+A definição correta de superfície é mais delicada que a de curva — precisa excluir
+bicos, autointerseções e quinas, garantindo que, perto de cada ponto, a superfície
+pareça um pedaço **plano** deformado. Essa exigência de "localmente plano" é a chave
+que permite fazer cálculo sobre a superfície: medir distâncias, ângulos, áreas, e
+eventualmente curvaturas. Este capítulo define superfícies regulares, o plano tangente,
+e prepara as formas fundamentais que medirão sua geometria (@sec-primeira-forma,
+@sec-segunda-forma).
+
+## Superfícies parametrizadas
+
+::: {#def-superficie}
+## Superfície regular
+Uma **superfície regular** $S \subseteq \mathbb{R}^3$ é um conjunto tal que, em torno
+de cada ponto, existe uma **parametrização** $\mathbf{x}: U \to S$ (com $U \subseteq
+\mathbb{R}^2$ aberto), diferenciável, que é homeomorfismo sobre sua imagem, e cujos
+vetores parciais
+$$
+\mathbf{x}_u = \frac{\partial \mathbf{x}}{\partial u}, \qquad \mathbf{x}_v =
+\frac{\partial \mathbf{x}}{\partial v}
+$$
+são **linearmente independentes** em cada ponto.
+:::
+
+::: {.callout-note}
+## As três condições, traduzidas
+*Diferenciável* permite usar cálculo. *Homeomorfismo* (@sec-continuidade-homeomorfismos)
+impede que a superfície se cruze ou se dobre sobre si mesma. *Parciais independentes* —
+a condição de regularidade — garante que $\mathbf x_u$ e $\mathbf x_v$ gerem um plano
+genuíno (não uma reta ou um ponto), evitando bicos. Juntas, elas asseguram que $S$ seja,
+perto de cada ponto, uma cópia deformada de um pedaço do plano $\mathbb{R}^2$.
+:::
+
+::: {#exm-superficies-reg}
+## Superfícies parametrizadas
+- **Plano**: $\mathbf{x}(u, v) = p + u\,\mathbf{a} + v\,\mathbf{b}$.
+- **Esfera** (parte): $\mathbf{x}(u, v) = (\operatorname{sen}u\cos v, \operatorname
+  {sen}u\operatorname{sen}v, \cos u)$ — coordenadas esféricas.
+- **Cilindro**: $\mathbf{x}(u, v) = (\cos u, \operatorname{sen}u, v)$.
+- **Gráfico** de $f$: $\mathbf{x}(u, v) = (u, v, f(u, v))$ — sempre regular.
+:::
+
+## O plano tangente
+
+Em cada ponto, a superfície tem uma melhor aproximação plana — seu plano tangente.
+
+::: {#def-plano-tangente}
+## Plano tangente
+O **plano tangente** a $S$ em um ponto $p$ é o subespaço $T_pS$ de $\mathbb{R}^3$
+**gerado** por $\mathbf{x}_u$ e $\mathbf{x}_v$ (@sec-base-dimensao). Seus elementos são
+os **vetores tangentes** — velocidades de curvas que passam por $p$ sobre a superfície.
+:::
+
+O plano tangente é o "$\mathbb{R}^2$ local" da superfície: nele moram todas as direções
+em que se pode caminhar a partir de $p$ sem deixar $S$. É o palco onde a geometria
+diferencial da superfície acontece.
+
+::: {#def-normal-superficie}
+## Vetor normal
+O **vetor normal unitário** a $S$ em $p$ é perpendicular ao plano tangente:
+$$
+\mathbf{N} = \frac{\mathbf{x}_u \times \mathbf{x}_v}{\|\mathbf{x}_u \times \mathbf{x}_v
+\|}.
+$$
+A escolha de $\mathbf{N}$ (ou $-\mathbf{N}$) é uma **orientação** da superfície.
+:::
+
+::: {#exm-tangente-esfera}
+## Plano tangente à esfera
+Na esfera unitária, o plano tangente em um ponto $p$ é, intuitivamente, o plano que
+"toca" a esfera ali — e o vetor normal é o próprio raio $\mathbf{N} = p$ (apontando para
+fora). É a razão geométrica de a normal da esfera ser radial.
+:::
+
+## Mudança de parâmetros e orientabilidade
+
+::: {#thm-mudanca-parametros}
+## Independência de parametrização
+Conceitos como plano tangente, vetor normal (a menos de sinal) e área **não dependem**
+da parametrização escolhida — só da superfície. Uma mudança de parâmetros é um
+difeomorfismo entre os domínios, e as quantidades geométricas transformam-se de modo
+consistente.
+:::
+
+::: {.callout-warning}
+## Nem toda superfície é orientável
+Escolher uma normal $\mathbf N$ de forma **contínua e global** nem sempre é possível. A
+**faixa de Möbius** é o exemplo clássico: ao percorrer a faixa, a normal volta invertida
+— não há "lado de cima" consistente. Superfícies onde a escolha global existe são
+**orientáveis** (esfera, toro, cilindro); a faixa de Möbius e a garrafa de Klein não são.
+A orientabilidade é uma propriedade **topológica** (@sec-grupo-fundamental), conectando
+este volume ao anterior.
+:::
+
+## Primeira aproximação: superfícies como variedades
+
+::: {.callout-note}
+## O germe da ideia de variedade
+A definição de superfície regular — "localmente parece $\mathbb{R}^2$" — é o protótipo
+do conceito mais geral da matemática moderna: a **variedade diferenciável**
+(@sec-variedades), um espaço que localmente parece $\mathbb{R}^n$. Curvas são variedades
+de dimensão $1$; superfícies, de dimensão $2$. O salto para dimensão $n$ qualquer,
+abstraindo até o espaço ambiente $\mathbb{R}^3$, é o destino final deste volume — e o
+ponto onde geometria, cálculo e topologia se fundem completamente.
+:::
+
+## Exercícios
+
+::: {#exr-sf-1}
+Mostre que o cilindro $\mathbf{x}(u, v) = (\cos u, \operatorname{sen}u, v)$ é regular,
+calculando $\mathbf{x}_u$, $\mathbf{x}_v$ e verificando a independência.
+:::
+
+::: {#exr-sf-tangente}
+Determine o plano tangente ao parabolóide $z = x^2 + y^2$ no ponto $(1, 1, 2)$.
+:::
+
+::: {#exr-sf-normal}
+Calcule o vetor normal unitário ao cilindro do @exr-sf-1 e descreva sua direção.
+:::
+
+::: {#exr-sf-grafico}
+Mostre que o gráfico de qualquer função diferenciável $f(u,v)$ é uma superfície
+regular.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-1
+$\mathbf{x}_u = (-\operatorname{sen}u, \cos u, 0)$ e $\mathbf{x}_v = (0, 0, 1)$. Eles
+são sempre **linearmente independentes** (o primeiro está no plano $xy$, o segundo é
+vertical), logo o cilindro é regular em todo ponto.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-grafico
+Parametrize por $\mathbf{x}(u,v) = (u, v, f(u,v))$. Então $\mathbf{x}_u = (1, 0, f_u)$ e
+$\mathbf{x}_v = (0, 1, f_v)$ são sempre independentes (as duas primeiras coordenadas
+formam a identidade $2\times 2$). É diferenciável e bijetora sobre sua imagem — logo
+superfície regular.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-normal
+$\mathbf{x}_u \times \mathbf{x}_v = (-\operatorname{sen}u, \cos u, 0)\times(0,0,1) =
+(\cos u, \operatorname{sen}u, 0)$, já unitário. A normal $\mathbf N = (\cos u,
+\operatorname{sen}u, 0)$ aponta **radialmente para fora** do eixo do cilindro,
+horizontalmente.
+:::
