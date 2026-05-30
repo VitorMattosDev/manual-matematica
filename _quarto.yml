@@ -49,6 +49,7 @@ book:
     - part: "Volume III — Geometria e Trigonometria"
       chapters:
         - volumes/v3-geometria/01-euclidiana-axiomas.qmd
+        - volumes/v3-geometria/02-triangulos.qmd
   appendices:
     - notacao.qmd
 

@@ -1,0 +1,175 @@
+# Triângulos e congruência {#sec-triangulos}
+
+## Motivação
+
+O triângulo é a figura mais simples que delimita uma região do plano — e, por
+isso, a mais fundamental. Toda figura poligonal se decompõe em triângulos; toda
+estrutura rígida (de pontes a treliças) explora a sua indeformabilidade. Entender
+triângulos é o passo decisivo da geometria.
+
+A pergunta central deste capítulo é: quando dois triângulos são **iguais** — no
+sentido de poderem ser sobrepostos exatamente? Não é preciso conferir todos os
+seis elementos (três lados e três ângulos); bastam **três bem escolhidos**. Os
+**casos de congruência** (LLL, LAL, ALA) dizem quais ternas bastam, e deles
+deduzimos as propriedades dos triângulos isósceles e as primeiras desigualdades
+geométricas. Tudo se ergue sobre os axiomas e os ângulos do @sec-euclidiana.
+
+## Elementos e classificação
+
+::: {#def-triangulo}
+## Triângulo
+Um **triângulo** é a figura formada por três pontos não colineares (os
+**vértices**) e os três segmentos que os ligam (os **lados**). A cada vértice
+associa-se um **ângulo interno**. A soma dos ângulos internos é $180°$
+(@exm-soma-triangulo).
+:::
+
+Classificam-se os triângulos quanto aos **lados** — equilátero (três lados
+iguais), isósceles (ao menos dois iguais), escaleno (todos distintos) — e quanto
+aos **ângulos** — acutângulo, retângulo (um ângulo reto) ou obtusângulo.
+
+## Congruência
+
+::: {#def-congruencia-triangulos}
+## Triângulos congruentes
+Dois triângulos são **congruentes** quando existe uma correspondência entre seus
+vértices que faz **lados** corresponderem a lados iguais e **ângulos** a ângulos
+iguais. Escreve-se $\triangle ABC \cong \triangle DEF$. Intuitivamente: um pode
+ser levado exatamente sobre o outro por um movimento rígido.
+:::
+
+Verificar os seis pares de elementos seria trabalhoso e desnecessário. O primeiro
+caso de congruência, tomado como axioma (na abordagem de Euclides, é construído a
+partir do movimento), reduz isso a três.
+
+::: {#def-lal}
+## Caso LAL (lado–ângulo–lado)
+Se dois triângulos têm dois lados respectivamente iguais e **iguais** os ângulos
+**entre** esses lados, então são congruentes.
+:::
+
+Dele decorrem os demais. Enunciamos os três casos principais juntos.
+
+::: {#thm-casos}
+## Casos de congruência
+Dois triângulos são congruentes se ocorre qualquer um dos casos:
+
+- **LLL:** os três lados são respectivamente iguais;
+- **LAL:** dois lados e o ângulo entre eles são iguais;
+- **ALA:** dois ângulos e o lado entre eles são iguais.
+:::
+
+::: {.callout-warning}
+## "LLA" não é caso de congruência
+A ordem importa: o ângulo deve estar **entre** os lados (LAL), ou o lado **entre**
+os ângulos (ALA). Dois lados e um ângulo *não* compreendido (LLA) **não** garantem
+congruência — em geral há dois triângulos distintos com esses dados (o "caso
+ambíguo"). Memorize os casos válidos exatamente como enunciados.
+:::
+
+## O triângulo isósceles
+
+O primeiro grande fruto da congruência é a caracterização do triângulo isósceles —
+um resultado que Euclides chamou *pons asinorum*, a "ponte dos asnos".
+
+::: {#thm-isosceles}
+## Ângulos da base do isósceles
+Num triângulo isósceles, os ângulos opostos aos lados iguais são iguais.
+:::
+
+::: {.proof}
+Seja $\triangle ABC$ com $\overline{AB} = \overline{AC}$; queremos $\hat B = \hat
+C$. Considere a correspondência do triângulo **consigo mesmo** que troca $B$ e $C$:
+ela leva $\overline{AB}$ em $\overline{AC}$ (iguais), $\overline{AC}$ em
+$\overline{AB}$ (iguais) e mantém o ângulo $\hat A$ entre eles. Pelo caso LAL
+(@def-lal), $\triangle ABC \cong \triangle ACB$. Em triângulos congruentes,
+ângulos correspondentes são iguais; o ângulo $\hat B$ corresponde a $\hat C$, logo
+$\hat B = \hat C$.
+:::
+
+::: {#cor-equilatero}
+## Equilátero é equiângulo
+Num triângulo equilátero, os três ângulos internos são iguais — e, como somam
+$180°$, cada um mede $60°$.
+:::
+
+::: {.proof}
+Sendo os três lados iguais, o @thm-isosceles aplicado a cada par de lados iguais
+dá $\hat A = \hat B$, $\hat B = \hat C$, logo os três ângulos são iguais. Como sua
+soma é $180°$ (@def-triangulo), cada um mede $\dfrac{180°}{3} = 60°$.
+:::
+
+## Desigualdade triangular
+
+A congruência fixa quando três medidas determinam um triângulo; a próxima questão é
+quando elas **podem** formar um. Nem toda terna de comprimentos serve.
+
+::: {#thm-desigualdade-triangular}
+## Desigualdade triangular
+Em todo triângulo, cada lado é menor que a soma dos outros dois:
+$$
+\overline{AB} < \overline{AC} + \overline{CB}.
+$$
+:::
+
+::: {.callout-note}
+## O caminho reto é o mais curto
+A desigualdade triangular diz, em linguagem comum, que o trajeto direto de $A$ a
+$B$ é mais curto que qualquer desvio passando por um terceiro ponto $C$. Essa
+propriedade reaparece, abstraída, como o **axioma da métrica** que define
+"distância" nos espaços do Volume IX — onde a geometria encontra a análise.
+:::
+
+::: {#exm-construir}
+## Quando três lados formam triângulo
+Os comprimentos $3, 4, 5$ formam triângulo, pois cada um é menor que a soma dos
+outros dois ($5 < 3 + 4$, etc.) — e, de fato, formam um triângulo retângulo
+(@sec-euclidiana antecipa Pitágoras). Já $1, 2, 5$ **não** formam: $5 > 1 + 2$, o
+lado maior não se deixa alcançar pelos outros dois.
+:::
+
+## Exercícios
+
+::: {#exr-congruencia}
+Em dois triângulos, $\overline{AB} = \overline{DE} = 5$, $\overline{BC} =
+\overline{EF} = 7$ e os ângulos $\hat B = \hat E = 50°$. Os triângulos são
+congruentes? Por qual caso?
+:::
+
+::: {#exr-isosceles}
+Num triângulo isósceles, o ângulo do vértice (oposto à base) mede $40°$. Determine
+os ângulos da base.
+:::
+
+::: {#exr-desigualdade}
+Para que valores de $x$ os comprimentos $4$, $9$ e $x$ formam um triângulo?
+:::
+
+::: {#exr-mediana-isosceles}
+Prove que, num triângulo isósceles, a mediana relativa à base (o segmento do
+vértice ao ponto médio da base) é também perpendicular à base. (Sugestão: use LLL
+nos dois triângulos em que a mediana divide o isósceles.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-desigualdade
+Pela desigualdade triangular (@thm-desigualdade-triangular), $x$ deve ser menor
+que a soma dos outros dois e maior que a diferença:
+$$
+9 - 4 < x < 9 + 4 \implies 5 < x < 13.
+$$
+(De $x < 4 + 9$ e $9 < 4 + x$; a terceira condição $4 < 9 + x$ é automática para
+$x$ positivo.) Logo $x$ pode ser qualquer valor com $5 < x < 13$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-mediana-isosceles
+Seja $\triangle ABC$ isósceles com $\overline{AB} = \overline{AC}$ e $M$ o ponto
+médio da base $\overline{BC}$. Compare $\triangle ABM$ e $\triangle ACM$: têm
+$\overline{AB} = \overline{AC}$ (hipótese), $\overline{BM} = \overline{CM}$ ($M$ é
+médio) e $\overline{AM}$ comum. Por LLL, $\triangle ABM \cong \triangle ACM$. Logo
+os ângulos $\hat{AMB}$ e $\hat{AMC}$ são iguais; como são adjacentes e somam o raso
+$180°$, cada um mede $90°$. Portanto $\overline{AM} \perp \overline{BC}$.
+:::
