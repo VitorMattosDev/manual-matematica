@@ -31,6 +31,7 @@ book:
         - volumes/v1-fundamentos/05-inteiros-divisibilidade.qmd
         - volumes/v1-fundamentos/06-mdc-euclides.qmd
         - volumes/v1-fundamentos/07-primos-tfa.qmd
+        - volumes/v1-fundamentos/08-congruencias.qmd
     # ----------------------------------------------------------------
     # Os próximos volumes estão planejados em PLANO.md. Para ativá-los,
     # crie os arquivos .qmd correspondentes e descomente os blocos abaixo.

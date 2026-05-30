@@ -1,0 +1,219 @@
+# Congruências e aritmética modular {#sec-congruencias}
+
+## Motivação
+
+Que horas serão $50$ horas depois das $20\text{h}$? Ninguém soma $20 + 50 = 70$ e
+fica perplexo: divide-se por $24$ e fica-se com o resto, $22\text{h}$. O relógio
+faz **aritmética com restos** — só importa a posição módulo $24$. Esse hábito
+cotidiano, levado a sério, é uma das ferramentas mais potentes da teoria dos
+números.
+
+A ideia é declarar *iguais* dois inteiros que deixam o mesmo resto na divisão por
+um $n$ fixo. Essa relação — a **congruência módulo $n$** — comporta-se quase como a
+igualdade: pode-se somar, subtrair e multiplicar congruências livremente. Vamos
+desenvolvê-la, descobrir quando se pode "dividir" (a questão dos inversos) e
+chegar a uma pérola, o **pequeno teorema de Fermat**, que diz algo surpreendente
+sobre potências módulo um primo. Tudo se apoia na divisão euclidiana (@sec-inteiros)
+e na identidade de Bézout (@sec-mdc).
+
+## A relação de congruência
+
+::: {#def-congruencia}
+## Congruência módulo $n$
+Fixe um inteiro $n \geq 1$, o **módulo**. Dizemos que $a$ é **congruente** a $b$
+módulo $n$, e escrevemos
+$$
+a \equiv b \pmod{n},
+$$
+quando $n \mid (a - b)$ — ou seja, quando $a$ e $b$ deixam o mesmo resto na divisão
+por $n$.
+:::
+
+Por exemplo, $20 + 50 = 70 \equiv 22 \pmod{24}$, pois $24 \mid (70 - 22) = 48$. A
+equivalência entre "$n \mid (a-b)$" e "mesmo resto" sai da divisão euclidiana: se
+$a = nq_1 + r_1$ e $b = nq_2 + r_2$ com $0 \le r_1, r_2 < n$, então $a - b =
+n(q_1 - q_2) + (r_1 - r_2)$, e $n \mid (a-b)$ se, e só se, $r_1 = r_2$.
+
+::: {#prp-congruencia-equivalencia}
+## Congruência é uma equivalência
+Para $n$ fixo, a relação $\equiv \pmod{n}$ é reflexiva, simétrica e transitiva.
+:::
+
+::: {.proof}
+$a \equiv a$ pois $n \mid 0$. Se $n \mid (a - b)$, então $n \mid (b - a)$, dando a
+simetria. Se $n \mid (a - b)$ e $n \mid (b - c)$, então $n$ divide a soma $(a - b)
++ (b - c) = a - c$ (combinações lineares, @sec-inteiros), dando a transitividade.
+:::
+
+As classes dessa equivalência são as **classes residuais**: módulo $n$ há
+exatamente $n$ delas, representadas pelos restos $0, 1, \dots, n - 1$. O conjunto
+dessas classes denota-se $\mathbb{Z}/n\mathbb{Z}$.
+
+## Operando com congruências
+
+O que faz das congruências uma ferramenta de cálculo é a compatibilidade com as
+operações: elas podem ser somadas e multiplicadas como igualdades.
+
+::: {#prp-congruencia-operacoes}
+## Compatibilidade com soma e produto
+Se $a \equiv b \pmod{n}$ e $c \equiv d \pmod{n}$, então
+$$
+a + c \equiv b + d \pmod{n} \qquad \text{e} \qquad a c \equiv b d \pmod{n}.
+$$
+:::
+
+::: {.proof}
+Por hipótese $n \mid (a - b)$ e $n \mid (c - d)$. Então $n$ divide a soma $(a - b)
++ (c - d) = (a + c) - (b + d)$, o que dá a primeira congruência. Para o produto,
+escreva
+$$
+a c - b d = a c - b c + b c - b d = (a - b)c + b(c - d).
+$$
+Cada parcela é múltipla de $n$ (a primeira porque $n \mid a - b$, a segunda porque
+$n \mid c - d$), logo $n \mid (ac - bd)$.
+:::
+
+::: {.callout-tip}
+## Reduzir a cada passo
+A consequência prática é que, num cálculo módulo $n$, pode-se **substituir
+qualquer número pelo seu resto a qualquer momento**. Para achar o resto de
+$7^{100}$ por $5$: como $7 \equiv 2$, basta estudar $2^{100}$; e $2^4 = 16 \equiv
+1$, logo $2^{100} = (2^4)^{25} \equiv 1^{25} = 1 \pmod 5$. O resto é $1$, sem
+calcular nenhum número gigante.
+:::
+
+::: {.callout-warning}
+## Cancelar exige cuidado
+Somar e multiplicar é sempre lícito; **cancelar** não. De $2 \cdot 3 \equiv 2
+\cdot 4 \pmod 2$ (ambos $\equiv 0$) não se conclui $3 \equiv 4 \pmod 2$. Só se pode
+cancelar um fator $a$ quando $\gcd(a, n) = 1$, como veremos a seguir.
+:::
+
+## Inversos e congruências lineares
+
+"Dividir" módulo $n$ é multiplicar pelo **inverso**: um $x$ com $a x \equiv 1
+\pmod n$. Nem todo $a$ tem inverso, e a condição é exatamente a coprimalidade.
+
+::: {#prp-inverso}
+## Existência de inverso
+Seja $n \geq 1$. O inteiro $a$ tem inverso módulo $n$ — isto é, existe $x$ com
+$a x \equiv 1 \pmod{n}$ — se, e somente se, $\gcd(a, n) = 1$.
+:::
+
+::: {.proof}
+Se $\gcd(a, n) = 1$, a identidade de Bézout (@thm-bezout) dá inteiros $x, y$ com
+$a x + n y = 1$. Então $a x - 1 = -n y$ é múltiplo de $n$, ou seja, $a x \equiv 1
+\pmod n$: $x$ é o inverso. Reciprocamente, se $a x \equiv 1 \pmod n$, então $n
+\mid (a x - 1)$, digamos $a x - 1 = n k$, donde $a x - n k = 1$; por @cor-coprimos,
+$\gcd(a, n) = 1$.
+:::
+
+Daí decorre a regra de cancelamento prometida: se $\gcd(a, n) = 1$ e $a u \equiv a
+v \pmod n$, multiplicando por $x$ (inverso de $a$) obtém-se $u \equiv v \pmod n$.
+Mais geralmente, resolve-se a **congruência linear** $a x \equiv b \pmod n$.
+
+::: {#prp-congruencia-linear}
+## Congruência linear
+A congruência $a x \equiv b \pmod{n}$ tem solução em $x$ se, e somente se,
+$\gcd(a, n) \mid b$.
+:::
+
+::: {.proof}
+A congruência $a x \equiv b \pmod n$ equivale a existir $y$ com $a x - b = n y$,
+isto é, $a x - n y = b$ — uma equação linear em inteiros. Pelo critério das
+equações diofantinas (@exr-equacao-diofantina), ela tem solução se, e somente se,
+$\gcd(a, n) \mid b$.
+:::
+
+## O pequeno teorema de Fermat
+
+Quando o módulo é um **primo**, todos os inteiros não múltiplos dele têm inverso
+(pois $\gcd(a, p) = 1$ sempre que $p \nmid a$), e a aritmética modular fica
+especialmente rica. O resultado a seguir é o mais célebre desse cenário.
+
+::: {#thm-fermat}
+## Pequeno teorema de Fermat
+Seja $p$ primo. Para todo inteiro $a$,
+$$
+a^{p} \equiv a \pmod{p}.
+$$
+Em particular, se $p \nmid a$, então $a^{p - 1} \equiv 1 \pmod{p}$.
+:::
+
+::: {.proof}
+Se $p \mid a$, ambos os lados de $a^p \equiv a$ são $\equiv 0 \pmod p$, e a
+congruência vale. Suponha então $p \nmid a$, e considere os $p - 1$ múltiplos
+$$
+a,\ 2a,\ 3a,\ \dots,\ (p-1)a \pmod p.
+$$
+Eles são **dois a dois distintos** módulo $p$: se $i a \equiv j a \pmod p$ com
+$1 \le i, j \le p-1$, como $\gcd(a, p) = 1$ pode-se cancelar $a$ (regra acima) e
+obter $i \equiv j \pmod p$, logo $i = j$. Como nenhum deles é $\equiv 0$ (pois
+$p \nmid a$ e $p \nmid i$), esses $p - 1$ valores são, em alguma ordem, exatamente
+$1, 2, \dots, p - 1$ módulo $p$. Multiplicando todos:
+$$
+a \cdot 2a \cdots (p-1)a \equiv 1 \cdot 2 \cdots (p-1) \pmod p,
+$$
+isto é, $a^{p-1} (p-1)! \equiv (p-1)! \pmod p$. Como $(p-1)!$ é produto de fatores
+todos coprimos com $p$, ele é coprimo com $p$ e pode ser cancelado, restando
+$a^{p-1} \equiv 1 \pmod p$. Multiplicando por $a$, $a^p \equiv a \pmod p$ (que vale
+mesmo quando $p \mid a$).
+:::
+
+::: {#exm-fermat-calculo}
+## Uma potência enorme módulo um primo
+Qual o resto de $3^{100}$ na divisão por $7$? Como $7$ é primo e $7 \nmid 3$, o
+teorema dá $3^{6} \equiv 1 \pmod 7$. Escrevendo $100 = 6 \cdot 16 + 4$,
+$$
+3^{100} = (3^6)^{16} \cdot 3^4 \equiv 1^{16} \cdot 3^4 = 81 \equiv 4 \pmod 7,
+$$
+pois $81 = 7 \cdot 11 + 4$. O resto é $4$.
+:::
+
+## Exercícios
+
+::: {#exr-criterio-9}
+Prove o critério de divisibilidade por $9$: um inteiro é divisível por $9$ se, e
+somente se, a soma de seus algarismos é divisível por $9$. (Sugestão: $10 \equiv 1
+\pmod 9$, logo $10^k \equiv 1$.)
+:::
+
+::: {#exr-ultimo-digito}
+Determine o último algarismo de $7^{222}$ (isto é, seu resto módulo $10$).
+:::
+
+::: {#exr-inverso-calculo}
+Encontre o inverso de $5$ módulo $14$ e use-o para resolver $5 x \equiv 3 \pmod
+{14}$.
+:::
+
+::: {#exr-fermat-composto}
+Use o pequeno teorema de Fermat para mostrar que $n^7 \equiv n \pmod{42}$ para
+todo inteiro $n$. (Sugestão: $42 = 2 \cdot 3 \cdot 7$; trate cada primo.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-criterio-9
+Escreva $N = d_k 10^k + \dots + d_1 10 + d_0$ na base $10$. Como $10 \equiv 1
+\pmod 9$, a @prp-congruencia-operacoes dá $10^j \equiv 1^j = 1 \pmod 9$ para todo
+$j$. Logo
+$$
+N \equiv d_k + d_{k-1} + \dots + d_1 + d_0 \pmod 9,
+$$
+ou seja, $N$ é congruente à soma de seus algarismos módulo $9$. Em particular,
+$9 \mid N$ se, e somente se, $9$ divide essa soma.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-inverso-calculo
+Como $\gcd(5, 14) = 1$, o inverso existe (@prp-inverso). Por Bézout, $5 \cdot 3 -
+14 \cdot 1 = 1$, logo $5 \cdot 3 \equiv 1 \pmod{14}$: o inverso de $5$ é $3$.
+Multiplicando $5 x \equiv 3 \pmod{14}$ por $3$,
+$$
+x \equiv 3 \cdot 3 = 9 \pmod{14}.
+$$
+A solução é $x \equiv 9 \pmod{14}$ (confira: $5 \cdot 9 = 45 = 14 \cdot 3 + 3
+\equiv 3$).
+:::
