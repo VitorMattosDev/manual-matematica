@@ -77,7 +77,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v4-precalculo/03-modular.qmd` — Função modular.
 - [x] `volumes/v4-precalculo/04-exponencial.qmd` — Função exponencial.
 - [x] `volumes/v4-precalculo/05-logaritmo.qmd` — Logaritmos e função logarítmica.
-- [ ] `volumes/v4-precalculo/06-trigonometricas.qmd` — Funções trigonométricas e inversas.
+- [x] `volumes/v4-precalculo/06-trigonometricas.qmd` — Funções trigonométricas e inversas.
 - [ ] `volumes/v4-precalculo/07-sequencias.qmd` — Sequências e a noção informal de limite.
 
 ## Volume V — Cálculo

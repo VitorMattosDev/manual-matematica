@@ -1,0 +1,149 @@
+# Funções trigonométricas e inversas {#sec-funcoes-trigonometricas}
+
+## Motivação
+
+No @sec-trigonometria-circulo, seno e cosseno deixaram de ser razões de triângulo e
+passaram a aceitar qualquer número real como entrada. Falta o passo natural:
+tratá-los como **funções** de pleno direito — estudar seus gráficos, domínios,
+imagens e periodicidade, e construir suas **inversas**. É o que faz deste o
+capítulo que conecta a trigonometria geométrica do Volume III ao Cálculo do Volume
+V.
+
+As funções trigonométricas são o protótipo dos fenômenos **periódicos**: ondas
+sonoras, luz, sinais elétricos, marés, ciclos biológicos. Suas inversas
+(arco-seno, arco-cosseno, arco-tangente) respondem à pergunta recíproca — "que
+ângulo tem este seno?" — e, como toda inversa, exigem restringir o domínio para
+recuperar a bijetividade (@sec-funcoes). Fecha-se assim o repertório de funções
+elementares do pré-cálculo.
+
+## As funções seno e cosseno
+
+::: {#def-funcoes-sen-cos}
+## Funções seno e cosseno
+As funções $\operatorname{sen} \colon \mathbb{R} \to [-1, 1]$ e $\cos \colon
+\mathbb{R} \to [-1, 1]$ associam a cada real $x$ (medido em radianos) as
+coordenadas do ponto correspondente no círculo trigonométrico. São **periódicas**
+de período $2\pi$ e têm imagem $[-1, 1]$.
+:::
+
+Seus gráficos são as **senoides**: ondas que oscilam entre $-1$ e $1$. O do seno
+parte da origem ($\operatorname{sen}0 = 0$), o do cosseno parte do alto ($\cos 0 =
+1$); um é o outro deslocado de $\tfrac{\pi}{2}$, pois $\cos x = \operatorname{sen}
+\!\left(x + \tfrac{\pi}{2}\right)$.
+
+::: {#def-amplitude-periodo}
+## Amplitude e período
+Para $f(x) = A\operatorname{sen}(Bx)$ (com $A, B > 0$), o número $A$ é a
+**amplitude** (a oscilação vai de $-A$ a $A$) e $T = \dfrac{2\pi}{B}$ é o
+**período** (o comprimento de um ciclo completo).
+:::
+
+::: {#exm-onda}
+## Modelando uma oscilação
+A função $f(x) = 3\operatorname{sen}(2x)$ tem amplitude $3$ (oscila entre $-3$ e
+$3$) e período $T = \dfrac{2\pi}{2} = \pi$ (completa um ciclo a cada $\pi$). Dobrar
+$B$ comprime a onda à metade do período — mais ciclos no mesmo intervalo, isto é,
+maior **frequência**.
+:::
+
+## A função tangente
+
+::: {#def-funcao-tangente}
+## Função tangente
+A função tangente é $\operatorname{tg} x = \dfrac{\operatorname{sen}x}{\cos x}$,
+definida para os $x$ em que $\cos x \neq 0$, isto é, $x \neq \dfrac{\pi}{2} + k\pi$.
+Tem período $\pi$ e imagem $\mathbb{R}$.
+:::
+
+::: {.callout-note}
+## Assíntotas onde o cosseno zera
+Nos pontos $x = \tfrac{\pi}{2} + k\pi$, o cosseno se anula e a tangente "explode" —
+o gráfico tem **assíntotas verticais** ali (como a hipérbole, @sec-conicas). Entre
+duas assíntotas consecutivas, a tangente cresce de $-\infty$ a $+\infty$,
+percorrendo todos os reais. Por isso seu período é $\pi$, metade do das outras.
+:::
+
+## Funções trigonométricas inversas
+
+Seno, cosseno e tangente são periódicas, logo **não injetoras** — cada valor é
+atingido infinitas vezes. Para inverter, restringe-se o domínio a um intervalo onde
+a função seja bijetora (@thm-inversa-bijecao).
+
+::: {#def-arco-funcoes}
+## Arco-seno, arco-cosseno, arco-tangente
+Restringindo os domínios para obter bijeções, definem-se as inversas:
+
+- $\arcsin \colon [-1, 1] \to \left[-\tfrac{\pi}{2}, \tfrac{\pi}{2}\right]$, inversa
+  de $\operatorname{sen}$;
+- $\arccos \colon [-1, 1] \to [0, \pi]$, inversa de $\cos$;
+- $\arctan \colon \mathbb{R} \to \left(-\tfrac{\pi}{2}, \tfrac{\pi}{2}\right)$,
+  inversa de $\operatorname{tg}$.
+:::
+
+::: {.callout-warning}
+## A inversa devolve só um ângulo
+$\arcsin\tfrac12 = \tfrac{\pi}{6}$ e **não** $\tfrac{5\pi}{6}$, embora ambos tenham
+seno $\tfrac12$. A restrição do domínio força a inversa a escolher **um** valor — o
+do intervalo convencionado. Por isso, ao resolver $\operatorname{sen}x = \tfrac12$
+em todo $\mathbb{R}$, a calculadora dá $\tfrac{\pi}{6}$, e cabe a você acrescentar
+as demais soluções usando periodicidade e simetria.
+:::
+
+::: {#exm-equacao-trig}
+## Resolvendo uma equação trigonométrica
+Resolva $\operatorname{sen}x = \dfrac{\sqrt3}{2}$ em $[0, 2\pi)$. Um valor é $x =
+\arcsin\tfrac{\sqrt3}{2} = \tfrac{\pi}{3}$. Pela simetria do seno (positivo também
+no segundo quadrante), o outro é $x = \pi - \tfrac{\pi}{3} = \tfrac{2\pi}{3}$. As
+soluções no intervalo são $\tfrac{\pi}{3}$ e $\tfrac{2\pi}{3}$; em todo $\mathbb{R}$,
+somam-se múltiplos de $2\pi$.
+:::
+
+::: {.callout-tip}
+## A caminho do Cálculo
+Estas funções e suas inversas formarão o repertório que o Volume V derivará e
+integrará: $\operatorname{sen}' = \cos$, $\arctan' = \frac{1}{1 + x^2}$. As
+senoides são, ainda, os "tijolos" com que se constroem todos os sinais periódicos —
+ideia central das **séries de Fourier**, um dos ápices da análise. O pré-cálculo
+termina aqui, com o vocabulário completo de funções pronto para o Cálculo.
+:::
+
+## Exercícios
+
+::: {#exr-amplitude-periodo}
+Determine a amplitude e o período de: (a) $f(x) = 5\operatorname{sen}(3x)$; (b)
+$g(x) = 2\cos\!\left(\tfrac{x}{2}\right)$.
+:::
+
+::: {#exr-imagem-trig}
+Determine a imagem da função $f(x) = 2 + 3\cos x$. (Sugestão: use que $\cos x$
+varia em $[-1, 1]$.)
+:::
+
+::: {#exr-arco}
+Calcule, em radianos: (a) $\arcsin 1$; (b) $\arccos\!\left(-\tfrac12\right)$; (c)
+$\arctan 1$.
+:::
+
+::: {#exr-equacao-trig}
+Resolva $2\cos x = 1$ no intervalo $[0, 2\pi)$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-imagem-trig
+Como $\cos x$ percorre $[-1, 1]$, o termo $3\cos x$ percorre $[-3, 3]$, e somando
+$2$, a função $f(x) = 2 + 3\cos x$ percorre
+$$
+[2 - 3,\ 2 + 3] = [-1, 5].
+$$
+A imagem é o intervalo $[-1, 5]$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-equacao-trig
+De $2\cos x = 1$ vem $\cos x = \tfrac12$. No intervalo $[0, 2\pi)$, o cosseno vale
+$\tfrac12$ em $x = \tfrac{\pi}{3}$ (primeiro quadrante) e, por simetria (cosseno
+positivo também no quarto quadrante), em $x = 2\pi - \tfrac{\pi}{3} =
+\tfrac{5\pi}{3}$. As soluções são $\tfrac{\pi}{3}$ e $\tfrac{5\pi}{3}$.
+:::
