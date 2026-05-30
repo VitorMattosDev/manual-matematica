@@ -1,0 +1,188 @@
+# Polinômios {#sec-polinomios}
+
+## Motivação
+
+As expressões $x^2 + 3x - 40$ e $2x^3 - x + 1$ têm uma forma comum: somas de
+potências inteiras da variável, cada uma com um coeficiente. São **polinômios** —
+os objetos algébricos mais simples depois dos números, e os mais úteis. Curvas,
+aproximações, códigos corretores de erro e a própria álgebra abstrata repousam
+sobre eles.
+
+O ponto notável é que os polinômios formam um sistema com aritmética **própria**,
+estranhamente parecida com a dos inteiros do Volume I: somam-se, multiplicam-se e —
+o ponto alto deste capítulo — **dividem-se com resto**, exatamente como na divisão
+euclidiana de $\mathbb{Z}$ (@sec-inteiros). Essa analogia, que aqui aparece como
+um algoritmo prático, é o gérmen de toda a teoria dos anéis de polinômios do
+Volume VII.
+
+## Definição e grau
+
+::: {#def-polinomio}
+## Polinômio
+Um **polinômio** na variável $x$ é uma expressão
+$$
+p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0,
+$$
+com coeficientes $a_i \in \mathbb{R}$. Se $a_n \neq 0$, o número $n$ é o **grau**
+de $p$, denotado $\deg p$, e $a_n$ é o **coeficiente líder**. O polinômio nulo não
+tem grau definido.
+:::
+
+Polinômios de grau $0$ são as constantes não nulas; grau $1$, os do primeiro grau
+(@sec-equacoes-1grau); grau $2$, os trinômios do segundo grau. Um número $r$ é
+**raiz** de $p$ quando $p(r) = 0$ — retomando a noção de solução de equação, agora
+para qualquer grau.
+
+## Operações e o grau
+
+Somam-se polinômios reduzindo termos semelhantes (@sec-expressoes); multiplicam-se
+pela distributividade. O grau comporta-se de modo previsível sob essas operações.
+
+::: {#prp-grau}
+## Grau da soma e do produto
+Sejam $p, q$ polinômios não nulos. Então:
+
+1. $\deg(p q) = \deg p + \deg q$;
+2. $\deg(p + q) \leq \max(\deg p, \deg q)$, com igualdade se $\deg p \neq \deg q$.
+:::
+
+::: {.proof}
+(1) Se $a_n x^n$ e $b_m x^m$ são os termos líderes de $p$ e $q$, o termo de maior
+grau do produto é $a_n b_m x^{n + m}$, e $a_n b_m \neq 0$ pois $\mathbb{R}$ não tem
+divisores de zero (@sec-reais). Logo $\deg(pq) = n + m$.
+
+(2) Na soma, nenhum termo ultrapassa o grau $\max(n, m)$, donde a desigualdade. Se
+$n \neq m$, o termo líder de maior grau não tem com quem se cancelar, e o grau da
+soma é exatamente $\max(n, m)$.
+:::
+
+::: {.callout-warning}
+## O grau pode cair na soma
+A desigualdade em (2) pode ser estrita quando os graus coincidem: $(x^2 + x) +
+(-x^2 + 1) = x + 1$ tem grau $1$, não $2$ — os termos líderes se cancelaram. Por
+isso a igualdade só é garantida quando os graus diferem.
+:::
+
+## Divisão de polinômios
+
+Aqui mora a analogia com os inteiros. Assim como $17 = 5 \cdot 3 + 2$, também um
+polinômio se escreve como divisor vezes quociente mais um resto de grau menor.
+
+::: {#thm-divisao-polinomios}
+## Divisão euclidiana de polinômios
+Dados polinômios $p$ (dividendo) e $d \neq 0$ (divisor), existem polinômios
+**únicos** $q$ (quociente) e $r$ (resto) tais que
+$$
+p = d \cdot q + r, \qquad r = 0 \ \text{ ou } \ \deg r < \deg d.
+$$
+:::
+
+::: {.proof}
+**Existência** (esboço, por indução no grau de $p$): se $p = 0$ ou $\deg p < \deg
+d$, basta $q = 0$ e $r = p$. Caso contrário, sejam $a x^n$ e $b x^m$ os termos
+líderes de $p$ e $d$, com $n \geq m$. O monômio $t = \dfrac{a}{b} x^{n - m}$ é
+escolhido para que $t \cdot d$ tenha o mesmo termo líder de $p$; então $p - t d$
+tem grau **estritamente menor** que $n$. Por indução, $p - t d = d q_1 + r$ com
+$\deg r < \deg d$, e daí $p = d(t + q_1) + r$. **Unicidade:** se $d q + r = d q' +
+r'$, então $d(q - q') = r' - r$; se $q \neq q'$ o lado esquerdo teria grau $\geq
+\deg d$ (por @prp-grau), enquanto $r' - r$ tem grau $< \deg d$ — impossível. Logo
+$q = q'$ e $r = r'$.
+:::
+
+::: {#exm-divisao-poli}
+## Efetuando a divisão (chave)
+Dividir $p = 2x^3 - 3x^2 + 0x + 4$ por $d = x - 2$. Repete-se: divide-se o termo
+líder atual pelo de $d$, multiplica-se e subtrai-se.
+$$
+\begin{aligned}
+2x^3 - 3x^2 + 4 &= (x - 2)\,(2x^2) + (x^2 + 4) &&\text{(abateu } 2x^3) \\
+x^2 + 4 &= (x - 2)\,(x) + (2x + 4) &&\text{(abateu } x^2) \\
+2x + 4 &= (x - 2)\,(2) + 8 &&\text{(abateu } 2x)
+\end{aligned}
+$$
+Somando os quocientes parciais, $q = 2x^2 + x + 2$ e $r = 8$. De fato $p = (x -
+2)(2x^2 + x + 2) + 8$.
+:::
+
+## O teorema do resto
+
+Quando o divisor é do tipo $x - r$, o resto deixa de ser um polinômio e vira um
+**número** — e esse número tem significado.
+
+::: {#thm-resto}
+## Teorema do resto
+O resto da divisão de $p(x)$ por $x - r$ é igual a $p(r)$.
+:::
+
+::: {.proof}
+Pela @thm-divisao-polinomios, $p(x) = (x - r) q(x) + R$, em que o resto $R$ é
+constante (grau $< 1$). Avaliando em $x = r$, o primeiro termo se anula:
+$$
+p(r) = (r - r) q(r) + R = 0 + R = R.
+$$
+Logo $R = p(r)$.
+:::
+
+::: {#cor-dalembert}
+## Teorema de D'Alembert
+$r$ é raiz de $p$ se, e somente se, $x - r$ **divide** $p$ (resto zero).
+:::
+
+::: {.proof}
+Pelo @thm-resto, o resto da divisão por $x - r$ é $p(r)$. Esse resto é zero
+exatamente quando $p(r) = 0$, isto é, quando $r$ é raiz. E resto zero significa que
+$x - r$ divide $p$.
+:::
+
+::: {.callout-tip}
+## Fatorar a partir de uma raiz
+O @cor-dalembert é a ponte entre raízes e fatoração: cada raiz $r$ extrai um fator
+$(x - r)$. Achada uma raiz de um polinômio de grau $3$, a divisão por $(x - r)$
+rebaixa o problema a um do segundo grau, resolvível por Bhaskara. É assim que se
+fatoram polinômios de grau alto — tema central do próximo volume.
+:::
+
+## Exercícios
+
+::: {#exr-operacoes-poli}
+Dados $p = x^2 - 2x + 1$ e $q = 3x - 4$, calcule $p + q$, $p \cdot q$ e confirme
+os graus pela @prp-grau.
+:::
+
+::: {#exr-divisao-poli}
+Efetue a divisão de $x^3 - 6x^2 + 11x - 6$ por $x - 1$ e escreva $p = d q + r$.
+:::
+
+::: {#exr-resto-rapido}
+Use o teorema do resto para achar o resto da divisão de $x^4 - 3x^2 + 2$ por
+$x + 2$, **sem** efetuar a divisão.
+:::
+
+::: {#exr-fatorar-grau3}
+Sabendo que $x = 2$ é raiz de $p(x) = x^3 - 3x^2 + 4$, fatore $p$ completamente.
+(Sugestão: divida por $x - 2$ e resolva o quociente.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-resto-rapido
+Pelo @thm-resto, o resto da divisão por $x + 2 = x - (-2)$ é $p(-2)$. Com $p(x) =
+x^4 - 3x^2 + 2$:
+$$
+p(-2) = (-2)^4 - 3(-2)^2 + 2 = 16 - 12 + 2 = 6.
+$$
+O resto é $6$ — obtido com uma só avaliação, sem armar a divisão.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fatorar-grau3
+Como $2$ é raiz, $x - 2$ divide $p$ (@cor-dalembert). Efetuando a divisão de $x^3 -
+3x^2 + 4$ por $x - 2$ obtém-se quociente $x^2 - x - 2$ (resto $0$). Esse trinômio
+tem raízes $2$ e $-1$ (soma $1$, produto $-2$), logo $x^2 - x - 2 = (x - 2)(x +
+1)$. Portanto
+$$
+p(x) = (x - 2)(x^2 - x - 2) = (x - 2)^2 (x + 1).
+$$
+A raiz $x = 2$ é dupla.
+:::
