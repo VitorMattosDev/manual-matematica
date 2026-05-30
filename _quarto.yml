@@ -109,6 +109,7 @@ book:
     - part: "Volume VIII — Análise Real"
       chapters:
         - volumes/v8-analise/01-construcao-reais.qmd
+        - volumes/v8-analise/02-supremo-completude.qmd
   appendices:
     - notacao.qmd
 

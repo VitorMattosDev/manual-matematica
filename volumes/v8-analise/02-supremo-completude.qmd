@@ -1,0 +1,169 @@
+# Supremo, ínfimo e completude {#sec-supremo-completude}
+
+## Motivação
+
+A construção dos reais (@sec-construcao-reais) entregou um corpo ordenado **completo**.
+Agora exploramos o que essa completude significa e por que ela é o axioma do qual toda
+a análise depende. A diferença entre $\mathbb{Q}$ e $\mathbb{R}$ resume-se a uma única
+propriedade: em $\mathbb{R}$, todo conjunto limitado tem um **supremo**.
+
+Esse conceito — a menor cota superior — substitui a noção ingênua de "máximo" nos
+casos em que o máximo não existe (o intervalo $(0, 1)$ não tem maior elemento, mas tem
+supremo $1$). O supremo é a ferramenta que dá existência a limites, garante que
+funções contínuas atingem seus extremos e que sequências monótonas convergem. Quase
+todo teorema fundamental da análise é, no fundo, uma aplicação da completude via
+supremo. Este capítulo formaliza supremo e ínfimo e extrai as primeiras consequências
+do axioma da completude.
+
+## Cotas, máximo e mínimo
+
+::: {#def-cotas}
+## Cota superior e inferior
+Seja $A \subseteq \mathbb{R}$ não vazio. Um número $M$ é **cota superior** de $A$ se
+$a \leq M$ para todo $a \in A$; o conjunto é **limitado superiormente** se possui
+alguma cota superior. Analogamente definem-se **cota inferior** e **limitado
+inferiormente**. Um conjunto **limitado** o é nos dois sentidos.
+:::
+
+::: {.callout-warning}
+## Máximo pode não existir
+O intervalo $A = (0, 1)$ é limitado, mas **não tem máximo**: para todo $a \in A$
+existe $a' \in A$ maior (por exemplo $a' = \frac{a + 1}{2}$). O conceito de máximo é
+bom demais para sempre existir. É por isso que precisamos do supremo, que existe
+mesmo quando o máximo falta.
+:::
+
+## Supremo e ínfimo
+
+::: {#def-supremo}
+## Supremo e ínfimo
+O **supremo** de $A$, denotado $\sup A$, é a **menor** das cotas superiores de $A$:
+um número $s$ tal que (i) $s$ é cota superior e (ii) nenhuma cota superior é menor que
+$s$. Dualmente, o **ínfimo** $\inf A$ é a **maior** das cotas inferiores.
+:::
+
+::: {#thm-axioma-completude}
+## Axioma do supremo (completude)
+**Todo** subconjunto não vazio de $\mathbb{R}$ que seja limitado superiormente possui
+supremo em $\mathbb{R}$. (Dualmente, todo conjunto não vazio limitado inferiormente
+possui ínfimo.)
+:::
+
+Esta é a propriedade demonstrada na construção dos reais (@thm-completude), aqui
+adotada como o **axioma central** da análise. Tudo o que segue brota dela.
+
+::: {#exm-supremos}
+## Calculando supremos
+- $\sup(0, 1) = 1$ e $\inf(0, 1) = 0$ — nenhum dos dois pertence ao conjunto.
+- $\sup[0, 1] = 1$, que **é** máximo (pertence ao conjunto).
+- $\sup\{1 - \frac1n : n \in \mathbb{N}\} = 1$, embora $1$ nunca seja atingido.
+:::
+
+::: {#prp-caracterizacao-sup}
+## Caracterização do supremo
+$s = \sup A$ se, e somente se: (i) $a \leq s$ para todo $a \in A$; e (ii) para todo
+$\varepsilon > 0$ existe $a \in A$ com $a > s - \varepsilon$ (há elementos de $A$ tão
+próximos de $s$ quanto se queira).
+:::
+
+A condição (ii) é a mais usada na prática: o supremo é "aproximável por baixo" por
+elementos do conjunto.
+
+## A propriedade arquimediana
+
+Uma primeira consequência da completude, intuitiva mas que **precisa** de prova.
+
+::: {#thm-arquimediano}
+## Propriedade arquimediana
+O conjunto $\mathbb{N}$ não é limitado superiormente em $\mathbb{R}$: para todo real
+$x$ existe um natural $n > x$. Equivalentemente, para todo $\varepsilon > 0$ existe
+$n$ com $\frac1n < \varepsilon$.
+:::
+
+::: {.proof}
+Se $\mathbb{N}$ fosse limitado, teria supremo $s$ (@thm-axioma-completude). Então $s -
+1$ não seria cota superior, logo existiria $n \in \mathbb{N}$ com $n > s - 1$, donde
+$n + 1 > s$ — contradição, pois $n + 1 \in \mathbb{N}$ e $s$ é cota. Logo $\mathbb{N}$
+é ilimitado.
+:::
+
+::: {#cor-densidade}
+## Densidade de $\mathbb{Q}$ em $\mathbb{R}$
+Entre quaisquer dois reais $x < y$ existe um racional. Os racionais são **densos** em
+$\mathbb{R}$.
+:::
+
+::: {.callout-note}
+## Por que isso não é óbvio
+A propriedade arquimediana parece evidente, mas existem corpos ordenados **não
+arquimedianos** (com "infinitos" e "infinitésimos") onde ela falha. Que $\mathbb{R}$ a
+satisfaça é consequência da completude — e é o que impede a existência de números
+reais "infinitamente grandes" ou "infinitamente pequenos". A densidade dos racionais,
+por sua vez, é o que permite aproximar qualquer real por frações, base de toda
+computação numérica.
+:::
+
+## Primeira grande aplicação
+
+::: {#thm-monotona-convergente}
+## Sequências monótonas limitadas convergem
+Toda sequência **monótona** (crescente ou decrescente) e **limitada** de reais
+converge. Se $(a_n)$ é crescente e limitada, então $a_n \to \sup\{a_n\}$.
+:::
+
+::: {.proof}
+Seja $(a_n)$ crescente e limitada, e $s = \sup\{a_n : n \in \mathbb{N}\}$ (existe por
+completude). Dado $\varepsilon > 0$, por @prp-caracterizacao-sup há $N$ com $a_N > s -
+\varepsilon$. Como a sequência cresce, para $n \geq N$ vale $s - \varepsilon < a_N
+\leq a_n \leq s$, isto é $|a_n - s| < \varepsilon$. Logo $a_n \to s$.
+:::
+
+Este teorema é uma das ferramentas mais usadas da análise: garante convergência sem
+exibir o limite, apenas da monotonia e da limitação. Dele se demonstram a existência
+do número $e$, a convergência de séries de termos positivos e muito mais
+(@sec-sequencias).
+
+## Exercícios
+
+::: {#exr-sup-1}
+Determine $\sup$ e $\inf$ de $A = \left\{\frac{n}{n+1} : n \in \mathbb{N}\right\}$,
+indicando se são atingidos.
+:::
+
+::: {#exr-sup-2}
+Seja $A = \{x \in \mathbb{Q} : x^2 < 2\}$. Qual é $\sup A$ em $\mathbb{R}$?
+:::
+
+::: {#exr-sup-arquimediano}
+Use a propriedade arquimediana para mostrar que $\inf\left\{\frac1n : n \in
+\mathbb{N}\right\} = 0$.
+:::
+
+::: {#exr-sup-monotona}
+Mostre que a sequência $a_1 = \sqrt2$, $a_{n+1} = \sqrt{2 + a_n}$ é crescente e
+limitada por $2$, e portanto converge.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sup-1
+$\frac{n}{n+1} = 1 - \frac{1}{n+1}$ cresce com $n$, partindo de $\frac12$ (em $n=1$) e
+aproximando-se de $1$. Logo $\inf A = \frac12$ (atingido, é mínimo) e $\sup A = 1$
+(**não** atingido).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sup-arquimediano
+$0$ é cota inferior dos $\frac1n$. É a maior: dado qualquer $\varepsilon > 0$, pela
+propriedade arquimediana (@thm-arquimediano) existe $n$ com $\frac1n < \varepsilon$,
+então nenhum número positivo é cota inferior. Logo $\inf = 0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sup-monotona
+Por indução, $a_n < 2$: vale para $a_1 = \sqrt2 < 2$; e se $a_n < 2$, então $a_{n+1} =
+\sqrt{2 + a_n} < \sqrt4 = 2$. É crescente pois $a_{n+1}^2 - a_n^2 = 2 + a_n - a_n^2 =
+(2 - a_n)(1 + a_n) > 0$. Monótona e limitada, converge (@thm-monotona-convergente);
+o limite $L$ satisfaz $L = \sqrt{2 + L}$, dando $L = 2$.
+:::

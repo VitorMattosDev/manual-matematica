@@ -127,7 +127,7 @@ Pré-requisitos: nenhum.*
 *Objetivo: o cálculo com rigor. Pré-req.: Vols. V, VI.*
 
 - [x] `volumes/v8-analise/01-construcao-reais.qmd` — Construção dos reais (cortes de Dedekind / Cauchy).
-- [ ] `volumes/v8-analise/02-supremo-completude.qmd` — Supremo, ínfimo e completude.
+- [x] `volumes/v8-analise/02-supremo-completude.qmd` — Supremo, ínfimo e completude.
 - [ ] `volumes/v8-analise/03-sequencias.qmd` — Sequências e convergência.
 - [ ] `volumes/v8-analise/04-series.qmd` — Séries numéricas (rigoroso).
 - [ ] `volumes/v8-analise/05-topologia-reta.qmd` — Topologia da reta: abertos, fechados, compactos.
