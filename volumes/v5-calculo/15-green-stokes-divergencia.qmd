@@ -1,0 +1,171 @@
+# Teoremas de Green, de Stokes e da divergência {#sec-green-stokes-divergencia}
+
+## Motivação
+
+Os capítulos anteriores definiram integrais de linha (@sec-campos-integrais-linha) e de
+superfície (@sec-integrais-superficie). Agora vem o clímax do cálculo vetorial: três
+teoremas que relacionam o que acontece na **borda** de uma região com o que acontece em
+seu **interior**. Eles são, todos, versões de uma mesma ideia — a generalização
+multidimensional do Teorema Fundamental do Cálculo (@sec-tfc).
+
+Green, Stokes e a divergência dizem, cada um à sua maneira: *a integral de uma derivada
+do campo numa região é igual à integral do campo na fronteira*. São a espinha dorsal do
+eletromagnetismo (as equações de Maxwell são exatamente esses teoremas aplicados a $\mathbf{E}$
+e $\mathbf{B}$), da mecânica dos fluidos e da teoria do potencial. Este capítulo fecha a
+extensão de cálculo vetorial do Volume V apresentando os três e a unidade que os
+governa.
+
+## O teorema de Green
+
+Relaciona uma integral de linha numa curva fechada plana com uma integral dupla na
+região que ela cerca.
+
+::: {#thm-green}
+## Teorema de Green
+Seja $C$ uma curva fechada simples, orientada positivamente (anti-horário), fronteira de
+uma região $D$ no plano. Para um campo $\mathbf{F} = (P, Q)$ suave,
+$$
+\oint_C P\,dx + Q\,dy = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}
+{\partial y}\right)dA.
+$$
+:::
+
+::: {.callout-note}
+## Borda × interior
+O lado esquerdo vive na **fronteira** $C$; o direito, no **interior** $D$. O integrando
+$Q_x - P_y$ mede a "rotação local" do campo (a componente do rotacional). Green afirma
+que a circulação total ao longo da borda iguala a soma das rotações internas — as
+rotações dos pontos interiores se cancelam aos pares, sobrando só a borda. É o mesmo
+princípio telescópico do TFC.
+:::
+
+::: {#exm-green-area}
+## Área por integral de linha
+Tomando $P = 0$, $Q = x$: $Q_x - P_y = 1$, logo $\oint_C x\,dy = \iint_D 1\,dA =
+\text{área}(D)$. Green transforma o cálculo de área num passeio pela borda — princípio
+do **planímetro**, instrumento que mede áreas contornando figuras.
+:::
+
+## Rotacional e o teorema de Stokes
+
+No espaço, a "rotação local" de um campo é um vetor: o **rotacional**.
+
+::: {#def-rotacional}
+## Rotacional
+O **rotacional** de $\mathbf{F} = (P, Q, R)$ é
+$$
+\operatorname{rot}\mathbf{F} = \nabla\times\mathbf{F} = \left(\frac{\partial R}{\partial
+y} - \frac{\partial Q}{\partial z},\ \frac{\partial P}{\partial z} - \frac{\partial R}
+{\partial x},\ \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right).
+$$
+Mede o eixo e a intensidade do "giro" infinitesimal do campo.
+:::
+
+::: {#thm-stokes}
+## Teorema de Stokes
+Seja $S$ uma superfície orientada com fronteira a curva fechada $C$ (orientada
+coerentemente). Então
+$$
+\oint_C \mathbf{F}\cdot d\mathbf{r} = \iint_S (\operatorname{rot}\mathbf{F})\cdot
+d\mathbf{S}.
+$$
+A circulação na borda iguala o fluxo do rotacional pela superfície.
+:::
+
+::: {.callout-tip}
+## Green é Stokes no plano
+O teorema de Green é exatamente o de Stokes para uma superfície **plana** (a região $D$
+no plano $xy$): ali o rotacional tem só a componente $z$, igual a $Q_x - P_y$. Stokes
+generaliza Green a superfícies curvas no espaço. E note: se $\operatorname{rot}\mathbf{F}
+= \mathbf{0}$ (campo **irrotacional**), a circulação em qualquer curva fechada é zero —
+reencontramos os campos conservativos (@sec-campos-integrais-linha).
+:::
+
+## O teorema da divergência
+
+Relaciona o fluxo através de uma superfície **fechada** com a divergência no volume que
+ela encerra.
+
+::: {#thm-divergencia}
+## Teorema da divergência (Gauss)
+Seja $E$ um sólido com fronteira a superfície fechada $S$, orientada com normal para
+fora. Para um campo $\mathbf{F}$ suave,
+$$
+\iint_S \mathbf{F}\cdot d\mathbf{S} = \iiint_E (\operatorname{div}\mathbf{F})\,dV.
+$$
+O fluxo total para fora iguala a integral da divergência no interior.
+:::
+
+::: {.callout-note}
+## Fontes e sorvedouros
+A divergência (@def-divergencia) mede quanto o campo "brota" de cada ponto. O teorema diz
+que o fluxo líquido que sai pela superfície é a soma de todas as fontes ($\operatorname
+{div} > 0$) menos os sorvedouros ($< 0$) no interior. É a **lei de Gauss** da física: o
+fluxo do campo elétrico por uma superfície fechada mede a carga interna. Mais um caso de
+"borda = interior".
+:::
+
+::: {#exm-divergencia-aplicacao}
+## Conferindo o fluxo da esfera
+Para $\mathbf{F} = (x, y, z)$, $\operatorname{div}\mathbf{F} = 3$. Pelo teorema, o fluxo
+pela esfera de raio $a$ é $\iiint_E 3\,dV = 3\cdot\frac43\pi a^3 = 4\pi a^3$ — exatamente
+o valor calculado diretamente em @exm-fluxo-esfera. ✓
+:::
+
+## A unidade dos três teoremas
+
+::: {.callout-tip}
+## Um só teorema, três rostos
+TFC, Green, Stokes e divergência são casos do **teorema de Stokes generalizado**,
+$$
+\int_{\partial \Omega} \omega = \int_\Omega d\omega,
+$$
+escrito na linguagem das **formas diferenciais** (@sec-algebra-tensorial-formas, na
+extensão do Volume X). Em todos: a integral de uma "derivada" $d\omega$ numa região
+$\Omega$ iguala a integral de $\omega$ na fronteira $\partial\Omega$. A dimensão muda
+(intervalo → área → volume), o enunciado é o mesmo. Essa unificação é uma das sínteses
+mais elegantes da matemática.
+:::
+
+## Exercícios
+
+::: {#exr-gs-green}
+Use o teorema de Green para calcular $\oint_C (x^2)\,dx + (xy)\,dy$, onde $C$ é o bordo
+do quadrado $[0,1]^2$ (anti-horário).
+:::
+
+::: {#exr-gs-rotacional}
+Calcule $\operatorname{rot}\mathbf{F}$ para $\mathbf{F} = (-y, x, 0)$ e interprete.
+:::
+
+::: {#exr-gs-divergencia}
+Use o teorema da divergência para achar o fluxo de $\mathbf{F} = (x, y, z)$ pela
+superfície do cubo $[0,1]^3$.
+:::
+
+::: {#exr-gs-irrotacional}
+Mostre que $\mathbf{F} = \nabla f$ (campo gradiente) é sempre irrotacional, isto é,
+$\operatorname{rot}(\nabla f) = \mathbf{0}$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gs-green
+Com $P = x^2$, $Q = xy$: $Q_x - P_y = y - 0 = y$. Por Green, a integral é $\iint_{[0,1]^2}
+y\,dA = \int_0^1\!\int_0^1 y\,dx\,dy = \int_0^1 y\,dy = \frac12$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gs-divergencia
+$\operatorname{div}\mathbf{F} = 3$, logo o fluxo é $\iiint_{[0,1]^3} 3\,dV = 3\cdot 1 =
+3$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gs-irrotacional
+Componente $z$ de $\operatorname{rot}(\nabla f)$: $\partial_x(f_y) - \partial_y(f_x) =
+f_{yx} - f_{xy} = 0$ por Clairaut (@sec-varias-variaveis); as outras componentes são
+análogas. Logo $\operatorname{rot}(\nabla f) = \mathbf{0}$ — todo campo conservativo é
+irrotacional.
+:::
