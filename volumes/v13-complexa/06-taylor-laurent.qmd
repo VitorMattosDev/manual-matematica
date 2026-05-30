@@ -1,0 +1,146 @@
+# Séries de Taylor e de Laurent {#sec-taylor-laurent}
+
+## Motivação
+
+A fórmula integral de Cauchy (@sec-formula-integral-cauchy) revelou que toda função
+holomorfa é analítica — igual à sua série de Taylor. Mas e perto de uma **singularidade**,
+onde a função explode? Ali a série de Taylor falha, mas uma generalização salva o dia: a
+**série de Laurent**, que admite **potências negativas** de $(z - z_0)$.
+
+A série de Laurent é a ferramenta que classifica singularidades e, sobretudo, extrai o
+**resíduo** — o coeficiente que, pelo teorema dos resíduos (@sec-residuos), permite
+calcular integrais de contorno e até integrais reais difíceis. Este capítulo desenvolve
+as expansões em série no plano complexo e a classificação das singularidades, preparando
+o clímax do volume.
+
+## Séries de Taylor complexas
+
+::: {#thm-taylor-complexa}
+## Série de Taylor (caso holomorfo)
+Se $f$ é holomorfa num disco $|z - z_0| < R$, então é igual à sua **série de Taylor**
+ali:
+$$
+f(z) = \sum_{n=0}^{\infty} a_n (z - z_0)^n, \qquad a_n = \frac{f^{(n)}(z_0)}{n!} =
+\frac{1}{2\pi i}\oint \frac{f(z)}{(z - z_0)^{n+1}}\,dz.
+$$
+A série converge no maior disco livre de singularidades.
+:::
+
+::: {.callout-note}
+## O raio de convergência é a distância à singularidade
+No real, era misterioso por que a série de $\frac{1}{1 + x^2}$ só converge em $|x| < 1$,
+sendo a função suave em toda a reta (@sec-taylor). O complexo explica: $\frac{1}{1 + z^2}$
+tem **singularidades** em $z = \pm i$, à distância $1$ da origem. O raio de convergência é
+**sempre** a distância à singularidade mais próxima — no plano complexo. Fenômenos reais
+inexplicáveis tornam-se óbvios ao subir a $\mathbb{C}$.
+:::
+
+## Séries de Laurent
+
+::: {#def-serie-laurent}
+## Série de Laurent
+Numa **coroa** $r < |z - z_0| < R$ (anel em torno de uma singularidade), uma função
+holomorfa expande-se em **série de Laurent**, com potências positivas **e negativas**:
+$$
+f(z) = \sum_{n=-\infty}^{\infty} a_n (z - z_0)^n.
+$$
+A parte com $n < 0$ é a **parte principal**, que captura a singularidade.
+:::
+
+::: {#exm-laurent}
+## Uma expansão de Laurent
+A função $f(z) = \frac{e^z}{z}$ em torno de $0$: usando a série de $e^z$ (@sec-taylor) e
+dividindo por $z$,
+$$
+\frac{e^z}{z} = \frac1z + 1 + \frac{z}{2!} + \frac{z^2}{3!} + \cdots
+$$
+O termo $\frac1z$ é a parte principal — o coeficiente $a_{-1} = 1$ será o **resíduo**.
+:::
+
+## Classificação de singularidades
+
+::: {#def-singularidades}
+## Tipos de singularidade isolada
+Pela parte principal da série de Laurent, uma singularidade isolada $z_0$ é:
+
+- **removível**: nenhuma potência negativa (a função se estende holomorficamente);
+- **polo de ordem $m$**: a parte principal vai até $(z - z_0)^{-m}$;
+- **essencial**: infinitas potências negativas.
+:::
+
+::: {.callout-warning}
+## Singularidades essenciais são selvagens
+Num polo, $|f| \to \infty$ de modo controlado. Numa **singularidade essencial**, o
+comportamento é caótico: pelo **teorema de Picard**, $f$ assume **todos** os valores
+complexos (com no máximo uma exceção) em qualquer vizinhança, infinitas vezes! O exemplo
+clássico é $e^{1/z}$ em $z = 0$, cuja série de Laurent tem infinitas potências negativas.
+Perto de $0$, $e^{1/z}$ chega arbitrariamente perto de qualquer número — exceto zero.
+:::
+
+::: {#exm-classificar}
+## Classificando
+- $\frac{\operatorname{sen}z}{z}$ em $0$: **removível** (a série começa em $1 -
+  \frac{z^2}{6} + \cdots$, sem partes negativas).
+- $\frac{1}{z^2}$ em $0$: **polo de ordem 2**.
+- $e^{1/z}$ em $0$: **essencial**.
+:::
+
+## O resíduo
+
+::: {#def-residuo}
+## Resíduo
+O **resíduo** de $f$ em $z_0$ é o coeficiente $a_{-1}$ de $(z - z_0)^{-1}$ na série de
+Laurent, denotado $\operatorname{Res}(f, z_0)$. É a única parte da série que "sobrevive"
+à integração (pois $\oint (z-z_0)^n dz = 0$ para $n \neq -1$, e $= 2\pi i$ para $n = -1$).
+:::
+
+::: {.callout-tip}
+## Por que o resíduo é tudo o que importa
+Ao integrar a série de Laurent termo a termo num círculo em torno de $z_0$, **todos** os
+termos dão zero — exceto $a_{-1}/(z - z_0)$, que dá $2\pi i\, a_{-1}$ (@exm-integral-base).
+Logo $\oint f\,dz = 2\pi i\operatorname{Res}(f, z_0)$. Toda a integral de contorno
+reduz-se a esse único coeficiente. É a base do teorema dos resíduos (@sec-residuos), a
+ferramenta de cálculo mais poderosa do volume.
+:::
+
+## Exercícios
+
+::: {#exr-tl-taylor}
+Encontre a série de Taylor de $\frac{1}{1 - z}$ em torno de $0$ e seu raio de
+convergência.
+:::
+
+::: {#exr-tl-raio}
+Sem calcular a série, diga o raio de convergência da série de Taylor de $\frac{1}{z^2 +
+4}$ em torno de $0$.
+:::
+
+::: {#exr-tl-laurent}
+Encontre a série de Laurent de $\frac{1}{z(z-1)}$ na coroa $0 < |z| < 1$ (dica: frações
+parciais).
+:::
+
+::: {#exr-tl-residuo}
+Determine o resíduo de $\frac{\cos z}{z}$ em $z = 0$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tl-taylor
+Série geométrica (@thm-geometrica): $\frac{1}{1-z} = \sum_{n=0}^\infty z^n$, raio de
+convergência $1$ — a distância da origem à singularidade em $z = 1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tl-raio
+As singularidades de $\frac{1}{z^2 + 4}$ são $z = \pm 2i$, à distância $2$ da origem.
+Logo o raio de convergência é $\mathbf{2}$ (@thm-taylor-complexa) — invisível olhando só
+no eixo real.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tl-residuo
+$\frac{\cos z}{z} = \frac1z(1 - \frac{z^2}{2} + \cdots) = \frac1z - \frac z2 + \cdots$. O
+coeficiente de $\frac1z$ é $1$, logo $\operatorname{Res} = 1$.
+:::

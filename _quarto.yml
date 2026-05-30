@@ -177,6 +177,7 @@ book:
         - volumes/v13-complexa/03-funcoes-elementares.qmd
         - volumes/v13-complexa/04-integracao-cauchy.qmd
         - volumes/v13-complexa/05-formula-integral-cauchy.qmd
+        - volumes/v13-complexa/06-taylor-laurent.qmd
   appendices:
     - notacao.qmd
 
