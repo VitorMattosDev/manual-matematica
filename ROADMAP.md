@@ -135,7 +135,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v8-analise/07-derivacao.qmd` — Derivação rigorosa; teorema do valor médio.
 - [x] `volumes/v8-analise/08-integral-riemann.qmd` — A integral de Riemann.
 - [x] `volumes/v8-analise/09-sequencias-funcoes.qmd` — Sequências e séries de funções.
-- [ ] `volumes/v8-analise/10-convergencia-uniforme.qmd` — Convergência uniforme.
+- [x] `volumes/v8-analise/10-convergencia-uniforme.qmd` — Convergência uniforme.
 
 ## Volume IX — Topologia
 *Objetivo: espaços topológicos e suas propriedades. Pré-req.: Vol. VIII.*

@@ -117,6 +117,7 @@ book:
         - volumes/v8-analise/07-derivacao.qmd
         - volumes/v8-analise/08-integral-riemann.qmd
         - volumes/v8-analise/09-sequencias-funcoes.qmd
+        - volumes/v8-analise/10-convergencia-uniforme.qmd
   appendices:
     - notacao.qmd
 

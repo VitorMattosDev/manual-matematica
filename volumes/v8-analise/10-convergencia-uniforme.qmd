@@ -1,0 +1,176 @@
+# Convergência uniforme {#sec-convergencia-uniforme}
+
+## Motivação
+
+O capítulo anterior (@sec-sequencias-funcoes) revelou a convergência uniforme como a
+condição que faz o limite de funções herdar continuidade e integrabilidade.
+Aprofundamos aqui esse conceito, transformando-o numa ferramenta completa: o critério
+de Cauchy uniforme, o espaço das funções contínuas como espaço métrico completo, e as
+aplicações que coroam a análise real — a aproximação de funções e a existência de
+soluções de equações diferenciais.
+
+A grande mudança de perspectiva é olhar para a **distância entre funções inteiras**, e
+não entre seus valores ponto a ponto. Com essa métrica, sequências de funções viram
+pontos de um espaço, e convergência uniforme vira convergência nesse espaço. O
+resultado é uma síntese: análise e topologia (Volume IX) fundem-se, e o aparato
+abstrato de espaços métricos passa a governar o comportamento de funções. Este capítulo
+fecha o Volume VIII apontando para essa fronteira.
+
+## O critério de Cauchy uniforme
+
+Como em sequências numéricas (@thm-cauchy-completude), há um critério interno que
+dispensa conhecer o limite.
+
+::: {#thm-cauchy-uniforme}
+## Critério de Cauchy uniforme
+$(f_n)$ converge uniformemente em $D$ se, e somente se, para todo $\varepsilon > 0$
+existe $N$ tal que
+$$
+m, n > N \implies |f_m(x) - f_n(x)| < \varepsilon \quad \text{para todo } x \in D.
+$$
+:::
+
+::: {.callout-tip}
+## A vantagem prática
+O critério permite provar convergência uniforme **sem candidato a limite** — checa-se
+apenas que as funções da sequência se aproximam entre si, uniformemente. É
+indispensável para séries de funções definidas implicitamente e para construir funções
+como limites (soluções de equações, funções especiais).
+:::
+
+## A norma do supremo
+
+A ideia que unifica tudo: medir o "tamanho" de uma função por seu pico.
+
+::: {#def-norma-sup}
+## Norma do supremo
+Para uma função limitada $f$ em $D$, define-se
+$$
+\|f\|_\infty = \sup_{x \in D} |f(x)|.
+$$
+A **distância** entre $f$ e $g$ é $\|f - g\|_\infty$. Com ela, **convergência
+uniforme $f_n \to f$ é exatamente $\|f_n - f\|_\infty \to 0$**.
+:::
+
+::: {.callout-note}
+## Funções como pontos de um espaço
+A norma do supremo transforma o conjunto $C[a,b]$ das funções contínuas num **espaço
+métrico** (e até vetorial normado, @sec-produto-interno): cada função é um "ponto", e a
+distância entre dois pontos é o maior afastamento entre seus gráficos. Convergir nesse
+espaço **é** convergir uniformemente. Toda a teoria de sequências e limites
+(@sec-espacos-metricos) aplica-se, agora, a funções — é o nascimento da **análise
+funcional**.
+:::
+
+::: {#thm-completude-c}
+## $C[a, b]$ é completo
+O espaço $C[a, b]$ das funções contínuas, com a norma do supremo, é **completo**: toda
+sequência de Cauchy (uniforme) de funções contínuas converge para uma função contínua.
+:::
+
+::: {.proof}
+*(Esboço.)* Uma sequência de Cauchy uniforme converge pontualmente a alguma $f$ (cada
+$f_n(x)$ é Cauchy em $\mathbb{R}$, completo). O critério de Cauchy uniforme
+(@thm-cauchy-uniforme) eleva isso a convergência uniforme, e o limite uniforme de
+contínuas é contínuo (@thm-limite-continuo). Logo $f \in C[a,b]$.
+:::
+
+A completude de $C[a,b]$ — um **espaço de Banach** — é a base para os teoremas de
+ponto fixo que garantem existência de soluções, como veremos.
+
+## O teorema de aproximação de Weierstrass
+
+Um dos resultados mais belos da análise: polinômios aproximam qualquer função
+contínua.
+
+::: {#thm-weierstrass-aproximacao}
+## Aproximação de Weierstrass
+Toda função contínua em $[a, b]$ é **limite uniforme de polinômios**: para todo
+$\varepsilon > 0$ existe um polinômio $p$ com $\|f - p\|_\infty < \varepsilon$.
+:::
+
+::: {.callout-note}
+## Polinômios são densos
+Em linguagem topológica: os polinômios são **densos** em $C[a, b]$. Por mais
+irregular que seja uma função contínua, ela pode ser imitada, tão de perto quanto se
+queira e em todo o intervalo, por um polinômio. É o análogo, para funções, da
+densidade dos racionais nos reais (@cor-densidade) — e a justificativa profunda de por
+que aproximações polinomiais (Taylor, interpolação) são tão universais na computação
+numérica.
+:::
+
+## Aplicação: existência de soluções
+
+A completude de $C[a,b]$ paga seu maior dividendo no teorema de existência e unicidade
+para equações diferenciais.
+
+::: {#thm-picard}
+## Teorema de Picard-Lindelöf (esboço)
+Sob hipóteses razoáveis (Lipschitz), o problema de valor inicial $y' = F(x, y)$,
+$y(x_0) = y_0$, tem **uma única** solução numa vizinhança de $x_0$.
+:::
+
+::: {.callout-tip}
+## A ideia: iterar até o ponto fixo
+A demonstração transforma a equação diferencial numa equação integral $y = T(y)$ e
+constrói a solução como limite das **iterações de Picard** $y_{n+1} = T(y_n)$. A
+contração de $T$ no espaço completo $C[a,b]$ garante, pelo teorema do ponto fixo de
+Banach, que as iterações convergem **uniformemente** a um único ponto fixo — a
+solução. Aqui, convergência uniforme deixa de ser curiosidade e vira o mecanismo que
+produz objetos matemáticos novos.
+:::
+
+## Encerramento do Volume VIII
+
+Percorremos o cálculo de uma variável **do zero**, com rigor: construímos os reais
+(@sec-construcao-reais), extraímos a completude (@sec-supremo-completude), fundamos
+sequências, séries, topologia, continuidade, derivação e integração sobre ε-δ e
+demonstramos — não mais postulamos — os teoremas centrais, culminando no TFC rigoroso
+(@thm-tfc-rigoroso). A convergência uniforme abriu a porta da análise funcional e da
+topologia. O Volume IX leva adiante a linguagem dos espaços métricos e topológicos que
+aqui despontou; o Volume X aplicará o cálculo rigoroso à geometria de curvas e
+superfícies.
+
+## Exercícios
+
+::: {#exr-cu-1}
+Calcule $\|f_n\|_\infty$ para $f_n(x) = \frac{nx}{1 + n^2x^2}$ em $[0, 1]$ e decida se
+$f_n \to 0$ uniformemente.
+:::
+
+::: {#exr-cu-cauchy}
+Use o critério de Cauchy uniforme para mostrar que $\sum \frac{x^n}{n^2}$ converge
+uniformemente em $[-1, 1]$.
+:::
+
+::: {#exr-cu-norma}
+Calcule a distância $\|f - g\|_\infty$ em $[0, 1]$ entre $f(x) = x$ e $g(x) = x^2$.
+:::
+
+::: {#exr-cu-weierstrass}
+Explique por que o teorema de Weierstrass implica que toda função contínua em $[a,b]$
+é limite uniforme de funções deriváveis.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cu-1
+$f_n$ atinge máximo onde $f_n'= 0$, em $x = \frac1n$, com $f_n(\frac1n) =
+\frac{n\cdot\frac1n}{1 + 1} = \frac12$. Logo $\|f_n\|_\infty = \frac12$ para todo $n$,
+que **não** tende a zero: a convergência (pontual a $0$) **não é uniforme**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cu-norma
+$\|f - g\|_\infty = \sup_{[0,1]} |x - x^2| = \sup\, x(1-x)$, máximo em $x = \frac12$,
+valendo $\frac14$. Logo a distância é $\frac14$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cu-weierstrass
+Pelo @thm-weierstrass-aproximacao, dada $f$ contínua e $\varepsilon > 0$ existe um
+**polinômio** $p$ (que é derivável, infinitamente) com $\|f - p\|_\infty <
+\varepsilon$. Tomando $\varepsilon = \frac1n$, obtém-se uma sequência de polinômios
+convergindo uniformemente a $f$ — funções deriváveis aproximando $f$.
+:::
