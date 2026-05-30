@@ -4,3 +4,7 @@
 .DS_Store
 
 **/*.quarto_ipynb
+
+# logs de build/diagnostico locais
+*.log
+_runwatch.log
