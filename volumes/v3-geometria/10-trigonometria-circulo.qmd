@@ -1,0 +1,189 @@
+# Círculo trigonométrico e identidades {#sec-trigonometria-circulo}
+
+## Motivação
+
+As razões do capítulo anterior só fazem sentido para ângulos **agudos** — não há
+triângulo retângulo com ângulo de $120°$, muito menos de $400°$ ou negativo. Mas
+fenômenos periódicos (marés, ondas, correntes alternadas) pedem ângulos que giram
+sem limite. É preciso **libertar** seno e cosseno do triângulo.
+
+A ferramenta é o **círculo trigonométrico**: um círculo de raio $1$ onde cada
+ângulo, medido como rotação, marca um ponto cujas coordenadas *são* o cosseno e o
+seno. Assim as razões viram **funções** definidas para todo número real,
+periódicas, com sinais e simetrias que se leem na figura. Introduzimos também o
+**radiano**, a medida natural de ângulo, e as **identidades** (soma de arcos) que
+o Volume IV e o Cálculo usarão sem parar.
+
+## O radiano e o círculo trigonométrico
+
+::: {#def-radiano}
+## Radiano
+O **radiano** é a medida de ângulo para a qual o arco subtendido num círculo tem
+comprimento igual ao raio. Como a circunferência mede $2\pi r$, uma volta completa
+($360°$) equivale a $2\pi$ radianos:
+$$
+180° = \pi \text{ rad}.
+$$
+:::
+
+A medida em radianos é a "natural" porque liga ângulo e comprimento de arco
+diretamente — e é a única em que as fórmulas do Cálculo (derivada do seno, por
+exemplo) saem limpas.
+
+::: {#def-circulo-trig}
+## Círculo trigonométrico
+O **círculo trigonométrico** é o círculo de raio $1$ centrado na origem. A cada
+número real $\theta$ associa-se o ponto $P$ obtido girando $\theta$ radianos a
+partir do eixo horizontal (sentido anti-horário). Definem-se
+$$
+\cos\theta = x_P, \qquad \operatorname{sen}\theta = y_P,
+$$
+as coordenadas de $P$.
+:::
+
+Para $\theta$ agudo, $P$ está no primeiro quadrante e recuperam-se as razões do
+triângulo retângulo de hipotenusa $1$ — a nova definição **estende** a antiga. Mas
+agora $\theta$ pode ser qualquer real, e a relação fundamental $\operatorname{sen}^2
+\theta + \cos^2\theta = 1$ é simplesmente a equação do círculo $x^2 + y^2 = 1$.
+
+::: {.callout-note}
+## Sinais por quadrante
+O sinal de seno e cosseno é o das coordenadas do ponto: no $2^\circ$ quadrante
+$\cos < 0$ e $\operatorname{sen} > 0$; no $3^\circ$ ambos negativos; no $4^\circ$
+$\cos > 0$ e $\operatorname{sen} < 0$. Lê-se tudo na figura, sem decorar — a
+geometria do círculo guarda os sinais.
+:::
+
+## Periodicidade e simetrias
+
+Girar uma volta inteira retorna ao mesmo ponto, o que torna as funções
+**periódicas**.
+
+::: {#prp-periodicidade}
+## Periodicidade
+Para todo $\theta$ e todo inteiro $k$,
+$$
+\operatorname{sen}(\theta + 2k\pi) = \operatorname{sen}\theta, \qquad
+\cos(\theta + 2k\pi) = \cos\theta.
+$$
+O período fundamental é $2\pi$.
+:::
+
+::: {#prp-simetrias}
+## Paridade
+O cosseno é **par** e o seno é **ímpar**:
+$$
+\cos(-\theta) = \cos\theta, \qquad \operatorname{sen}(-\theta) =
+-\operatorname{sen}\theta.
+$$
+:::
+
+::: {.proof}
+Girar $-\theta$ leva ao ponto refletido em relação ao eixo horizontal: mesma
+abscissa (logo mesmo cosseno) e ordenada oposta (logo seno trocado de sinal). Daí a
+paridade.
+:::
+
+## Identidades de adição
+
+A relação mais produtiva da trigonometria exprime as funções de uma **soma** de
+arcos.
+
+::: {#thm-adicao}
+## Fórmulas de adição
+Para quaisquer $\alpha, \beta$,
+$$
+\operatorname{sen}(\alpha + \beta) = \operatorname{sen}\alpha\cos\beta +
+\cos\alpha\operatorname{sen}\beta,
+$$
+$$
+\cos(\alpha + \beta) = \cos\alpha\cos\beta - \operatorname{sen}\alpha
+\operatorname{sen}\beta.
+$$
+:::
+
+::: {#cor-arco-duplo}
+## Arco duplo
+Fazendo $\beta = \alpha$ nas fórmulas de adição,
+$$
+\operatorname{sen}(2\alpha) = 2\operatorname{sen}\alpha\cos\alpha, \qquad
+\cos(2\alpha) = \cos^2\alpha - \operatorname{sen}^2\alpha.
+$$
+:::
+
+::: {.proof}
+Em $\operatorname{sen}(\alpha + \beta)$ e $\cos(\alpha + \beta)$ (@thm-adicao),
+substitua $\beta$ por $\alpha$. A primeira dá $\operatorname{sen}\alpha\cos\alpha +
+\cos\alpha\operatorname{sen}\alpha = 2\operatorname{sen}\alpha\cos\alpha$; a segunda,
+$\cos^2\alpha - \operatorname{sen}^2\alpha$.
+:::
+
+::: {#exm-soma-arcos}
+## Calculando um valor exato
+Para achar $\cos75°$, escreva $75° = 45° + 30°$ e use a adição:
+$$
+\cos75° = \cos45°\cos30° - \operatorname{sen}45°\operatorname{sen}30° =
+\frac{\sqrt2}{2}\cdot\frac{\sqrt3}{2} - \frac{\sqrt2}{2}\cdot\frac12 =
+\frac{\sqrt6 - \sqrt2}{4}.
+$$
+As fórmulas de adição geram, a partir dos ângulos notáveis, infinitos valores
+exatos.
+:::
+
+::: {.callout-tip}
+## A caminho das funções e do Cálculo
+No círculo, $\operatorname{sen}$ e $\cos$ tornaram-se **funções** de $\mathbb{R}$
+em $[-1, 1]$ — periódicas, suaves, onduladas. Seus gráficos (as senoides) e o
+estudo de domínio, imagem e inversas (arco-seno etc.) são o tema do Volume IV; suas
+derivadas, $\operatorname{sen}' = \cos$, abrem o Volume V. O círculo trigonométrico
+é a ponte entre a geometria do triângulo e a análise.
+:::
+
+## Exercícios
+
+::: {#exr-radianos}
+Converta para radianos: $30°$, $90°$, $135°$. Converta para graus: $\dfrac{\pi}{6}$,
+$\dfrac{3\pi}{4}$, $2\pi$.
+:::
+
+::: {#exr-quadrante}
+Sabendo que $\operatorname{sen}\theta = \dfrac{3}{5}$ e que $\theta$ está no
+segundo quadrante, determine $\cos\theta$ e $\operatorname{tg}\theta$.
+:::
+
+::: {#exr-adicao}
+Calcule $\operatorname{sen}75°$ usando a fórmula de adição com $75° = 45° + 30°$.
+:::
+
+::: {#exr-arco-duplo}
+Sabendo que $\operatorname{sen}\alpha = \dfrac{4}{5}$ e $\cos\alpha = \dfrac{3}{5}$,
+calcule $\operatorname{sen}(2\alpha)$ e $\cos(2\alpha)$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-quadrante
+Pela relação fundamental, $\cos^2\theta = 1 - \operatorname{sen}^2\theta = 1 -
+\tfrac{9}{25} = \tfrac{16}{25}$, logo $\cos\theta = \pm\tfrac45$. Como $\theta$
+está no **segundo quadrante**, o cosseno é negativo: $\cos\theta = -\tfrac45$.
+Então
+$$
+\operatorname{tg}\theta = \frac{\operatorname{sen}\theta}{\cos\theta} =
+\frac{3/5}{-4/5} = -\frac34.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-arco-duplo
+Pelo @cor-arco-duplo:
+$$
+\operatorname{sen}(2\alpha) = 2\operatorname{sen}\alpha\cos\alpha = 2\cdot\tfrac45
+\cdot\tfrac35 = \frac{24}{25},
+$$
+$$
+\cos(2\alpha) = \cos^2\alpha - \operatorname{sen}^2\alpha = \tfrac{9}{25} -
+\tfrac{16}{25} = -\frac{7}{25}.
+$$
+(Confere com $\operatorname{sen}^2(2\alpha) + \cos^2(2\alpha) = 1$.)
+:::

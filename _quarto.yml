@@ -57,6 +57,7 @@ book:
         - volumes/v3-geometria/07-poliedros.qmd
         - volumes/v3-geometria/08-volumes.qmd
         - volumes/v3-geometria/09-trigonometria-triangulo.qmd
+        - volumes/v3-geometria/10-trigonometria-circulo.qmd
   appendices:
     - notacao.qmd
 
