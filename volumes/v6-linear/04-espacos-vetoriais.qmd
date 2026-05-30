@@ -1,0 +1,168 @@
+# Espaços vetoriais e subespaços {#sec-espacos-vetoriais}
+
+## Motivação
+
+Vetores no plano somam-se e multiplicam-se por escalares. Matrizes também
+(@sec-matrizes). Polinômios, igualmente: $(p + q)(x) = p(x) + q(x)$ e $c\cdot p$ são
+de novo polinômios. Funções, sequências, soluções de uma equação diferencial — todos
+obedecem às **mesmas** regras de soma e multiplicação por escalar.
+
+Em vez de reprovar cada propriedade caso a caso, a matemática faz o que sabe fazer de
+melhor: **abstrai**. Define-se de uma vez o que é um "espaço vetorial" pelas regras
+que a soma e o escalar devem cumprir, e todo teorema provado nesse nível abstrato
+vale **simultaneamente** para vetores, matrizes, polinômios e funções. Esta é a
+virada conceitual do Volume VI: deixamos de calcular com objetos específicos e
+passamos a raciocinar sobre a **estrutura** comum a todos eles.
+
+## A definição abstrata
+
+::: {#def-espaco-vetorial}
+## Espaço vetorial
+Um **espaço vetorial** (real) é um conjunto $V$ com uma soma $u + v$ e uma
+multiplicação por escalar $c\,v$ ($c \in \mathbb{R}$) satisfazendo, para todos $u, v,
+w \in V$ e $a, b \in \mathbb{R}$:
+
+1. $u + v = v + u$ (comutativa);
+2. $(u + v) + w = u + (v + w)$ (associativa);
+3. existe $0 \in V$ com $v + 0 = v$ (vetor nulo);
+4. cada $v$ tem oposto $-v$ com $v + (-v) = 0$;
+5. $a(bv) = (ab)v$;
+6. $1\,v = v$;
+7. $a(u + v) = au + av$ e $(a + b)v = av + bv$ (distributivas).
+
+Os elementos de $V$ chamam-se **vetores**, qualquer que seja sua natureza.
+:::
+
+::: {.callout-note}
+## "Vetor" é um papel, não um objeto
+A palavra *vetor* aqui não significa "flecha". Significa "elemento de um espaço
+vetorial". Uma matriz é um vetor do espaço das matrizes; um polinômio é um vetor do
+espaço dos polinômios; uma função contínua é um vetor de $C[a,b]$. O poder da
+abstração é justamente esse: o que provarmos vale para todos eles ao mesmo tempo.
+:::
+
+## Exemplos fundamentais
+
+::: {#exm-espacos}
+## Uma galeria de espaços vetoriais
+- $\mathbb{R}^n$: as $n$-uplas $(x_1, \dots, x_n)$, com soma e escalar entrada a
+  entrada. O exemplo-protótipo.
+- $M_{m\times n}$: as matrizes $m\times n$ (@sec-matrizes).
+- $P_n$: os polinômios de grau $\leq n$.
+- $\mathcal{F}(\mathbb{R})$: todas as funções $f: \mathbb{R}\to\mathbb{R}$.
+- $\{0\}$: o **espaço trivial**, só com o vetor nulo.
+:::
+
+Todos satisfazem os sete axiomas — verificá-lo em cada caso é rotineiro, e é o que
+autoriza tratá-los pela mesma teoria.
+
+## Subespaços
+
+Dentro de um espaço vetorial vivem espaços menores, fechados sob as mesmas
+operações.
+
+::: {#def-subespaco}
+## Subespaço
+Um subconjunto $W \subseteq V$ é um **subespaço** se ele próprio é um espaço vetorial
+com as operações de $V$. Na prática, basta verificar três coisas:
+
+1. $0 \in W$ (contém o nulo);
+2. $W$ é **fechado na soma**: $u, v \in W \Rightarrow u + v \in W$;
+3. $W$ é **fechado no escalar**: $v \in W,\ c \in \mathbb{R} \Rightarrow cv \in W$.
+:::
+
+::: {.callout-tip}
+## O teste rápido de subespaço
+Os sete axiomas são herdados automaticamente de $V$ — não precisa reverificá-los.
+Só é preciso garantir que você **não sai** de $W$ ao somar e ao escalar, e que o
+nulo está lá. Se $0 \notin W$, nem comece: não é subespaço.
+:::
+
+::: {#exm-subespacos}
+## Subespaços e impostores
+- Em $\mathbb{R}^2$, a reta $W = \{(t, 2t) : t \in \mathbb{R}\}$ pela origem **é**
+  subespaço.
+- A reta $\{(t, 2t + 1)\}$ **não é**: não contém $(0,0)$.
+- Em $\mathbb{R}^3$, todo plano e toda reta **pela origem** são subespaços; os
+  únicos outros são $\{0\}$ e o próprio $\mathbb{R}^3$.
+- As soluções de um sistema **homogêneo** $Ax = 0$ formam sempre um subespaço (o
+  *núcleo* de $A$).
+:::
+
+## Combinações lineares e espaço gerado
+
+A operação básica de um espaço vetorial é misturar vetores: somá-los após escaloná-los.
+
+::: {#def-combinacao-linear}
+## Combinação linear e span
+Uma **combinação linear** dos vetores $v_1, \dots, v_k$ é qualquer
+$$
+c_1 v_1 + c_2 v_2 + \cdots + c_k v_k, \qquad c_i \in \mathbb{R}.
+$$
+O conjunto de **todas** as combinações lineares é o **espaço gerado** (ou *span*)
+$\operatorname{span}\{v_1, \dots, v_k\}$.
+:::
+
+::: {#thm-span-subespaco}
+## O span é sempre subespaço
+Para quaisquer $v_1, \dots, v_k \in V$, o conjunto $\operatorname{span}\{v_1, \dots,
+v_k\}$ é um subespaço de $V$ — o **menor** subespaço que contém todos esses vetores.
+:::
+
+::: {.proof}
+Contém o nulo (tome todos $c_i = 0$). A soma de duas combinações lineares dos
+$v_i$ é outra combinação dos $v_i$; e um múltiplo escalar também. Logo é fechado nas
+duas operações, sendo subespaço por @def-subespaco.
+:::
+
+::: {#exm-span}
+## Gerando um plano
+Em $\mathbb{R}^3$, $\operatorname{span}\{(1,0,0), (0,1,0)\}$ é o plano $xy$ — todas
+as combinações $a(1,0,0) + b(0,1,0) = (a, b, 0)$. Já $\operatorname{span}\{(1,0,0)\}$
+é apenas o eixo $x$. Dizemos que um conjunto **gera** $V$ quando seu span é todo $V$.
+:::
+
+## Exercícios
+
+::: {#exr-subespaco-1}
+Verifique se $W = \{(x, y, z) \in \mathbb{R}^3 : x + y + z = 0\}$ é subespaço de
+$\mathbb{R}^3$.
+:::
+
+::: {#exr-subespaco-2}
+O conjunto $W = \{(x, y) : xy = 0\}$ (os dois eixos) é subespaço de $\mathbb{R}^2$?
+Justifique.
+:::
+
+::: {#exr-combinacao}
+Escreva $(4, 1)$ como combinação linear de $(1, 1)$ e $(2, -1)$.
+:::
+
+::: {#exr-span-1}
+Descreva geometricamente $\operatorname{span}\{(1, 2, 1), (2, 4, 2)\}$ em
+$\mathbb{R}^3$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-subespaco-1
+Contém $(0,0,0)$ pois $0 + 0 + 0 = 0$. Se $u = (x,y,z)$ e $v = (x',y',z')$ têm soma
+de coordenadas nula, então $u + v$ tem soma $(x+x') + (y+y') + (z+z') = 0 + 0 = 0$, e
+$cu$ tem soma $c\cdot 0 = 0$. Fechado nas duas operações: **é subespaço** (um plano
+pela origem).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-subespaco-2
+**Não.** Embora contenha $(0,0)$ e seja fechado no escalar, não é fechado na soma:
+$(1, 0)$ e $(0, 1)$ pertencem a $W$, mas sua soma $(1, 1)$ tem produto $1 \neq 0$,
+logo $(1,1) \notin W$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-combinacao
+Buscamos $a, b$ com $a(1,1) + b(2,-1) = (4, 1)$, ou seja $\begin{cases} a + 2b = 4
+\\ a - b = 1 \end{cases}$. Subtraindo, $3b = 3 \Rightarrow b = 1$, $a = 2$. Logo
+$(4,1) = 2(1,1) + 1\cdot(2,-1)$.
+:::

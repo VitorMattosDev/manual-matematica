@@ -88,6 +88,7 @@ book:
         - volumes/v6-linear/01-sistemas-gauss.qmd
         - volumes/v6-linear/02-matrizes.qmd
         - volumes/v6-linear/03-determinantes.qmd
+        - volumes/v6-linear/04-espacos-vetoriais.qmd
   appendices:
     - notacao.qmd
 

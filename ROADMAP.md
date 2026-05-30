@@ -102,7 +102,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v6-linear/01-sistemas-gauss.qmd` — Sistemas lineares e eliminação de Gauss.
 - [x] `volumes/v6-linear/02-matrizes.qmd` — Matrizes e operações.
 - [x] `volumes/v6-linear/03-determinantes.qmd` — Determinantes.
-- [ ] `volumes/v6-linear/04-espacos-vetoriais.qmd` — Espaços vetoriais e subespaços.
+- [x] `volumes/v6-linear/04-espacos-vetoriais.qmd` — Espaços vetoriais e subespaços.
 - [ ] `volumes/v6-linear/05-base-dimensao.qmd` — Independência linear, bases e dimensão.
 - [ ] `volumes/v6-linear/06-transformacoes-lineares.qmd` — Transformações lineares e matriz associada.
 - [ ] `volumes/v6-linear/07-autovalores.qmd` — Autovalores e autovetores.
