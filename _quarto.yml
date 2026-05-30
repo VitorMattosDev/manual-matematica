@@ -161,6 +161,7 @@ book:
     - part: "Volume XII — Probabilidade e Estatística"
       chapters:
         - volumes/v12-probabilidade/01-espacos-probabilidade.qmd
+        - volumes/v12-probabilidade/02-condicional-bayes.qmd
   appendices:
     - notacao.qmd
 

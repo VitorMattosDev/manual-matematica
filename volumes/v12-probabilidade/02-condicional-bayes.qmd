@@ -1,0 +1,144 @@
+# Probabilidade condicional e teorema de Bayes {#sec-condicional-bayes}
+
+## Motivação
+
+A probabilidade de um evento muda quando ganhamos **informação**. A chance de chover é
+uma; a chance de chover *sabendo que o céu está nublado* é outra. A **probabilidade
+condicional** formaliza esse aprendizado — como atualizar nossas crenças à luz de novos
+dados.
+
+Dessa ideia nasce o **teorema de Bayes**, talvez a fórmula mais influente da ciência de
+dados moderna: ele inverte condicionais, permitindo inferir causas a partir de efeitos
+(a doença a partir do teste, o spam a partir das palavras). É a base do raciocínio sob
+incerteza, do diagnóstico médico ao aprendizado de máquina. Este capítulo desenvolve
+condicional, independência e Bayes — e expõe armadilhas intuitivas famosas.
+
+## Probabilidade condicional
+
+::: {#def-condicional}
+## Probabilidade condicional
+A **probabilidade de $A$ dado $B$** (com $P(B) > 0$) é
+$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+$$
+É a probabilidade de $A$ **restrita** ao universo em que $B$ ocorreu.
+:::
+
+::: {.callout-tip}
+## Condicionar é encolher o universo
+Saber que $B$ ocorreu **reduz** o espaço amostral a $B$. A nova probabilidade de $A$ é a
+fração de $B$ ocupada por $A \cap B$ — daí a divisão por $P(B)$ (renormalizando para que
+$P(B\mid B) = 1$). É reinterpretar a fórmula de Laplace (@def-probabilidade-classica)
+dentro do novo universo $B$.
+:::
+
+::: {#prp-regra-produto}
+## Regra do produto
+Da definição, $P(A \cap B) = P(A \mid B)\,P(B) = P(B \mid A)\,P(A)$. Para uma sequência,
+$P(A_1\cap\cdots\cap A_n) = P(A_1)P(A_2\mid A_1)\cdots P(A_n\mid A_1\cap\cdots\cap
+A_{n-1})$.
+:::
+
+## Independência
+
+::: {#def-independencia-prob}
+## Eventos independentes
+Dois eventos são **independentes** se a ocorrência de um não altera a probabilidade do
+outro:
+$$
+P(A \cap B) = P(A)\,P(B), \qquad\text{equivalentemente}\qquad P(A \mid B) = P(A).
+$$
+:::
+
+::: {.callout-warning}
+## Independente ≠ mutuamente exclusivo
+São conceitos **opostos**, frequentemente confundidos. Eventos **mutuamente exclusivos**
+($A \cap B = \emptyset$) não podem ocorrer juntos — saber que um ocorreu torna o outro
+**impossível**, logo são fortemente **dependentes**. Já **independentes** podem ocorrer
+juntos, e um não informa sobre o outro. Exclusivos (não triviais) nunca são
+independentes.
+:::
+
+## Probabilidade total e Bayes
+
+::: {#thm-probabilidade-total}
+## Teorema da probabilidade total
+Se $B_1, \dots, B_n$ **particionam** $\Omega$ (disjuntos, união total), então para
+qualquer $A$:
+$$
+P(A) = \sum_{i} P(A \mid B_i)\,P(B_i).
+$$
+"Quebra-se" $A$ pelos cenários $B_i$.
+:::
+
+::: {#thm-bayes}
+## Teorema de Bayes
+Para uma partição $B_1, \dots, B_n$ e um evento observado $A$ (com $P(A) > 0$):
+$$
+P(B_k \mid A) = \frac{P(A \mid B_k)\,P(B_k)}{\sum_i P(A \mid B_i)\,P(B_i)}.
+$$
+:::
+
+::: {.callout-note}
+## Inverter a condicional: de efeito a causa
+Bayes faz algo profundo: troca $P(A\mid B)$ (probabilidade do **efeito** dada a causa)
+por $P(B \mid A)$ (probabilidade da **causa** dado o efeito). Sabemos $P(\text{teste
+positivo}\mid\text{doente})$ — a sensibilidade do teste —, mas queremos $P(\text{doente}
+\mid\text{teste positivo})$. Bayes os conecta via a **probabilidade a priori**
+$P(\text{doente})$. É o motor da inferência: começa-se com uma crença a priori e
+**atualiza-se** com os dados para a crença a posteriori.
+:::
+
+::: {#exm-teste-medico}
+## O paradoxo do teste raro
+Um teste $99\%$ preciso para uma doença que afeta $1$ em $10000$. Se você testa positivo,
+qual a chance de estar doente? Por Bayes, com $P(D) = 0{,}0001$:
+$$
+P(D \mid +) = \frac{0{,}99\cdot 0{,}0001}{0{,}99\cdot 0{,}0001 + 0{,}01\cdot 0{,}9999}
+\approx 0{,}0098 \approx 1\%.
+$$
+Apesar do teste "99% preciso", você quase certamente **não** está doente! A raridade da
+doença (priori baixa) domina. Ignorar isso é a **falácia da taxa-base** — erro comum até
+entre médicos.
+:::
+
+## Exercícios
+
+::: {#exr-cb-condicional}
+Num dado, qual a probabilidade de sair $\geq 4$ **dado** que saiu par?
+:::
+
+::: {#exr-cb-independencia}
+Dois lançamentos de moeda são independentes. Qual a probabilidade de duas caras? E de
+ao menos uma cara?
+:::
+
+::: {#exr-cb-total}
+Duas urnas: a urna 1 tem 2 bolas brancas e 3 pretas; a urna 2, 4 brancas e 1 preta.
+Escolhe-se uma urna ao acaso e tira-se uma bola. Qual $P(\text{branca})$?
+:::
+
+::: {#exr-cb-bayes}
+No @exr-cb-total, dado que a bola é branca, qual a probabilidade de ter vindo da urna 2?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cb-condicional
+$B$ = "par" = $\{2,4,6\}$, $A$ = "$\geq 4$". $A \cap B = \{4, 6\}$. Logo $P(A\mid B) =
+\frac{2/6}{3/6} = \frac23$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cb-total
+Por probabilidade total: $P(\text{branca}) = P(\text{br}\mid U_1)P(U_1) + P(\text{br}\mid
+U_2)P(U_2) = \frac25\cdot\frac12 + \frac45\cdot\frac12 = \frac{6}{10} = 0{,}6$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cb-bayes
+Por Bayes: $P(U_2\mid\text{br}) = \frac{P(\text{br}\mid U_2)P(U_2)}{P(\text{br})} =
+\frac{(4/5)(1/2)}{6/10} = \frac{4/10}{6/10} = \frac23$. A bola branca torna a urna 2
+(mais branca) mais provável.
+:::
