@@ -78,6 +78,7 @@ book:
         - volumes/v5-calculo/05-integral.qmd
         - volumes/v5-calculo/06-tfc.qmd
         - volumes/v5-calculo/07-tecnicas-integracao.qmd
+        - volumes/v5-calculo/08-aplicacoes-integral.qmd
   appendices:
     - notacao.qmd
 
