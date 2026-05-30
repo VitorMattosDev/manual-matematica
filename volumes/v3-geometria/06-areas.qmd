@@ -1,0 +1,179 @@
+# Áreas de figuras planas {#sec-areas}
+
+## Motivação
+
+Quanto de tinta cobre uma parede? Quanto de grama cobre um campo? A **área** mede a
+extensão de uma região do plano, e calculá-la é uma das tarefas mais antigas e
+úteis da geometria — o próprio nome "geometria" significa *medida da terra*.
+
+Neste capítulo construímos as fórmulas de área das figuras fundamentais a partir de
+**uma única convenção** (a área do retângulo) e de um princípio de decomposição:
+toda figura poligonal se recorta e se rearranja em retângulos e triângulos sem
+mudar de área. Daí saem, em cascata, as áreas do paralelogramo, do triângulo, do
+trapézio e — por um argumento de aproximação que antecipa o Cálculo (@sec-progressoes
+já flertou com o infinito) — a área do círculo. As relações de semelhança
+(@sec-semelhanca) reaparecem na lei de escala $k^2$.
+
+## A área do retângulo
+
+Toda a teoria parte de uma definição-convenção, que fixa a unidade de medida.
+
+::: {#def-area-retangulo}
+## Área do retângulo
+A **área** de um retângulo de lados $b$ (base) e $h$ (altura) é o produto
+$$
+A = b \cdot h.
+$$
+Em particular, o quadrado de lado $\ell$ tem área $\ell^2$.
+:::
+
+Essa escolha é natural: um retângulo de lados inteiros $b$ e $h$ se quadricula em
+$b \cdot h$ quadrados unitários. As demais fórmulas **derivam** desta por
+decomposição, sem novas convenções.
+
+## Paralelogramo, triângulo e trapézio
+
+::: {#prp-area-paralelogramo}
+## Área do paralelogramo
+Um paralelogramo de base $b$ e altura $h$ (distância entre as bases) tem área $A =
+b \cdot h$.
+:::
+
+::: {.proof}
+Corte do paralelogramo o triângulo retângulo formado por uma altura num extremo e
+encaixe-o no outro extremo: o resultado é um **retângulo** de base $b$ e altura
+$h$, com a mesma área (apenas rearranjada). Logo $A = b h$.
+:::
+
+::: {#thm-area-triangulo}
+## Área do triângulo
+Um triângulo de base $b$ e altura $h$ tem área
+$$
+A = \frac{b \cdot h}{2}.
+$$
+:::
+
+::: {.proof}
+Duplicando o triângulo e juntando as duas cópias por um lado, forma-se um
+**paralelogramo** de base $b$ e altura $h$ (uma cópia é o triângulo girado de
+$180°$). Sua área é $b h$ (@prp-area-paralelogramo), e o triângulo é metade dele,
+donde $A = \dfrac{bh}{2}$.
+:::
+
+::: {#prp-area-trapezio}
+## Área do trapézio
+Um trapézio de bases paralelas $B$ e $b$ e altura $h$ tem área
+$$
+A = \frac{(B + b)\, h}{2}.
+$$
+:::
+
+::: {.proof}
+Uma diagonal divide o trapézio em dois triângulos de mesma altura $h$ e bases $B$ e
+$b$. Somando suas áreas (@thm-area-triangulo),
+$$
+A = \frac{B h}{2} + \frac{b h}{2} = \frac{(B + b) h}{2}.
+$$
+:::
+
+::: {.callout-note}
+## A média das bases
+A fórmula do trapézio é a base **média** $\dfrac{B + b}{2}$ vezes a altura — como
+se fosse um retângulo de base intermediária. O retângulo ($B = b$) e o triângulo
+($b = 0$) são casos particulares dela, o que mostra como as fórmulas se encaixam
+numa só família.
+:::
+
+## A área do círculo
+
+O círculo não é poligonal, mas pode ser **aproximado** por polígonos com cada vez
+mais lados — e a área aparece no limite.
+
+::: {#thm-area-circulo}
+## Área do círculo
+Um círculo de raio $r$ tem área
+$$
+A = \pi r^2.
+$$
+:::
+
+::: {.callout-tip}
+## Por que $\pi r^2$: o argumento de Arquimedes
+Inscreva no círculo um polígono regular de $n$ lados e decomponha-o em $n$
+triângulos com vértice no centro. Cada um tem altura $\approx r$ e a soma das bases
+é o perímetro do polígono, $\approx 2\pi r$ (a definição de $\pi$ é a razão entre
+perímetro e diâmetro). A área total é $\approx \dfrac{1}{2} \cdot r \cdot 2\pi r =
+\pi r^2$. Aumentando $n$, a aproximação fica exata — o polígono "vira" o círculo.
+Esse processo de exaustão é o embrião da **integral** (Volume V).
+:::
+
+::: {#exm-coroa}
+## Compondo áreas
+A área de uma **coroa circular** (anel) entre raios $R$ e $r$ é a diferença das
+áreas dos dois círculos:
+$$
+A = \pi R^2 - \pi r^2 = \pi (R^2 - r^2) = \pi (R + r)(R - r),
+$$
+fatorando pela diferença de quadrados (@sec-fatoracao). Áreas compostas tratam-se
+sempre assim: soma e subtração de áreas conhecidas.
+:::
+
+## Áreas e semelhança
+
+Fecha-se o capítulo reencontrando a lei de escala, agora como teorema sobre áreas.
+
+::: {#prp-area-escala}
+## Escala das áreas
+Se uma figura é ampliada por um fator $k$ (razão de semelhança), sua área fica
+multiplicada por $k^2$.
+:::
+
+::: {.proof}
+Para um retângulo de lados $b, h$, a ampliação dá lados $kb, kh$ e área $kb \cdot
+kh = k^2 (bh)$ — fator $k^2$. Como toda figura poligonal se decompõe em retângulos
+e triângulos, e cada peça escala por $k^2$, a figura inteira também. O círculo,
+limite de polígonos, herda a mesma lei: $\pi (kr)^2 = k^2 \pi r^2$.
+:::
+
+## Exercícios
+
+::: {#exr-triangulo-area}
+Calcule a área de um triângulo de base $10$ e altura $6$, e a de um triângulo
+equilátero de lado $4$. (Sugestão: para o equilátero, ache a altura por Pitágoras.)
+:::
+
+::: {#exr-trapezio}
+Um trapézio tem bases $8$ e $12$ e altura $5$. Calcule sua área.
+:::
+
+::: {#exr-circulo}
+Calcule a área de um círculo de raio $7$ e a área da coroa circular entre raios
+$10$ e $6$. (Use $\pi \approx 3{,}14$ se quiser um valor numérico.)
+:::
+
+::: {#exr-area-composta}
+Um quadrado de lado $10$ tem, inscrito, um círculo tangente aos quatro lados.
+Calcule a área da região entre o quadrado e o círculo.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-triangulo-area
+O primeiro tem área $\dfrac{10 \cdot 6}{2} = 30$. Para o equilátero de lado $4$, a
+altura cai sobre o ponto médio da base, formando um triângulo retângulo de
+hipotenusa $4$ e um cateto $2$; por Pitágoras (@thm-pitagoras), a altura é
+$\sqrt{4^2 - 2^2} = \sqrt{12} = 2\sqrt3$. A área é
+$$
+\frac{4 \cdot 2\sqrt3}{2} = 4\sqrt3 \approx 6{,}93.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-area-composta
+O círculo inscrito num quadrado de lado $10$ tem diâmetro $10$, logo raio $5$. A
+área entre as figuras é a do quadrado menos a do círculo:
+$$
+A = 10^2 - \pi \cdot 5^2 = 100 - 25\pi \approx 100 - 78{,}5 = 21{,}5.
+$$
+:::
