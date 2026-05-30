@@ -179,6 +179,7 @@ book:
         - volumes/v13-complexa/05-formula-integral-cauchy.qmd
         - volumes/v13-complexa/06-taylor-laurent.qmd
         - volumes/v13-complexa/07-residuos.qmd
+        - volumes/v13-complexa/08-aplicacoes-conformes.qmd
   appendices:
     - notacao.qmd
 

@@ -1,0 +1,163 @@
+# Aplicações conformes {#sec-aplicacoes-conformes}
+
+## Motivação
+
+Encerramos a obra com uma das ideias mais geometricamente belas da análise complexa: as
+**aplicações conformes** — transformações que **preservam ângulos**. Toda função
+holomorfa com derivada não nula é conforme, e essa propriedade tem consequências
+práticas profundas: permite "transportar" a solução de um problema de uma região
+complicada para uma simples, resolvê-lo lá, e trazer de volta.
+
+É a culminação natural do volume: as funções holomorfas, definidas pela rigidez da
+derivabilidade complexa (@sec-holomorfas-cauchy-riemann), revelam-se as transformações
+geométricas que respeitam a forma infinitesimal. Da aerodinâmica à cartografia, da
+eletrostática à teoria de Riemann, as aplicações conformes encerram esta obra ligando a
+álgebra dos complexos à geometria viva — e apontando para tudo o que ainda há por
+explorar.
+
+## Aplicações conformes
+
+::: {#def-conforme}
+## Aplicação conforme
+Uma aplicação $f$ é **conforme** em $z_0$ se preserva **ângulos**: duas curvas que se
+cruzam em $z_0$ formando um ângulo $\theta$ são levadas em curvas que se cruzam formando
+o **mesmo** ângulo $\theta$ (em magnitude e sentido).
+:::
+
+::: {#thm-holomorfa-conforme}
+## Holomorfa com derivada não nula é conforme
+Se $f$ é holomorfa em $z_0$ e $f'(z_0) \neq 0$, então $f$ é **conforme** em $z_0$.
+:::
+
+::: {.callout-tip}
+## Por que a derivada não nula garante ângulos
+Perto de $z_0$, $f$ age como a multiplicação por $f'(z_0)$ — e multiplicar por um
+complexo é **girar e dilatar** (@sec-numeros-complexos). Uma rotação-dilatação preserva
+ângulos! Toda curvinha que passa por $z_0$ é girada pelo mesmo ângulo $\arg f'(z_0)$ e
+esticada pelo mesmo fator $|f'(z_0)|$, então os ângulos **entre** curvas ficam intactos.
+A condição $f'(z_0) \neq 0$ é essencial: onde a derivada se anula, ângulos podem
+multiplicar-se (em $z^2$, a origem dobra os ângulos).
+:::
+
+::: {#exm-conformes}
+## Aplicações conformes clássicas
+- $f(z) = z + b$ (translação), $f(z) = az$ (rotação-dilatação): conformes em toda parte.
+- $f(z) = e^z$: leva faixas horizontais em setores angulares.
+- **Transformação de Möbius** $f(z) = \frac{az + b}{cz + d}$: leva retas e círculos em
+  retas e círculos, e é a aplicação conforme mais importante.
+:::
+
+## Transformações de Möbius
+
+::: {#def-mobius}
+## Transformação de Möbius
+Uma **transformação de Möbius** é $f(z) = \frac{az + b}{cz + d}$, com $ad - bc \neq 0$.
+Ela é conforme, bijetora na esfera de Riemann (o plano complexo mais o ponto $\infty$), e
+leva o conjunto de "retas e círculos" nele mesmo.
+:::
+
+::: {.callout-note}
+## Möbius e a álgebra linear
+As transformações de Möbius compõem-se como **multiplicação de matrizes** $\left[
+\begin{smallmatrix} a & b \\ c & d\end{smallmatrix}\right]$ (@sec-matrizes) — formam um
+grupo (@sec-grupos) isomorfo a $GL_2(\mathbb{C})$ a menos de escala. A condição $ad - bc
+\neq 0$ é o determinante não nulo (@sec-determinantes). Mais uma vez, fios de toda a obra
+— grupos, matrizes, determinantes — se entrelaçam na análise complexa.
+:::
+
+## A aplicação: resolver problemas de potencial
+
+::: {#thm-conforme-laplace}
+## Conformes preservam harmonicidade
+Se $u$ é harmônica (@sec-calor-onda-laplace) e $f$ é conforme, então $u\circ f$ também é
+harmônica. Logo um problema de Laplace numa região complicada pode ser **transportado**,
+por uma aplicação conforme, para uma região simples (disco, semiplano), resolvido lá, e
+trazido de volta.
+:::
+
+::: {.callout-tip}
+## A estratégia de "endireitar" o domínio
+Esta é a aplicação que move a engenharia: o escoamento de ar em torno de uma asa, o campo
+elétrico perto de um eletrodo de forma estranha, o fluxo de calor numa peça irregular —
+todos governados pela equação de Laplace. Em vez de resolvê-la na geometria difícil,
+encontra-se uma aplicação conforme que a transforma num **disco** ou **semiplano**, onde
+a solução é conhecida. Joukowski usou exatamente isso para modelar perfis de asas a
+partir de círculos. A análise complexa vira ferramenta de projeto.
+:::
+
+## O teorema da aplicação de Riemann
+
+::: {#thm-riemann-aplicacao}
+## Teorema da aplicação de Riemann
+**Qualquer** domínio simplesmente conexo do plano (que não seja o plano todo) pode ser
+levado **conformemente** sobre o disco unitário. Há sempre uma aplicação conforme entre
+duas tais regiões.
+:::
+
+::: {.callout-note}
+## Todas as regiões "sem buracos" são conformemente a mesma
+Este teorema, de Riemann, é de uma generalidade espantosa: por mais bizarro que seja o
+contorno de uma região simplesmente conexa — um polígono, uma figura recortada à mão —,
+existe uma aplicação conforme que a transforma no disco. Do ponto de vista da geometria
+conforme, **só existe uma** região simplesmente conexa (além do plano inteiro). É o
+análogo, para domínios, da classificação que a topologia faz das superfícies — e fecha o
+volume conectando análise, geometria e topologia (Volume IX) numa síntese final.
+:::
+
+## Encerramento da obra
+
+::: {.callout-tip}
+## O fim da jornada
+Da contagem dos naturais (Volume I) às aplicações conformes que moldam asas de avião,
+percorremos a matemática como um organismo único. Os números complexos, nascidos de uma
+equação "sem solução", revelaram-se a chave de uma teoria de beleza e poder
+incomparáveis — onde derivar uma vez implica derivar infinitas, onde a fronteira
+determina o interior, e onde integrais reais impossíveis cedem a um punhado de resíduos.
+A obra termina aqui, mas a matemática não tem fim: cada teorema provado abre portas para
+outros. *Da aritmética à geometria diferencial* — e além.
+:::
+
+## Exercícios
+
+::: {#exr-ac-conforme}
+Por que $f(z) = z^2$ é conforme em todo ponto **exceto** na origem?
+:::
+
+::: {#exr-ac-mobius}
+Verifique que a transformação de Möbius $f(z) = \frac{1}{z}$ leva o eixo real (mais
+$\infty$) em si mesmo.
+:::
+
+::: {#exr-ac-angulo}
+Explique geometricamente por que multiplicar por $f'(z_0)$ preserva ângulos entre
+curvas.
+:::
+
+::: {#exr-ac-riemann}
+Em uma frase, enuncie o que o teorema da aplicação de Riemann afirma sobre duas regiões
+simplesmente conexas quaisquer.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ac-conforme
+$f(z) = z^2$ tem $f'(z) = 2z$, que se anula só em $z = 0$. Pelo @thm-holomorfa-conforme,
+é conforme onde $f' \neq 0$, ou seja, em todo ponto exceto a origem. Na origem, os
+ângulos **dobram** (curvas que se cruzam a $\theta$ saem a $2\theta$).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ac-mobius
+Para $z$ real não nulo, $\frac1z$ também é real; $0 \mapsto \infty$ e $\infty \mapsto 0$
+(ambos no eixo real estendido). Logo $f$ leva o eixo real (com $\infty$) em si mesmo —
+coerente com "Möbius leva retas/círculos em retas/círculos".
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ac-angulo
+Perto de $z_0$, $f(z) \approx f(z_0) + f'(z_0)(z - z_0)$: localmente é a multiplicação por
+$f'(z_0)$, isto é, uma **rotação** (por $\arg f'(z_0)$) seguida de **dilatação** (por
+$|f'(z_0)|$). Rotações e dilatações preservam ângulos, então o ângulo entre duas curvas
+em $z_0$ é mantido.
+:::
