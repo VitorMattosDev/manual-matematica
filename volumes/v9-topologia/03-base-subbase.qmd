@@ -1,0 +1,165 @@
+# Base, subbase e geração de topologias {#sec-base-subbase}
+
+## Motivação
+
+Listar **todos** os abertos de uma topologia é, em geral, impossível — a reta tem
+incontáveis abertos. Mas não é necessário: assim como toda a álgebra linear de um
+espaço cabe numa base de poucos vetores (@sec-base-dimensao), toda uma topologia pode
+ser gerada por uma coleção pequena de abertos. Os intervalos abertos geram toda a
+topologia de $\mathbb{R}$; as bolas, toda a de um espaço métrico.
+
+Esse é o conceito de **base**: um repertório mínimo a partir do qual, por uniões, se
+obtêm todos os abertos. Ele torna as topologias manejáveis — para verificar
+continuidade, convergência ou definir a topologia produto, basta trabalhar com os
+elementos da base. As **subbases**, mais econômicas ainda, permitem gerar topologias a
+partir de qualquer coleção de conjuntos. Este capítulo formaliza essas ferramentas de
+construção, indispensáveis para os capítulos seguintes.
+
+## Bases
+
+::: {#def-base}
+## Base de uma topologia
+Uma coleção $\mathcal B$ de abertos de $(X, \tau)$ é uma **base** se todo aberto é
+**união** de elementos de $\mathcal B$. Equivalentemente: para todo aberto $U$ e todo
+$x \in U$, existe $B \in \mathcal B$ com $x \in B \subseteq U$.
+:::
+
+::: {#exm-bases}
+## Bases conhecidas
+- Os **intervalos abertos** $(a, b)$ formam base de $\mathbb{R}$ usual.
+- As **bolas** $B(x, r)$ formam base de qualquer espaço métrico
+  (@sec-espacos-metricos).
+- Os **conjuntos unitários** $\{x\}$ formam base da topologia discreta.
+- Os **retângulos abertos** formam base de $\mathbb{R}^2$.
+:::
+
+## Quando uma coleção é base
+
+Nem toda coleção de conjuntos gera uma topologia. Há um critério exato.
+
+::: {#thm-criterio-base}
+## Critério para base
+Uma coleção $\mathcal B$ de subconjuntos de $X$ é base de **alguma** topologia se, e
+somente se:
+
+1. $\mathcal B$ **cobre** $X$ (todo ponto está em algum membro); e
+2. se $x \in B_1 \cap B_2$ (com $B_1, B_2 \in \mathcal B$), existe $B_3 \in \mathcal B$
+   com $x \in B_3 \subseteq B_1 \cap B_2$.
+
+A topologia gerada tem por abertos todas as uniões de membros de $\mathcal B$.
+:::
+
+::: {.callout-tip}
+## O que a segunda condição garante
+A condição (2) assegura que interseções de elementos da base ainda se descrevem por
+elementos da base — o que faz a interseção finita de abertos ser aberta (o axioma 3 de
+@def-topologia). Sem ela, "uniões de membros" não seria fechado por interseção, e não
+teríamos topologia. Os intervalos abertos satisfazem (2): a interseção de dois
+intervalos é um intervalo.
+:::
+
+::: {#exm-gerando}
+## Gerando uma topologia a partir de uma base
+A coleção dos intervalos semiabertos $[a, b)$ satisfaz o critério e gera a **topologia
+do limite inferior** (reta de Sorgenfrey) — estritamente **mais fina** que a usual:
+$[0, 1)$ é aberto nela, mas não na usual. É um exemplo de como bases diferentes geram
+topologias genuinamente distintas no mesmo conjunto.
+:::
+
+## Subbases
+
+A economia levada ao extremo: qualquer coleção serve, tomando interseções finitas
+primeiro.
+
+::: {#def-subbase}
+## Subbase
+Uma **subbase** $\mathcal S$ é qualquer coleção de subconjuntos de $X$ cuja união é
+$X$. A topologia **gerada por $\mathcal S$** tem por base as **interseções finitas** de
+elementos de $\mathcal S$ (e por abertos, as uniões dessas interseções).
+:::
+
+::: {.callout-note}
+## Por que subbases importam
+Qualquer coleção de conjuntos (que cubra $X$) é subbase de alguma topologia — sem
+condições! Isso torna as subbases a ferramenta ideal para **definir** topologias a
+partir de exigências mínimas. O exemplo arquetípico é a **topologia produto**: para que
+as projeções $X \times Y \to X$ e $\to Y$ sejam contínuas, basta declarar suas
+pré-imagens de abertos como subbase — e a topologia produto nasce dessa exigência.
+:::
+
+::: {#exm-subbase-reta}
+## Subbase da reta
+As semirretas $(-\infty, b)$ e $(a, +\infty)$ formam uma subbase de $\mathbb{R}$: suas
+interseções finitas dão os intervalos $(a, b)$ — a base usual. Duas famílias simples de
+conjuntos geram toda a topologia da reta.
+:::
+
+## Comparando topologias
+
+Bases dão um critério prático para decidir quando uma topologia refina outra.
+
+::: {#def-mais-fina}
+## Topologia mais fina
+Dadas duas topologias $\tau_1, \tau_2$ em $X$, diz-se que $\tau_1$ é **mais fina** que
+$\tau_2$ (e $\tau_2$ mais grossa) se $\tau_2 \subseteq \tau_1$ — $\tau_1$ tem **mais**
+abertos. Uma topologia mais fina tem mais abertos, mais funções contínuas saindo dela,
+e torna a convergência **mais difícil**.
+:::
+
+::: {#prp-comparar-bases}
+## Comparação via bases
+$\tau_1$ é mais fina que $\tau_2$ se, e somente se, para todo $B_2$ na base de $\tau_2$
+e todo $x \in B_2$, existe $B_1$ na base de $\tau_1$ com $x \in B_1 \subseteq B_2$.
+:::
+
+A topologia discreta é a mais fina de todas; a caótica, a mais grossa
+(@exm-topologias). Entre duas topologias quaisquer, comparar bases responde de imediato
+qual refina qual — ou se são incomparáveis.
+
+## Exercícios
+
+::: {#exr-bs-1}
+Verifique que os discos abertos satisfazem o critério de base (@thm-criterio-base) em
+$\mathbb{R}^2$.
+:::
+
+::: {#exr-bs-2}
+Mostre que a coleção dos intervalos $(a, b)$ com $a, b$ **racionais** é uma base de
+$\mathbb{R}$ usual (uma base **enumerável**).
+:::
+
+::: {#exr-bs-subbase}
+Descreva a topologia gerada pela subbase $\mathcal S = \{\{a, b\}, \{b, c\}\}$ em $X =
+\{a, b, c\}$.
+:::
+
+::: {#exr-bs-comparar}
+Mostre que a topologia do limite inferior (gerada por $[a, b)$) é mais fina que a
+usual de $\mathbb{R}$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-bs-2
+Cobre $\mathbb{R}$ e satisfaz (2). É base da usual: dado um aberto $U$ e $x \in U$,
+existe $(a, b) \subseteq U$ contendo $x$; pela densidade de $\mathbb{Q}$
+(@cor-densidade), há racionais $a' \in (a, x)$ e $b' \in (x, b)$, e $(a', b')$ é um
+membro racional com $x \in (a', b') \subseteq U$. Como há enumeráveis pares de
+racionais, a base é **enumerável** ($\mathbb{R}$ é "segundo-enumerável").
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-bs-subbase
+Interseções finitas de $\mathcal S$: $\{a,b\} \cap \{b,c\} = \{b\}$, além dos próprios
+$\{a,b\}, \{b,c\}$ e $X$. A base é $\{\{b\}, \{a,b\}, \{b,c\}, X\}$; uniões dão $\tau =
+\{\emptyset, \{b\}, \{a,b\}, \{b,c\}, X\}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-bs-comparar
+Pela @prp-comparar-bases: dado um intervalo usual $(a, b)$ e $x \in (a, b)$, o
+semiaberto $[x, b)$ satisfaz $x \in [x, b) \subseteq (a, b)$ e é básico no limite
+inferior. Logo todo aberto usual é aberto no limite inferior — esta é mais fina. (A
+recíproca falha: $[0,1)$ não é usual.)
+:::

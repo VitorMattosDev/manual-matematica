@@ -142,7 +142,7 @@ Pré-requisitos: nenhum.*
 
 - [x] `volumes/v9-topologia/01-espacos-metricos.qmd` — Espaços métricos.
 - [x] `volumes/v9-topologia/02-espacos-topologicos.qmd` — Espaços topológicos: abertos, vizinhanças.
-- [ ] `volumes/v9-topologia/03-base-subbase.qmd` — Base, subbase e geração de topologias.
+- [x] `volumes/v9-topologia/03-base-subbase.qmd` — Base, subbase e geração de topologias.
 - [ ] `volumes/v9-topologia/04-continuidade-homeomorfismos.qmd` — Continuidade e homeomorfismos.
 - [ ] `volumes/v9-topologia/05-conexidade.qmd` — Conexidade.
 - [ ] `volumes/v9-topologia/06-compacidade.qmd` — Compacidade.
