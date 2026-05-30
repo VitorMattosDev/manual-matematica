@@ -113,6 +113,7 @@ book:
         - volumes/v8-analise/03-sequencias.qmd
         - volumes/v8-analise/04-series.qmd
         - volumes/v8-analise/05-topologia-reta.qmd
+        - volumes/v8-analise/06-continuidade.qmd
   appendices:
     - notacao.qmd
 

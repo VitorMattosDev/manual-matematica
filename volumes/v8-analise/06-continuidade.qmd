@@ -1,0 +1,188 @@
+# Limites e continuidade (ε-δ) {#sec-continuidade}
+
+## Motivação
+
+A continuidade foi introduzida no Cálculo (@sec-limites) com a ideia intuitiva de
+"traçar o gráfico sem tirar o lápis do papel". É uma boa imagem, mas inútil para
+demonstrar teoremas. A análise substitui-a pela definição **ε-δ** de Cauchy e
+Weierstrass: precisa, verificável, e poderosa o bastante para provar os grandes
+teoremas que o Cálculo apenas enunciava.
+
+Munidos da topologia da reta (@sec-topologia-reta) e da teoria de sequências
+(@sec-sequencias-analise), demonstraremos aqui os dois pilares do cálculo de funções
+contínuas: o **teorema do valor intermediário** (uma função contínua não pula valores)
+e o **teorema de Weierstrass** (uma função contínua num compacto atinge máximo e
+mínimo). Ambos parecem óbvios no desenho, mas dependem crucialmente da completude dos
+reais — em $\mathbb{Q}$ eles falham. Este capítulo dá à continuidade sua fundação
+rigorosa.
+
+## Limite de uma função
+
+::: {#def-limite-funcao}
+## Limite (ε-δ)
+Seja $f$ definida perto de $a$ (ponto de acumulação do domínio). Diz-se que
+$\lim_{x\to a} f(x) = L$ se:
+$$
+\forall\, \varepsilon > 0,\ \exists\, \delta > 0\ \text{tal que}\ 0 < |x - a| <
+\delta \implies |f(x) - L| < \varepsilon.
+$$
+:::
+
+::: {.callout-tip}
+## A dança do ε e do δ
+O adversário fixa uma faixa de tolerância $\varepsilon$ em torno de $L$; você responde
+com uma vizinhança $\delta$ em torno de $a$ tão estreita que $f$ a leva inteira dentro
+da faixa. A condição $0 < |x - a|$ exclui o próprio ponto $a$ — o limite descreve o
+comportamento **perto** de $a$, não **em** $a$. É a tradução exata de "$f(x)$ fica tão
+perto de $L$ quanto se queira, bastando $x$ perto de $a$".
+:::
+
+## Continuidade
+
+::: {#def-continuidade}
+## Função contínua
+$f$ é **contínua em $a$** se $\lim_{x\to a} f(x) = f(a)$ — ou seja, o limite existe e
+**coincide com o valor** da função. Em ε-δ: para todo $\varepsilon > 0$ existe
+$\delta > 0$ tal que $|x - a| < \delta \implies |f(x) - f(a)| < \varepsilon$. A
+função é **contínua** se o é em cada ponto do domínio.
+:::
+
+::: {#thm-continuidade-sequencial}
+## Caracterização sequencial
+$f$ é contínua em $a$ se, e somente se, para **toda** sequência $x_n \to a$ (no
+domínio) vale $f(x_n) \to f(a)$.
+:::
+
+Essa equivalência é uma ponte preciosa: traduz problemas de continuidade em problemas
+de sequências (@sec-sequencias-analise), muitas vezes mais fáceis. É também o modo
+mais rápido de provar que uma função **não** é contínua: exibindo uma sequência onde a
+imagem não acompanha.
+
+::: {#exm-descontinua}
+## Uma descontinuidade
+A função $f(x) = 0$ para $x < 0$ e $f(x) = 1$ para $x \geq 0$ não é contínua em $0$:
+tomando $x_n = -\frac1n \to 0$, tem-se $f(x_n) = 0 \not\to f(0) = 1$. O "salto"
+detectado pela caracterização sequencial.
+:::
+
+## O teorema do valor intermediário
+
+O primeiro grande teorema: continuidade impede saltos.
+
+::: {#thm-tvi}
+## Teorema do valor intermediário (TVI)
+Se $f$ é contínua em $[a, b]$ e $y$ está entre $f(a)$ e $f(b)$, então existe $c \in
+[a, b]$ com $f(c) = y$. Uma função contínua assume **todos** os valores
+intermediários.
+:::
+
+::: {.proof}
+*(Esboço.)* Suponha $f(a) < y < f(b)$ e seja $S = \{x \in [a,b] : f(x) < y\}$. Seja
+$c = \sup S$ (existe por completude, @thm-axioma-completude). Pela continuidade,
+mostra-se que $f(c) < y$ levaria a pontos à direita de $c$ ainda em $S$ (contradição),
+e $f(c) > y$ levaria a $c$ não ser o supremo. Logo $f(c) = y$.
+:::
+
+::: {.callout-note}
+## Por que falha em $\mathbb{Q}$
+Considere $f(x) = x^2 - 2$ sobre os **racionais** de $[0, 2]$: é contínua, $f(0) = -2
+< 0 < 2 = f(2)$, mas **nunca vale zero** em $\mathbb{Q}$ (não há $\sqrt2$ racional,
+@prp-raiz-irracional). O TVI usa de modo essencial a **completude** de $\mathbb{R}$ —
+ele é, no fundo, uma afirmação sobre a ausência de buracos na reta. Em geral, vê-se
+que a imagem contínua de um intervalo (conjunto conexo, @sec-conexidade) é um
+intervalo.
+:::
+
+::: {#cor-raiz}
+## Existência de raízes
+Todo polinômio de grau ímpar com coeficientes reais tem ao menos uma raiz real (pois
+$f(x) \to \pm\infty$ nos extremos, o TVI garante um zero).
+:::
+
+## O teorema de Weierstrass
+
+O segundo pilar: continuidade em compactos garante extremos.
+
+::: {#thm-weierstrass}
+## Teorema dos valores extremos (Weierstrass)
+Se $f$ é contínua num intervalo **fechado e limitado** $[a, b]$, então $f$ é limitada
+e **atinge** seu máximo e seu mínimo: existem $x_M, x_m \in [a,b]$ com $f(x_m) \leq
+f(x) \leq f(x_M)$ para todo $x$.
+:::
+
+::: {.proof}
+*(Esboço.)* A imagem $f([a,b])$ é compacta (imagem contínua de compacto é compacta),
+logo fechada e limitada (@thm-heine-borel). Sendo limitada, tem supremo $M$; sendo
+fechada, $M$ pertence à imagem — isto é, $M = f(x_M)$ para algum $x_M$. Análogo para o
+mínimo.
+:::
+
+::: {.callout-warning}
+## As duas hipóteses são indispensáveis
+Sem **fechado**: $f(x) = x$ em $(0, 1)$ não atinge máximo nem mínimo. Sem
+**limitado**: $f(x) = x$ em $[0, \infty)$ não tem máximo. E sem **continuidade**:
+$f(x) = \frac1x$ em $(0,1]$ é ilimitada. A compacidade do domínio (@sec-topologia-reta)
+é exatamente o que torna o teorema verdadeiro — é a tradução analítica de "fechado e
+limitado".
+:::
+
+## Continuidade uniforme
+
+::: {#def-uniforme}
+## Continuidade uniforme
+$f$ é **uniformemente contínua** se o $\delta$ pode ser escolhido **independente do
+ponto**: $\forall \varepsilon > 0,\ \exists \delta > 0$ tal que $|x - y| < \delta
+\implies |f(x) - f(y)| < \varepsilon$ para **todos** $x, y$.
+:::
+
+::: {#thm-heine-cantor}
+## Teorema de Heine-Cantor
+Toda função contínua num **compacto** $[a, b]$ é uniformemente contínua.
+:::
+
+A continuidade uniforme é mais forte que a continuidade pontual e essencial para a
+teoria da integração (@sec-integral-riemann): é ela que garante que uma função
+contínua num intervalo fechado é integrável.
+
+## Exercícios
+
+::: {#exr-cont-1}
+Prove pela definição ε-δ que $f(x) = 3x + 1$ é contínua em $x = 2$.
+:::
+
+::: {#exr-cont-tvi}
+Mostre que a equação $x^3 - x - 1 = 0$ tem uma raiz real em $[1, 2]$.
+:::
+
+::: {#exr-cont-sequencial}
+Use a caracterização sequencial para mostrar que $f(x) = \operatorname{sen}(1/x)$
+(com $f(0) = 0$) não é contínua em $0$.
+:::
+
+::: {#exr-cont-uniforme}
+Mostre que $f(x) = x^2$ é uniformemente contínua em $[0, 1]$, mas **não** em
+$[0, \infty)$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cont-1
+$|f(x) - f(2)| = |3x + 1 - 7| = 3|x - 2|$. Dado $\varepsilon > 0$, tome $\delta =
+\frac\varepsilon3$. Então $|x - 2| < \delta \implies |f(x) - f(2)| = 3|x - 2| <
+3\delta = \varepsilon$. ∎
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cont-tvi
+Seja $f(x) = x^3 - x - 1$, contínua. $f(1) = -1 < 0$ e $f(2) = 5 > 0$. Como $0$ está
+entre $f(1)$ e $f(2)$, o TVI (@thm-tvi) garante $c \in [1, 2]$ com $f(c) = 0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cont-uniforme
+Em $[0,1]$: $|x^2 - y^2| = |x+y|\,|x-y| \leq 2|x - y|$, então $\delta =
+\frac\varepsilon2$ serve para todos — uniforme (e segue de Heine-Cantor, pois $[0,1]$
+é compacto). Em $[0,\infty)$: para $x_n = n$, $y_n = n + \frac1n$, tem-se $|x_n - y_n|
+= \frac1n \to 0$ mas $|x_n^2 - y_n^2| = 2 + \frac1{n^2} \not\to 0$ — falha a uniforme.
+:::
