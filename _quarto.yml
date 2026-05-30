@@ -95,6 +95,9 @@ book:
         - volumes/v6-linear/08-diagonalizacao.qmd
         - volumes/v6-linear/09-produto-interno.qmd
         - volumes/v6-linear/10-teorema-espectral.qmd
+    - part: "Volume VII — Álgebra Abstrata"
+      chapters:
+        - volumes/v7-abstrata/01-grupos.qmd
   appendices:
     - notacao.qmd
 

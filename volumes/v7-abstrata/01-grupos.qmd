@@ -1,0 +1,199 @@
+# Operações binárias e grupos {#sec-grupos}
+
+## Motivação
+
+Somar inteiros, multiplicar racionais não nulos, compor rotações, embaralhar um
+baralho, girar um cubo mágico — atividades sem relação aparente. No entanto, todas
+compartilham uma mesma estrutura escondida: há uma operação que combina dois
+elementos, ela é associativa, existe um elemento neutro, e toda ação pode ser
+desfeita.
+
+A álgebra abstrata dá nome a essa estrutura — **grupo** — e a estuda em si mesma, sem
+se importar com a natureza dos objetos. É a continuação natural da abstração que já
+fizemos com espaços vetoriais (@sec-espacos-vetoriais): identificar a estrutura comum
+e provar teoremas que valem para todos os exemplos de uma só vez. A teoria de grupos
+é a linguagem da **simetria** em toda a matemática e na física — das soluções de
+equações polinomiais (a teoria de Galois, @sec-galois) à classificação das partículas
+elementares. Este capítulo abre o Volume VII definindo grupos e seus primeiros
+exemplos.
+
+## Operações binárias
+
+::: {#def-operacao-binaria}
+## Operação binária
+Uma **operação binária** num conjunto $G$ é uma função que a cada par ordenado
+$(a, b)$ de elementos de $G$ associa um elemento $a * b$ **de $G$**. A exigência de
+que $a * b$ pertença a $G$ chama-se **fechamento**.
+:::
+
+::: {#exm-operacoes}
+## Operações e não operações
+- A adição em $\mathbb{Z}$ é operação binária; a subtração também.
+- A divisão **não** é operação binária em $\mathbb{Z}$: $1 \div 2 \notin \mathbb{Z}$
+  (falha o fechamento).
+- A composição $\circ$ no conjunto das funções bijetoras de um conjunto nele mesmo é
+  operação binária.
+:::
+
+## A definição de grupo
+
+::: {#def-grupo}
+## Grupo
+Um **grupo** é um conjunto $G$ munido de uma operação binária $*$ satisfazendo:
+
+1. **associatividade**: $(a * b) * c = a * (b * c)$ para todos $a, b, c$;
+2. **elemento neutro**: existe $e \in G$ com $e * a = a * e = a$ para todo $a$;
+3. **elemento inverso**: para cada $a \in G$ existe $a^{-1} \in G$ com $a * a^{-1} =
+   a^{-1} * a = e$.
+
+Se, além disso, $a * b = b * a$ para todos $a, b$, o grupo é **abeliano**
+(comutativo).
+:::
+
+::: {.callout-note}
+## O que cada axioma garante
+Associatividade dispensa parênteses em produtos longos. O neutro é o "não fazer
+nada". O inverso garante que toda operação é **reversível** — o traço essencial de
+uma simetria. Note que comutatividade **não** é exigida: muitos grupos importantes
+(rotações no espaço, permutações) não comutam.
+:::
+
+::: {#exm-grupos}
+## Uma galeria de grupos
+- $(\mathbb{Z}, +)$: inteiros com a adição; neutro $0$, inverso $-a$. Abeliano.
+- $(\mathbb{Q}^*, \cdot)$: racionais **não nulos** com multiplicação; neutro $1$,
+  inverso $1/a$. (O zero é excluído — não tem inverso.)
+- $(\mathbb{Z}_n, +)$: inteiros módulo $n$ (@sec-congruencias) com soma. Abeliano,
+  finito.
+- $S_n$: as **permutações** de $n$ objetos, com composição. Não abeliano para $n
+  \geq 3$.
+- $GL_n(\mathbb{R})$: matrizes $n\times n$ **invertíveis** (@sec-matrizes) com o
+  produto. Não abeliano.
+:::
+
+::: {.callout-warning}
+## Nem todo conjunto com operação é grupo
+$(\mathbb{Z}, \cdot)$ **não** é grupo: $2$ não tem inverso multiplicativo inteiro.
+$(\mathbb{N}, +)$ tampouco: falta o inverso (não há naturais negativos). Verifique
+sempre os **três** axiomas — em especial a existência de inversos, o que mais costuma
+falhar.
+:::
+
+## Primeiras consequências
+
+Da definição, alguns fatos saem de imediato — e valem para *todos* os grupos.
+
+::: {#prp-unicidade}
+## Unicidade do neutro e do inverso
+Em qualquer grupo, o elemento neutro é **único**, e cada elemento tem um **único**
+inverso.
+:::
+
+::: {.proof}
+Se $e$ e $e'$ são neutros, então $e = e * e' = e'$ (usando $e'$ neutro, depois $e$).
+Para o inverso: se $b$ e $c$ são ambos inversos de $a$, então $b = b * e = b * (a *
+c) = (b * a) * c = e * c = c$.
+:::
+
+::: {#prp-cancelamento}
+## Lei do cancelamento
+Em um grupo, $a * b = a * c \implies b = c$ (e analogamente à direita). Além disso,
+$(a * b)^{-1} = b^{-1} * a^{-1}$ — o inverso de um produto inverte a ordem.
+:::
+
+::: {.proof}
+Multiplique $a * b = a * c$ por $a^{-1}$ à esquerda: $a^{-1}*(a*b) = a^{-1}*(a*c)$,
+donde por associatividade $b = c$. Para o inverso do produto, verifique $(a*b)*(b^{-1}
+*a^{-1}) = a*(b*b^{-1})*a^{-1} = a*a^{-1} = e$.
+:::
+
+## Grupos de simetria
+
+O exemplo que dá nome e intuição à teoria: as simetrias de uma figura formam um
+grupo sob composição.
+
+::: {#def-grupo-diedral}
+## Grupo diedral
+As **simetrias** de um polígono regular de $n$ lados — rotações e reflexões que o
+levam em si mesmo — formam o **grupo diedral** $D_n$, com $2n$ elementos ($n$
+rotações e $n$ reflexões), sob composição.
+:::
+
+::: {#exm-triangulo}
+## As simetrias do triângulo
+$D_3$ tem $6$ elementos: as rotações de $0^\circ, 120^\circ, 240^\circ$ e três
+reflexões pelos eixos que passam por cada vértice. Compor uma rotação com uma
+reflexão dá outra reflexão; e a ordem importa (reflexão seguida de rotação $\neq$
+rotação seguida de reflexão) — logo $D_3$ é **não abeliano**. De fato, $D_3$ é
+"o mesmo grupo" que $S_3$, as permutações dos três vértices.
+:::
+
+::: {.callout-tip}
+## Grupo = simetria
+A maneira mais fértil de pensar um grupo é como o conjunto das simetrias de algum
+objeto: as transformações que o preservam. Os axiomas são exatamente as propriedades
+de "transformações reversíveis que se compõem". Essa visão, desenvolvida nos próximos
+capítulos (@sec-subgrupos-ciclicos, @sec-lagrange), organiza toda a teoria.
+:::
+
+## Ordem de um grupo e de um elemento
+
+::: {#def-ordem}
+## Ordem
+A **ordem** de um grupo $G$, denotada $|G|$, é seu número de elementos (pode ser
+infinita). A **ordem de um elemento** $a$ é o menor inteiro positivo $k$ tal que
+$a^k = e$ (onde $a^k = a * a * \cdots * a$, $k$ vezes); se não houver tal $k$, a
+ordem é infinita.
+:::
+
+::: {#exm-ordem-elemento}
+## Calculando ordens
+Em $(\mathbb{Z}_6, +)$, a ordem do elemento $2$ é $3$, pois $2 + 2 + 2 = 6 \equiv 0$
+e nenhum múltiplo menor zera. Em $(\mathbb{Z}, +)$, todo elemento não nulo tem ordem
+infinita. A ordem dos elementos é a chave da estrutura dos grupos cíclicos
+(@sec-subgrupos-ciclicos).
+:::
+
+## Exercícios
+
+::: {#exr-grupo-1}
+Verifique se $(\mathbb{R}, *)$ com $a * b = a + b - 1$ é um grupo. Em caso
+afirmativo, qual é o neutro e qual o inverso de $a$?
+:::
+
+::: {#exr-grupo-2}
+Mostre que o conjunto $\{1, -1, i, -i\}$ com a multiplicação de complexos é um grupo
+abeliano. Qual a ordem de $i$?
+:::
+
+::: {#exr-grupo-tabela}
+Construa a tábua de operação de $(\mathbb{Z}_4, +)$ e identifique a ordem de cada
+elemento.
+:::
+
+::: {#exr-grupo-naoabeliano}
+Dê dois elementos de $S_3$ que não comutam, justificando.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-grupo-1
+Associativa: $(a*b)*c = (a+b-1)+c-1 = a+b+c-2 = a*(b*c)$. Neutro $e$: precisa de
+$a + e - 1 = a$, logo $e = 1$. Inverso de $a$: $a + a^{-1} - 1 = 1 \Rightarrow
+a^{-1} = 2 - a$. Como tudo existe em $\mathbb{R}$, **é grupo** (abeliano).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-grupo-2
+O conjunto é fechado ($i^2 = -1$, etc.), associativo e comutativo (herança dos
+complexos), tem neutro $1$ e inversos ($i^{-1} = -i$). A ordem de $i$ é $4$: $i^1 =
+i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-grupo-tabela
+Na tábua de $(\mathbb{Z}_4, +)$, a linha de $a$ lista $a, a+1, a+2, a+3$ (mod $4$).
+Ordens: $0$ tem ordem $1$; $1$ e $3$ têm ordem $4$ (geram tudo); $2$ tem ordem $2$
+($2 + 2 = 0$).
+:::
