@@ -127,6 +127,7 @@ book:
         - volumes/v9-topologia/05-conexidade.qmd
         - volumes/v9-topologia/06-compacidade.qmd
         - volumes/v9-topologia/07-separacao.qmd
+        - volumes/v9-topologia/08-grupo-fundamental.qmd
   appendices:
     - notacao.qmd
 

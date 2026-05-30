@@ -147,7 +147,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v9-topologia/05-conexidade.qmd` — Conexidade.
 - [x] `volumes/v9-topologia/06-compacidade.qmd` — Compacidade.
 - [x] `volumes/v9-topologia/07-separacao.qmd` — Axiomas de separação (Hausdorff etc.).
-- [ ] `volumes/v9-topologia/08-grupo-fundamental.qmd` — Introdução à topologia algébrica: grupo fundamental.
+- [x] `volumes/v9-topologia/08-grupo-fundamental.qmd` — Introdução à topologia algébrica: grupo fundamental.
 
 ## Volume X — Geometria Diferencial
 *Objetivo: curvas, superfícies e variedades. Pré-req.: Vols. V, VI, IX.*

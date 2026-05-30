@@ -1,0 +1,177 @@
+# Introdução à topologia algébrica: grupo fundamental {#sec-grupo-fundamental}
+
+## Motivação
+
+Como provar que um disco e um anel (coroa circular) são **diferentes** como espaços
+topológicos? Ambos são conexos, compactos, Hausdorff — todos os invariantes vistos até
+aqui não os distinguem. A diferença é intuitiva: o anel tem um **buraco**, o disco não.
+Mas como transformar "ter um buraco" num invariante rigoroso, calculável?
+
+A resposta inaugura a **topologia algébrica**, a área que associa a cada espaço uma
+**estrutura algébrica** — aqui, um grupo (@sec-grupos) — de modo que espaços
+homeomorfos recebem grupos isomorfos. O **grupo fundamental** $\pi_1$ codifica os
+"laços" de um espaço: caminhos fechados, considerados iguais quando deformáveis um no
+outro. Um buraco impede certas deformações, e isso aparece no grupo. Este capítulo
+final do Volume IX esboça essa construção genial — que une as duas grandes linhas da
+obra, topologia e álgebra — e mostra como ela detecta buracos.
+
+## Homotopia de caminhos
+
+A ideia central: dois caminhos são "o mesmo" se um pode ser **deformado
+continuamente** no outro.
+
+::: {#def-homotopia}
+## Homotopia de caminhos
+Dois caminhos $\gamma_0, \gamma_1: [0, 1] \to X$ com os **mesmos extremos** ($\gamma_0
+(0) = \gamma_1(0)$ e $\gamma_0(1) = \gamma_1(1)$) são **homotópicos** se existe uma
+deformação contínua $H: [0,1]\times[0,1] \to X$ com $H(s, 0) = \gamma_0(s)$, $H(s, 1) =
+\gamma_1(s)$, fixando os extremos durante toda a deformação. Escreve-se $\gamma_0 \simeq
+\gamma_1$.
+:::
+
+A homotopia é uma **relação de equivalência** sobre os caminhos; cada classe reúne
+todos os caminhos deformáveis entre si. É nessas classes — não nos caminhos
+individuais — que a álgebra opera.
+
+::: {.callout-tip}
+## Deformar sem rasgar
+Imagine os caminhos como elásticos com pontas presas. Dois são homotópicos se um
+elástico pode ser esticado e movido até coincidir com o outro, sem soltar as pontas e
+sem sair do espaço. Num disco, **todo** laço pode ser encolhido a um ponto. Num anel,
+um laço que dá a volta no buraco **não pode** — o buraco está no caminho. É essa
+obstrução que o grupo fundamental mede.
+:::
+
+## A operação de grupo
+
+::: {#def-concatenacao}
+## Concatenação de laços
+Fixe um ponto-base $x_0 \in X$. Um **laço** baseado em $x_0$ é um caminho que começa e
+termina em $x_0$. O **produto** de dois laços $\alpha, \beta$ é o laço $\alpha \cdot
+\beta$ que percorre $\alpha$ e depois $\beta$ (cada um em "dobro de velocidade"). Essa
+operação está bem definida nas classes de homotopia.
+:::
+
+::: {#thm-grupo-fundamental}
+## O grupo fundamental
+O conjunto das classes de homotopia de laços baseados em $x_0$, com a concatenação,
+forma um **grupo**, o **grupo fundamental** $\pi_1(X, x_0)$:
+
+- a **identidade** é a classe do laço constante (ficar parado em $x_0$);
+- o **inverso** de um laço é percorrê-lo de trás para frente;
+- a associatividade vale a menos de homotopia.
+:::
+
+Eis a fusão das duas teorias: a topologia do espaço produz um grupo, e as ferramentas
+da álgebra abstrata (@sec-grupos, @sec-lagrange) passam a estudar a forma do espaço.
+
+::: {#prp-invariancia-base}
+## Independência do ponto-base
+Se $X$ é **conexo por caminhos** (@def-conexo-caminhos), o grupo $\pi_1(X, x_0)$
+independe (a menos de isomorfismo) do ponto-base. Escreve-se simplesmente $\pi_1(X)$.
+:::
+
+## Espaços simplesmente conexos
+
+::: {#def-simplesmente-conexo}
+## Simplesmente conexo
+Um espaço conexo por caminhos é **simplesmente conexo** se $\pi_1(X)$ é **trivial** (só
+a identidade) — todo laço se contrai a um ponto. Intuitivamente: o espaço **não tem
+buracos**.
+:::
+
+::: {#exm-grupos-fundamentais}
+## Grupos fundamentais clássicos
+- $\mathbb{R}^n$ e o **disco** são simplesmente conexos: $\pi_1 = \{e\}$.
+- O **círculo** $S^1$ tem $\pi_1(S^1) \cong \mathbb{Z}$: a classe de um laço é seu
+  **número de voltas** (com sinal). O gerador é "dar uma volta".
+- O **toro** (rosca) tem $\pi_1 \cong \mathbb{Z}\times\mathbb{Z}$: duas voltas
+  independentes (pelo buraco e pela alça).
+- A **esfera** $S^2$ é simplesmente conexa: $\pi_1(S^2) = \{e\}$ (laços na esfera
+  contraem-se).
+:::
+
+::: {.callout-note}
+## Contando voltas: $\pi_1(S^1) = \mathbb{Z}$
+O cálculo mais famoso da topologia algébrica: cada laço no círculo é classificado pelo
+inteiro de quantas vezes ele dá a volta (sentido anti-horário positivo). Concatenar
+laços **soma** as voltas — exatamente a estrutura de $(\mathbb{Z}, +)$. O número
+inteiro "número de voltas" é um invariante, e é não nulo precisamente porque o círculo
+tem um buraco. Aqui a álgebra (o grupo $\mathbb{Z}$) **mede** a geometria (o buraco).
+:::
+
+## Invariância e aplicações
+
+::: {#thm-invariancia-pi1}
+## $\pi_1$ é invariante topológico
+Espaços homeomorfos têm grupos fundamentais isomorfos. Mais ainda, uma função contínua
+$f: X \to Y$ induz um **homomorfismo** $f_*: \pi_1(X) \to \pi_1(Y)$, e composição de
+funções corresponde a composição de homomorfismos (functorialidade).
+:::
+
+::: {.callout-tip}
+## Distinguir espaços, provar teoremas
+Como $\pi_1$ é invariante, espaços com grupos fundamentais não isomorfos **não são
+homeomorfos**: o disco ($\pi_1$ trivial) e o anel ($\pi_1 \cong \mathbb{Z}$) ficam
+finalmente distinguidos. E a maquinaria prova teoremas profundos: o **teorema do ponto
+fixo de Brouwer** (toda função contínua do disco nele mesmo tem ponto fixo) e o
+**teorema fundamental da álgebra** (todo polinômio complexo tem raiz) têm demonstrações
+elegantes via grupo fundamental. A topologia algébrica converte forma em álgebra, e
+álgebra em teoremas.
+:::
+
+## Encerramento do Volume IX
+
+Partimos de espaços métricos (@sec-espacos-metricos), abstraímos para espaços
+topológicos (@sec-espacos-topologicos), e desenvolvemos os grandes invariantes —
+conexidade (@sec-conexidade), compacidade (@sec-compacidade), separação
+(@sec-separacao) — até chegar ao grupo fundamental, onde a topologia encontra a álgebra
+do Volume VII. A topologia é a linguagem geométrica da matemática moderna; o Volume X
+a aplica, com o cálculo do Volume VIII, ao estudo fino de curvas e superfícies — a
+geometria diferencial.
+
+## Exercícios
+
+::: {#exr-gf-1}
+Explique por que $\mathbb{R}^2$ é simplesmente conexo, descrevendo a contração de um
+laço qualquer.
+:::
+
+::: {#exr-gf-2}
+Qual é o grupo fundamental do **cilindro** $S^1 \times \mathbb{R}$? Justifique.
+:::
+
+::: {#exr-gf-homeo}
+Use o grupo fundamental para mostrar que o disco e o círculo (a curva $S^1$) não são
+homeomorfos.
+:::
+
+::: {#exr-gf-conceitual}
+Por que faz sentido dizer que $\pi_1$ "conta os buracos" de um espaço? Ilustre com
+$S^1$ e o toro.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gf-1
+Dado um laço $\gamma$ baseado em $x_0$, defina $H(s, t) = (1 - t)\gamma(s) + t\,x_0$ —
+a **homotopia linear** que encolhe $\gamma$ ao ponto $x_0$. É contínua, fixa os
+extremos e está sempre em $\mathbb{R}^2$ (convexo). Logo todo laço é trivial e
+$\pi_1(\mathbb{R}^2) = \{e\}$ — simplesmente conexo.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gf-2
+O cilindro $S^1 \times \mathbb{R}$ tem $\pi_1 \cong \mathbb{Z}$. Pela fórmula do
+produto, $\pi_1(S^1 \times \mathbb{R}) \cong \pi_1(S^1) \times \pi_1(\mathbb{R}) \cong
+\mathbb{Z} \times \{e\} \cong \mathbb{Z}$. O fator $\mathbb{R}$ é simplesmente conexo e
+não contribui; resta a volta em torno do $S^1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gf-homeo
+O disco é simplesmente conexo ($\pi_1 = \{e\}$), enquanto $\pi_1(S^1) \cong \mathbb{Z}$
+é não trivial. Como $\pi_1$ é invariante topológico (@thm-invariancia-pi1) e os grupos
+não são isomorfos, o disco e o círculo **não** são homeomorfos.
+:::
