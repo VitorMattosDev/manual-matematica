@@ -1,0 +1,145 @@
+# Transformada de Laplace {#sec-laplace}
+
+## Motivação
+
+Resolver EDOs por características (@sec-edo-segunda-ordem) funciona bem para coeficientes
+constantes e termos suaves. Mas e quando a força externa é um **impulso** (uma martelada)
+ou liga e desliga abruptamente? A **transformada de Laplace** dá um método poderoso e
+sistemático: ela converte equações diferenciais em equações **algébricas**, resolve-as
+com álgebra elementar, e depois "destransforma" de volta.
+
+A ideia é trocar o domínio do **tempo** $t$ pelo domínio da **frequência** $s$, onde
+derivar vira multiplicar. Condições iniciais entram automaticamente, e descontinuidades
+e impulsos são tratados com naturalidade. É a ferramenta padrão da engenharia de
+controle e de circuitos. Este capítulo a introduz e a aplica a PVIs.
+
+## Definição e primeiras transformadas
+
+::: {#def-laplace}
+## Transformada de Laplace
+A **transformada de Laplace** de uma função $f(t)$ (definida para $t \geq 0$) é
+$$
+\mathcal{L}\{f\}(s) = F(s) = \int_0^\infty e^{-st}\,f(t)\,dt,
+$$
+para os $s$ em que a integral imprópria converge.
+:::
+
+::: {#exm-laplace-basicas}
+## Transformadas fundamentais
+Por cálculo direto da integral (@sec-tecnicas-integracao):
+$$
+\mathcal{L}\{1\} = \frac1s, \quad \mathcal{L}\{e^{at}\} = \frac{1}{s - a}, \quad
+\mathcal{L}\{t^n\} = \frac{n!}{s^{n+1}},
+$$
+$$
+\mathcal{L}\{\cos\omega t\} = \frac{s}{s^2 + \omega^2}, \quad \mathcal{L}\{\operatorname
+{sen}\omega t\} = \frac{\omega}{s^2 + \omega^2}.
+$$
+:::
+
+::: {.callout-note}
+## Uma "tabela" que se inverte
+Na prática, transforma-se consultando uma tabela como a acima (lida nos dois sentidos),
+não calculando integrais. A **transformada inversa** $\mathcal{L}^{-1}$ recupera $f(t)$ a
+partir de $F(s)$ — e a linearidade de $\mathcal{L}$ (é uma transformação linear,
+@sec-transformacoes-lineares) permite decompor $F(s)$ em parcelas reconhecíveis, em geral
+por **frações parciais** (@sec-tecnicas-integracao).
+:::
+
+## A propriedade-chave: derivada vira multiplicação
+
+::: {#thm-laplace-derivada}
+## Transformada da derivada
+Se $f$ é suave, então
+$$
+\mathcal{L}\{f'\}(s) = s\,F(s) - f(0), \qquad \mathcal{L}\{f''\}(s) = s^2 F(s) - s f(0)
+- f'(0).
+$$
+Derivar em $t$ corresponde a **multiplicar por $s$** em $F$ — e as condições iniciais
+entram embutidas.
+:::
+
+::: {.proof}
+*(Para $f'$.)* Integrando por partes (@sec-tecnicas-integracao): $\int_0^\infty e^{-st}
+f'(t)\,dt = [e^{-st}f(t)]_0^\infty + s\int_0^\infty e^{-st}f(t)\,dt = -f(0) + sF(s)$,
+supondo $e^{-st}f(t)\to 0$.
+:::
+
+::: {.callout-tip}
+## A estratégia em três passos
+Para resolver um PVI: **(1)** aplique $\mathcal{L}$ à EDO — ela vira uma equação
+algébrica em $F(s)$, já com as condições iniciais; **(2)** resolva para $F(s)$ por
+álgebra; **(3)** aplique $\mathcal{L}^{-1}$ (via frações parciais + tabela) para obter
+$y(t)$. O cálculo diferencial é substituído por manipulação algébrica.
+:::
+
+## Resolvendo um PVI
+
+::: {#exm-laplace-pvi}
+## Laplace em ação
+Resolver $y'' + y = 0$, $y(0) = 0$, $y'(0) = 1$. Transformando (com
+@thm-laplace-derivada): $s^2 Y - s\cdot 0 - 1 + Y = 0$, logo $(s^2 + 1)Y = 1$ e
+$$
+Y(s) = \frac{1}{s^2 + 1} \;\xrightarrow{\ \mathcal{L}^{-1}\ }\; y(t) = \operatorname{sen}
+t,
+$$
+pela tabela (@exm-laplace-basicas). Sem integrar nada — só álgebra e tabela.
+:::
+
+## Degraus, impulsos e convolução
+
+::: {#def-degrau-impulso}
+## Função degrau e delta
+A **função degrau** de Heaviside $u_c(t)$ (vale $0$ antes de $c$, $1$ depois) modela
+chaves que ligam; o **impulso** de Dirac $\delta(t - c)$ modela marteladas instantâneas.
+Suas transformadas são simples ($\mathcal{L}\{u_c\} = \frac{e^{-cs}}{s}$, $\mathcal{L}
+\{\delta_c\} = e^{-cs}$), o que torna Laplace ideal para sistemas com chaveamento.
+:::
+
+::: {.callout-note}
+## Convolução: a resposta a qualquer entrada
+A transformada converte a **convolução** $(f * g)(t) = \int_0^t f(\tau)g(t-\tau)\,d\tau$
+num simples produto: $\mathcal{L}\{f * g\} = F(s)\,G(s)$. Isso dá o **princípio de
+Duhamel**: conhecida a resposta do sistema a um impulso (a *função de transferência*), a
+resposta a **qualquer** entrada é a convolução da entrada com ela. É o fundamento do
+processamento de sinais e da teoria de sistemas lineares.
+:::
+
+## Exercícios
+
+::: {#exr-lp-tabela}
+Calcule $\mathcal{L}\{3 + 2t\}$ e $\mathcal{L}\{e^{-t} + \cos 2t\}$.
+:::
+
+::: {#exr-lp-pvi}
+Use Laplace para resolver $y' + y = 0$, $y(0) = 2$.
+:::
+
+::: {#exr-lp-inversa}
+Encontre $\mathcal{L}^{-1}\left\{\dfrac{1}{s^2 - 1}\right\}$ (dica: frações parciais).
+:::
+
+::: {#exr-lp-segunda}
+Resolva $y'' - y = 0$, $y(0) = 1$, $y'(0) = 0$, por Laplace.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lp-tabela
+Por linearidade: $\mathcal{L}\{3 + 2t\} = \frac3s + \frac{2}{s^2}$. E $\mathcal{L}\{e^{-t}
++ \cos 2t\} = \frac{1}{s+1} + \frac{s}{s^2 + 4}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lp-pvi
+$\mathcal{L}$: $sY - 2 + Y = 0 \Rightarrow Y = \frac{2}{s+1}$. Invertendo, $y(t) = 2
+e^{-t}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lp-inversa
+$\frac{1}{s^2 - 1} = \frac{1}{(s-1)(s+1)} = \frac12\left(\frac{1}{s-1} - \frac{1}{s+1}
+\right)$ (frações parciais). Invertendo: $\frac12(e^{t} - e^{-t}) = \operatorname{senh}
+t$.
+:::

@@ -153,6 +153,7 @@ book:
         - volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.qmd
         - volumes/v11-equacoes-diferenciais/02-edo-segunda-ordem.qmd
         - volumes/v11-equacoes-diferenciais/03-sistemas-edo.qmd
+        - volumes/v11-equacoes-diferenciais/04-laplace.qmd
   appendices:
     - notacao.qmd
 
