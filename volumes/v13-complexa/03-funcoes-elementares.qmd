@@ -1,0 +1,144 @@
+# Funções elementares complexas {#sec-funcoes-elementares}
+
+## Motivação
+
+Estender as funções familiares — exponencial, seno, cosseno, logaritmo — ao plano
+complexo não é só uma generalização técnica: revela conexões ocultas e surpresas
+profundas. No real, exponencial e funções trigonométricas parecem mundos à parte; em
+$\mathbb{C}$, a fórmula de Euler as **unifica** numa só. E o logaritmo, sempre bem
+comportado no real positivo, torna-se **multivalente**, abrindo a porta para um dos
+fenômenos mais ricos da análise complexa.
+
+Estas funções, todas holomorfas (@sec-holomorfas-cauchy-riemann), são os tijolos com que
+se constroem as integrais e séries dos capítulos seguintes. Este capítulo as define e
+explora seus comportamentos inesperados.
+
+## A exponencial complexa
+
+::: {#def-exponencial-complexa}
+## Exponencial complexa
+Define-se, estendendo a série de Taylor (@sec-taylor),
+$$
+e^z = e^{x + iy} = e^x(\cos y + i\operatorname{sen}y).
+$$
+Ela é **holomorfa** em todo o plano, com $(e^z)' = e^z$, e satisfaz $e^{z+w} = e^z e^w$.
+:::
+
+::: {.callout-tip}
+## A exponencial complexa é periódica!
+Surpresa: $e^z$ tem **período imaginário** $2\pi i$, pois $e^{z + 2\pi i} = e^z e^{2\pi
+i} = e^z\cdot 1$. A exponencial real, estritamente crescente e injetora, torna-se
+**periódica** ao ganhar a direção imaginária — ela enrola o plano em torno da origem.
+Essa periodicidade é a raiz da multivalência do logaritmo, adiante.
+:::
+
+## Seno e cosseno complexos
+
+::: {#def-trig-complexa}
+## Trigonométricas complexas
+Invertendo a fórmula de Euler (@sec-numeros-complexos):
+$$
+\cos z = \frac{e^{iz} + e^{-iz}}{2}, \qquad \operatorname{sen}z = \frac{e^{iz} -
+e^{-iz}}{2i}.
+$$
+Estendem as reais e permanecem holomorfas, mas perdem uma propriedade familiar.
+:::
+
+::: {.callout-warning}
+## Seno e cosseno complexos são ilimitados
+No real, $|\!\operatorname{sen}x| \leq 1$ e $|\cos x| \leq 1$ — sempre. Em $\mathbb{C}$,
+**não**: $\cos(iy) = \cosh y \to \infty$ quando $y \to \infty$. As funções
+trigonométricas complexas crescem sem limite na direção imaginária, fundindo-se com as
+hiperbólicas ($\cos(iz) = \cosh z$, $\operatorname{sen}(iz) = i\operatorname{senh}z$).
+Trigonométricas e hiperbólicas, separadas no real, são a **mesma família** em
+$\mathbb{C}$.
+:::
+
+## O logaritmo complexo
+
+::: {#def-logaritmo-complexo}
+## Logaritmo complexo
+Como $e^w = z$ tem **infinitas** soluções (pela periodicidade), o logaritmo é
+**multivalente**:
+$$
+\log z = \ln|z| + i(\arg z + 2\pi k), \qquad k \in \mathbb{Z}.
+$$
+O **valor principal** $\operatorname{Log}z$ toma $\arg z \in (-\pi, \pi]$.
+:::
+
+::: {.callout-note}
+## Uma função com infinitos valores
+A periodicidade de $e^z$ (período $2\pi i$) força o logaritmo a ter **infinitos**
+valores, diferindo por múltiplos de $2\pi i$. Por exemplo, $\log 1 = 0, \pm 2\pi i, \pm
+4\pi i, \dots$ Para torná-lo uma função (univalente), escolhe-se um **ramo** — mas isso
+cria uma descontinuidade (o **corte de ramo**) ao longo de uma semirreta. A maneira
+correta de pensar o logaritmo é como vivendo numa **superfície de Riemann** de infinitas
+folhas, espiralando em torno da origem — uma das imagens mais belas da matemática.
+:::
+
+::: {#exm-log-negativo}
+## O logaritmo de um número negativo
+No real, $\ln(-1)$ não existe. Em $\mathbb{C}$, $-1 = e^{i\pi}$, logo
+$$
+\operatorname{Log}(-1) = \ln 1 + i\pi = i\pi.
+$$
+O mistério dos "logaritmos de negativos" — que confundiu até Euler e d'Alembert —
+resolve-se: eles são imaginários puros.
+:::
+
+## Potências complexas
+
+::: {#def-potencia-complexa}
+## Potência complexa
+Define-se $z^w = e^{w\log z}$ — também **multivalente**, por causa do logaritmo. Casos
+curiosos surgem:
+:::
+
+::: {.callout-tip}
+## $i^i$ é real!
+Usando $i = e^{i\pi/2}$: $i^i = e^{i\log i} = e^{i\cdot i\pi/2} = e^{-\pi/2} \approx
+0{,}208$. Um número imaginário elevado a um imaginário dá um número **real**! (E, sendo
+$\log$ multivalente, $i^i$ tem infinitos valores reais $e^{-\pi/2 - 2\pi k}$.) É uma das
+identidades mais surpreendentes da matemática — e mostra como a análise complexa
+subverte a intuição real.
+:::
+
+## Exercícios
+
+::: {#exr-fe-euler}
+Calcule $e^{i\pi/2}$, $e^{1 + i\pi}$ e verifique $e^{2\pi i} = 1$.
+:::
+
+::: {#exr-fe-log}
+Calcule $\operatorname{Log}(i)$ e $\operatorname{Log}(-e)$.
+:::
+
+::: {#exr-fe-cos}
+Use $\cos z = \frac{e^{iz} + e^{-iz}}{2}$ para calcular $\cos(i)$ e compare com
+$\cosh 1$.
+:::
+
+::: {#exr-fe-potencia}
+Calcule todos os valores de $(-1)^{i}$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fe-euler
+$e^{i\pi/2} = \cos\frac\pi2 + i\operatorname{sen}\frac\pi2 = i$. $e^{1+i\pi} = e^1(\cos
+\pi + i\operatorname{sen}\pi) = e\cdot(-1) = -e$. E $e^{2\pi i} = \cos 2\pi + i
+\operatorname{sen}2\pi = 1$. ✓
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fe-cos
+$\cos(i) = \frac{e^{i\cdot i} + e^{-i\cdot i}}{2} = \frac{e^{-1} + e^{1}}{2} = \cosh 1
+\approx 1{,}543 > 1$. Confirma que o cosseno complexo **não** é limitado por $1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fe-potencia
+$(-1)^i = e^{i\log(-1)} = e^{i(i\pi + 2\pi i k)} = e^{-\pi - 2\pi k}$, $k \in \mathbb{Z}$
+— infinitos valores **reais** positivos, sendo $e^{-\pi} \approx 0{,}043$ o principal.
+:::
