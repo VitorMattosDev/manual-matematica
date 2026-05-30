@@ -63,6 +63,7 @@ book:
     - part: "Volume IV — Pré-cálculo (Funções)"
       chapters:
         - volumes/v4-precalculo/01-funcoes.qmd
+        - volumes/v4-precalculo/02-afim-quadratica.qmd
   appendices:
     - notacao.qmd
 

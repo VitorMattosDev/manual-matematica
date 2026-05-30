@@ -1,0 +1,152 @@
+# Funções afim e quadrática {#sec-afim-quadratica}
+
+## Motivação
+
+As duas primeiras famílias de funções a conhecer de perto são as mais simples e as
+mais usadas: a **afim**, cujo gráfico é uma reta, e a **quadrática**, cujo gráfico
+é uma parábola. A primeira modela tudo que varia a **taxa constante** (um táxi com
+bandeirada e preço por quilômetro); a segunda, tudo que envolve **área,
+trajetória ou otimização** (o alcance de um projétil, o lucro que se maximiza).
+
+Tendo já resolvido as *equações* afim e quadrática (Volume II), olhamos agora as
+*funções* correspondentes — seus gráficos, seu crescimento, seus extremos. O
+estudo do **vértice** da parábola dará nosso primeiro método de **otimização**,
+antecipando, por meios puramente algébricos, o que o Cálculo fará com derivadas no
+Volume V.
+
+## A função afim
+
+::: {#def-afim}
+## Função afim
+Uma **função afim** é uma função $f \colon \mathbb{R} \to \mathbb{R}$ da forma
+$$
+f(x) = a x + b,
+$$
+com $a, b \in \mathbb{R}$. O número $a$ é a **taxa de variação** (coeficiente
+angular) e $b$ o **valor inicial** $f(0)$. Quando $a \neq 0$, é **bijetora**; quando
+$a = 0$, é **constante**.
+:::
+
+O gráfico é a reta de equação $y = ax + b$ (@sec-analitica). A taxa $a$ governa o
+comportamento: a função **cresce** se $a > 0$, **decresce** se $a < 0$.
+
+::: {#prp-taxa-afim}
+## Taxa de variação constante
+Numa função afim, a variação $f(x_2) - f(x_1)$ é proporcional a $x_2 - x_1$, com
+constante $a$:
+$$
+\frac{f(x_2) - f(x_1)}{x_2 - x_1} = a.
+$$
+:::
+
+::: {.proof}
+Calculando, $f(x_2) - f(x_1) = (a x_2 + b) - (a x_1 + b) = a(x_2 - x_1)$. Dividindo
+por $x_2 - x_1 \neq 0$, obtém-se $a$. É a marca da função afim: para cada unidade a
+mais em $x$, a saída muda sempre o mesmo tanto $a$.
+:::
+
+::: {#exm-afim}
+## Um modelo afim
+Um táxi cobra R\$ $5{,}00$ de bandeirada e R\$ $2{,}50$ por km. O preço de uma
+corrida de $x$ km é $f(x) = 2{,}5x + 5$ — afim, com valor inicial $5$ e taxa
+$2{,}5$. A raiz de $f$ (onde cruza o eixo $x$) seria $x = -2$, sem sentido prático,
+mas $f(0) = 5$ é a bandeirada.
+:::
+
+## A função quadrática
+
+::: {#def-quadratica}
+## Função quadrática
+Uma **função quadrática** é uma função $f \colon \mathbb{R} \to \mathbb{R}$ da forma
+$$
+f(x) = a x^2 + b x + c, \qquad a \neq 0.
+$$
+Seu gráfico é uma **parábola** (@sec-conicas), com **concavidade para cima** se $a
+> 0$ e **para baixo** se $a < 0$.
+:::
+
+As raízes (onde $f(x) = 0$) saem de Bhaskara (@thm-bhaskara), e o número delas é
+dado pelo discriminante. O ponto que organiza o gráfico, porém, é o **vértice** — o
+extremo da parábola.
+
+::: {#thm-vertice}
+## Vértice da parábola
+A função $f(x) = ax^2 + bx + c$ tem vértice no ponto $(x_v, y_v)$ com
+$$
+x_v = -\frac{b}{2a}, \qquad y_v = -\frac{\Delta}{4a}, \qquad \Delta = b^2 - 4ac.
+$$
+Se $a > 0$, $y_v$ é o **valor mínimo** de $f$; se $a < 0$, é o **máximo**.
+:::
+
+::: {.proof}
+Completando o quadrado, como na dedução de Bhaskara (@thm-bhaskara),
+$$
+f(x) = a\left(x + \frac{b}{2a}\right)^2 - \frac{\Delta}{4a}.
+$$
+O termo $a\left(x + \frac{b}{2a}\right)^2$ é nulo quando $x = -\frac{b}{2a}$ e tem
+o sinal de $a$ caso contrário. Logo, se $a > 0$, $f$ atinge seu **menor** valor
+$-\frac{\Delta}{4a}$ exatamente em $x_v = -\frac{b}{2a}$; se $a < 0$, esse é o
+**maior** valor. As coordenadas do vértice são $(x_v, y_v)$.
+:::
+
+::: {.callout-tip}
+## Simetria e otimização sem Cálculo
+A parábola é **simétrica** em relação à reta vertical $x = x_v$: dois valores de
+$x$ equidistantes do vértice têm a mesma imagem. E o vértice resolve problemas de
+**otimização** — máximo lucro, área máxima, alcance — por pura álgebra. O Cálculo
+(Volume V) generalizará isso a qualquer função via derivada, mas para a quadrática
+o vértice já dá a resposta exata.
+:::
+
+::: {#exm-otimizacao}
+## Cercando a maior área
+Com $40\,\text{m}$ de cerca, qual o retângulo de maior área? Se um lado mede $x$, o
+outro mede $20 - x$ (semiperímetro), e a área é
+$$
+A(x) = x(20 - x) = -x^2 + 20x,
+$$
+quadrática com $a = -1 < 0$ (concavidade para baixo, há máximo). O vértice está em
+$x_v = -\dfrac{20}{2(-1)} = 10$, com $A(10) = 100$. A maior área é $100\,\text{m}^2$,
+o **quadrado** de lado $10$ — um resultado clássico, obtido sem derivadas.
+:::
+
+## Exercícios
+
+::: {#exr-afim}
+Uma função afim satisfaz $f(1) = 7$ e $f(4) = 16$. Determine $f(x)$ e diga se é
+crescente ou decrescente.
+:::
+
+::: {#exr-vertice}
+Determine o vértice, as raízes e o valor mínimo de $f(x) = x^2 - 6x + 5$, e esboce
+a concavidade.
+:::
+
+::: {#exr-otimizacao}
+Um projétil tem altura $h(t) = -5t^2 + 20t$ (em metros, $t$ em segundos). Determine
+a altura máxima atingida e o instante em que isso ocorre.
+:::
+
+::: {#exr-imagem-quadratica}
+Determine a imagem da função $f(x) = 2x^2 - 8x + 1$. (Sugestão: use o valor mínimo
+no vértice.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-afim
+A taxa é $a = \dfrac{f(4) - f(1)}{4 - 1} = \dfrac{16 - 7}{3} = 3$ (@prp-taxa-afim).
+De $f(1) = 7$: $3 \cdot 1 + b = 7$, logo $b = 4$. Então $f(x) = 3x + 4$. Como $a =
+3 > 0$, a função é **crescente**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-otimizacao
+A altura $h(t) = -5t^2 + 20t$ é quadrática com $a = -5 < 0$, logo tem máximo no
+vértice. O instante é
+$$
+t_v = -\frac{20}{2(-5)} = 2\,\text{s},
+$$
+e a altura máxima é $h(2) = -5 \cdot 4 + 20 \cdot 2 = -20 + 40 = 20\,\text{m}$.
+:::

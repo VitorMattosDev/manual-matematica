@@ -73,7 +73,7 @@ Pré-requisitos: nenhum.*
 *Objetivo: a noção de função e as famílias fundamentais. Pré-req.: Vols. I–III.*
 
 - [x] `volumes/v4-precalculo/01-funcoes.qmd` — O conceito de função; domínio, imagem, composição, inversa.
-- [ ] `volumes/v4-precalculo/02-afim-quadratica.qmd` — Funções afim e quadrática.
+- [x] `volumes/v4-precalculo/02-afim-quadratica.qmd` — Funções afim e quadrática.
 - [ ] `volumes/v4-precalculo/03-modular.qmd` — Função modular.
 - [ ] `volumes/v4-precalculo/04-exponencial.qmd` — Função exponencial.
 - [ ] `volumes/v4-precalculo/05-logaritmo.qmd` — Logaritmos e função logarítmica.
