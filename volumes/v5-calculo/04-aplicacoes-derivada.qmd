@@ -1,0 +1,159 @@
+# Aplicações da derivada {#sec-aplicacoes-derivada}
+
+## Motivação
+
+A derivada mede a taxa instantânea de variação (@sec-derivada); seu sinal e seus
+zeros contam, portanto, a história do **comportamento** de uma função — onde cresce,
+onde decresce, onde atinge máximos e mínimos. É com essas informações que se
+**otimiza** (a caixa de maior volume, o custo mínimo), se **esboça** o gráfico com
+precisão e se resolvem indeterminações que o limite sozinho não vencia.
+
+Este capítulo colhe os frutos das regras de derivação. O elo entre o sinal da
+derivada e o crescimento da função, o critério para extremos e a **regra de
+L'Hôpital** para indeterminações são as aplicações que fazem do Cálculo a
+ferramenta universal das ciências quantitativas. Tudo se apoia num resultado central
+— o teorema do valor médio — que conecta a derivada ao comportamento global.
+
+## Crescimento e o sinal da derivada
+
+::: {#thm-crescimento}
+## Sinal da derivada e monotonia
+Seja $f$ derivável num intervalo. Se $f'(x) > 0$ em todo o intervalo, $f$ é
+**crescente** ali; se $f'(x) < 0$, é **decrescente**; se $f'(x) = 0$ em todo o
+intervalo, $f$ é constante.
+:::
+
+::: {.callout-note}
+## Por trás está o teorema do valor médio
+A ligação entre o sinal *pontual* da derivada e o comportamento *global* da função
+não é óbvia — ela repousa no **Teorema do Valor Médio**: entre dois pontos do
+gráfico de uma função derivável, há sempre um ponto onde a tangente é paralela à
+secante, isto é, $f'(c) = \dfrac{f(b) - f(a)}{b - a}$. Se $f'$ é sempre positiva,
+toda secante tem inclinação positiva, logo $f$ cresce. Esse teorema, que o Volume
+VIII demonstra a partir da completude, é a ponte entre o local e o global.
+:::
+
+## Máximos e mínimos
+
+Nos picos e vales de um gráfico suave, a tangente é horizontal — a derivada se
+anula.
+
+::: {#def-ponto-critico}
+## Ponto crítico
+Um **ponto crítico** de $f$ é um ponto onde $f'(x) = 0$ (ou onde $f'$ não existe).
+Os **extremos** (máximos e mínimos locais) de uma função derivável ocorrem em pontos
+críticos.
+:::
+
+::: {#thm-teste-primeira-derivada}
+## Teste da primeira derivada
+Seja $c$ um ponto crítico de $f$. Se $f'$ muda de **positiva para negativa** em $c$,
+então $c$ é **máximo** local; se muda de **negativa para positiva**, é **mínimo**
+local; se não muda de sinal, $c$ não é extremo.
+:::
+
+::: {.callout-warning}
+## Derivada nula não garante extremo
+$f'(c) = 0$ é **necessário**, mas não suficiente. Para $f(x) = x^3$, tem-se $f'(0) =
+0$, mas $0$ não é extremo: a função cresce antes e depois (a derivada $3x^2$ não
+muda de sinal). É um **ponto de inflexão** com tangente horizontal. Sempre confira a
+mudança de sinal, não apenas o anulamento.
+:::
+
+::: {#exm-otimizacao}
+## A caixa de maior volume
+De uma folha quadrada de lado $12$, cortam-se quadrados de lado $x$ nos cantos e
+dobra-se uma caixa. O volume é $V(x) = x(12 - 2x)^2$, com $0 < x < 6$. Derivando
+(produto e cadeia, @sec-regras-derivacao) e simplificando,
+$$
+V'(x) = (12 - 2x)^2 + x \cdot 2(12 - 2x)(-2) = (12 - 2x)(12 - 6x).
+$$
+Os zeros em $(0, 6)$ dão $x = 2$ (o outro, $x = 6$, está fora). Como $V'$ passa de
+positiva a negativa em $x = 2$, é **máximo**: a caixa de maior volume tem $x = 2$,
+com $V(2) = 2 \cdot 8^2 = 128$.
+:::
+
+## Concavidade e esboço de gráficos
+
+A **segunda derivada** $f'' = (f')'$ informa sobre a curvatura.
+
+::: {#prp-concavidade}
+## Concavidade
+Se $f''(x) > 0$ num intervalo, o gráfico tem **concavidade para cima** (curva como
+$\smile$); se $f''(x) < 0$, **para baixo** ($\frown$). Um ponto onde a concavidade
+muda é um **ponto de inflexão**.
+:::
+
+::: {.callout-tip}
+## O roteiro do esboço
+Reunindo as ferramentas, esboça-se qualquer gráfico sem marcar pontos a esmo:
+(1) domínio e interceptos; (2) sinal de $f'$ → intervalos de crescimento e extremos;
+(3) sinal de $f''$ → concavidade e inflexões; (4) limites no infinito → assíntotas.
+O Cálculo substitui a tabela de valores por um **raciocínio** sobre a forma da
+curva — precisamente o que distingue entender de tabular.
+:::
+
+## A regra de L'Hôpital
+
+A derivada também resolve indeterminações de limite (@sec-limites) que resistiam à
+álgebra.
+
+::: {#thm-lhopital}
+## Regra de L'Hôpital
+Se $\lim_{x\to a} f(x) = \lim_{x\to a} g(x) = 0$ (ou ambos $\pm\infty$) e o limite
+$\lim_{x\to a}\dfrac{f'(x)}{g'(x)}$ existe, então
+$$
+\lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}.
+$$
+:::
+
+::: {#exm-lhopital}
+## Resolvendo uma indeterminação
+O limite $\displaystyle\lim_{x\to 0}\dfrac{\operatorname{sen}x}{x}$ é uma
+indeterminação $\frac00$. Por L'Hôpital, derivando numerador e denominador,
+$$
+\lim_{x\to 0}\frac{\operatorname{sen}x}{x} = \lim_{x\to 0}\frac{\cos x}{1} = \cos 0
+= 1.
+$$
+Esse limite — fundamental, base da derivada do seno — sai num passo. (Cuidado:
+L'Hôpital só se aplica a indeterminações; usá-lo fora delas leva a erro.)
+:::
+
+## Exercícios
+
+::: {#exr-monotonia}
+Determine os intervalos de crescimento e decrescimento de $f(x) = x^3 - 3x$, e
+classifique seus pontos críticos.
+:::
+
+::: {#exr-otimizacao}
+Entre todos os retângulos de perímetro $20$, determine, via derivada, o de maior
+área. (Compare com o resultado obtido por vértice em @sec-afim-quadratica.)
+:::
+
+::: {#exr-concavidade}
+Determine a concavidade e os pontos de inflexão de $f(x) = x^3 - 6x^2 + 5$.
+:::
+
+::: {#exr-lhopital}
+Calcule $\displaystyle \lim_{x \to 0} \frac{e^x - 1}{x}$ pela regra de L'Hôpital.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-monotonia
+A derivada é $f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)$, com zeros em $x = \pm 1$. O sinal
+de $f'$: positiva para $x < -1$, negativa em $-1 < x < 1$, positiva para $x > 1$.
+Logo $f$ **cresce** em $(-\infty, -1)$, **decresce** em $(-1, 1)$ e **cresce** em
+$(1, \infty)$. Por @thm-teste-primeira-derivada, $x = -1$ é **máximo** local e $x =
+1$ é **mínimo** local.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-otimizacao
+Se um lado mede $x$, o outro mede $10 - x$ (semiperímetro), e a área é $A(x) = x(10
+- x) = 10x - x^2$. Derivando: $A'(x) = 10 - 2x$, que se anula em $x = 5$. Como
+$A''(x) = -2 < 0$, é máximo. O retângulo é o **quadrado** de lado $5$, área $25$ —
+mesmo resultado do vértice da parábola (@sec-afim-quadratica), agora via derivada.
+:::

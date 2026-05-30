@@ -74,6 +74,7 @@ book:
         - volumes/v5-calculo/01-limites.qmd
         - volumes/v5-calculo/02-derivada.qmd
         - volumes/v5-calculo/03-regras-derivacao.qmd
+        - volumes/v5-calculo/04-aplicacoes-derivada.qmd
   appendices:
     - notacao.qmd
 
