@@ -1,0 +1,164 @@
+# Produtos notáveis e fatoração {#sec-fatoracao}
+
+## Motivação
+
+**Fatorar** é escrever uma soma como produto: transformar $x^2 - 5x + 6$ em $(x -
+2)(x - 3)$. À primeira vista é só reescrever; na prática, é uma das manobras mais
+rentáveis da álgebra. Um produto revela de imediato suas raízes (ele se anula
+quando um fator se anula), simplifica frações, e desfaz expressões complicadas em
+peças manejáveis.
+
+Este capítulo organiza as técnicas de fatoração em um pequeno repertório: fator
+comum, agrupamento, os **produtos notáveis** lidos ao contrário, e a fatoração do
+**trinômio do segundo grau** via suas raízes. Cada técnica é uma aplicação da
+distributividade (@sec-expressoes) ou um reflexo das relações de Girard
+(@sec-equacoes-2grau). O Teorema Fundamental da Aritmética (@sec-primos), que
+fatorou inteiros em primos, tem aqui seu análogo para expressões.
+
+## Fator comum e agrupamento
+
+A fatoração mais básica põe em evidência um fator presente em todos os termos —
+distributividade ao contrário.
+
+::: {#exm-fator-comum}
+## Fator comum
+$$
+6x^3 - 9x^2 + 3x = 3x\,(2x^2 - 3x + 1).
+$$
+Extrai-se o maior fator comum a todos os termos, aqui $3x$. Conferir é só
+redistribuir.
+:::
+
+Quando não há fator comum a *todos* os termos, às vezes há a **grupos** deles.
+
+::: {#exm-agrupamento}
+## Agrupamento
+$$
+x^3 + 2x^2 + 3x + 6 = x^2(x + 2) + 3(x + 2) = (x + 2)(x^2 + 3).
+$$
+Agrupam-se os dois primeiros e os dois últimos termos; cada grupo revela o fator
+comum $(x + 2)$, que então se põe em evidência. O agrupamento funciona quando os
+termos se organizam em pares com fator comum repetido.
+:::
+
+## Produtos notáveis ao contrário
+
+Os produtos notáveis do @sec-expressoes, lidos da direita para a esquerda, são
+moldes de fatoração. Reconhecer o padrão é todo o truque.
+
+::: {#prp-fatoracoes-notaveis}
+## Fatorações notáveis
+Para todos $a, b \in \mathbb{R}$:
+$$
+a^2 - b^2 = (a + b)(a - b), \qquad a^2 \pm 2ab + b^2 = (a \pm b)^2.
+$$
+:::
+
+::: {.callout-tip}
+## Reconhecer um quadrado perfeito
+Uma expressão $a^2 + 2ab + b^2$ delata-se por ter dois quadrados ($a^2$, $b^2$) e,
+no meio, o **dobro do produto** das suas raízes. Assim $x^2 + 6x + 9 = x^2 + 2
+\cdot 3 \cdot x + 3^2 = (x + 3)^2$. Se o termo do meio não for $2ab$, não é
+quadrado perfeito — e talvez seja o caso geral do trinômio, tratado a seguir.
+:::
+
+::: {#exm-diferenca-quadrados}
+## Diferença de quadrados em ação
+$$
+4x^2 - 25 = (2x)^2 - 5^2 = (2x + 5)(2x - 5).
+$$
+A diferença de dois quadrados sempre fatora; a *soma* $a^2 + b^2$, ao contrário,
+não fatora em $\mathbb{R}$ (só nos complexos).
+:::
+
+## Fatoração do trinômio do segundo grau
+
+O caso geral $ax^2 + bx + c$ fatora-se a partir de suas raízes — é o teorema de
+D'Alembert (@cor-dalembert) aplicado ao grau $2$.
+
+::: {#thm-fatoracao-trinomio}
+## Fatoração pelas raízes
+Se $x_1$ e $x_2$ são as raízes de $a x^2 + b x + c = 0$, então
+$$
+a x^2 + b x + c = a\,(x - x_1)(x - x_2).
+$$
+:::
+
+::: {.proof}
+Expandindo o lado direito e usando as relações de Girard (@thm-girard), $x_1 + x_2
+= -b/a$ e $x_1 x_2 = c/a$:
+$$
+a(x - x_1)(x - x_2) = a\bigl[x^2 - (x_1 + x_2)x + x_1 x_2\bigr] = a\left[x^2 +
+\frac{b}{a} x + \frac{c}{a}\right] = a x^2 + b x + c.
+$$
+:::
+
+::: {#exm-fatorar-trinomio}
+## Fatorando um trinômio
+Fatore $x^2 - 5x + 6$. As raízes têm soma $5$ e produto $6$: são $2$ e $3$. Logo
+(com $a = 1$)
+$$
+x^2 - 5x + 6 = (x - 2)(x - 3).
+$$
+Quando $\Delta < 0$ (sem raízes reais), o trinômio é **irredutível** sobre
+$\mathbb{R}$: não se fatora em fatores reais de grau $1$.
+:::
+
+::: {.callout-note}
+## Por que fatorar resolve equações
+Fatorar e igualar a zero converte uma equação num jogo de fatores: $(x - 2)(x - 3)
+= 0$ vale se, e só se, $x - 2 = 0$ ou $x - 3 = 0$, pois em $\mathbb{R}$ um produto
+é nulo apenas quando um fator é nulo. Daí saem as raízes $2$ e $3$ — o mesmo
+princípio que, no Volume VII, define os **domínios de integridade**.
+:::
+
+## Exercícios
+
+::: {#exr-fator-comum}
+Fatore pondo o fator comum em evidência: $10a^3 b - 15a^2 b^2 + 5a^2 b$.
+:::
+
+::: {#exr-agrupamento}
+Fatore por agrupamento: $2x^3 - x^2 + 6x - 3$.
+:::
+
+::: {#exr-notaveis}
+Fatore: (a) $9x^2 - 16$; (b) $x^2 - 10x + 25$; (c) $x^4 - 1$. (Sugestão em (c):
+aplique a diferença de quadrados duas vezes.)
+:::
+
+::: {#exr-trinomio}
+Fatore $2x^2 + x - 6$ usando suas raízes.
+:::
+
+::: {#exr-simplificar-fracao}
+Simplifique a fração algébrica $\dfrac{x^2 - 9}{x^2 - x - 6}$, indicando os valores
+de $x$ que devem ser excluídos.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-notaveis
+(a) $9x^2 - 16 = (3x)^2 - 4^2 = (3x + 4)(3x - 4)$.
+(b) $x^2 - 10x + 25 = x^2 - 2 \cdot 5 \cdot x + 5^2 = (x - 5)^2$.
+(c) Aplicando a diferença de quadrados,
+$$
+x^4 - 1 = (x^2)^2 - 1^2 = (x^2 + 1)(x^2 - 1) = (x^2 + 1)(x + 1)(x - 1).
+$$
+O fator $x^2 + 1$ não se decompõe mais em $\mathbb{R}$ (não tem raiz real).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-simplificar-fracao
+Fatore numerador e denominador. O numerador é diferença de quadrados: $x^2 - 9 =
+(x + 3)(x - 3)$. O denominador é um trinômio de raízes $3$ e $-2$: $x^2 - x - 6 =
+(x - 3)(x + 2)$. Então
+$$
+\frac{x^2 - 9}{x^2 - x - 6} = \frac{(x + 3)(x - 3)}{(x - 3)(x + 2)} = \frac{x +
+3}{x + 2},
+$$
+cancelando o fator comum $(x - 3)$. É preciso excluir os valores que anulam o
+denominador original, $x = 3$ e $x = -2$ (o cancelamento de $x - 3$ só é lícito
+para $x \neq 3$).
+:::
