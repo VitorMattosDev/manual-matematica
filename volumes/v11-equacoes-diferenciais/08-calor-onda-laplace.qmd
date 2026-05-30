@@ -1,0 +1,149 @@
+# As equações do calor, da onda e de Laplace {#sec-calor-onda-laplace}
+
+## Motivação
+
+Reunimos agora todas as ferramentas — separação de variáveis (@sec-edp-introducao) e
+séries de Fourier (@sec-series-fourier) — para resolver as três EDPs que governam boa
+parte da física clássica. Cada uma representa um arquétipo de comportamento: **difusão**
+(o calor que se espalha e suaviza), **propagação** (a onda que viaja preservando a
+forma) e **equilíbrio** (o estado estacionário, sem tempo).
+
+Resolver essas equações foi o que motivou Fourier a criar suas séries, e a estratégia é
+sempre a mesma: separar variáveis para achar os modos, e superpô-los com pesos de Fourier
+ditados pelas condições iniciais. Este capítulo fecha o Volume XI mostrando a técnica
+completa em ação nas três equações, e o que cada uma ensina sobre o mundo.
+
+## A equação do calor
+
+::: {#thm-calor}
+## Solução da equação do calor
+Para $u_t = \alpha u_{xx}$ numa barra $[0, L]$ com extremos a zero ($u(0,t) = u(L,t) =
+0$) e perfil inicial $u(x, 0) = f(x)$, a solução é
+$$
+u(x, t) = \sum_{n=1}^{\infty} b_n\,e^{-\alpha(n\pi/L)^2 t}\,\operatorname{sen}\frac{n\pi
+x}{L},
+$$
+onde os $b_n$ são os coeficientes de Fourier em senos de $f$.
+:::
+
+::: {.callout-note}
+## Difusão suaviza e esquece
+Cada modo decai como $e^{-\alpha(n\pi/L)^2 t}$: os de **alta frequência** (n grande)
+desaparecem **mais rápido**. Por isso o calor **suaviza** qualquer perfil inicial — as
+asperezas (altas frequências) somem primeiro, restando o modo fundamental, e tudo tende
+ao equilíbrio. A difusão "esquece" os detalhes iniciais; é **irreversível**, refletindo a
+seta do tempo da termodinâmica.
+:::
+
+## A equação da onda
+
+::: {#thm-onda}
+## Solução da equação da onda
+Para $u_{tt} = c^2 u_{xx}$ numa corda $[0, L]$ presa nas pontas, com forma inicial
+$f(x)$ e velocidade inicial nula, a solução é
+$$
+u(x, t) = \sum_{n=1}^{\infty} b_n\cos\frac{n\pi c t}{L}\,\operatorname{sen}\frac{n\pi x}
+{L}.
+$$
+Cada termo é um **modo estacionário** vibrando na sua frequência.
+:::
+
+::: {.callout-tip}
+## Por que instrumentos têm timbre
+Os modos $\operatorname{sen}(n\pi x/L)$ vibram em frequências $\frac{n\pi c}{L}$ — o
+**fundamental** ($n=1$) e seus **harmônicos** ($n=2,3,\dots$), múltiplos inteiros. A nota
+que ouvimos é o fundamental; a mistura de harmônicos (os pesos $b_n$, ditados por *como*
+a corda foi dedilhada) é o **timbre** que distingue um violino de uma flauta tocando a
+mesma nota. A solução de d'Alembert mostra ainda que a onda viaja: $u = \frac12[f(x-ct) +
+f(x+ct)]$, duas cópias do perfil correndo em sentidos opostos a velocidade $c$.
+:::
+
+::: {#exm-dalembert}
+## Calor vs. onda: difusão vs. propagação
+Compare os decaimentos: na onda os modos têm fator $\cos(\frac{n\pi ct}{L})$ — oscilam
+**sem perder amplitude** (energia conservada, movimento reversível); no calor, fator
+$e^{-\alpha(n\pi/L)^2 t}$ — **decaem** (energia dissipada, irreversível). A diferença está
+na ordem da derivada temporal: segunda (onda) gera oscilação, primeira (calor) gera
+decaimento — como nas EDOs (@sec-edo-segunda-ordem).
+:::
+
+## A equação de Laplace
+
+::: {#thm-laplace-edp}
+## Estados estacionários
+A equação de Laplace $u_{xx} + u_{yy} = 0$ descreve o **estado de equilíbrio** (sem
+dependência do tempo): a temperatura final de uma placa, o potencial eletrostático, o
+escoamento incompressível. Suas soluções são as funções **harmônicas**.
+:::
+
+::: {#prp-propriedade-media}
+## Propriedade do valor médio
+Uma função harmônica vale, em cada ponto, a **média** de seus valores em qualquer círculo
+centrado nele. Consequência: funções harmônicas **não têm máximos nem mínimos no
+interior** (princípio do máximo) — os extremos ficam sempre na fronteira.
+:::
+
+::: {.callout-note}
+## Sem picos, só suavidade
+A propriedade da média captura a ideia de equilíbrio: se um ponto fosse mais quente que a
+média da vizinhança, o calor fluiria para fora e ele esfriaria — não seria equilíbrio.
+Por isso o estado estacionário é o **mais suave possível** compatível com a fronteira.
+As funções harmônicas reaparecem como as partes reais das funções holomorfas na análise
+complexa (@sec-holomorfas-cauchy-riemann), unindo este volume ao XIII.
+:::
+
+## A unidade e o encerramento do Volume XI
+
+::: {.callout-tip}
+## Três comportamentos, um método
+Calor (difusão), onda (propagação) e Laplace (equilíbrio) esgotam os tipos de EDP linear
+de segunda ordem — **parabólico**, **hiperbólico** e **elíptico**. Apesar de descreverem
+fenômenos tão distintos, todas cederam ao **mesmo** método: separar variáveis em modos
+(@sec-edp-introducao) e superpô-los com Fourier (@sec-series-fourier). Esse é o legado do
+Volume XI — e a porta para a física-matemática, onde essas equações, em três dimensões e
+com geometrias variadas, descrevem desde o átomo até o cosmos.
+:::
+
+## Exercícios
+
+::: {#exr-col-calor}
+Na solução do calor, explique por que após muito tempo $u(x,t)$ se aproxima de apenas o
+primeiro modo.
+:::
+
+::: {#exr-col-harmonicos}
+Uma corda de comprimento $L$ e velocidade $c$ vibra. Qual a razão entre a frequência do
+segundo harmônico e a do fundamental?
+:::
+
+::: {#exr-col-harmonica}
+Verifique que $u(x, y) = x^2 - y^2$ é harmônica ($u_{xx} + u_{yy} = 0$).
+:::
+
+::: {#exr-col-tipo}
+Classifique cada equação como difusiva, propagativa ou de equilíbrio: (a) $u_t = u_{xx}$;
+(b) $u_{tt} = u_{xx}$; (c) $u_{xx} + u_{yy} = 0$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-col-calor
+Cada modo decai como $e^{-\alpha(n\pi/L)^2 t}$. Como o expoente cresce com $n^2$, os
+modos $n \geq 2$ desaparecem muito mais rápido que o $n=1$. Para $t$ grande, só o termo
+fundamental sobrevive apreciavelmente, e $u \approx b_1 e^{-\alpha(\pi/L)^2 t}
+\operatorname{sen}\frac{\pi x}{L}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-col-harmonicos
+As frequências são $\frac{n\pi c}{L}$. A razão segundo/fundamental é $\frac{2}{1} = 2$ —
+o segundo harmônico tem o **dobro** da frequência (uma oitava acima), e em geral o
+$n$-ésimo é $n$ vezes o fundamental.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-col-harmonica
+$u_{xx} = 2$ e $u_{yy} = -2$, logo $u_{xx} + u_{yy} = 2 - 2 = 0$. ✓ É harmônica — de
+fato, a parte real de $z^2 = (x+iy)^2$ (@sec-holomorfas-cauchy-riemann).
+:::

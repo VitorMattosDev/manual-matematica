@@ -205,7 +205,7 @@ não pelo número.
 - [x] `volumes/v11-equacoes-diferenciais/05-solucoes-serie.qmd` — Soluções em série de potências e funções especiais.
 - [x] `volumes/v11-equacoes-diferenciais/06-edp-introducao.qmd` — Introdução às EDPs; separação de variáveis.
 - [x] `volumes/v11-equacoes-diferenciais/07-series-fourier.qmd` — Séries de Fourier.
-- [ ] `volumes/v11-equacoes-diferenciais/08-calor-onda-laplace.qmd` — As equações do calor, da onda e de Laplace.
+- [x] `volumes/v11-equacoes-diferenciais/08-calor-onda-laplace.qmd` — As equações do calor, da onda e de Laplace.
 
 ## Volume XII — Probabilidade e Estatística
 *Objetivo: incerteza, distribuições e inferência. Pré-req.: Vols. II (combinatória), V.*
