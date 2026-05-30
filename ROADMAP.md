@@ -212,7 +212,7 @@ não pelo número.
 
 - [x] `volumes/v12-probabilidade/01-espacos-probabilidade.qmd` — Espaços de probabilidade e axiomas de Kolmogorov.
 - [x] `volumes/v12-probabilidade/02-condicional-bayes.qmd` — Probabilidade condicional, independência e teorema de Bayes.
-- [ ] `volumes/v12-probabilidade/03-vars-discretas.qmd` — Variáveis aleatórias discretas.
+- [x] `volumes/v12-probabilidade/03-vars-discretas.qmd` — Variáveis aleatórias discretas.
 - [ ] `volumes/v12-probabilidade/04-vars-continuas.qmd` — Variáveis aleatórias contínuas.
 - [ ] `volumes/v12-probabilidade/05-distribuicoes.qmd` — Distribuições notáveis (binomial, Poisson, normal, etc.).
 - [ ] `volumes/v12-probabilidade/06-esperanca-variancia.qmd` — Esperança, variância e momentos.

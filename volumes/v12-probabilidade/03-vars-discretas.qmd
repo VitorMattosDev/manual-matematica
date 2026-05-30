@@ -1,0 +1,135 @@
+# Variáveis aleatórias discretas {#sec-vars-discretas}
+
+## Motivação
+
+Eventos são conjuntos; mas a ciência prefere **números**. Quantas caras em dez
+lançamentos? Quantos clientes chegam por hora? Quantas falhas até o sucesso? Para
+trabalhar quantitativamente com o acaso, atribuímos a cada resultado um **número** — uma
+**variável aleatória** —, e estudamos a probabilidade de cada valor.
+
+Esse é o objeto central da probabilidade aplicada. Para variáveis que assumem valores
+**discretos** (contáveis), toda a informação está na **função de probabilidade**, que
+diz a chance de cada valor. Deste capítulo em diante o foco sai dos eventos isolados e
+vai para essas variáveis, suas distribuições e seus resumos numéricos — o caminho até a
+esperança (@sec-esperanca-variancia) e as distribuições notáveis
+(@sec-distribuicoes).
+
+## Variável aleatória
+
+::: {#def-variavel-aleatoria}
+## Variável aleatória discreta
+Uma **variável aleatória** é uma função $X: \Omega \to \mathbb{R}$ que atribui um número
+a cada resultado. Ela é **discreta** se assume valores num conjunto **contável**
+$\{x_1, x_2, \dots\}$ (finito ou enumerável).
+:::
+
+::: {#exm-vars}
+## Exemplos
+- $X$ = número de caras em 3 lançamentos: valores $\{0, 1, 2, 3\}$.
+- $X$ = soma de dois dados: valores $\{2, 3, \dots, 12\}$.
+- $X$ = número de tentativas até o primeiro sucesso: valores $\{1, 2, 3, \dots\}$.
+:::
+
+## Função de probabilidade
+
+::: {#def-funcao-probabilidade}
+## Função de probabilidade (fmp)
+A **função massa de probabilidade** de $X$ é $p(x) = P(X = x)$. Ela satisfaz
+$$
+p(x) \geq 0 \qquad\text{e}\qquad \sum_x p(x) = 1,
+$$
+refletindo os axiomas de Kolmogorov (@def-axiomas-kolmogorov): probabilidades não
+negativas que somam $1$ sobre todos os valores possíveis.
+:::
+
+::: {#exm-fmp-dados}
+## A fmp da soma de dois dados
+$P(X = 2) = \frac1{36}$, $P(X = 7) = \frac6{36}$, $P(X = 12) = \frac1{36}$, etc. — a
+"pirâmide" com pico em $7$ (@exm-dados). A soma de todas as $11$ probabilidades dá $1$.
+:::
+
+## Função de distribuição acumulada
+
+::: {#def-fda}
+## Função de distribuição acumulada
+A **função de distribuição acumulada** (fda) é $F(x) = P(X \leq x) = \sum_{x_i \leq x}
+p(x_i)$. É não decrescente, vai de $0$ a $1$, e — para variáveis discretas — é uma
+**escada** que salta $p(x_i)$ em cada valor.
+:::
+
+::: {.callout-tip}
+## Duas descrições equivalentes
+A fmp $p$ e a fda $F$ contêm a mesma informação: $F$ acumula $p$, e $p$ é o "salto" de
+$F$. A fda tem a vantagem de fazer sentido também no caso **contínuo**
+(@sec-vars-continuas), onde a "probabilidade de um valor exato" é zero e só intervalos
+têm probabilidade. Por isso a fda é a descrição universal de uma variável aleatória.
+:::
+
+## Esperança de uma variável discreta
+
+::: {#def-esperanca-discreta}
+## Valor esperado
+O **valor esperado** (média) de $X$ é a média de seus valores **ponderada pelas
+probabilidades**:
+$$
+E[X] = \sum_x x\,p(x).
+$$
+É o "centro de massa" da distribuição — o valor médio a longo prazo em muitas
+repetições.
+:::
+
+::: {#exm-esperanca-dado}
+## Esperança de um dado
+Para um dado justo, $E[X] = \frac16(1+2+3+4+5+6) = \frac{21}{6} = 3{,}5$. Note: o valor
+esperado **não** precisa ser um valor possível — nunca se tira $3{,}5$ num dado, mas é a
+média de muitos lançamentos.
+:::
+
+::: {.callout-note}
+## Esperança é uma média ponderada — e é linear
+A esperança generaliza a média aritmética (@sec-combinatoria): se todos os valores são
+equiprováveis, $E[X]$ é a média usual. Sua propriedade mais útil é a **linearidade**:
+$E[aX + bY] = aE[X] + bE[Y]$, **sempre** — mesmo que $X$ e $Y$ sejam dependentes. Isso a
+torna a ferramenta de cálculo mais poderosa da probabilidade, explorada a fundo em
+@sec-esperanca-variancia.
+:::
+
+## Exercícios
+
+::: {#exr-vd-fmp}
+Construa a fmp de $X$ = número de caras em 2 lançamentos de moeda justa.
+:::
+
+::: {#exr-vd-esperanca}
+Calcule $E[X]$ para o $X$ do @exr-vd-fmp.
+:::
+
+::: {#exr-vd-soma}
+Para a soma de dois dados, verifique que $E[X] = 7$ (use a simetria, sem somar tudo).
+:::
+
+::: {#exr-vd-jogo}
+Um jogo paga R\$ 10 se sair $6$ num dado e nada caso contrário, mas custa R\$ 2 para
+jogar. Qual o lucro esperado por jogada?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vd-fmp
+Resultados: CC, CK, KC, KK (equiprováveis, $\frac14$ cada). $X$ = nº de caras: $P(X=0) =
+\frac14$, $P(X=1) = \frac24 = \frac12$, $P(X=2) = \frac14$. Soma $= 1$. ✓
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vd-esperanca
+$E[X] = 0\cdot\frac14 + 1\cdot\frac12 + 2\cdot\frac14 = \frac12 + \frac12 = 1$. (Faz
+sentido: metade de 2 lançamentos.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vd-jogo
+$E[\text{prêmio}] = 10\cdot\frac16 + 0\cdot\frac56 = \frac{10}{6} \approx 1{,}67$.
+Descontando o custo de R\$ 2, o **lucro esperado** é $1{,}67 - 2 = -0{,}33$ — em média
+perde-se 33 centavos por jogada (jogo desfavorável).
+:::
