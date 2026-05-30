@@ -1,0 +1,192 @@
+# Espaços com produto interno e ortogonalidade {#sec-produto-interno}
+
+## Motivação
+
+Até aqui, a álgebra linear tratou de soma e escalar — mas **não** de geometria. Não
+falamos em comprimento de um vetor, ângulo entre dois, ou perpendicularidade. No
+plano, sabemos calcular essas coisas com o teorema de Pitágoras (@sec-pitagoras) e o
+produto escalar do ensino médio. Como levar essa geometria a um espaço vetorial
+abstrato — de matrizes, de funções?
+
+A resposta é acrescentar uma única estrutura: o **produto interno**, uma operação
+que devolve um número a partir de dois vetores e que codifica, de uma só vez,
+comprimento e ângulo. Com ele, conceitos geométricos como ortogonalidade,
+projeção e distância passam a fazer sentido em qualquer espaço vetorial. Essa é a
+ponte entre a álgebra e a geometria, e a base de aproximações por mínimos quadrados,
+séries de Fourier e do teorema espectral (@sec-teorema-espectral).
+
+## Produto interno
+
+::: {#def-produto-interno}
+## Produto interno
+Um **produto interno** em um espaço vetorial real $V$ é uma operação $\langle u, v
+\rangle$ que a cada par de vetores associa um número real, satisfazendo:
+
+1. **simetria**: $\langle u, v \rangle = \langle v, u \rangle$;
+2. **linearidade**: $\langle au + bw, v \rangle = a\langle u, v\rangle + b\langle w,
+   v\rangle$;
+3. **positividade**: $\langle v, v \rangle \geq 0$, com igualdade só se $v = 0$.
+:::
+
+::: {#exm-produtos-internos}
+## Exemplos
+- Em $\mathbb{R}^n$, o **produto escalar** usual $\langle u, v \rangle = u_1 v_1 +
+  \cdots + u_n v_n = u^T v$.
+- No espaço das funções contínuas $C[a, b]$, a **integral** $\langle f, g \rangle =
+  \int_a^b f(x)g(x)\,dx$ — base das séries de Fourier.
+:::
+
+## Norma, distância e ângulo
+
+O produto interno gera, de imediato, todas as noções métricas.
+
+::: {#def-norma}
+## Norma e distância
+A **norma** (comprimento) de $v$ é $\|v\| = \sqrt{\langle v, v\rangle}$. A
+**distância** entre $u$ e $v$ é $\|u - v\|$. Um vetor de norma $1$ diz-se
+**unitário**.
+:::
+
+::: {#thm-cauchy-schwarz}
+## Desigualdade de Cauchy-Schwarz
+Para quaisquer $u, v$ em um espaço com produto interno,
+$$
+|\langle u, v\rangle| \leq \|u\|\,\|v\|.
+$$
+A igualdade vale exatamente quando $u$ e $v$ são paralelos.
+:::
+
+Cauchy-Schwarz é o que permite **definir o ângulo** entre dois vetores: como o
+quociente $\frac{\langle u, v\rangle}{\|u\|\|v\|}$ está sempre entre $-1$ e $1$, ele é
+o cosseno de um ângulo bem definido,
+$$
+\cos\theta = \frac{\langle u, v\rangle}{\|u\|\,\|v\|}.
+$$
+
+::: {.callout-note}
+## A geometria importada de graça
+Com a norma vêm a **desigualdade triangular** $\|u + v\| \leq \|u\| + \|v\|$ e o
+teorema de Pitágoras na sua forma abstrata. Tudo o que sabíamos de geometria
+euclidiana (@sec-pitagoras) renasce, agora válido para funções, matrizes e qualquer
+espaço com produto interno.
+:::
+
+## Ortogonalidade
+
+::: {#def-ortogonal}
+## Vetores ortogonais
+Dois vetores $u, v$ são **ortogonais** (perpendiculares), escreve-se $u \perp v$, se
+$$
+\langle u, v\rangle = 0.
+$$
+Um conjunto é **ortogonal** se seus vetores são dois a dois ortogonais, e
+**ortonormal** se, além disso, todos são unitários.
+:::
+
+::: {#thm-pitagoras-abstrato}
+## Teorema de Pitágoras
+Se $u \perp v$, então $\|u + v\|^2 = \|u\|^2 + \|v\|^2$.
+:::
+
+::: {.proof}
+$\|u + v\|^2 = \langle u + v, u + v\rangle = \|u\|^2 + 2\langle u, v\rangle + \|v\|^2
+= \|u\|^2 + \|v\|^2$, pois $\langle u, v\rangle = 0$.
+:::
+
+::: {#prp-ortogonal-li}
+## Ortogonal implica independente
+Todo conjunto ortogonal de vetores **não nulos** é linearmente independente.
+:::
+
+Uma **base ortonormal** é o melhor tipo de base: as coordenadas de qualquer vetor
+calculam-se diretamente por produtos internos, $v = \sum_i \langle v, e_i\rangle\,
+e_i$ — sem resolver sistema algum.
+
+## Projeção ortogonal
+
+A operação geométrica fundamental: a "sombra" de um vetor sobre outro.
+
+::: {#def-projecao}
+## Projeção ortogonal
+A **projeção** de $v$ sobre um vetor não nulo $u$ é
+$$
+\operatorname{proj}_u v = \frac{\langle v, u\rangle}{\langle u, u\rangle}\,u.
+$$
+É o múltiplo de $u$ mais próximo de $v$; o resto $v - \operatorname{proj}_u v$ é
+ortogonal a $u$.
+:::
+
+::: {.callout-tip}
+## Projeção = melhor aproximação
+A projeção de $v$ sobre um subespaço $W$ é o vetor de $W$ **mais próximo** de $v$.
+Esse princípio é o coração do método dos **mínimos quadrados**: quando um sistema
+$Ax = b$ não tem solução, projeta-se $b$ sobre a imagem de $A$ e resolve-se a versão
+projetada, obtendo o "melhor ajuste" possível — a reta de regressão dos dados.
+:::
+
+## O processo de Gram-Schmidt
+
+De qualquer base, pode-se fabricar uma ortonormal, removendo de cada vetor suas
+projeções sobre os anteriores.
+
+::: {#thm-gram-schmidt}
+## Gram-Schmidt
+Todo espaço com produto interno de dimensão finita possui uma **base ortonormal**.
+A partir de uma base $\{v_1, \dots, v_n\}$, defina sucessivamente
+$$
+u_1 = v_1, \qquad u_k = v_k - \sum_{j=1}^{k-1} \operatorname{proj}_{u_j} v_k,
+$$
+e normalize cada $u_k$ (divida por $\|u_k\|$). Os resultantes formam base ortonormal.
+:::
+
+::: {#exm-gram-schmidt}
+## Ortogonalizando dois vetores
+Em $\mathbb{R}^2$, a partir de $v_1 = (1, 1)$ e $v_2 = (1, 0)$: $u_1 = (1,1)$. Então
+$$
+u_2 = (1, 0) - \frac{\langle (1,0),(1,1)\rangle}{\langle(1,1),(1,1)\rangle}(1,1) =
+(1, 0) - \frac12(1, 1) = \left(\tfrac12, -\tfrac12\right).
+$$
+De fato $u_1 \perp u_2$. Normalizando: $\frac{1}{\sqrt2}(1,1)$ e $\frac{1}{\sqrt2}
+(1, -1)$.
+:::
+
+## Exercícios
+
+::: {#exr-pi-1}
+Em $\mathbb{R}^3$, calcule $\langle u, v\rangle$, $\|u\|$ e o ângulo entre $u = (1,
+2, 2)$ e $v = (2, 0, 1)$.
+:::
+
+::: {#exr-pi-ortogonal}
+Determine $k$ para que $(1, k, 2)$ e $(3, -1, 1)$ sejam ortogonais em $\mathbb{R}^3$.
+:::
+
+::: {#exr-pi-projecao}
+Calcule a projeção de $v = (3, 4)$ sobre $u = (1, 0)$ e sobre $u = (1, 1)$.
+:::
+
+::: {#exr-pi-gram}
+Aplique Gram-Schmidt a $v_1 = (1, 1, 0)$ e $v_2 = (1, 0, 1)$ em $\mathbb{R}^3$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pi-1
+$\langle u, v\rangle = 1\cdot2 + 2\cdot0 + 2\cdot1 = 4$. $\|u\| = \sqrt{1 + 4 + 4} =
+3$ e $\|v\| = \sqrt{4 + 0 + 1} = \sqrt5$. Logo $\cos\theta = \frac{4}{3\sqrt5}
+\approx 0{,}596$, donde $\theta \approx 53{,}4^\circ$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pi-ortogonal
+Ortogonais quando $\langle (1,k,2), (3,-1,1)\rangle = 3 - k + 2 = 5 - k = 0$, isto é
+$k = 5$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pi-projecao
+Sobre $(1,0)$: $\frac{\langle (3,4),(1,0)\rangle}{1}(1,0) = 3(1,0) = (3, 0)$ — a
+componente horizontal. Sobre $(1,1)$: $\frac{3 + 4}{2}(1,1) = \frac72(1,1) =
+\left(\frac72, \frac72\right)$.
+:::

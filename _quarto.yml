@@ -93,6 +93,7 @@ book:
         - volumes/v6-linear/06-transformacoes-lineares.qmd
         - volumes/v6-linear/07-autovalores.qmd
         - volumes/v6-linear/08-diagonalizacao.qmd
+        - volumes/v6-linear/09-produto-interno.qmd
   appendices:
     - notacao.qmd
 
