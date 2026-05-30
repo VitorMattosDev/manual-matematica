@@ -1,0 +1,150 @@
+# Espaços de probabilidade {#sec-espacos-probabilidade}
+
+## Motivação
+
+O acaso parece o oposto da matemática — imprevisível, caprichoso. No entanto, por trás de
+um único lançamento de moeda imprevisível há **regularidades** férreas: em muitas
+repetições, caras e coroas se equilibram. A probabilidade é a matemática que captura
+essas regularidades, transformando a incerteza em um objeto preciso e calculável.
+
+Por séculos a probabilidade foi uma coleção de truques sobre jogos de azar. Só em 1933
+Kolmogorov a colocou em bases rigorosas, fundando-a — surpreendentemente — sobre a
+**teoria da medida** e os conjuntos (@sec-conjuntos não está no Volume I? sim,
+Volume I). Um "evento" é um conjunto, "probabilidade" é uma medida, e três axiomas bastam
+para deduzir tudo. Este capítulo abre o Volume XII com essa fundação axiomática, que dá
+solidez a toda a estatística e à física estatística.
+
+## Espaço amostral e eventos
+
+::: {#def-espaco-amostral}
+## Espaço amostral e eventos
+O **espaço amostral** $\Omega$ é o conjunto de **todos os resultados possíveis** de um
+experimento aleatório. Um **evento** é um subconjunto $A \subseteq \Omega$ — uma coleção
+de resultados. Diz-se que $A$ "ocorre" se o resultado observado pertence a $A$.
+:::
+
+::: {#exm-espacos-amostrais}
+## Exemplos
+- **Moeda**: $\Omega = \{\text{cara}, \text{coroa}\}$.
+- **Dado**: $\Omega = \{1,2,3,4,5,6\}$; o evento "par" é $\{2,4,6\}$.
+- **Dois dados**: $\Omega$ tem $36$ pares; "soma 7" é um evento de 6 elementos.
+- **Tempo de vida de uma lâmpada**: $\Omega = [0, \infty)$ (contínuo).
+:::
+
+::: {.callout-note}
+## A linguagem de conjuntos é a da lógica dos eventos
+As operações de conjuntos (@sec-conjuntos) traduzem a lógica dos eventos: **$A \cup B$**
+= "A ou B"; **$A \cap B$** = "A e B"; **$A^c$** = "não A"; **$\emptyset$** = evento
+impossível; **$\Omega$** = evento certo. Eventos **disjuntos** ($A \cap B = \emptyset$)
+são **mutuamente exclusivos**. Toda a álgebra de eventos é a álgebra de conjuntos do
+Volume I.
+:::
+
+## Os axiomas de Kolmogorov
+
+::: {#def-axiomas-kolmogorov}
+## Axiomas de probabilidade
+Uma **probabilidade** é uma função $P$ que a cada evento associa um número, satisfazendo:
+
+1. **não negatividade**: $P(A) \geq 0$;
+2. **normalização**: $P(\Omega) = 1$;
+3. **aditividade**: se $A_1, A_2, \dots$ são disjuntos dois a dois, então $P\!\left(
+   \bigcup_i A_i\right) = \sum_i P(A_i)$.
+
+A tripla $(\Omega, \mathcal{F}, P)$ — espaço amostral, eventos e probabilidade — é um
+**espaço de probabilidade**.
+:::
+
+::: {.callout-tip}
+## Três axiomas, toda a teoria
+É notável que toda a probabilidade — distribuições, esperança, leis dos grandes números —
+decorra desses três axiomas. Eles dizem apenas: probabilidades são não negativas, o total
+é 1, e probabilidades de alternativas exclusivas somam. Tudo o mais é teorema. É o mesmo
+espírito axiomático de Peano (Volume I) e dos grupos (Volume VII).
+:::
+
+## Consequências imediatas
+
+::: {#prp-regras-probabilidade}
+## Regras básicas
+Dos axiomas seguem, para quaisquer eventos:
+
+- **complementar**: $P(A^c) = 1 - P(A)$;
+- **evento impossível**: $P(\emptyset) = 0$;
+- **monotonia**: se $A \subseteq B$, então $P(A) \leq P(B)$;
+- **inclusão-exclusão**: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+:::
+
+::: {.proof}
+*(Complementar.)* $A$ e $A^c$ são disjuntos com união $\Omega$, logo pela aditividade e
+normalização $P(A) + P(A^c) = P(\Omega) = 1$. As demais saem de decomposições
+semelhantes em eventos disjuntos.
+:::
+
+## Probabilidade clássica e geométrica
+
+::: {#def-probabilidade-classica}
+## Casos equiprováveis
+Quando $\Omega$ é **finito** e todos os resultados são igualmente prováveis, vale a
+fórmula de Laplace:
+$$
+P(A) = \frac{\#A}{\#\Omega} = \frac{\text{casos favoráveis}}{\text{casos possíveis}}.
+$$
+Calcular probabilidades reduz-se, então, a **contar** — e a contagem é a análise
+combinatória (@sec-combinatoria).
+:::
+
+::: {#exm-dados}
+## Soma de dois dados
+A probabilidade de a soma de dois dados ser $7$: há $6$ pares favoráveis ($(1,6),
+\dots,(6,1)$) entre $36$ possíveis, logo $P = \frac{6}{36} = \frac16$ — a soma mais
+provável. A combinatória do Volume II é a ferramenta de contagem.
+:::
+
+::: {.callout-note}
+## Quando $\Omega$ é contínuo
+Para espaços contínuos (tempos, posições), "contar" vira **integrar**: a probabilidade
+geométrica de um evento é a razão de medidas (comprimentos, áreas, @sec-integral). É a
+ponte para as variáveis aleatórias contínuas (@sec-vars-continuas), onde probabilidades
+são áreas sob uma curva de densidade.
+:::
+
+## Exercícios
+
+::: {#exr-ep-complementar}
+A probabilidade de chover amanhã é $0{,}3$. Qual a de **não** chover?
+:::
+
+::: {#exr-ep-inclusao}
+Numa turma, $P(\text{gosta de café}) = 0{,}6$, $P(\text{chá}) = 0{,}5$, $P(\text{ambos})
+= 0{,}2$. Qual $P(\text{café ou chá})$?
+:::
+
+::: {#exr-ep-dados}
+Calcule a probabilidade de a soma de dois dados ser $\geq 10$.
+:::
+
+::: {#exr-ep-cartas}
+De um baralho de $52$ cartas, qual a probabilidade de tirar um rei **ou** uma carta de
+copas?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ep-complementar
+$P(\text{não chover}) = 1 - P(\text{chover}) = 1 - 0{,}3 = 0{,}7$
+(@prp-regras-probabilidade).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ep-inclusao
+Por inclusão-exclusão: $P(\text{café} \cup \text{chá}) = 0{,}6 + 0{,}5 - 0{,}2 = 0{,}9$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ep-cartas
+$P(\text{rei}) = \frac{4}{52}$, $P(\text{copas}) = \frac{13}{52}$, $P(\text{rei de
+copas}) = \frac{1}{52}$. Por inclusão-exclusão, $\frac{4 + 13 - 1}{52} = \frac{16}{52} =
+\frac{4}{13}$.
+:::
