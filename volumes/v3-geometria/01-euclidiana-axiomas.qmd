@@ -1,0 +1,179 @@
+# Geometria euclidiana: axiomas {#sec-euclidiana}
+
+## Motivação
+
+Por volta de $300$ a.C., Euclides reuniu nos *Elementos* o conhecimento
+geométrico de sua época sob uma forma revolucionária: poucas afirmações aceitas
+sem prova — os **axiomas** — das quais *tudo o mais* é deduzido. Foi o primeiro
+sistema axiomático da história e o modelo de rigor que a matemática segue até
+hoje, inclusive na construção dos números do Volume I.
+
+Este capítulo abre o Volume III estabelecendo as regras do jogo geométrico: os
+**termos primitivos** (ponto, reta, plano), que não se definem, e os **axiomas**
+que os governam, incluindo o célebre postulado das paralelas. A partir deles
+provamos os primeiros resultados sobre **ângulos** — opostos pelo vértice,
+formados por paralelas — que serão a base de toda a geometria métrica seguinte. A
+lógica e os métodos de demonstração do @sec-logica são, aqui, a ferramenta.
+
+## Termos primitivos e incidência
+
+Toda teoria precisa começar de noções não definidas, sob pena de regressão
+infinita. Na geometria, são três.
+
+::: {#def-primitivos}
+## Termos primitivos
+**Ponto**, **reta** e **plano** são tomados como conceitos primitivos, não
+definidos. A relação básica entre eles é a **incidência**: um ponto **pertence**
+a uma reta (ou a reta **passa** pelo ponto). Pontos numa mesma reta dizem-se
+**colineares**.
+:::
+
+O comportamento desses objetos é fixado por axiomas. Listamos os de incidência no
+plano, que capturam a intuição de "reta determinada por dois pontos".
+
+::: {#def-axiomas-incidencia}
+## Axiomas de incidência
+1. Por dois pontos distintos passa **uma única** reta.
+2. Toda reta contém ao menos dois pontos; e existem três pontos não colineares.
+3. Duas retas distintas têm no máximo um ponto em comum.
+:::
+
+::: {.proof}
+O item 3 já é, em parte, um teorema: se duas retas distintas tivessem **dois**
+pontos em comum, por esses dois pontos passariam duas retas — contradizendo a
+unicidade do axioma 1. Logo a interseção de duas retas distintas tem no máximo um
+ponto. (Registramos o item como axioma por tradição; ele decorre do axioma 1.)
+:::
+
+Entre os pontos de uma reta surgem o **segmento** $\overline{AB}$ (a porção entre
+$A$ e $B$), a **semirreta** (a partir de um ponto, numa direção) e a noção de um
+ponto estar **entre** outros dois — formalizada pelos axiomas de ordem, que aqui
+tomamos intuitivamente.
+
+## Ângulos
+
+::: {#def-angulo}
+## Ângulo
+Um **ângulo** é a figura formada por duas semirretas de mesma origem (o
+**vértice**). Mede-se em graus; o **ângulo raso** mede $180°$, o **ângulo reto**
+mede $90°$. Um ângulo é **agudo** se mede menos que $90°$ e **obtuso** se mede
+entre $90°$ e $180°$.
+:::
+
+Dois ângulos são **suplementares** quando somam $180°$ e **complementares** quando
+somam $90°$. Quando duas retas se cruzam, formam-se quatro ângulos com relações
+fixas entre si.
+
+::: {#def-opostos}
+## Ângulos opostos pelo vértice
+Duas retas concorrentes formam quatro ângulos. Dois deles que **não compartilham
+lado** dizem-se **opostos pelo vértice**; dois que compartilham um lado são
+**adjacentes** (e suplementares, pois juntos formam um ângulo raso).
+:::
+
+::: {#thm-opostos}
+## Ângulos opostos pelo vértice são iguais
+Se dois ângulos são opostos pelo vértice, então têm a mesma medida.
+:::
+
+::: {.proof}
+Sejam $\alpha$ e $\beta$ opostos pelo vértice, e seja $\gamma$ um ângulo adjacente
+a ambos (entre eles). Como $\alpha$ e $\gamma$ são adjacentes, são suplementares:
+$\alpha + \gamma = 180°$. Como $\beta$ e $\gamma$ também são adjacentes, $\beta +
+\gamma = 180°$. Igualando,
+$$
+\alpha + \gamma = \beta + \gamma \implies \alpha = \beta,
+$$
+cancelando $\gamma$. Logo os ângulos opostos pelo vértice são iguais.
+:::
+
+## Perpendicularismo e paralelismo
+
+::: {#def-perp-paral}
+## Retas perpendiculares e paralelas
+Duas retas são **perpendiculares** (escreve-se $r \perp s$) quando se cruzam
+formando ângulos retos. Duas retas no plano são **paralelas** ($r \parallel s$)
+quando não têm ponto em comum (ou são coincidentes).
+:::
+
+O axioma que torna a geometria *euclidiana* — distinguindo-a de outras geometrias
+igualmente consistentes — regula a existência de paralelas.
+
+::: {#def-postulado-paralelas}
+## Postulado das paralelas
+Por um ponto fora de uma reta passa **exatamente uma** reta paralela à reta dada.
+:::
+
+::: {.callout-note}
+## O postulado que abriu mundos novos
+Durante dois mil anos tentou-se *demonstrar* o postulado das paralelas a partir
+dos demais — em vão. No século XIX descobriu-se por quê: ele é **independente**.
+Negá-lo produz geometrias não euclidianas perfeitamente consistentes (a
+hiperbólica, com infinitas paralelas; a esférica, com nenhuma), hoje essenciais na
+relatividade. Adotá-lo é uma *escolha*, que caracteriza a geometria do plano
+comum.
+:::
+
+O postulado das paralelas, aplicado a uma reta que corta duas paralelas, fixa as
+relações entre os oito ângulos formados.
+
+::: {#thm-transversal}
+## Ângulos em paralelas cortadas por transversal
+Se uma transversal corta duas retas paralelas, então os **ângulos
+correspondentes** são iguais, e os **alternos internos** são iguais.
+:::
+
+::: {#exm-soma-triangulo}
+## A soma dos ângulos de um triângulo
+O @thm-transversal dá, de imediato, um dos teoremas mais importantes da geometria:
+a soma dos ângulos internos de um triângulo é $180°$. De fato, traçando pelo
+vértice oposto a um lado a reta paralela a esse lado, os três ângulos do triângulo
+reaparecem, como alternos internos, dispostos ao longo de um ângulo raso — logo
+somam $180°$. Esse resultado será o ponto de partida do próximo capítulo, sobre
+triângulos.
+:::
+
+## Exercícios
+
+::: {#exr-suplemento}
+Um ângulo mede $3x + 10°$ e seu suplementar mede $5x - 30°$. Determine $x$ e os
+dois ângulos.
+:::
+
+::: {#exr-opostos}
+Duas retas se cruzam formando um ângulo de $40°$. Determine as medidas dos outros
+três ângulos, justificando com o @thm-opostos.
+:::
+
+::: {#exr-paralelas}
+Uma transversal corta duas paralelas. Um dos ângulos formados mede $65°$.
+Determine as medidas de todos os oito ângulos.
+:::
+
+::: {#exr-complementar}
+Prove que, se dois ângulos são complementares de um mesmo ângulo, então são
+iguais entre si. (Compare com a demonstração do @thm-opostos.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-suplemento
+Ângulos suplementares somam $180°$:
+$$
+(3x + 10°) + (5x - 30°) = 180° \implies 8x - 20° = 180° \implies 8x = 200°
+\implies x = 25°.
+$$
+Os ângulos medem $3 \cdot 25° + 10° = 85°$ e $5 \cdot 25° - 30° = 95°$ (e de fato
+$85° + 95° = 180°$).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-complementar
+Sejam $\alpha$ e $\beta$ ambos complementares de $\gamma$, isto é, $\alpha + \gamma
+= 90°$ e $\beta + \gamma = 90°$. Igualando as duas expressões,
+$$
+\alpha + \gamma = \beta + \gamma \implies \alpha = \beta.
+$$
+É o mesmo argumento de cancelamento do @thm-opostos, com $90°$ no lugar de $180°$.
+:::

@@ -56,7 +56,7 @@ Pré-requisitos: nenhum.*
 ## Volume III — Geometria e Trigonometria
 *Objetivo: geometria sintética, métrica e analítica. Pré-req.: Vol. I.*
 
-- [ ] `volumes/v3-geometria/01-euclidiana-axiomas.qmd` — Geometria euclidiana: axiomas, pontos, retas, ângulos.
+- [x] `volumes/v3-geometria/01-euclidiana-axiomas.qmd` — Geometria euclidiana: axiomas, pontos, retas, ângulos.
 - [ ] `volumes/v3-geometria/02-triangulos.qmd` — Triângulos e casos de congruência.
 - [ ] `volumes/v3-geometria/03-semelhanca-tales.qmd` — Semelhança e teorema de Tales.
 - [ ] `volumes/v3-geometria/04-pitagoras.qmd` — Teorema de Pitágoras e relações métricas.
