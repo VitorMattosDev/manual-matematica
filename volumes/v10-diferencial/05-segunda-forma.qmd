@@ -1,0 +1,169 @@
+# Aplicação de Gauss e segunda forma fundamental {#sec-segunda-forma}
+
+## Motivação
+
+A primeira forma fundamental (@sec-primeira-forma) mede a geometria **intrínseca** —
+o que se mede de dentro da superfície. Mas ela é cega para o **encurvamento no espaço**:
+plano e cilindro têm a mesma primeira forma, embora um seja chato e o outro enrolado.
+Para capturar como a superfície se curva **dentro de $\mathbb{R}^3$**, precisamos de
+uma medida nova: a **segunda forma fundamental**.
+
+A ideia é acompanhar como o **vetor normal** $\mathbf N$ (@sec-superficies) varia ao
+caminharmos sobre a superfície. Num plano, a normal é constante — sem curvatura. Numa
+esfera, ela gira em todas as direções — curvatura máxima. Essa variação da normal,
+codificada na **aplicação de Gauss** e em sua derivada, é a geometria **extrínseca** da
+superfície. Este capítulo a constrói, preparando as curvaturas gaussiana e média
+(@sec-curvaturas) e o teorema que une o extrínseco ao intrínseco.
+
+## A aplicação de Gauss
+
+::: {#def-aplicacao-gauss}
+## Aplicação de Gauss
+A **aplicação de Gauss** de uma superfície orientada $S$ é a função
+$$
+N: S \to S^2, \qquad p \mapsto \mathbf{N}(p),
+$$
+que a cada ponto associa seu vetor normal unitário, visto como ponto da esfera unitária
+$S^2$.
+:::
+
+::: {.callout-tip}
+## A normal como ponto da esfera
+Como $\mathbf N$ é unitário, sua ponta está sempre na esfera $S^2$. A aplicação de Gauss
+"projeta" a superfície na esfera, registrando a **direção** em que ela aponta em cada
+ponto. Se a superfície é quase plana, a imagem na esfera é minúscula (a normal mal
+muda); se é muito curva, a imagem cobre uma grande região. A **taxa de variação** dessa
+aplicação é, literalmente, a curvatura.
+:::
+
+::: {#exm-gauss-exemplos}
+## A aplicação de Gauss em exemplos
+- **Plano**: $N$ é **constante** — toda a superfície vai para um único ponto de $S^2$.
+- **Esfera** de raio $r$: $N(p) = \frac pr$ — a aplicação de Gauss é (essencialmente) a
+  **identidade**, cobrindo $S^2$ inteira.
+- **Cilindro**: $N$ percorre apenas um **círculo** equatorial de $S^2$ (a normal só
+  varia na direção angular).
+:::
+
+## A diferencial e o operador de forma
+
+A derivada da aplicação de Gauss mede como a normal muda — e age no plano tangente.
+
+::: {#def-operador-forma}
+## Operador de forma (Weingarten)
+A diferencial da aplicação de Gauss em $p$, com sinal trocado, é o **operador de forma**
+(ou de Weingarten)
+$$
+S_p = -dN_p : T_pS \to T_pS,
+$$
+um operador **linear** do plano tangente em si mesmo. Ele mede a taxa de variação da
+normal na direção de cada vetor tangente.
+:::
+
+::: {#thm-operador-autoadjunto}
+## O operador de forma é autoadjunto
+O operador $S_p$ é **autoadjunto** (simétrico) em relação à primeira forma fundamental:
+$\langle S_p(w_1), w_2\rangle = \langle w_1, S_p(w_2)\rangle$.
+:::
+
+::: {.callout-note}
+## Por que a simetria é decisiva
+Ser autoadjunto é exatamente a hipótese do **teorema espectral** (@sec-teorema-espectral)!
+Logo $S_p$ tem autovalores reais e autovetores ortogonais. Esses autovalores serão as
+**curvaturas principais** e os autovetores as **direções principais** (@sec-curvaturas).
+A geometria diferencial das superfícies herda, assim, toda a maquinaria da álgebra
+linear — a diagonalização de operadores simétricos do Volume VI reaparece como o
+coração da teoria da curvatura.
+:::
+
+## A segunda forma fundamental
+
+::: {#def-segunda-forma}
+## Segunda forma fundamental
+A **segunda forma fundamental** é a forma quadrática associada ao operador de forma:
+$$
+\mathrm{II}_p(w) = \langle S_p(w), w\rangle.
+$$
+Em coordenadas, com coeficientes
+$$
+e = \langle \mathbf{x}_{uu}, \mathbf{N}\rangle, \quad f = \langle \mathbf{x}_{uv},
+\mathbf{N}\rangle, \quad g = \langle \mathbf{x}_{vv}, \mathbf{N}\rangle,
+$$
+ela mede a componente normal da aceleração ao percorrer a superfície.
+:::
+
+A segunda forma diz, para cada direção tangente, **quanto a superfície se afasta do seu
+plano tangente** — a essência do encurvamento extrínseco.
+
+::: {#exm-segunda-forma}
+## Coeficientes da segunda forma
+- **Plano**: $e = f = g = 0$ — a superfície coincide com seu plano tangente, sem
+  curvatura.
+- **Esfera** de raio $r$: a segunda forma é proporcional à primeira ($e = r\operatorname
+  {sen}^2 u$, etc.), refletindo que a esfera se curva igualmente em todas as direções.
+:::
+
+## Curvatura normal
+
+::: {#def-curvatura-normal}
+## Curvatura normal
+A **curvatura normal** numa direção tangente unitária $w$ é $k_n(w) = \mathrm{II}_p(w)
+= \langle S_p(w), w\rangle$. Ela é a curvatura (no sentido de @sec-frenet) da curva
+obtida cortando a superfície pelo plano que contém $\mathbf N$ e $w$.
+:::
+
+::: {.callout-tip}
+## A curvatura depende da direção
+Eis a novidade das superfícies frente às curvas: num ponto, há **muitas** curvaturas,
+uma para cada direção. Numa sela, uma direção curva para cima e outra para baixo. Os
+valores extremos dessa curvatura normal — máximo e mínimo sobre todas as direções — são
+as **curvaturas principais** $k_1, k_2$, os autovalores do operador de forma
+(@thm-operador-autoadjunto). Reduzi-las a dois números é o assunto do próximo capítulo.
+:::
+
+## Exercícios
+
+::: {#exr-sg-1}
+Calcule a aplicação de Gauss do plano $z = 0$ e verifique que é constante.
+:::
+
+::: {#exr-sg-esfera}
+Mostre que, para a esfera de raio $r$, o operador de forma é $S_p = \frac1r\,\mathrm{Id}$
+(múltiplo da identidade).
+:::
+
+::: {#exr-sg-cilindro}
+Determine a curvatura normal do cilindro de raio $1$ nas direções ao longo do eixo e ao
+longo do círculo.
+:::
+
+::: {#exr-sg-segunda}
+Calcule os coeficientes $e, f, g$ da segunda forma para o gráfico $z = f(u, v)$ na
+origem, supondo $f_u(0) = f_v(0) = 0$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sg-esfera
+Na esfera de raio $r$, $\mathbf N(p) = \frac pr$, então $dN_p = \frac1r\,\mathrm{Id}$ e
+$S_p = -dN_p = -\frac1r\mathrm{Id}$ (ou $+\frac1r$ conforme a orientação da normal).
+Em módulo, todas as curvaturas normais valem $\frac1r$: a esfera curva-se igualmente em
+toda direção.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sg-cilindro
+Ao longo do **eixo** (direção $\mathbf x_v$), a seção é uma reta: curvatura normal $0$.
+Ao longo do **círculo** (direção $\mathbf x_u$), a seção é um círculo de raio $1$:
+curvatura normal $1$. As direções principais são justamente essas duas, com $k_1 = 0$ e
+$k_2 = 1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sg-segunda
+Na origem, com $f_u = f_v = 0$, a normal é $(0,0,1)$ e $\mathbf x_{uu} = (0,0,f_{uu})$,
+etc. Logo $e = f_{uu}$, $f = f_{uv}$, $g = f_{vv}$ — a segunda forma é a **Hessiana** de
+$f$. Curvar a superfície é exatamente a segunda derivada, conectando com o teste de
+extremos (@sec-varias-variaveis).
+:::

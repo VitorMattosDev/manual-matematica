@@ -156,7 +156,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v10-diferencial/02-frenet.qmd` — Curvatura, torção e triedro de Frenet.
 - [x] `volumes/v10-diferencial/03-superficies.qmd` — Superfícies regulares.
 - [x] `volumes/v10-diferencial/04-primeira-forma.qmd` — Primeira forma fundamental.
-- [ ] `volumes/v10-diferencial/05-segunda-forma.qmd` — Aplicação de Gauss e segunda forma fundamental.
+- [x] `volumes/v10-diferencial/05-segunda-forma.qmd` — Aplicação de Gauss e segunda forma fundamental.
 - [ ] `volumes/v10-diferencial/06-curvaturas.qmd` — Curvaturas gaussiana e média.
 - [ ] `volumes/v10-diferencial/07-geodesicas.qmd` — Geodésicas.
 - [ ] `volumes/v10-diferencial/08-gauss-bonnet.qmd` — Teorema Egregium e teorema de Gauss-Bonnet.
