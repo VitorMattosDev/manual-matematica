@@ -98,6 +98,7 @@ book:
     - part: "Volume VII — Álgebra Abstrata"
       chapters:
         - volumes/v7-abstrata/01-grupos.qmd
+        - volumes/v7-abstrata/02-subgrupos-ciclicos.qmd
   appendices:
     - notacao.qmd
 

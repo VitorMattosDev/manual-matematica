@@ -1,0 +1,175 @@
+# Subgrupos e grupos cíclicos {#sec-subgrupos-ciclicos}
+
+## Motivação
+
+Assim como espaços vetoriais contêm subespaços (@sec-espacos-vetoriais), grupos
+contêm **subgrupos** — pedaços que são, eles próprios, grupos. Identificar os
+subgrupos de um grupo é o primeiro passo para entender sua estrutura interna, do mesmo
+modo que conhecer os divisores de um número revela sua aritmética.
+
+Entre todos os grupos, os mais simples são os **cíclicos**: gerados por um único
+elemento, por repetição da operação. São o átomo da teoria — $(\mathbb{Z}, +)$ e
+$(\mathbb{Z}_n, +)$ são cíclicos, e veremos que **todo** grupo cíclico é,
+essencialmente, um desses dois. Compreender os cíclicos e os subgrupos que eles geram
+prepara o terreno para o teorema de Lagrange (@sec-lagrange), que liga o tamanho de um
+subgrupo ao do grupo inteiro. Este capítulo desenvolve esses dois conceitos
+entrelaçados.
+
+## Subgrupos
+
+::: {#def-subgrupo}
+## Subgrupo
+Um subconjunto $H$ de um grupo $G$ é um **subgrupo**, escreve-se $H \leq G$, se $H$ é
+ele próprio um grupo com a operação de $G$. Na prática, basta verificar:
+
+1. o neutro $e$ pertence a $H$;
+2. $H$ é **fechado na operação**: $a, b \in H \Rightarrow a * b \in H$;
+3. $H$ é **fechado em inversos**: $a \in H \Rightarrow a^{-1} \in H$.
+:::
+
+::: {.callout-tip}
+## O teste de um passo
+As três condições condensam-se numa só: $H$ não vazio é subgrupo se, e somente se,
+$a, b \in H \Rightarrow a * b^{-1} \in H$. Tomando $a = b$ obtém-se o neutro; daí os
+inversos; daí o fechamento. É a verificação mais rápida na prática.
+:::
+
+::: {#exm-subgrupos}
+## Subgrupos comuns
+- $\{e\}$ e o próprio $G$ são sempre subgrupos (os **triviais**).
+- Os múltiplos de $3$, $3\mathbb{Z} = \{\dots, -3, 0, 3, 6, \dots\}$, formam um
+  subgrupo de $(\mathbb{Z}, +)$.
+- As rotações dentro de $D_n$ formam um subgrupo (as reflexões **não** — duas
+  reflexões compõem numa rotação, então elas nem contêm o neutro isoladamente).
+:::
+
+::: {#thm-subgrupos-z}
+## Os subgrupos de $\mathbb{Z}$
+Todo subgrupo de $(\mathbb{Z}, +)$ é da forma $n\mathbb{Z}$ (os múltiplos de algum
+inteiro $n \geq 0$).
+:::
+
+::: {.proof}
+*(Esboço.)* Se o subgrupo $H \neq \{0\}$, seja $n$ o menor elemento positivo de $H$
+(boa ordenação, @thm-boa-ordem). Todo $m \in H$ dividido por $n$ deixa resto $r =
+m - qn \in H$ com $0 \leq r < n$; pela minimalidade de $n$, $r = 0$, logo $n \mid m$.
+Assim $H = n\mathbb{Z}$.
+:::
+
+## Subgrupo gerado por um elemento
+
+::: {#def-gerado}
+## Subgrupo gerado
+Dado $a \in G$, o **subgrupo gerado por $a$** é o conjunto de todas as potências de
+$a$:
+$$
+\langle a \rangle = \{\dots, a^{-2}, a^{-1}, e, a, a^2, \dots\}.
+$$
+É o menor subgrupo de $G$ que contém $a$.
+:::
+
+A ordem do elemento $a$ (@def-ordem) é exatamente o tamanho de $\langle a\rangle$:
+se $a$ tem ordem $k$, então $\langle a\rangle = \{e, a, a^2, \dots, a^{k-1}\}$ tem
+$k$ elementos.
+
+::: {#exm-gerado}
+## Gerando subgrupos
+Em $(\mathbb{Z}_{12}, +)$, o elemento $3$ gera $\langle 3\rangle = \{0, 3, 6, 9\}$,
+um subgrupo de ordem $4$. Já o $1$ gera o grupo inteiro — $1$ é um **gerador** de
+$\mathbb{Z}_{12}$.
+:::
+
+## Grupos cíclicos
+
+::: {#def-ciclico}
+## Grupo cíclico
+Um grupo $G$ é **cíclico** se existe um elemento $a$ (um **gerador**) tal que $G =
+\langle a\rangle$ — todo elemento é uma potência de $a$.
+:::
+
+::: {#thm-ciclicos-abelianos}
+## Todo grupo cíclico é abeliano
+Se $G = \langle a\rangle$, então $G$ é abeliano, pois $a^m * a^n = a^{m+n} = a^n *
+a^m$.
+:::
+
+::: {.callout-note}
+## A classificação dos grupos cíclicos
+Há, a menos de isomorfismo (@sec-quociente-isomorfismo), **apenas dois** tipos de
+grupo cíclico: o infinito $(\mathbb{Z}, +)$ e, para cada $n$, o finito $(\mathbb{Z}_n,
++)$. Qualquer grupo cíclico é uma cópia de um destes. É raro uma família tão rica de
+exemplos ser tão completamente compreendida — os cíclicos são o caso totalmente
+resolvido da teoria.
+:::
+
+::: {#thm-subgrupos-ciclico}
+## Subgrupos de grupos cíclicos
+Todo subgrupo de um grupo cíclico é cíclico. Em $\mathbb{Z}_n$, há **exatamente um**
+subgrupo de ordem $d$ para cada divisor $d$ de $n$, e nenhum outro.
+:::
+
+::: {#exm-reticulado}
+## O reticulado de $\mathbb{Z}_{12}$
+Como $12 = 2^2\cdot 3$, seus divisores são $1, 2, 3, 4, 6, 12$ — e $\mathbb{Z}_{12}$
+tem exatamente um subgrupo de cada uma dessas ordens. Por exemplo, o subgrupo de
+ordem $6$ é $\langle 2\rangle = \{0, 2, 4, 6, 8, 10\}$. A estrutura dos subgrupos
+espelha perfeitamente a dos divisores de $12$.
+:::
+
+## Geradores e a função de Euler
+
+Quais elementos geram todo o grupo cíclico? A resposta vem da aritmética
+(@sec-mdc-euclides).
+
+::: {#prp-geradores}
+## Geradores de $\mathbb{Z}_n$
+Um elemento $a \in \mathbb{Z}_n$ gera $\mathbb{Z}_n$ se, e somente se, $\gcd(a, n) =
+1$. Logo o número de geradores é $\varphi(n)$, a função de Euler (@sec-congruencias).
+:::
+
+::: {#exm-geradores-z}
+## Contando geradores
+Os geradores de $\mathbb{Z}_{12}$ são os $a$ com $\gcd(a, 12) = 1$: a saber, $1, 5,
+7, 11$ — quatro deles, e de fato $\varphi(12) = 4$. Cada um, somado a si mesmo
+repetidamente, percorre todos os doze elementos.
+:::
+
+## Exercícios
+
+::: {#exr-sub-1}
+Verifique se $H = \{0, 2, 4\}$ é subgrupo de $(\mathbb{Z}_6, +)$.
+:::
+
+::: {#exr-sub-2}
+Liste todos os subgrupos de $\mathbb{Z}_8$ e suas ordens.
+:::
+
+::: {#exr-ciclico-1}
+Determine a ordem do elemento $4$ em $\mathbb{Z}_{10}$ e o subgrupo que ele gera.
+:::
+
+::: {#exr-ciclico-geradores}
+Quantos e quais são os geradores de $\mathbb{Z}_9$?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sub-1
+Contém $0$; é fechado ($2 + 2 = 4$, $2 + 4 = 0$, $4 + 4 = 2$, todos em $H$); os
+inversos estão lá ($-2 = 4$, $-4 = 2$). Logo **é subgrupo** — é $\langle 2\rangle$,
+de ordem $3$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sub-2
+Os divisores de $8$ são $1, 2, 4, 8$, então há um subgrupo de cada ordem:
+$\{0\}$ (ordem 1); $\langle 4\rangle = \{0, 4\}$ (ordem 2); $\langle 2\rangle = \{0,
+2, 4, 6\}$ (ordem 4); e $\mathbb{Z}_8$ inteiro (ordem 8).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ciclico-geradores
+São os $a$ com $\gcd(a, 9) = 1$: $1, 2, 4, 5, 7, 8$ — seis geradores, e $\varphi(9)
+= 9 - 3 = 6$. ✓
+:::

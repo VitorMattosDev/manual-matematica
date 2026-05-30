@@ -114,7 +114,7 @@ Pré-requisitos: nenhum.*
 *Objetivo: grupos, anéis, corpos. Pré-req.: Vols. I, VI.*
 
 - [x] `volumes/v7-abstrata/01-grupos.qmd` — Operações binárias e grupos.
-- [ ] `volumes/v7-abstrata/02-subgrupos-ciclicos.qmd` — Subgrupos e grupos cíclicos.
+- [x] `volumes/v7-abstrata/02-subgrupos-ciclicos.qmd` — Subgrupos e grupos cíclicos.
 - [ ] `volumes/v7-abstrata/03-lagrange.qmd` — Homomorfismos e teorema de Lagrange.
 - [ ] `volumes/v7-abstrata/04-quociente-isomorfismo.qmd` — Grupos quociente e teoremas de isomorfismo.
 - [ ] `volumes/v7-abstrata/05-aneis.qmd` — Anéis e ideais.
