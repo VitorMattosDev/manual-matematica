@@ -1,0 +1,153 @@
+# Geodésicas {#sec-geodesicas}
+
+## Motivação
+
+Qual é o caminho mais curto entre duas cidades na Terra? Não é uma reta — não há retas
+sobre a esfera — mas o arco de um **grande círculo**, a rota que os aviões seguem.
+Esses caminhos "mais retos possíveis" sobre uma superfície curva são as **geodésicas**,
+e generalizam a ideia de linha reta para o mundo curvo.
+
+As geodésicas são intrínsecas: dependem apenas da primeira forma fundamental
+(@sec-primeira-forma), ou seja, da geometria medida de dentro da superfície. Elas são
+o conceito central que liga a métrica à dinâmica — uma partícula livre sobre uma
+superfície, sem forças tangenciais, percorre uma geodésica. E são a ponte para o
+teorema de Gauss-Bonnet (@sec-gauss-bonnet) e para a relatividade geral, onde a luz e a
+matéria seguem geodésicas do espaço-tempo curvo. Este capítulo define geodésicas e
+explora suas propriedades.
+
+## A reta mais reta possível
+
+::: {#def-geodesica}
+## Geodésica
+Uma curva $\gamma$ sobre uma superfície $S$, parametrizada por comprimento de arco, é
+uma **geodésica** se sua aceleração $\gamma''$ é, em cada ponto, **perpendicular à
+superfície** — isto é, paralela ao vetor normal $\mathbf N$. Equivalentemente, sua
+**aceleração tangencial é nula**.
+:::
+
+::: {.callout-tip}
+## Reto "do ponto de vista da superfície"
+Uma reta no plano tem aceleração nula. Numa superfície curva, uma partícula não pode ter
+aceleração totalmente nula — a própria curvatura da superfície a força a acelerar para
+permanecer nela. Uma geodésica é o melhor possível: ela só acelera no sentido
+**obrigatório** (perpendicular à superfície, para não sair dela), sem nenhum desvio
+**tangencial**. Para um habitante da superfície, que não percebe a terceira dimensão,
+uma geodésica parece perfeitamente reta — ela não "vira" para nenhum lado.
+:::
+
+::: {#exm-geodesicas}
+## Geodésicas conhecidas
+- No **plano**: as retas.
+- Na **esfera**: os **grandes círculos** (círculos máximos, como o equador e os
+  meridianos). Por isso a rota mais curta entre dois pontos da Terra é um arco de
+  grande círculo.
+- No **cilindro**: retas verticais, círculos horizontais e **hélices** — exatamente as
+  curvas que viram retas ao desenrolar o cilindro no plano.
+:::
+
+## Geodésicas como caminhos mais curtos
+
+::: {#thm-geodesica-minima}
+## Minimização local
+Toda geodésica **minimiza localmente o comprimento**: entre dois pontos
+suficientemente próximos, a geodésica que os liga é o caminho mais curto sobre a
+superfície. Reciprocamente, todo caminho mais curto é uma geodésica.
+:::
+
+::: {.callout-warning}
+## "Mais curto" só localmente
+Cuidado: geodésicas minimizam o comprimento apenas **localmente**. Entre dois pontos da
+esfera há **dois** arcos do mesmo grande círculo — um curto e um longo —, e ambos são
+geodésicas, mas só um minimiza. Globalmente, pode haver geodésicas que não são caminhos
+mínimos. A relação "geodésica ⟺ mais curto" vale com segurança só para pontos próximos.
+:::
+
+## A equação das geodésicas
+
+::: {#thm-equacao-geodesica}
+## Equação diferencial das geodésicas
+Em coordenadas locais, uma geodésica $\gamma(t) = \mathbf x(u(t), v(t))$ satisfaz um
+sistema de equações diferenciais de segunda ordem envolvendo os **símbolos de
+Christoffel** $\Gamma^k_{ij}$ — coeficientes calculados a partir da primeira forma
+fundamental:
+$$
+u'' + \sum \Gamma^1_{ij}\,(\cdot)' (\cdot)' = 0, \qquad v'' + \sum \Gamma^2_{ij}\,
+(\cdot)'(\cdot)' = 0.
+$$
+:::
+
+::: {.callout-note}
+## Tudo a partir da primeira forma
+O ponto crucial: os símbolos de Christoffel — e portanto as geodésicas — dependem
+**apenas de $E, F, G$** e suas derivadas (@sec-primeira-forma). As geodésicas são
+**intrínsecas**: um habitante da superfície pode determiná-las medindo só distâncias,
+sem nunca olhar para fora. Isso antecipa o Teorema Egregium (@sec-gauss-bonnet): a
+geometria essencial das superfícies vive na primeira forma.
+:::
+
+## Existência e unicidade
+
+::: {#thm-existencia-geodesica}
+## Existência e unicidade local
+Por cada ponto de uma superfície e em cada direção tangente, passa **uma única**
+geodésica. Isso decorre do teorema de existência e unicidade para equações diferenciais
+(@thm-picard) aplicado à equação das geodésicas.
+:::
+
+::: {.callout-tip}
+## Lançar e seguir reto
+Dado um ponto de partida e uma direção, há exatamente uma geodésica saindo dali — como
+lançar uma bola que rola "sempre em frente" sobre a superfície. Essa unicidade torna as
+geodésicas uma ferramenta poderosa: elas definem coordenadas naturais (coordenadas
+geodésicas polares) e a **aplicação exponencial**, que organiza a vizinhança de cada
+ponto. É o mesmo princípio que, na relatividade geral, faz uma partícula em queda livre
+seguir uma trajetória única e determinada pela curvatura do espaço-tempo.
+:::
+
+## Exercícios
+
+::: {#exr-gd-1}
+Explique por que toda reta no plano é geodésica, usando a definição de aceleração
+tangencial nula.
+:::
+
+::: {#exr-gd-esfera}
+Argumente por que os meridianos da esfera são geodésicas, mas os paralelos (exceto o
+equador) **não** são.
+:::
+
+::: {#exr-gd-cilindro}
+Mostre que uma hélice no cilindro é geodésica, observando o que acontece ao desenrolar
+o cilindro no plano.
+:::
+
+::: {#exr-gd-conceitual}
+Por que a rota de avião entre duas cidades distantes parece "curva" num mapa plano,
+embora seja a mais curta?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gd-1
+Uma reta parametrizada por arco tem $\gamma'' = 0$ (aceleração total nula). Em
+particular sua componente **tangencial** é nula, satisfazendo a definição de geodésica
+(@def-geodesica). No plano, geodésica e reta coincidem.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gd-esfera
+Um **meridiano** é um grande círculo; sua aceleração aponta para o centro da esfera, ou
+seja, ao longo da normal — componente tangencial nula, logo geodésica. Um **paralelo**
+(círculo de latitude) tem aceleração apontando para o eixo da Terra, **não** para o
+centro; essa aceleração tem componente tangencial não nula (a curva "vira" sobre a
+superfície). Só o equador, sendo grande círculo, é geodésica.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gd-conceitual
+A rota mais curta é um arco de grande círculo (geodésica da esfera). Os mapas planos
+distorcem a esfera (que tem $K > 0$ e não se desenrola sem distorção,
+@exm-curvaturas-exemplos), então a geodésica aparece curvada na projeção. A curva no
+mapa é um artefato da distorção, não da rota.
+:::

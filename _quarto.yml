@@ -136,6 +136,7 @@ book:
         - volumes/v10-diferencial/04-primeira-forma.qmd
         - volumes/v10-diferencial/05-segunda-forma.qmd
         - volumes/v10-diferencial/06-curvaturas.qmd
+        - volumes/v10-diferencial/07-geodesicas.qmd
   appendices:
     - notacao.qmd
 
