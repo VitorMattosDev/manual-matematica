@@ -1,0 +1,250 @@
+# Inteiros e divisibilidade {#sec-inteiros}
+
+## Motivação
+
+Os naturais do @sec-naturais somam e multiplicam sem sair de casa, mas tropeçam na
+subtração: $3 - 5$ não é natural. Para que a equação $a + x = b$ tenha *sempre*
+solução, é preciso ampliar $\mathbb{N}$ — acrescentar o zero e os simétricos
+$-1, -2, -3, \dots$ —, obtendo os **inteiros** $\mathbb{Z}$.
+
+Faremos isso sem "inventar" números negativos por decreto: vamos *construí-los* a
+partir de pares de naturais, com a mesma disciplina do capítulo anterior. Em
+seguida, com $\mathbb{Z}$ em mãos, estudamos a relação que organiza toda a
+aritmética que vem pela frente — a **divisibilidade** — e provamos seu resultado
+fundador, a **divisão euclidiana**, que mais adiante sustentará o algoritmo de
+Euclides, os primos e as congruências.
+
+## Construção dos inteiros
+
+A ideia-guia é simples: um inteiro deve representar uma *diferença* $a - b$ de
+naturais. Mas $3 - 5$, $1 - 3$ e $10 - 12$ deveriam dar o mesmo inteiro ($-2$).
+Então um inteiro não é um par, e sim *toda uma família* de pares que exprimem a
+mesma diferença. Para identificá-los sem usar a subtração (que ainda não temos),
+reescrevemos "$a - b = c - d$" como "$a + d = b + c$".
+
+::: {#def-relacao-inteiros}
+## A relação dos pares
+Em $\mathbb{N} \times \mathbb{N}$, escrevemos $(a, b) \sim (c, d)$ quando
+$$
+a + d = b + c.
+$$
+Intuitivamente, $(a, b)$ representa a diferença $a - b$.
+:::
+
+::: {#prp-equivalencia}
+## $\sim$ é uma equivalência
+A relação $\sim$ é **reflexiva** ($(a,b) \sim (a,b)$), **simétrica** ($(a,b) \sim
+(c,d) \Rightarrow (c,d) \sim (a,b)$) e **transitiva**.
+:::
+
+::: {.proof}
+Reflexividade: $a + b = b + a$ pela comutatividade da soma (@sec-naturais).
+Simetria: $a + d = b + c$ é o mesmo que $c + b = d + a$. Transitividade: se $a + d
+= b + c$ e $c + f = d + e$, somando as duas igualdades e cancelando $c + d$ (lei do
+cancelamento, @sec-naturais) obtém-se $a + f = b + e$, isto é, $(a, b) \sim (e,
+f)$.
+:::
+
+Uma relação de equivalência reparte o conjunto em **classes**: a classe de
+$(a,b)$, denotada $[a, b]$, reúne todos os pares equivalentes a ele. Cada classe é
+um inteiro.
+
+::: {#def-inteiros}
+## Inteiros
+O conjunto dos **inteiros** é
+$$
+\mathbb{Z} = \{\, [a, b] : (a, b) \in \mathbb{N} \times \mathbb{N} \,\},
+$$
+o conjunto das classes de $\sim$. Definem-se a soma e o produto por
+$$
+[a, b] + [c, d] = [\,a + c,\ b + d\,], \qquad
+[a, b] \cdot [c, d] = [\,a c + b d,\ a d + b c\,].
+$$
+:::
+
+As fórmulas vêm de expandir $(a - b) + (c - d)$ e $(a - b)(c - d)$. Como cada
+inteiro foi representado por *vários* pares, é preciso verificar que o resultado
+não depende do representante escolhido — a operação está **bem definida** (ver
+@exr-bem-definida).
+
+::: {.callout-note}
+## Zero, simétricos e o reencontro com $\mathbb{N}$
+O **zero** é $0 = [a, a]$ (a diferença nula), e o **simétrico** de $[a, b]$ é
+$-[a, b] = [b, a]$, pois $[a,b] + [b,a] = [a+b, a+b] = 0$. Cada natural $n$
+identifica-se com a classe $[\,n + 1,\ 1\,]$ (a diferença $n$), e isso mergulha
+$\mathbb{N}$ dentro de $\mathbb{Z}$ preservando soma e produto. A partir daqui
+podemos esquecer os pares e voltar à notação de sempre: $\dots, -2, -1, 0, 1, 2,
+\dots$
+:::
+
+Com essas operações, $\mathbb{Z}$ herda as boas propriedades de $\mathbb{N}$ —
+soma e produto comutativos e associativos, distributividade — e ganha a que
+motivou tudo: **todo inteiro tem simétrico**, logo a subtração $a - b := a + (-b)$
+está sempre definida. Estende-se também a ordem: $a < b$ quando $b - a$ é um
+natural (um inteiro positivo). Não há divisores de zero — se $a b = 0$ então
+$a = 0$ ou $b = 0$ —, fato que usaremos livremente.
+
+## Divisibilidade
+
+Dentro de $\mathbb{Z}$ a divisão nem sempre é exata; é justamente *quando* ela é
+exata que reside a aritmética interessante.
+
+::: {#def-divide}
+## Divisibilidade
+Sejam $a, b \in \mathbb{Z}$. Dizemos que $a$ **divide** $b$, e escrevemos $a \mid
+b$, quando existe $c \in \mathbb{Z}$ tal que $b = a c$. Nesse caso, $a$ é um
+**divisor** de $b$, e $b$ um **múltiplo** de $a$.
+:::
+
+Por exemplo, $3 \mid 12$ (pois $12 = 3 \cdot 4$) e $5 \nmid 12$. Note que $a \mid
+0$ para todo $a$ (já que $0 = a \cdot 0$), e que $1 \mid b$ para todo $b$.
+
+As propriedades a seguir são a caixa de ferramentas básica; quase toda
+manipulação com divisibilidade se reduz a elas.
+
+::: {#prp-divide-props}
+## Propriedades da divisão
+Para quaisquer $a, b, c \in \mathbb{Z}$:
+
+1. (reflexiva) $a \mid a$; e $1 \mid a$, $a \mid 0$.
+2. (transitiva) se $a \mid b$ e $b \mid c$, então $a \mid c$.
+3. (combinações) se $a \mid b$ e $a \mid c$, então $a \mid (b x + c y)$ para
+   quaisquer $x, y \in \mathbb{Z}$.
+:::
+
+::: {.proof}
+(2) Existem $u, v$ com $b = a u$ e $c = b v$. Então $c = (a u) v = a (u v)$, e
+como $u v \in \mathbb{Z}$, segue $a \mid c$.
+
+(3) Existem $u, v$ com $b = a u$ e $c = a v$. Logo
+$$
+b x + c y = a u x + a v y = a (u x + v y),
+$$
+e $u x + v y \in \mathbb{Z}$; portanto $a \mid (b x + c y)$. As afirmações de (1)
+são imediatas da @def-divide.
+:::
+
+::: {.callout-tip}
+## Combinações lineares: o caso mais usado
+O item (3) diz que um divisor comum de $b$ e $c$ divide *qualquer* combinação
+$bx + cy$. Em particular, divide $b + c$ e $b - c$. É a engrenagem central do
+algoritmo de Euclides, que veremos no próximo capítulo.
+:::
+
+A divisibilidade quase ordena $\mathbb{Z}$: se dois inteiros se dividem
+mutuamente, diferem no máximo por sinal.
+
+::: {#prp-divisao-mutua}
+## Divisão mútua
+Se $a \mid b$ e $b \mid a$, com $a, b \neq 0$, então $a = b$ ou $a = -b$.
+:::
+
+::: {.proof}
+Existem $u, v$ com $b = a u$ e $a = b v$. Substituindo, $a = a u v$, e como
+$a \neq 0$ cancela-se: $u v = 1$. Os únicos inteiros com produto $1$ são $1
+\cdot 1$ e $(-1)(-1)$, logo $u = v = 1$ ou $u = v = -1$. No primeiro caso $b = a$;
+no segundo $b = -a$.
+:::
+
+## Divisão euclidiana
+
+Mesmo quando $a \nmid b$, dividir deixa um **resto** controlado. Este é o teorema
+que organiza toda a aritmética dos inteiros — e sua existência repousa, mais uma
+vez, sobre a boa ordenação dos naturais (@thm-boa-ordem).
+
+::: {#thm-divisao-euclidiana}
+## Divisão euclidiana
+Sejam $a \in \mathbb{Z}$ e $b \in \mathbb{N}$, com $b > 0$. Então existem inteiros
+**únicos** $q$ (quociente) e $r$ (resto) tais que
+$$
+a = b q + r, \qquad 0 \leq r < b.
+$$
+:::
+
+::: {.proof}
+**Existência.** Considere o conjunto dos restos não negativos possíveis,
+$$
+R = \{\, a - b q : q \in \mathbb{Z} \,\} \cap \{\, n \in \mathbb{Z} : n \geq 0 \,\}.
+$$
+$R$ é não vazio: tomando $q$ inteiro suficientemente pequeno (por exemplo $q \leq
+a/b$), o valor $a - bq$ fica $\geq 0$. Como $R$ é um conjunto não vazio de inteiros
+$\geq 0$, a boa ordenação (@thm-boa-ordem) garante que ele tem um **menor
+elemento** $r = a - b q \geq 0$. Resta ver que $r < b$. Se fosse $r \geq b$,
+então
+$$
+a - b (q + 1) = (a - b q) - b = r - b \geq 0
+$$
+estaria em $R$ e seria menor que $r$ — contradizendo a minimalidade. Logo
+$0 \leq r < b$.
+
+**Unicidade.** Suponha $a = b q + r = b q' + r'$ com $0 \leq r, r' < b$. Então
+$b(q - q') = r' - r$, de modo que $b \mid (r' - r)$. Mas $|r' - r| < b$, e o único
+múltiplo de $b$ com valor absoluto menor que $b$ é $0$; logo $r' = r$ e, em
+seguida, $q' = q$.
+:::
+
+::: {#exm-divisao}
+## Calculando quociente e resto
+Para $a = 17$ e $b = 5$: $17 = 5 \cdot 3 + 2$, logo $q = 3$ e $r = 2$. Para
+$a = -17$ e $b = 5$, o resto deve ser não negativo, então
+$$
+-17 = 5 \cdot (-4) + 3, \qquad q = -4,\ r = 3,
+$$
+e **não** $-17 = 5 \cdot (-3) - 2$, pois $-2$ não está no intervalo $0 \leq r <
+5$. O cuidado com o sinal do quociente é o erro mais comum aqui.
+:::
+
+::: {.callout-note}
+O resto $r$ é $0$ exatamente quando $b \mid a$. Assim, a divisibilidade do
+@def-divide é o caso particular "resto zero" da divisão euclidiana — e a
+**paridade** de um inteiro é apenas seu resto na divisão por $2$.
+:::
+
+## Exercícios
+
+::: {#exr-bem-definida}
+Mostre que a soma de $\mathbb{Z}$ está bem definida: se $(a, b) \sim (a', b')$ e
+$(c, d) \sim (c', d')$, então $[a + c, b + d] = [a' + c', b' + d']$.
+:::
+
+::: {#exr-divide-produto}
+Prove que, se $a \mid b$, então $a \mid b c$ para todo $c \in \mathbb{Z}$. Conclua
+que $a \mid b$ e $a \mid c$ implicam $a \mid (b + c)$ e $a \mid (b - c)$.
+:::
+
+::: {#exr-divisores-limitados}
+Mostre que, se $a \mid b$ e $b \neq 0$, então $|a| \leq |b|$. Conclua que todo
+inteiro não nulo tem apenas um número *finito* de divisores.
+:::
+
+::: {#exr-paridade}
+Use a divisão euclidiana por $2$ para provar que todo inteiro é par ou ímpar, mas
+nunca ambos.
+:::
+
+::: {#exr-resto-quadrado}
+Mostre que o quadrado de qualquer inteiro deixa resto $0$ ou $1$ na divisão por
+$4$. (Sugestão: escreva o inteiro como $2k$ ou $2k + 1$.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-divisores-limitados
+Se $a \mid b$, existe $c$ com $b = a c$. Como $b \neq 0$, também $a \neq 0$ e
+$c \neq 0$, logo $|c| \geq 1$. Então $|b| = |a| \, |c| \geq |a| \cdot 1 = |a|$,
+isto é, $|a| \leq |b|$. Em consequência, todo divisor $a$ de $b$ satisfaz
+$-|b| \leq a \leq |b|$; há apenas finitos inteiros nesse intervalo, logo $b$ tem
+finitos divisores.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-resto-quadrado
+Pela divisão euclidiana por $2$, todo inteiro $n$ é $2k$ ou $2k + 1$. No primeiro
+caso, $n^2 = 4k^2$, resto $0$. No segundo,
+$$
+n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 4(k^2 + k) + 1,
+$$
+resto $1$. Logo $n^2$ deixa resto $0$ ou $1$ módulo $4$ — em particular, nenhum
+quadrado deixa resto $2$ ou $3$.
+:::
