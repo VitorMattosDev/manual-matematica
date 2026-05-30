@@ -1,0 +1,184 @@
+# Sequências e convergência {#sec-sequencias-analise}
+
+## Motivação
+
+Sequências e seu limite já apareceram informalmente no Cálculo (@sec-sequencias) e na
+discussão de séries (@sec-series). Agora os tratamos com o rigor que a análise exige:
+a definição **ε–N** de limite, sem apelo a "ficar próximo" ou "tender a". Essa
+precisão não é preciosismo — é o que permite **demonstrar** os fatos que antes apenas
+aceitávamos, e detectar onde a intuição falha.
+
+As sequências são o objeto mais simples onde a completude dos reais
+(@sec-supremo-completude) mostra seu poder. Aqui provaremos rigorosamente que toda
+sequência limitada tem subsequência convergente (Bolzano-Weierstrass) e que, em
+$\mathbb{R}$, "ser de Cauchy" equivale a "convergir" — o critério de convergência que
+não precisa conhecer o limite de antemão. Esses resultados são a fundação sobre a qual
+se erguem continuidade, derivação e integração rigorosas nos próximos capítulos.
+
+## A definição rigorosa de limite
+
+::: {#def-limite-rigoroso}
+## Limite de uma sequência (ε–N)
+A sequência $(a_n)$ **converge** para $L \in \mathbb{R}$ se:
+$$
+\forall\, \varepsilon > 0,\ \exists\, N \in \mathbb{N}\ \text{tal que}\ n > N
+\implies |a_n - L| < \varepsilon.
+$$
+Escreve-se $\lim a_n = L$ ou $a_n \to L$. Se não há tal $L$, a sequência **diverge**.
+:::
+
+::: {.callout-tip}
+## Como ler a definição
+"Para toda tolerância $\varepsilon$, por menor que seja, existe um ponto $N$ a partir
+do qual **todos** os termos estão dentro da faixa $(L - \varepsilon, L +
+\varepsilon)$." O adversário escolhe $\varepsilon$; você responde com $N$. Vencer esse
+jogo para *todo* $\varepsilon$ é, precisamente, convergir. Demonstrar um limite é
+exibir o $N$ em função de $\varepsilon$.
+:::
+
+::: {#exm-limite-rigoroso}
+## Uma prova ε–N
+Mostremos que $\frac1n \to 0$. Dado $\varepsilon > 0$, pela propriedade arquimediana
+(@thm-arquimediano) existe $N$ com $\frac1N < \varepsilon$. Então, para $n > N$,
+$\left|\frac1n - 0\right| = \frac1n < \frac1N < \varepsilon$. Como $\varepsilon$ era
+arbitrário, $\frac1n \to 0$. ∎
+:::
+
+::: {#prp-unicidade-limite}
+## Unicidade do limite
+Se $a_n \to L$ e $a_n \to L'$, então $L = L'$.
+:::
+
+::: {.proof}
+Se $L \neq L'$, tome $\varepsilon = \frac{|L - L'|}{2} > 0$. A partir de certo $N$,
+$a_n$ estaria simultaneamente a menos de $\varepsilon$ de $L$ e de $L'$, dois
+intervalos disjuntos — impossível. Logo $L = L'$.
+:::
+
+## Álgebra dos limites
+
+::: {#thm-algebra-limites}
+## Operações com limites
+Se $a_n \to A$ e $b_n \to B$, então:
+$$
+a_n + b_n \to A + B, \quad a_n b_n \to AB, \quad \frac{a_n}{b_n} \to \frac{A}{B}\
+(B \neq 0).
+$$
+Toda sequência convergente é, ademais, **limitada**.
+:::
+
+::: {.proof}
+*(Caso da soma.)* Dado $\varepsilon > 0$, há $N_1, N_2$ com $|a_n - A| <
+\frac\varepsilon2$ ($n > N_1$) e $|b_n - B| < \frac\varepsilon2$ ($n > N_2$). Para
+$n > \max(N_1, N_2)$, pela desigualdade triangular $|(a_n + b_n) - (A + B)| \leq |a_n
+- A| + |b_n - B| < \varepsilon$.
+:::
+
+## O teorema de Bolzano-Weierstrass
+
+Um dos pilares da análise — e uma consequência direta da completude.
+
+::: {#def-subsequencia}
+## Subsequência
+Uma **subsequência** de $(a_n)$ é uma sequência $(a_{n_k})$ obtida escolhendo índices
+$n_1 < n_2 < n_3 < \cdots$. Se $a_n \to L$, toda subsequência também tende a $L$.
+:::
+
+::: {#thm-bolzano-weierstrass}
+## Bolzano-Weierstrass
+Toda sequência **limitada** de números reais possui uma **subsequência
+convergente**.
+:::
+
+::: {.proof}
+*(Esboço — bisseção.)* Encerre a sequência num intervalo $[a, b]$. Divida-o ao meio;
+ao menos uma metade contém infinitos termos. Repita, gerando intervalos encaixados de
+comprimento $\frac{b - a}{2^k} \to 0$, cada um com infinitos termos. Por completude,
+eles têm um ponto comum $L$; escolhendo um termo de cada intervalo forma-se uma
+subsequência que converge para $L$.
+:::
+
+::: {.callout-note}
+## Por que isso é tão importante
+Bolzano-Weierstrass garante que, mesmo sem convergir, uma sequência limitada **sempre
+acumula** em algum ponto. É a peça-chave das demonstrações de que funções contínuas em
+intervalos fechados atingem máximo (@sec-continuidade) e são uniformemente contínuas.
+Em espaços gerais, essa propriedade — "limitado e fechado implica compacto" — é a
+essência da **compacidade** (@sec-topologia-reta, @sec-compacidade).
+:::
+
+## O critério de Cauchy
+
+A caracterização interna da convergência: sem mencionar o limite.
+
+::: {#def-cauchy-real}
+## Sequência de Cauchy
+$(a_n)$ é de **Cauchy** se $\forall \varepsilon > 0,\ \exists N$ tal que $m, n > N
+\implies |a_m - a_n| < \varepsilon$.
+:::
+
+::: {#thm-cauchy-completude}
+## Critério de Cauchy
+Em $\mathbb{R}$, uma sequência **converge se, e somente se, é de Cauchy**.
+:::
+
+::: {.proof}
+*(Esboço.)* Toda convergente é de Cauchy (triangular). Reciprocamente, uma sequência
+de Cauchy é limitada, logo tem subsequência convergente (@thm-bolzano-weierstrass)
+para algum $L$; como os termos se aproximam entre si, a sequência inteira converge
+para esse mesmo $L$.
+:::
+
+::: {.callout-tip}
+## A utilidade do critério
+O critério de Cauchy permite **provar que algo converge sem saber para onde** —
+checando apenas que os termos se apertam entre si. Isso é indispensável quando o
+limite é desconhecido ou indefinível diretamente (séries, integrais impróprias,
+espaços de funções). A equivalência Cauchy ⟺ convergente é, ela própria, uma forma de
+enunciar a completude de $\mathbb{R}$ (@sec-construcao-reais) — em $\mathbb{Q}$ ela
+falha.
+:::
+
+## Exercícios
+
+::: {#exr-seq-1}
+Prove pela definição ε–N que $\dfrac{n}{n+1} \to 1$.
+:::
+
+::: {#exr-seq-2}
+Use a álgebra dos limites para calcular $\lim \dfrac{3n^2 + 2n}{n^2 - 1}$.
+:::
+
+::: {#exr-seq-bw}
+Dê uma sequência limitada e divergente que tenha **duas** subsequências convergindo
+para limites diferentes.
+:::
+
+::: {#exr-seq-cauchy}
+Mostre que $a_n = \sum_{k=1}^{n}\frac{1}{k^2}$ é de Cauchy (e portanto converge), sem
+calcular o limite.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-seq-1
+$\left|\frac{n}{n+1} - 1\right| = \frac{1}{n+1}$. Dado $\varepsilon > 0$, escolha $N$
+com $\frac{1}{N+1} < \varepsilon$ (arquimediano). Para $n > N$, $\frac{1}{n+1} <
+\frac{1}{N+1} < \varepsilon$. Logo o limite é $1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-seq-bw
+$a_n = (-1)^n$: é limitada, mas a subsequência dos pares converge para $1$ e a dos
+ímpares para $-1$. Tendo subsequências com limites distintos, $(a_n)$ **diverge**
+(@def-subsequencia).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-seq-cauchy
+Para $m > n$, $|a_m - a_n| = \sum_{k=n+1}^m \frac{1}{k^2} < \sum_{k=n+1}^m
+\frac{1}{k(k-1)} = \frac1n - \frac1m < \frac1n$ (soma telescópica). Dado $\varepsilon
+> 0$, basta $N > \frac1\varepsilon$ para garantir $|a_m - a_n| < \varepsilon$. Logo é
+de Cauchy e converge (@thm-cauchy-completude) — o limite é $\frac{\pi^2}{6}$.
+:::

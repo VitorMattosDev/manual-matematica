@@ -110,6 +110,7 @@ book:
       chapters:
         - volumes/v8-analise/01-construcao-reais.qmd
         - volumes/v8-analise/02-supremo-completude.qmd
+        - volumes/v8-analise/03-sequencias.qmd
   appendices:
     - notacao.qmd
 

@@ -128,7 +128,7 @@ Pré-requisitos: nenhum.*
 
 - [x] `volumes/v8-analise/01-construcao-reais.qmd` — Construção dos reais (cortes de Dedekind / Cauchy).
 - [x] `volumes/v8-analise/02-supremo-completude.qmd` — Supremo, ínfimo e completude.
-- [ ] `volumes/v8-analise/03-sequencias.qmd` — Sequências e convergência.
+- [x] `volumes/v8-analise/03-sequencias.qmd` — Sequências e convergência.
 - [ ] `volumes/v8-analise/04-series.qmd` — Séries numéricas (rigoroso).
 - [ ] `volumes/v8-analise/05-topologia-reta.qmd` — Topologia da reta: abertos, fechados, compactos.
 - [ ] `volumes/v8-analise/06-continuidade.qmd` — Limites e continuidade (ε-δ).
