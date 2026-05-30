@@ -1,0 +1,130 @@
+# Funções holomorfas e Cauchy-Riemann {#sec-holomorfas-cauchy-riemann}
+
+## Motivação
+
+Derivar uma função real foi simples (@sec-derivada). Derivar uma função **complexa**
+$f: \mathbb{C}\to\mathbb{C}$ parece igual — o mesmo quociente de Newton —, mas esconde
+uma exigência muito mais forte: o limite deve existir **qualquer que seja a direção** de
+aproximação no plano. Como há infinitas direções (não só esquerda e direita), essa
+condição é dramaticamente restritiva.
+
+As funções que a satisfazem — as **holomorfas** — formam uma classe quase milagrosa: são
+automaticamente infinitamente deriváveis, analíticas, e rígidas a ponto de seu valor num
+disco determinar tudo o mais. A condição de derivabilidade traduz-se nas **equações de
+Cauchy-Riemann**, que ligam as partes real e imaginária. Este capítulo define a
+holomorfia e revela por que ela é tão especial.
+
+## A derivada complexa
+
+::: {#def-derivada-complexa}
+## Derivada complexa
+A função $f$ é **derivável** (no sentido complexo) em $z_0$ se existe o limite
+$$
+f'(z_0) = \lim_{h\to 0}\frac{f(z_0 + h) - f(z_0)}{h}, \qquad h \in \mathbb{C}.
+$$
+Se $f$ é derivável em todo ponto de um aberto, diz-se **holomorfa** (ou analítica) ali.
+:::
+
+::: {.callout-warning}
+## O limite deve independer da direção
+Aqui está o ponto crucial: $h \to 0$ no plano complexo pode ocorrer por **infinitas
+direções** (ao longo do eixo real, do imaginário, de qualquer reta ou espiral). Para a
+derivada existir, **todas** devem dar o mesmo limite. Compare com $\mathbb{R}$, onde só
+há dois lados. Essa exigência multidirecional é o que torna a derivabilidade complexa
+muito mais forte que a real — e gera as equações de Cauchy-Riemann.
+:::
+
+## As equações de Cauchy-Riemann
+
+::: {#thm-cauchy-riemann}
+## Equações de Cauchy-Riemann
+Escreva $f(x + iy) = u(x, y) + i\,v(x, y)$. Se $f$ é holomorfa, então $u$ e $v$
+satisfazem
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}
+{\partial y} = -\frac{\partial v}{\partial x}.
+$$
+Reciprocamente, se essas equações valem e as parciais são contínuas, $f$ é holomorfa.
+:::
+
+::: {.proof}
+*(Esboço.)* Calcule a derivada aproximando $h$ pelo eixo real ($h = \Delta x$) e pelo
+imaginário ($h = i\Delta y$). A primeira dá $f' = u_x + i v_x$; a segunda, $f' = v_y - i
+u_y$. Para o limite ser único, as duas expressões coincidem — igualando partes real e
+imaginária, obtêm-se as equações.
+:::
+
+::: {#exm-cauchy-riemann}
+## Testando holomorfia
+Para $f(z) = z^2 = (x^2 - y^2) + i(2xy)$: $u = x^2 - y^2$, $v = 2xy$. Então $u_x = 2x =
+v_y$ ✓ e $u_y = -2y = -v_x$ ✓ — $f$ é holomorfa, com $f'(z) = 2z$. Já $f(z) = \bar z =
+x - iy$ tem $u_x = 1 \neq v_y = -1$: **não** é holomorfa em lugar nenhum.
+:::
+
+## A conexão com funções harmônicas
+
+::: {#thm-holomorfa-harmonica}
+## Partes de funções holomorfas são harmônicas
+Se $f = u + iv$ é holomorfa, então $u$ e $v$ são **harmônicas** (@sec-calor-onda-laplace):
+$$
+u_{xx} + u_{yy} = 0, \qquad v_{xx} + v_{yy} = 0.
+$$
+Diz-se que $v$ é a **harmônica conjugada** de $u$.
+:::
+
+::: {.proof}
+Derivando Cauchy-Riemann: $u_{xx} = (v_y)_x = v_{yx}$ e $u_{yy} = (-v_x)_y = -v_{xy}$.
+Somando, $u_{xx} + u_{yy} = v_{yx} - v_{xy} = 0$ (Clairaut, @sec-varias-variaveis).
+:::
+
+::: {.callout-note}
+## Análise complexa resolve problemas de potencial
+Esta ligação é uma mina de ouro aplicada: como as partes de funções holomorfas são
+harmônicas, a análise complexa fornece soluções para a equação de Laplace
+(@sec-calor-onda-laplace) — escoamento de fluidos, eletrostática, condução de calor em
+2D. Construir uma função holomorfa adequada resolve um problema físico de potencial de
+uma vez, e as **aplicações conformes** (@sec-aplicacoes-conformes) exploram isso a fundo.
+:::
+
+## Exercícios
+
+::: {#exr-cr-holomorfa}
+Verifique pelas equações de Cauchy-Riemann que $f(z) = z^3$ é holomorfa.
+:::
+
+::: {#exr-cr-nao}
+Mostre que $f(z) = |z|^2 = x^2 + y^2$ só satisfaz Cauchy-Riemann na origem (logo não é
+holomorfa em aberto algum).
+:::
+
+::: {#exr-cr-harmonica}
+Verifique que $u(x,y) = x^2 - y^2$ é harmônica e encontre uma harmônica conjugada $v$.
+:::
+
+::: {#exr-cr-direcao}
+Explique, em uma frase, por que $f(z) = \bar z$ falha em ser derivável apesar de ser
+"suave" como função de $\mathbb{R}^2$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-nao
+$u = x^2 + y^2$, $v = 0$. Cauchy-Riemann pede $u_x = v_y$, isto é $2x = 0$, e $u_y =
+-v_x$, isto é $2y = 0$. Ambas só valem em $(0,0)$. Como holomorfia exige derivabilidade
+num **aberto**, $f$ não é holomorfa em parte alguma.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-harmonica
+$u_{xx} + u_{yy} = 2 - 2 = 0$ ✓. Conjugada: de $v_y = u_x = 2x$, $v = 2xy + g(x)$; de
+$v_x = -u_y = 2y$, $2y + g'(x) = 2y \Rightarrow g$ constante. Logo $v = 2xy$ — e $f = u +
+iv = z^2$ (@exm-cauchy-riemann).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-direcao
+$f(z) = \bar z$ reflete o plano; aproximando $h \to 0$ pelo eixo real o quociente vale
+$+1$, pelo imaginário vale $-1$ — limites diferentes. A derivada complexa exige o **mesmo**
+limite em toda direção, e a conjugação viola isso, embora seja suave em $\mathbb{R}^2$.
+:::
