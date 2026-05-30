@@ -1,0 +1,170 @@
+# Limites e continuidade {#sec-limites}
+
+## Motivação
+
+O Cálculo nasce de uma pergunta sobre o **instante**: qual a velocidade *exata* num
+ponto, se velocidade é distância dividida por tempo e, num instante, o tempo
+decorrido é zero? A divisão $0/0$ não tem sentido — mas a razão *tende* a um valor
+quando o intervalo encolhe. Capturar esse valor é tomar um **limite**, a operação
+fundadora de toda a análise.
+
+Estendendo a ideia de limite de sequências (@sec-sequencias-precalculo) para
+**funções**, perguntamos: de que valor $f(x)$ se aproxima quando $x$ se aproxima de
+um ponto $a$? A resposta, e a noção de **continuidade** que dela decorre, são a base
+sobre a qual construiremos derivada e integral nos próximos capítulos. Mantemos aqui
+o tom intuitivo do pré-cálculo, anunciando o rigor que o Volume VIII fornecerá.
+
+## Limite de uma função
+
+::: {#def-limite-funcao}
+## Limite (intuitivo)
+Dizemos que $f(x)$ tem **limite** $L$ quando $x$ tende a $a$, e escrevemos
+$$
+\lim_{x \to a} f(x) = L,
+$$
+quando $f(x)$ fica tão próximo de $L$ quanto se queira, bastando tomar $x$
+suficientemente próximo de $a$ (mas $x \neq a$).
+:::
+
+O detalhe crucial é "$x \neq a$": o limite descreve o **comportamento em torno** de
+$a$, não o valor *em* $a$ — que pode até não existir. É essa independência que
+permitirá dar sentido à velocidade instantânea.
+
+::: {#exm-limite-removivel}
+## Um limite onde a função nem existe
+Considere $f(x) = \dfrac{x^2 - 1}{x - 1}$, indefinida em $x = 1$ (dá $0/0$). Para
+$x \neq 1$, fatora-se (@sec-fatoracao):
+$$
+f(x) = \frac{(x - 1)(x + 1)}{x - 1} = x + 1.
+$$
+Quando $x \to 1$, isso tende a $2$. Logo $\lim_{x \to 1} f(x) = 2$, embora $f(1)$
+não exista. O limite "preenche o buraco".
+:::
+
+## Limites laterais
+
+Aproximar-se de $a$ pode dar resultados diferentes pela esquerda e pela direita.
+
+::: {#def-limites-laterais}
+## Limites laterais
+O **limite à esquerda** $\lim_{x \to a^-} f(x)$ considera apenas $x < a$; o
+**limite à direita** $\lim_{x \to a^+} f(x)$, apenas $x > a$. O limite
+$\lim_{x \to a} f(x)$ existe se, e somente se, ambos existem e **coincidem**.
+:::
+
+::: {#exm-salto}
+## Um salto
+A função $f(x) = \dfrac{|x|}{x}$ vale $-1$ para $x < 0$ e $+1$ para $x > 0$. Então
+$$
+\lim_{x \to 0^-} f(x) = -1, \qquad \lim_{x \to 0^+} f(x) = +1.
+$$
+Como os limites laterais diferem, $\lim_{x \to 0} f(x)$ **não existe** — o gráfico
+dá um salto na origem.
+:::
+
+## Regras e cálculo de limites
+
+Como nas sequências (@prp-regras-limite), o limite respeita as operações, o que
+torna o cálculo mecânico na maioria dos casos.
+
+::: {#prp-regras-limite-funcao}
+## Operações com limites
+Se $\lim_{x\to a} f(x) = L$ e $\lim_{x\to a} g(x) = M$, então a soma, o produto e o
+quociente (se $M \neq 0$) têm limites $L + M$, $LM$ e $L/M$. Para funções dadas por
+fórmulas "sem buracos", o limite é simplesmente o **valor**: $\lim_{x\to a} f(x) =
+f(a)$.
+:::
+
+::: {.callout-tip}
+## Indeterminações: onde mora o conteúdo
+Quando a substituição direta dá $\frac{0}{0}$, $\frac{\infty}{\infty}$ ou $\infty -
+\infty$, tem-se uma **indeterminação** — o limite *pode* existir, mas exige
+trabalho: fatorar (@exm-limite-removivel), racionalizar, dividir pelo termo
+dominante. São essas formas que tornam o limite interessante; a derivada, no próximo
+capítulo, será uma indeterminação $\frac00$ resolvida.
+:::
+
+## Continuidade
+
+Quando o limite num ponto coincide com o valor da função ali, não há buraco nem
+salto: a função é **contínua**.
+
+::: {#def-continuidade}
+## Função contínua
+Uma função $f$ é **contínua** em $a$ quando
+$$
+\lim_{x \to a} f(x) = f(a),
+$$
+o que exige três coisas: $f(a)$ existe, o limite existe, e os dois são iguais. $f$ é
+contínua num intervalo quando o é em cada ponto.
+:::
+
+Intuitivamente, uma função é contínua quando seu gráfico **não tem interrupções** —
+pode ser traçado sem tirar o lápis do papel. Polinômios, exponenciais, logaritmos,
+senos e cossenos são contínuos em todo o seu domínio.
+
+::: {#thm-tvi}
+## Teorema do Valor Intermediário
+Se $f$ é contínua no intervalo $[a, b]$ e $y$ é um valor entre $f(a)$ e $f(b)$,
+então existe ao menos um $c \in [a, b]$ com $f(c) = y$.
+:::
+
+::: {.callout-note}
+## Por que polinômios de grau ímpar têm raiz
+O Teorema do Valor Intermediário formaliza a intuição usada no
+@sec-funcoes-polinomiais: se $f$ é contínua e muda de sinal — $f(a) < 0 < f(b)$ —,
+então **cruza o zero** em algum ponto intermediário. Como um polinômio de grau ímpar
+tende a $-\infty$ de um lado e $+\infty$ do outro, ele necessariamente assume os dois
+sinais e, sendo contínuo, tem raiz real. A demonstração do TVI, que repousa na
+completude dos reais (@sec-reais), é um dos pontos altos do Volume VIII.
+:::
+
+::: {#exm-continuidade}
+## Verificando continuidade
+A função $f(x) = \dfrac{x^2 - 1}{x - 1}$ do @exm-limite-removivel **não** é contínua
+em $x = 1$ (não está definida ali), mas a descontinuidade é **removível**: definindo
+$f(1) = 2$ — o valor do limite —, a função torna-se contínua. Já o salto do
+@exm-salto é uma descontinuidade **essencial**, que nenhuma redefinição conserta.
+:::
+
+## Exercícios
+
+::: {#exr-limite-fatorar}
+Calcule $\displaystyle \lim_{x \to 2} \frac{x^2 - 4}{x - 2}$ fatorando o numerador.
+:::
+
+::: {#exr-limites-laterais}
+Para $f(x) = \dfrac{x - 3}{|x - 3|}$, calcule os limites laterais em $x = 3$ e
+decida se $\lim_{x \to 3} f(x)$ existe.
+:::
+
+::: {#exr-limite-infinito}
+Calcule $\displaystyle \lim_{x \to \infty} \frac{2x^2 - x + 1}{5x^2 + 3}$ dividindo
+pelo termo dominante.
+:::
+
+::: {#exr-continuidade}
+Determine o valor de $k$ que torna contínua em $x = 1$ a função definida por $f(x) =
+\dfrac{x^2 - 1}{x - 1}$ para $x \neq 1$ e $f(1) = k$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-limite-fatorar
+O numerador é diferença de quadrados: $x^2 - 4 = (x - 2)(x + 2)$. Para $x \neq 2$,
+$$
+\frac{x^2 - 4}{x - 2} = x + 2.
+$$
+Quando $x \to 2$, isso tende a $2 + 2 = 4$. Logo o limite é $4$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-limite-infinito
+Dividindo numerador e denominador por $x^2$ (o termo dominante):
+$$
+\frac{2x^2 - x + 1}{5x^2 + 3} = \frac{2 - \frac1x + \frac1{x^2}}{5 + \frac3{x^2}}.
+$$
+Quando $x \to \infty$, todas as frações com $x$ no denominador tendem a $0$, e o
+limite é $\dfrac{2}{5}$.
+:::
