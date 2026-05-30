@@ -1,0 +1,209 @@
+# Séries de potências e séries de Taylor {#sec-taylor}
+
+## Motivação
+
+Polinômios são as funções mais dóceis que existem: somam-se, derivam-se e
+integram-se sem esforço, e uma calculadora só sabe, no fundo, somar e multiplicar.
+Já $\operatorname{sen}x$, $e^x$ ou $\ln x$ são transcendentes — como uma máquina
+calcula $\operatorname{sen}(1)$?
+
+A resposta é uma das ideias mais poderosas do Cálculo: **aproximar funções por
+polinômios** e, no limite, representá-las por "polinômios de grau infinito" — as
+**séries de potências**. A série de Taylor de uma função codifica *toda* a
+informação da função num único ponto (seus valores e os de todas as suas
+derivadas) e a reconstrói em toda uma vizinhança. É a ponte entre o mundo rígido
+dos polinômios e o mundo flexível das funções transcendentes.
+
+## Séries de potências
+
+::: {#def-serie-potencias}
+## Série de potências
+Uma **série de potências** centrada em $a$ é uma expressão da forma
+$$
+\sum_{n=0}^{\infty} c_n (x - a)^n = c_0 + c_1(x - a) + c_2(x - a)^2 + \cdots,
+$$
+com coeficientes $c_n$ constantes. Para cada valor de $x$ ela é uma série
+numérica, que pode convergir ou divergir.
+:::
+
+O conjunto dos $x$ onde a série converge é sempre um intervalo centrado em $a$.
+
+::: {#thm-raio-convergencia}
+## Raio de convergência
+Para toda série de potências $\sum c_n (x-a)^n$ existe um **raio de convergência**
+$R \in [0, \infty]$ tal que a série converge para $|x - a| < R$ e diverge para
+$|x - a| > R$. Em geral,
+$$
+R = \lim_{n\to\infty} \left|\frac{c_n}{c_{n+1}}\right|,
+$$
+quando esse limite existe.
+:::
+
+::: {.proof}
+*(Esboço.)* Aplique o teste da razão (@thm-teste-razao) ao termo geral $c_n
+(x-a)^n$: a razão entre termos consecutivos tende a $|x-a|/R$. Pelo teste, há
+convergência quando esse valor é menor que $1$, isto é, $|x - a| < R$.
+:::
+
+::: {#exm-raio}
+## Reconhecendo a geométrica
+A série $\sum_{n=0}^{\infty} x^n$ é a geométrica (@thm-geometrica): converge para
+$|x| < 1$ (logo $R = 1$) e ali vale $\frac{1}{1 - x}$. Esta é a primeira — e
+arquetípica — representação de uma função por série de potências.
+:::
+
+## Polinômios de Taylor
+
+Antes da série infinita, a aproximação finita. A reta tangente (@sec-derivada) já
+era a melhor aproximação **linear** de $f$ perto de $a$. Taylor estende a ideia a
+graus maiores.
+
+::: {#def-polinomio-taylor}
+## Polinômio de Taylor
+O **polinômio de Taylor de ordem $n$** de $f$ em torno de $a$ é
+$$
+T_n(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x - a)^k = f(a) + f'(a)(x-a) +
+\frac{f''(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n.
+$$
+Quando $a = 0$, também se chama polinômio de **Maclaurin**.
+:::
+
+A escolha dos coeficientes não é arbitrária: $T_n$ é o único polinômio de grau
+$\leq n$ que tem, em $a$, **o mesmo valor e as mesmas $n$ primeiras derivadas** que
+$f$. Por isso cola tão bem ao gráfico perto de $a$.
+
+::: {#exm-taylor-exp}
+## Maclaurin da exponencial
+Para $f(x) = e^x$, todas as derivadas são $e^x$, e em $a = 0$ valem $1$. Logo
+$$
+T_n(x) = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots + \frac{x^n}{n!}.
+$$
+Já $T_3(1) = 1 + 1 + \tfrac12 + \tfrac16 = 2{,}6\overline{6}$, próximo de $e
+\approx 2{,}718$.
+:::
+
+## A série de Taylor
+
+Fazendo $n \to \infty$, o polinômio vira série.
+
+::: {#def-serie-taylor}
+## Série de Taylor
+A **série de Taylor** de $f$ em torno de $a$ é
+$$
+\sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n.
+$$
+Quando ela converge para $f(x)$, dizemos que $f$ é **analítica** em $a$ e
+escrevemos a igualdade $f(x) = \sum \frac{f^{(n)}(a)}{n!}(x-a)^n$.
+:::
+
+::: {.callout-warning}
+## Convergir não é o bastante; tem de convergir *para $f$*
+Há funções suaves cuja série de Taylor converge, mas **não** para a função (o
+exemplo padrão é $e^{-1/x^2}$, com todas as derivadas nulas em $0$). Garantir a
+igualdade exige controlar o **resto** $R_n(x) = f(x) - T_n(x)$ e mostrar que
+$R_n(x) \to 0$. A fórmula de Taylor com resto de Lagrange faz isso nos casos
+usuais.
+:::
+
+## As séries fundamentais
+
+Três expansões merecem ser conhecidas de cor; delas saem quase todas as outras.
+
+::: {#prp-series-classicas}
+## Expansões de Maclaurin
+Para todo $x$ real,
+$$
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!}
++ \cdots,
+$$
+$$
+\operatorname{sen}x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} = x -
+\frac{x^3}{3!} + \frac{x^5}{5!} - \cdots,
+$$
+$$
+\cos x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} +
+\frac{x^4}{4!} - \cdots.
+$$
+:::
+
+::: {.callout-note}
+## A identidade mais bela da matemática
+Substituindo $x$ por $ix$ na série de $e^x$ e separando partes real e imaginária,
+reconhecem-se as séries de $\cos x$ e $\operatorname{sen}x$: é a **fórmula de
+Euler** $e^{ix} = \cos x + i\operatorname{sen}x$. Em $x = \pi$ ela dá
+$$
+e^{i\pi} + 1 = 0,
+$$
+unindo $e$, $i$, $\pi$, $1$ e $0$ numa só linha. As séries de Taylor são o que
+torna esse milagre demonstrável.
+:::
+
+## Por que isso é útil
+
+Representar $f$ por série de potências permite:
+
+- **Calcular valores.** $\operatorname{sen}(0{,}1) \approx 0{,}1 -
+  \frac{0{,}1^3}{6} \approx 0{,}0998334$, com poucos termos.
+- **Integrar o inintegrável.** $e^{-x^2}$ não tem antiderivada elementar
+  (@sec-tecnicas-integracao), mas integrando sua série termo a termo obtém-se
+  $\int e^{-x^2}dx = x - \frac{x^3}{3} + \frac{x^5}{10} - \cdots$.
+- **Resolver limites e equações diferenciais**, e fundamentar a análise complexa.
+
+::: {#exm-aproximacao}
+## Aproximação linear vs. quadrática
+Perto de $0$, $\cos x \approx 1 - \frac{x^2}{2}$. Em $x = 0{,}2$: o valor exato é
+$\cos(0{,}2) \approx 0{,}980067$, e a aproximação dá $1 - 0{,}02 = 0{,}98$ — erro
+menor que $10^{-4}$ com apenas dois termos.
+:::
+
+## Exercícios
+
+::: {#exr-maclaurin}
+Determine o polinômio de Maclaurin de ordem $4$ de $f(x) = \ln(1 + x)$.
+:::
+
+::: {#exr-raio-conv}
+Encontre o raio de convergência de $\displaystyle\sum_{n=1}^{\infty}
+\frac{x^n}{n}$.
+:::
+
+::: {#exr-taylor-valor}
+Use a série da exponencial para estimar $e^{0{,}5}$ com os quatro primeiros
+termos.
+:::
+
+::: {#exr-integral-serie}
+Escreva os três primeiros termos da série de $\frac{1}{1 + x^2}$ (a partir da
+geométrica) e integre termo a termo para obter uma série de $\arctan x$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-maclaurin
+Com $f(x) = \ln(1+x)$: $f'(x) = (1+x)^{-1}$, $f''(x) = -(1+x)^{-2}$, $f'''(x) =
+2(1+x)^{-3}$, $f^{(4)}(x) = -6(1+x)^{-4}$. Em $x = 0$: $f(0) = 0$, $f'(0) = 1$,
+$f''(0) = -1$, $f'''(0) = 2$, $f^{(4)}(0) = -6$. Logo
+$$
+T_4(x) = x - \frac{x^2}{2} + \frac{2}{3!}x^3 - \frac{6}{4!}x^4 = x - \frac{x^2}{2}
++ \frac{x^3}{3} - \frac{x^4}{4}.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-raio-conv
+Com $c_n = \frac1n$, $\left|\frac{c_n}{c_{n+1}}\right| = \frac{n+1}{n} \to 1$.
+Pelo @thm-raio-convergencia, $R = 1$. (Nos extremos: em $x = 1$ é a harmônica, que
+diverge; em $x = -1$ é a harmônica alternada, que converge.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-integral-serie
+Da geométrica com razão $-x^2$: $\frac{1}{1+x^2} = 1 - x^2 + x^4 - \cdots$
+(válida para $|x| < 1$). Integrando termo a termo,
+$$
+\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \cdots,
+$$
+pois $(\arctan x)' = \frac{1}{1+x^2}$ e $\arctan 0 = 0$. Em $x = 1$ isso dá a
+série de Leibniz $\frac{\pi}{4} = 1 - \frac13 + \frac15 - \cdots$.
+:::
