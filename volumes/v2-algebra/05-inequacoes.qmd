@@ -1,0 +1,151 @@
+# Inequações e estudo de sinal {#sec-inequacoes}
+
+## Motivação
+
+Nem todo problema pergunta "quanto vale?"; muitos perguntam "a partir de quando?"
+ou "em que faixa?". *Qual a velocidade máxima para parar em $30$ metros? Para que
+preços o lucro é positivo?* Essas perguntas se traduzem não em equações, mas em
+**inequações** — desigualdades a resolver.
+
+Resolver uma inequação é descrever **todos** os valores que a satisfazem,
+tipicamente um intervalo ou uma união de intervalos. A técnica difere da das
+equações num ponto crucial e traiçoeiro: multiplicar por número negativo
+**inverte** o sentido da desigualdade. A partir daí, o caso linear é simples; o
+caso de grau maior pede uma ferramenta sistemática, o **estudo (ou quadro) de
+sinais**. Trabalharemos sobre a ordem de $\mathbb{R}$ (@sec-reais).
+
+## Desigualdades e suas regras
+
+::: {#def-inequacao}
+## Inequação
+Uma **inequação** é uma desigualdade ($<$, $\leq$, $>$ ou $\geq$) entre duas
+expressões, a resolver numa incógnita. Seu **conjunto solução** é o conjunto dos
+valores que a tornam verdadeira, em geral expresso como intervalo.
+:::
+
+As operações que preservam o conjunto solução são quase as das equações — com uma
+exceção decisiva.
+
+::: {#prp-regras-desigualdade}
+## Regras das desigualdades
+Seja $a < b$. Então:
+
+1. $a + c < b + c$ para todo $c$ (somar não altera o sentido);
+2. se $c > 0$, então $a c < b c$ (multiplicar por positivo preserva o sentido);
+3. se $c < 0$, então $a c > b c$ (multiplicar por negativo **inverte** o sentido).
+:::
+
+::: {.callout-warning}
+## O erro que define o capítulo
+A regra (3) é a fonte de quase todos os erros. Ao resolver $-2x < 6$, divide-se
+por $-2$ **invertendo** a desigualdade: $x > -3$ (e não $x < -3$). Verifique com
+$x = 0$: $-2 \cdot 0 = 0 < 6$, verdadeiro, e $0 > -3$, coerente. Sempre que
+multiplicar ou dividir por um número negativo, vire o sinal da desigualdade.
+:::
+
+## Inequações do primeiro grau
+
+Com as regras acima, a inequação linear resolve-se como a equação, atento ao
+sinal do coeficiente.
+
+::: {#exm-inequacao-linear}
+## Resolvendo uma inequação linear
+Resolva $3x - 5 \leq x + 7$. Subtraindo $x$ e somando $5$: $2x \leq 12$. Dividindo
+por $2 > 0$ (sentido preservado): $x \leq 6$. O conjunto solução é o intervalo
+$(-\infty, 6]$.
+:::
+
+## Estudo de sinal
+
+Para inequações como $(x - 1)(x + 2) > 0$ não basta isolar $x$: o produto é
+positivo conforme o **sinal de cada fator**. A ferramenta geral é tabelar onde
+cada fator é positivo ou negativo e combinar.
+
+::: {#prp-sinal-produto}
+## Sinal de um produto
+Um produto de fatores é positivo quando há um número **par** de fatores negativos,
+e negativo quando há um número **ímpar** deles. Em cada raiz de um fator, o
+produto se anula.
+:::
+
+::: {#exm-quadro-sinal}
+## Inequação produto pelo quadro de sinais
+Resolva $(x - 1)(x + 2) > 0$. Os fatores mudam de sinal em $x = 1$ e $x = -2$, que
+dividem a reta em três faixas. Em cada uma, registramos o sinal de cada fator e do
+produto:
+
+| | $x < -2$ | $-2 < x < 1$ | $x > 1$ |
+|:--|:--:|:--:|:--:|
+| $x + 2$ | $-$ | $+$ | $+$ |
+| $x - 1$ | $-$ | $-$ | $+$ |
+| produto | $+$ | $-$ | $+$ |
+
+O produto é positivo onde há sinal $+$: o conjunto solução é $(-\infty, -2) \cup
+(1, +\infty)$. (Como a desigualdade é estrita, as raízes $-2$ e $1$ ficam de fora.)
+:::
+
+Uma inequação do segundo grau $ax^2 + bx + c > 0$ reduz-se a isto: acham-se as
+raízes por Bhaskara (@thm-bhaskara), fatora-se $a(x - x_1)(x - x_2)$ e faz-se o
+quadro — ou, mais rápido, usa-se que a parábola tem o sinal de $a$ fora das raízes
+e o sinal oposto entre elas.
+
+::: {#exm-inequacao-2grau}
+## Inequação do segundo grau
+Resolva $x^2 - x - 6 \leq 0$. As raízes de $x^2 - x - 6 = 0$ são $x = 3$ e $x =
+-2$ (soma $1$, produto $-6$, por Girard). Como $a = 1 > 0$, a expressão é
+**negativa entre as raízes** e positiva fora. Incluindo as raízes (desigualdade
+$\leq$), o conjunto solução é o intervalo fechado $[-2, 3]$.
+:::
+
+::: {.callout-tip}
+## Quociente trata-se como produto
+Para inequações com fração, como $\dfrac{x - 1}{x + 2} \geq 0$, o sinal do
+quociente segue a mesma regra do produto dos sinais — com uma ressalva: o
+denominador **não pode ser zero**. Aqui $x = -2$ é excluído do domínio, então
+entra com bola aberta mesmo numa desigualdade $\geq$.
+:::
+
+## Exercícios
+
+::: {#exr-inequacao-linear}
+Resolva e escreva como intervalo: $5 - 2x > 11$.
+:::
+
+::: {#exr-inequacao-dupla}
+Resolva a desigualdade dupla $-1 \leq 2x - 3 < 5$, descrevendo o intervalo
+solução.
+:::
+
+::: {#exr-inequacao-produto}
+Resolva $(x + 1)(x - 4) < 0$ usando um quadro de sinais.
+:::
+
+::: {#exr-inequacao-2grau}
+Resolva $-x^2 + 4x - 3 \geq 0$. (Atenção ao sinal do coeficiente líder.)
+:::
+
+::: {#exr-inequacao-quociente}
+Resolva $\dfrac{x - 2}{x + 1} \leq 0$, lembrando de excluir o valor que anula o
+denominador.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-inequacao-dupla
+Trata-se das duas desigualdades ao mesmo tempo. Some $3$ aos três membros:
+$$
+-1 + 3 \leq 2x < 5 + 3 \implies 2 \leq 2x < 8.
+$$
+Divida por $2 > 0$ (sentido preservado): $1 \leq x < 4$. O conjunto solução é o
+intervalo $[1, 4)$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-inequacao-2grau
+Multiplicar por $-1$ (invertendo o sinal) dá $x^2 - 4x + 3 \leq 0$. As raízes são
+$1$ e $3$ (soma $4$, produto $3$). Como agora $a = 1 > 0$, a expressão é negativa
+entre as raízes; com $\leq$, inclui-se os extremos. Solução: $[1, 3]$.
+(Alternativamente: a parábola original tem $a = -1 < 0$, abre para baixo, logo é
+$\geq 0$ **entre** suas raízes $1$ e $3$ — mesmo resultado.)
+:::

@@ -40,6 +40,7 @@ book:
         - volumes/v2-algebra/02-equacoes-1grau.qmd
         - volumes/v2-algebra/03-sistemas-lineares.qmd
         - volumes/v2-algebra/04-equacoes-2grau.qmd
+        - volumes/v2-algebra/05-inequacoes.qmd
     # ----------------------------------------------------------------
     # Os próximos volumes estão planejados em PLANO.md/ROADMAP.md. Para
     # ativá-los, crie os arquivos .qmd e descomente os blocos abaixo.
