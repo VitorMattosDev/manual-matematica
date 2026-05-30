@@ -82,6 +82,7 @@ book:
         - volumes/v5-calculo/09-series.qmd
         - volumes/v5-calculo/10-taylor.qmd
         - volumes/v5-calculo/11-varias-variaveis.qmd
+        - volumes/v5-calculo/12-integrais-multiplas.qmd
   appendices:
     - notacao.qmd
 

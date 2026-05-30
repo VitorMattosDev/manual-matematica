@@ -94,7 +94,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v5-calculo/09-series.qmd` — Sequências e séries numéricas; critérios de convergência.
 - [x] `volumes/v5-calculo/10-taylor.qmd` — Séries de potências e séries de Taylor.
 - [x] `volumes/v5-calculo/11-varias-variaveis.qmd` — Cálculo de várias variáveis: derivadas parciais, gradiente.
-- [ ] `volumes/v5-calculo/12-integrais-multiplas.qmd` — Integrais múltiplas.
+- [x] `volumes/v5-calculo/12-integrais-multiplas.qmd` — Integrais múltiplas.
 
 ## Volume VI — Álgebra Linear
 *Objetivo: espaços vetoriais e transformações lineares. Pré-req.: Vols. II, V.*

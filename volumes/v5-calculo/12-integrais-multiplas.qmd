@@ -1,0 +1,205 @@
+# Integrais múltiplas {#sec-integrais-multiplas}
+
+## Motivação
+
+A integral de uma variável (@sec-integral) somou fatias verticais para medir a
+**área** sob uma curva. Mas e o **volume** sob uma superfície $z = f(x, y)$? Ou a
+massa de uma placa cuja densidade varia ponto a ponto? Precisamos somar
+contribuições sobre uma região do **plano**, não de um intervalo.
+
+A resposta é a **integral dupla**: fatie a região em pequenos retângulos, multiplique
+cada um pela altura $f(x, y)$ ali, some tudo e passe ao limite. O mesmo princípio de
+Riemann, agora em duas dimensões. Veremos que, graças ao **teorema de Fubini**, uma
+integral dupla se reduz a duas integrais simples, encadeadas — devolvendo o problema
+ao terreno conhecido do Volume V. Este capítulo fecha o Volume V estendendo a
+integração ao espaço.
+
+## A integral dupla
+
+::: {#def-integral-dupla}
+## Integral dupla sobre um retângulo
+Seja $f$ definida no retângulo $R = [a, b]\times[c, d]$. Divida $R$ em sub-retângulos
+de áreas $\Delta A$, escolha um ponto $(x_i, y_j)$ em cada um e forme a **soma de
+Riemann** $\sum_{i,j} f(x_i, y_j)\,\Delta A$. Se essas somas tendem a um limite quando
+os sub-retângulos encolhem, $f$ é **integrável** e
+$$
+\iint_R f(x, y)\,dA = \lim \sum_{i, j} f(x_i, y_j)\,\Delta A.
+$$
+:::
+
+::: {.callout-tip}
+## O significado geométrico
+Quando $f(x, y) \geq 0$, cada parcela $f(x_i, y_j)\,\Delta A$ é o volume de uma
+coluninha de base $\Delta A$ e altura $f(x_i, y_j)$. A integral dupla soma todas: é o
+**volume** do sólido entre a região $R$ e a superfície $z = f(x, y)$. É a versão
+bidimensional da "área sob a curva".
+:::
+
+## O teorema de Fubini
+
+Calcular pela definição seria inviável. O resultado central permite integrar uma
+variável de cada vez.
+
+::: {#thm-fubini}
+## Teorema de Fubini
+Se $f$ é contínua no retângulo $R = [a, b]\times[c, d]$, então a integral dupla é
+igual a qualquer das **integrais iteradas**:
+$$
+\iint_R f(x, y)\,dA = \int_a^b\!\left(\int_c^d f(x, y)\,dy\right)dx = \int_c^d\!
+\left(\int_a^b f(x, y)\,dx\right)dy.
+$$
+:::
+
+Na integral interna, a variável "de fora" é tratada como constante — exatamente o
+espírito das derivadas parciais (@sec-varias-variaveis), agora ao integrar. A ordem
+de integração é livre; escolhe-se a mais conveniente.
+
+::: {#exm-fubini-retangulo}
+## Uma integral iterada
+$$
+\iint_R (x + 2y)\,dA, \quad R = [0, 2]\times[0, 1].
+$$
+Integrando primeiro em $y$ (tratando $x$ como constante):
+$$
+\int_0^1 (x + 2y)\,dy = \bigl[xy + y^2\bigr]_0^1 = x + 1.
+$$
+Depois em $x$:
+$$
+\int_0^2 (x + 1)\,dx = \left[\frac{x^2}{2} + x\right]_0^2 = 2 + 2 = 4.
+$$
+:::
+
+## Regiões mais gerais
+
+Poucas regiões úteis são retângulos. Para regiões delimitadas por curvas, os limites
+da integral interna passam a **depender** da variável externa.
+
+::: {#def-regiao-tipo1}
+## Região do tipo I
+Uma região $D$ é **do tipo I** se tem a forma
+$$
+D = \{(x, y) : a \leq x \leq b,\ g_1(x) \leq y \leq g_2(x)\},
+$$
+limitada à esquerda e à direita por retas verticais, e abaixo e acima pelos gráficos
+de $g_1$ e $g_2$. Sobre ela,
+$$
+\iint_D f\,dA = \int_a^b\!\left(\int_{g_1(x)}^{g_2(x)} f(x, y)\,dy\right)dx.
+$$
+:::
+
+::: {#exm-regiao-triangulo}
+## Integrando sobre um triângulo
+Seja $D$ o triângulo de vértices $(0,0)$, $(1, 0)$, $(1, 1)$, isto é $0 \leq x \leq
+1$, $0 \leq y \leq x$. Então
+$$
+\iint_D xy\,dA = \int_0^1\!\left(\int_0^x xy\,dy\right)dx = \int_0^1 x\left[\frac{y^2}
+{2}\right]_0^x dx = \int_0^1 \frac{x^3}{2}\,dx = \frac12\cdot\frac14 = \frac18.
+$$
+:::
+
+::: {.callout-warning}
+## Os limites internos carregam a variável externa
+O erro mais comum é deixar a variável externa nos limites da integral **externa**.
+Depois de integrar a interna, o resultado deve depender só da variável externa (ou
+ser constante). Se sobrou um $y$ após integrar em $y$, algo está errado.
+:::
+
+## Coordenadas polares
+
+Para regiões circulares, os limites cartesianos ficam horríveis (raízes por toda
+parte). Trocando para coordenadas polares (@sec-trigonometria-circulo), círculos viram
+retângulos.
+
+::: {#thm-mudanca-polar}
+## Integral dupla em polares
+Com $x = r\cos\theta$, $y = r\operatorname{sen}\theta$, o elemento de área torna-se
+$dA = r\,dr\,d\theta$ (o fator extra $r$ é essencial), e
+$$
+\iint_D f(x, y)\,dA = \iint_{D'} f(r\cos\theta, r\operatorname{sen}\theta)\,r\,dr\,
+d\theta.
+$$
+:::
+
+::: {.callout-note}
+## De onde vem o $r$ extra
+Um "retângulo" polar de lados $dr$ e $d\theta$ não é um retângulo: é um setor fino, de
+largura radial $dr$ e largura angular $r\,d\theta$ (arco de raio $r$). Sua área é o
+produto $r\,dr\,d\theta$ — daí o fator $r$. Esquecê-lo é o erro clássico das integrais
+em polares.
+:::
+
+::: {#exm-polar-disco}
+## Área do disco, de novo
+A área do disco de raio $R$ ($0 \leq r \leq R$, $0 \leq \theta \leq 2\pi$):
+$$
+\iint_D 1\,dA = \int_0^{2\pi}\!\int_0^R r\,dr\,d\theta = \int_0^{2\pi}\frac{R^2}{2}\,
+d\theta = \frac{R^2}{2}\cdot 2\pi = \pi R^2,
+$$
+confirmando a fórmula de @sec-areas pela integração.
+:::
+
+## Aplicações
+
+A integral dupla mede muito mais que volumes:
+
+- **Área** de uma região plana $D$: $\displaystyle\iint_D 1\,dA$.
+- **Massa** de uma placa de densidade $\rho(x, y)$: $\displaystyle\iint_D \rho\,dA$.
+- **Valor médio** de $f$ sobre $D$: $\displaystyle\frac{1}{\text{área}(D)}\iint_D f\,
+  dA$.
+
+A ideia se estende a **integrais triplas** $\iiint_E f\,dV$ sobre sólidos no espaço,
+com Fubini reduzindo a três integrais encadeadas — fundamentais em física para
+calcular massa, centro de massa e momentos de inércia.
+
+## Exercícios
+
+::: {#exr-dupla-1}
+Calcule $\displaystyle\iint_R (x^2 + y)\,dA$ sobre $R = [0, 1]\times[0, 2]$.
+:::
+
+::: {#exr-dupla-2}
+Calcule $\displaystyle\int_0^1\!\int_0^{x} (x + y)\,dy\,dx$.
+:::
+
+::: {#exr-ordem}
+Inverta a ordem de integração em $\displaystyle\int_0^1\!\int_x^1 f(x, y)\,dy\,dx$
+(descreva a região e reescreva).
+:::
+
+::: {#exr-polar-1}
+Use coordenadas polares para calcular $\displaystyle\iint_D (x^2 + y^2)\,dA$, onde
+$D$ é o disco $x^2 + y^2 \leq 1$.
+:::
+
+::: {#exr-volume-dupla}
+Encontre o volume do sólido sob o plano $z = 4 - x - y$ acima do retângulo
+$[0,1]\times[0,1]$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dupla-1
+$$
+\iint_R (x^2 + y)\,dA = \int_0^1\!\int_0^2 (x^2 + y)\,dy\,dx = \int_0^1\left[x^2 y +
+\frac{y^2}{2}\right]_0^2 dx = \int_0^1 (2x^2 + 2)\,dx = \frac23 + 2 = \frac83.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-polar-1
+Com $x^2 + y^2 = r^2$ e $dA = r\,dr\,d\theta$:
+$$
+\iint_D (x^2 + y^2)\,dA = \int_0^{2\pi}\!\int_0^1 r^2\cdot r\,dr\,d\theta =
+\int_0^{2\pi}\left[\frac{r^4}{4}\right]_0^1 d\theta = \frac14\cdot 2\pi = \frac{\pi}
+{2}.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-volume-dupla
+$$
+V = \int_0^1\!\int_0^1 (4 - x - y)\,dy\,dx = \int_0^1\left[4y - xy - \frac{y^2}{2}
+\right]_0^1 dx = \int_0^1\left(\frac72 - x\right)dx = \frac72 - \frac12 = 3.
+$$
+:::
