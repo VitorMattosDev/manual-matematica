@@ -1,0 +1,177 @@
+# Séries numéricas (rigoroso) {#sec-series-analise}
+
+## Motivação
+
+No Volume V tratamos séries de modo operacional (@sec-series): somas parciais,
+critérios da razão e da comparação, aplicados sem demonstração. Agora, munidos da
+definição rigorosa de limite (@sec-sequencias-analise) e da completude
+(@sec-supremo-completude), podemos **provar** esses critérios e enfrentar as
+sutilezas que a manipulação ingênua esconde.
+
+E há sutilezas perigosas. A série $1 - 1 + 1 - 1 + \cdots$ "vale" $0$, $1$ ou
+$\frac12$ conforme se agrupem os termos. A série harmônica alternada pode ser
+**reordenada** para somar qualquer número que se queira. Sem rigor, somas infinitas
+levam a paradoxos. Este capítulo estabelece a teoria das séries sobre fundamentos
+sólidos, distingue convergência absoluta de condicional, e revela por que a ordem dos
+termos importa — o surpreendente teorema de Riemann sobre rearranjos.
+
+## Convergência de séries
+
+::: {#def-serie-rigorosa}
+## Série e convergência
+Dada $(a_n)$, a **série** $\sum_{n=1}^\infty a_n$ é a sequência das **somas parciais**
+$s_N = \sum_{n=1}^N a_n$. A série **converge** para $S$ se $s_N \to S$ no sentido ε–N
+(@def-limite-rigoroso); caso contrário, **diverge**.
+:::
+
+A convergência de uma série é, por definição, a convergência de uma sequência (a das
+somas parciais) — então toda a teoria do capítulo anterior se aplica.
+
+::: {#thm-cauchy-serie}
+## Critério de Cauchy para séries
+$\sum a_n$ converge se, e somente se, para todo $\varepsilon > 0$ existe $N$ tal que
+$$
+\left|\sum_{k=n+1}^{m} a_k\right| < \varepsilon \quad\text{para todos } m > n > N.
+$$
+:::
+
+::: {#cor-termo-geral-rigoroso}
+## Teste do termo geral
+Se $\sum a_n$ converge, então $a_n \to 0$.
+:::
+
+::: {.proof}
+Tome $m = n + 1$ no critério de Cauchy: $|a_{n+1}| < \varepsilon$ para $n > N$, logo
+$a_n \to 0$.
+:::
+
+## Séries de termos positivos
+
+Para $a_n \geq 0$, as somas parciais são crescentes, e a convergência reduz-se à
+limitação (@thm-monotona-convergente).
+
+::: {#thm-criterio-comparacao-rig}
+## Critério da comparação
+Sejam $0 \leq a_n \leq b_n$. Se $\sum b_n$ converge, então $\sum a_n$ converge; se
+$\sum a_n$ diverge, então $\sum b_n$ diverge.
+:::
+
+::: {.proof}
+As somas parciais $s_N = \sum_{n\le N} a_n$ são crescentes e limitadas por $\sum b_n$;
+por @thm-monotona-convergente, convergem.
+:::
+
+::: {#thm-criterio-integral}
+## Critério da integral
+Se $f$ é positiva, contínua e decrescente em $[1, \infty)$ com $f(n) = a_n$, então
+$\sum a_n$ converge se, e somente se, a integral imprópria $\int_1^\infty f(x)\,dx$
+converge.
+:::
+
+::: {#exm-p-series-rig}
+## As $p$-séries, demonstradas
+Pelo critério da integral aplicado a $f(x) = x^{-p}$: $\int_1^\infty x^{-p}\,dx$
+converge exatamente quando $p > 1$. Logo $\sum \frac{1}{n^p}$ **converge se $p > 1$ e
+diverge se $p \leq 1$** — o resultado anunciado em @sec-series, agora provado. Em
+particular a harmônica ($p = 1$) diverge.
+:::
+
+## Convergência absoluta e condicional
+
+A distinção que separa séries "robustas" de séries "frágeis".
+
+::: {#def-absoluta}
+## Convergência absoluta
+A série $\sum a_n$ converge **absolutamente** se $\sum |a_n|$ converge. Se $\sum a_n$
+converge mas $\sum |a_n|$ diverge, a convergência é **condicional**.
+:::
+
+::: {#thm-absoluta-implica}
+## Absoluta implica convergente
+Se $\sum |a_n|$ converge, então $\sum a_n$ converge.
+:::
+
+::: {.proof}
+Como $0 \leq a_n + |a_n| \leq 2|a_n|$, a série $\sum (a_n + |a_n|)$ converge por
+comparação. Então $\sum a_n = \sum(a_n + |a_n|) - \sum |a_n|$ converge, diferença de
+duas convergentes.
+:::
+
+::: {#exm-condicional}
+## A harmônica alternada é condicional
+$\sum \frac{(-1)^{n+1}}{n} = 1 - \frac12 + \frac13 - \cdots$ converge (critério de
+Leibniz) para $\ln 2$, mas $\sum \frac1n$ diverge. Logo a convergência é
+**condicional** — equilibrada precariamente pelo cancelamento dos sinais.
+:::
+
+## O teorema dos rearranjos de Riemann
+
+O resultado que mostra por que o rigor é indispensável.
+
+::: {#thm-riemann-rearranjo}
+## Rearranjos de Riemann
+Seja $\sum a_n$ **condicionalmente** convergente. Então, para **qualquer** valor $L
+\in \mathbb{R}$ (ou $\pm\infty$), existe um rearranjo (reordenação) dos termos cuja
+soma é exatamente $L$. Em contraste, séries **absolutamente** convergentes têm a
+mesma soma sob qualquer rearranjo.
+:::
+
+::: {.callout-warning}
+## A ordem dos termos pode mudar tudo
+Numa série condicionalmente convergente, os termos positivos somam $+\infty$ e os
+negativos somam $-\infty$ separadamente; equilibrá-los em ordens diferentes leva a
+qualquer soma desejada. **Comutatividade infinita não existe** sem convergência
+absoluta. É por isso que, na prática, só se manipulam livremente (reordenar, reagrupar,
+multiplicar) séries que convergem absolutamente — uma lição que a álgebra finita não
+ensinava.
+:::
+
+::: {#exm-rearranjo}
+## Reordenando a harmônica alternada
+Tomando dois termos negativos para cada positivo, $1 - \frac12 - \frac14 + \frac13 -
+\frac16 - \frac18 + \cdots$, a soma passa a ser $\frac12\ln 2$, não $\ln 2$. A mesma
+coleção de termos, em outra ordem, dá outra soma — exatamente o fenômeno de Riemann.
+:::
+
+## Exercícios
+
+::: {#exr-ser-1}
+Use o critério da integral para decidir a convergência de $\sum \frac{1}{n\ln n}$.
+:::
+
+::: {#exr-ser-2}
+A série $\sum \frac{(-1)^n}{\sqrt n}$ converge absoluta, condicional ou diverge?
+:::
+
+::: {#exr-ser-comparacao}
+Mostre que $\sum \frac{1}{n^2 + 1}$ converge por comparação.
+:::
+
+::: {#exr-ser-absoluta}
+Mostre que $\sum \frac{\cos n}{n^2}$ converge (dica: convergência absoluta).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ser-1
+Com $f(x) = \frac{1}{x\ln x}$, substitua $u = \ln x$: $\int_2^\infty \frac{dx}{x\ln x}
+= \int \frac{du}{u} = \ln(\ln x)$, que **diverge**. Pelo critério da integral
+(@thm-criterio-integral), a série diverge — apesar de os termos tenderem a zero muito
+lentamente.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ser-2
+$\sum \frac{1}{\sqrt n} = \sum n^{-1/2}$ é $p$-série com $p = \frac12 \leq 1$,
+**diverge** — então não há convergência absoluta. Mas $\frac{1}{\sqrt n}$ decresce a
+zero, então pelo critério de Leibniz a série alternada converge. Logo a convergência é
+**condicional**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ser-absoluta
+$\left|\frac{\cos n}{n^2}\right| \leq \frac{1}{n^2}$, e $\sum \frac{1}{n^2}$ converge
+($p = 2 > 1$). Por comparação, $\sum \left|\frac{\cos n}{n^2}\right|$ converge, isto é,
+a série converge **absolutamente** — logo converge (@thm-absoluta-implica).
+:::
