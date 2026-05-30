@@ -1,0 +1,183 @@
+# Sequências e a noção de limite {#sec-sequencias-precalculo}
+
+## Motivação
+
+O que significa "$0{,}999\ldots = 1$"? Ou que área tem um círculo, definido por
+infinitos lados? Por trás dessas perguntas há uma única ideia, a mais importante de
+toda a matemática moderna: a de **limite** — o valor de que uma **sequência** se
+aproxima indefinidamente sem necessariamente atingir.
+
+Já tateamos o limite ao somar uma PG infinita (@sec-progressoes) e ao calcular áreas
+por exaustão (@sec-areas). Agora o tornamos explícito, ainda de modo **intuitivo**:
+uma sequência é uma função definida nos naturais, e dizemos que ela **converge** a
+$L$ quando seus termos ficam tão próximos de $L$ quanto se queira. Este capítulo
+fecha o pré-cálculo construindo a ponte para o Volume V, onde limite, derivada e
+integral nascem todos dessa mesma semente — e onde a definição ganhará o rigor do
+$\varepsilon$.
+
+## Sequências
+
+::: {#def-sequencia}
+## Sequência
+Uma **sequência** de números reais é uma função $a \colon \mathbb{N} \to
+\mathbb{R}$, que a cada $n$ associa o **termo** $a_n$. Denota-se $(a_n)_{n \geq 1}$
+ou simplesmente $(a_n)$.
+:::
+
+As progressões do @sec-progressoes são exemplos; mas uma sequência pode ter qualquer
+lei. Interessa-nos, sobretudo, **para onde ela tende** quando $n$ cresce.
+
+::: {#exm-sequencias}
+## Três comportamentos
+- $a_n = \dfrac{1}{n}$: os termos $1, \tfrac12, \tfrac13, \dots$ encolhem rumo a
+  $0$.
+- $b_n = \dfrac{n}{n + 1}$: os termos $\tfrac12, \tfrac23, \tfrac34, \dots$ sobem
+  rumo a $1$.
+- $c_n = (-1)^n$: os termos $-1, 1, -1, 1, \dots$ oscilam sem se fixar.
+
+As duas primeiras *convergem*; a terceira, não.
+:::
+
+## A noção de limite
+
+::: {#def-limite-intuitivo}
+## Limite de uma sequência (intuitivo)
+Dizemos que a sequência $(a_n)$ **converge** para o número $L$, e escrevemos
+$$
+\lim_{n \to \infty} a_n = L,
+$$
+quando os termos $a_n$ ficam **tão próximos de $L$ quanto se queira**, bastando
+tomar $n$ suficientemente grande. Uma sequência que não converge a número algum
+diz-se **divergente**.
+:::
+
+::: {.callout-note}
+## O sentido preciso de "tão próximo quanto se queira"
+A frase informal esconde a definição rigorosa, que o Volume VIII tornará exata:
+*para todo* $\varepsilon > 0$ (uma margem de erro, por menor que seja), *existe* um
+índice a partir do qual **todos** os termos distam de $L$ menos que $\varepsilon$ —
+isto é, $|a_n - L| < \varepsilon$. Reconhece-se aqui o módulo como distância do
+@sec-modular: convergir é entrar, e ficar, em todo entorno de $L$. Por ora, a
+intuição de aproximação basta.
+:::
+
+::: {#exm-limite-zero}
+## Calculando um limite
+Para $a_n = \dfrac{1}{n}$: quanto maior $n$, menor $\dfrac1n$, e o valor chega tão
+perto de $0$ quanto se queira (para $\dfrac1n < 0{,}001$ basta $n > 1000$). Logo
+$$
+\lim_{n \to \infty} \frac{1}{n} = 0.
+$$
+Já $c_n = (-1)^n$ não se aproxima de nenhum número — alterna entre $-1$ e $1$ para
+sempre —, logo **diverge**.
+:::
+
+## Regras operatórias
+
+Limites comportam-se bem com as operações, o que permite calcular sem voltar à
+definição a cada vez.
+
+::: {#prp-regras-limite}
+## Operações com limites
+Se $\lim a_n = L$ e $\lim b_n = M$, então
+$$
+\lim (a_n + b_n) = L + M, \quad \lim (a_n b_n) = L M, \quad \lim \frac{a_n}{b_n} =
+\frac{L}{M} \ (M \neq 0).
+$$
+:::
+
+::: {#exm-limite-quociente}
+## Limite de um quociente de polinômios
+Para $b_n = \dfrac{n}{n + 1}$, divida numerador e denominador por $n$:
+$$
+b_n = \frac{n}{n+1} = \frac{1}{1 + \frac1n}.
+$$
+Quando $n \to \infty$, $\frac1n \to 0$ (@exm-limite-zero), então, pelas regras
+(@prp-regras-limite), o denominador tende a $1 + 0 = 1$ e
+$$
+\lim_{n \to \infty} \frac{n}{n+1} = \frac{1}{1} = 1.
+$$
+:::
+
+## Séries: somar infinitos termos
+
+Somar todos os termos de uma sequência é tomar o limite das **somas parciais** —
+exatamente o que fizemos com a PG infinita.
+
+::: {#def-serie-intuitiva}
+## Soma infinita
+A **série** $\sum_{n=1}^{\infty} a_n$ é o limite das somas parciais $S_N = a_1 +
+a_2 + \dots + a_N$, quando existe:
+$$
+\sum_{n=1}^{\infty} a_n = \lim_{N \to \infty} S_N.
+$$
+:::
+
+::: {#exm-serie-geometrica}
+## A dízima como série
+A igualdade $0{,}\overline{9} = 1$ (@sec-racionais) é, agora, transparente. A dízima
+é a série geométrica
+$$
+0{,}9 + 0{,}09 + 0{,}009 + \dots = \sum_{n=1}^{\infty} 9 \cdot 10^{-n},
+$$
+cujas somas parciais $0{,}9;\ 0{,}99;\ 0{,}999;\ \dots$ se aproximam de $1$ tão
+perto quanto se queira. O limite é exatamente $1$ — não "quase $1$". É o sentido
+preciso de uma igualdade que parecia paradoxal.
+:::
+
+::: {.callout-tip}
+## O limiar do Cálculo
+Tudo no Volume V brota desta noção. A **derivada** será o limite de uma razão de
+variações quando o intervalo encolhe a zero; a **integral**, o limite de somas de
+áreas de retângulos cada vez mais finos (@sec-areas, @sec-volumes já anteciparam).
+Sequências e limites são o alfabeto da análise — e com este capítulo o pré-cálculo
+entrega ao Cálculo todas as suas ferramentas.
+:::
+
+## Exercícios
+
+::: {#exr-limite-simples}
+Determine, intuitivamente, o limite de cada sequência: (a) $a_n = \dfrac{3}{n^2}$;
+(b) $b_n = \dfrac{2n}{n + 5}$; (c) $c_n = \dfrac{(-1)^n}{n}$.
+:::
+
+::: {#exr-limite-quociente}
+Calcule $\displaystyle \lim_{n \to \infty} \frac{3n^2 + 2n}{n^2 + 1}$ dividindo por
+$n^2$.
+:::
+
+::: {#exr-serie-geometrica}
+Use a soma da PG infinita (@thm-soma-pg-infinita) para calcular $\displaystyle
+\sum_{n=1}^{\infty} \frac{1}{2^n}$ e $\displaystyle \sum_{n=0}^{\infty}
+\left(\frac{2}{3}\right)^n$.
+:::
+
+::: {#exr-dizima-serie}
+Escreva $0{,}\overline{27} = 0{,}272727\dots$ como série geométrica e obtenha sua
+fração geratriz tomando o limite.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-limite-quociente
+Dividindo numerador e denominador por $n^2$:
+$$
+\frac{3n^2 + 2n}{n^2 + 1} = \frac{3 + \frac2n}{1 + \frac1{n^2}}.
+$$
+Quando $n \to \infty$, $\frac2n \to 0$ e $\frac1{n^2} \to 0$. Pelas regras
+(@prp-regras-limite), o limite é $\dfrac{3 + 0}{1 + 0} = 3$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-serie-geometrica
+A primeira é PG com $a_1 = \tfrac12$ e razão $q = \tfrac12$ ($|q| < 1$):
+$$
+\sum_{n=1}^{\infty} \frac{1}{2^n} = \frac{1/2}{1 - 1/2} = 1.
+$$
+A segunda começa em $n = 0$, com $a_1 = \left(\tfrac23\right)^0 = 1$ e $q =
+\tfrac23$:
+$$
+\sum_{n=0}^{\infty}\left(\frac23\right)^n = \frac{1}{1 - 2/3} = 3.
+$$
+:::

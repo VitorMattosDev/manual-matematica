@@ -51,4 +51,6 @@ novos volumes forem escritos.
 | $\gcd(a, b)$ | máximo divisor comum |
 | $\operatorname{mmc}(a, b)$ | mínimo múltiplo comum |
 | $\prod_{i} a_i$ | produtório (produto dos $a_i$) |
+| $(a_n)$ | sequência de termo geral $a_n$ |
+| $\lim_{n\to\infty} a_n$ | limite da sequência |
 | $\square$ | fim de demonstração |

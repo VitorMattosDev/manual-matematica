@@ -78,7 +78,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v4-precalculo/04-exponencial.qmd` — Função exponencial.
 - [x] `volumes/v4-precalculo/05-logaritmo.qmd` — Logaritmos e função logarítmica.
 - [x] `volumes/v4-precalculo/06-trigonometricas.qmd` — Funções trigonométricas e inversas.
-- [ ] `volumes/v4-precalculo/07-sequencias.qmd` — Sequências e a noção informal de limite.
+- [x] `volumes/v4-precalculo/07-sequencias.qmd` — Sequências e a noção informal de limite.
 
 ## Volume V — Cálculo
 *Objetivo: limites, derivadas, integrais e séries. Pré-req.: Vol. IV.*

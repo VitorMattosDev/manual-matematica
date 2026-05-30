@@ -68,6 +68,7 @@ book:
         - volumes/v4-precalculo/04-exponencial.qmd
         - volumes/v4-precalculo/05-logaritmo.qmd
         - volumes/v4-precalculo/06-trigonometricas.qmd
+        - volumes/v4-precalculo/07-sequencias.qmd
   appendices:
     - notacao.qmd
 
