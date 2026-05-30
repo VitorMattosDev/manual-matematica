@@ -181,7 +181,7 @@ não pelo número.
 ## Extensão do Volume V — Cálculo Vetorial
 *Objetivo: campos, fluxo e os teoremas integrais. Pré-req.: Vol. V.*
 
-- [ ] `volumes/v5-calculo/13-campos-integrais-linha.qmd` — Campos vetoriais, campos conservativos e integrais de linha.
+- [x] `volumes/v5-calculo/13-campos-integrais-linha.qmd` — Campos vetoriais, campos conservativos e integrais de linha.
 - [ ] `volumes/v5-calculo/14-integrais-superficie.qmd` — Integrais de superfície e fluxo.
 - [ ] `volumes/v5-calculo/15-green-stokes-divergencia.qmd` — Teoremas de Green, de Stokes e da divergência.
 

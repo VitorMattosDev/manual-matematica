@@ -1,0 +1,186 @@
+# Campos vetoriais, conservativos e integrais de linha {#sec-campos-integrais-linha}
+
+## Motivação
+
+Até aqui, integramos funções **escalares** — uma entrada, um número de saída. Mas a
+física descreve o mundo com **campos vetoriais**: a cada ponto do espaço associa-se um
+*vetor*. O vento tem direção e intensidade em cada lugar; a força gravitacional aponta
+para a massa; o campo elétrico empurra cargas. Como medir o **trabalho** que um tal
+campo realiza ao mover uma partícula por um caminho?
+
+A resposta é a **integral de linha**: somar, ao longo de uma curva, a componente do
+campo na direção do movimento. Dessa ideia nascem os **campos conservativos** — aqueles
+cujo trabalho independe do caminho, só dos extremos —, que generalizam o Teorema
+Fundamental do Cálculo (@sec-tfc) para o espaço. Este capítulo abre a extensão de
+cálculo vetorial do Volume V, usando as derivadas parciais (@sec-varias-variaveis) e
+preparando os grandes teoremas integrais (@sec-green-stokes-divergencia).
+
+## Campos vetoriais
+
+::: {#def-campo-vetorial}
+## Campo vetorial
+Um **campo vetorial** em $\mathbb{R}^n$ é uma função $\mathbf{F}: D \to \mathbb{R}^n$
+que a cada ponto $\mathbf{x}$ de um domínio $D$ associa um vetor $\mathbf{F}(\mathbf{x})$.
+No plano, $\mathbf{F}(x, y) = (P(x, y),\, Q(x, y))$; no espaço, $\mathbf{F}(x, y, z) =
+(P, Q, R)$, com $P, Q, R$ funções escalares (as **componentes**).
+:::
+
+::: {#exm-campos}
+## Campos típicos
+- **Campo radial** $\mathbf{F}(x, y) = (x, y)$: aponta para fora da origem.
+- **Campo de rotação** $\mathbf{F}(x, y) = (-y, x)$: gira em torno da origem.
+- **Gradiente** $\nabla f$ de uma função escalar $f$ (@def-gradiente) — o exemplo
+  central, pois aponta na direção de maior crescimento de $f$.
+:::
+
+::: {.callout-tip}
+## Campos como fotografias de movimento
+Imagine setas plantadas em cada ponto do plano. O campo é o retrato instantâneo de um
+escoamento: a seta diz para onde (e com que rapidez) uma partícula ali seria empurrada.
+Integrar um campo ao longo de uma curva mede o efeito acumulado dessas setas sobre quem
+percorre o caminho.
+:::
+
+## Integral de linha de um campo
+
+::: {#def-integral-linha}
+## Integral de linha (trabalho)
+Seja $\mathbf{F}$ um campo contínuo e $C$ uma curva parametrizada por $\mathbf{r}(t)$,
+$a \leq t \leq b$ (@sec-curvas). A **integral de linha** de $\mathbf{F}$ ao longo de $C$
+é
+$$
+\int_C \mathbf{F}\cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t))\cdot
+\mathbf{r}'(t)\,dt.
+$$
+Ela mede o **trabalho** realizado pelo campo ao percorrer $C$.
+:::
+
+O integrando $\mathbf{F}\cdot\mathbf{r}'$ é a projeção do campo na direção do
+movimento: só a componente "a favor do caminho" contribui.
+
+::: {#exm-trabalho}
+## Calculando trabalho
+Para $\mathbf{F}(x, y) = (y, x)$ e $C$ o segmento de $(0,0)$ a $(1,1)$, parametrizado
+por $\mathbf{r}(t) = (t, t)$, $0 \leq t \leq 1$: $\mathbf{r}'(t) = (1, 1)$ e
+$\mathbf{F}(\mathbf{r}(t)) = (t, t)$, logo
+$$
+\int_C \mathbf{F}\cdot d\mathbf{r} = \int_0^1 (t, t)\cdot(1, 1)\,dt = \int_0^1 2t\,dt =
+1.
+$$
+:::
+
+## Campos conservativos
+
+A pergunta decisiva: quando o trabalho **não depende do caminho**, apenas dos pontos
+inicial e final?
+
+::: {#def-conservativo}
+## Campo conservativo e potencial
+Um campo $\mathbf{F}$ é **conservativo** se existe uma função escalar $f$ (o
+**potencial**) com $\mathbf{F} = \nabla f$. Diz-se então que $\mathbf{F}$ é um campo
+**gradiente**.
+:::
+
+::: {#thm-tfc-linha}
+## Teorema fundamental das integrais de linha
+Se $\mathbf{F} = \nabla f$ é conservativo e $C$ vai de $A$ a $B$, então
+$$
+\int_C \mathbf{F}\cdot d\mathbf{r} = f(B) - f(A).
+$$
+O trabalho depende **só dos extremos**, não do caminho.
+:::
+
+::: {.proof}
+Pela regra da cadeia, $\frac{d}{dt} f(\mathbf{r}(t)) = \nabla f(\mathbf{r}(t))\cdot
+\mathbf{r}'(t) = \mathbf{F}\cdot\mathbf{r}'$. Logo $\int_a^b \mathbf{F}\cdot\mathbf{r}'\,
+dt = \int_a^b \frac{d}{dt}f(\mathbf{r}(t))\,dt = f(\mathbf{r}(b)) - f(\mathbf{r}(a))$,
+pelo TFC (@sec-tfc).
+:::
+
+::: {.callout-note}
+## A generalização do TFC
+Este teorema é o TFC do cálculo vetorial: o gradiente faz o papel da derivada, e os
+extremos $A, B$ o papel das pontas $a, b$. Em particular, o trabalho de um campo
+conservativo ao longo de qualquer **curva fechada** é **zero** — a energia se conserva
+(daí o nome). A gravidade e o campo elétrico estático são conservativos; o atrito não.
+:::
+
+## Como reconhecer um campo conservativo
+
+::: {#prp-criterio-conservativo}
+## Critério das derivadas cruzadas
+Se $\mathbf{F} = (P, Q)$ é conservativo (e suave), então
+$$
+\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}.
+$$
+Reciprocamente, num domínio **simplesmente conexo** (sem buracos,
+@sec-grupo-fundamental), essa igualdade **garante** que $\mathbf{F}$ é conservativo.
+:::
+
+::: {.proof}
+Se $\mathbf{F} = \nabla f$, então $P = f_x$ e $Q = f_y$; pela igualdade das derivadas
+mistas (Clairaut, @sec-varias-variaveis), $P_y = f_{xy} = f_{yx} = Q_x$.
+:::
+
+::: {.callout-warning}
+## A topologia importa
+A condição $P_y = Q_x$ só é **suficiente** se o domínio não tem buracos. O campo de
+rotação $\mathbf{F} = \frac{(-y, x)}{x^2 + y^2}$ satisfaz $P_y = Q_x$ em $\mathbb{R}^2
+\setminus\{0\}$, mas **não** é conservativo: sua integral em torno da origem dá $2\pi
+\neq 0$. O buraco na origem é o culpado — é onde o cálculo vetorial encontra a topologia
+(@sec-grupo-fundamental).
+:::
+
+::: {#exm-achar-potencial}
+## Encontrando o potencial
+Para $\mathbf{F} = (2xy,\ x^2 + 1)$: $P_y = 2x = Q_x$ ✓, e o domínio é todo o plano
+(simplesmente conexo), logo é conservativo. De $f_x = 2xy$ vem $f = x^2 y + g(y)$;
+derivando, $f_y = x^2 + g'(y) = x^2 + 1$, logo $g(y) = y$. Potencial: $f(x, y) = x^2 y
++ y$.
+:::
+
+## Exercícios
+
+::: {#exr-cl-1}
+Calcule $\int_C \mathbf{F}\cdot d\mathbf{r}$ para $\mathbf{F}(x,y) = (x, y)$ e $C$ o
+arco $\mathbf{r}(t) = (\cos t, \operatorname{sen}t)$, $0 \leq t \leq \pi$.
+:::
+
+::: {#exr-cl-conservativo}
+Verifique se $\mathbf{F}(x, y) = (3x^2 + y,\ x + 2y)$ é conservativo e, em caso
+afirmativo, ache um potencial.
+:::
+
+::: {#exr-cl-fechada}
+Mostre que, para o campo conservativo do @exm-achar-potencial, a integral ao longo de
+qualquer curva fechada é zero.
+:::
+
+::: {#exr-cl-caminho}
+Calcule o trabalho de $\mathbf{F} = (y, x)$ de $(0,0)$ a $(1,1)$ por dois caminhos
+diferentes e verifique que coincidem.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cl-1
+$\mathbf{r}'(t) = (-\operatorname{sen}t, \cos t)$ e $\mathbf{F}(\mathbf{r}(t)) =
+(\cos t, \operatorname{sen}t)$. O produto escalar é $-\operatorname{sen}t\cos t +
+\operatorname{sen}t\cos t = 0$, logo $\int_C \mathbf{F}\cdot d\mathbf{r} = 0$. (De
+fato $\mathbf{F} = \nabla(\tfrac{x^2+y^2}{2})$ é conservativo e os extremos $(1,0)$ e
+$(-1,0)$ têm o mesmo potencial.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cl-conservativo
+$P_y = 1 = Q_x$ ✓, domínio todo o plano: conservativo. De $f_x = 3x^2 + y$, $f = x^3 +
+xy + g(y)$; $f_y = x + g'(y) = x + 2y \Rightarrow g(y) = y^2$. Potencial $f = x^3 + xy
++ y^2$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cl-fechada
+Sendo $\mathbf{F} = \nabla f$, o @thm-tfc-linha dá $\oint_C \mathbf{F}\cdot d\mathbf{r}
+= f(A) - f(A) = 0$, pois numa curva fechada o ponto final coincide com o inicial.
+:::
