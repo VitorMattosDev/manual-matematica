@@ -163,6 +163,7 @@ book:
         - volumes/v12-probabilidade/01-espacos-probabilidade.qmd
         - volumes/v12-probabilidade/02-condicional-bayes.qmd
         - volumes/v12-probabilidade/03-vars-discretas.qmd
+        - volumes/v12-probabilidade/04-vars-continuas.qmd
   appendices:
     - notacao.qmd
 

@@ -1,0 +1,132 @@
+# Variáveis aleatórias contínuas {#sec-vars-continuas}
+
+## Motivação
+
+Nem tudo que é aleatório assume valores isolados. A altura de uma pessoa, o tempo de
+espera num caixa, a posição de uma partícula — variam **continuamente**, podendo assumir
+qualquer valor de um intervalo. Como atribuir probabilidades quando há **infinitos**
+valores possíveis, todos com probabilidade individual zero?
+
+A resposta é uma das ideias mais bonitas da probabilidade: a probabilidade deixa de ser
+uma soma e vira uma **integral** (@sec-integral). A informação concentra-se numa
+**função densidade**, e probabilidades são **áreas** sob seu gráfico. Aqui o cálculo do
+Volume V reencontra a probabilidade. Este capítulo desenvolve as variáveis contínuas,
+suas densidades e esperanças — preparando a distribuição normal (@sec-distribuicoes).
+
+## Densidade de probabilidade
+
+::: {#def-densidade}
+## Função densidade de probabilidade
+Uma variável aleatória $X$ é **contínua** se existe uma função $f(x) \geq 0$ (a
+**densidade**) tal que, para todo intervalo,
+$$
+P(a \leq X \leq b) = \int_a^b f(x)\,dx, \qquad\text{com}\qquad \int_{-\infty}^{\infty}
+f(x)\,dx = 1.
+$$
+:::
+
+::: {.callout-warning}
+## A probabilidade de um valor exato é zero
+Para uma variável contínua, $P(X = a) = \int_a^a f = 0$ — **qualquer** valor isolado tem
+probabilidade nula! Isso não significa que seja impossível, apenas que só **intervalos**
+têm probabilidade positiva. Consequência prática: $P(a \leq X \leq b) = P(a < X < b)$ —
+incluir ou não os extremos não muda nada. É a diferença essencial frente ao caso discreto
+(@sec-vars-discretas).
+:::
+
+::: {.callout-tip}
+## Densidade não é probabilidade — é probabilidade por unidade
+O valor $f(x)$ **não** é uma probabilidade (pode até ser $> 1$); é uma **densidade** —
+probabilidade por unidade de comprimento. Só ao integrar sobre um intervalo obtém-se uma
+probabilidade (uma **área**). É exatamente como densidade de massa: $f(x)$ em kg/m, massa
+$= \int f$. A analogia com a distribuição de massa (@sec-aplicacoes-integral) é literal.
+:::
+
+## A distribuição uniforme
+
+::: {#exm-uniforme}
+## Distribuição uniforme
+$X$ é **uniforme** em $[a, b]$ se sua densidade é constante: $f(x) = \frac{1}{b-a}$ em
+$[a,b]$ e $0$ fora. Todo subintervalo de mesmo comprimento é igualmente provável —
+$P(c \leq X \leq d) = \frac{d - c}{b - a}$. É o análogo contínuo dos resultados
+equiprováveis (@def-probabilidade-classica).
+:::
+
+## Função de distribuição e esperança
+
+::: {#def-fda-continua}
+## Acumulada no caso contínuo
+A **função de distribuição acumulada** é $F(x) = P(X \leq x) = \int_{-\infty}^x f(t)\,
+dt$. Pelo Teorema Fundamental do Cálculo (@sec-tfc), a densidade é sua derivada: $f(x) =
+F'(x)$. A fda é contínua (sem saltos), ao contrário da escada do caso discreto.
+:::
+
+::: {#def-esperanca-continua}
+## Esperança e variância (contínuas)
+Trocando soma por integral (@sec-esperanca-variancia para o caso discreto):
+$$
+E[X] = \int_{-\infty}^{\infty} x\,f(x)\,dx, \qquad \operatorname{Var}(X) = \int_{-\infty}
+^{\infty}(x - E[X])^2 f(x)\,dx.
+$$
+:::
+
+::: {#exm-esperanca-uniforme}
+## Esperança da uniforme
+Para $X$ uniforme em $[a, b]$, $E[X] = \int_a^b x\,\frac{1}{b-a}\,dx = \frac{1}{b-a}
+\cdot\frac{b^2 - a^2}{2} = \frac{a + b}{2}$ — o ponto médio, como esperado por simetria.
+:::
+
+## A distribuição exponencial
+
+::: {#exm-exponencial}
+## Distribuição exponencial
+A densidade $f(x) = \lambda e^{-\lambda x}$ (para $x \geq 0$) modela **tempos de espera**:
+até a próxima falha, a próxima chegada, o próximo decaimento radioativo. Sua média é
+$E[X] = \frac1\lambda$, e ela tem a notável propriedade de **falta de memória**: $P(X >
+s + t \mid X > s) = P(X > t)$ — o futuro não depende de quanto já se esperou.
+:::
+
+::: {.callout-note}
+## Discreto e contínuo, lado a lado
+A tabela de correspondências é perfeita: fmp ↔ densidade; soma $\sum$ ↔ integral $\int$;
+$P(X=x)$ ↔ $f(x)dx$. Tudo o que se faz com variáveis discretas tem um análogo contínuo,
+trocando somas por integrais. As duas teorias são uma só, escritas em "linguagens"
+diferentes — discreta para contagens, contínua para medições.
+:::
+
+## Exercícios
+
+::: {#exr-vc-densidade}
+Verifique que $f(x) = 2x$ em $[0, 1]$ (e $0$ fora) é uma densidade válida e calcule
+$P(X \leq \tfrac12)$.
+:::
+
+::: {#exr-vc-esperanca}
+Calcule $E[X]$ para a densidade do @exr-vc-densidade.
+:::
+
+::: {#exr-vc-uniforme}
+Para $X$ uniforme em $[0, 10]$, calcule $P(3 \leq X \leq 7)$.
+:::
+
+::: {#exr-vc-exponencial}
+Para a exponencial com $\lambda = 2$, calcule $P(X > 1)$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vc-densidade
+$f \geq 0$ em $[0,1]$ e $\int_0^1 2x\,dx = [x^2]_0^1 = 1$ ✓, densidade válida. $P(X \leq
+\frac12) = \int_0^{1/2} 2x\,dx = [x^2]_0^{1/2} = \frac14$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vc-esperanca
+$E[X] = \int_0^1 x\cdot 2x\,dx = \int_0^1 2x^2\,dx = \frac23$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vc-exponencial
+$P(X > 1) = \int_1^\infty 2e^{-2x}\,dx = [-e^{-2x}]_1^\infty = e^{-2} \approx 0{,}135$.
+:::
