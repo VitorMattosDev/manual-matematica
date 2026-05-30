@@ -43,6 +43,7 @@ novos volumes forem escritos.
 | $f(x),\ \operatorname{Im}(f)$ | imagem de $x$, imagem da função |
 | $g \circ f$ | composta ($x \mapsto g(f(x))$) |
 | $f^{-1}$ | função inversa |
+| $e$ | número de Euler ($\approx 2{,}71828$) |
 | $\forall,\ \exists$ | para todo, existe |
 | $\mid,\ \nmid$ | divide, não divide ($a \mid b$: $a$ divide $b$) |
 | $|x|$ | valor absoluto de $x$ |

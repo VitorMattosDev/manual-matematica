@@ -65,6 +65,7 @@ book:
         - volumes/v4-precalculo/01-funcoes.qmd
         - volumes/v4-precalculo/02-afim-quadratica.qmd
         - volumes/v4-precalculo/03-modular.qmd
+        - volumes/v4-precalculo/04-exponencial.qmd
   appendices:
     - notacao.qmd
 

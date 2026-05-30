@@ -1,0 +1,154 @@
+# Função exponencial {#sec-exponencial}
+
+## Motivação
+
+Há crescimento que não é constante (afim) nem acelerado por um expoente fixo
+(quadrático), mas **multiplicativo**: a cada período, a quantidade é multiplicada
+por um mesmo fator. Uma população que dobra a cada geração, um capital sob juros
+compostos, um material radioativo que se reduz à metade — todos seguem a **função
+exponencial**, talvez a mais importante de toda a matemática aplicada.
+
+A exponencial $f(x) = a^x$ generaliza a potência das progressões geométricas
+(@sec-progressoes) de expoentes inteiros para expoentes **reais quaisquer**. Neste
+capítulo estabelecemos suas propriedades, seu gráfico e o número especial $e$, base
+"natural" que reaparecerá no Cálculo. O capítulo prepara diretamente o seguinte, o
+logaritmo, que é sua função inversa.
+
+## A função exponencial
+
+::: {#def-exponencial}
+## Função exponencial
+Dado um número real $a > 0$ com $a \neq 1$, a **função exponencial de base $a$** é
+$$
+f \colon \mathbb{R} \to (0, \infty), \qquad f(x) = a^x.
+$$
+:::
+
+Para expoentes inteiros e racionais, $a^x$ é a potência já conhecida; estende-se a
+expoentes irracionais por aproximação (continuidade), de modo que valem para todo
+real as **propriedades das potências**.
+
+::: {#prp-propriedades-exponencial}
+## Propriedades das potências
+Para $a, b > 0$ e $x, y \in \mathbb{R}$:
+$$
+a^x \cdot a^y = a^{x + y}, \qquad \frac{a^x}{a^y} = a^{x - y}, \qquad (a^x)^y =
+a^{x y}, \qquad a^0 = 1.
+$$
+:::
+
+A base decide se a função cresce ou decresce, e a imagem é sempre o conjunto dos
+positivos.
+
+::: {#prp-monotonia-exponencial}
+## Crescimento e imagem
+A função $f(x) = a^x$ é sempre **positiva** e **injetora**, com imagem $(0,
+\infty)$. Ela é **crescente** se $a > 1$ e **decrescente** se $0 < a < 1$. Em
+ambos os casos passa por $(0, 1)$, pois $a^0 = 1$.
+:::
+
+::: {.callout-warning}
+## A base deve ser positiva e diferente de $1$
+As restrições não são caprichos. Base negativa quebraria a função: $(-2)^{1/2} =
+\sqrt{-2}$ não é real. Base $1$ daria a constante $1^x = 1$, sem interesse. Base $0$
+não permite expoentes negativos. Por isso $a > 0$ e $a \neq 1$.
+:::
+
+::: {#exm-juros}
+## Juros compostos
+Um capital de R\$ $1000$ a juros de $10\%$ ao ano, capitalizados anualmente, rende
+$M(t) = 1000 \cdot (1{,}1)^t$ após $t$ anos — exponencial de base $1{,}1 > 1$,
+crescente. Em $t = 3$: $M(3) = 1000 \cdot 1{,}331 = 1331$. O crescimento
+exponencial supera, no longo prazo, qualquer crescimento polinomial — o "milagre
+dos juros compostos".
+:::
+
+## O número $e$
+
+Entre todas as bases, uma é privilegiada — a que torna o crescimento "natural", no
+sentido que o Cálculo precisará.
+
+::: {#def-numero-e}
+## O número de Euler
+O **número $e$** é o limite
+$$
+e = \lim_{n \to \infty}\left(1 + \frac{1}{n}\right)^n \approx 2{,}71828\ldots
+$$
+um número irracional. A exponencial de base $e$, $f(x) = e^x$, chama-se
+**exponencial natural**.
+:::
+
+::: {.callout-tip}
+## Por que $e$ é "natural"
+O número $e$ surge espontaneamente dos juros compostos: capitalizar $100\%$ ao ano
+em $n$ parcelas dá fator $\left(1 + \frac1n\right)^n$, que ao refinar ($n \to
+\infty$, capitalização contínua) tende a $e$. Sua importância plena aparece no
+Cálculo: $e^x$ é a **única** função (a menos de constante) que é igual à sua
+própria derivada — ela cresce a uma taxa igual ao seu próprio valor. Por isso $e$,
+e não $10$ ou $2$, é a base natural da análise.
+:::
+
+::: {#exm-decaimento}
+## Decaimento radioativo
+A massa de um isótopo decai como $m(t) = m_0\, e^{-kt}$, com $k > 0$ — exponencial
+de base $e$ com expoente negativo, **decrescente**. O tempo para a massa cair à
+metade (a **meia-vida**) é constante, independente de $m_0$: é a marca do
+decaimento exponencial, espelho do crescimento dos juros.
+:::
+
+## Equações exponenciais
+
+Como $a^x$ é injetora (@prp-monotonia-exponencial), igualar potências de mesma base
+permite igualar expoentes.
+
+::: {#prp-equacao-exponencial}
+## Igualdade de expoentes
+Se $a > 0$ e $a \neq 1$, então
+$$
+a^x = a^y \iff x = y.
+$$
+:::
+
+::: {#exm-equacao-exponencial}
+## Resolvendo por base comum
+Resolva $2^{x+1} = 32$. Como $32 = 2^5$, escreve-se $2^{x+1} = 2^5$; pela
+injetividade (@prp-equacao-exponencial), $x + 1 = 5$, logo $x = 4$. Quando os dois
+lados não se reduzem à mesma base, recorre-se ao **logaritmo** — a inversa da
+exponencial, tema do próximo capítulo.
+:::
+
+## Exercícios
+
+::: {#exr-propriedades}
+Simplifique para uma única potência de base $2$: $\dfrac{2^5 \cdot 2^{-2}}{2^{-1}}$.
+:::
+
+::: {#exr-equacao-exponencial}
+Resolva: (a) $3^{2x} = 81$; (b) $\left(\dfrac{1}{5}\right)^x = 125$.
+:::
+
+::: {#exr-juros}
+Um capital de R\$ $2000$ rende juros compostos de $5\%$ ao mês. Escreva a função do
+montante após $t$ meses e calcule o montante após $4$ meses.
+:::
+
+::: {#exr-monotonia}
+Sem calcular valores, ordene $a = 2^{1{,}5}$, $b = 2^{0{,}9}$ e $c = 2^{-1}$ do
+menor para o maior, justificando pela monotonia da exponencial.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-equacao-exponencial
+(a) $81 = 3^4$, então $3^{2x} = 3^4$ dá $2x = 4$, logo $x = 2$. (b) Escreva ambos
+os lados como potências de $5$: $\left(\tfrac15\right)^x = 5^{-x}$ e $125 = 5^3$.
+De $5^{-x} = 5^3$ vem $-x = 3$, logo $x = -3$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-monotonia
+A base é $2 > 1$, então $f(x) = 2^x$ é **crescente** (@prp-monotonia-exponencial):
+maior expoente, maior valor. Como $-1 < 0{,}9 < 1{,}5$, segue $2^{-1} < 2^{0{,}9} <
+2^{1{,}5}$, isto é, $c < b < a$.
+:::
