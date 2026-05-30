@@ -138,6 +138,7 @@ book:
         - volumes/v10-diferencial/06-curvaturas.qmd
         - volumes/v10-diferencial/07-geodesicas.qmd
         - volumes/v10-diferencial/08-gauss-bonnet.qmd
+        - volumes/v10-diferencial/09-variedades.qmd
   appendices:
     - notacao.qmd
 

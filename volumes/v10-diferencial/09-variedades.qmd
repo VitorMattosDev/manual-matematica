@@ -1,0 +1,159 @@
+# Introdução a variedades diferenciáveis {#sec-variedades}
+
+## Motivação
+
+Curvas e superfícies (@sec-curvas, @sec-superficies) tinham algo em comum: cada uma
+parece, perto de qualquer ponto, um pedaço de $\mathbb{R}^1$ ou $\mathbb{R}^2$. Esse é
+o germe da ideia mais abrangente da geometria moderna: a **variedade diferenciável** —
+um espaço que localmente parece $\mathbb{R}^n$, mas globalmente pode ter qualquer forma,
+sem precisar estar mergulhado em espaço algum.
+
+Esta é a generalização que liberta a geometria de um ambiente externo. A esfera deixa de
+ser "a casca no $\mathbb{R}^3$" e passa a ser um objeto em si. O espaço-tempo de quatro
+dimensões da relatividade, o espaço de configurações de um robô, a superfície de soluções
+de um sistema — todos são variedades. Este capítulo final da obra esboça o conceito,
+unindo as três grandes linguagens construídas — cálculo, álgebra linear e topologia — e
+aponta para a matemática e a física do século XX. É o cume da escalada iniciada na
+aritmética do Volume I.
+
+## A ideia central: localmente $\mathbb{R}^n$
+
+::: {#def-variedade}
+## Variedade diferenciável
+Uma **variedade diferenciável** de dimensão $n$ é um espaço topológico (Hausdorff,
+@sec-separacao) $M$ coberto por **cartas** — homeomorfismos $\varphi: U \to
+\mathbb{R}^n$ de abertos de $M$ sobre abertos de $\mathbb{R}^n$ — tais que, onde duas
+cartas se sobrepõem, a **mudança de cartas** $\varphi \circ \psi^{-1}$ é diferenciável.
+A coleção de cartas é um **atlas**.
+:::
+
+::: {.callout-tip}
+## Um atlas, como o do mundo
+A metáfora é literal: um atlas geográfico cobre a Terra (uma variedade de dimensão $2$)
+com **cartas** planas — mapas — que se sobrepõem nas bordas. Nenhum mapa cobre o globo
+todo, mas a coleção, sim. A exigência de que a transição entre mapas seja suave garante
+que se possa fazer cálculo de forma consistente, passando de carta em carta. Uma
+variedade é um espaço que admite tal atlas — sem necessidade de um "espaço ambiente"
+onde more.
+:::
+
+::: {#exm-variedades}
+## Exemplos de variedades
+- $\mathbb{R}^n$ é a variedade trivial (uma única carta).
+- O **círculo** $S^1$ e a **esfera** $S^2$ — variedades de dimensão $1$ e $2$.
+- O **toro** e todas as superfícies regulares (@sec-superficies).
+- O **grupo** $GL_n(\mathbb{R})$ das matrizes invertíveis — uma variedade **e** um grupo
+  ao mesmo tempo (um *grupo de Lie*), unindo o Volume VII a este.
+- O **espaço-tempo** da relatividade — uma variedade de dimensão $4$.
+:::
+
+## Espaço tangente e cálculo em variedades
+
+Sem espaço ambiente, como definir vetores tangentes? A álgebra linear vem ao resgate.
+
+::: {#def-espaco-tangente}
+## Espaço tangente
+Em cada ponto $p$ de uma variedade $M^n$, define-se o **espaço tangente** $T_pM$ — um
+espaço vetorial de dimensão $n$ (@sec-espacos-vetoriais) cujos elementos são os "vetores
+velocidade" de curvas que passam por $p$. As funções diferenciáveis entre variedades têm
+**diferencial** $df_p: T_pM \to T_qN$, uma transformação linear (@sec-transformacoes-lineares).
+:::
+
+::: {.callout-note}
+## Todo o cálculo, sem ambiente
+A genialidade da definição: o espaço tangente é construído **intrinsecamente**, sem
+referência a um $\mathbb{R}^k$ externo. Derivadas, campos vetoriais, formas
+diferenciais e integração — todo o cálculo dos Volumes V e VIII — reerguem-se sobre
+variedades, agora de modo coordenado-independente. A diferencial de uma aplicação é uma
+transformação linear entre espaços tangentes: a álgebra linear torna-se a linguagem local
+universal do cálculo. É a realização plena da ideia de "linearizar" que nasceu com a
+derivada.
+:::
+
+## Geometria riemanniana
+
+Acrescentar uma métrica a uma variedade reabre toda a geometria diferencial.
+
+::: {#def-variedade-riemanniana}
+## Variedade riemanniana
+Uma **variedade riemanniana** é uma variedade $M$ com um **produto interno**
+(@sec-produto-interno) em cada espaço tangente, variando suavemente — uma **métrica
+riemanniana**, generalização da primeira forma fundamental (@sec-primeira-forma).
+:::
+
+Com a métrica, tudo o que fizemos para superfícies generaliza-se a dimensão qualquer:
+comprimentos, ângulos, **geodésicas** (@sec-geodesicas), e — crucialmente — uma noção de
+**curvatura** que estende a gaussiana (@sec-curvaturas) via o tensor de curvatura de
+Riemann.
+
+::: {.callout-tip}
+## A gravidade é geometria
+A maior aplicação: na **relatividade geral** de Einstein, o espaço-tempo é uma variedade
+riemanniana (lorentziana, a rigor) de dimensão $4$, e sua **curvatura** *é* a gravidade.
+A matéria curva o espaço-tempo; os corpos em queda livre seguem as **geodésicas** dessa
+geometria curva (@sec-geodesicas). A maçã que cai e os planetas que orbitam percorrem as
+linhas mais retas possíveis de um espaço-tempo encurvado pela massa. A geometria
+diferencial que construímos é, literalmente, a linguagem do universo.
+:::
+
+## O fim da escalada
+
+::: {.callout-note}
+## De $1 + 1$ a Gauss-Bonnet
+Esta obra partiu dos números naturais e da lógica das demonstrações (Volume I) e chegou
+às variedades diferenciáveis — o palco da física moderna. No caminho, cada volume
+forneceu uma peça: a aritmética e a álgebra deram os objetos; a geometria e a
+trigonometria, a intuição espacial; o cálculo, a ferramenta do infinito; a álgebra
+linear e abstrata, a linguagem estrutural; a análise, o rigor; a topologia, a forma. A
+variedade diferenciável é onde tudo se encontra — cálculo sobre espaços de forma
+arbitrária, governados por álgebra e topologia. A matemática revela-se, ao final, não
+uma coleção de tópicos, mas **um único edifício**, em que cada andar sustenta o
+seguinte. Daqui partem a geometria riemanniana, a topologia diferencial, os grupos de
+Lie e a física teórica — mas isso são outras obras.
+:::
+
+## Exercícios
+
+::: {#exr-vr-1}
+Explique por que o círculo $S^1$ é uma variedade de dimensão $1$, descrevendo um atlas
+com duas cartas.
+:::
+
+::: {#exr-vr-dimensao}
+Qual a dimensão da variedade $GL_2(\mathbb{R})$ das matrizes $2\times 2$ invertíveis?
+Justifique.
+:::
+
+::: {#exr-vr-tangente}
+Descreva o espaço tangente à esfera $S^2$ num ponto $p$ e sua dimensão.
+:::
+
+::: {#exr-vr-conceitual}
+Em uma frase, explique o que significa dizer que "a gravidade é a curvatura do
+espaço-tempo".
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vr-1
+Cubra $S^1$ com dois arcos abertos que se sobrepõem (por exemplo, o círculo menos o polo
+norte e o círculo menos o polo sul). Cada arco é homeomorfo a um intervalo aberto de
+$\mathbb{R}$ (uma carta), e a mudança de cartas nas duas regiões de sobreposição é
+suave. Logo $S^1$ é variedade de dimensão $1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vr-dimensao
+Uma matriz $2\times 2$ tem $4$ entradas livres, e a invertibilidade ($\det \neq 0$) é uma
+condição **aberta** (@sec-topologia-reta) — remove um subconjunto fechado, sem reduzir a
+dimensão. Logo $GL_2(\mathbb{R})$ é um aberto de $\mathbb{R}^4$, uma variedade de
+dimensão $\mathbf 4$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-vr-tangente
+O espaço tangente $T_pS^2$ é o **plano** perpendicular ao raio $p$ — todos os vetores
+velocidade de curvas sobre a esfera passando por $p$. Tem **dimensão $2$**, igual à da
+esfera, como toda variedade.
+:::
