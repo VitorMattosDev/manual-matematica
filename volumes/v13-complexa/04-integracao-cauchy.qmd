@@ -74,7 +74,7 @@ $F' = f$), e
 $$
 \int_\gamma f(z)\,dz = F(z_1) - F(z_0),
 $$
-dependendo só dos extremos — o TFC complexo (compare @sec-tfc-linha).
+dependendo só dos extremos — o TFC complexo (compare @thm-tfc-linha).
 :::
 
 ::: {.callout-warning}

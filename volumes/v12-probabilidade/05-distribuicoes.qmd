@@ -47,7 +47,7 @@ binomial (e da série da exponencial, @sec-taylor).
 
 ## A distribuição normal
 
-::: {#def-normal}
+::: {#def-normal-dist}
 ## Distribuição normal (gaussiana)
 A **normal** $N(\mu, \sigma^2)$ tem densidade
 $$

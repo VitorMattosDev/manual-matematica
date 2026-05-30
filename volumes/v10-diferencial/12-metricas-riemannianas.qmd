@@ -27,7 +27,7 @@ $$
 O par $(M, g)$ é uma **variedade riemanniana**.
 :::
 
-::: {#exm-metricas}
+::: {#exm-metricas-riemann}
 ## Métricas conhecidas
 - **Euclidiana** em $\mathbb{R}^n$: $g_{ij} = \delta_{ij}$ (identidade), recuperando o
   produto escalar usual.

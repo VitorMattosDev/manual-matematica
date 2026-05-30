@@ -39,7 +39,7 @@ dividir complexos).
 ::: {#def-plano-complexo}
 ## Plano de Argand-Gauss
 Cada $z = a + bi$ corresponde ao ponto $(a, b)$ do plano — o **plano complexo**. A soma
-é a soma vetorial (@sec-geometria-analitica); o módulo $|z|$ é a distância à origem.
+é a soma vetorial (@sec-analitica); o módulo $|z|$ é a distância à origem.
 Complexos são, geometricamente, **vetores do plano** com uma multiplicação extra.
 :::
 

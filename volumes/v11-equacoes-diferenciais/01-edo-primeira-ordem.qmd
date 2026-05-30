@@ -47,7 +47,7 @@ $$
 $$
 :::
 
-::: {#exm-decaimento}
+::: {#exm-decaimento-edo}
 ## Decaimento radioativo
 A lei $y' = -ky$ (taxa proporcional à quantidade) é separável: $\int\frac{dy}{y} =
 -\int k\,dx$ dá $\ln|y| = -kx + C$, ou seja
