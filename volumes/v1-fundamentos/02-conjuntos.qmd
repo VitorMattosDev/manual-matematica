@@ -1,29 +1,279 @@
 # Conjuntos {#sec-conjuntos}
 
-::: {.callout-note}
-Capítulo inicial (esboço). A estrutura completa de um capítulo está em
-@sec-inducao.
-:::
-
 ## Motivação
 
 Conjunto é a noção a partir da qual quase toda a matemática moderna é
 construída: números, funções, relações e estruturas são, no fundo, conjuntos.
+Sua força está na economia — uma única ideia, "uma coleção de objetos", e uma
+única relação primitiva, "pertencer", bastam para erguer tudo o que vem depois.
+
+Neste capítulo fixamos essa linguagem: como descrever conjuntos, como compará-los
+por inclusão, como combiná-los com união, interseção e complemento, e como formar
+a partir deles novos conjuntos — o produto cartesiano e o conjunto das partes. As
+demonstrações reaproveitam diretamente a lógica do @sec-logica: provar uma
+igualdade de conjuntos é, no fundo, provar uma equivalência entre as condições de
+pertinência.
 
 ## Noções básicas
 
-Um **conjunto** é uma coleção de objetos, chamados seus *elementos*. Escrevemos
-$x \in A$ quando $x$ é elemento de $A$. Dois conjuntos são iguais quando têm
-exatamente os mesmos elementos.
+Um **conjunto** é uma coleção de objetos, chamados seus *elementos*. A relação
+primitiva é a **pertinência**: escrevemos $x \in A$ quando $x$ é elemento de $A$,
+e $x \notin A$ caso contrário. Um conjunto fica completamente determinado por
+seus elementos — esse é o princípio que governa a igualdade.
+
+::: {#def-igualdade}
+## Igualdade de conjuntos
+Dois conjuntos $A$ e $B$ são **iguais**, e escrevemos $A = B$, quando têm
+exatamente os mesmos elementos: para todo $x$, vale $x \in A \Leftrightarrow x
+\in B$.
+:::
+
+Há duas formas usuais de descrever um conjunto. Por **extensão**, listando os
+elementos entre chaves, como $\{1, 2, 3\}$; ou por **compreensão**, indicando a
+propriedade que caracteriza seus elementos, como
+$$
+\{\, x \in \mathbb{N} : x \text{ é par} \,\},
+$$
+lido "o conjunto dos $x$ em $\mathbb{N}$ tais que $x$ é par".
+
+::: {.callout-note}
+## Ordem e repetição não importam
+Como um conjunto é determinado apenas por *quais* objetos lhe pertencem,
+$\{1, 2, 2, 3\}$ e $\{3, 1, 2\}$ são o mesmo conjunto: ambos têm exatamente os
+elementos $1$, $2$ e $3$. Repetir ou reordenar a lista não muda o conjunto.
+:::
 
 ::: {#def-subconjunto}
+## Subconjunto
 Dizemos que $A$ é **subconjunto** de $B$, e escrevemos $A \subseteq B$, quando
-todo elemento de $A$ também é elemento de $B$.
+todo elemento de $A$ também é elemento de $B$ — isto é, $x \in A \Rightarrow x
+\in B$ para todo $x$. Se, além disso, $A \neq B$, dizemos que $A$ é
+**subconjunto próprio** e escrevemos $A \subset B$.
+:::
+
+A inclusão é a ferramenta-padrão para provar igualdades de conjuntos, porque
+quebra uma bicondicional em duas implicações mais simples de tratar.
+
+::: {#prp-dupla-inclusao}
+## Igualdade por dupla inclusão
+Para quaisquer conjuntos $A$ e $B$, vale $A = B$ se, e somente se, $A \subseteq
+B$ e $B \subseteq A$.
+:::
+
+::: {.proof}
+Pela @def-igualdade, $A = B$ significa que $x \in A \Leftrightarrow x \in B$ para
+todo $x$. Mas uma bicondicional equivale à conjunção das duas implicações:
+$x \in A \Rightarrow x \in B$ (que é $A \subseteq B$) e $x \in B \Rightarrow x
+\in A$ (que é $B \subseteq A$). Logo $A = B$ se, e somente se, ambas as inclusões
+valem.
+:::
+
+Há um conjunto sem nenhum elemento, o **conjunto vazio**, denotado $\emptyset$.
+Ele é subconjunto de qualquer conjunto.
+
+::: {#prp-vazio-subconjunto}
+## O vazio é subconjunto de todos
+Para todo conjunto $A$, vale $\emptyset \subseteq A$.
+:::
+
+::: {.proof}
+Precisamos de $x \in \emptyset \Rightarrow x \in A$ para todo $x$. Como $\emptyset$
+não tem elementos, a hipótese $x \in \emptyset$ é sempre falsa; logo a implicação
+é verdadeira por vacuidade (ver @sec-logica). Portanto $\emptyset \subseteq A$.
 :::
 
 ## Operações
 
-União $A \cup B$, interseção $A \cap B$, diferença $A \setminus B$ e complemento.
+A partir de dois conjuntos $A$ e $B$ formam-se novos conjuntos combinando suas
+condições de pertinência com os conectivos do @sec-logica.
 
-> *A escrever:* produto cartesiano, conjunto das partes, e as leis de De Morgan
-> com demonstração.
+::: {#def-operacoes}
+## União, interseção e diferença
+$$
+A \cup B = \{\, x : x \in A \ \lor\ x \in B \,\}, \qquad
+A \cap B = \{\, x : x \in A \ \land\ x \in B \,\},
+$$
+$$
+A \setminus B = \{\, x : x \in A \ \land\ x \notin B \,\}.
+$$
+A **união** reúne os elementos de ao menos um dos conjuntos; a **interseção**, os
+comuns a ambos; a **diferença** $A \setminus B$, os de $A$ que não estão em $B$.
+:::
+
+Frequentemente todos os conjuntos em jogo são subconjuntos de um mesmo conjunto
+**universo** $U$ (por exemplo, $U = \mathbb{N}$). Nesse contexto define-se o
+**complemento** de $A$ como $A^c = U \setminus A$, os elementos do universo que
+não estão em $A$.
+
+::: {#exm-operacoes}
+## Calculando operações
+Sejam $A = \{1, 2, 3, 4\}$ e $B = \{3, 4, 5\}$, com universo $U = \{1, 2, \dots,
+6\}$. Então
+$$
+A \cup B = \{1,2,3,4,5\}, \quad A \cap B = \{3,4\}, \quad A \setminus B = \{1,2\},
+\quad A^c = \{5, 6\}.
+$$
+:::
+
+Dizemos que $A$ e $B$ são **disjuntos** quando $A \cap B = \emptyset$, isto é,
+não têm elemento em comum.
+
+## Leis de De Morgan
+
+As operações de conjuntos obedecem às mesmas leis que os conectivos lógicos —
+não por acaso, já que cada operação foi *definida* por um conectivo. As leis de
+De Morgan são o exemplo central, e sua demonstração consiste em traduzir a
+pertinência para a lógica e aplicar @prp-demorgan-logica.
+
+::: {#thm-demorgan-conjuntos}
+## Leis de De Morgan (conjuntos)
+Sejam $A$ e $B$ subconjuntos de um universo $U$. Então
+$$
+(A \cup B)^c = A^c \cap B^c, \qquad (A \cap B)^c = A^c \cup B^c.
+$$
+:::
+
+::: {.proof}
+Provamos a primeira igualdade por dupla inclusão (@prp-dupla-inclusao);
+mostramos, de fato, a equivalência das condições de pertinência, o que dá as
+duas inclusões de uma vez. Para qualquer $x \in U$,
+$$
+x \in (A \cup B)^c
+\iff x \notin A \cup B
+\iff \lnot(x \in A \ \lor\ x \in B).
+$$
+Pela lei de De Morgan lógica (@prp-demorgan-logica), isso equivale a
+$$
+(x \notin A) \ \land\ (x \notin B)
+\iff x \in A^c \ \land\ x \in B^c
+\iff x \in A^c \cap B^c.
+$$
+Como as condições são equivalentes para todo $x$, os conjuntos são iguais. A
+segunda lei prova-se do mesmo modo, trocando $\cup$ por $\cap$ e $\lor$ por
+$\land$.
+:::
+
+::: {.callout-tip}
+## O roteiro de toda igualdade de conjuntos
+A demonstração acima exibe o padrão geral: para provar $X = Y$, parta de
+"$x \in X$", traduza para uma condição lógica, manipule-a com as equivalências do
+@sec-logica e chegue a "$x \in Y$". Igualdades como $A \cap (B \cup C) = (A \cap
+B) \cup (A \cap C)$ (distributividade) saem todas assim.
+:::
+
+## Produto cartesiano
+
+Para falar de pares ordenados — coordenadas, relações, funções — precisamos de
+uma construção em que a ordem *importe*.
+
+::: {#def-produto}
+## Par ordenado e produto cartesiano
+O **par ordenado** $(a, b)$ é determinado por suas duas entradas *na ordem
+dada*: $(a, b) = (c, d)$ se, e somente se, $a = c$ e $b = d$. O **produto
+cartesiano** de $A$ e $B$ é o conjunto de todos os pares com primeira entrada em
+$A$ e segunda em $B$:
+$$
+A \times B = \{\, (a, b) : a \in A \ \land\ b \in B \,\}.
+$$
+:::
+
+::: {.callout-warning}
+## Par ordenado não é conjunto de dois elementos
+Em um conjunto a ordem não importa, então $\{a, b\} = \{b, a\}$. Em um par
+ordenado ela importa: $(a, b) \neq (b, a)$ a menos que $a = b$. Consequentemente
+$A \times B \neq B \times A$ em geral.
+:::
+
+::: {#exm-produto}
+## Um produto cartesiano
+Com $A = \{1, 2\}$ e $B = \{x, y\}$,
+$$
+A \times B = \{(1, x), (1, y), (2, x), (2, y)\}.
+$$
+São $2 \cdot 2 = 4$ pares: em geral, se $A$ tem $m$ elementos e $B$ tem $n$,
+então $A \times B$ tem $m \cdot n$. O plano cartesiano $\mathbb{R} \times
+\mathbb{R} = \mathbb{R}^2$ é o exemplo arquetípico.
+:::
+
+## Conjunto das partes
+
+Os subconjuntos de um conjunto formam, eles próprios, um conjunto.
+
+::: {#def-partes}
+## Conjunto das partes
+O **conjunto das partes** de $A$, denotado $\mathcal{P}(A)$, é o conjunto de
+todos os subconjuntos de $A$:
+$$
+\mathcal{P}(A) = \{\, X : X \subseteq A \,\}.
+$$
+:::
+
+::: {#exm-partes}
+## Partes de um conjunto pequeno
+Para $A = \{1, 2\}$,
+$$
+\mathcal{P}(A) = \bigl\{\, \emptyset,\ \{1\},\ \{2\},\ \{1, 2\} \,\bigr\}.
+$$
+São $4 = 2^2$ subconjuntos. Note que $\emptyset \in \mathcal{P}(A)$ (por
+@prp-vazio-subconjunto) e que $A \in \mathcal{P}(A)$, pois $A \subseteq A$.
+:::
+
+O exemplo sugere um padrão que registramos para uso futuro; a demonstração, por
+indução sobre o número de elementos, fica natural com as ferramentas do
+@sec-inducao.
+
+::: {#prp-tamanho-partes}
+## Número de subconjuntos
+Se $A$ tem $n$ elementos, então $\mathcal{P}(A)$ tem $2^n$ elementos.
+:::
+
+## Exercícios
+
+::: {#exr-distributiva}
+Prove, pelo roteiro da @thm-demorgan-conjuntos, a distributividade
+$$
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C).
+$$
+:::
+
+::: {#exr-diferenca}
+Mostre que, para quaisquer conjuntos $A$ e $B$ de um universo $U$, vale
+$A \setminus B = A \cap B^c$.
+:::
+
+::: {#exr-partes-vazio}
+Determine $\mathcal{P}(\emptyset)$ e $\mathcal{P}(\mathcal{P}(\emptyset))$, e diga
+quantos elementos cada um tem.
+:::
+
+::: {#exr-produto-inclusao}
+Sejam $A, B, C, D$ conjuntos com $A \subseteq C$ e $B \subseteq D$. Prove que
+$A \times B \subseteq C \times D$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-diferenca
+Para qualquer $x$,
+$$
+x \in A \setminus B
+\iff x \in A \ \land\ x \notin B
+\iff x \in A \ \land\ x \in B^c
+\iff x \in A \cap B^c,
+$$
+usando a definição de diferença, a de complemento ($x \notin B \Leftrightarrow x
+\in B^c$) e a de interseção. Como as condições são equivalentes para todo $x$,
+segue $A \setminus B = A \cap B^c$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-partes-vazio
+O único subconjunto de $\emptyset$ é o próprio $\emptyset$, logo
+$\mathcal{P}(\emptyset) = \{\emptyset\}$, com $1 = 2^0$ elemento. Esse conjunto
+tem um elemento, então suas partes são $\emptyset$ e $\{\emptyset\}$:
+$$
+\mathcal{P}(\mathcal{P}(\emptyset)) = \bigl\{\, \emptyset,\ \{\emptyset\} \,\bigr\},
+$$
+com $2 = 2^1$ elementos. (Confere com @prp-tamanho-partes.)
+:::

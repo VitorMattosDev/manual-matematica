@@ -13,6 +13,12 @@ novos volumes forem escritos.
 | $\in,\ \notin$ | pertence, não pertence |
 | $\subseteq,\ \subset$ | subconjunto, subconjunto próprio |
 | $\cup,\ \cap$ | união, interseção |
+| $\setminus$ | diferença de conjuntos ($A \setminus B$) |
+| $A^c$ | complemento de $A$ (em relação ao universo) |
+| $\emptyset$ | conjunto vazio |
+| $(a, b)$ | par ordenado |
+| $\times$ | produto cartesiano ($A \times B$) |
+| $\mathcal{P}(A)$ | conjunto das partes de $A$ |
 | $\lnot$ | negação ("não") |
 | $\land,\ \lor$ | conjunção ("e"), disjunção ("ou") |
 | $\Rightarrow,\ \Leftrightarrow$ | implica, equivale |

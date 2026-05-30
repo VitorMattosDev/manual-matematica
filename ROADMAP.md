@@ -29,7 +29,7 @@ Legenda: `[x]` pronto · `[~]` esboço a completar · `[ ]` a fazer.
 Pré-requisitos: nenhum.*
 
 - [x] `volumes/v1-fundamentos/01-logica.qmd` — Lógica e demonstrações: proposições, conectivos, quantificadores, métodos de prova.
-- [~] `volumes/v1-fundamentos/02-conjuntos.qmd` — Conjuntos: pertinência, inclusão, operações, produto cartesiano, leis de De Morgan.
+- [x] `volumes/v1-fundamentos/02-conjuntos.qmd` — Conjuntos: pertinência, inclusão, operações, produto cartesiano, leis de De Morgan.
 - [x] `volumes/v1-fundamentos/03-inducao.qmd` — Indução e boa ordenação. **(gabarito de estilo)**
 - [ ] `volumes/v1-fundamentos/04-naturais.qmd` — Números naturais: axiomas de Peano, adição, multiplicação, ordem.
 - [ ] `volumes/v1-fundamentos/05-inteiros-divisibilidade.qmd` — Inteiros e divisibilidade: construção de ℤ, relação de divisão, propriedades.
