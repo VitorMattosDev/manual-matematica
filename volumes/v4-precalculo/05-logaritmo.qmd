@@ -1,0 +1,162 @@
+# Logaritmos e função logarítmica {#sec-logaritmo}
+
+## Motivação
+
+A função exponencial responde "quanto cresce em $x$ períodos?". A pergunta inversa
+— "**quantos períodos** para crescer tanto?" — é tão importante quanto, e sua
+resposta é o **logaritmo**. Resolver $2^x = 10$ pede uma operação nova, que desfaça
+a exponenciação: $x = \log_2 10$.
+
+Historicamente, os logaritmos foram inventados para **transformar multiplicações em
+somas**, simplificando cálculos astronômicos séculos antes das calculadoras. Hoje
+sua importância é estrutural: medem ordens de grandeza (terremotos, acidez, som),
+linearizam o crescimento exponencial e aparecem em toda a análise. Este capítulo
+define o logaritmo como **inversa da exponencial** (@sec-exponencial), deduz suas
+propriedades e fecha o par que domina a matemática do crescimento.
+
+## Definição
+
+::: {#def-logaritmo}
+## Logaritmo
+Dado $a > 0$, $a \neq 1$, o **logaritmo** de $x > 0$ na base $a$ é o expoente ao
+qual se eleva $a$ para obter $x$:
+$$
+\log_a x = y \iff a^y = x.
+$$
+A **função logarítmica** $\log_a \colon (0, \infty) \to \mathbb{R}$ é a **inversa**
+da exponencial de base $a$.
+:::
+
+Por ser inversa da exponencial (que é bijetora de $\mathbb{R}$ em $(0,\infty)$,
+@thm-inversa-bijecao), o logaritmo existe e é único. As duas funções **desfazem-se
+mutuamente**:
+$$
+a^{\log_a x} = x \quad (x > 0), \qquad \log_a (a^x) = x \quad (x \in \mathbb{R}).
+$$
+
+::: {.callout-warning}
+## Só se toma logaritmo de positivos
+O domínio de $\log_a$ é $(0, \infty)$: não existe logaritmo de zero nem de número
+negativo, pois nenhuma potência de base positiva resulta em valor $\leq 0$
+(@prp-monotonia-exponencial). Tentar $\log(-5)$ ou $\log 0$ é erro de domínio. Por
+isso, ao resolver equações logarítmicas, verifica-se sempre se as soluções caem no
+domínio.
+:::
+
+::: {#exm-calcular-log}
+## Calculando logaritmos
+$\log_2 8 = 3$ (pois $2^3 = 8$); $\log_{10} 1000 = 3$; $\log_5 1 = 0$ (pois $5^0 =
+1$); $\log_3 \frac19 = -2$ (pois $3^{-2} = \frac19$). Usam-se bastante a base $10$
+(**logaritmo decimal**, escrito $\log x$) e a base $e$ (**logaritmo natural**,
+escrito $\ln x$).
+:::
+
+## Propriedades operatórias
+
+As propriedades das potências (@prp-propriedades-exponencial), traduzidas pela
+inversão, viram as regras que tornaram o logaritmo célebre.
+
+::: {#thm-propriedades-log}
+## Propriedades dos logaritmos
+Para $a > 0$, $a \neq 1$, e $x, y > 0$:
+$$
+\log_a(x y) = \log_a x + \log_a y, \qquad \log_a\!\frac{x}{y} = \log_a x - \log_a
+y,
+$$
+$$
+\log_a(x^k) = k\,\log_a x.
+$$
+:::
+
+::: {.proof}
+Sejam $u = \log_a x$ e $v = \log_a y$, isto é, $a^u = x$ e $a^v = y$. Então $x y =
+a^u a^v = a^{u + v}$ (@prp-propriedades-exponencial), o que significa
+$\log_a(xy) = u + v = \log_a x + \log_a y$. A regra do quociente sai de $x/y =
+a^{u - v}$, e a da potência de $x^k = (a^u)^k = a^{ku}$, donde $\log_a(x^k) = ku =
+k\log_a x$.
+:::
+
+::: {.callout-tip}
+## Multiplicação virou soma
+A primeira propriedade é a razão histórica dos logaritmos: ela converte um produto
+(difícil) numa soma (fácil). Multiplicar dois números de muitos dígitos reduz-se a
+somar seus logaritmos e consultar a tabela inversa — o princípio da **régua de
+cálculo**, instrumento dos engenheiros até os anos 1970. A mesma propriedade
+lineariza dados exponenciais em gráficos, técnica onipresente na ciência.
+:::
+
+A passagem de uma base a outra completa o quadro.
+
+::: {#prp-mudanca-base}
+## Mudança de base
+Para bases $a, b$ (positivas, $\neq 1$) e $x > 0$,
+$$
+\log_a x = \frac{\log_b x}{\log_b a}.
+$$
+:::
+
+::: {.proof}
+Seja $y = \log_a x$, logo $a^y = x$. Aplicando $\log_b$ aos dois lados e usando a
+regra da potência (@thm-propriedades-log): $\log_b(a^y) = \log_b x$, ou seja, $y
+\log_b a = \log_b x$. Isolando $y = \dfrac{\log_b x}{\log_b a}$.
+:::
+
+## Gráfico e equações
+
+O gráfico de $\log_a$ é o da exponencial **refletido na reta $y = x$**
+(@thm-inversa-bijecao): passa por $(1, 0)$, é crescente se $a > 1$, e aproxima-se
+do eixo $y$ sem tocá-lo. Para resolver equações, usa-se a bijetividade ou a
+definição.
+
+::: {#exm-equacao-log}
+## Resolvendo uma equação logarítmica
+Resolva $\log_2(x - 1) = 3$. Pela definição (@def-logaritmo), $x - 1 = 2^3 = 8$,
+logo $x = 9$. Verifica-se o domínio: $x - 1 = 8 > 0$, válido. Já em $\log_3 x +
+\log_3(x - 2) = 1$, agrupa-se pela propriedade do produto: $\log_3[x(x-2)] = 1$,
+donde $x(x - 2) = 3$, isto é, $x^2 - 2x - 3 = 0$, com raízes $3$ e $-1$. Como o
+domínio exige $x > 2$, **descarta-se** $x = -1$: a única solução é $x = 3$.
+:::
+
+## Exercícios
+
+::: {#exr-calcular-log}
+Calcule sem calculadora: (a) $\log_2 64$; (b) $\log_{10} 0{,}001$; (c) $\log_4 2$.
+:::
+
+::: {#exr-propriedades-log}
+Sabendo que $\log 2 \approx 0{,}301$ e $\log 3 \approx 0{,}477$, calcule $\log 6$,
+$\log 1{,}5$ e $\log 8$ usando as propriedades.
+:::
+
+::: {#exr-equacao-log}
+Resolva: (a) $\log_5(2x + 3) = 2$; (b) $\log_2 x + \log_2(x + 2) = 3$.
+:::
+
+::: {#exr-mudanca-base}
+Use a mudança de base para expressar $\log_2 10$ em termos de logaritmos decimais e
+estime seu valor com $\log 2 \approx 0{,}301$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-propriedades-log
+Usando @thm-propriedades-log:
+$$
+\log 6 = \log(2 \cdot 3) = \log 2 + \log 3 \approx 0{,}301 + 0{,}477 = 0{,}778;
+$$
+$$
+\log 1{,}5 = \log\tfrac32 = \log 3 - \log 2 \approx 0{,}477 - 0{,}301 = 0{,}176;
+$$
+$$
+\log 8 = \log 2^3 = 3\log 2 \approx 3 \cdot 0{,}301 = 0{,}903.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-equacao-log
+(a) Pela definição, $2x + 3 = 5^2 = 25$, logo $2x = 22$ e $x = 11$ (domínio: $2x +
+3 > 0$ ✓). (b) Agrupando, $\log_2[x(x+2)] = 3$, donde $x(x + 2) = 8$, ou $x^2 + 2x
+- 8 = 0$, com raízes $2$ e $-4$. O domínio exige $x > 0$, então descarta-se $-4$: a
+solução é $x = 2$.
+:::
