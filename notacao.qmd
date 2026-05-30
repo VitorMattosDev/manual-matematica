@@ -6,6 +6,8 @@ novos volumes forem escritos.
 | Símbolo | Significado |
 |---|---|
 | $\mathbb{N}$ | naturais $\{1, 2, 3, \dots\}$ |
+| $S(n)$ | sucessor de $n$ (função de Peano) |
+| $<,\ \leq$ | menor que, menor ou igual |
 | $\mathbb{Z}$ | inteiros |
 | $\mathbb{Q}$ | racionais |
 | $\mathbb{R}$ | reais |

@@ -1,0 +1,285 @@
+# Números naturais {#sec-naturais}
+
+## Motivação
+
+Usamos os números naturais $1, 2, 3, \dots$ desde a infância, mas o que *são*
+eles? Até aqui tratamos $\mathbb{N}$ como dado e até demonstramos coisas sobre ele
+no @sec-inducao. Neste capítulo invertemos a ordem: partimos de pouquíssimas
+hipóteses — os **axiomas de Peano** — e delas *construímos* tudo o que se espera
+da aritmética: a adição, a multiplicação e a ordem, com todas as suas
+propriedades.
+
+A lição central é que não é preciso "saber somar" de antemão. Basta uma operação
+primitiva, "passar ao próximo", e um princípio de demonstração, a indução, para
+que adição e multiplicação surjam por **definição recursiva** e suas propriedades
+se provem por **indução**. É a primeira vez que vemos a indução não como um truque
+para fórmulas, mas como o motor que faz a aritmética funcionar.
+
+## Os axiomas de Peano
+
+Tomamos como primitivos um conjunto $\mathbb{N}$, um elemento distinguido $1 \in
+\mathbb{N}$ e uma função **sucessor** $S \colon \mathbb{N} \to \mathbb{N}$, que a
+cada natural $n$ associa o seguinte, $S(n)$. Eles satisfazem:
+
+::: {#def-peano}
+## Axiomas de Peano
+1. **(P1)** $1 \in \mathbb{N}$.
+2. **(P2)** Para todo $n \in \mathbb{N}$, o sucessor $S(n)$ está em $\mathbb{N}$.
+3. **(P3)** Não existe $n \in \mathbb{N}$ com $S(n) = 1$ — ou seja, $1$ não é
+   sucessor de ninguém.
+4. **(P4)** $S$ é injetora: se $S(m) = S(n)$, então $m = n$.
+5. **(P5, indução)** Se um subconjunto $A \subseteq \mathbb{N}$ contém $1$ e é
+   fechado para o sucessor (isto é, $n \in A \Rightarrow S(n) \in A$), então
+   $A = \mathbb{N}$.
+:::
+
+Os quatro primeiros axiomas dizem que os naturais formam uma "fila sem fim e sem
+repetições", começada em $1$. O quinto é a alma do conjunto.
+
+::: {.callout-note}
+## P5 é exatamente o princípio de indução
+Tomando $A = \{\, n \in \mathbb{N} : P(n) \,\}$ o conjunto dos naturais que
+satisfazem uma propriedade $P$, o axioma **(P5)** afirma: se $P(1)$ vale e
+$P(n) \Rightarrow P(S(n))$ para todo $n$, então $P(n)$ vale para todo $n$. Essa é
+literalmente a Princípio da Indução Finita (@thm-inducao). A diferença de
+perspectiva é que, lá, a indução era um *resultado*; aqui ela é um *axioma* — a
+hipótese que define o que $\mathbb{N}$ é.
+:::
+
+Escreveremos, como de hábito, $2 := S(1)$, $3 := S(2)$, e assim por diante. O
+próximo resultado garante que essa fila nunca volta sobre si mesma.
+
+::: {#prp-sucessor-distinto}
+## Nenhum natural é seu próprio sucessor
+Para todo $n \in \mathbb{N}$, vale $S(n) \neq n$.
+:::
+
+::: {.proof}
+Seja $A = \{\, n \in \mathbb{N} : S(n) \neq n \,\}$ e usemos indução (P5).
+**Base:** $1 \in A$, pois por (P3) $S(1) \neq 1$ (já que $1$ não é sucessor de
+ninguém, em particular não é seu próprio sucessor). **Passo:** suponha $n \in A$,
+isto é, $S(n) \neq n$. Se fosse $S(S(n)) = S(n)$, a injetividade (P4) daria
+$S(n) = n$, contradição; logo $S(S(n)) \neq S(n)$, ou seja, $S(n) \in A$. Por
+(P5), $A = \mathbb{N}$.
+:::
+
+## Definição por recursão
+
+Para *definir* a adição precisamos de um princípio gêmeo da indução: assim como a
+indução prova afirmações percorrendo a fila, a **recursão** constrói funções ao
+longo dela, dando o valor inicial e a regra que passa de $n$ para $S(n)$.
+
+::: {#thm-recursao}
+## Teorema da recursão
+Seja $X$ um conjunto, $a \in X$ um elemento e $f \colon X \to X$ uma função.
+Então existe uma única função $g \colon \mathbb{N} \to X$ tal que
+$$
+g(1) = a \qquad \text{e} \qquad g(S(n)) = f\bigl(g(n)\bigr) \ \text{ para todo } n.
+$$
+:::
+
+A demonstração (a existência e a unicidade de $g$) decorre dos axiomas de Peano,
+mas é técnica; tomamo-la aqui como ferramenta. O que importa é o uso: toda vez que
+dermos um "valor em $1$" e uma "regra de um passo", o teorema garante que a função
+existe e está bem definida.
+
+## Adição
+
+::: {#def-adicao}
+## Adição
+A **adição** é a função que a cada par $a, b \in \mathbb{N}$ associa $a + b \in
+\mathbb{N}$, definida por recursão na segunda parcela:
+$$
+a + 1 = S(a), \qquad a + S(b) = S(a + b).
+$$
+:::
+
+Fixado $a$, a @thm-recursao aplicada a $X = \mathbb{N}$, valor inicial $S(a)$ e
+regra $f = S$ garante que $b \mapsto a + b$ está bem definida. Note que $S(a) = a
++ 1$: o sucessor é, finalmente, "somar $1$".
+
+Todas as propriedades da adição agora são teoremas, provados por indução. Comecemos
+pela associatividade.
+
+::: {#thm-assoc-soma}
+## Associatividade da adição
+Para todos $a, b, c \in \mathbb{N}$, vale $(a + b) + c = a + (b + c)$.
+:::
+
+::: {.proof}
+Indução em $c$ (com $a, b$ fixos). **Base** ($c = 1$): usando a @def-adicao,
+$$
+(a + b) + 1 = S(a + b) = a + S(b) = a + (b + 1).
+$$
+**Passo:** suponha $(a + b) + c = a + (b + c)$. Então
+$$
+(a + b) + S(c) = S\bigl((a+b)+c\bigr) = S\bigl(a+(b+c)\bigr) = a + S(b + c)
+= a + (b + S(c)),
+$$
+onde usamos a recursão, a hipótese de indução e a recursão de novo. Por (P5), a
+igualdade vale para todo $c$.
+:::
+
+A comutatividade exige um pouco mais de cuidado, pois a definição é assimétrica
+(a recursão é só na segunda parcela). Precisamos de dois lemas preparatórios.
+
+::: {#lem-soma-um}
+## $1$ comuta
+Para todo $a \in \mathbb{N}$, vale $1 + a = a + 1$.
+:::
+
+::: {.proof}
+Indução em $a$. **Base** ($a = 1$): trivialmente $1 + 1 = 1 + 1$. **Passo:**
+supondo $1 + a = a + 1 = S(a)$, temos
+$$
+1 + S(a) = S(1 + a) = S\bigl(S(a)\bigr) = S(a) + 1,
+$$
+usando a recursão e a hipótese. Logo vale para todo $a$.
+:::
+
+::: {.callout-note collapse="true"}
+## Da comutatividade geral (esboço)
+Um segundo lema, $S(a) + b = S(a + b)$ (indução em $b$), combinado com
+@lem-soma-um, permite provar $a + b = b + a$ por indução em $b$:
+$$
+a + S(b) = S(a + b) \overset{\text{h.i.}}{=} S(b + a) = S(b) + a.
+$$
+O passo final está detalhado no @exr-comutativa.
+:::
+
+## Multiplicação
+
+A multiplicação repete a receita: define-se por recursão, agora somando $a$ a
+cada passo.
+
+::: {#def-multiplicacao}
+## Multiplicação
+A **multiplicação** $a \cdot b$ é definida por recursão na segunda parcela:
+$$
+a \cdot 1 = a, \qquad a \cdot S(b) = a \cdot b + a.
+$$
+:::
+
+Assim, $a \cdot 2 = a \cdot S(1) = a \cdot 1 + a = a + a$, como esperado. A
+propriedade que enlaça as duas operações é a distributividade.
+
+::: {#thm-distributiva}
+## Distributividade
+Para todos $a, b, c \in \mathbb{N}$, vale $a \cdot (b + c) = a \cdot b + a \cdot
+c$.
+:::
+
+::: {.proof}
+Indução em $c$. **Base** ($c = 1$): pela @def-adicao e a @def-multiplicacao,
+$$
+a \cdot (b + 1) = a \cdot S(b) = a \cdot b + a = a \cdot b + a \cdot 1.
+$$
+**Passo:** suponha $a \cdot (b + c) = a \cdot b + a \cdot c$. Então
+$$
+a \cdot (b + S(c)) = a \cdot S(b + c) = a \cdot (b + c) + a
+= (a \cdot b + a \cdot c) + a = a \cdot b + (a \cdot c + a) = a \cdot b + a \cdot S(c),
+$$
+usando recursão da adição, recursão da multiplicação, a hipótese, a
+associatividade (@thm-assoc-soma) e a recursão da multiplicação. Por (P5),
+conclui-se.
+:::
+
+## Ordem
+
+Por fim, a ordem dos naturais também se define a partir da adição: $a$ é menor que
+$b$ quando se pode alcançar $b$ a partir de $a$ somando algo.
+
+::: {#def-ordem}
+## Ordem em $\mathbb{N}$
+Para $a, b \in \mathbb{N}$, dizemos que $a < b$ (lê-se "$a$ é menor que $b$")
+quando existe $c \in \mathbb{N}$ com $a + c = b$. Escrevemos $a \leq b$ quando
+$a < b$ ou $a = b$.
+:::
+
+::: {#prp-ordem-transitiva}
+## Transitividade
+Se $a < b$ e $b < c$, então $a < c$.
+:::
+
+::: {.proof}
+Por hipótese existem $d, e \in \mathbb{N}$ com $a + d = b$ e $b + e = c$. Então
+$$
+a + (d + e) = (a + d) + e = b + e = c,
+$$
+pela associatividade (@thm-assoc-soma). Como $d + e \in \mathbb{N}$, segue
+$a < c$.
+:::
+
+A propriedade decisiva, que faz de $<$ uma ordem *total*, é que dois naturais
+quaisquer são sempre comparáveis.
+
+::: {#thm-tricotomia}
+## Tricotomia
+Para todos $a, b \in \mathbb{N}$, vale exatamente uma das três relações:
+$$
+a < b, \qquad a = b, \qquad b < a.
+$$
+:::
+
+Registramos, por fim, a ponte com o @sec-inducao: a ordem recém-construída é
+**boa**, no sentido do Princípio da Boa Ordenação (@thm-boa-ordem) — todo
+subconjunto não vazio de $\mathbb{N}$ tem menor elemento. Aquele princípio, que
+lá tomamos como equivalente à indução, é agora um teorema sobre a estrutura que os
+axiomas de Peano produziram.
+
+::: {.callout-warning}
+## A construção tem uma ordem lógica
+Cada propriedade depende das anteriores: a ordem usa a adição; a tricotomia e a
+boa ordenação usam a indução; a distributividade usa a associatividade da soma.
+Ao resolver os exercícios, só é lícito usar o que já foi provado *antes* — sob
+pena de circularidade.
+:::
+
+## Exercícios
+
+::: {#exr-soma-sucessor}
+Prove, por indução em $b$, o lema auxiliar $S(a) + b = S(a + b)$ para todos
+$a, b \in \mathbb{N}$.
+:::
+
+::: {#exr-comutativa}
+Usando @lem-soma-um e o @exr-soma-sucessor, prove a comutatividade da adição:
+$a + b = b + a$ para todos $a, b \in \mathbb{N}$.
+:::
+
+::: {#exr-cancelamento}
+Prove a **lei do cancelamento**: se $a + c = b + c$, então $a = b$. (Sugestão:
+indução em $c$, usando a injetividade do sucessor, P4.)
+:::
+
+::: {#exr-mult-comutativa}
+Prove que $1 \cdot a = a$ para todo $a$ e, em seguida, esboce como a
+comutatividade da multiplicação ($a \cdot b = b \cdot a$) segue por indução.
+:::
+
+::: {#exr-compatibilidade}
+Mostre que a ordem é compatível com a adição: se $a < b$, então $a + c < b + c$
+para todo $c \in \mathbb{N}$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-soma-sucessor
+Indução em $b$. **Base** ($b = 1$): $S(a) + 1 = S(S(a)) = S(a + 1)$, usando
+$x + 1 = S(x)$ duas vezes. **Passo:** suponha $S(a) + b = S(a + b)$. Então
+$$
+S(a) + S(b) = S\bigl(S(a) + b\bigr) = S\bigl(S(a + b)\bigr) = S\bigl(a + S(b)\bigr),
+$$
+pela recursão, pela hipótese e pela recursão de novo. Por (P5), vale para todo
+$b$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cancelamento
+Indução em $c$. **Base** ($c = 1$): se $a + 1 = b + 1$, então $S(a) = S(b)$, e a
+injetividade (P4) dá $a = b$. **Passo:** suponha que $a + c = b + c \Rightarrow a
+= b$. Se $a + S(c) = b + S(c)$, então $S(a + c) = S(b + c)$ pela recursão; por P4,
+$a + c = b + c$; pela hipótese, $a = b$. Por (P5), o cancelamento vale para todo
+$c$.
+:::
