@@ -1,0 +1,164 @@
+# Compacidade {#sec-compacidade}
+
+## Motivação
+
+Na reta, "compacto" significava "fechado e limitado" (Heine-Borel, @thm-heine-borel), e
+isso garantia que funções contínuas atingissem máximos e fossem uniformemente
+contínuas. Mas a definição por **coberturas abertas** — "toda cobertura admite
+subcobertura finita" — não menciona distância nem limitação. É ela que sobrevive à
+abstração topológica, e é uma das ideias mais poderosas de toda a matemática.
+
+Por que tão poderosa? Porque a compacidade é uma forma de **finitude topológica**:
+permite reduzir argumentos sobre coberturas infinitas a finitas, transferir
+propriedades locais para globais, e garantir a existência de pontos-limite. Os teoremas
+de Weierstrass e Heine-Cantor (Volume VIII) eram, no fundo, sobre compacidade. Este
+capítulo desenvolve a compacidade em espaços topológicos gerais, onde "fechado e
+limitado" já não basta, e mostra por que ela é o conceito que faz a topologia funcionar.
+
+## A definição por coberturas
+
+::: {#def-compacto}
+## Espaço compacto
+Um espaço topológico $X$ é **compacto** se toda **cobertura aberta** de $X$ admite uma
+**subcobertura finita**: se $X = \bigcup_{i \in I} U_i$ com cada $U_i$ aberto, então
+existe um subconjunto **finito** $\{i_1, \dots, i_n\}$ com $X = U_{i_1} \cup \cdots
+\cup U_{i_n}$.
+:::
+
+::: {.callout-tip}
+## A intuição da "finitude"
+Compacidade diz: por mais que você tente cobrir $X$ com infinitas peças abertas,
+finitas delas já bastam. É como se o espaço fosse "topologicamente pequeno",
+incapaz de exigir infinitas vizinhanças para ser coberto. Essa finitude disfarçada é o
+que permite passar de informação local (válida perto de cada ponto) para global (válida
+no espaço todo) — o mecanismo de incontáveis demonstrações.
+:::
+
+::: {#exm-compactos-topologicos}
+## Compactos e não compactos
+- $[a, b]$ é compacto (Heine-Borel, @thm-heine-borel).
+- $\mathbb{R}$ **não** é: a cobertura $\{(-n, n)\}$ não tem subcobertura finita.
+- $(0, 1)$ **não** é: $\{(\frac1n, 1)\}$ não tem subcobertura finita.
+- Todo espaço **finito** é compacto, qualquer que seja sua topologia.
+:::
+
+## Propriedades fundamentais
+
+A compacidade interage bem com fechados, contínuas e produtos.
+
+::: {#thm-fechado-em-compacto}
+## Subconjunto fechado de compacto é compacto
+Se $X$ é compacto e $F \subseteq X$ é fechado, então $F$ é compacto.
+:::
+
+::: {.proof}
+Dada uma cobertura aberta de $F$, acrescente o aberto $X \setminus F$: obtém-se uma
+cobertura de $X$. Por compacidade, há subcobertura finita; descartando $X\setminus F$
+dela, restam finitos abertos que cobrem $F$.
+:::
+
+::: {#thm-imagem-compacta}
+## Imagem contínua de compacto é compacta
+Se $f: X \to Y$ é contínua e $X$ é compacto, então $f(X)$ é compacto.
+:::
+
+::: {.proof}
+Dada uma cobertura aberta $\{V_i\}$ de $f(X)$, as pré-imagens $\{f^{-1}(V_i)\}$ cobrem
+$X$ (são abertas, por continuidade). Por compacidade de $X$, finitas bastam; suas
+imagens são finitos $V_i$ que cobrem $f(X)$.
+:::
+
+::: {#cor-weierstrass-topologico}
+## Weierstrass, de novo
+Como corolário: uma função contínua $f: X \to \mathbb{R}$ com $X$ compacto tem imagem
+compacta, logo fechada e limitada (@thm-heine-borel) — e portanto **atinge máximo e
+mínimo**. É o teorema dos valores extremos (@thm-weierstrass), agora numa linha, válido
+em qualquer espaço compacto.
+:::
+
+## Compacidade e separação
+
+::: {#thm-compacto-fechado}
+## Compactos em espaços de Hausdorff são fechados
+Num espaço de Hausdorff (@sec-separacao), todo subconjunto compacto é **fechado**. Além
+disso, uma bijeção contínua de um compacto para um Hausdorff é automaticamente um
+**homeomorfismo**.
+:::
+
+::: {.callout-note}
+## Um atalho precioso para homeomorfismos
+Verificar que a inversa de uma bijeção contínua é contínua costuma ser trabalhoso
+(@sec-continuidade-homeomorfismos). Mas se o domínio é **compacto** e o contradomínio é
+**Hausdorff**, isso vem de graça: a bijeção contínua já é homeomorfismo. Esse resultado
+poupa metade do trabalho em incontáveis demonstrações da topologia e da geometria.
+:::
+
+## O teorema de Tychonoff
+
+O resultado mais profundo — e mais surpreendente — sobre compacidade.
+
+::: {#thm-tychonoff}
+## Teorema de Tychonoff
+O **produto** de qualquer família (mesmo infinita) de espaços compactos é compacto, na
+topologia produto.
+:::
+
+::: {.callout-warning}
+## Infinito, e mesmo assim compacto
+Que o produto de **infinitos** compactos seja compacto é altamente não trivial — e, de
+fato, **equivale ao axioma da escolha**. O caso finito generaliza Heine-Borel (o cubo
+$[0,1]^n$ é compacto); o caso infinito é a base da análise funcional (compacidade fraca,
+teorema de Banach-Alaoglu) e da lógica. Tychonoff é frequentemente citado como o
+teorema mais importante da topologia geral.
+:::
+
+::: {#exm-cubo-hilbert}
+## O cubo de Hilbert
+O produto enumerável $[0,1]^{\mathbb{N}}$ — o **cubo de Hilbert** — é compacto por
+Tychonoff, apesar de ser um espaço de dimensão infinita. Ele é um espaço "universal" em
+que muitos espaços métricos compactos podem ser mergulhados.
+:::
+
+## Exercícios
+
+::: {#exr-cp-1}
+Mostre, exibindo uma cobertura sem subcobertura finita, que $[0, \infty)$ não é
+compacto.
+:::
+
+::: {#exr-cp-uniao}
+Prove que a união de **finitos** compactos é compacta.
+:::
+
+::: {#exr-cp-imagem}
+Use @thm-imagem-compacta para mostrar que uma função contínua $f: [0,1] \to \mathbb{R}$
+é limitada.
+:::
+
+::: {#exr-cp-discreto}
+Mostre que um espaço **discreto** é compacto se, e somente se, é finito.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cp-1
+A cobertura $\{[0, n) : n \in \mathbb{N}\}$ cobre $[0, \infty)$. Qualquer subcoleção
+finita tem um maior $[0, N)$ e não cobre $[N, \infty)$. Sem subcobertura finita,
+$[0,\infty)$ não é compacto (é ilimitado).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cp-discreto
+Se finito, é compacto (qualquer cobertura já é finita ao escolher um aberto por ponto).
+Se infinito, a cobertura por **singletons** $\{\{x\} : x \in X\}$ (todos abertos na
+discreta) não tem subcobertura finita — finitos singletons não cobrem um conjunto
+infinito. Logo compacto $\iff$ finito.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cp-imagem
+$[0,1]$ é compacto; por @thm-imagem-compacta, $f([0,1])$ é compacto em $\mathbb{R}$,
+logo fechado e **limitado** (@thm-heine-borel). Portanto $f$ é limitada (e atinge seus
+extremos, @cor-weierstrass-topologico).
+:::
