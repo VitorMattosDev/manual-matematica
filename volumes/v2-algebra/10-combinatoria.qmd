@@ -1,0 +1,189 @@
+# Análise combinatória e binômio de Newton {#sec-combinatoria}
+
+## Motivação
+
+De quantas maneiras se pode formar uma senha, escalar um time, distribuir prêmios?
+A **análise combinatória** responde a perguntas de **contagem** — quantos
+arranjos, quantas escolhas — sem enumerá-los um a um. É a base da probabilidade, da
+estatística e de boa parte da ciência da computação.
+
+Tudo decorre de um princípio quase óbvio, o **princípio multiplicativo**, do qual
+brotam as permutações, os arranjos e as combinações. As combinações, por sua vez,
+revelam um elo surpreendente com a álgebra: os **coeficientes binomiais** que
+contam escolhas são exatamente os que aparecem ao expandir $(a + b)^n$ — o
+**binômio de Newton**. Este capítulo fecha o Volume II amarrando contagem e
+expansão algébrica, com a indução (@sec-inducao) garantindo as fórmulas.
+
+## O princípio multiplicativo
+
+::: {#prp-multiplicativo}
+## Princípio multiplicativo
+Se uma decisão se desdobra em etapas independentes, a primeira com $m_1$
+possibilidades, a segunda com $m_2$, e assim por diante até $m_k$, então o número
+total de resultados é o produto
+$$
+m_1 \cdot m_2 \cdots m_k.
+$$
+:::
+
+::: {#exm-multiplicativo}
+## Contando por etapas
+Quantas placas de $3$ letras seguidas de $4$ dígitos existem (26 letras, 10
+dígitos)? Cada posição é uma etapa independente:
+$$
+\underbrace{26 \cdot 26 \cdot 26}_{\text{letras}} \cdot \underbrace{10 \cdot 10
+\cdot 10 \cdot 10}_{\text{dígitos}} = 26^3 \cdot 10^4 = 175\,760\,000.
+$$
+:::
+
+## Permutações e arranjos
+
+Quando se ordenam objetos, cada posição preenchida reduz as opções da seguinte —
+uma aplicação direta do princípio multiplicativo.
+
+::: {#def-fatorial}
+## Fatorial
+Para $n \in \mathbb{N}$, o **fatorial** $n!$ é o produto $n! = n \cdot (n - 1)
+\cdots 2 \cdot 1$, com a convenção $0! = 1$.
+:::
+
+::: {#prp-permutacoes}
+## Permutações e arranjos
+O número de modos de **ordenar** $n$ objetos distintos é $n!$. O número de
+**arranjos** de $k$ objetos escolhidos e ordenados dentre $n$ é
+$$
+A_{n,k} = n (n-1) \cdots (n - k + 1) = \frac{n!}{(n - k)!}.
+$$
+:::
+
+::: {.proof}
+Para ordenar $n$ objetos: há $n$ escolhas para a primeira posição, $n - 1$ para a
+segunda (já usado um), e assim por diante até $1$ — pelo princípio multiplicativo,
+$n!$. Para o arranjo de $k$ dentre $n$, o mesmo raciocínio para apenas $k$
+posições dá $n(n-1)\cdots(n-k+1)$, que se reescreve como $n!/(n-k)!$.
+:::
+
+## Combinações
+
+Quando a **ordem não importa** — escolher um comitê, não enfileirá-lo — cada grupo
+foi contado $k!$ vezes no arranjo (uma para cada ordem interna). Divide-se por
+isso.
+
+::: {#def-combinacao}
+## Combinação e coeficiente binomial
+O número de modos de **escolher** $k$ objetos dentre $n$, sem ordem, é o
+**coeficiente binomial**
+$$
+\binom{n}{k} = \frac{A_{n,k}}{k!} = \frac{n!}{k!\,(n - k)!}.
+$$
+:::
+
+::: {#exm-combinacao}
+## Escolhendo sem ordem
+Quantas comissões de $3$ pessoas se formam num grupo de $5$?
+$$
+\binom{5}{3} = \frac{5!}{3!\,2!} = \frac{120}{6 \cdot 2} = 10.
+$$
+Note que $\binom{5}{3} = \binom{5}{2}$: escolher os $3$ que entram equivale a
+escolher os $2$ que ficam de fora.
+:::
+
+A simetria observada e uma relação de recorrência organizam todos os coeficientes
+no **triângulo de Pascal**.
+
+::: {#prp-pascal}
+## Relação de Stifel (triângulo de Pascal)
+Para $1 \leq k \leq n$,
+$$
+\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}.
+$$
+:::
+
+::: {.proof}
+Argumento de contagem. Para escolher $k$ objetos dentre $n$, fixe um objeto $x$.
+As escolhas dividem-se em duas classes disjuntas: as que **incluem** $x$ — restando
+escolher $k - 1$ dentre os outros $n - 1$, num total de $\binom{n-1}{k-1}$ — e as
+que **excluem** $x$ — escolhendo $k$ dentre os $n - 1$ restantes, $\binom{n-1}{k}$.
+Somando as duas classes, obtém-se $\binom{n}{k}$.
+:::
+
+## O binômio de Newton
+
+Eis o elo entre contagem e álgebra. Ao expandir $(a + b)^n$, cada termo resulta de
+escolher, em cada um dos $n$ fatores, $a$ ou $b$ — e os coeficientes que contam
+essas escolhas são os binomiais.
+
+::: {#thm-binomio}
+## Binômio de Newton
+Para todo $n \in \mathbb{N}$ e todos $a, b \in \mathbb{R}$,
+$$
+(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^{k}.
+$$
+:::
+
+::: {.proof}
+Indução em $n$. Para $n = 1$, o lado direito é $\binom10 a + \binom11 b = a + b$. ✓
+Supondo a fórmula para $n$, multiplica-se por $(a + b)$:
+$$
+(a+b)^{n+1} = (a + b)\sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^{k}.
+$$
+Distribuindo e reagrupando as potências $a^{n+1-k} b^k$, o coeficiente de cada uma
+é $\binom{n}{k-1} + \binom{n}{k}$, que pela relação de Stifel (@prp-pascal) vale
+$\binom{n+1}{k}$. Resulta $(a+b)^{n+1} = \sum_{k=0}^{n+1}\binom{n+1}{k} a^{n+1-k}
+b^k$, completando a indução.
+:::
+
+::: {#exm-binomio}
+## Expandindo uma potência
+Os coeficientes de $(a + b)^4$ são a quarta linha do triângulo de Pascal, $1, 4,
+6, 4, 1$:
+$$
+(a + b)^4 = a^4 + 4a^3 b + 6a^2 b^2 + 4a b^3 + b^4.
+$$
+Tomando $a = b = 1$ obtém-se $\sum_{k=0}^{4}\binom{4}{k} = 2^4 = 16$ — o número
+total de subconjuntos de um conjunto de $4$ elementos, reencontrando o
+@prp-tamanho-partes do Volume I.
+:::
+
+## Exercícios
+
+::: {#exr-permutacao}
+Quantos anagramas tem a palavra LIVRO? E quantos começam por vogal?
+:::
+
+::: {#exr-combinacao}
+Uma prova tem $10$ questões e o aluno deve escolher $7$ para responder. De quantas
+maneiras pode fazer a escolha?
+:::
+
+::: {#exr-binomio-termo}
+Determine o termo independente de $x$ (o que não contém $x$) na expansão de
+$\left(x + \dfrac{1}{x}\right)^6$.
+:::
+
+::: {#exr-soma-binomiais}
+Prove que $\displaystyle \sum_{k=0}^{n} \binom{n}{k} = 2^n$ de duas formas: pelo
+binômio de Newton e por um argumento de contagem de subconjuntos.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-binomio-termo
+Pelo @thm-binomio, o termo geral de $\left(x + \tfrac1x\right)^6$ é
+$$
+\binom{6}{k} x^{6-k} \left(\frac1x\right)^{k} = \binom{6}{k} x^{6 - 2k}.
+$$
+O termo é independente de $x$ quando o expoente $6 - 2k = 0$, isto é, $k = 3$. Seu
+valor é $\binom{6}{3} = 20$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-soma-binomiais
+**Via binômio:** tome $a = b = 1$ em $(a+b)^n = \sum_k \binom{n}{k}a^{n-k}b^k$;
+o lado esquerdo vira $2^n$ e o direito $\sum_k \binom{n}{k}$.
+**Via contagem:** $\binom{n}{k}$ conta os subconjuntos de tamanho $k$ de um
+conjunto de $n$ elementos; somando sobre todos os $k$, conta-se *todos* os
+subconjuntos, que são $2^n$ (@prp-tamanho-partes). Os dois lados contam a mesma
+coisa, logo são iguais.
+:::

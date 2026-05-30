@@ -32,6 +32,8 @@ novos volumes forem escritos.
 | $\mathbb{R} \setminus \mathbb{Q}$ | números irracionais |
 | $\sup S,\ \inf S$ | supremo (menor cota superior), ínfimo |
 | $\deg p$ | grau do polinômio $p$ |
+| $n!$ | fatorial de $n$ |
+| $\binom{n}{k}$ | coeficiente binomial ($n$ escolhe $k$) |
 | $\forall,\ \exists$ | para todo, existe |
 | $\mid,\ \nmid$ | divide, não divide ($a \mid b$: $a$ divide $b$) |
 | $|x|$ | valor absoluto de $x$ |
