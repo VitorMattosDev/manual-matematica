@@ -200,7 +200,7 @@ não pelo número.
 
 - [x] `volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.qmd` — EDOs de primeira ordem: separáveis, lineares, exatas.
 - [x] `volumes/v11-equacoes-diferenciais/02-edo-segunda-ordem.qmd` — EDOs lineares de segunda ordem; coeficientes constantes.
-- [ ] `volumes/v11-equacoes-diferenciais/03-sistemas-edo.qmd` — Sistemas de EDOs lineares (via autovalores).
+- [x] `volumes/v11-equacoes-diferenciais/03-sistemas-edo.qmd` — Sistemas de EDOs lineares (via autovalores).
 - [ ] `volumes/v11-equacoes-diferenciais/04-laplace.qmd` — Transformada de Laplace.
 - [ ] `volumes/v11-equacoes-diferenciais/05-solucoes-serie.qmd` — Soluções em série de potências e funções especiais.
 - [ ] `volumes/v11-equacoes-diferenciais/06-edp-introducao.qmd` — Introdução às EDPs; separação de variáveis.

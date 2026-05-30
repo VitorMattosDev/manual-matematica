@@ -1,0 +1,147 @@
+# Sistemas de EDOs lineares {#sec-sistemas-edo}
+
+## Motivação
+
+Raramente a natureza tem uma só variável. Duas espécies que interagem (predador e presa),
+dois tanques que trocam fluido, as correntes em várias malhas de um circuito — todos
+levam a **sistemas** de equações diferenciais acopladas, em que a variação de cada
+incógnita depende de todas as outras. Como resolvê-los?
+
+A resposta é uma das aplicações mais elegantes da álgebra linear: escrever o sistema na
+forma matricial $\mathbf{x}' = A\mathbf{x}$ e **diagonalizar** $A$ (@sec-diagonalizacao).
+Os **autovalores** e **autovetores** (@sec-autovalores) da matriz revelam os "modos
+naturais" do sistema, e a solução geral se monta a partir deles. Este capítulo une o
+Volume VI ao Volume XI, mostrando que autovalores governam a dinâmica de sistemas
+lineares — e sua estabilidade.
+
+## Forma matricial
+
+::: {#def-sistema-linear-edo}
+## Sistema linear de primeira ordem
+Um **sistema linear homogêneo** de coeficientes constantes é
+$$
+\mathbf{x}'(t) = A\,\mathbf{x}(t),
+$$
+onde $\mathbf{x}(t) = (x_1(t), \dots, x_n(t))$ e $A$ é uma matriz $n\times n$
+(@sec-matrizes). Toda EDO linear de ordem $n$ se reduz a um sistema de primeira ordem
+(introduzindo as derivadas como novas variáveis).
+:::
+
+::: {.callout-note}
+## A exponencial de matriz
+A solução formal é $\mathbf{x}(t) = e^{At}\mathbf{x}_0$, onde a **exponencial de matriz**
+$e^{At} = \sum_{k\ge0}\frac{(At)^k}{k!}$ generaliza a série da exponencial
+(@sec-taylor). O problema é calcular $e^{At}$ — e é aí que a diagonalização entra: se
+$A = PDP^{-1}$, então $e^{At} = P e^{Dt} P^{-1}$, e $e^{Dt}$ é trivial (exponencial das
+entradas diagonais), como vimos em @thm-potencia-matriz.
+:::
+
+## Solução por autovalores
+
+::: {#thm-solucao-autovalores}
+## Modos próprios
+Se $A$ tem autovetor $\mathbf{v}$ com autovalor $\lambda$ (@sec-autovalores), então
+$$
+\mathbf{x}(t) = e^{\lambda t}\,\mathbf{v}
+$$
+é solução de $\mathbf{x}' = A\mathbf{x}$. Se $A$ é diagonalizável com autovalores
+$\lambda_1, \dots, \lambda_n$ e autovetores $\mathbf{v}_1, \dots, \mathbf{v}_n$, a
+solução geral é
+$$
+\mathbf{x}(t) = c_1 e^{\lambda_1 t}\mathbf{v}_1 + \cdots + c_n e^{\lambda_n t}
+\mathbf{v}_n.
+$$
+:::
+
+::: {.proof}
+Derivando $\mathbf{x} = e^{\lambda t}\mathbf{v}$: $\mathbf{x}' = \lambda e^{\lambda t}
+\mathbf{v}$. E $A\mathbf{x} = e^{\lambda t}A\mathbf{v} = e^{\lambda t}\lambda\mathbf{v}$.
+Iguais — é solução. A combinação linear segue da linearidade (@thm-estrutura-solucoes).
+:::
+
+::: {#exm-sistema}
+## Resolvendo um sistema
+Para $\mathbf{x}' = \left[\begin{smallmatrix} 1 & 1 \\ 4 & 1\end{smallmatrix}\right]
+\mathbf{x}$: os autovalores são $\lambda = 3$ e $\lambda = -1$ (de $\det(A - \lambda I) =
+\lambda^2 - 2\lambda - 3$), com autovetores $(1, 2)$ e $(1, -2)$. Logo
+$$
+\mathbf{x}(t) = c_1 e^{3t}\binom{1}{2} + c_2 e^{-t}\binom{1}{-2}.
+$$
+:::
+
+## Autovalores complexos
+
+::: {#prp-autovalores-complexos}
+## Soluções oscilatórias
+Se $A$ tem autovalores complexos $\alpha\pm i\beta$, as soluções combinam $e^{\alpha t}$
+(crescimento/decaimento) com $\cos\beta t$ e $\operatorname{sen}\beta t$ (oscilação),
+pela fórmula de Euler (@sec-taylor) — exatamente como na EDO de segunda ordem
+(@sec-edo-segunda-ordem), agora no contexto de sistemas. O resultado são **espirais** no
+plano de fase.
+:::
+
+## Estabilidade e plano de fase
+
+::: {#def-estabilidade}
+## Classificação pelos autovalores
+O comportamento de $\mathbf{x}' = A\mathbf{x}$ perto da origem (o **equilíbrio**)
+classifica-se pelos sinais/natureza dos autovalores:
+
+- todos com **parte real negativa**: a origem é um **atrator** (estável) — tudo decai a
+  zero;
+- algum com **parte real positiva**: **instável** — soluções escapam;
+- **imaginários puros**: **centro** — órbitas fechadas (oscilação sem amortecimento).
+:::
+
+::: {.callout-tip}
+## Autovalores = destino do sistema
+Eis a lição central: o **espectro** de $A$ (@sec-autovalores) dita o futuro qualitativo
+do sistema sem resolvê-lo explicitamente. Engenheiros checam a estabilidade de pontes,
+aviões e circuitos calculando autovalores e exigindo parte real negativa. A álgebra
+linear, criada para sistemas estáticos, governa a dinâmica. É a base da teoria de
+sistemas dinâmicos e do controle.
+:::
+
+## Exercícios
+
+::: {#exr-se-resolver}
+Resolva $\mathbf{x}' = \left[\begin{smallmatrix} 2 & 0 \\ 0 & -3\end{smallmatrix}\right]
+\mathbf{x}$ (já diagonal).
+:::
+
+::: {#exr-se-autovalores}
+Para $A = \left[\begin{smallmatrix} 0 & 1 \\ -2 & -3\end{smallmatrix}\right]$, ache os
+autovalores e diga se a origem é estável.
+:::
+
+::: {#exr-se-reducao}
+Reduza a EDO $y'' + 3y' + 2y = 0$ a um sistema de primeira ordem (dica: $x_1 = y$, $x_2
+= y'$).
+:::
+
+::: {#exr-se-centro}
+Que tipo de equilíbrio tem $\mathbf{x}' = \left[\begin{smallmatrix} 0 & 1 \\ -1 &
+0\end{smallmatrix}\right]\mathbf{x}$? Relacione com o oscilador harmônico.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-se-resolver
+A matriz é diagonal, autovalores $2, -3$ com autovetores canônicos. Logo $x_1 = c_1
+e^{2t}$, $x_2 = c_2 e^{-3t}$ — as equações estão desacopladas.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-se-autovalores
+$\det(A - \lambda I) = \lambda^2 + 3\lambda + 2 = (\lambda+1)(\lambda+2)$, raízes $-1,
+-2$. Ambas negativas: a origem é um **atrator estável** (tudo decai a zero).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-se-centro
+$\det(A - \lambda I) = \lambda^2 + 1 = 0$, autovalores $\pm i$ (imaginários puros): a
+origem é um **centro**, com órbitas fechadas. É o sistema equivalente a $y'' + y = 0$ —
+o oscilador harmônico (@exm-oscilador), cujas trajetórias no plano $(y, y')$ são
+elipses.
+:::
