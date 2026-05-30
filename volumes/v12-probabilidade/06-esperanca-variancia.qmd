@@ -1,0 +1,155 @@
+# Esperança, variância e momentos {#sec-esperanca-variancia}
+
+## Motivação
+
+Uma distribuição completa pode ser complicada; muitas vezes queremos **resumi-la** em
+poucos números. Onde ela se centra? Quão espalhada é? É simétrica ou enviesada? As
+respostas são os **momentos** da distribuição — e os dois primeiros, a **esperança** e a
+**variância**, são os mais importantes de toda a probabilidade e estatística.
+
+A esperança localiza o "centro de massa"; a variância mede a "dispersão". Juntas, elas
+resumem o comportamento típico e o risco de uma variável aleatória — exatamente o que um
+investidor, um engenheiro ou um cientista precisa saber. Este capítulo aprofunda esses
+conceitos, prova suas propriedades-chave (em especial a linearidade da esperança) e
+prepara as leis-limite (@sec-lgn-tcl).
+
+## Esperança e suas propriedades
+
+::: {#def-esperanca-geral}
+## Esperança
+A **esperança** $E[X]$ é $\sum_x x\,p(x)$ (discreta, @sec-vars-discretas) ou $\int x f(x)
+dx$ (contínua, @sec-vars-continuas). Para uma função $g(X)$, vale a fórmula do
+**estatístico inconsciente**: $E[g(X)] = \sum_x g(x)p(x)$ (ou a integral correspondente).
+:::
+
+::: {#thm-linearidade-esperanca}
+## Linearidade da esperança
+Para quaisquer variáveis $X, Y$ e constantes $a, b$:
+$$
+E[aX + bY] = a\,E[X] + b\,E[Y].
+$$
+Esta identidade vale **sempre** — mesmo se $X$ e $Y$ forem dependentes.
+:::
+
+::: {.callout-tip}
+## A propriedade mais útil da probabilidade
+A linearidade sem hipótese de independência é surpreendentemente poderosa. Quer saber o
+número esperado de acertos numa prova, de pontos fixos numa permutação aleatória, de
+pares casados num problema? Escreva a variável como **soma de indicadores** $X = X_1 +
+\cdots + X_n$ e some as esperanças — sem se preocupar com dependências. Esse "truque da
+linearidade" resolve problemas que pareceriam intratáveis pela contagem direta.
+:::
+
+::: {#exm-binomial-esperanca}
+## Esperança da binomial por linearidade
+Uma binomial($n, p$) é a soma de $n$ Bernoulli($p$) independentes, cada uma com
+esperança $p$. Por linearidade, $E[X] = np$ — instantâneo, sem somar a série
+$\sum k\binom nk p^k(1-p)^{n-k}$ (@sec-distribuicoes).
+:::
+
+## Variância e desvio-padrão
+
+::: {#def-variancia}
+## Variância e desvio-padrão
+A **variância** mede a dispersão em torno da média:
+$$
+\operatorname{Var}(X) = E\big[(X - E[X])^2\big] = E[X^2] - (E[X])^2.
+$$
+O **desvio-padrão** $\sigma = \sqrt{\operatorname{Var}(X)}$ tem a mesma unidade de $X$ e
+é a medida usual de espalhamento.
+:::
+
+::: {#prp-propriedades-variancia}
+## Propriedades da variância
+- $\operatorname{Var}(aX + b) = a^2\operatorname{Var}(X)$ (constantes deslocam mas não
+  espalham; o fator é **quadrático**);
+- se $X, Y$ são **independentes**, $\operatorname{Var}(X + Y) = \operatorname{Var}(X) +
+  \operatorname{Var}(Y)$.
+:::
+
+::: {.callout-warning}
+## Variância só é aditiva sob independência
+Diferente da esperança, a variância **só** soma para variáveis independentes. Em geral,
+$\operatorname{Var}(X+Y) = \operatorname{Var}(X) + \operatorname{Var}(Y) + 2\operatorname
+{Cov}(X,Y)$, e o termo de **covariância** (@sec-vetores-aleatorios) só some sob
+independência. Confundir os dois casos é um erro clássico — a esperança perdoa
+dependência, a variância não.
+:::
+
+## Momentos
+
+::: {#def-momentos}
+## Momentos
+O **$k$-ésimo momento** de $X$ é $E[X^k]$. A esperança é o primeiro momento; a variância,
+o segundo momento **central** $E[(X-\mu)^2]$. Momentos centrais superiores medem
+**assimetria** (3º, *skewness*) e **achatamento** (4º, *curtose*) da distribuição.
+:::
+
+::: {.callout-note}
+## Momentos determinam (quase) a distribuição
+A sequência de todos os momentos, em geral, **determina** a distribuição — e a **função
+geradora de momentos** $M(t) = E[e^{tX}]$ os empacota todos numa série (cujos coeficientes
+de Taylor, @sec-taylor, são os momentos $\div k!$). Ela é o análogo probabilístico da
+transformada de Laplace (@sec-laplace) e a ferramenta padrão para provar resultados como
+o teorema central do limite (@sec-lgn-tcl).
+:::
+
+## A desigualdade de Chebyshev
+
+::: {#thm-chebyshev}
+## Desigualdade de Chebyshev
+Para qualquer variável com média $\mu$ e variância $\sigma^2$ finita, e qualquer $k > 0$:
+$$
+P\big(|X - \mu| \geq k\sigma\big) \leq \frac{1}{k^2}.
+$$
+:::
+
+::: {.callout-tip}
+## Um limite que vale para qualquer distribuição
+Chebyshev é notável por **não exigir** conhecer a distribuição — só a média e a
+variância. Ela garante, por exemplo, que **no máximo 25%** dos dados ficam a mais de
+$2\sigma$ da média, seja qual for a forma da distribuição. É mais fraca que a regra
+68–95–99,7 (que exige normalidade, @sec-distribuicoes), mas universal — e é a chave da
+demonstração da lei dos grandes números (@sec-lgn-tcl).
+:::
+
+## Exercícios
+
+::: {#exr-ev-variancia}
+Calcule $E[X]$ e $\operatorname{Var}(X)$ para um dado justo (use $E[X^2] = \frac16(1 + 4
++ 9 + 16 + 25 + 36)$).
+:::
+
+::: {#exr-ev-linearidade}
+Se $E[X] = 3$ e $E[Y] = 5$, quanto vale $E[2X - Y + 1]$?
+:::
+
+::: {#exr-ev-binomial-var}
+Use a aditividade da variância (sob independência) para mostrar que a binomial($n,p$) tem
+variância $np(1-p)$.
+:::
+
+::: {#exr-ev-chebyshev}
+Uma variável tem $\mu = 50$, $\sigma = 5$. Dê um limite superior para $P(|X - 50| \geq
+15)$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ev-variancia
+$E[X] = 3{,}5$ (@exm-esperanca-dado). $E[X^2] = \frac{91}{6} \approx 15{,}17$. Logo
+$\operatorname{Var}(X) = E[X^2] - (E[X])^2 = \frac{91}{6} - \frac{49}{4} = \frac{182 -
+147}{12} = \frac{35}{12} \approx 2{,}92$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ev-linearidade
+Por linearidade: $E[2X - Y + 1] = 2E[X] - E[Y] + 1 = 2\cdot3 - 5 + 1 = 2$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ev-chebyshev
+$15 = 3\sigma$, logo $k = 3$. Por Chebyshev, $P(|X - 50| \geq 3\sigma) \leq \frac{1}{3^2}
+= \frac19 \approx 0{,}111$. No máximo $\sim 11\%$.
+:::

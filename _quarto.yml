@@ -165,6 +165,7 @@ book:
         - volumes/v12-probabilidade/03-vars-discretas.qmd
         - volumes/v12-probabilidade/04-vars-continuas.qmd
         - volumes/v12-probabilidade/05-distribuicoes.qmd
+        - volumes/v12-probabilidade/06-esperanca-variancia.qmd
   appendices:
     - notacao.qmd
 
