@@ -55,4 +55,6 @@ novos volumes forem escritos.
 | $\lim_{n\to\infty} a_n$ | limite da sequência |
 | $\lim_{x\to a} f(x)$ | limite de função |
 | $f'(x),\ \frac{df}{dx}$ | derivada de $f$ |
+| $\int_a^b f(x)\,dx$ | integral definida |
+| $\sum_{i} a_i$ | somatório (soma dos $a_i$) |
 | $\square$ | fim de demonstração |

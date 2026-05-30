@@ -1,0 +1,158 @@
+# A integral definida {#sec-integral}
+
+## Motivação
+
+A derivada respondeu à pergunta da *taxa de variação*. A integral responde à
+pergunta complementar — a do **acúmulo**: dada a velocidade a cada instante, quanto
+se percorreu no total? Dada a vazão, quanto encheu o tanque? Dada a altura de uma
+região, qual sua **área**?
+
+A ideia, antiga como Arquimedes (@sec-areas, @sec-volumes), é aproximar a região por
+**retângulos** finos, somar suas áreas e refinar até o limite (@sec-sequencias-precalculo).
+Esse limite de somas é a **integral definida**. Neste capítulo construímo-la pelas
+**somas de Riemann**, estabelecendo o conceito que o próximo capítulo conectará — de
+modo espetacular — à derivada, pelo Teorema Fundamental do Cálculo.
+
+## Somas de Riemann
+
+Para medir a área sob o gráfico de $f \geq 0$ entre $a$ e $b$, divide-se o intervalo
+em fatias e aproxima-se cada fatia por um retângulo.
+
+::: {#def-soma-riemann}
+## Soma de Riemann
+Divida $[a, b]$ em $n$ subintervalos de largura $\Delta x = \dfrac{b - a}{n}$, com
+pontos $x_0 = a, x_1, \dots, x_n = b$, e escolha um ponto $c_i$ em cada um. A **soma
+de Riemann** correspondente é
+$$
+S_n = \sum_{i=1}^{n} f(c_i)\,\Delta x.
+$$
+Cada parcela $f(c_i)\,\Delta x$ é a área de um retângulo de altura $f(c_i)$ e base
+$\Delta x$.
+:::
+
+A soma aproxima a área; quanto mais finos os retângulos (maior $n$), melhor a
+aproximação. A integral é o **limite** dessas somas.
+
+::: {#def-integral}
+## Integral definida
+A **integral definida** de $f$ de $a$ a $b$ é o limite das somas de Riemann quando
+$n \to \infty$ (a largura tende a zero):
+$$
+\int_a^b f(x)\,dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(c_i)\,\Delta x,
+$$
+quando o limite existe (e não depende das escolhas). Diz-se então que $f$ é
+**integrável** em $[a, b]$.
+:::
+
+::: {.callout-note}
+## Anatomia do símbolo
+O sinal $\int$ é um "S" alongado, de **soma**; $f(x)$ é a altura do retângulo
+genérico; e $dx$ é o resto fantasma da largura $\Delta x$ que tendeu a zero. A
+notação de Leibniz registra, na própria escrita, que a integral *é* uma soma de
+infinitas parcelas infinitamente finas — a mesma intuição da exaustão de Arquimedes,
+agora com limite preciso.
+:::
+
+## Interpretação e sinal
+
+::: {#prp-area-sinalizada}
+## Área com sinal
+Para $f \geq 0$, $\displaystyle\int_a^b f(x)\,dx$ é a **área** entre o gráfico e o
+eixo $x$. Onde $f < 0$, as parcelas $f(c_i)\Delta x$ são negativas, e a integral
+conta essa área com sinal **negativo**. A integral é, portanto, uma *área
+sinalizada*.
+:::
+
+::: {#exm-integral-geometrica}
+## Integral por geometria
+Algumas integrais saem sem somas, pela área conhecida. Para $f(x) = x$ entre $0$ e
+$b$, a região é um triângulo de base $b$ e altura $b$:
+$$
+\int_0^b x\,dx = \frac{b \cdot b}{2} = \frac{b^2}{2}.
+$$
+Para $f(x) = k$ constante, a região é um retângulo: $\int_a^b k\,dx = k(b - a)$.
+:::
+
+## Propriedades da integral
+
+Como limite de somas, a integral herda a linearidade e ganha a aditividade nos
+intervalos.
+
+::: {#prp-propriedades-integral}
+## Propriedades
+Para $f, g$ integráveis e constantes $\alpha, \beta$:
+$$
+\int_a^b [\alpha f + \beta g]\,dx = \alpha\int_a^b f\,dx + \beta\int_a^b g\,dx
+\qquad \text{(linearidade)},
+$$
+$$
+\int_a^b f\,dx = \int_a^c f\,dx + \int_c^b f\,dx \qquad \text{(aditividade)}.
+$$
+:::
+
+::: {.callout-tip}
+## Calcular pela definição é penoso — e o TFC resolve
+Computar $\int_a^b f\,dx$ somando Riemann e tomando limite é viável apenas para
+funções simples (exige somatórios como o de Gauss, @sec-progressoes). O que torna a
+integral **calculável** é o Teorema Fundamental do Cálculo, no próximo capítulo: ele
+revela que integrar é **desfazer a derivada**, transformando o limite de somas numa
+simples avaliação de antiderivada. É o resultado que unifica todo o Volume V.
+:::
+
+::: {#exm-riemann-quadratica}
+## Uma soma de Riemann até o limite
+Para $\int_0^1 x^2\,dx$, tome $c_i = \dfrac{i}{n}$ (extremo direito), com $\Delta x
+= \dfrac1n$:
+$$
+S_n = \sum_{i=1}^{n}\left(\frac{i}{n}\right)^2\frac1n = \frac{1}{n^3}\sum_{i=1}^{n}
+i^2 = \frac{1}{n^3}\cdot\frac{n(n+1)(2n+1)}{6},
+$$
+usando a soma dos quadrados (do @sec-inducao). Quando $n \to \infty$, isso tende a
+$\dfrac{2}{6} = \dfrac13$. Logo $\int_0^1 x^2\,dx = \dfrac13$ — um cálculo laborioso
+que o próximo capítulo fará numa linha.
+:::
+
+## Exercícios
+
+::: {#exr-integral-geometrica}
+Calcule, interpretando como área: (a) $\displaystyle\int_2^5 3\,dx$; (b)
+$\displaystyle\int_0^4 x\,dx$; (c) $\displaystyle\int_{-3}^{3}\sqrt{9 - x^2}\,dx$
+(Sugestão: semicírculo).
+:::
+
+::: {#exr-area-sinalizada}
+Sem calcular, explique por que $\displaystyle\int_{-1}^{1} x\,dx = 0$ usando a
+simetria da área sinalizada.
+:::
+
+::: {#exr-propriedades-integral}
+Sabendo que $\displaystyle\int_0^2 f\,dx = 5$ e $\displaystyle\int_2^6 f\,dx = 3$,
+calcule $\displaystyle\int_0^6 f\,dx$ e $\displaystyle\int_0^2 3f\,dx$.
+:::
+
+::: {#exr-riemann}
+Monte a soma de Riemann com extremos direitos para $\displaystyle\int_0^1 x\,dx$ com
+$n$ subintervalos e calcule seu limite, conferindo com a área do triângulo.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-integral-geometrica
+(a) Retângulo de altura $3$ e base $5 - 2 = 3$: área $9$. (b) Triângulo de base $4$
+e altura $4$: $\frac{4\cdot4}{2} = 8$. (c) $\sqrt{9 - x^2}$ é a metade superior do
+círculo de raio $3$; a integral é a área do **semicírculo**: $\frac12\pi\cdot 3^2 =
+\frac{9\pi}{2}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-riemann
+Com $c_i = \frac{i}{n}$ e $\Delta x = \frac1n$:
+$$
+S_n = \sum_{i=1}^n \frac{i}{n}\cdot\frac1n = \frac{1}{n^2}\sum_{i=1}^n i =
+\frac{1}{n^2}\cdot\frac{n(n+1)}{2} = \frac{n+1}{2n},
+$$
+usando a soma de Gauss (@prp-gauss). Quando $n \to \infty$, $\frac{n+1}{2n} \to
+\frac12$. Confere com a área do triângulo de base e altura $1$: $\frac{1\cdot1}{2} =
+\frac12$.
+:::
