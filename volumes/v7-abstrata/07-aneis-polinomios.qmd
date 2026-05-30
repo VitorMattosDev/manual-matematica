@@ -1,0 +1,182 @@
+# Anéis de polinômios {#sec-aneis-polinomios}
+
+## Motivação
+
+Os polinômios já apareceram no Volume II (@sec-polinomios) como objetos de
+manipulação algébrica. Agora os revisitamos com os olhos da álgebra abstrata: o
+conjunto $K[x]$ de todos os polinômios sobre um corpo $K$ é um **anel**
+(@sec-aneis), e um anel extraordinariamente bem-comportado.
+
+A descoberta central deste capítulo é uma analogia profunda: **$K[x]$ se parece com
+$\mathbb{Z}$**. Há divisão com resto, máximo divisor comum, fatoração única em
+"primos" (os polinômios irredutíveis) — toda a aritmética do Volume I tem um gêmeo
+polinomial. E essa estrutura é a chave para construir corpos novos: adjuntar a raiz de
+um polinômio irredutível, exatamente como $\mathbb{C}$ nasceu de $x^2 + 1$
+(@sec-dominios-corpos). Este capítulo desenvolve a aritmética de $K[x]$, preparando as
+extensões de corpos (@sec-extensoes-corpos) e Galois (@sec-galois).
+
+## O anel de polinômios
+
+::: {#def-anel-polinomios}
+## Anel de polinômios
+Dado um corpo $K$, o **anel de polinômios** $K[x]$ é o conjunto de todas as
+expressões
+$$
+p(x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0, \qquad a_i \in K,
+$$
+com soma e produto usuais. O **grau** $\deg p$ é o maior $n$ com $a_n \neq 0$.
+:::
+
+::: {#prp-grau-produto}
+## Grau do produto
+Se $K$ é um corpo (ou domínio) e $p, q \neq 0$, então
+$$
+\deg(pq) = \deg p + \deg q.
+$$
+Em particular, $K[x]$ é um **domínio de integridade** (@sec-dominios-corpos).
+:::
+
+::: {.callout-note}
+## Os invertíveis de $K[x]$
+Pela fórmula do grau, um produto só pode dar a constante $1$ (grau $0$) se ambos os
+fatores tiverem grau $0$. Logo os **únicos elementos invertíveis** de $K[x]$ são as
+constantes não nulas — exatamente como em $\mathbb{Z}$ os únicos invertíveis são $\pm
+1$. Essa é a primeira de muitas semelhanças entre $K[x]$ e $\mathbb{Z}$.
+:::
+
+## Divisão euclidiana
+
+A propriedade que faz toda a aritmética funcionar: dividir com resto de grau menor.
+
+::: {#thm-divisao-polinomios}
+## Algoritmo da divisão
+Sejam $f, g \in K[x]$ com $g \neq 0$. Existem **únicos** $q$ (quociente) e $r$
+(resto) em $K[x]$ tais que
+$$
+f = q\,g + r, \qquad \text{com } r = 0 \text{ ou } \deg r < \deg g.
+$$
+:::
+
+É o análogo exato da divisão de inteiros (@sec-mdc-euclides), com o grau no papel do
+"tamanho". Dela decorre tudo o que segue.
+
+::: {#cor-raiz-fator}
+## Teorema do resto e das raízes
+O resto da divisão de $f$ por $(x - a)$ é $f(a)$. Em particular, $a$ é **raiz** de $f$
+(isto é, $f(a) = 0$) se, e somente se, $(x - a)$ **divide** $f$.
+:::
+
+Este é o teorema de D'Alembert (@sec-funcoes-polinomiais), agora como corolário
+imediato da divisão euclidiana. Segue que um polinômio de grau $n$ tem **no máximo
+$n$ raízes** em $K$.
+
+## MDC e fatoração única
+
+Com divisão euclidiana, repete-se passo a passo a teoria de $\mathbb{Z}$.
+
+::: {#thm-kx-dip}
+## $K[x]$ é domínio de ideais principais
+Em $K[x]$, todo ideal é **principal**: gerado por um único polinômio (o de menor grau
+no ideal). Consequentemente, dois polinômios têm um **mdc**, calculável pelo algoritmo
+de Euclides, e vale a identidade de Bézout.
+:::
+
+::: {.proof}
+*(Esboço.)* Dado um ideal $I \neq \{0\}$, tome $g \in I$ de **menor grau**. Para
+qualquer $f \in I$, divida $f = qg + r$; então $r = f - qg \in I$ tem grau menor que
+$g$, forçando $r = 0$. Logo $f$ é múltiplo de $g$ e $I = \langle g\rangle$. (É o mesmo
+argumento que deu os subgrupos de $\mathbb{Z}$, @thm-subgrupos-z.)
+:::
+
+::: {#def-irredutivel}
+## Polinômio irredutível
+Um polinômio não constante $p \in K[x]$ é **irredutível** sobre $K$ se não se fatora
+em dois polinômios de grau menor (com coeficientes em $K$). Os irredutíveis são os
+"primos" de $K[x]$.
+:::
+
+::: {#thm-fatoracao-unica-poli}
+## Fatoração única
+Todo polinômio não constante de $K[x]$ se escreve, de modo **único** (a menos de
+ordem e de constantes), como produto de polinômios irredutíveis.
+:::
+
+::: {.callout-warning}
+## Irredutibilidade depende do corpo
+$x^2 + 1$ é **irredutível** sobre $\mathbb{R}$ (não tem raiz real), mas **fatora**
+sobre $\mathbb{C}$: $(x - i)(x + i)$. E $x^2 - 2$ é irredutível sobre $\mathbb{Q}$
+(raiz $\sqrt2$ irracional) mas não sobre $\mathbb{R}$. Sempre especifique **sobre qual
+corpo** se discute irredutibilidade — é a mesma noção, mas a resposta muda.
+:::
+
+## Construindo corpos por adjunção de raízes
+
+A grande aplicação, que liga $K[x]$ aos corpos (@thm-maximal-corpo).
+
+::: {#thm-adjuncao}
+## Adjunção de uma raiz
+Se $p \in K[x]$ é irredutível, então $\langle p\rangle$ é ideal maximal e o quociente
+$$
+K[x]/\langle p\rangle
+$$
+é um **corpo** que contém (uma cópia de) $K$ e no qual $p$ **tem uma raiz**.
+:::
+
+::: {#exm-corpo-finito}
+## Fabricando $\mathbb{C}$ e $\mathbb{F}_4$
+- $\mathbb{R}[x]/\langle x^2 + 1\rangle \cong \mathbb{C}$: a classe de $x$ é o número
+  $i$, a raiz que faltava (@exm-construcao-corpo).
+- $\mathbb{Z}_2[x]/\langle x^2 + x + 1\rangle$ é um **corpo de 4 elementos**
+  $\mathbb{F}_4$ — pois $x^2 + x + 1$ é irredutível sobre $\mathbb{Z}_2$ (sem raiz em
+  $\{0, 1\}$). É assim que se constroem todos os corpos finitos.
+:::
+
+::: {.callout-tip}
+## A receita universal
+Quer um corpo onde certo polinômio tenha raiz? Verifique que ele é irredutível e tome
+o quociente por ele. Esse mecanismo — adjuntar raízes via quociente por irredutíveis —
+gera **todas** as extensões algébricas de corpos (@sec-extensoes-corpos) e é o ponto
+de partida da teoria de Galois (@sec-galois).
+:::
+
+## Exercícios
+
+::: {#exr-poli-1}
+Divida $f(x) = x^3 - 2x + 1$ por $g(x) = x - 1$ em $\mathbb{Q}[x]$ e confirme o resto
+pelo @cor-raiz-fator.
+:::
+
+::: {#exr-poli-irredutivel}
+Determine se $x^2 + x + 1$ é irredutível sobre (a) $\mathbb{R}$; (b) $\mathbb{Z}_2$.
+:::
+
+::: {#exr-poli-mdc}
+Calcule o mdc de $x^3 - 1$ e $x^2 - 1$ em $\mathbb{Q}[x]$.
+:::
+
+::: {#exr-poli-corpo}
+Quantos elementos tem o corpo $\mathbb{Z}_3[x]/\langle x^2 + 1\rangle$? (Verifique
+antes que $x^2 + 1$ é irredutível sobre $\mathbb{Z}_3$.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-poli-1
+Dividindo, $x^3 - 2x + 1 = (x - 1)(x^2 + x - 1) + 0$. O resto é $0$, coerente com
+$f(1) = 1 - 2 + 1 = 0$: logo $1$ é raiz e $(x - 1) \mid f$ (@cor-raiz-fator).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-poli-irredutivel
+(a) Sobre $\mathbb{R}$: discriminante $1 - 4 = -3 < 0$, sem raízes reais — sendo grau
+$2$, é **irredutível**. (b) Sobre $\mathbb{Z}_2$: $p(0) = 1$, $p(1) = 1 + 1 + 1 = 1
+\neq 0$, sem raízes — **irredutível** (gera o corpo $\mathbb{F}_4$).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-poli-corpo
+$x^2 + 1$ não tem raiz em $\mathbb{Z}_3$ ($0^2+1=1$, $1^2+1=2$, $2^2+1=5\equiv 2$),
+logo é irredutível. O quociente é um corpo cujos elementos são $a + bx$ com $a, b \in
+\mathbb{Z}_3$: são $3\times 3 = 9$ elementos — o corpo $\mathbb{F}_9$.
+:::

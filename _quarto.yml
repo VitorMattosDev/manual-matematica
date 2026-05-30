@@ -103,6 +103,7 @@ book:
         - volumes/v7-abstrata/04-quociente-isomorfismo.qmd
         - volumes/v7-abstrata/05-aneis.qmd
         - volumes/v7-abstrata/06-dominios-corpos.qmd
+        - volumes/v7-abstrata/07-aneis-polinomios.qmd
   appendices:
     - notacao.qmd
 
