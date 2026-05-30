@@ -1,0 +1,165 @@
+# Trigonometria no triângulo {#sec-trigonometria-triangulo}
+
+## Motivação
+
+A semelhança (@sec-semelhanca) revelou um fato decisivo: num triângulo retângulo, a
+**razão** entre dois lados depende apenas dos **ângulos**, não do tamanho. Fixado o
+ângulo, essa razão é a mesma em todos os triângulos semelhantes — então vale a pena
+batizá-la e tabelá-la. Nascem assim o **seno**, o **cosseno** e a **tangente**, e
+com eles a **trigonometria**: a arte de calcular lados a partir de ângulos e
+vice-versa.
+
+Essas razões transformam medições de ângulos (fáceis, com um transferidor) em
+medições de distâncias (difíceis, muitas vezes impossíveis diretamente). Com elas,
+mede-se a altura de uma montanha, a distância de um navio, a posição de uma
+estrela. Estendendo-as a triângulos quaisquer pelas **leis dos senos e dos
+cossenos**, fecha-se a geometria métrica do plano e prepara-se o terreno para as
+funções trigonométricas do Volume IV.
+
+## As razões trigonométricas
+
+::: {#def-razoes}
+## Seno, cosseno e tangente
+Num triângulo retângulo, para um ângulo agudo $\theta$, definem-se
+$$
+\operatorname{sen}\theta = \frac{\text{cateto oposto}}{\text{hipotenusa}}, \quad
+\cos\theta = \frac{\text{cateto adjacente}}{\text{hipotenusa}}, \quad
+\operatorname{tg}\theta = \frac{\text{cateto oposto}}{\text{cateto adjacente}}.
+$$
+:::
+
+Que essas razões dependam só de $\theta$ — e não do triângulo escolhido — é
+exatamente a semelhança: dois triângulos retângulos com o mesmo ângulo agudo são
+semelhantes (caso AA, @thm-caso-aa), logo têm lados proporcionais e razões iguais.
+Da definição segue $\operatorname{tg}\theta = \dfrac{\operatorname{sen}\theta}
+{\cos\theta}$.
+
+::: {#exm-angulos-notaveis}
+## Os ângulos notáveis
+De triângulos especiais leem-se valores exatos. No triângulo retângulo isósceles
+($45°$), catetos iguais dão $\operatorname{sen}45° = \cos45° = \dfrac{\sqrt2}{2}$.
+Da metade do triângulo equilátero ($30°$ e $60°$) saem
+$$
+\operatorname{sen}30° = \frac12, \quad \cos30° = \frac{\sqrt3}{2}, \quad
+\operatorname{sen}60° = \frac{\sqrt3}{2}, \quad \cos60° = \frac12.
+$$
+Esses valores, obtidos com Pitágoras (@thm-pitagoras), dispensam tabela e
+aparecem em toda parte.
+:::
+
+## A relação fundamental
+
+Seno e cosseno de um mesmo ângulo não são independentes: Pitágoras os amarra.
+
+::: {#thm-relacao-fundamental}
+## Relação fundamental
+Para todo ângulo agudo $\theta$,
+$$
+\operatorname{sen}^2\theta + \cos^2\theta = 1.
+$$
+:::
+
+::: {.proof}
+Num triângulo retângulo de hipotenusa $a$ e catetos $b$ (oposto) e $c$ (adjacente)
+a $\theta$, tem-se $\operatorname{sen}\theta = b/a$ e $\cos\theta = c/a$. Então
+$$
+\operatorname{sen}^2\theta + \cos^2\theta = \frac{b^2}{a^2} + \frac{c^2}{a^2} =
+\frac{b^2 + c^2}{a^2} = \frac{a^2}{a^2} = 1,
+$$
+usando o teorema de Pitágoras (@thm-pitagoras), $b^2 + c^2 = a^2$.
+:::
+
+## Triângulos quaisquer
+
+As razões foram definidas no triângulo retângulo, mas duas leis as estendem a
+**qualquer** triângulo, relacionando seus lados $a, b, c$ e ângulos opostos $A, B,
+C$.
+
+::: {#thm-lei-senos}
+## Lei dos senos
+Em todo triângulo, os lados são proporcionais aos senos dos ângulos opostos:
+$$
+\frac{a}{\operatorname{sen}A} = \frac{b}{\operatorname{sen}B} =
+\frac{c}{\operatorname{sen}C}.
+$$
+:::
+
+::: {.proof}
+Trace a altura $h$ a partir de um vértice até o lado oposto, dividindo o triângulo
+em dois triângulos retângulos. Num deles, $h = b\operatorname{sen}A$; no outro, $h
+= a\operatorname{sen}B$. Igualando, $b\operatorname{sen}A = a\operatorname{sen}B$,
+ou seja, $\dfrac{a}{\operatorname{sen}A} = \dfrac{b}{\operatorname{sen}B}$. Traçando
+a altura de outro vértice obtém-se a terceira igualdade.
+:::
+
+::: {#thm-lei-cossenos}
+## Lei dos cossenos
+Em todo triângulo,
+$$
+a^2 = b^2 + c^2 - 2bc\cos A.
+$$
+:::
+
+::: {.callout-tip}
+## Pitágoras generalizado
+A lei dos cossenos é Pitágoras com um termo de correção: quando $A = 90°$, tem-se
+$\cos A = 0$ e ela vira $a^2 = b^2 + c^2$ (@thm-pitagoras). O termo $-2bc\cos A$
+mede exatamente o quanto o ângulo $A$ se afasta do reto — positivo se $A$ é obtuso
+(lado $a$ maior), negativo se agudo. Uma única fórmula para todos os triângulos.
+:::
+
+::: {#exm-resolver-triangulo}
+## Resolvendo um triângulo
+Um triângulo tem lados $b = 5$, $c = 8$ e ângulo entre eles $A = 60°$. O lado
+oposto $a$ sai da lei dos cossenos:
+$$
+a^2 = 5^2 + 8^2 - 2 \cdot 5 \cdot 8 \cdot \cos60° = 25 + 64 - 80 \cdot \tfrac12 =
+89 - 40 = 49,
+$$
+logo $a = 7$. Conhecido $a$, a lei dos senos fornece os demais ângulos.
+:::
+
+## Exercícios
+
+::: {#exr-razoes}
+Num triângulo retângulo, o cateto oposto a $\theta$ mede $6$ e a hipotenusa mede
+$10$. Determine $\operatorname{sen}\theta$, $\cos\theta$ e $\operatorname{tg}
+\theta$.
+:::
+
+::: {#exr-altura}
+De um ponto no solo, a $50\,\text{m}$ da base de uma torre, vê-se o topo sob um
+ângulo de $30°$ com a horizontal. Use a tangente para achar a altura da torre.
+:::
+
+::: {#exr-lei-senos}
+Num triângulo, $A = 45°$, $B = 60°$ e o lado $a$ (oposto a $A$) mede $10$.
+Determine o lado $b$. (Use $\operatorname{sen}45° = \tfrac{\sqrt2}{2}$,
+$\operatorname{sen}60° = \tfrac{\sqrt3}{2}$.)
+:::
+
+::: {#exr-lei-cossenos}
+Um triângulo tem lados $a = 7$, $b = 8$, $c = 13$. Determine o ângulo $C$ (oposto
+ao maior lado) usando a lei dos cossenos. O triângulo é obtusângulo?
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-altura
+A tangente relaciona o cateto oposto (altura $H$) ao adjacente (distância $50$):
+$$
+\operatorname{tg}30° = \frac{H}{50} \implies H = 50 \cdot \operatorname{tg}30° =
+50 \cdot \frac{\sqrt3}{3} = \frac{50\sqrt3}{3} \approx 28{,}9\,\text{m}.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-lei-cossenos
+Pela lei dos cossenos com o lado $c = 13$ oposto a $C$:
+$$
+13^2 = 7^2 + 8^2 - 2 \cdot 7 \cdot 8 \cdot \cos C \implies 169 = 113 - 112\cos C
+\implies \cos C = \frac{113 - 169}{112} = -\frac12.
+$$
+Logo $C = 120°$. Como $\cos C < 0$, o ângulo é obtuso: o triângulo é obtusângulo.
+:::
