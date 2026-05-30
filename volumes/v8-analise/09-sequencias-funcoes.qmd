@@ -1,0 +1,192 @@
+# Sequências e séries de funções {#sec-sequencias-funcoes}
+
+## Motivação
+
+Até aqui, sequências e séries tinham **números** por termos (@sec-sequencias-analise,
+@sec-series-analise). Mas em toda a matemática aplicada surgem sequências cujos termos
+são **funções**: as somas parciais de uma série de Taylor (@sec-taylor), as
+aproximações de Fourier, as iterações que resolvem equações diferenciais. Cada $f_n$ é
+uma função inteira, e queremos saber: para que função $f$ elas tendem? E — a pergunta
+crucial — **a função-limite herda as propriedades das $f_n$?**
+
+Aqui mora uma armadilha que assombrou a matemática do século XIX. O limite de funções
+contínuas pode ser descontínuo; a derivada do limite pode não ser o limite das
+derivadas; a integral do limite pode não ser o limite das integrais. A intuição
+falha redondamente. Este capítulo distingue os dois modos de convergência de funções —
+**pontual** e **uniforme** — e mostra que apenas o segundo preserva as boas
+propriedades, preparando o estudo da convergência uniforme (@sec-convergencia-uniforme).
+
+## Convergência pontual
+
+::: {#def-convergencia-pontual}
+## Convergência pontual
+A sequência de funções $(f_n)$ **converge pontualmente** para $f$ em um conjunto $D$
+se, para **cada** $x \in D$ fixo, a sequência numérica $f_n(x) \to f(x)$. Isto é:
+$$
+\forall x \in D,\ \forall \varepsilon > 0,\ \exists N\ (\text{dependendo de } x
+\text{ e } \varepsilon)\ : n > N \implies |f_n(x) - f(x)| < \varepsilon.
+$$
+:::
+
+O ponto crucial: o $N$ pode **depender do ponto $x$**. Diferentes $x$ podem convergir
+em ritmos completamente diferentes.
+
+::: {#exm-pontual-descontinuo}
+## O limite pontual pode ser descontínuo
+Seja $f_n(x) = x^n$ em $[0, 1]$. Para $0 \leq x < 1$, $x^n \to 0$; para $x = 1$, $x^n
+= 1 \to 1$. O limite pontual é
+$$
+f(x) = \begin{cases} 0, & 0 \leq x < 1 \\ 1, & x = 1, \end{cases}
+$$
+**descontínuo** — embora cada $f_n$ seja contínua. A continuidade não sobreviveu ao
+limite pontual.
+:::
+
+::: {.callout-warning}
+## A intuição falha
+Por décadas, matemáticos (inclusive Cauchy) acreditaram que "o limite de funções
+contínuas é contínuo". O exemplo $x^n$ mostra que é **falso**. O problema é que, perto
+de $x = 1$, a convergência é arbitrariamente lenta: nenhum $N$ serve para todos os
+pontos de uma vez. Consertar isso exige uma forma mais forte de convergência.
+:::
+
+## Convergência uniforme
+
+::: {#def-convergencia-uniforme}
+## Convergência uniforme
+$(f_n)$ converge **uniformemente** para $f$ em $D$ se o mesmo $N$ serve para todos os
+pontos:
+$$
+\forall \varepsilon > 0,\ \exists N\ : n > N \implies |f_n(x) - f(x)| < \varepsilon\
+\textbf{para todo } x \in D.
+$$
+Equivalentemente, $\sup_{x \in D} |f_n(x) - f(x)| \to 0$.
+:::
+
+::: {.callout-tip}
+## A diferença que muda tudo
+Na convergência pontual, o $N$ vem **depois** de escolher $x$ (cada ponto no seu
+ritmo). Na uniforme, o $N$ vem **antes**, válido para todos simultaneamente —
+geometricamente, a partir de $N$ o gráfico inteiro de $f_n$ cabe numa "faixa" de
+largura $\varepsilon$ em torno do gráfico de $f$. É essa uniformidade que transfere
+propriedades do termo ao limite.
+:::
+
+::: {#exm-nao-uniforme}
+## $x^n$ não converge uniformemente
+Em $[0, 1)$, $\sup_x |x^n - 0| = 1$ para todo $n$ (tomando $x \to 1$), que **não**
+tende a zero. Logo a convergência de $x^n$ não é uniforme — exatamente a razão da
+descontinuidade do limite.
+:::
+
+## O teorema da continuidade do limite
+
+A recompensa da uniformidade: ela preserva a continuidade.
+
+::: {#thm-limite-continuo}
+## Limite uniforme de contínuas é contínuo
+Se cada $f_n$ é contínua em $D$ e $f_n \to f$ **uniformemente**, então $f$ é contínua
+em $D$.
+:::
+
+::: {.proof}
+*(Argumento $\frac\varepsilon3$.)* Para $x$ perto de $a$:
+$$
+|f(x) - f(a)| \leq |f(x) - f_n(x)| + |f_n(x) - f_n(a)| + |f_n(a) - f(a)|.
+$$
+A uniformidade torna o 1º e o 3º termos $< \frac\varepsilon3$ (mesmo $n$ para todo
+ponto); a continuidade de $f_n$ torna o 2º $< \frac\varepsilon3$ para $x$ perto de
+$a$. Soma $< \varepsilon$, logo $f$ é contínua.
+:::
+
+::: {#thm-integral-limite}
+## Integração do limite uniforme
+Se $f_n \to f$ uniformemente em $[a, b]$ e cada $f_n$ é integrável, então $f$ é
+integrável e
+$$
+\int_a^b f = \lim_{n\to\infty}\int_a^b f_n.
+$$
+A uniformidade permite **trocar limite com integral**.
+:::
+
+::: {.callout-warning}
+## Derivar é mais delicado
+Cuidado: convergência uniforme de $f_n$ **não** garante que $f_n' \to f'$. O teorema
+correto exige que sejam as **derivadas** $(f_n')$ que convirjam uniformemente. A
+derivação é a operação mais sensível à troca de limites — frequentemente o limite das
+derivadas não é a derivada do limite.
+:::
+
+## Séries de funções e o teste de Weierstrass
+
+Uma **série de funções** $\sum f_n$ é o limite de suas somas parciais $\sum_{k\le n}
+f_k$ — convergência pontual ou uniforme conforme o tipo do limite.
+
+::: {#thm-teste-m}
+## Teste M de Weierstrass
+Se $|f_n(x)| \leq M_n$ para todo $x \in D$ e a série numérica $\sum M_n$ converge,
+então $\sum f_n$ converge **uniformemente** (e absolutamente) em $D$.
+:::
+
+::: {#exm-teste-m}
+## Aplicando o teste M
+A série $\sum \frac{\cos(nx)}{n^2}$ converge uniformemente em $\mathbb{R}$: como
+$\left|\frac{\cos(nx)}{n^2}\right| \leq \frac{1}{n^2}$ e $\sum \frac{1}{n^2}$ converge
+(@exm-p-series-rig), o teste M garante a uniformidade. Logo sua soma é uma função
+**contínua** (@thm-limite-continuo) — base da teoria de **séries de Fourier**.
+:::
+
+::: {.callout-note}
+## Por que séries de potências são tão dóceis
+Toda série de potências (@sec-taylor) converge **uniformemente** em qualquer
+subintervalo fechado dentro de seu raio de convergência. Por isso pode ser derivada e
+integrada termo a termo livremente, e sua soma é contínua (de fato, infinitamente
+derivável). A docilidade das séries de Taylor, que usamos sem cerimônia no Volume V,
+tem aqui sua justificativa rigorosa: a convergência uniforme garantida pelo teste M.
+:::
+
+## Exercícios
+
+::: {#exr-sf-pontual}
+Determine o limite pontual de $f_n(x) = \frac{x}{n}$ em $\mathbb{R}$ e diga se a
+convergência é uniforme em $[0, 1]$ e em $\mathbb{R}$.
+:::
+
+::: {#exr-sf-uniforme}
+Mostre que $f_n(x) = \frac{\operatorname{sen}(nx)}{n}$ converge uniformemente a $0$
+em $\mathbb{R}$.
+:::
+
+::: {#exr-sf-teste-m}
+Use o teste M para mostrar que $\sum \frac{1}{n^2 + x^2}$ converge uniformemente em
+$\mathbb{R}$.
+:::
+
+::: {#exr-sf-troca}
+Dê o limite pontual de $f_n(x) = nx(1-x)^n$ em $[0,1]$ e verifique que $\int_0^1 f_n
+\not\to \int_0^1 (\lim f_n)$, explicando por quê.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-pontual
+Para cada $x$ fixo, $\frac{x}{n} \to 0$, logo o limite pontual é $f \equiv 0$. Em
+$[0,1]$: $\sup |f_n| = \frac1n \to 0$, **uniforme**. Em $\mathbb{R}$: $\sup_x
+\frac{|x|}{n} = \infty$ para cada $n$, **não uniforme**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-uniforme
+$\sup_x \left|\frac{\operatorname{sen}(nx)}{n}\right| \leq \frac1n \to 0$, pois $|\!
+\operatorname{sen}| \leq 1$. Como o supremo tende a zero, a convergência é
+**uniforme** (@def-convergencia-uniforme).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sf-troca
+Para cada $x \in [0,1)$, $n x(1-x)^n \to 0$ (o decaimento exponencial vence o $n$); em
+$x = 1$ é $0$. Logo $\lim f_n \equiv 0$ e $\int_0^1 (\lim f_n) = 0$. Mas $\int_0^1
+nx(1-x)^n dx = \frac{n}{(n+1)(n+2)} \to 1 \neq 0$. A troca falha porque a convergência
+**não** é uniforme (há um "pico" móvel de altura crescente perto de $0$).
+:::
