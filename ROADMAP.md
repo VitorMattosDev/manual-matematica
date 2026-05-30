@@ -99,7 +99,7 @@ Pré-requisitos: nenhum.*
 ## Volume VI — Álgebra Linear
 *Objetivo: espaços vetoriais e transformações lineares. Pré-req.: Vols. II, V.*
 
-- [ ] `volumes/v6-linear/01-sistemas-gauss.qmd` — Sistemas lineares e eliminação de Gauss.
+- [x] `volumes/v6-linear/01-sistemas-gauss.qmd` — Sistemas lineares e eliminação de Gauss.
 - [ ] `volumes/v6-linear/02-matrizes.qmd` — Matrizes e operações.
 - [ ] `volumes/v6-linear/03-determinantes.qmd` — Determinantes.
 - [ ] `volumes/v6-linear/04-espacos-vetoriais.qmd` — Espaços vetoriais e subespaços.
