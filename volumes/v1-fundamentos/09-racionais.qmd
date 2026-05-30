@@ -1,0 +1,211 @@
+# Números racionais {#sec-racionais}
+
+## Motivação
+
+Os inteiros do @sec-inteiros somam, subtraem e multiplicam sem sair de casa, mas a
+divisão exata só funciona por acaso: $6 / 3$ é inteiro, $1 / 3$ não. Para que a
+equação $b x = a$ tenha *sempre* solução (com $b \neq 0$), repetimos a estratégia
+que nos levou de $\mathbb{N}$ a $\mathbb{Z}$: ampliamos o sistema, agora
+acrescentando as **frações**. O resultado é o corpo dos **racionais**
+$\mathbb{Q}$.
+
+A construção é a mesma do capítulo dos inteiros — classes de pares —, só que agora
+o par $(a, b)$ representa o quociente $a / b$. Em seguida descobrimos duas
+características que distinguem $\mathbb{Q}$ de $\mathbb{Z}$: os racionais são
+**densos** (entre dois quaisquer há sempre um terceiro, sem "buracos" de
+sucessor), e cada um tem uma **representação decimal** que ou termina ou se repete
+periodicamente. Essa última propriedade, no próximo capítulo, será exatamente o
+que os números *irracionais* violam.
+
+## Construção dos racionais
+
+Um racional deve representar um quociente $a / b$ com $b \neq 0$. E $1/2$, $2/4$ e
+$3/6$ devem ser o mesmo número: a regra "$a/b = c/d$ quando $a d = b c$" (a
+igualdade de frações cruzada) identifica-os sem usar divisão.
+
+::: {#def-relacao-racionais}
+## A relação das frações
+Seja $\mathbb{Z}^{*} = \mathbb{Z} \setminus \{0\}$. Em $\mathbb{Z} \times
+\mathbb{Z}^{*}$, escrevemos $(a, b) \sim (c, d)$ quando
+$$
+a d = b c.
+$$
+Intuitivamente, $(a, b)$ representa o quociente $a / b$.
+:::
+
+::: {#prp-equivalencia-q}
+## $\sim$ é uma equivalência
+A relação $\sim$ é reflexiva, simétrica e transitiva.
+:::
+
+::: {.proof}
+Reflexividade e simetria são imediatas de $a b = b a$. Para a transitividade,
+suponha $(a, b) \sim (c, d)$ e $(c, d) \sim (e, f)$, isto é, $a d = b c$ e $c f =
+d e$. Multiplicando a primeira por $f$ e a segunda por $b$:
+$$
+a d f = b c f = b d e.
+$$
+Como $d \neq 0$ e $\mathbb{Z}$ não tem divisores de zero (@sec-inteiros), cancela-se
+$d$, restando $a f = b e$, ou seja, $(a, b) \sim (e, f)$.
+:::
+
+::: {#def-racionais}
+## Racionais
+O conjunto dos **racionais** $\mathbb{Q}$ é o conjunto das classes de $\sim$. A
+classe de $(a, b)$ é denotada $\dfrac{a}{b}$. As operações são
+$$
+\frac{a}{b} + \frac{c}{d} = \frac{a d + b c}{b d}, \qquad
+\frac{a}{b} \cdot \frac{c}{d} = \frac{a c}{b d}.
+$$
+:::
+
+Os denominadores $b, d$ são não nulos, logo $b d \neq 0$ e as operações fazem
+sentido; como antes, é preciso (e possível) verificar que o resultado não depende
+dos representantes — estão **bem definidas** (@exr-bem-definida-q).
+
+::: {.callout-note}
+## $\mathbb{Q}$ é um corpo que contém $\mathbb{Z}$
+Cada inteiro $a$ identifica-se com a fração $\dfrac{a}{1}$, e isso mergulha
+$\mathbb{Z}$ em $\mathbb{Q}$ preservando soma e produto. O zero é $\dfrac{0}{1}$ e
+a unidade $\dfrac{1}{1}$. A novidade decisiva: **todo racional não nulo tem
+inverso multiplicativo**, pois se $\dfrac{a}{b} \neq 0$ então $a \neq 0$ e
+$$
+\frac{a}{b} \cdot \frac{b}{a} = \frac{a b}{b a} = \frac{1}{1} = 1.
+$$
+Um sistema com soma, produto, e inverso para todo elemento não nulo chama-se
+**corpo**. A ordem de $\mathbb{Z}$ também se estende: $\dfrac{a}{b} > 0$ quando
+$a$ e $b$ têm o mesmo sinal.
+:::
+
+Entre as infinitas frações que representam um racional, há uma preferida.
+
+::: {#prp-irredutivel}
+## Forma irredutível
+Todo racional não nulo se escreve, de modo único, como $\dfrac{a}{b}$ com $b > 0$
+e $\gcd(a, b) = 1$ (fração **irredutível**).
+:::
+
+::: {.proof}
+Parta de qualquer representante $\dfrac{p}{q}$ com $q > 0$ (se $q < 0$, troque os
+sinais de $p$ e $q$). Seja $d = \gcd(p, q)$ e escreva $p = d a$, $q = d b$. Então
+$\dfrac{p}{q} = \dfrac{a}{b}$ com $b > 0$, e $\gcd(a, b) = 1$ pela propriedade
+$\gcd(d a, d b) = d \gcd(a, b)$ (@exr-mdc-multiplo). A unicidade decorre de que
+duas frações irredutíveis iguais têm $a d' = b c'$ com numeradores e denominadores
+coprimos, forçando $a = c'$ e $b = d'$.
+:::
+
+## Densidade
+
+Os inteiros têm "buracos": entre $3$ e $4$ não há inteiro algum. Os racionais, ao
+contrário, preenchem cada intervalo.
+
+::: {#thm-densidade}
+## Densidade de $\mathbb{Q}$
+Entre quaisquer dois racionais $r < s$ existe um terceiro racional. Em particular,
+entre dois racionais distintos há **infinitos** racionais.
+:::
+
+::: {.proof}
+Considere a média $m = \dfrac{r + s}{2}$. Ela é racional (soma e quociente de
+racionais). De $r < s$ segue, somando $r$ aos dois lados, $2r < r + s$, logo $r <
+m$; e somando $s$, $r + s < 2s$, logo $m < s$. Assim $r < m < s$. Repetindo o
+argumento no intervalo $(r, m)$, e depois nos novos subintervalos, obtêm-se tantos
+racionais distintos entre $r$ e $s$ quantos se queira — uma infinidade.
+:::
+
+::: {.callout-note}
+## Densidade não é continuidade
+Apesar de não haver "próximo racional", $\mathbb{Q}$ ainda está cheio de buracos
+*invisíveis* à ordem: não existe racional cujo quadrado seja $2$ (@sec-primos), de
+modo que falta a $\mathbb{Q}$ o ponto que chamaríamos $\sqrt 2$. Densidade é a
+ausência de saltos entre pontos existentes; **completude** — a ausência desses
+buracos — é mais forte, e é o tema do próximo capítulo.
+:::
+
+## Representação decimal
+
+Dividir $a$ por $b$ pelo algoritmo da escola produz uma expansão decimal. A
+afirmação central é que essa expansão sempre **termina ou se repete**.
+
+::: {#thm-decimal}
+## Decimais de um racional
+A representação decimal de todo número racional é **finita** (termina) ou
+**periódica** a partir de certa casa. Reciprocamente, toda expansão decimal finita
+ou periódica representa um racional.
+:::
+
+::: {.proof}
+Seja o racional $\dfrac{a}{b}$ com $a, b > 0$. O algoritmo da divisão longa, a
+cada casa decimal, executa uma divisão euclidiana (@sec-inteiros): produz um
+dígito e um **resto** $r$ com $0 \leq r < b$, e o próximo passo divide $10 r$ por
+$b$. Os restos possíveis são apenas $b$ valores: $0, 1, \dots, b - 1$. Logo, em no
+máximo $b$ passos, ou aparece o resto $0$ — e a expansão **termina** — ou algum
+resto se **repete**. A partir do resto repetido, toda a sequência de dígitos e
+restos se reproduz identicamente: a expansão é **periódica**, com período de
+comprimento menor que $b$.
+
+A recíproca: uma expansão finita $0{,}d_1 \dots d_k$ é o racional $\dfrac{d_1 \dots
+d_k}{10^k}$. Uma expansão periódica representa um racional pelo truque de eliminar
+o período, ilustrado no exemplo a seguir.
+:::
+
+::: {#exm-dizima}
+## De dízima a fração
+Seja $x = 0{,}\overline{3} = 0{,}333\dots$ Multiplicando por $10$ desloca-se o
+período: $10 x = 3{,}333\dots = 3 + x$. Logo $9 x = 3$ e $x = \dfrac{1}{3}$. O
+mesmo método dá $0{,}\overline{142857} = \dfrac{1}{7}$ — não por acaso, o período
+$142857$ tem comprimento $6 = 7 - 1$, refletindo a ordem de $10$ módulo $7$
+(@sec-congruencias).
+:::
+
+::: {.callout-warning}
+## A representação não é totalmente única
+Há uma ambiguidade célebre: $0{,}\overline{9} = 1$. De fato, com $x =
+0{,}\overline{9}$ o método acima dá $10 x = 9 + x$, logo $9x = 9$ e $x = 1$. Todo
+decimal finito tem uma segunda escrita terminando em período $9$ — a única falha
+da unicidade, inofensiva na prática.
+:::
+
+## Exercícios
+
+::: {#exr-bem-definida-q}
+Mostre que o produto de $\mathbb{Q}$ está bem definido: se $(a, b) \sim (a', b')$
+e $(c, d) \sim (c', d')$, então $\dfrac{a c}{b d} = \dfrac{a' c'}{b' d'}$.
+:::
+
+::: {#exr-soma-racional-irracional}
+Prove que a soma de um racional com um irracional é irracional. (Sugestão: se
+fosse racional, isole o irracional.)
+:::
+
+::: {#exr-dizima-fracao}
+Escreva $0{,}\overline{12} = 0{,}121212\dots$ como fração irredutível.
+:::
+
+::: {#exr-decimal-finito}
+Prove que a fração irredutível $\dfrac{a}{b}$ tem expansão decimal **finita** se,
+e somente se, os únicos fatores primos de $b$ são $2$ e $5$. (Sugestão: a expansão
+termina sse $\dfrac{a}{b} = \dfrac{m}{10^k}$ para algum $k$.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-soma-racional-irracional
+Sejam $r$ racional e $x$ irracional, e suponha por absurdo que $s = r + x$ seja
+racional. Então $x = s - r$ é diferença de dois racionais, logo racional
+(@def-racionais) — contradizendo a irracionalidade de $x$. Portanto $r + x$ é
+irracional. (Note que a soma de *dois* irracionais pode ser racional, como
+$\sqrt 2 + (-\sqrt 2) = 0$.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dizima-fracao
+Seja $x = 0{,}\overline{12}$. O período tem $2$ dígitos, então multiplicamos por
+$10^2 = 100$ para deslocá-lo uma volta inteira:
+$$
+100 x = 12{,}121212\dots = 12 + x.
+$$
+Logo $99 x = 12$, isto é, $x = \dfrac{12}{99}$. Simplificando por $\gcd(12, 99) =
+3$, obtém-se a forma irredutível $x = \dfrac{4}{33}$.
+:::

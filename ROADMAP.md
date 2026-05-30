@@ -36,7 +36,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v1-fundamentos/06-mdc-euclides.qmd` — MDC, MMC e algoritmo de Euclides; identidade de Bézout.
 - [x] `volumes/v1-fundamentos/07-primos-tfa.qmd` — Números primos e o Teorema Fundamental da Aritmética; infinitude dos primos.
 - [x] `volumes/v1-fundamentos/08-congruencias.qmd` — Congruências e aritmética modular; pequeno teorema de Fermat.
-- [ ] `volumes/v1-fundamentos/09-racionais.qmd` — Números racionais: construção, densidade, representação decimal.
+- [x] `volumes/v1-fundamentos/09-racionais.qmd` — Números racionais: construção, densidade, representação decimal.
 - [ ] `volumes/v1-fundamentos/10-reais-introducao.qmd` — Os reais: introdução intuitiva, irracionalidade de √2, completude (informal).
 
 ## Volume II — Álgebra Elementar
