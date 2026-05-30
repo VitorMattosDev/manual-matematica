@@ -6,8 +6,10 @@ e publicado no GitHub Pages.
 
 ## Conteúdo
 
-A obra está **completa**, em 10 volumes que vão dos fundamentos à geometria
-diferencial:
+A obra está **completa**, em 13 volumes que vão dos fundamentos à análise
+complexa. A **Fase 1** (Volumes I–X) cobre da aritmética à geometria diferencial;
+a **Fase 2** estende o Cálculo e a Geometria Diferencial e acrescenta três
+volumes voltados à física-matemática.
 
 | Vol. | Tema |
 |------|------|
@@ -15,14 +17,18 @@ diferencial:
 | II   | Álgebra elementar |
 | III  | Geometria e trigonometria |
 | IV   | Pré-cálculo (funções) |
-| V    | Cálculo |
+| V    | Cálculo *(inclui cálculo vetorial)* |
 | VI   | Álgebra linear |
 | VII  | Álgebra abstrata |
 | VIII | Análise real |
 | IX   | Topologia |
-| X    | Geometria diferencial |
+| X    | Geometria diferencial *(inclui cálculo tensorial e geometria riemanniana)* |
+| XI   | Equações diferenciais (EDOs e EDPs) |
+| XII  | Probabilidade e estatística |
+| XIII | Análise complexa |
 
-A sequência detalhada, capítulo a capítulo e com status, está em `ROADMAP.md`.
+A sequência detalhada, capítulo a capítulo e com status (Fases 1 e 2), está em
+`ROADMAP.md`.
 
 ## Setup em uma máquina nova
 
