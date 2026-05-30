@@ -92,6 +92,7 @@ book:
         - volumes/v6-linear/05-base-dimensao.qmd
         - volumes/v6-linear/06-transformacoes-lineares.qmd
         - volumes/v6-linear/07-autovalores.qmd
+        - volumes/v6-linear/08-diagonalizacao.qmd
   appendices:
     - notacao.qmd
 

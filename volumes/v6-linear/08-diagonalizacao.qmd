@@ -1,0 +1,186 @@
+# Diagonalização {#sec-diagonalizacao}
+
+## Motivação
+
+Matrizes diagonais são um sonho: multiplicá-las é trivial, elevá-las a uma potência
+é elevar cada entrada da diagonal, e seus autovalores estão à vista. Matrizes gerais
+não são tão dóceis — mas e se pudéssemos **trocar de ponto de vista** e enxergar uma
+matriz qualquer como diagonal?
+
+É exatamente isso que a **diagonalização** faz. Os autovetores (@sec-autovalores)
+fornecem uma base na qual a transformação age apenas esticando cada eixo por seu
+autovalor — ou seja, vira diagonal. Nessa base, calcular $A^{100}$, resolver sistemas
+de equações diferenciais ou analisar a evolução de um processo a longo prazo torna-se
+imediato. Diagonalizar é encontrar o sistema de coordenadas em que a transformação se
+revela na sua forma mais simples. Este capítulo formaliza o procedimento e suas
+aplicações.
+
+## A ideia central
+
+::: {#def-diagonalizavel}
+## Matriz diagonalizável
+Uma matriz quadrada $A$ é **diagonalizável** se existe uma matriz invertível $P$ e
+uma matriz diagonal $D$ tais que
+$$
+A = P D P^{-1}, \qquad\text{equivalentemente}\qquad P^{-1} A P = D.
+$$
+:::
+
+O significado de $A = PDP^{-1}$: $P^{-1}$ traduz o vetor para a base de autovetores,
+$D$ aplica a transformação (esticando cada eixo), e $P$ traduz de volta. É a mesma
+transformação, vista por outro ângulo.
+
+::: {#thm-criterio-diagonalizacao}
+## Critério de diagonalização
+Uma matriz $n\times n$ é diagonalizável se, e somente se, possui $n$ autovetores
+**linearmente independentes**. Nesse caso:
+
+- as **colunas de $P$** são esses $n$ autovetores;
+- a **diagonal de $D$** são os autovalores correspondentes (na mesma ordem).
+:::
+
+::: {.proof}
+*(Esboço.)* Se $P = [v_1 \mid \cdots \mid v_n]$ tem por colunas autovetores, com
+$Av_i = \lambda_i v_i$, então $AP = [\lambda_1 v_1 \mid \cdots \mid \lambda_n v_n] =
+PD$, onde $D = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$. Se os $v_i$ são LI,
+$P$ é invertível e $A = PDP^{-1}$. A recíproca lê a mesma identidade ao contrário.
+:::
+
+## O procedimento
+
+Diagonalizar $A$ resume-se a três passos:
+
+1. **Autovalores:** resolva $\det(A - \lambda I) = 0$ (@thm-polinomio-caracteristico).
+2. **Autovetores:** para cada $\lambda$, resolva $(A - \lambda I)v = 0$.
+3. **Monte $P$ e $D$:** se houver $n$ autovetores LI no total, ponha-os como colunas
+   de $P$ e os autovalores na diagonal de $D$.
+
+::: {#exm-diagonalizar}
+## Diagonalizando passo a passo
+Retomando $A = \left[\begin{smallmatrix} 2 & 1 \\ 1 & 2 \end{smallmatrix}\right]$
+(do @exm-calculo-autovalores): autovalores $1$ e $3$, autovetores $(1, -1)$ e $(1,
+1)$. Então
+$$
+P = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix}, \qquad D = \begin{bmatrix} 1 & 0
+\\ 0 & 3 \end{bmatrix}, \qquad A = P D P^{-1}.
+$$
+Como os autovalores são distintos, os autovetores são automaticamente LI
+(@sec-autovalores) e $A$ é diagonalizável.
+:::
+
+::: {#cor-distintos-diagonalizavel}
+## Autovalores distintos garantem diagonalização
+Se uma matriz $n\times n$ tem $n$ autovalores **distintos**, ela é diagonalizável
+(os autovetores são automaticamente LI).
+:::
+
+::: {.callout-warning}
+## Nem toda matriz é diagonalizável
+O recíproco do corolário é falso, e há matrizes que **não** se diagonalizam: a
+$\left[\begin{smallmatrix} 1 & 1 \\ 0 & 1 \end{smallmatrix}\right]$ tem só um
+autovetor independente (@sec-autovalores), faltando o segundo. Quando a
+multiplicidade geométrica de algum autovalor é menor que a algébrica, a
+diagonalização falha — exigindo formas mais gerais, como a forma de Jordan.
+:::
+
+## Potências de matrizes
+
+A recompensa mais imediata: potências saem de graça.
+
+::: {#thm-potencia}
+## Potência via diagonalização
+Se $A = PDP^{-1}$, então para todo inteiro $k \geq 1$
+$$
+A^k = P D^k P^{-1},
+$$
+e $D^k$ é simplesmente a diagonal com cada $\lambda_i$ elevado a $k$.
+:::
+
+::: {.proof}
+Os fatores $P^{-1}P = I$ telescopam: $A^k = (PDP^{-1})(PDP^{-1})\cdots(PDP^{-1}) =
+PD(P^{-1}P)D\cdots P^{-1} = PD^kP^{-1}$.
+:::
+
+::: {#exm-fibonacci}
+## A fórmula fechada de Fibonacci
+A recorrência de Fibonacci $F_{n+1} = F_n + F_{n-1}$ escreve-se
+$\left[\begin{smallmatrix} F_{n+1} \\ F_n \end{smallmatrix}\right] =
+\left[\begin{smallmatrix} 1 & 1 \\ 1 & 0 \end{smallmatrix}\right]
+\left[\begin{smallmatrix} F_n \\ F_{n-1} \end{smallmatrix}\right]$. Diagonalizando a
+matriz, cujos autovalores são $\varphi = \frac{1 + \sqrt5}{2}$ e $\psi = \frac{1 -
+\sqrt5}{2}$, obtém-se a **fórmula de Binet**
+$$
+F_n = \frac{\varphi^n - \psi^n}{\sqrt5}.
+$$
+Um número inteiro expresso por potências do número de ouro — milagre que a
+diagonalização explica.
+:::
+
+## Matrizes simétricas
+
+Há uma classe que é *sempre* diagonalizável, e ainda do modo mais elegante possível.
+
+::: {#thm-espectral-preview}
+## Teorema espectral (prévia)
+Toda matriz **simétrica** ($A^T = A$) é diagonalizável, com autovalores **reais** e
+autovetores **mutuamente ortogonais**. Pode-se escolher $P$ ortogonal ($P^{-1} =
+P^T$), de modo que $A = PDP^T$.
+:::
+
+::: {.callout-note}
+## Por que isso importa
+As matrizes simétricas aparecem em toda parte — matrizes de covariância em
+estatística, formas quadráticas em otimização, operadores em física. Que sejam
+sempre diagonalizáveis por base ortonormal é a base da **análise de componentes
+principais (PCA)** e do estudo das formas quadráticas. O caso geral, com a
+demonstração completa, é o tema do @sec-teorema-espectral.
+:::
+
+## Exercícios
+
+::: {#exr-diag-1}
+Diagonalize $A = \left[\begin{smallmatrix} 3 & 1 \\ 0 & 2 \end{smallmatrix}\right]$
+(encontre $P$ e $D$).
+:::
+
+::: {#exr-diag-potencia}
+Use diagonalização para calcular $A^5$, onde $A = \left[\begin{smallmatrix} 2 & 0 \\
+0 & -1 \end{smallmatrix}\right]$ — e em seguida para $A =
+\left[\begin{smallmatrix} 1 & 2 \\ 0 & 3 \end{smallmatrix}\right]$.
+:::
+
+::: {#exr-diag-nao}
+Mostre que $A = \left[\begin{smallmatrix} 2 & 1 \\ 0 & 2 \end{smallmatrix}\right]$
+não é diagonalizável.
+:::
+
+::: {#exr-diag-simetrica}
+Diagonalize a matriz simétrica $A = \left[\begin{smallmatrix} 0 & 2 \\ 2 & 3
+\end{smallmatrix}\right]$ e verifique que os autovetores são ortogonais.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-diag-1
+Sendo triangular, os autovalores são a diagonal: $3$ e $2$ (@prp-triangular). Para
+$\lambda = 3$: $(A - 3I)v = 0$ dá $v = (1, 0)$. Para $\lambda = 2$: $v = (1, -1)$.
+Logo $P = \left[\begin{smallmatrix} 1 & 1 \\ 0 & -1 \end{smallmatrix}\right]$ e $D =
+\left[\begin{smallmatrix} 3 & 0 \\ 0 & 2 \end{smallmatrix}\right]$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-diag-nao
+Único autovalor $\lambda = 2$ (multiplicidade algébrica $2$). Mas $(A - 2I) =
+\left[\begin{smallmatrix} 0 & 1 \\ 0 & 0 \end{smallmatrix}\right]$, cujo núcleo é só
+a reta $(1, 0)$ — apenas **um** autovetor independente. Faltando o segundo, não há
+base de autovetores e $A$ não é diagonalizável.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-diag-simetrica
+$\det(A - \lambda I) = \lambda^2 - 3\lambda - 4 = (\lambda - 4)(\lambda + 1)$.
+Autovalores $4$ e $-1$ (reais, como prevê o @thm-espectral-preview). Autovetores:
+$(1, 2)$ para $4$ e $(2, -1)$ para $-1$. Produto escalar $1\cdot2 + 2\cdot(-1) = 0$:
+**ortogonais**. ✓
+:::
