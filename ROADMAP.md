@@ -20,6 +20,12 @@ aparece abaixo. Para executá-la:
 **Regra de ritmo:** um capítulo por vez. Não comece o próximo volume antes de
 fechar o anterior (estratégia de "fatia vertical"). Não pule itens.
 
+**Fases:** o roadmap tem duas. A **Fase 1** (Volumes I–X) está concluída. A
+**Fase 2** (extensões dos Volumes V e X + Volumes XI–XIII) acrescenta conteúdos
+avançados — em especial os pré-requisitos da relatividade (cálculo vetorial,
+tensorial e geometria riemanniana), equações diferenciais, probabilidade e
+análise complexa.
+
 Legenda: `[x]` pronto · `[~]` esboço a completar · `[ ]` a fazer.
 
 ---
@@ -161,6 +167,71 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v10-diferencial/07-geodesicas.qmd` — Geodésicas.
 - [x] `volumes/v10-diferencial/08-gauss-bonnet.qmd` — Teorema Egregium e teorema de Gauss-Bonnet.
 - [x] `volumes/v10-diferencial/09-variedades.qmd` — Introdução a variedades diferenciáveis.
+
+---
+
+# FASE 2 — Extensões (iniciar só após concluir toda a Fase 1)
+
+Conteúdos adicionais que completam a base matemática avançada — em especial os
+pré-requisitos da relatividade (cálculo vetorial, cálculo tensorial e geometria
+riemanniana). Os Volumes XI–XIII são numerados após o X para **não renumerar**
+volumes já construídos; a ordem de leitura correta é dada pelos pré-requisitos,
+não pelo número.
+
+## Extensão do Volume V — Cálculo Vetorial
+*Objetivo: campos, fluxo e os teoremas integrais. Pré-req.: Vol. V.*
+
+- [ ] `volumes/v5-calculo/13-campos-integrais-linha.qmd` — Campos vetoriais, campos conservativos e integrais de linha.
+- [ ] `volumes/v5-calculo/14-integrais-superficie.qmd` — Integrais de superfície e fluxo.
+- [ ] `volumes/v5-calculo/15-green-stokes-divergencia.qmd` — Teoremas de Green, de Stokes e da divergência.
+
+## Extensão do Volume X — Cálculo Tensorial e Geometria Riemanniana
+*Objetivo: a maquinaria geométrica da relatividade geral. Pré-req.: Vol. X cap. 1–9, Vol. VI.*
+
+- [ ] `volumes/v10-diferencial/10-campos-tensores.qmd` — Espaço tangente, campos vetoriais e tensoriais em variedades.
+- [ ] `volumes/v10-diferencial/11-algebra-tensorial-formas.qmd` — Álgebra tensorial e formas diferenciais; produto exterior.
+- [ ] `volumes/v10-diferencial/12-metricas-riemannianas.qmd` — Métricas riemannianas e pseudo-riemannianas (caso lorentziano).
+- [ ] `volumes/v10-diferencial/13-conexoes-derivada-covariante.qmd` — Conexões, derivada covariante e símbolos de Christoffel.
+- [ ] `volumes/v10-diferencial/14-transporte-geodesicas.qmd` — Transporte paralelo e geodésicas em variedades.
+- [ ] `volumes/v10-diferencial/15-curvatura-riemann.qmd` — Tensor de curvatura de Riemann, tensor de Ricci e curvatura escalar.
+
+## Volume XI — Equações Diferenciais
+*Objetivo: EDOs e EDPs, base de toda a física-matemática. Pré-req.: Vols. V, VI.*
+
+- [ ] `volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.qmd` — EDOs de primeira ordem: separáveis, lineares, exatas.
+- [ ] `volumes/v11-equacoes-diferenciais/02-edo-segunda-ordem.qmd` — EDOs lineares de segunda ordem; coeficientes constantes.
+- [ ] `volumes/v11-equacoes-diferenciais/03-sistemas-edo.qmd` — Sistemas de EDOs lineares (via autovalores).
+- [ ] `volumes/v11-equacoes-diferenciais/04-laplace.qmd` — Transformada de Laplace.
+- [ ] `volumes/v11-equacoes-diferenciais/05-solucoes-serie.qmd` — Soluções em série de potências e funções especiais.
+- [ ] `volumes/v11-equacoes-diferenciais/06-edp-introducao.qmd` — Introdução às EDPs; separação de variáveis.
+- [ ] `volumes/v11-equacoes-diferenciais/07-series-fourier.qmd` — Séries de Fourier.
+- [ ] `volumes/v11-equacoes-diferenciais/08-calor-onda-laplace.qmd` — As equações do calor, da onda e de Laplace.
+
+## Volume XII — Probabilidade e Estatística
+*Objetivo: incerteza, distribuições e inferência. Pré-req.: Vols. II (combinatória), V.*
+
+- [ ] `volumes/v12-probabilidade/01-espacos-probabilidade.qmd` — Espaços de probabilidade e axiomas de Kolmogorov.
+- [ ] `volumes/v12-probabilidade/02-condicional-bayes.qmd` — Probabilidade condicional, independência e teorema de Bayes.
+- [ ] `volumes/v12-probabilidade/03-vars-discretas.qmd` — Variáveis aleatórias discretas.
+- [ ] `volumes/v12-probabilidade/04-vars-continuas.qmd` — Variáveis aleatórias contínuas.
+- [ ] `volumes/v12-probabilidade/05-distribuicoes.qmd` — Distribuições notáveis (binomial, Poisson, normal, etc.).
+- [ ] `volumes/v12-probabilidade/06-esperanca-variancia.qmd` — Esperança, variância e momentos.
+- [ ] `volumes/v12-probabilidade/07-vetores-aleatorios.qmd` — Vetores aleatórios, covariância e correlação.
+- [ ] `volumes/v12-probabilidade/08-lgn-tcl.qmd` — Leis dos grandes números e teorema central do limite.
+- [ ] `volumes/v12-probabilidade/09-estatistica-estimacao.qmd` — Estatística descritiva e estimação.
+- [ ] `volumes/v12-probabilidade/10-testes-hipotese.qmd` — Testes de hipótese e intervalos de confiança.
+
+## Volume XIII — Análise Complexa
+*Objetivo: funções de variável complexa. Pré-req.: Vols. V, VIII.*
+
+- [ ] `volumes/v13-complexa/01-numeros-complexos.qmd` — Números complexos e o plano complexo.
+- [ ] `volumes/v13-complexa/02-holomorfas-cauchy-riemann.qmd` — Funções holomorfas e equações de Cauchy-Riemann.
+- [ ] `volumes/v13-complexa/03-funcoes-elementares.qmd` — Funções elementares complexas.
+- [ ] `volumes/v13-complexa/04-integracao-cauchy.qmd` — Integração complexa e teorema de Cauchy.
+- [ ] `volumes/v13-complexa/05-formula-integral-cauchy.qmd` — Fórmula integral de Cauchy.
+- [ ] `volumes/v13-complexa/06-taylor-laurent.qmd` — Séries de Taylor e de Laurent.
+- [ ] `volumes/v13-complexa/07-residuos.qmd` — Teorema dos resíduos e aplicações.
+- [ ] `volumes/v13-complexa/08-aplicacoes-conformes.qmd` — Aplicações conformes.
 
 ---
 
