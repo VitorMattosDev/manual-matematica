@@ -1,0 +1,143 @@
+# Geometria espacial: poliedros {#sec-poliedros}
+
+## Motivação
+
+Saímos do plano. No espaço tridimensional, as figuras ganham faces, arestas e
+vértices, e novas perguntas surgem: como esses elementos se relacionam? Por que
+existem apenas **cinco** sólidos perfeitamente regulares — os poliedros de Platão —
+e não seis ou uma infinidade?
+
+A chave para essas perguntas é uma fórmula de espantosa simplicidade, descoberta
+por Euler: em todo poliedro convexo, **vértices menos arestas mais faces é sempre
+$2$**. Dela deduzimos a limitação dos sólidos regulares e abrimos a porta para a
+**topologia** — o estudo das propriedades que sobrevivem a deformações, tema do
+Volume IX. Este capítulo introduz os sólidos e essa relação, usando a contagem do
+@sec-combinatoria e a geometria plana acumulada.
+
+## Poliedros
+
+::: {#def-poliedro}
+## Poliedro
+Um **poliedro** é um sólido limitado por **faces** planas poligonais, que se
+encontram em **arestas** (segmentos), as quais se encontram em **vértices**
+(pontos). Um poliedro é **convexo** quando o segmento entre quaisquer dois de seus
+pontos permanece dentro dele.
+:::
+
+Os exemplos mais simples são os **prismas** (duas faces paralelas congruentes
+ligadas por paralelogramos) e as **pirâmides** (uma base poligonal e faces
+triangulares convergindo a um vértice). Denotamos por $V$, $A$ e $F$ os números de
+vértices, arestas e faces.
+
+::: {#exm-contagem}
+## Contando elementos do cubo
+O cubo tem $F = 6$ faces (quadrados), $V = 8$ vértices e $A = 12$ arestas. Note
+que cada vértice junta $3$ arestas e cada aresta liga $2$ vértices, o que permite
+contagens cruzadas — uma aplicação do princípio multiplicativo (@sec-combinatoria).
+Observe ainda: $V - A + F = 8 - 12 + 6 = 2$.
+:::
+
+## A relação de Euler
+
+O valor $2$ do exemplo não é coincidência: vale para **todo** poliedro convexo.
+
+::: {#thm-euler}
+## Relação de Euler
+Em todo poliedro convexo, os números de vértices, arestas e faces satisfazem
+$$
+V - A + F = 2.
+$$
+:::
+
+::: {.callout-note}
+## Uma fórmula que não depende de medidas
+O notável na relação de Euler é que ela ignora comprimentos, ângulos e áreas — só
+conta *quantos* elementos há. Um cubo e uma "caixa" esticada, tão diferentes em
+forma, têm o mesmo $V - A + F = 2$. Essa indiferença à medida é a marca da
+**topologia**: o número $V - A + F$ é um **invariante** que distingue superfícies
+(vale $2$ para a esfera, $0$ para o toro). É o primeiro exemplo de uma ideia que
+domina o Volume IX.
+:::
+
+::: {#exm-verificar-euler}
+## Conferindo em outros sólidos
+Para a pirâmide de base quadrada: $V = 5$ (quatro da base, um do topo), $F = 5$
+(a base e quatro triângulos), $A = 8$. Então $V - A + F = 5 - 8 + 5 = 2$. ✓ Para o
+tetraedro: $V = 4$, $F = 4$, $A = 6$, e $4 - 6 + 4 = 2$. ✓ A relação resiste a
+toda forma convexa.
+:::
+
+## Os sólidos de Platão
+
+Um poliedro é **regular** quando todas as faces são polígonos regulares iguais e
+todos os vértices reúnem o mesmo número de arestas. A relação de Euler, combinada
+com um argumento de contagem, mostra que há pouquíssimos.
+
+::: {#thm-platao}
+## Os cinco sólidos regulares
+Existem exatamente **cinco** poliedros regulares convexos: tetraedro, cubo
+(hexaedro), octaedro, dodecaedro e icosaedro.
+:::
+
+::: {.proof}
+*(Esboço.)* Seja cada face um polígono regular de $p$ lados, e cada vértice o
+encontro de $q$ arestas. Contando arestas por faces, $2A = pF$; por vértices, $2A
+= qV$. Substituindo $V = 2A/q$ e $F = 2A/p$ na relação de Euler (@thm-euler):
+$$
+\frac{2A}{q} - A + \frac{2A}{p} = 2 \implies \frac1p + \frac1q = \frac12 +
+\frac1A > \frac12.
+$$
+A desigualdade $\frac1p + \frac1q > \frac12$, com $p, q \geq 3$ inteiros, tem
+**apenas cinco** soluções: $(p,q) = (3,3), (4,3), (3,4), (5,3), (3,5)$ — que são,
+respectivamente, os cinco sólidos. Para $p$ ou $q$ maiores, a soma cai a $\leq
+\frac12$ e nenhum sólido fecha.
+:::
+
+::: {.callout-tip}
+## Por que só cinco: a soma dos ângulos no vértice
+Há uma leitura geométrica: num vértice, os ângulos das faces que ali se encontram
+devem **somar menos que $360°$** (senão o vértice se achata ou se cruza). Com
+triângulos equiláteros ($60°$) cabem $3, 4$ ou $5$ por vértice (até $300°$); com
+quadrados ($90°$), só $3$; com pentágonos ($108°$), só $3$; hexágonos ($120°$) já
+fecham $360°$ com três e não sobra curvatura. Exatamente cinco possibilidades — o
+mesmo resultado, por outro caminho.
+:::
+
+## Exercícios
+
+::: {#exr-euler-faces}
+Um poliedro convexo tem $12$ vértices e $30$ arestas. Quantas faces tem?
+:::
+
+::: {#exr-prisma}
+Determine $V$, $A$ e $F$ de um prisma de base pentagonal e verifique a relação de
+Euler.
+:::
+
+::: {#exr-poliedro-faces}
+Um poliedro convexo tem faces triangulares e quadrangulares, num total de $8$
+faces, e tem $12$ arestas. Quantos vértices tem? (Use Euler.)
+:::
+
+::: {#exr-octaedro}
+O octaedro regular tem $8$ faces triangulares, com $4$ arestas em cada vértice.
+Usando $2A = pF$ e $2A = qV$, determine $A$ e $V$, e confirme Euler.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-euler-faces
+Pela relação de Euler (@thm-euler), $V - A + F = 2$, logo
+$$
+F = 2 - V + A = 2 - 12 + 30 = 20.
+$$
+O poliedro tem $20$ faces (é o icosaedro).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-octaedro
+De $2A = pF$ com $p = 3$ (faces triangulares) e $F = 8$: $2A = 24$, logo $A = 12$.
+De $2A = qV$ com $q = 4$: $24 = 4V$, logo $V = 6$. Conferindo Euler: $V - A + F =
+6 - 12 + 8 = 2$. ✓
+:::

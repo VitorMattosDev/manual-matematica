@@ -62,7 +62,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v3-geometria/04-pitagoras.qmd` — Teorema de Pitágoras e relações métricas.
 - [x] `volumes/v3-geometria/05-circunferencia.qmd` — Circunferência, ângulos e potência de ponto.
 - [x] `volumes/v3-geometria/06-areas.qmd` — Áreas de figuras planas.
-- [ ] `volumes/v3-geometria/07-poliedros.qmd` — Geometria espacial: poliedros, relação de Euler.
+- [x] `volumes/v3-geometria/07-poliedros.qmd` — Geometria espacial: poliedros, relação de Euler.
 - [ ] `volumes/v3-geometria/08-volumes.qmd` — Volumes e sólidos de revolução.
 - [ ] `volumes/v3-geometria/09-trigonometria-triangulo.qmd` — Trigonometria no triângulo retângulo; leis dos senos e cossenos.
 - [ ] `volumes/v3-geometria/10-trigonometria-circulo.qmd` — Círculo trigonométrico, identidades e funções.
