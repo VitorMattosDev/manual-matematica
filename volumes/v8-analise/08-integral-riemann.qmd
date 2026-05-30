@@ -1,0 +1,177 @@
+# A integral de Riemann {#sec-integral-riemann}
+
+## Motivação
+
+No Cálculo (@sec-integral), a integral surgiu como "área sob a curva", aproximada por
+somas de Riemann e definida como seu limite. Mas que limite é esse, exatamente? Quais
+funções são integráveis? A soma das aproximações **sempre** converge? A análise
+responde com rigor, construindo a integral a partir de **somas superiores e
+inferiores** e definindo integrabilidade pela coincidência das duas.
+
+Essa abordagem revela precisamente onde está a fronteira: funções contínuas são
+integráveis, funções com "poucas" descontinuidades também, mas há funções (como a de
+Dirichlet) que não o são. E permite **demonstrar** o Teorema Fundamental do Cálculo —
+que no Volume V foi apenas esboçado. Este capítulo refunda a integral, fechando o
+arco rigoroso do cálculo de uma variável que percorremos desde a construção dos reais.
+
+## Partições e somas de Darboux
+
+::: {#def-particao}
+## Partição e somas
+Uma **partição** de $[a, b]$ é um conjunto de pontos $a = x_0 < x_1 < \cdots < x_n =
+b$. Em cada subintervalo $[x_{i-1}, x_i]$, sejam $m_i = \inf f$ e $M_i = \sup f$. As
+**somas inferior e superior** de Darboux são
+$$
+L(f, P) = \sum_{i=1}^n m_i\,\Delta x_i, \qquad U(f, P) = \sum_{i=1}^n M_i\,\Delta x_i,
+$$
+com $\Delta x_i = x_i - x_{i-1}$.
+:::
+
+A soma inferior subestima a área (retângulos por baixo do gráfico); a superior
+superestima (por cima). A área verdadeira, se existe, está entre as duas — para
+**toda** partição.
+
+::: {#prp-refinamento}
+## Refinamento aproxima
+Refinar uma partição (acrescentar pontos) **aumenta** a soma inferior e **diminui** a
+superior. Logo qualquer soma inferior é $\leq$ qualquer soma superior.
+:::
+
+## Integrabilidade
+
+::: {#def-integral-darboux}
+## Integral de Riemann (via Darboux)
+A **integral inferior** é $\underline{\int} f = \sup_P L(f, P)$ e a **integral
+superior** é $\overline{\int} f = \inf_P U(f, P)$. A função $f$ é **integrável** em
+$[a, b]$ se as duas coincidem, e o valor comum é
+$$
+\int_a^b f(x)\,dx = \underline{\int} f = \overline{\int} f.
+$$
+:::
+
+A integral inferior e a superior **sempre existem** (por completude, @thm-axioma-completude):
+são supremo e ínfimo de conjuntos limitados. Integrabilidade é a igualdade entre elas.
+
+::: {#thm-criterio-riemann}
+## Critério de Riemann
+$f$ é integrável em $[a, b]$ se, e somente se, para todo $\varepsilon > 0$ existe uma
+partição $P$ com
+$$
+U(f, P) - L(f, P) < \varepsilon.
+$$
+:::
+
+::: {.callout-tip}
+## A intuição do critério
+$f$ é integrável quando as aproximações por cima e por baixo podem ser feitas tão
+próximas quanto se queira — a "incerteza" $U - L$ sobre a área pode ser espremida a
+zero. Para isso, a oscilação de $f$ (a diferença $M_i - m_i$) em cada pedaço precisa
+ser controlável. É exatamente por isso que a continuidade ajuda: ela limita a
+oscilação.
+:::
+
+## Quais funções são integráveis
+
+::: {#thm-continua-integravel}
+## Funções contínuas são integráveis
+Toda função contínua em $[a, b]$ é integrável.
+:::
+
+::: {.proof}
+*(Esboço.)* Em $[a,b]$ compacto, $f$ é **uniformemente contínua** (@thm-heine-cantor):
+dado $\varepsilon$, há $\delta$ tal que $|f(x) - f(y)| < \frac{\varepsilon}{b-a}$
+sempre que $|x - y| < \delta$. Tomando uma partição com subintervalos menores que
+$\delta$, cada oscilação $M_i - m_i < \frac{\varepsilon}{b-a}$, donde $U - L <
+\varepsilon$. Pelo critério de Riemann, $f$ é integrável.
+:::
+
+::: {#thm-monotona-integravel}
+## Funções monótonas são integráveis
+Toda função monótona em $[a, b]$ é integrável (mesmo com descontinuidades — mas elas
+são, no máximo, enumeráveis).
+:::
+
+::: {.callout-warning}
+## Uma função não integrável
+A função de **Dirichlet** — $f(x) = 1$ se $x$ é racional, $0$ se irracional — **não**
+é Riemann-integrável em $[0, 1]$. Como racionais e irracionais são ambos densos
+(@cor-densidade), em todo subintervalo $\sup f = 1$ e $\inf f = 0$; logo $U = 1$ e $L
+= 0$ para qualquer partição, e elas nunca se aproximam. É o exemplo que motivou a
+**integral de Lebesgue**, mais poderosa, na análise avançada.
+:::
+
+## O Teorema Fundamental do Cálculo, demonstrado
+
+A coroação: agora podemos provar o que o Volume V apenas esboçou (@sec-tfc).
+
+::: {#thm-tfc-rigoroso}
+## Teorema Fundamental do Cálculo
+Seja $f$ contínua em $[a, b]$.
+
+1. A função $F(x) = \int_a^x f(t)\,dt$ é derivável e $F'(x) = f(x)$.
+2. Se $G$ é qualquer antiderivada de $f$, então $\int_a^b f = G(b) - G(a)$.
+:::
+
+::: {.proof}
+*(Parte 1.)* Para $h > 0$, $\frac{F(x+h) - F(x)}{h} = \frac1h\int_x^{x+h} f(t)\,dt$.
+Pelo teorema do valor médio para integrais (consequência do TVI, @thm-tvi), esse valor
+é $f(\xi_h)$ para algum $\xi_h \in [x, x+h]$. Quando $h \to 0$, $\xi_h \to x$ e, pela
+continuidade de $f$, $f(\xi_h) \to f(x)$. Logo $F'(x) = f(x)$. *(Parte 2)* segue da 1
+e do corolário do TVM (@cor-monotonia): $G$ e $F$ diferem por constante.
+:::
+
+::: {.callout-note}
+## O arco se fecha
+Note a cadeia de dependências: o TFC usa o TVM para integrais, que usa o TVI, que usa
+a completude. Tudo o que o Volume V calculou — cada integral resolvida por
+antiderivada — repousa, em última instância, sobre a construção dos reais
+(@sec-construcao-reais). A análise rigorosa não apenas confirma o Cálculo: revela a
+arquitetura lógica que o sustenta.
+:::
+
+## Exercícios
+
+::: {#exr-int-1}
+Para $f(x) = x$ em $[0, 1]$, calcule $L(f, P)$ e $U(f, P)$ para a partição uniforme
+em $n$ partes e mostre que ambas tendem a $\frac12$.
+:::
+
+::: {#exr-int-criterio}
+Use o critério de Riemann para mostrar que $f(x) = c$ (constante) é integrável, com
+$\int_a^b c\,dx = c(b - a)$.
+:::
+
+::: {#exr-int-dirichlet}
+Explique por que a função de Dirichlet tem integral inferior $0$ e superior $1$ em
+$[0, 1]$.
+:::
+
+::: {#exr-int-tfc}
+Use o TFC para calcular $\frac{d}{dx}\int_0^{x^2} \cos t\,dt$ (atenção à regra da
+cadeia).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-int-1
+Com $x_i = \frac in$ e $\Delta x_i = \frac1n$: como $f(x) = x$ é crescente, $m_i =
+\frac{i-1}{n}$ e $M_i = \frac in$. Então $L = \frac{1}{n^2}\sum_{i=1}^n (i-1) =
+\frac{n-1}{2n}$ e $U = \frac{1}{n^2}\sum_{i=1}^n i = \frac{n+1}{2n}$. Ambas $\to
+\frac12$ quando $n \to \infty$, logo $\int_0^1 x\,dx = \frac12$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-int-dirichlet
+Em qualquer subintervalo há racionais (onde $f = 1$) e irracionais (onde $f = 0$),
+ambos densos. Logo $M_i = 1$ e $m_i = 0$ sempre, dando $U(f, P) = 1\cdot(1-0) = 1$ e
+$L(f, P) = 0$ para toda partição. Integral superior $1 \neq 0$ inferior: **não
+integrável**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-int-tfc
+Seja $F(u) = \int_0^u \cos t\,dt$, com $F'(u) = \cos u$ (TFC parte 1). Queremos
+$\frac{d}{dx}F(x^2)$; pela regra da cadeia, $F'(x^2)\cdot 2x = \cos(x^2)\cdot 2x =
+2x\cos(x^2)$.
+:::
