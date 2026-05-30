@@ -1,0 +1,180 @@
+# Espaços métricos {#sec-espacos-metricos}
+
+## Motivação
+
+A análise real (Volume VIII) inteira girou em torno de uma ideia: **distância**. O
+$|x - y|$ media a proximidade na reta, e dele saíram limites, continuidade,
+convergência. A norma do supremo (@sec-convergencia-uniforme) estendeu essa medida a
+funções. Surge a pergunta natural: o que, exatamente, faz uma "distância" funcionar? E
+quanto da análise depende apenas dela?
+
+A resposta é o conceito de **espaço métrico** — um conjunto qualquer munido de uma
+função-distância com poucas propriedades. Toda a maquinaria de bolas, abertos,
+sequências e continuidade reaparece nesse contexto abstrato, valendo de uma só vez para
+a reta, o plano, espaços de funções, sequências, e até grafos e palavras. É a primeira
+etapa da generalização que culmina na topologia geral
+(@sec-espacos-topologicos). Este capítulo abre o Volume IX isolando a essência métrica
+da análise e mostrando seu alcance.
+
+## A definição de métrica
+
+::: {#def-metrica}
+## Espaço métrico
+Um **espaço métrico** é um conjunto $X$ com uma função $d: X \times X \to \mathbb{R}$,
+a **métrica**, tal que para todos $x, y, z$:
+
+1. **positividade**: $d(x, y) \geq 0$, e $d(x, y) = 0 \iff x = y$;
+2. **simetria**: $d(x, y) = d(y, x)$;
+3. **desigualdade triangular**: $d(x, z) \leq d(x, y) + d(y, z)$.
+:::
+
+Os três axiomas capturam o mínimo indispensável de "distância": nunca negativa, zero
+só de um ponto a si mesmo, simétrica, e em que o caminho direto nunca é maior que um
+desvio.
+
+::: {#exm-metricas}
+## Uma variedade de métricas
+- A reta $\mathbb{R}$ com $d(x, y) = |x - y|$ — a métrica usual.
+- $\mathbb{R}^n$ com a métrica **euclidiana** $d(x, y) = \sqrt{\sum (x_i - y_i)^2}$
+  (@sec-produto-interno).
+- $C[a, b]$ com $d(f, g) = \|f - g\|_\infty$ (@sec-convergencia-uniforme).
+- **Qualquer** conjunto com a métrica **discreta**: $d(x, y) = 1$ se $x \neq y$, e $0$
+  se $x = y$.
+:::
+
+::: {.callout-note}
+## Distâncias além da geometria
+A métrica discreta mostra que "distância" não precisa de geometria: qualquer conjunto
+vira espaço métrico. Há métricas úteis nas aplicações — a distância de **Hamming**
+entre strings (número de posições diferentes), a do **táxi** $\sum|x_i - y_i|$ no
+plano, métricas em grafos. O conceito é vasto justamente por exigir tão pouco.
+:::
+
+## Bolas e conjuntos abertos
+
+Com a distância vêm, de imediato, as vizinhanças.
+
+::: {#def-bola}
+## Bola aberta
+A **bola aberta** de centro $x$ e raio $r > 0$ é
+$$
+B(x, r) = \{y \in X : d(x, y) < r\}.
+$$
+Um conjunto $A \subseteq X$ é **aberto** se em torno de cada ponto cabe uma bola
+inteiramente contida em $A$; **fechado** se seu complementar é aberto.
+:::
+
+Essas são exatamente as definições da topologia da reta (@sec-topologia-reta), agora
+com bolas no lugar de intervalos. Na reta, $B(x, r) = (x - r, x + r)$ — recupera-se o
+caso conhecido. Em $\mathbb{R}^2$ euclidiano, as bolas são discos; na métrica do táxi,
+losangos; na discreta, pontos isolados.
+
+::: {#exm-bolas}
+## A forma das bolas depende da métrica
+No plano, a "bola" unitária $B(0, 1)$ é um **disco** na métrica euclidiana, um
+**quadrado** (girado) na do táxi e um **único ponto** na discreta. A mesma definição,
+métricas diferentes, geometrias radicalmente distintas — e, no entanto, a teoria que
+se segue é a mesma.
+:::
+
+## Convergência e continuidade
+
+Tudo o que fizemos na reta transcreve-se trocando $|x - y|$ por $d(x, y)$.
+
+::: {#def-convergencia-metrica}
+## Convergência em espaço métrico
+Uma sequência $(x_n)$ em $X$ **converge** para $x$ se $d(x_n, x) \to 0$ — ou seja,
+para todo $\varepsilon > 0$ existe $N$ com $d(x_n, x) < \varepsilon$ para $n > N$.
+:::
+
+::: {#def-continuidade-metrica}
+## Função contínua entre espaços métricos
+Uma função $f: (X, d_X) \to (Y, d_Y)$ é **contínua em $a$** se: para todo $\varepsilon
+> 0$ existe $\delta > 0$ tal que $d_X(x, a) < \delta \implies d_Y(f(x), f(a)) <
+\varepsilon$. Equivalentemente, $f$ é contínua se a **pré-imagem de todo aberto é
+aberta**.
+:::
+
+::: {.callout-tip}
+## A caracterização topológica da continuidade
+A versão "pré-imagem de aberto é aberta" é notável: ela define continuidade **sem
+mencionar distância**, só abertos. Isso aponta o caminho da abstração final — se só os
+abertos importam para a continuidade, talvez possamos esquecer a métrica e ficar só com
+os abertos. Essa é precisamente a ideia dos **espaços topológicos**
+(@sec-espacos-topologicos), o próximo passo do volume.
+:::
+
+## Completude e espaços de Banach
+
+A noção de Cauchy generaliza-se — mas agora a completude não é automática.
+
+::: {#def-completo}
+## Espaço métrico completo
+Uma sequência é de **Cauchy** se $d(x_m, x_n) \to 0$ quando $m, n \to \infty$. O
+espaço $X$ é **completo** se toda sequência de Cauchy converge (a um ponto de $X$).
+:::
+
+::: {#exm-completos}
+## Completos e incompletos
+- $\mathbb{R}$ e $\mathbb{R}^n$ são completos (@sec-construcao-reais).
+- $\mathbb{Q}$ é **incompleto**: sequências de Cauchy podem fugir para irracionais.
+- $C[a, b]$ com a norma do supremo é completo (@thm-completude-c) — um **espaço de
+  Banach**.
+:::
+
+::: {.callout-note}
+## Completar é tapar buracos
+Todo espaço métrico pode ser **completado**: mergulhado num espaço completo mínimo que
+o contém densamente — exatamente como $\mathbb{R}$ completa $\mathbb{Q}$ via sequências
+de Cauchy (@sec-construcao-reais). A completude é a propriedade que garante a existência
+de limites, e por isso os espaços completos são o palco natural da análise: é onde
+construções por aproximação (Picard, @thm-picard; séries; iterações) têm para onde
+convergir.
+:::
+
+## Exercícios
+
+::: {#exr-em-1}
+Verifique que a métrica do táxi $d(x, y) = |x_1 - y_1| + |x_2 - y_2|$ satisfaz os três
+axiomas em $\mathbb{R}^2$.
+:::
+
+::: {#exr-em-bola}
+Desenhe (descreva) a bola $B(0, 1)$ em $\mathbb{R}^2$ na métrica do táxi e na métrica
+do máximo $d(x,y) = \max(|x_1 - y_1|, |x_2 - y_2|)$.
+:::
+
+::: {#exr-em-discreta}
+No espaço métrico discreto, mostre que **todo** subconjunto é aberto (e portanto
+também fechado).
+:::
+
+::: {#exr-em-continuidade}
+Mostre que, num espaço discreto, **toda** função para qualquer espaço métrico é
+contínua.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-em-discreta
+Dado qualquer $A$ e $x \in A$, a bola $B(x, \frac12) = \{y : d(x,y) < \frac12\} =
+\{x\}$ (na discreta, a única distância $< \frac12$ é $0$). Como $\{x\} \subseteq A$,
+cada ponto tem bola dentro de $A$: $A$ é **aberto**. Sendo todo conjunto aberto, todo
+complementar também é, logo todo conjunto é **fechado**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-em-continuidade
+Seja $f: X \to Y$ com $X$ discreto. Para qualquer aberto $U \subseteq Y$, a pré-imagem
+$f^{-1}(U)$ é um subconjunto de $X$, logo **aberto** (@exr-em-discreta). Como a
+pré-imagem de todo aberto é aberta, $f$ é contínua (@def-continuidade-metrica) —
+qualquer que seja $f$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-em-bola
+Na métrica do táxi, $|x_1| + |x_2| < 1$ é um **losango** (quadrado girado 45°) com
+vértices em $(\pm1, 0)$ e $(0, \pm1)$. Na métrica do máximo, $\max(|x_1|, |x_2|) < 1$
+é um **quadrado** de lado $2$ alinhado aos eixos, com vértices em $(\pm1, \pm1)$.
+:::
