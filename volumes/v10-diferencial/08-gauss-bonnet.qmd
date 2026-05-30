@@ -1,0 +1,167 @@
+# Teorema Egregium e teorema de Gauss-Bonnet {#sec-gauss-bonnet}
+
+## Motivação
+
+Chegamos aos dois teoremas que coroam a teoria das superfícies — e, num sentido, toda a
+geometria clássica. O **Teorema Egregium** ("notável", no latim de Gauss) revela um fato
+espantoso: a curvatura gaussiana $K$, definida via o operador de forma e o espaço
+ambiente (@sec-curvaturas), é na verdade **intrínseca** — depende só da primeira forma
+fundamental. Uma formiga sobre a superfície pode medir $K$ sem jamais saber que existe
+uma terceira dimensão.
+
+O **teorema de Gauss-Bonnet** vai além e une o local ao global, o contínuo ao discreto:
+ele relaciona a curvatura total de uma superfície — uma integral — com sua
+**topologia** (@sec-grupo-fundamental), um número inteiro que conta buracos. É a
+síntese final desta obra: geometria diferencial, topologia, cálculo integral e álgebra,
+todos num só enunciado. Este capítulo apresenta os dois resultados que justificam todo
+o volume.
+
+## O Teorema Egregium
+
+::: {#thm-egregium}
+## Teorema Egregium de Gauss
+A **curvatura gaussiana** $K$ de uma superfície depende **apenas da primeira forma
+fundamental** ($E, F, G$ e suas derivadas). Em consequência, **isometrias preservam a
+curvatura gaussiana**: superfícies localmente isométricas têm a mesma $K$ em pontos
+correspondentes.
+:::
+
+::: {.callout-note}
+## Por que "egregium"
+A definição de $K = k_1 k_2$ usa o operador de forma, construído a partir do vetor
+normal — informação **extrínseca**, do espaço ambiente. Que o **produto** $k_1 k_2$
+acabe dependendo só da métrica interna, enquanto cada $k_i$ separadamente é extrínseco,
+é genuinamente notável — daí o nome que o próprio Gauss deu. É a descoberta de que existe
+uma geometria interna às superfícies, independente de como elas se acomodam no espaço.
+:::
+
+::: {#exm-mapa-mundi}
+## Por que nenhum mapa-múndi é perfeito
+A esfera tem $K = \frac{1}{r^2} > 0$; o plano tem $K = 0$ (@sec-curvaturas). Pelo
+Teorema Egregium, não pode existir isometria entre eles — **toda** projeção cartográfica
+da Terra no plano necessariamente **distorce** distâncias, ângulos ou áreas. O Egregium
+explica matematicamente uma frustração milenar dos cartógrafos: o mapa perfeito é
+impossível, não por falta de técnica, mas por um teorema.
+:::
+
+::: {#cor-isometrias-curvatura}
+## Distinguindo superfícies
+Duas superfícies com curvaturas gaussianas diferentes (em pontos correspondentes) não
+podem ser isométricas. Plano e esfera, esfera e sela, esferas de raios diferentes: todas
+geometricamente distintas, detectadas por $K$.
+:::
+
+## Curvatura total e característica de Euler
+
+A ponte para a topologia começa integrando a curvatura.
+
+::: {#def-curvatura-total}
+## Curvatura total
+A **curvatura total** de uma superfície $S$ (com bordo eventual) é a integral
+$$
+\iint_S K\,dA,
+$$
+a soma de toda a curvatura gaussiana, ponderada pela área.
+:::
+
+::: {#def-caracteristica-euler}
+## Característica de Euler
+A **característica de Euler** $\chi(S)$ é o invariante topológico (@sec-poliedros)
+$$
+\chi = V - A + F
+$$
+de qualquer triangulação da superfície. Vale $\chi = 2$ para a esfera, $\chi = 0$ para o
+toro, e $\chi = 2 - 2g$ para uma superfície de **gênero** $g$ (número de buracos).
+:::
+
+A característica de Euler já apareceu na relação de Euler dos poliedros
+(@sec-poliedros); aqui ela reaparece como invariante topológico que conta buracos —
+exatamente o tipo de quantidade que o grupo fundamental (@sec-grupo-fundamental)
+detecta.
+
+## O teorema de Gauss-Bonnet
+
+A síntese: curvatura (geometria) é igual a topologia.
+
+::: {#thm-gauss-bonnet}
+## Teorema de Gauss-Bonnet (global)
+Para uma superfície compacta e orientável $S$ **sem bordo**,
+$$
+\iint_S K\,dA = 2\pi\,\chi(S).
+$$
+A curvatura total é determinada **exclusivamente pela topologia** da superfície.
+:::
+
+::: {.callout-tip}
+## Geometria não escolhe; a topologia manda
+Eis o que o teorema afirma de espantoso: você pode **deformar** uma superfície à
+vontade — amassar a esfera, esticá-la, criar montanhas e vales —, redistribuindo a
+curvatura como quiser. Mas a **soma total** da curvatura **não muda**: ela está
+algemada à característica de Euler, que só depende do número de buracos. Aumente $K$ num
+lugar, e ela diminui em outro para compensar. A geometria local é livre; a global é
+escrava da topologia. É a unificação perfeita entre o contínuo (integral de curvatura) e
+o discreto (inteiro topológico).
+:::
+
+::: {#exm-gauss-bonnet-esfera}
+## A esfera e o toro
+- **Esfera** de raio $r$: $K = \frac{1}{r^2}$, área $4\pi r^2$, logo $\iint K\,dA =
+  \frac{1}{r^2}\cdot 4\pi r^2 = 4\pi = 2\pi\cdot 2 = 2\pi\chi$. ✓ (independe de $r$!)
+- **Toro**: $\chi = 0$, então $\iint_T K\,dA = 0$ — a curvatura positiva da parte
+  externa cancela exatamente a negativa da parte interna (@exr-cv-toro).
+:::
+
+## Encerramento da obra
+
+Do plano osculador de uma curva (@sec-frenet) à curvatura total de uma superfície,
+o Volume X mostrou a geometria diferencial unificando todos os fios da obra: o cálculo
+(derivadas e integrais, Volumes V e VIII) descreve a forma; a álgebra linear (operadores
+autoadjuntos, Volume VI) a diagonaliza; a topologia (invariantes, Volume IX) a governa
+globalmente. O Teorema Egregium e Gauss-Bonnet são o ápice dessa convergência — e a
+porta para a geometria riemanniana e a relatividade geral, onde a curvatura do
+espaço-tempo é a própria gravidade. O último capítulo (@sec-variedades) aponta esse
+caminho, generalizando superfícies a variedades de dimensão qualquer.
+
+## Exercícios
+
+::: {#exr-gb-1}
+Use o Teorema Egregium para explicar por que um pedaço de papel (plano, $K = 0$) nunca
+pode envolver perfeitamente uma bola, sem dobras nem rasgos.
+:::
+
+::: {#exr-gb-cilindro}
+Verifique que cilindro e plano têm a mesma curvatura gaussiana e explique como isso é
+coerente com o Egregium.
+:::
+
+::: {#exr-gb-euler}
+Calcule a curvatura total de uma superfície de gênero $2$ (dois buracos).
+:::
+
+::: {#exr-gb-esfera}
+Confirme o teorema de Gauss-Bonnet para uma esfera de raio $r = 2$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gb-1
+O papel tem $K = 0$; a bola tem $K > 0$. Envolver perfeitamente seria uma isometria
+entre os dois, que preservaria $K$ (Teorema Egregium). Como as curvaturas diferem, a
+isometria é impossível — o papel **tem** de enrugar ou rasgar. (É também por isso que
+embrulhar uma bola sempre sobra papel amassado.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gb-euler
+Gênero $g = 2$ dá $\chi = 2 - 2g = 2 - 4 = -2$. Por Gauss-Bonnet, $\iint K\,dA =
+2\pi\chi = 2\pi(-2) = -4\pi$. A curvatura total é negativa — superfícies com muitos
+buracos são, no agregado, "hiperbólicas".
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gb-esfera
+Com $r = 2$: $K = \frac{1}{4}$, área $= 4\pi(2)^2 = 16\pi$, curvatura total $=
+\frac14\cdot 16\pi = 4\pi$. E $2\pi\chi = 2\pi\cdot 2 = 4\pi$. Coincidem ✓ — e o
+resultado não dependeu de $r$, como o teorema garante.
+:::

@@ -159,7 +159,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v10-diferencial/05-segunda-forma.qmd` — Aplicação de Gauss e segunda forma fundamental.
 - [x] `volumes/v10-diferencial/06-curvaturas.qmd` — Curvaturas gaussiana e média.
 - [x] `volumes/v10-diferencial/07-geodesicas.qmd` — Geodésicas.
-- [ ] `volumes/v10-diferencial/08-gauss-bonnet.qmd` — Teorema Egregium e teorema de Gauss-Bonnet.
+- [x] `volumes/v10-diferencial/08-gauss-bonnet.qmd` — Teorema Egregium e teorema de Gauss-Bonnet.
 - [ ] `volumes/v10-diferencial/09-variedades.qmd` — Introdução a variedades diferenciáveis.
 
 ---
