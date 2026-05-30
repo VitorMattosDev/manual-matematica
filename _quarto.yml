@@ -60,6 +60,9 @@ book:
         - volumes/v3-geometria/10-trigonometria-circulo.qmd
         - volumes/v3-geometria/11-geometria-analitica.qmd
         - volumes/v3-geometria/12-conicas.qmd
+    - part: "Volume IV — Pré-cálculo (Funções)"
+      chapters:
+        - volumes/v4-precalculo/01-funcoes.qmd
   appendices:
     - notacao.qmd
 

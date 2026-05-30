@@ -1,0 +1,200 @@
+# O conceito de função {#sec-funcoes}
+
+## Motivação
+
+Poucas ideias organizam tanta matemática quanto a de **função**. Sempre que uma
+quantidade depende de outra — a área de um quadrado em função do lado, a posição de
+um móvel em função do tempo, o preço em função da demanda — há uma função por trás.
+Ela é a linguagem com que descrevemos *dependência* e *transformação*, e é o objeto
+central de todo o Cálculo que vem a seguir.
+
+Já usamos funções informalmente (funções polinomiais no @sec-funcoes-polinomiais,
+trigonométricas no @sec-trigonometria-circulo). Agora damos a definição precisa,
+apoiada nos conjuntos do @sec-conjuntos: uma função é uma **regra de
+correspondência** com domínio e contradomínio bem fixados. Sobre essa base
+estudamos as noções que estruturam todo o volume — gráfico, injetividade,
+composição e inversa — preparando as famílias de funções (afim, exponencial,
+logarítmica) dos próximos capítulos.
+
+## Definição
+
+::: {#def-funcao}
+## Função
+Uma **função** $f$ de um conjunto $A$ (o **domínio**) num conjunto $B$ (o
+**contradomínio**) é uma regra que associa a **cada** elemento $x \in A$ um
+**único** elemento $f(x) \in B$. Escreve-se
+$$
+f \colon A \to B, \qquad x \mapsto f(x).
+$$
+O elemento $f(x)$ é a **imagem** de $x$.
+:::
+
+Duas exigências definem o conceito: *todo* elemento do domínio tem imagem (nada
+fica sem associação) e essa imagem é *única* (nada se associa a dois valores). O
+conjunto das imagens efetivamente atingidas é a **imagem** de $f$:
+$$
+\operatorname{Im}(f) = \{\, f(x) : x \in A \,\} \subseteq B.
+$$
+
+::: {.callout-warning}
+## Domínio é parte da função
+Mudar o domínio muda a função, ainda que a fórmula seja a mesma. $f(x) = x^2$ com
+domínio $\mathbb{R}$ e a mesma fórmula com domínio $[0, \infty)$ são funções
+**diferentes** — como veremos, a segunda é injetora e a primeira não. Quando só se
+dá a fórmula, convenciona-se o **domínio máximo**: todos os $x$ reais para os quais
+a expressão faz sentido (excluindo, por exemplo, divisões por zero e raízes de
+negativos).
+:::
+
+::: {#exm-dominio}
+## Domínio máximo
+Para $f(x) = \dfrac{1}{x - 2}$, o domínio máximo é $\mathbb{R} \setminus \{2\}$ (o
+$2$ anula o denominador). Para $g(x) = \sqrt{x - 3}$, é $[3, \infty)$ (o radicando
+deve ser $\geq 0$, @sec-reais).
+:::
+
+## Gráfico
+
+::: {#def-grafico}
+## Gráfico
+O **gráfico** de $f \colon A \to B$ é o conjunto de pares
+$$
+G(f) = \{\, (x, f(x)) : x \in A \,\} \subseteq A \times B.
+$$
+No plano cartesiano (@sec-analitica), é a curva formada por esses pontos.
+:::
+
+A condição de unicidade da imagem traduz-se numa propriedade visual simples.
+
+::: {.callout-tip}
+## O teste da reta vertical
+Uma curva no plano é gráfico de uma função (de $x$) se, e somente se, **toda reta
+vertical a corta em no máximo um ponto**. Pois dois pontos na mesma vertical
+seriam $(x, y_1)$ e $(x, y_2)$ com $y_1 \neq y_2$ — duas imagens para o mesmo $x$,
+proibido pela @def-funcao. Por isso uma circunferência (@sec-analitica) não é
+gráfico de função: verticais a cortam em dois pontos.
+:::
+
+## Injetividade, sobrejetividade, bijeção
+
+Três propriedades classificam as funções pela maneira como atingem o
+contradomínio.
+
+::: {#def-tipos}
+## Funções injetoras, sobrejetoras e bijetoras
+Seja $f \colon A \to B$.
+
+- $f$ é **injetora** se elementos distintos têm imagens distintas: $x_1 \neq x_2
+  \Rightarrow f(x_1) \neq f(x_2)$.
+- $f$ é **sobrejetora** se todo elemento de $B$ é imagem de algum $x$: $\operatorname{Im}(f) = B$.
+- $f$ é **bijetora** se é injetora **e** sobrejetora.
+:::
+
+::: {#exm-tipos}
+## Distinguindo os tipos
+$f(x) = x^2$ de $\mathbb{R}$ em $\mathbb{R}$ **não** é injetora ($f(-2) = f(2) =
+4$) nem sobrejetora (nenhum $x$ dá imagem negativa). Restringindo o domínio a $[0,
+\infty)$ e o contradomínio a $[0, \infty)$, a mesma fórmula vira **bijetora**. Já
+$f(x) = 2x + 1$ de $\mathbb{R}$ em $\mathbb{R}$ é bijetora: cada valor é atingido
+por exatamente um $x$.
+:::
+
+## Composição
+
+Funções encadeiam-se: a saída de uma alimenta a entrada de outra.
+
+::: {#def-composicao}
+## Função composta
+Dadas $f \colon A \to B$ e $g \colon B \to C$, a **composta** $g \circ f \colon A
+\to C$ é definida por
+$$
+(g \circ f)(x) = g\bigl(f(x)\bigr).
+$$
+:::
+
+::: {.callout-warning}
+## A ordem importa
+Em geral $g \circ f \neq f \circ g$. Com $f(x) = x + 1$ e $g(x) = x^2$:
+$$
+(g \circ f)(x) = (x + 1)^2, \qquad (f \circ g)(x) = x^2 + 1,
+$$
+que são diferentes. A composição lê-se "de dentro para fora": aplica-se primeiro a
+função mais interna.
+:::
+
+## Função inversa
+
+Quando uma função é bijetora, pode-se **desfazer** a correspondência — voltar da
+imagem ao argumento.
+
+::: {#def-inversa}
+## Função inversa
+$f \colon A \to B$ é **inversível** quando existe $f^{-1} \colon B \to A$ tal que
+$$
+f^{-1}(f(x)) = x \ \text{ para todo } x \in A, \qquad f(f^{-1}(y)) = y \ \text{
+para todo } y \in B.
+$$
+:::
+
+::: {#thm-inversa-bijecao}
+## Inversível se, e somente se, bijetora
+Uma função $f \colon A \to B$ admite inversa se, e somente se, é bijetora.
+:::
+
+::: {.proof}
+Se $f$ é bijetora, cada $y \in B$ é imagem de **exatamente um** $x \in A$ (existe
+por sobrejetividade, é único por injetividade); definir $f^{-1}(y)$ como esse $x$
+dá a inversa. Reciprocamente, se $f$ tem inversa: $f$ é injetora, pois $f(x_1) =
+f(x_2)$ implica $x_1 = f^{-1}(f(x_1)) = f^{-1}(f(x_2)) = x_2$; e é sobrejetora,
+pois todo $y$ é $f(f^{-1}(y))$, imagem de $f^{-1}(y)$. Logo $f$ é bijetora.
+:::
+
+::: {.callout-tip}
+## Gráficos refletidos
+O gráfico de $f^{-1}$ é o de $f$ **refletido na reta** $y = x$: trocar $x$ por $y$
+(que é o que a inversa faz) espelha a figura pela diagonal. Por isso, para achar a
+fórmula de $f^{-1}$, isola-se $x$ na equação $y = f(x)$ e troca-se a nomenclatura.
+Essa simetria reaparece entre a exponencial e o logaritmo (próximos capítulos), que
+são inversas uma da outra.
+:::
+
+## Exercícios
+
+::: {#exr-dominio}
+Determine o domínio máximo de cada função: (a) $f(x) = \dfrac{x + 1}{x^2 - 9}$; (b)
+$g(x) = \sqrt{4 - x^2}$.
+:::
+
+::: {#exr-tipos}
+A função $f \colon \mathbb{R} \to \mathbb{R}$, $f(x) = 3x - 5$, é injetora?
+Sobrejetora? Bijetora? Justifique.
+:::
+
+::: {#exr-composicao}
+Dadas $f(x) = 2x - 1$ e $g(x) = x^2 + 3$, determine $(g \circ f)(x)$ e $(f \circ
+g)(x)$, e calcule ambos em $x = 2$.
+:::
+
+::: {#exr-inversa}
+Determine a inversa de $f \colon \mathbb{R} \to \mathbb{R}$, $f(x) = 3x - 5$, e
+verifique que $f^{-1}(f(x)) = x$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dominio
+(a) O denominador $x^2 - 9 = (x-3)(x+3)$ anula-se em $x = \pm 3$; o domínio é
+$\mathbb{R} \setminus \{-3, 3\}$. (b) O radicando $4 - x^2 \geq 0$ exige $x^2 \leq
+4$, isto é, $-2 \leq x \leq 2$; o domínio é o intervalo $[-2, 2]$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-inversa
+De $y = 3x - 5$, isola-se $x$: $x = \dfrac{y + 5}{3}$. Trocando a nomenclatura, a
+inversa é
+$$
+f^{-1}(x) = \frac{x + 5}{3}.
+$$
+Verificação: $f^{-1}(f(x)) = \dfrac{(3x - 5) + 5}{3} = \dfrac{3x}{3} = x$. ✓
+:::
