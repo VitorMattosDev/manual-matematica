@@ -1,29 +1,352 @@
 # Lógica e demonstrações {#sec-logica}
 
-::: {.callout-note}
-Capítulo inicial (esboço). A estrutura completa de um capítulo está em
-@sec-inducao.
-:::
-
 ## Motivação
 
 Antes de provar qualquer coisa sobre números, precisamos combinar o que conta
-como uma *demonstração*. Este capítulo apresenta a linguagem mínima da lógica:
-proposições, conectivos, quantificadores e os principais métodos de prova.
+como uma *demonstração*. Em matemática, afirmar algo não basta: uma afirmação só
+entra no acervo de verdades depois de ser **deduzida**, por uma cadeia de passos
+inquestionáveis, a partir do que já se aceita. Para que essa cadeia seja
+inquestionável, a própria linguagem em que ela é escrita precisa ser precisa.
 
-## Proposições e conectivos
+Este capítulo apresenta essa linguagem mínima: as **proposições**, os
+**conectivos** que as combinam, os **quantificadores** que falam de "todos" e de
+"algum", e — sobretudo — os **métodos de demonstração** que reaparecerão em todos
+os capítulos seguintes. Nada aqui é difícil; o objetivo é deixar explícito o que
+normalmente se usa de modo implícito.
 
-Uma **proposição** é uma afirmação à qual se pode atribuir um único valor
-verdade: verdadeiro ou falso. A partir de proposições $p$ e $q$ formam-se novas
-proposições com os conectivos $\lnot$ (negação), $\land$ (e), $\lor$ (ou),
-$\Rightarrow$ (implica) e $\Leftrightarrow$ (se, e somente se).
+## Proposições e valor-verdade
+
+::: {#def-proposicao}
+## Proposição
+Uma **proposição** é uma afirmação à qual se pode atribuir um único **valor
+verdade**: verdadeiro (V) ou falso (F), mas não ambos.
+:::
+
+São proposições "$2 + 2 = 4$" (verdadeira) e "$7$ é par" (falsa). Não são
+proposições uma pergunta ("quanto vale $x$?"), uma ordem ("some os dois lados")
+nem uma frase ambígua.
+
+::: {.callout-note}
+## Frases abertas
+Uma frase como "$x > 3$" não é, por si só, uma proposição: seu valor verdade
+depende de $x$. Chamamos isso de **frase aberta** (ou predicado) e a denotamos
+$P(x)$. Ela só vira proposição quando substituímos $x$ por um valor concreto —
+$P(5)$ é verdadeira, $P(1)$ é falsa — ou quando a fechamos com um quantificador,
+como veremos adiante.
+:::
+
+## Conectivos lógicos
+
+A partir de proposições $p$ e $q$ formam-se novas proposições com os
+**conectivos** $\lnot$ (negação), $\land$ (conjunção, "e"), $\lor$ (disjunção,
+"ou"), $\Rightarrow$ (condicional, "implica") e $\Leftrightarrow$ (bicondicional,
+"se, e somente se"). O significado de cada um fica completamente determinado por
+sua **tabela-verdade**, que lista o valor do resultado para cada combinação dos
+valores de $p$ e $q$.
+
+::: {#def-conectivos}
+## Conectivos
+Os conectivos são definidos pelas tabelas-verdade:
+
+| $p$ | $q$ | $\lnot p$ | $p \land q$ | $p \lor q$ | $p \Rightarrow q$ | $p \Leftrightarrow q$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| V | V | F | V | V | V | V |
+| V | F | F | F | V | F | F |
+| F | V | V | F | V | V | F |
+| F | F | V | F | F | V | V |
+:::
+
+Em palavras: $\lnot p$ inverte o valor de $p$; a conjunção $p \land q$ só é
+verdadeira quando ambas o são; a disjunção $p \lor q$ é falsa apenas quando ambas
+são falsas; a bicondicional $p \Leftrightarrow q$ é verdadeira quando $p$ e $q$
+têm o mesmo valor.
+
+::: {.callout-warning}
+## Dois erros comuns
+1. **O "ou" é inclusivo.** Em matemática, $p \lor q$ é verdadeira também quando
+   $p$ e $q$ são *ambas* verdadeiras. "Inteiro par ou positivo" inclui o $4$.
+2. **A condicional com hipótese falsa é verdadeira.** Quando $p$ é falsa,
+   $p \Rightarrow q$ é verdadeira *qualquer que seja* $q$ — dizemos que vale por
+   *vacuidade*. A condicional só é falsa no único caso em que a hipótese é
+   verdadeira e a conclusão é falsa (linha V/F). Por isso, para refutar
+   $p \Rightarrow q$, basta exibir uma situação com $p$ verdadeira e $q$ falsa.
+:::
+
+## Equivalências lógicas
+
+Duas proposições compostas podem ter exatamente a mesma tabela-verdade, ainda que
+escritas de forma diferente. Quando isso acontece, podemos trocar uma pela outra
+em qualquer demonstração — e é justamente essa troca que está por trás de vários
+métodos de prova.
+
+::: {#def-equivalencia}
+## Equivalência lógica
+Dizemos que duas proposições compostas são **logicamente equivalentes**, e
+escrevemos $p \equiv q$, quando têm o mesmo valor verdade para toda combinação de
+valores das proposições que as compõem (ou seja, tabelas-verdade idênticas).
+:::
+
+A equivalência mais útil em demonstrações relaciona uma condicional com sua
+**contrapositiva**.
+
+::: {#prp-contrapositiva}
+## Contrapositiva
+Para quaisquer proposições $p$ e $q$,
+$$
+(p \Rightarrow q) \equiv (\lnot q \Rightarrow \lnot p).
+$$
+:::
+
+::: {.proof}
+Comparamos as tabelas-verdade das duas expressões:
+
+| $p$ | $q$ | $p \Rightarrow q$ | $\lnot q$ | $\lnot p$ | $\lnot q \Rightarrow \lnot p$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| V | V | V | F | F | V |
+| V | F | F | V | F | F |
+| F | V | V | F | V | V |
+| F | F | V | V | V | V |
+
+As colunas de $p \Rightarrow q$ e de $\lnot q \Rightarrow \lnot p$ coincidem
+linha a linha. Logo as proposições são equivalentes.
+:::
+
+::: {.callout-warning}
+## Contrapositiva *não* é recíproca
+A contrapositiva de $p \Rightarrow q$ é $\lnot q \Rightarrow \lnot p$, e é
+equivalente à original. Já a **recíproca**, $q \Rightarrow p$, **não** é
+equivalente: confira nas tabelas que $q \Rightarrow p$ é falsa na linha F/V, onde
+$p \Rightarrow q$ é verdadeira. Provar a recíproca é provar um teorema diferente.
+:::
+
+As leis seguintes descrevem como a negação atravessa a conjunção e a disjunção.
+Elas serão reaproveitadas, com conjuntos no lugar de proposições, em
+@sec-conjuntos.
+
+::: {#prp-demorgan-logica}
+## Leis de De Morgan (lógica)
+Para quaisquer proposições $p$ e $q$,
+$$
+\lnot(p \land q) \equiv (\lnot p) \lor (\lnot q),
+\qquad
+\lnot(p \lor q) \equiv (\lnot p) \land (\lnot q).
+$$
+:::
+
+::: {.proof}
+Verificamos a primeira equivalência pela tabela-verdade; a segunda é análoga.
+
+| $p$ | $q$ | $p \land q$ | $\lnot(p \land q)$ | $\lnot p$ | $\lnot q$ | $\lnot p \lor \lnot q$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| V | V | V | F | F | F | F |
+| V | F | F | V | F | V | V |
+| F | V | F | V | V | F | V |
+| F | F | F | V | V | V | V |
+
+As colunas de $\lnot(p \land q)$ e de $\lnot p \lor \lnot q$ são idênticas. A
+segunda lei prova-se trocando os papéis de $\land$ e $\lor$.
+:::
+
+## Quantificadores
+
+Frases abertas viram proposições quando dizemos *para quantos* valores elas
+valem. Os dois quantificadores fundamentais são o **universal** $\forall$ ("para
+todo") e o **existencial** $\exists$ ("existe").
+
+::: {#def-quantificadores}
+## Quantificadores
+Seja $P(x)$ uma frase aberta sobre os elementos de um conjunto $A$.
+
+- $\forall x \in A,\ P(x)$ é a proposição "$P(x)$ é verdadeira para **todo**
+  $x \in A$".
+- $\exists x \in A,\ P(x)$ é a proposição "**existe** ao menos um $x \in A$ para
+  o qual $P(x)$ é verdadeira".
+:::
+
+Por exemplo, "$\forall n \in \mathbb{N},\ n \geq 1$" é verdadeira, enquanto
+"$\exists n \in \mathbb{N},\ n + 1 = 1$" é falsa.
+
+Negar uma proposição quantificada troca o quantificador e nega a frase aberta —
+uma regra que usaremos constantemente nas demonstrações por absurdo.
+
+::: {#prp-negacao-quantificadores}
+## Negação de quantificadores
+Para qualquer frase aberta $P(x)$ sobre um conjunto $A$,
+$$
+\lnot\bigl(\forall x \in A,\ P(x)\bigr) \equiv \exists x \in A,\ \lnot P(x),
+$$
+$$
+\lnot\bigl(\exists x \in A,\ P(x)\bigr) \equiv \forall x \in A,\ \lnot P(x).
+$$
+:::
+
+::: {.callout-note}
+## Lendo as negações
+"Nem todo $x$ satisfaz $P$" significa "existe um $x$ que não satisfaz $P$": para
+derrubar um *para todo*, basta um contraexemplo. E "não existe $x$ satisfazendo
+$P$" significa "todo $x$ deixa de satisfazer $P$".
+:::
+
+::: {#exm-traducao}
+## Traduzir e negar
+Considere a afirmação "todo número natural é menor que algum natural":
+$$
+\forall n \in \mathbb{N},\ \exists m \in \mathbb{N},\ n < m.
+$$
+Sua negação, aplicando @prp-negacao-quantificadores duas vezes, é
+$$
+\exists n \in \mathbb{N},\ \forall m \in \mathbb{N},\ n \geq m,
+$$
+isto é, "existe um natural maior ou igual a todos" — a existência de um maior
+natural. Como essa negação é falsa (sempre há $m = n + 1 > n$), a afirmação
+original é verdadeira.
+:::
 
 ## Métodos de demonstração
 
-- **Direta:** para provar $p \Rightarrow q$, supõe-se $p$ e deduz-se $q$.
-- **Contrapositiva:** prova-se $\lnot q \Rightarrow \lnot p$, que é equivalente.
-- **Absurdo:** supõe-se $\lnot q$ e chega-se a uma contradição.
-- **Indução:** ver @sec-inducao.
+Quase todo teorema tem a forma $p \Rightarrow q$. Os métodos a seguir são as
+maneiras-padrão de prová-lo; a escolha entre eles é estratégica, não lógica — uma
+prova por qualquer um deles é igualmente válida.
 
-> *A escrever:* tabelas-verdade, quantificadores $\forall$/$\exists$ e exemplos
-> resolvidos de cada método.
+### Demonstração direta
+
+Para provar $p \Rightarrow q$, supõe-se $p$ e deduz-se $q$ por uma cadeia de
+implicações.
+
+::: {#exm-direta}
+## Soma de pares
+Se $a$ e $b$ são inteiros pares, então $a + b$ é par.
+:::
+
+::: {.proof}
+Suponha $a$ e $b$ pares. Por definição, existem inteiros $j$ e $k$ com $a = 2j$ e
+$b = 2k$. Então
+$$
+a + b = 2j + 2k = 2(j + k),
+$$
+e $j + k$ é inteiro; logo $a + b$ é múltiplo de $2$, ou seja, par.
+:::
+
+### Demonstração por contrapositiva
+
+Por @prp-contrapositiva, provar $p \Rightarrow q$ equivale a provar
+$\lnot q \Rightarrow \lnot p$. Isso ajuda quando negar a conclusão dá uma
+hipótese mais concreta para manipular.
+
+::: {#exm-contrapositiva}
+## Quadrado par
+Seja $n$ um inteiro. Se $n^2$ é par, então $n$ é par.
+:::
+
+::: {.proof}
+Provamos a contrapositiva: se $n$ é ímpar, então $n^2$ é ímpar. Suponha $n$
+ímpar, digamos $n = 2k + 1$ com $k$ inteiro. Então
+$$
+n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1,
+$$
+que é ímpar. Pela contrapositiva, fica provado o enunciado original.
+:::
+
+### Demonstração por absurdo
+
+Para provar uma afirmação, supõe-se que ela é **falsa** e deriva-se uma
+contradição — uma proposição que é, ao mesmo tempo, verdadeira e falsa. Como
+nenhuma situação consistente produz contradição, a suposição era insustentável.
+
+::: {#exm-absurdo}
+## Irracionalidade de $\sqrt{2}$
+Não existe número racional cujo quadrado seja $2$.
+:::
+
+::: {.proof}
+Suponha, por absurdo, que exista um racional com quadrado $2$. Escreva-o como
+fração irredutível $\tfrac{a}{b}$ (sem fatores comuns), com $a^2 = 2b^2$. Então
+$a^2$ é par, e por @exm-contrapositiva $a$ é par, digamos $a = 2c$. Substituindo,
+$4c^2 = 2b^2$, ou seja, $b^2 = 2c^2$; logo $b^2$ é par e, de novo, $b$ é par. Mas
+então $a$ e $b$ são ambos pares, contradizendo a escolha da fração irredutível.
+A suposição é insustentável, e nenhum racional tem quadrado $2$.
+:::
+
+::: {.callout-note}
+A existência de um *número* — não racional — com quadrado $2$ é outra questão,
+retomada na introdução aos reais ao final deste volume.
+:::
+
+### Demonstração por casos
+
+Quando a hipótese se desdobra em situações que esgotam todas as possibilidades,
+prova-se a conclusão em cada uma delas separadamente.
+
+::: {#exm-casos}
+## Produto consecutivo é par
+Para todo inteiro $n$, o produto $n(n+1)$ é par.
+:::
+
+::: {.proof}
+Há dois casos, que esgotam as possibilidades. Se $n$ é par, então $n(n+1)$ é
+múltiplo de $n$, logo par. Se $n$ é ímpar, então $n + 1$ é par, e $n(n+1)$ é
+múltiplo de $n+1$, logo par. Em ambos os casos o produto é par.
+:::
+
+### Refutação por contraexemplo
+
+Para mostrar que uma afirmação **universal** $\forall x,\ P(x)$ é falsa, não se
+demonstra nada de geral: basta exibir um único $x$ com $P(x)$ falsa — um
+**contraexemplo**. É a leitura prática de @prp-negacao-quantificadores.
+
+::: {.callout-tip}
+## Provar exige geral; refutar basta um
+"Todo número primo é ímpar" é falsa, e o contraexemplo $2$ encerra o assunto. Mas
+um contraexemplo nunca *prova* uma afirmação universal — para isso é preciso um
+argumento que cubra todos os casos, e quando os casos são infinitos recorremos à
+**indução** (@sec-inducao).
+:::
+
+## Exercícios
+
+::: {#exr-tabela}
+Construa a tabela-verdade de $(p \Rightarrow q) \land (q \Rightarrow p)$ e
+verifique que ela coincide com a de $p \Leftrightarrow q$.
+:::
+
+::: {#exr-negar}
+Escreva em símbolos e negue, simplificando até que a negação não incida sobre
+nenhum quantificador: "todo inteiro par maior que $2$ é soma de dois primos".
+:::
+
+::: {#exr-contrapositiva}
+Seja $n$ um inteiro. Prove, por contrapositiva, que se $n^2$ é ímpar então $n$ é
+ímpar.
+:::
+
+::: {#exr-absurdo}
+Prove, por absurdo, que existem infinitos números naturais. (Sugestão: suponha
+que o conjunto dos naturais seja finito e considere seu maior elemento.)
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-negar
+Sejam $P$ os inteiros pares maiores que $2$. A afirmação é
+$$
+\forall n \in P,\ \exists\, p, q \text{ primos},\ n = p + q.
+$$
+Negando com @prp-negacao-quantificadores, o $\forall$ vira $\exists$ e a negação
+recai sobre o $\exists$ interno, que vira $\forall$:
+$$
+\exists n \in P,\ \forall\, p, q \text{ primos},\ n \neq p + q,
+$$
+ou seja, "existe um inteiro par maior que $2$ que não é soma de dois primos".
+(Que essa negação seja verdadeira ou falsa é a conjectura de Goldbach, em
+aberto.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-contrapositiva
+A contrapositiva de "se $n^2$ é ímpar então $n$ é ímpar" é "se $n$ é par então
+$n^2$ é par". Suponha $n$ par, $n = 2k$. Então $n^2 = 4k^2 = 2(2k^2)$ é par.
+Provada a contrapositiva, vale o enunciado original. Note que ele e
+@exm-contrapositiva são as duas metades de "$n^2$ é par $\Leftrightarrow$ $n$ é
+par".
+:::

@@ -13,7 +13,10 @@ novos volumes forem escritos.
 | $\in,\ \notin$ | pertence, não pertence |
 | $\subseteq,\ \subset$ | subconjunto, subconjunto próprio |
 | $\cup,\ \cap$ | união, interseção |
+| $\lnot$ | negação ("não") |
+| $\land,\ \lor$ | conjunção ("e"), disjunção ("ou") |
 | $\Rightarrow,\ \Leftrightarrow$ | implica, equivale |
+| $\equiv$ | equivalência lógica (mesma tabela-verdade) |
 | $\forall,\ \exists$ | para todo, existe |
 | $\mid$ | divide ($a \mid b$: $a$ divide $b$) |
 | $\square$ | fim de demonstração |
