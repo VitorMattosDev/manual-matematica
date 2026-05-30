@@ -1,0 +1,128 @@
+# Soluções em série de potências {#sec-solucoes-serie}
+
+## Motivação
+
+Os métodos vistos resolvem EDOs de coeficientes **constantes**. Mas muitas equações
+centrais da física têm coeficientes **variáveis** — a equação de Bessel (vibração de
+tambores e ondas cilíndricas), a de Legendre (potencial em coordenadas esféricas), a de
+Hermite (oscilador quântico). Essas não têm solução em termos de funções elementares. O
+que fazer?
+
+A resposta retoma as séries de Taylor (@sec-taylor): procurar a solução como uma **série
+de potências** $y = \sum a_n x^n$ e determinar os coeficientes $a_n$ por recorrência,
+substituindo na equação. O método não só resolve essas equações como **define funções
+novas** — as funções especiais — que se tornam tão fundamentais quanto seno e cosseno.
+Este capítulo apresenta a técnica e as funções que dela nascem.
+
+## O método da série de potências
+
+::: {#def-solucao-serie}
+## Solução em série
+Para uma EDO com coeficientes analíticos, busca-se a solução
+$$
+y(x) = \sum_{n=0}^{\infty} a_n x^n.
+$$
+Substituindo $y$, $y'$, $y''$ na equação e igualando coeficientes de cada potência de
+$x$, obtém-se uma **relação de recorrência** que determina todos os $a_n$ a partir dos
+primeiros (fixados pelas condições iniciais).
+:::
+
+::: {.callout-tip}
+## Por que funciona
+Numa vizinhança de um **ponto ordinário** (onde os coeficientes são analíticos), a teoria
+garante que a solução é analítica e a série converge. Derivar a série é trivial
+(@sec-taylor: $y' = \sum n a_n x^{n-1}$), substituir gera equações lineares para os
+$a_n$, e a recorrência os resolve em cascata. É álgebra infinita, mas sistemática.
+:::
+
+::: {#exm-serie-exponencial}
+## Recuperando a exponencial
+Resolvendo $y' = y$ por série: $\sum n a_n x^{n-1} = \sum a_n x^n$ dá a recorrência
+$a_{n+1} = \frac{a_n}{n+1}$, logo $a_n = \frac{a_0}{n!}$. Com $a_0 = 1$,
+$$
+y = \sum_{n=0}^\infty \frac{x^n}{n!} = e^x,
+$$
+reencontrando a série da exponencial (@sec-taylor) — agora como *solução* de uma EDO.
+:::
+
+## Pontos ordinários e singulares
+
+::: {#def-ponto-singular}
+## Pontos ordinários e singulares
+Para $y'' + p(x)y' + q(x)y = 0$, um ponto $x_0$ é **ordinário** se $p, q$ são analíticas
+ali; senão é **singular**. Em pontos **singulares regulares**, o **método de Frobenius**
+busca soluções da forma $y = x^r\sum a_n x^n$, com um expoente $r$ a determinar.
+:::
+
+::: {.callout-note}
+## A teoria garante convergência
+Num ponto ordinário, **toda** solução é dada por uma série de potências que converge ao
+menos até a singularidade mais próxima (no plano complexo, @sec-numeros-complexos). Isso
+liga o raio de convergência (@sec-taylor) à localização das singularidades — um dos
+pontos onde a análise real toca a complexa.
+:::
+
+## Funções especiais
+
+As séries-solução de equações clássicas definem funções que organizam a física-matemática.
+
+::: {#prp-funcoes-especiais}
+## Equações e funções clássicas
+- **Legendre** $(1 - x^2)y'' - 2xy' + n(n+1)y = 0$: gera os **polinômios de Legendre**
+  $P_n$, base dos harmônicos esféricos (potencial gravitacional e elétrico).
+- **Bessel** $x^2 y'' + xy' + (x^2 - \nu^2)y = 0$: gera as **funções de Bessel**
+  $J_\nu$, que descrevem vibrações de membranas circulares e ondas cilíndricas.
+- **Hermite** $y'' - 2xy' + 2ny = 0$: gera os **polinômios de Hermite**, os estados do
+  oscilador harmônico quântico.
+:::
+
+::: {.callout-tip}
+## Funções especiais são "as novas elementares"
+Assim como o seno foi definido para resolver o oscilador (@sec-edo-segunda-ordem), as
+funções de Bessel e os polinômios de Legendre são **definidos** por suas EDOs. Elas têm
+tabelas, identidades, ortogonalidade (formam bases, @sec-base-dimensao) e aparecem em
+toda solução de EDPs com simetria cilíndrica ou esférica (@sec-calor-onda-laplace). A
+fronteira entre "função elementar" e "especial" é histórica, não matemática.
+:::
+
+## Exercícios
+
+::: {#exr-ss-recorrencia}
+Encontre a relação de recorrência para $y' = 2xy$ e mostre que leva a $y = a_0 e^{x^2}$.
+:::
+
+::: {#exr-ss-coeficientes}
+Para $y'' + y = 0$, ache a recorrência dos $a_n$ e identifique as séries de $\cos x$ e
+$\operatorname{sen}x$.
+:::
+
+::: {#exr-ss-ordinario}
+Classifique $x = 0$ como ponto ordinário ou singular para $y'' + \frac1x y' + y = 0$.
+:::
+
+::: {#exr-ss-legendre}
+Verifique que $P_1(x) = x$ é solução da equação de Legendre com $n = 1$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ss-recorrencia
+Com $y = \sum a_n x^n$: $y' = \sum n a_n x^{n-1}$ e $2xy = \sum 2 a_n x^{n+1}$.
+Igualando potências obtém-se $a_{n+2} = \frac{2 a_n}{n+2}$ (e $a_1 = 0$), que reproduz
+os coeficientes de $a_0\sum \frac{x^{2k}}{k!} = a_0 e^{x^2}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ss-coeficientes
+$\sum n(n-1)a_n x^{n-2} + \sum a_n x^n = 0$ dá $a_{n+2} = -\frac{a_n}{(n+2)(n+1)}$. Com
+$a_0 = 1, a_1 = 0$ surge a série de $\cos x$; com $a_0 = 0, a_1 = 1$, a de
+$\operatorname{sen}x$ (@sec-taylor).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ss-ordinario
+O coeficiente $p(x) = \frac1x$ não é analítico em $x = 0$ (explode), logo $x = 0$ é
+**singular**. Como $x\cdot p = 1$ e $x^2\cdot q = x^2$ são analíticas, é um ponto
+singular **regular** — aplica-se Frobenius.
+:::
