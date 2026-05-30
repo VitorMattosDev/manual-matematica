@@ -30,4 +30,5 @@ novos volumes forem escritos.
 | $|x|$ | valor absoluto de $x$ |
 | $\gcd(a, b)$ | máximo divisor comum |
 | $\operatorname{mmc}(a, b)$ | mínimo múltiplo comum |
+| $\prod_{i} a_i$ | produtório (produto dos $a_i$) |
 | $\square$ | fim de demonstração |
