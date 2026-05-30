@@ -126,7 +126,7 @@ Pré-requisitos: nenhum.*
 ## Volume VIII — Análise Real
 *Objetivo: o cálculo com rigor. Pré-req.: Vols. V, VI.*
 
-- [ ] `volumes/v8-analise/01-construcao-reais.qmd` — Construção dos reais (cortes de Dedekind / Cauchy).
+- [x] `volumes/v8-analise/01-construcao-reais.qmd` — Construção dos reais (cortes de Dedekind / Cauchy).
 - [ ] `volumes/v8-analise/02-supremo-completude.qmd` — Supremo, ínfimo e completude.
 - [ ] `volumes/v8-analise/03-sequencias.qmd` — Sequências e convergência.
 - [ ] `volumes/v8-analise/04-series.qmd` — Séries numéricas (rigoroso).

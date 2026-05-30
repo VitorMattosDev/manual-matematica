@@ -1,0 +1,174 @@
+# Construção dos reais {#sec-construcao-reais}
+
+## Motivação
+
+No Volume I, apresentamos os números reais de modo intuitivo (@sec-reais-introducao):
+a "reta sem buracos", onde $\sqrt2$ e $\pi$ moram. O Cálculo inteiro (Volume V) foi
+construído sobre essa intuição. Mas a análise rigorosa exige mais: **o que é, afinal,
+um número real?** Dizer "um ponto da reta" é geometria, não definição. E a propriedade
+crucial — a completude, a ausência de buracos — precisa ser *demonstrada*, não
+assumida.
+
+Os racionais $\mathbb{Q}$ (@sec-racionais) têm buracos: a sequência $1; 1{,}4;
+1{,}41; \dots$ "deveria" convergir para $\sqrt2$, mas esse limite não existe em
+$\mathbb{Q}$. Construir os reais é **tapar esses buracos** de forma logicamente
+impecável, partindo apenas de $\mathbb{Q}$. Há duas construções clássicas — os
+**cortes de Dedekind** e as **sequências de Cauchy** — e ambas produzem o mesmo corpo
+ordenado completo. Este capítulo abre o Volume VIII fundando os reais sobre rocha
+firme.
+
+## O problema dos buracos
+
+::: {#prp-raiz-irracional}
+## Não há raiz de 2 em $\mathbb{Q}$
+Não existe número racional $r$ com $r^2 = 2$.
+:::
+
+::: {.proof}
+Suponha $r = p/q$ irredutível com $p^2 = 2q^2$. Então $p^2$ é par, logo $p$ é par,
+$p = 2k$; daí $4k^2 = 2q^2$, isto é $q^2 = 2k^2$, e $q$ também é par — contradizendo a
+irredutibilidade (@sec-reais-introducao). Logo nenhum racional satisfaz $r^2 = 2$.
+:::
+
+::: {.callout-note}
+## O sintoma da incompletude
+O conjunto $A = \{x \in \mathbb{Q} : x^2 < 2\}$ é limitado superiormente (por $2$, por
+exemplo), mas **não tem supremo em $\mathbb{Q}$**: qualquer cota racional pode ser
+diminuída. Esse "buraco" onde deveria estar $\sqrt2$ é a falha que a construção dos
+reais conserta. A propriedade que faltava tem nome: completude.
+:::
+
+## Cortes de Dedekind
+
+A ideia de Dedekind: um número real **é** o lugar onde ele corta a reta racional.
+
+::: {#def-corte}
+## Corte de Dedekind
+Um **corte** é um subconjunto $\alpha \subseteq \mathbb{Q}$ que:
+
+1. é não vazio e $\alpha \neq \mathbb{Q}$;
+2. é "fechado para baixo": se $p \in \alpha$ e $q < p$, então $q \in \alpha$;
+3. não tem máximo.
+
+Cada corte representa **um número real**: aquele que separa $\alpha$ (à esquerda) do
+resto (à direita).
+:::
+
+::: {#exm-corte-raiz2}
+## O corte que define $\sqrt2$
+O número $\sqrt2$ é, por definição, o corte
+$$
+\alpha = \{q \in \mathbb{Q} : q < 0 \text{ ou } q^2 < 2\}.
+$$
+Ele é um corte legítimo (satisfaz as três condições) e **não corresponde a nenhum
+racional** — é genuinamente novo. Assim, $\sqrt2$ deixa de ser um "buraco" e passa a
+ser um objeto concreto: um conjunto de racionais.
+:::
+
+::: {.callout-tip}
+## A jogada conceitual
+Em vez de perguntar "que objeto é $\sqrt2$?", Dedekind responde: $\sqrt2$ **é** a
+divisão que ele provoca nos racionais. Os racionais geram um corte para cada um deles
+(os $q$ menores que ele), mas há cortes "a mais" — e esses cortes extras são
+exatamente os irracionais. O conjunto $\mathbb{R}$ é o conjunto de **todos** os cortes.
+:::
+
+## Sequências de Cauchy
+
+A construção alternativa, de Cantor, parte da ideia de aproximação: um real é o
+"destino" de uma sequência que se aperta.
+
+::: {#def-cauchy}
+## Sequência de Cauchy
+Uma sequência $(a_n)$ de racionais é de **Cauchy** se seus termos ficam
+arbitrariamente próximos **entre si**: para todo $\varepsilon > 0$ existe $N$ tal que
+$|a_m - a_n| < \varepsilon$ sempre que $m, n > N$.
+:::
+
+A diferença sutil em relação à convergência (@def-limite-sequencia): Cauchy fala da
+distância entre os **termos**, sem mencionar o limite. Em $\mathbb{Q}$, há sequências
+de Cauchy sem limite (como $1; 1{,}4; 1{,}41; \dots$, "apertando" em torno de
+$\sqrt2$). A construção de Cantor **declara** que cada sequência de Cauchy define um
+real.
+
+::: {#def-reais-cauchy}
+## Reais via Cauchy
+Define-se $\mathbb{R}$ como o conjunto das sequências de Cauchy de racionais, onde
+**duas sequências são identificadas** quando sua diferença tende a zero. Cada classe é
+um número real; os racionais correspondem às sequências constantes.
+:::
+
+::: {.callout-note}
+## Duas estradas, um destino
+Cortes de Dedekind e sequências de Cauchy parecem muito diferentes, mas produzem
+corpos ordenados **isomorfos**: o mesmo $\mathbb{R}$, a menos de identificação. A
+construção de Cauchy tem a vantagem de generalizar (completar qualquer espaço
+métrico, @sec-espacos-metricos); a de Dedekind é mais direta para a ordem. Escolher
+uma é questão de gosto — o objeto resultante é único.
+:::
+
+## A propriedade que define $\mathbb{R}$
+
+O que tudo isso conquista, e que $\mathbb{Q}$ não tinha:
+
+::: {#thm-completude}
+## Completude
+O corpo $\mathbb{R}$ construído (por qualquer dos métodos) é **completo**: todo
+subconjunto não vazio e limitado superiormente possui **supremo** (menor cota
+superior) em $\mathbb{R}$. Equivalentemente, toda sequência de Cauchy de reais
+converge.
+:::
+
+::: {.callout-tip}
+## A caracterização axiomática
+Pode-se provar que $\mathbb{R}$ é, **a menos de isomorfismo, o único corpo ordenado
+completo**. Por isso, na prática, muitos textos pulam a construção e simplesmente
+*postulam* os reais por esses axiomas (corpo + ordem + completude). A construção deste
+capítulo garante que tal objeto **existe** — que os axiomas não são vazios. A
+completude, estudada a fundo no @sec-supremo-completude, é o motor de toda a análise.
+:::
+
+## Exercícios
+
+::: {#exr-cr-irracional}
+Adapte a demonstração de @prp-raiz-irracional para mostrar que $\sqrt3$ é irracional.
+:::
+
+::: {#exr-cr-corte}
+Verifique que o conjunto $\alpha = \{q \in \mathbb{Q} : q < 1\}$ é um corte de
+Dedekind e diga que real ele representa.
+:::
+
+::: {#exr-cr-cauchy}
+Mostre que toda sequência de Cauchy de racionais é **limitada**.
+:::
+
+::: {#exr-cr-sup}
+Explique por que o conjunto $\{q \in \mathbb{Q} : q^2 < 2\}$ não tem supremo em
+$\mathbb{Q}$, mas tem em $\mathbb{R}$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-corte
+As três condições: é não vazio ($0 \in \alpha$) e $\neq \mathbb{Q}$ ($1 \notin
+\alpha$); se $q < 1$ e $p < q$, então $p < 1$, fechado para baixo; e não tem máximo
+(dado $q < 1$, há $q' = \frac{q+1}{2}$ com $q < q' < 1$). Representa o real $1$ — é o
+corte associado a um racional.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-cauchy
+Tome $\varepsilon = 1$: existe $N$ com $|a_n - a_{N+1}| < 1$ para $n > N$, logo
+$|a_n| < |a_{N+1}| + 1$ a partir de $N$. Os finitos termos iniciais $a_1, \dots, a_N$
+têm máximo. O maior entre esse máximo e $|a_{N+1}| + 1$ limita toda a sequência.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cr-sup
+Qualquer cota superior racional $c$ com $c^2 > 2$ pode ser substituída por uma menor
+ainda maior que todos os elementos (aproximando $\sqrt2$ por cima), então não há
+**menor** cota racional — sem supremo em $\mathbb{Q}$. Em $\mathbb{R}$, a completude
+(@thm-completude) garante o supremo: é exatamente $\sqrt2$.
+:::

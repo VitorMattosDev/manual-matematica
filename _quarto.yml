@@ -106,6 +106,9 @@ book:
         - volumes/v7-abstrata/07-aneis-polinomios.qmd
         - volumes/v7-abstrata/08-extensoes-corpos.qmd
         - volumes/v7-abstrata/09-galois.qmd
+    - part: "Volume VIII — Análise Real"
+      chapters:
+        - volumes/v8-analise/01-construcao-reais.qmd
   appendices:
     - notacao.qmd
 
