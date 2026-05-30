@@ -84,6 +84,7 @@ book:
         - volumes/v5-calculo/11-varias-variaveis.qmd
         - volumes/v5-calculo/12-integrais-multiplas.qmd
         - volumes/v5-calculo/13-campos-integrais-linha.qmd
+        - volumes/v5-calculo/14-integrais-superficie.qmd
     - part: "Volume VI — Álgebra Linear"
       chapters:
         - volumes/v6-linear/01-sistemas-gauss.qmd

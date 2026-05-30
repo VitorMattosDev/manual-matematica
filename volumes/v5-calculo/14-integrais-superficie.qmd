@@ -1,0 +1,150 @@
+# Integrais de superfície e fluxo {#sec-integrais-superficie}
+
+## Motivação
+
+A integral de linha (@sec-campos-integrais-linha) somou um campo ao longo de uma
+**curva**. Subimos uma dimensão: como integrar sobre uma **superfície**? E, sobretudo,
+como medir o **fluxo** de um campo através dela — quanto fluido, calor ou campo elétrico
+atravessa uma membrana por unidade de tempo?
+
+Essa é a pergunta central da física dos campos: o fluxo do campo elétrico através de uma
+superfície fechada mede a carga interna (lei de Gauss); o fluxo de um fluido mede a vazão.
+A ferramenta é a **integral de superfície**, que generaliza a integral dupla
+(@sec-integrais-multiplas) a superfícies curvas. Este capítulo a constrói e define o
+fluxo, preparando os teoremas de Stokes e da divergência
+(@sec-green-stokes-divergencia), que conectam fluxo a derivadas do campo.
+
+## Superfícies parametrizadas e área
+
+::: {#def-superficie-param}
+## Parametrização e elemento de área
+Uma **superfície parametrizada** é $\mathbf{r}(u, v) = (x(u,v), y(u,v), z(u,v))$, com
+$(u,v)$ num domínio $D \subseteq \mathbb{R}^2$. O **elemento de área** é
+$$
+dS = \|\mathbf{r}_u \times \mathbf{r}_v\|\,du\,dv,
+$$
+onde $\mathbf{r}_u, \mathbf{r}_v$ são as derivadas parciais. O vetor $\mathbf{r}_u\times
+\mathbf{r}_v$ é **normal** à superfície.
+:::
+
+::: {#exm-area-superficie}
+## Área pela parametrização
+A área de uma superfície $S$ é $\displaystyle\iint_D \|\mathbf{r}_u\times\mathbf{r}_v\|\,
+du\,dv$. Para a esfera de raio $a$ em coordenadas esféricas, $\|\mathbf{r}_u\times
+\mathbf{r}_v\| = a^2\operatorname{sen}u$, recuperando a área $4\pi a^2$ (como em
+@sec-integrais-multiplas).
+:::
+
+## Integral de superfície de função escalar
+
+::: {#def-integral-superficie-escalar}
+## Integral de superfície (escalar)
+Para uma função escalar $g$ definida sobre $S$,
+$$
+\iint_S g\,dS = \iint_D g(\mathbf{r}(u,v))\,\|\mathbf{r}_u\times\mathbf{r}_v\|\,du\,dv.
+$$
+Com $g = 1$ recupera-se a área; com $g$ = densidade superficial, a **massa** da chapa.
+:::
+
+## Fluxo de um campo
+
+A integral mais importante da física dos campos: a componente do campo que atravessa a
+superfície.
+
+::: {#def-fluxo}
+## Integral de fluxo
+Seja $\mathbf{F}$ um campo e $S$ uma superfície orientada com normal unitária
+$\mathbf{n}$. O **fluxo** de $\mathbf{F}$ através de $S$ é
+$$
+\iint_S \mathbf{F}\cdot d\mathbf{S} = \iint_S \mathbf{F}\cdot\mathbf{n}\,dS = \iint_D
+\mathbf{F}(\mathbf{r})\cdot(\mathbf{r}_u\times\mathbf{r}_v)\,du\,dv.
+$$
+:::
+
+::: {.callout-tip}
+## O que o fluxo mede
+Imagine $\mathbf{F}$ como a velocidade de um fluido. O fluxo $\iint_S \mathbf{F}\cdot
+d\mathbf{S}$ é o **volume de fluido que atravessa $S$ por unidade de tempo** —
+positivo no sentido da normal, negativo no oposto. Só a componente **perpendicular** à
+superfície conta: fluido escorrendo paralelo à membrana não a atravessa. É o análogo
+bidimensional do trabalho (que usava a componente *paralela* à curva).
+:::
+
+::: {.callout-warning}
+## A orientação tem dois sentidos
+Toda superfície orientável admite **duas** normais ($\mathbf{n}$ e $-\mathbf{n}$), e o
+sinal do fluxo depende da escolha. Para superfícies **fechadas** (esfera, cubo),
+convenciona-se a normal **para fora**. Superfícies não orientáveis (faixa de Möbius)
+**não** têm fluxo bem definido — não há "lado de fora" consistente.
+:::
+
+::: {#exm-fluxo-esfera}
+## Fluxo do campo radial pela esfera
+Para $\mathbf{F}(x,y,z) = (x, y, z)$ através da esfera de raio $a$ (normal para fora
+$\mathbf{n} = \mathbf{r}/a$): sobre a esfera $\mathbf{F}\cdot\mathbf{n} = \frac{x^2 +
+y^2 + z^2}{a} = \frac{a^2}{a} = a$, constante. Logo o fluxo é $a\cdot(\text{área}) =
+a\cdot 4\pi a^2 = 4\pi a^3$.
+:::
+
+## A divergência (prévia)
+
+Para campos no espaço, a quantidade que mede "quanto o campo brota de um ponto" é a
+**divergência**.
+
+::: {#def-divergencia}
+## Divergência
+A **divergência** de $\mathbf{F} = (P, Q, R)$ é o campo escalar
+$$
+\operatorname{div}\mathbf{F} = \nabla\cdot\mathbf{F} = \frac{\partial P}{\partial x} +
+\frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}.
+$$
+Mede a **taxa de expansão** do campo: $\operatorname{div}\mathbf{F} > 0$ indica uma
+fonte; $< 0$, um sorvedouro.
+:::
+
+A divergência será a ponte do **teorema da divergência** (@sec-green-stokes-divergencia):
+o fluxo de $\mathbf{F}$ através de uma superfície fechada iguala a integral da
+divergência no volume interior — fontes e sorvedouros somados.
+
+## Exercícios
+
+::: {#exr-is-area}
+Calcule a área da porção do plano $z = x + y$ sobre o quadrado $0 \leq x, y \leq 1$.
+:::
+
+::: {#exr-is-fluxo}
+Calcule o fluxo de $\mathbf{F} = (0, 0, z)$ através do disco $x^2 + y^2 \leq 1$ no plano
+$z = 2$, com normal $\mathbf{n} = (0,0,1)$.
+:::
+
+::: {#exr-is-divergencia}
+Calcule $\operatorname{div}\mathbf{F}$ para (a) $\mathbf{F} = (x, y, z)$; (b)
+$\mathbf{F} = (-y, x, 0)$.
+:::
+
+::: {#exr-is-massa}
+Uma chapa esférica de raio $1$ tem densidade $g = z^2$. Escreva a integral de superfície
+que dá sua massa (não precisa resolver).
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-is-area
+Parametrize por $\mathbf{r}(x,y) = (x, y, x+y)$; então $\mathbf{r}_x = (1,0,1)$,
+$\mathbf{r}_y = (0,1,1)$, $\mathbf{r}_x\times\mathbf{r}_y = (-1,-1,1)$, de norma
+$\sqrt3$. A área é $\iint_{[0,1]^2}\sqrt3\,dx\,dy = \sqrt3$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-is-fluxo
+Sobre o disco, $\mathbf{F}\cdot\mathbf{n} = z = 2$ (constante). O fluxo é $2\cdot
+(\text{área do disco}) = 2\cdot\pi(1)^2 = 2\pi$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-is-divergencia
+(a) $\operatorname{div}(x,y,z) = 1 + 1 + 1 = 3$ (fonte uniforme). (b)
+$\operatorname{div}(-y, x, 0) = 0 + 0 + 0 = 0$ — o campo de rotação **não diverge**
+(gira, mas não brota nem some).
+:::
