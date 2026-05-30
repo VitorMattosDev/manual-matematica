@@ -1,0 +1,165 @@
+# O Teorema Fundamental do Cálculo {#sec-tfc}
+
+## Motivação
+
+Construímos a derivada (taxa de variação) e a integral (acúmulo) como ideias
+independentes — uma sobre tangentes, outra sobre áreas. O **Teorema Fundamental do
+Cálculo** (TFC) revela que são **operações inversas uma da outra**, como a adição e
+a subtração. Derivar e integrar desfazem-se mutuamente.
+
+Essa é, sem exagero, uma das descobertas mais importantes da história da matemática.
+Ela transforma o cálculo de áreas — que pela definição exigia limites de somas
+penosas (@sec-integral) — numa simples busca de **antiderivada**. Newton e Leibniz,
+ao perceberem essa conexão, fundaram o Cálculo como o conhecemos. Este capítulo é o
+coração do Volume V: enuncia, demonstra e aplica o TFC.
+
+## Antiderivadas
+
+::: {#def-antiderivada}
+## Antiderivada (primitiva)
+Uma **antiderivada** (ou primitiva) de $f$ é uma função $F$ tal que $F' = f$. Se $F$
+é uma antiderivada, então $F + C$ também é, para qualquer constante $C$ — e essas são
+**todas** as antiderivadas de $f$.
+:::
+
+::: {.proof}
+Se $F' = f$, então $(F + C)' = F' + 0 = f$, logo $F + C$ é antiderivada. Reciproca-
+mente, se $G$ e $F$ são ambas antiderivadas, $(G - F)' = f - f = 0$; uma função de
+derivada nula num intervalo é **constante** (@thm-crescimento), logo $G = F + C$.
+:::
+
+A família $F + C$ denota-se pela **integral indefinida** $\int f(x)\,dx = F(x) + C$.
+
+## Os dois teoremas fundamentais
+
+O TFC tem duas faces, que juntas exprimem a inversão.
+
+::: {#thm-tfc1}
+## TFC, parte 1
+Se $f$ é contínua em $[a, b]$, então a função área $\displaystyle F(x) = \int_a^x
+f(t)\,dt$ é derivável e
+$$
+F'(x) = f(x).
+$$
+Ou seja, **derivar a integral devolve o integrando**.
+:::
+
+::: {.proof}
+*(Esboço.)* O acréscimo $F(x + h) - F(x) = \int_x^{x+h} f(t)\,dt$ é a área de uma
+fatia fina, $\approx f(x)\cdot h$ (retângulo de altura $f(x)$, largura $h$). Logo
+$\dfrac{F(x+h) - F(x)}{h} \approx f(x)$, e no limite $h \to 0$, pela continuidade de
+$f$, obtém-se $F'(x) = f(x)$.
+:::
+
+::: {#thm-tfc2}
+## TFC, parte 2 (regra de avaliação)
+Se $f$ é contínua em $[a, b]$ e $F$ é **qualquer** antiderivada de $f$, então
+$$
+\int_a^b f(x)\,dx = F(b) - F(a).
+$$
+:::
+
+::: {.proof}
+Pela parte 1, $G(x) = \int_a^x f$ é uma antiderivada de $f$; logo $F = G + C$ para
+alguma constante (@def-antiderivada). Então
+$$
+F(b) - F(a) = [G(b) + C] - [G(a) + C] = G(b) - G(a) = \int_a^b f - \int_a^a f =
+\int_a^b f,
+$$
+pois $\int_a^a f = 0$. A constante cancela-se — por isso "qualquer" antiderivada
+serve.
+:::
+
+::: {.callout-tip}
+## O que o TFC faz por você
+A parte 2 é a ferramenta de cálculo: para integrar, **ache uma antiderivada e avalie
+nas pontas**. O laborioso $\int_0^1 x^2\,dx$ do @exm-riemann-quadratica, que exigiu a
+soma dos quadrados e um limite, agora sai num gesto: uma antiderivada de $x^2$ é
+$\frac{x^3}{3}$, logo
+$$
+\int_0^1 x^2\,dx = \frac{1^3}{3} - \frac{0^3}{3} = \frac13.
+$$
+Toda a tabela de derivadas (@sec-regras-derivacao), lida ao contrário, vira tabela
+de integrais.
+:::
+
+## Calculando integrais
+
+::: {#exm-tfc-aplicacao}
+## Avaliando pelo TFC
+$$
+\int_1^3 (2x + 1)\,dx = \bigl[x^2 + x\bigr]_1^3 = (9 + 3) - (1 + 1) = 10,
+$$
+usando a antiderivada $x^2 + x$ de $2x + 1$ e a notação $[F]_a^b = F(b) - F(a)$.
+Outro:
+$$
+\int_0^{\pi} \operatorname{sen}x\,dx = \bigl[-\cos x\bigr]_0^{\pi} = (-\cos\pi) -
+(-\cos 0) = 1 + 1 = 2,
+$$
+pois uma antiderivada de $\operatorname{sen}x$ é $-\cos x$ (@sec-regras-derivacao).
+:::
+
+::: {#prp-integrais-basicas}
+## Integrais imediatas
+Lendo a tabela de derivadas ao contrário (com constante $C$):
+$$
+\int x^n\,dx = \frac{x^{n+1}}{n+1} + C\ (n \neq -1), \quad \int \frac1x\,dx = \ln|x|
++ C, \quad \int e^x\,dx = e^x + C,
+$$
+$$
+\int \cos x\,dx = \operatorname{sen}x + C, \qquad \int \operatorname{sen}x\,dx =
+-\cos x + C.
+$$
+:::
+
+::: {.callout-note}
+## O caso $n = -1$ e o porquê do logaritmo
+A fórmula $\int x^n = \frac{x^{n+1}}{n+1}$ falha em $n = -1$ (daria divisão por
+zero). Esse buraco é justamente preenchido pelo logaritmo: $\int \frac1x\,dx = \ln|x|
++ C$, pois $(\ln x)' = \frac1x$ (@sec-logaritmo). É mais um lugar onde a exponencial
+e o logaritmo "naturais" aparecem por necessidade interna do Cálculo — não por
+convenção.
+:::
+
+## Exercícios
+
+::: {#exr-antiderivada}
+Determine a antiderivada geral de: (a) $f(x) = 3x^2 - 4x + 5$; (b) $g(x) = e^x +
+\dfrac1x$.
+:::
+
+::: {#exr-tfc-polinomio}
+Calcule $\displaystyle\int_1^2 (x^3 - 2x)\,dx$ pelo TFC.
+:::
+
+::: {#exr-tfc-trig}
+Calcule $\displaystyle\int_0^{\pi/2}\cos x\,dx$ e $\displaystyle\int_1^{e}\frac1x\,
+dx$.
+:::
+
+::: {#exr-tfc-derivada}
+Use o TFC parte 1 para calcular $\dfrac{d}{dx}\displaystyle\int_0^x \sqrt{1 +
+t^4}\,dt$ sem resolver a integral.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tfc-polinomio
+Uma antiderivada de $x^3 - 2x$ é $\dfrac{x^4}{4} - x^2$. Pelo TFC parte 2,
+$$
+\int_1^2 (x^3 - 2x)\,dx = \left[\frac{x^4}{4} - x^2\right]_1^2 = \left(\frac{16}{4} -
+4\right) - \left(\frac14 - 1\right) = 0 - \left(-\frac34\right) = \frac34.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-tfc-derivada
+Pelo TFC parte 1 (@thm-tfc1), derivar a função área $\int_0^x g(t)\,dt$ devolve o
+integrando avaliado em $x$. Com $g(t) = \sqrt{1 + t^4}$,
+$$
+\frac{d}{dx}\int_0^x \sqrt{1 + t^4}\,dt = \sqrt{1 + x^4}.
+$$
+Não é preciso (nem possível, em termos elementares) calcular a integral — o TFC dá a
+derivada diretamente.
+:::

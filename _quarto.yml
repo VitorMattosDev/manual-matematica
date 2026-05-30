@@ -76,6 +76,7 @@ book:
         - volumes/v5-calculo/03-regras-derivacao.qmd
         - volumes/v5-calculo/04-aplicacoes-derivada.qmd
         - volumes/v5-calculo/05-integral.qmd
+        - volumes/v5-calculo/06-tfc.qmd
   appendices:
     - notacao.qmd
 

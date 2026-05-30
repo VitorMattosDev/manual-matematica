@@ -88,7 +88,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v5-calculo/03-regras-derivacao.qmd` — Regras de derivação; regra da cadeia.
 - [x] `volumes/v5-calculo/04-aplicacoes-derivada.qmd` — Aplicações: otimização, esboço de gráficos, L'Hôpital.
 - [x] `volumes/v5-calculo/05-integral.qmd` — A integral definida e somas de Riemann.
-- [ ] `volumes/v5-calculo/06-tfc.qmd` — Teorema Fundamental do Cálculo.
+- [x] `volumes/v5-calculo/06-tfc.qmd` — Teorema Fundamental do Cálculo.
 - [ ] `volumes/v5-calculo/07-tecnicas-integracao.qmd` — Técnicas de integração.
 - [ ] `volumes/v5-calculo/08-aplicacoes-integral.qmd` — Aplicações da integral (áreas, volumes, comprimento de arco).
 - [ ] `volumes/v5-calculo/09-series.qmd` — Sequências e séries numéricas; critérios de convergência.

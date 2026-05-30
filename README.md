@@ -4,31 +4,65 @@ Primeiro título da série *Manuais de Ciências* — um livro aberto que vai da
 aritmética à geometria diferencial. Construído com [Quarto](https://quarto.org)
 e publicado no GitHub Pages.
 
-## Pré-requisitos
+## Setup em uma máquina nova
 
-- [Quarto](https://quarto.org/docs/get-started/) (CLI).
-- Opcional, só para gerar PDF localmente: `quarto install tinytex`.
+Para rodar o projeto localmente em qualquer máquina, são necessários:
+
+1. **Quarto (CLI)** — obrigatório. Baixe e instale em
+   <https://quarto.org/docs/get-started/>. Confira a instalação com:
+   ```bash
+   quarto --version
+   ```
+2. **Uma distribuição TeX** — obrigatória **apenas para gerar o PDF**. O jeito
+   mais simples é deixar o próprio Quarto instalar o TinyTeX (~100 MB):
+   ```bash
+   quarto install tinytex
+   ```
+   Sem isso, qualquer comando que renderize o formato PDF falha com
+   `No TeX installation was detected`. Se você só quer o site (HTML), pode pular
+   este passo (veja "Rodar apenas o site, sem PDF" abaixo).
+
+> O conteúdo (arquivos `.qmd`, `_quarto.yml`, etc.) vem do repositório Git —
+> basta clonar. As duas ferramentas acima é que precisam ser instaladas em cada
+> máquina nova, pois não ficam versionadas no projeto.
 
 ## Construir localmente
 
 ```bash
-quarto preview     # abre o site no navegador e recarrega ao salvar
-quarto render      # gera o site (e o PDF) em _book/
+quarto preview     # abre o site no navegador e recarrega ao salvar (só HTML)
+quarto render      # gera o site e o PDF em _book/ (PDF exige TeX instalado)
 ```
 
-## Publicar no GitHub Pages
+### Rodar apenas o site, sem PDF
 
-O deploy é automático: cada `push` na branch `main` dispara o GitHub Action em
-`.github/workflows/publish.yml`, que renderiza o livro e atualiza o site.
+Se não quiser instalar o TeX numa máquina, comente o bloco `pdf:` dentro de
+`format:` no `_quarto.yml`. Sem o formato PDF, o `render`/`preview`/`publish`
+não toca em TeX e roda direto. Para voltar a gerar PDF depois, descomente o
+bloco e rode `quarto install tinytex`.
+
+## Publicar no GitHub Pages
 
 Configuração inicial (uma vez só):
 
 1. Crie um repositório no GitHub chamado `manual-matematica` e envie estes
    arquivos para a branch `main`.
-2. No GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a
-   branch**, e escolha a branch **`gh-pages`** (criada pelo Action no primeiro
-   deploy) com a pasta **`/ (root)`**.
-3. Troque `SEU-USUARIO` no `_quarto.yml` pelo seu usuário/organização.
+2. Troque `SEU-USUARIO` no `_quarto.yml` pelo seu usuário/organização.
+3. **Inicialize a branch `gh-pages`** rodando uma vez, localmente:
+   ```bash
+   quarto publish gh-pages
+   ```
+   Esse comando renderiza o livro (HTML **e** PDF) e cria/empurra a branch
+   `gh-pages`. Como ele também gera o PDF, **precisa de TeX instalado** — veja
+   "Setup em uma máquina nova". Se não tiver TeX, comente o bloco `pdf:` antes de
+   rodar (o site sobe só com HTML).
+4. No GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a
+   branch**, e escolha a branch **`gh-pages`** com a pasta **`/ (root)`**.
+
+Depois dessa inicialização, o deploy passa a ser automático: cada `push` na
+branch `main` dispara o GitHub Action em `.github/workflows/publish.yml`, que
+renderiza o livro e atualiza o site. O Action já instala o TinyTeX na nuvem
+(`tinytex: true`), então **o PDF é gerado no deploy automático mesmo que a
+máquina local não tenha TeX**.
 
 O site ficará em `https://SEU-USUARIO.github.io/manual-matematica/`.
 
