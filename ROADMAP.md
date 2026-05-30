@@ -144,7 +144,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v9-topologia/02-espacos-topologicos.qmd` — Espaços topológicos: abertos, vizinhanças.
 - [x] `volumes/v9-topologia/03-base-subbase.qmd` — Base, subbase e geração de topologias.
 - [x] `volumes/v9-topologia/04-continuidade-homeomorfismos.qmd` — Continuidade e homeomorfismos.
-- [ ] `volumes/v9-topologia/05-conexidade.qmd` — Conexidade.
+- [x] `volumes/v9-topologia/05-conexidade.qmd` — Conexidade.
 - [ ] `volumes/v9-topologia/06-compacidade.qmd` — Compacidade.
 - [ ] `volumes/v9-topologia/07-separacao.qmd` — Axiomas de separação (Hausdorff etc.).
 - [ ] `volumes/v9-topologia/08-grupo-fundamental.qmd` — Introdução à topologia algébrica: grupo fundamental.

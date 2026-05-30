@@ -1,0 +1,182 @@
+# Conexidade {#sec-conexidade}
+
+## Motivação
+
+Intuitivamente, alguns espaços são "de uma peça só" — a reta, um disco, uma esfera —
+enquanto outros vêm "em pedaços" — dois intervalos separados, um conjunto finito de
+pontos. A **conexidade** é a formalização topológica dessa ideia de "inteireza", e é um
+dos invariantes mais úteis (@sec-continuidade-homeomorfismos) para distinguir espaços.
+
+Mas a conexidade é mais que uma curiosidade classificatória: ela é a alma do **teorema
+do valor intermediário** (@sec-continuidade). Aquele resultado central da análise diz,
+em linguagem topológica, que a imagem contínua de um conjunto conexo é conexa — uma
+função contínua não pode "pular" valores porque não pode partir um espaço conexo em
+dois. Este capítulo define conexidade, prova que os conexos da reta são exatamente os
+intervalos, e revela o TVI como um fato puramente topológico.
+
+## Conjuntos conexos
+
+::: {#def-conexo}
+## Espaço conexo
+Um espaço topológico $X$ é **desconexo** se pode ser escrito como união de dois
+abertos não vazios e **disjuntos**: $X = U \cup V$, com $U, V$ abertos, $U \cap V =
+\emptyset$, ambos $\neq \emptyset$. Caso contrário, $X$ é **conexo**.
+:::
+
+Equivalentemente: $X$ é conexo se os **únicos** subconjuntos simultaneamente abertos e
+fechados ("clopen") são $\emptyset$ e $X$. Uma "cisão" do espaço é precisamente um
+conjunto clopen próprio.
+
+::: {#exm-conexos}
+## Conexos e desconexos
+- $\mathbb{R}$ é conexo; cada intervalo é conexo.
+- $[0, 1] \cup [2, 3]$ é **desconexo**: os dois intervalos são abertos (na topologia
+  de subespaço) e disjuntos.
+- $\mathbb{Q}$ é **totalmente desconexo**: entre quaisquer dois racionais há um
+  irracional que os separa.
+- Qualquer espaço discreto com $\geq 2$ pontos é desconexo.
+:::
+
+## Os conexos da reta
+
+O teorema fundamental que liga conexidade à ordem dos reais.
+
+::: {#thm-conexos-reta}
+## Conexos de $\mathbb{R}$ são os intervalos
+Um subconjunto de $\mathbb{R}$ é conexo se, e somente se, é um **intervalo** (incluindo
+semirretas e a reta toda).
+:::
+
+::: {.proof}
+*(Esboço.)* Se $A$ não é intervalo, há $a < c < b$ com $a, b \in A$ mas $c \notin A$;
+então $A \cap (-\infty, c)$ e $A \cap (c, +\infty)$ cindem $A$ — desconexo.
+Reciprocamente, se um intervalo $I$ fosse cindido por abertos $U, V$, tomando $u \in
+U$, $v \in V$ com $u < v$, o supremo de $U \cap [u, v]$ (existe por completude,
+@thm-axioma-completude) não poderia estar nem em $U$ nem em $V$ — contradição.
+:::
+
+::: {.callout-note}
+## Conexidade é, no fundo, completude
+A demonstração usa o **axioma do supremo** de modo essencial: a reta é conexa porque
+não tem buracos. Em $\mathbb{Q}$, o "buraco" em $\sqrt2$ permite cindir o intervalo
+racional — e de fato $\mathbb{Q}$ é totalmente desconexo. A conexidade de $\mathbb{R}$
+é mais uma face da completude (@sec-construcao-reais), ao lado de Bolzano-Weierstrass e
+Heine-Borel.
+:::
+
+## Conexidade e continuidade
+
+A propriedade decisiva: a imagem contínua preserva conexidade.
+
+::: {#thm-imagem-conexa}
+## Imagem contínua de conexo é conexa
+Se $f: X \to Y$ é contínua e $X$ é conexo, então $f(X)$ é conexo.
+:::
+
+::: {.proof}
+Se $f(X)$ fosse cindido por abertos $U, V$ de $Y$, então $f^{-1}(U)$ e $f^{-1}(V)$
+seriam abertos (continuidade), disjuntos, não vazios, cobrindo $X$ — cindindo $X$,
+contra a hipótese. Logo $f(X)$ é conexo.
+:::
+
+::: {#cor-tvi-topologico}
+## O TVI é topologia
+O **teorema do valor intermediário** (@thm-tvi) é corolário: se $f: [a, b] \to
+\mathbb{R}$ é contínua, $f([a,b])$ é conexo (imagem de conexo), logo um intervalo
+(@thm-conexos-reta) — e um intervalo contendo $f(a)$ e $f(b)$ contém **todos** os
+valores entre eles.
+:::
+
+::: {.callout-tip}
+## Por que o lápis não desgruda do papel
+A imagem intuitiva do TVI — "traçar sem levantar o lápis" — é exatamente a conexidade.
+Uma função contínua leva um intervalo (conexo) em um conexo; ela não pode produzir um
+"salto" porque isso cindiria a imagem. A conexidade transforma uma intuição visual num
+teorema demonstrável, e o generaliza muito além da reta.
+:::
+
+## Conexidade por caminhos
+
+Uma noção mais forte e mais visual de "ser de uma peça".
+
+::: {#def-conexo-caminhos}
+## Conexo por caminhos
+$X$ é **conexo por caminhos** se quaisquer dois pontos $a, b \in X$ podem ser ligados
+por um **caminho**: uma função contínua $\gamma: [0, 1] \to X$ com $\gamma(0) = a$ e
+$\gamma(1) = b$.
+:::
+
+::: {#thm-caminhos-implica-conexo}
+## Caminhos implica conexo
+Todo espaço conexo por caminhos é conexo. A recíproca **falha** em geral, mas vale para
+abertos de $\mathbb{R}^n$.
+:::
+
+::: {.callout-warning}
+## Conexo não implica conexo por caminhos
+O contraexemplo clássico é a **curva do topólogo**: o gráfico de $\operatorname{sen}
+(1/x)$ para $x > 0$, junto com o segmento vertical em $x = 0$. O conjunto é conexo (o
+segmento é aderente à curva), mas **não** conexo por caminhos — nenhum caminho contínuo
+alcança o segmento a partir da curva, que oscila infinitamente. As duas noções coincidem
+nos casos "bons" (abertos de $\mathbb{R}^n$), mas não em geral.
+:::
+
+## Componentes conexas
+
+::: {#def-componente}
+## Componente conexa
+A **componente conexa** de um ponto $x$ é o maior subconjunto conexo que o contém. As
+componentes **particionam** o espaço em "pedaços" conexos maximais — o número delas é
+um invariante topológico.
+:::
+
+::: {#exm-componentes}
+## Contando pedaços
+$[0,1] \cup [2,3]$ tem **duas** componentes conexas; $\mathbb{Q}$ tem uma componente
+para cada ponto (totalmente desconexo). Como o número de componentes é invariante,
+espaços com números diferentes de pedaços nunca são homeomorfos
+(@exm-invariante-distingue).
+:::
+
+## Exercícios
+
+::: {#exr-cx-1}
+Mostre que $\mathbb{R} \setminus \{0\}$ é desconexo, exibindo uma cisão.
+:::
+
+::: {#exr-cx-2}
+Use a conexidade para mostrar que não existe função contínua $f: [0,1] \to
+\mathbb{R}$ assumindo só valores em $\{0, 1\}$ e não constante.
+:::
+
+::: {#exr-cx-circulo}
+Argumente por que $\mathbb{R}$ e o círculo $S^1$ não são homeomorfos (dica: retire um
+ponto de cada).
+:::
+
+::: {#exr-cx-caminhos}
+Mostre que todo subconjunto **convexo** de $\mathbb{R}^n$ é conexo por caminhos.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cx-1
+$\mathbb{R}\setminus\{0\} = (-\infty, 0) \cup (0, +\infty)$: dois abertos não vazios e
+disjuntos. É uma cisão, logo o conjunto é **desconexo** (duas componentes).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cx-2
+Se tal $f$ existisse e não fosse constante, sua imagem seria $\{0, 1\}$ — um conjunto
+**desconexo**. Mas $[0,1]$ é conexo, e imagem contínua de conexo é conexa
+(@thm-imagem-conexa). Contradição: $f$ deve ser constante.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cx-circulo
+Retirar **qualquer** ponto de $S^1$ deixa um arco, ainda **conexo**. Retirar um ponto
+interior de $\mathbb{R}$ o torna **desconexo** (@exr-cx-1). Se houvesse homeomorfismo,
+ele preservaria conexidade após remover pontos correspondentes — mas um resultado é
+conexo e o outro não. Logo $\mathbb{R} \not\cong S^1$.
+:::
