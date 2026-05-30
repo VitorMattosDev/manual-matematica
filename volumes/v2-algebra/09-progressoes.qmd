@@ -1,0 +1,196 @@
+# Progressões aritméticas e geométricas {#sec-progressoes}
+
+## Motivação
+
+Uma dívida que cresce R\$ $50$ por mês; uma população que dobra a cada década; os
+juros de uma poupança. Esses padrões têm em comum uma **regularidade na passagem
+de um termo ao seguinte** — somar sempre a mesma quantia, ou multiplicar sempre
+pelo mesmo fator. São as **progressões aritméticas** (PA) e **geométricas** (PG),
+as sequências mais simples e mais frequentes da matemática aplicada.
+
+O que queremos delas é fórmula fechada: o valor do $n$-ésimo termo sem percorrer
+todos os anteriores, e a **soma** de muitos termos de uma vez. Essas fórmulas
+provam-se naturalmente por indução (@sec-inducao) — aliás, a soma de uma PA é uma
+generalização da soma de Gauss que já encontramos lá. Ao final, a soma infinita de
+uma PG dará o primeiro contato com a ideia de **limite**, que o Volume IV
+aprofunda.
+
+## Progressão aritmética
+
+::: {#def-pa}
+## Progressão aritmética
+Uma **progressão aritmética** é uma sequência $(a_1, a_2, a_3, \dots)$ em que cada
+termo, a partir do segundo, é o anterior somado a uma constante $r$, a **razão**:
+$a_{n+1} = a_n + r$.
+:::
+
+Aplicando a regra repetidamente, parte-se de $a_1$ e soma-se $r$ um total de $n -
+1$ vezes para chegar a $a_n$ — o que dá imediatamente a fórmula do termo geral.
+
+::: {#prp-termo-pa}
+## Termo geral da PA
+Numa PA de primeiro termo $a_1$ e razão $r$,
+$$
+a_n = a_1 + (n - 1) r.
+$$
+:::
+
+::: {.proof}
+Indução em $n$. Para $n = 1$, $a_1 = a_1 + 0 \cdot r$. ✓ Supondo $a_n = a_1 + (n -
+1)r$, a definição dá $a_{n+1} = a_n + r = a_1 + (n - 1)r + r = a_1 + n r$, que é a
+fórmula para $n + 1$. Por indução, vale para todo $n$.
+:::
+
+A soma dos primeiros termos tem uma fórmula elegante, descoberta (segundo a lenda)
+por Gauss aos sete anos.
+
+::: {#thm-soma-pa}
+## Soma dos termos de uma PA
+A soma $S_n = a_1 + a_2 + \dots + a_n$ dos $n$ primeiros termos é
+$$
+S_n = \frac{(a_1 + a_n)\, n}{2}.
+$$
+:::
+
+::: {.proof}
+Escreva a soma em ordem crescente e, abaixo, em ordem decrescente:
+$$
+\begin{aligned}
+S_n &= a_1 + a_2 + \dots + a_{n-1} + a_n, \\
+S_n &= a_n + a_{n-1} + \dots + a_2 + a_1.
+\end{aligned}
+$$
+Somando coluna a coluna, cada par vale $a_1 + a_n$ (pois ao avançar numa parcela e
+recuar na outra, os $+r$ e $-r$ se cancelam). São $n$ colunas, logo $2 S_n = (a_1
++ a_n) n$, donde a fórmula. Para $a_1 = 1$ e $r = 1$ recupera-se a soma de Gauss
+$\frac{n(n+1)}{2}$ do @prp-gauss.
+:::
+
+::: {#exm-pa}
+## Uma PA concreta
+Na PA $3, 7, 11, 15, \dots$ tem-se $a_1 = 3$ e $r = 4$. O décimo termo é $a_{10} =
+3 + 9 \cdot 4 = 39$, e a soma dos dez primeiros é $S_{10} = \dfrac{(3 + 39) \cdot
+10}{2} = 210$.
+:::
+
+## Progressão geométrica
+
+Trocando "somar" por "multiplicar", obtém-se a progressão geométrica.
+
+::: {#def-pg}
+## Progressão geométrica
+Uma **progressão geométrica** é uma sequência $(a_1, a_2, \dots)$ em que cada
+termo, a partir do segundo, é o anterior multiplicado por uma constante $q \neq 0$,
+a **razão**: $a_{n+1} = a_n \cdot q$.
+:::
+
+::: {#prp-termo-pg}
+## Termo geral da PG
+Numa PG de primeiro termo $a_1$ e razão $q$,
+$$
+a_n = a_1 \cdot q^{\,n - 1}.
+$$
+:::
+
+::: {.proof}
+Indução em $n$, idêntica à da PA com produto no lugar da soma: $a_1 = a_1 q^0$, e
+se $a_n = a_1 q^{n-1}$ então $a_{n+1} = a_n q = a_1 q^n$.
+:::
+
+::: {#thm-soma-pg}
+## Soma dos termos de uma PG
+Se $q \neq 1$, a soma dos $n$ primeiros termos de uma PG é
+$$
+S_n = a_1 \cdot \frac{q^n - 1}{q - 1}.
+$$
+:::
+
+::: {.proof}
+Escreva $S_n = a_1 + a_1 q + \dots + a_1 q^{n-1}$ e multiplique por $q$:
+$$
+q S_n = a_1 q + a_1 q^2 + \dots + a_1 q^n.
+$$
+Subtraindo a primeira da segunda, quase tudo se cancela (soma telescópica),
+restando $q S_n - S_n = a_1 q^n - a_1$. Logo $S_n(q - 1) = a_1(q^n - 1)$, e como
+$q \neq 1$ divide-se por $q - 1$.
+:::
+
+## A soma infinita
+
+Quando a razão tem módulo menor que $1$, os termos de uma PG **encolhem** e a soma
+de *infinitos* termos pode dar um número finito — um fato que desafia a intuição.
+
+::: {#thm-soma-pg-infinita}
+## Soma de uma PG infinita
+Se $|q| < 1$, a soma de todos os termos da PG é
+$$
+S = \frac{a_1}{1 - q}.
+$$
+:::
+
+::: {.callout-note}
+## Em que sentido se "soma infinitos termos"
+A fórmula vem de observar a soma parcial $S_n = a_1 \dfrac{q^n - 1}{q - 1}$
+(@thm-soma-pg). Quando $|q| < 1$, a potência $q^n$ fica tão próxima de $0$ quanto
+se queira ao crescer $n$ — então $S_n$ se aproxima de $\dfrac{a_1(0 - 1)}{q - 1} =
+\dfrac{a_1}{1 - q}$. Essa é a noção de **limite**, aqui usada de modo intuitivo e
+formalizada nos Volumes IV e V. É também a justificativa rigorosa de que
+$0{,}\overline{9} = 1$ (@sec-racionais): é a PG $0{,}9 + 0{,}09 + \dots$ com soma
+$\frac{0{,}9}{1 - 0{,}1} = 1$.
+:::
+
+::: {#exm-pg-infinita}
+## Somando infinitos termos
+A PG $\dfrac{1}{2}, \dfrac{1}{4}, \dfrac{1}{8}, \dots$ tem $a_1 = \tfrac12$ e $q =
+\tfrac12$, com $|q| < 1$. Sua soma infinita é
+$$
+S = \frac{1/2}{1 - 1/2} = 1.
+$$
+Os infinitos pedaços $\tfrac12 + \tfrac14 + \tfrac18 + \dots$ completam exatamente
+$1$ — a resolução aritmética do paradoxo de Zenão.
+:::
+
+## Exercícios
+
+::: {#exr-pa-termo}
+Numa PA, $a_1 = 5$ e $a_7 = 29$. Determine a razão e o termo $a_{20}$.
+:::
+
+::: {#exr-pa-soma}
+Calcule a soma de todos os inteiros pares de $2$ a $100$.
+:::
+
+::: {#exr-pg-termo}
+Numa PG de razão $3$, o quarto termo é $54$. Determine o primeiro termo e a soma
+dos cinco primeiros.
+:::
+
+::: {#exr-pg-infinita}
+Calcule a soma da PG infinita $9 + 3 + 1 + \dfrac{1}{3} + \dots$ e escreva
+$0{,}\overline{4}$ como soma de uma PG infinita, obtendo sua fração geratriz.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pa-soma
+Os pares $2, 4, \dots, 100$ formam uma PA com $a_1 = 2$, razão $r = 2$ e último
+termo $a_n = 100$. De $100 = 2 + (n - 1)\cdot 2$ vem $n = 50$ termos. Pela
+@thm-soma-pa,
+$$
+S_{50} = \frac{(2 + 100)\cdot 50}{2} = \frac{102 \cdot 50}{2} = 2550.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pg-infinita
+A PG $9 + 3 + 1 + \dots$ tem $a_1 = 9$ e $q = \tfrac13$ (pois $3/9 = 1/3$), com
+$|q| < 1$. A soma é $S = \dfrac{9}{1 - 1/3} = \dfrac{9}{2/3} = \dfrac{27}{2}$.
+
+Para $0{,}\overline{4} = 0{,}4 + 0{,}04 + 0{,}004 + \dots$, trata-se de uma PG com
+$a_1 = 0{,}4$ e $q = 0{,}1$:
+$$
+0{,}\overline{4} = \frac{0{,}4}{1 - 0{,}1} = \frac{0{,}4}{0{,}9} = \frac{4}{9}.
+$$
+Confirma a fração geratriz obtida pelo método do @sec-racionais.
+:::

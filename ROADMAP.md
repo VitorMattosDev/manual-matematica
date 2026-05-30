@@ -50,7 +50,7 @@ Pré-requisitos: nenhum.*
 - [x] `volumes/v2-algebra/06-polinomios.qmd` — Polinômios: operações, grau, divisão.
 - [x] `volumes/v2-algebra/07-fatoracao.qmd` — Produtos notáveis e fatoração.
 - [x] `volumes/v2-algebra/08-funcoes-polinomiais.qmd` — Funções polinomiais; teorema do resto e de D'Alembert.
-- [ ] `volumes/v2-algebra/09-progressoes.qmd` — Progressões aritméticas e geométricas.
+- [x] `volumes/v2-algebra/09-progressoes.qmd` — Progressões aritméticas e geométricas.
 - [ ] `volumes/v2-algebra/10-combinatoria.qmd` — Análise combinatória e binômio de Newton.
 
 ## Volume III — Geometria e Trigonometria

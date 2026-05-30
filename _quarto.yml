@@ -44,6 +44,7 @@ book:
         - volumes/v2-algebra/06-polinomios.qmd
         - volumes/v2-algebra/07-fatoracao.qmd
         - volumes/v2-algebra/08-funcoes-polinomiais.qmd
+        - volumes/v2-algebra/09-progressoes.qmd
     # ----------------------------------------------------------------
     # Os próximos volumes estão planejados em PLANO.md/ROADMAP.md. Para
     # ativá-los, crie os arquivos .qmd e descomente os blocos abaixo.
