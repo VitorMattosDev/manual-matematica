@@ -1,0 +1,200 @@
+# Expressões algébricas e manipulação {#sec-expressoes}
+
+## Motivação
+
+Toda a aritmética do Volume I tratava de números *concretos*: $2 + 3$, $\gcd(48,
+18)$, $\sqrt 2$. A álgebra dá o passo seguinte — substitui números por **letras** e
+passa a raciocinar sobre *todos* os números de uma vez. Escrever $a + b = b + a$
+não é uma conta, é uma lei: vale qualquer que seja a substituição de $a$ e $b$.
+
+Essa mudança de patamar tem um preço e um lucro. O preço é aprender a
+**manipular expressões** — somar termos semelhantes, aplicar a distributividade,
+reconhecer produtos notáveis — com segurança, sem violar as regras. O lucro é
+imenso: com símbolos resolvem-se equações, descrevem-se funções e enunciam-se
+fórmulas gerais. Este capítulo estabelece a gramática dessa manipulação, sempre
+ancorada nas propriedades das operações em $\mathbb{R}$ (@sec-reais).
+
+## Expressões e termos
+
+::: {#def-expressao}
+## Expressão algébrica
+Uma **expressão algébrica** é uma combinação de números e **variáveis** (letras
+que representam números) por meio das operações de soma, subtração, multiplicação,
+divisão e potenciação. Cada parcela somada é um **termo**; num termo, o número que
+multiplica a parte literal é o **coeficiente**.
+:::
+
+Por exemplo, em $3x^2 - 5xy + 7$ há três termos: $3x^2$ (coeficiente $3$), $-5xy$
+(coeficiente $-5$) e o termo constante $7$. **Substituir** as variáveis por números
+e efetuar as contas produz o **valor numérico** da expressão.
+
+::: {#exm-valor-numerico}
+## Valor numérico
+Para $x = 2$ e $y = -1$, a expressão $3x^2 - 5xy + 7$ vale
+$$
+3 \cdot 2^2 - 5 \cdot 2 \cdot (-1) + 7 = 12 + 10 + 7 = 29.
+$$
+A mesma expressão produz valores diferentes para outras substituições — é função
+das variáveis, não um número fixo.
+:::
+
+## As leis da manipulação
+
+Manipular expressões com letras é lícito porque as letras representam números
+reais, e os reais obedecem a leis fixas. Toda transformação algébrica é, no fundo,
+uma destas propriedades aplicada a símbolos.
+
+::: {#prp-leis-operacoes}
+## Propriedades das operações em $\mathbb{R}$
+Para todos $a, b, c \in \mathbb{R}$:
+
+- **comutatividade:** $a + b = b + a$ e $a b = b a$;
+- **associatividade:** $(a + b) + c = a + (b + c)$ e $(a b) c = a (b c)$;
+- **distributividade:** $a (b + c) = a b + a c$;
+- **elementos neutros:** $a + 0 = a$ e $a \cdot 1 = a$.
+:::
+
+Essas propriedades foram construídas, uma a uma, ao longo do Volume I — dos
+naturais (@sec-naturais) até os reais. Aqui passam a ser a **caixa de ferramentas**
+da álgebra. A distributividade, em particular, é a que mais trabalha.
+
+::: {#def-termos-semelhantes}
+## Termos semelhantes
+Dois termos são **semelhantes** quando têm exatamente a mesma parte literal (as
+mesmas variáveis com os mesmos expoentes). Termos semelhantes podem ser
+**reduzidos** a um só, somando-se os coeficientes.
+:::
+
+A redução é a distributividade lida de trás para frente: $3x + 5x = (3 + 5)x = 8x$.
+
+::: {.callout-warning}
+## Só se somam os semelhantes
+$3x + 5x = 8x$, mas $3x + 5x^2$ **não** se reduz: as partes literais $x$ e $x^2$
+diferem. Igualmente, $2a + 3b$ fica como está. Somar coeficientes de termos não
+semelhantes é o erro mais comum da álgebra inicial — equivale a dizer que "duas
+maçãs mais três laranjas são cinco maçãs".
+:::
+
+::: {#exm-reducao}
+## Reduzindo uma expressão
+$$
+4x^2 + 3x - x^2 + 2 - 5x = (4 - 1)x^2 + (3 - 5)x + 2 = 3x^2 - 2x + 2.
+$$
+Agrupam-se os termos em $x^2$, depois os em $x$, depois as constantes — cada grupo
+é uma aplicação da distributividade.
+:::
+
+## Multiplicação e produtos notáveis
+
+Para multiplicar duas somas, aplica-se a distributividade repetidamente: cada
+termo do primeiro fator multiplica cada termo do segundo.
+
+::: {#exm-produto-distributivo}
+## Multiplicando dois binômios
+$$
+(x + 2)(x + 3) = x \cdot x + x \cdot 3 + 2 \cdot x + 2 \cdot 3
+= x^2 + 5x + 6.
+$$
+:::
+
+Alguns produtos aparecem com tanta frequência que vale memorizar seu resultado.
+São os **produtos notáveis**, todos consequências diretas da distributividade.
+
+::: {#prp-produtos-notaveis}
+## Produtos notáveis
+Para todos $a, b \in \mathbb{R}$:
+$$
+(a + b)^2 = a^2 + 2ab + b^2, \qquad (a - b)^2 = a^2 - 2ab + b^2,
+$$
+$$
+(a + b)(a - b) = a^2 - b^2.
+$$
+:::
+
+::: {.proof}
+Cada um sai expandindo pela distributividade. Para o quadrado da soma,
+$$
+(a + b)^2 = (a + b)(a + b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2,
+$$
+usando $ab = ba$. Para a diferença de quadrados,
+$$
+(a + b)(a - b) = a^2 - ab + ba - b^2 = a^2 - b^2,
+$$
+pois os termos cruzados $-ab$ e $+ba$ se cancelam. O quadrado da diferença é
+análogo ao primeiro.
+:::
+
+::: {.callout-warning}
+## $(a + b)^2 \neq a^2 + b^2$
+O termo do meio $2ab$ não some. Esquecê-lo é o erro clássico: $(x + 3)^2 = x^2 +
+6x + 9$, e **não** $x^2 + 9$. Sempre que houver uma soma elevada ao quadrado, há
+o dobro do produto no meio.
+:::
+
+## Fator comum
+
+Lida ao contrário, a distributividade permite **fatorar**: extrair um fator que
+aparece em todos os termos.
+
+::: {#exm-fator-comum}
+## Pondo em evidência
+Em $6x^3 + 9x^2$, todos os termos contêm $3x^2$:
+$$
+6x^3 + 9x^2 = 3x^2 (2x + 3).
+$$
+A fatoração transforma uma *soma* em um *produto* — operação central na resolução
+de equações, pois um produto é zero exatamente quando um dos fatores é zero. O
+estudo sistemático da fatoração tem capítulo próprio adiante (@sec-expressoes
+serve-lhe de base).
+:::
+
+## Exercícios
+
+::: {#exr-reduzir}
+Reduza os termos semelhantes em $5a^2 b - 3ab^2 + 2a^2 b + ab^2 - a^2 b$.
+:::
+
+::: {#exr-expandir}
+Expanda e simplifique $(2x - 1)(x + 4) - (x - 2)^2$.
+:::
+
+::: {#exr-produto-notavel}
+Use um produto notável para calcular $103 \cdot 97$ mentalmente, sem efetuar a
+multiplicação direta. (Sugestão: $103 = 100 + 3$, $97 = 100 - 3$.)
+:::
+
+::: {#exr-fatorar}
+Fatore $4x^2 y - 8x y^2 + 12 x y$ pondo o fator comum em evidência.
+:::
+
+::: {#exr-valor}
+Mostre, expandindo, que $(a + b)^2 - (a - b)^2 = 4ab$ para todos $a, b$, e use isso
+para calcular $(a + b)^2 - (a - b)^2$ quando $a = 17$ e $b = 0{,}25$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-produto-notavel
+Escreva $103 \cdot 97 = (100 + 3)(100 - 3)$. Pela diferença de quadrados
+(@prp-produtos-notaveis),
+$$
+(100 + 3)(100 - 3) = 100^2 - 3^2 = 10000 - 9 = 9991.
+$$
+O produto notável transforma uma multiplicação difícil em duas contas triviais.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-expandir
+Expandindo cada parte:
+$$
+(2x - 1)(x + 4) = 2x^2 + 8x - x - 4 = 2x^2 + 7x - 4,
+$$
+$$
+(x - 2)^2 = x^2 - 4x + 4.
+$$
+Subtraindo, com cuidado nos sinais:
+$$
+(2x^2 + 7x - 4) - (x^2 - 4x + 4) = x^2 + 11x - 8.
+$$
+:::

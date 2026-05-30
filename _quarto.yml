@@ -34,16 +34,16 @@ book:
         - volumes/v1-fundamentos/08-congruencias.qmd
         - volumes/v1-fundamentos/09-racionais.qmd
         - volumes/v1-fundamentos/10-reais-introducao.qmd
+    - part: "Volume II — Álgebra Elementar"
+      chapters:
+        - volumes/v2-algebra/01-expressoes.qmd
     # ----------------------------------------------------------------
-    # Os próximos volumes estão planejados em PLANO.md. Para ativá-los,
-    # crie os arquivos .qmd correspondentes e descomente os blocos abaixo.
+    # Os próximos volumes estão planejados em PLANO.md/ROADMAP.md. Para
+    # ativá-los, crie os arquivos .qmd e descomente os blocos abaixo.
     # ----------------------------------------------------------------
-    # - part: "Volume II — Álgebra Elementar"
-    #   chapters:
-    #     - volumes/v2-algebra/01-equacoes.qmd
     # - part: "Volume III — Geometria e Trigonometria"
     #   chapters:
-    #     - volumes/v3-geometria/01-geometria-euclidiana.qmd
+    #     - volumes/v3-geometria/01-euclidiana-axiomas.qmd
   appendices:
     - notacao.qmd
 
