@@ -1,0 +1,136 @@
+# Estatística descritiva e estimação {#sec-estatistica-estimacao}
+
+## Motivação
+
+A probabilidade parte de um modelo conhecido e calcula a chance dos dados. A
+**estatística** faz o caminho inverso: a partir de **dados observados**, infere o modelo
+que os gerou. É a ponte entre a teoria (Volumes anteriores) e o mundo real — como estimar
+a taxa de uma doença, a eficácia de um remédio, a intenção de voto, vendo apenas uma
+**amostra**.
+
+Este capítulo trata de dois passos: **descrever** os dados (resumi-los em medidas e
+gráficos) e **estimar** os parâmetros desconhecidos da população a partir da amostra.
+Apoiado nas leis-limite (@sec-lgn-tcl), ele mostra por que uma amostra bem coletada
+revela a população — e quão confiantes podemos estar nisso, preparando os testes de
+hipótese (@sec-testes-hipotese).
+
+## Estatística descritiva
+
+::: {#def-medidas-descritivas}
+## Medidas de posição e dispersão
+Para dados $x_1, \dots, x_n$:
+
+- **média amostral** $\bar x = \frac1n\sum x_i$ (centro);
+- **mediana** (valor do meio, robusta a outliers) e **moda** (mais frequente);
+- **variância amostral** $s^2 = \frac{1}{n-1}\sum(x_i - \bar x)^2$ e **desvio-padrão**
+  $s$ (dispersão).
+:::
+
+::: {.callout-note}
+## Por que dividir por $n - 1$
+A variância amostral usa $n - 1$ (e não $n$) no denominador — a **correção de Bessel**.
+A razão: usar $\bar x$ (estimado dos próprios dados) em vez da média verdadeira $\mu$
+subestima a dispersão; dividir por $n-1$ corrige isso, tornando $s^2$ um estimador
+**não viesado** de $\sigma^2$. Perde-se um "grau de liberdade" ao estimar a média.
+:::
+
+::: {.callout-tip}
+## Média vs. mediana: a tirania dos outliers
+A média é sensível a valores extremos; a mediana, não. A renda *média* de um bar sobe
+drasticamente se um bilionário entra; a renda *mediana* mal se move. Por isso, para
+distribuições enviesadas (renda, preços de imóveis), a **mediana** costuma descrever
+melhor o "típico". Escolher a medida certa é o primeiro ato de honestidade estatística.
+:::
+
+## Amostra e estimadores
+
+::: {#def-estimador}
+## População, amostra e estimador
+Um **parâmetro** ($\mu$, $\sigma$, $p$) descreve a **população** (desconhecida). Uma
+**amostra** aleatória $X_1, \dots, X_n$ é coletada, e um **estimador** é uma função da
+amostra usada para "adivinhar" o parâmetro — por exemplo, $\bar X$ estima $\mu$.
+:::
+
+::: {#def-propriedades-estimador}
+## Boas propriedades de um estimador
+- **Não viesado**: $E[\hat\theta] = \theta$ (acerta em média);
+- **consistente**: $\hat\theta \to \theta$ quando $n \to \infty$ (melhora com mais
+  dados);
+- **eficiente**: tem a menor variância possível entre os não viesados.
+:::
+
+::: {.callout-note}
+## A média amostral é um ótimo estimador
+$\bar X$ é não viesado ($E[\bar X] = \mu$, por linearidade, @thm-linearidade-esperanca) e
+consistente (pela LGN, @thm-lgn, $\bar X \to \mu$). É o estimador natural da média
+populacional — e o TCL (@thm-tcl) ainda nos diz sua distribuição aproximada, permitindo
+quantificar a incerteza.
+:::
+
+## Máxima verossimilhança
+
+::: {#def-verossimilhanca}
+## Estimação por máxima verossimilhança
+O método de **máxima verossimilhança** (MV) escolhe o parâmetro que torna os dados
+observados **mais prováveis**: maximiza a função de verossimilhança $L(\theta) = \prod_i
+f(x_i; \theta)$ (a probabilidade conjunta dos dados como função de $\theta$).
+:::
+
+::: {.callout-tip}
+## "Qual parâmetro explica melhor o que vi?"
+A MV inverte a pergunta da probabilidade: em vez de "dado $\theta$, qual a chance destes
+dados?", pergunta "dados estes dados, qual $\theta$ os torna mais plausíveis?". Na
+prática, maximiza-se o **log** da verossimilhança (transformando produto em soma,
+@sec-logaritmo) e usa-se cálculo (derivada zero, @sec-aplicacoes-derivada). É o método de
+estimação mais usado na estatística e no aprendizado de máquina — treinar um modelo é, em
+geral, maximizar verossimilhança.
+:::
+
+::: {#exm-mv-bernoulli}
+## MV para uma proporção
+Observando $k$ sucessos em $n$ ensaios Bernoulli, a verossimilhança é $L(p) = p^k(1-p)
+^{n-k}$. Derivando $\log L$ e igualando a zero, obtém-se $\hat p = \frac kn$ — a
+**proporção amostral**, o estimador intuitivo, agora justificado pela MV.
+:::
+
+## Exercícios
+
+::: {#exr-ee-descritiva}
+Para os dados $2, 4, 4, 6, 9$, calcule média, mediana, moda e variância amostral $s^2$.
+:::
+
+::: {#exr-ee-viesado}
+Mostre que $\bar X$ é não viesado: $E[\bar X] = \mu$.
+:::
+
+::: {#exr-ee-outlier}
+Aos dados do @exr-ee-descritiva acrescente o valor $100$. Como mudam a média e a
+mediana? Qual é mais robusta?
+:::
+
+::: {#exr-ee-mv}
+Explique, em uma frase, o que a estimativa de máxima verossimilhança $\hat p = k/n$
+significa para uma moeda lançada $n$ vezes.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ee-descritiva
+Média $\bar x = \frac{25}{5} = 5$. Ordenados $2,4,4,6,9$: mediana $= 4$ (do meio); moda
+$= 4$ (repetido). $s^2 = \frac{1}{4}[(2-5)^2 + (4-5)^2 + (4-5)^2 + (6-5)^2 + (9-5)^2] =
+\frac{9+1+1+1+16}{4} = 7$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ee-viesado
+$E[\bar X] = E\left[\frac1n\sum X_i\right] = \frac1n\sum E[X_i] = \frac1n\cdot n\mu =
+\mu$, por linearidade (@thm-linearidade-esperanca). Logo $\bar X$ é não viesado.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ee-outlier
+Com $100$: a média salta para $\frac{125}{6} \approx 20{,}8$ (puxada pelo outlier),
+enquanto a mediana dos seis valores $2,4,4,6,9,100$ é $\frac{4+6}{2} = 5$ — quase
+inalterada. A **mediana** é muito mais robusta a valores extremos.
+:::
