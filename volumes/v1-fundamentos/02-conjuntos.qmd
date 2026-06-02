@@ -51,6 +51,27 @@ todo elemento de $A$ também é elemento de $B$ — isto é, $x \in A \Rightarro
 **subconjunto próprio** e escrevemos $A \subset B$.
 :::
 
+Num **diagrama de Venn** — conjuntos como regiões do plano — a inclusão $A
+\subseteq B$ aparece como na @fig-subconjunto: a região de $A$ cabe dentro da de
+$B$.
+
+::: {#fig-subconjunto}
+```{.tikz}
+%%| filename: conjuntos-subconjunto
+%%| alt: Dois círculos; o círculo A está inteiramente dentro do círculo B, ilustrando A contido em B.
+\begin{tikzpicture}[scale=0.95]
+  \fill[manualblue!8] (0,0) circle (1.7);
+  \draw[semithick] (0,0) circle (1.7);
+  \node at (0.55,1.15) {$B$};
+  \fill[manualred!18] (-0.35,-0.15) circle (0.85);
+  \draw[semithick] (-0.35,-0.15) circle (0.85);
+  \node at (-0.35,-0.15) {$A$};
+\end{tikzpicture}
+```
+
+$A \subseteq B$: todo elemento de $A$ é também elemento de $B$.
+:::
+
 A inclusão é a ferramenta-padrão para provar igualdades de conjuntos, porque
 quebra uma bicondicional em duas implicações mais simples de tratar.
 
@@ -104,6 +125,53 @@ Frequentemente todos os conjuntos em jogo são subconjuntos de um mesmo conjunto
 **universo** $U$ (por exemplo, $U = \mathbb{N}$). Nesse contexto define-se o
 **complemento** de $A$ como $A^c = U \setminus A$, os elementos do universo que
 não estão em $A$.
+
+Sombreando a região correspondente, cada operação ganha uma imagem (@fig-operacoes).
+O retângulo representa o universo $U$.
+
+::: {#fig-operacoes}
+```{.tikz}
+%%| filename: conjuntos-operacoes
+%%| alt: Quatro diagramas de Venn lado a lado mostrando, sombreadas, as regiões de A união B, A interseção B, A menos B e o complemento de A.
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\small}]
+  \tikzset{uni/.style={draw=manualgray, thin}, cir/.style={draw=black, semithick},
+           sh/.style={fill=manualblue!25}}
+  % União
+  \begin{scope}[shift={(0,2.8)}]
+    \coordinate (A) at (-0.45,0); \coordinate (B) at (0.45,0);
+    \draw[uni] (-1.5,-1.0) rectangle (1.5,1.1);
+    \fill[sh] (A) circle (0.9); \fill[sh] (B) circle (0.9);
+    \draw[cir] (A) circle (0.9); \draw[cir] (B) circle (0.9);
+    \node at (-0.78,0.55) {$A$}; \node at (0.78,0.55) {$B$}; \node at (0,-1.32) {$A \cup B$};
+  \end{scope}
+  % Interseção
+  \begin{scope}[shift={(4,2.8)}]
+    \coordinate (A) at (-0.45,0); \coordinate (B) at (0.45,0);
+    \draw[uni] (-1.5,-1.0) rectangle (1.5,1.1);
+    \begin{scope} \clip (A) circle (0.9); \fill[sh] (B) circle (0.9); \end{scope}
+    \draw[cir] (A) circle (0.9); \draw[cir] (B) circle (0.9);
+    \node at (-0.78,0.55) {$A$}; \node at (0.78,0.55) {$B$}; \node at (0,-1.32) {$A \cap B$};
+  \end{scope}
+  % Diferença
+  \begin{scope}[shift={(0,0)}]
+    \coordinate (A) at (-0.45,0); \coordinate (B) at (0.45,0);
+    \draw[uni] (-1.5,-1.0) rectangle (1.5,1.1);
+    \begin{scope} \clip (A) circle (0.9); \fill[sh, even odd rule] (A) circle (0.9) (B) circle (0.9); \end{scope}
+    \draw[cir] (A) circle (0.9); \draw[cir] (B) circle (0.9);
+    \node at (-0.78,0.55) {$A$}; \node at (0.78,0.55) {$B$}; \node at (0,-1.32) {$A \setminus B$};
+  \end{scope}
+  % Complemento
+  \begin{scope}[shift={(4,0)}]
+    \coordinate (A) at (-0.45,0);
+    \fill[sh, even odd rule] (-1.5,-1.0) rectangle (1.5,1.1) (A) circle (0.9);
+    \draw[uni] (-1.5,-1.0) rectangle (1.5,1.1); \draw[cir] (A) circle (0.9);
+    \node at (-0.45,0) {$A$}; \node[font=\footnotesize] at (1.2,0.8) {$U$}; \node at (0,-1.32) {$A^c$};
+  \end{scope}
+\end{tikzpicture}
+```
+
+As quatro operações sobre $A$ e $B$, com a região resultante sombreada.
+:::
 
 ::: {#exm-operacoes}
 ## Calculando operações
@@ -193,6 +261,35 @@ $$
 São $2 \cdot 2 = 4$ pares: em geral, se $A$ tem $m$ elementos e $B$ tem $n$,
 então $A \times B$ tem $m \cdot n$. O plano cartesiano $\mathbb{R} \times
 \mathbb{R} = \mathbb{R}^2$ é o exemplo arquetípico.
+:::
+
+Dispondo $A$ num eixo horizontal e $B$ num vertical, cada par $(a,b)$ vira um
+ponto de uma grade (@fig-produto-cartesiano) — a semente do plano cartesiano que
+acompanhará todo o restante do manual.
+
+::: {#fig-produto-cartesiano}
+```{.tikz}
+%%| filename: conjuntos-produto-cartesiano
+%%| alt: Grade com A igual a 1 e 2 no eixo horizontal e B igual a x e y no vertical; os quatro pares ordenados aparecem como pontos.
+\begin{tikzpicture}[scale=1.1]
+  \draw[eixo] (-0.3,0) -- (3.1,0) node[right] {$A$};
+  \draw[eixo] (0,-0.3) -- (0,3.1) node[above] {$B$};
+  \foreach \x/\lab in {1.4/1, 2.4/2} \node[below] at (\x,0) {$\lab$};
+  \foreach \y/\lab in {1.4/x, 2.4/y} \node[left] at (0,\y) {$\lab$};
+  \foreach \x in {1.4,2.4}
+    \foreach \y in {1.4,2.4} {
+      \draw[auxiliar] (\x,0) -- (\x,\y);
+      \draw[auxiliar] (0,\y) -- (\x,\y);
+      \node[ponto] at (\x,\y) {};
+    }
+  \node[above right, font=\footnotesize] at (1.4,1.4) {$(1,x)$};
+  \node[above right, font=\footnotesize] at (1.4,2.4) {$(1,y)$};
+  \node[above right, font=\footnotesize] at (2.4,1.4) {$(2,x)$};
+  \node[above right, font=\footnotesize] at (2.4,2.4) {$(2,y)$};
+\end{tikzpicture}
+```
+
+$A \times B$ com $A = \{1,2\}$ e $B = \{x,y\}$: os quatro pares como pontos de uma grade.
 :::
 
 ## Conjunto das partes
