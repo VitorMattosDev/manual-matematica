@@ -60,6 +60,31 @@ mede $90°$. Um ângulo é **agudo** se mede menos que $90°$ e **obtuso** se me
 entre $90°$ e $180°$.
 :::
 
+A @fig-tipos-angulo mostra os três tipos lado a lado.
+
+::: {#fig-tipos-angulo}
+```{.tikz}
+%%| filename: euclidiana-tipos-angulo
+%%| alt: Três ângulos: um agudo (menor que reto), um reto (com marca de ângulo reto) e um obtuso (maior que reto).
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \begin{scope}[shift={(0,0)}]
+    \draw[curva, -{Stealth[length=4pt]}] (0,0) -- (1.3,0); \draw[curva, -{Stealth[length=4pt]}] (0,0) -- (45:1.3);
+    \draw[manualred] (0.5,0) arc (0:45:0.5); \node at (0.2,-0.45) {agudo};
+  \end{scope}
+  \begin{scope}[shift={(3,0)}]
+    \draw[curva, -{Stealth[length=4pt]}] (0,0) -- (1.3,0); \draw[curva, -{Stealth[length=4pt]}] (0,0) -- (0,1.3);
+    \draw[manualred] (0.32,0) -- (0.32,0.32) -- (0,0.32); \node at (0.2,-0.45) {reto};
+  \end{scope}
+  \begin{scope}[shift={(6.2,0)}]
+    \draw[curva, -{Stealth[length=4pt]}] (0,0) -- (1.3,0); \draw[curva, -{Stealth[length=4pt]}] (0,0) -- (130:1.3);
+    \draw[manualred] (0.5,0) arc (0:130:0.5); \node at (0.0,-0.45) {obtuso};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Os três tipos: agudo ($<90°$), reto ($=90°$) e obtuso (entre $90°$ e $180°$).
+:::
+
 Dois ângulos são **suplementares** quando somam $180°$ e **complementares** quando
 somam $90°$. Quando duas retas se cruzam, formam-se quatro ângulos com relações
 fixas entre si.
