@@ -43,6 +43,33 @@ em cada coordenada, a média das coordenadas — pois avança metade do caminho 
 e metade em $y$.
 :::
 
+A @fig-distancia mostra o porquê: $A$ e $B$ são vértices opostos de um triângulo
+retângulo de catetos $x_B - x_A$ e $y_B - y_A$, e $\overline{AB}$ é a hipotenusa.
+
+::: {#fig-distancia}
+```{.tikz}
+%%| filename: analitica-distancia
+%%| alt: Plano cartesiano com os pontos A e B; o segmento AB é a hipotenusa de um triângulo retângulo de catetos x_B menos x_A (horizontal) e y_B menos y_A (vertical).
+\begin{tikzpicture}[scale=0.95, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-0.4,0) -- (4.4,0) node[right] {$x$};
+  \draw[eixo] (0,-0.4) -- (0,3.5) node[above] {$y$};
+  \foreach \x in {1,2,3,4} \node[below] at (\x,0) {$\x$};
+  \foreach \y in {1,2,3} \node[left] at (0,\y) {$\y$};
+  \coordinate (A) at (1,1); \coordinate (B) at (4,3);
+  \draw[auxiliar] (A) -| (B);
+  \draw[curva] (A) -- (B);
+  \node[ponto, label=below left:$A$] at (A) {};
+  \node[ponto, label=above:$B$] at (B) {};
+  \node[below, manualgray] at (2.5,1) {$x_B-x_A$};
+  \node[right, manualgray] at (4,2) {$y_B-y_A$};
+  \node[above left, manualblue] at (2.4,2.05) {$d$};
+\end{tikzpicture}
+```
+
+A distância $d = \overline{AB}$ é a hipotenusa do triângulo de catetos
+$x_B - x_A$ e $y_B - y_A$: o teorema de Pitágoras no plano.
+:::
+
 ## A equação da reta
 
 ::: {#def-equacao-reta}
