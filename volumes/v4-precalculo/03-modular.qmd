@@ -52,8 +52,23 @@ noção de **norma** (Volume VI) e de **métrica** (Volume IX).
 ## O gráfico em V e transformações
 
 O gráfico de $f(x) = |x|$ é a reta $y = x$ para $x \geq 0$ e a reta $y = -x$ para
-$x < 0$: duas semirretas que se encontram na origem formando um **V**. A partir
-dele, deslocamentos e reflexões produzem toda uma família.
+$x < 0$: duas semirretas que se encontram na origem formando um **V**
+(@fig-modular). A partir dele, deslocamentos e reflexões produzem toda uma família.
+
+::: {#fig-modular}
+```{.tikz}
+%%| filename: precalculo-modular
+%%| alt: Gráfico de y igual a módulo de x, em forma de V com vértice na origem.
+\begin{tikzpicture}[scale=0.9, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-1.9,0) -- (1.9,0) node[right] {$x$};
+  \draw[eixo] (0,-0.3) -- (0,1.9) node[above] {$y$};
+  \draw[curva] (-1.6,1.6) -- (0,0) -- (1.6,1.6);
+  \node[manualblue] at (1.4,1.8) {$y=|x|$};
+\end{tikzpicture}
+```
+
+O gráfico de $y = |x|$: duas semirretas formando um V com vértice na origem.
+:::
 
 ::: {#prp-transformacoes}
 ## Transformações de gráfico
