@@ -51,6 +51,25 @@ tomar $n$ suficientemente grande. Uma sequência que não converge a número alg
 diz-se **divergente**.
 :::
 
+Plotando os termos $(n, a_n)$ (@fig-limite-sequencia), convergir é os pontos se
+**acumularem** junto à reta horizontal $y = L$ à medida que $n$ cresce.
+
+::: {#fig-limite-sequencia}
+```{.tikz}
+%%| filename: sequencias-limite
+%%| alt: Pontos (n, a_n) que descem aproximando-se de uma reta horizontal tracejada de altura L conforme n aumenta.
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-0.3,0) -- (8.6,0) node[right] {$n$};
+  \draw[eixo] (0,-0.2) -- (0,2.4) node[above] {$a_n$};
+  \draw[destaque, dashed] (0,1) -- (8.2,1); \node[right, manualred] at (8.2,1) {$L$};
+  \foreach \n in {1,...,8} {\fill[manualblue] (\n, {1+1/\n}) circle (1.6pt);}
+\end{tikzpicture}
+```
+
+Uma sequência convergente: os termos $a_n$ acumulam-se junto a $y = L$ quando
+$n \to \infty$.
+:::
+
 ::: {.callout-note}
 ## O sentido preciso de "tão próximo quanto se queira"
 A frase informal esconde a definição rigorosa, que o Volume VIII tornará exata:
