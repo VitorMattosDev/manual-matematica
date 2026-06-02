@@ -97,6 +97,43 @@ Um sistema linear $2 \times 2$ é exatamente de um dos tipos:
 - **possível e indeterminado:** infinitas soluções (retas coincidentes).
 :::
 
+Cada equação do sistema é uma reta no plano, e resolver o sistema é achar os
+pontos comuns às duas — daí os três tipos (@fig-tipos-sistema).
+
+::: {#fig-tipos-sistema}
+```{.tikz}
+%%| filename: sistemas-tres-tipos
+%%| alt: Três quadros: retas concorrentes que se cruzam num ponto (solução única), retas paralelas distintas (nenhuma solução) e retas coincidentes (infinitas soluções).
+\begin{tikzpicture}[scale=0.95, every node/.style={font=\footnotesize}]
+  \begin{scope}[shift={(0,0)}]
+    \draw[manualgray, thin] (-1.3,-1.3) rectangle (1.3,1.3);
+    \begin{scope} \clip (-1.3,-1.3) rectangle (1.3,1.3);
+      \draw[curva] (-1.3,-0.9) -- (1.3,1.1); \draw[curva] (-1.3,1.1) -- (1.3,-0.9);
+    \end{scope}
+    \fill[manualred] (0,0.1) circle (1.6pt);
+    \node at (0,-1.65) {concorrentes: único};
+  \end{scope}
+  \begin{scope}[shift={(3.6,0)}]
+    \draw[manualgray, thin] (-1.3,-1.3) rectangle (1.3,1.3);
+    \begin{scope} \clip (-1.3,-1.3) rectangle (1.3,1.3);
+      \draw[curva] (-1.3,-0.6) -- (1.3,1.0); \draw[curva] (-1.3,-1.15) -- (1.3,0.45);
+    \end{scope}
+    \node at (0,-1.65) {paralelas: nenhum};
+  \end{scope}
+  \begin{scope}[shift={(7.2,0)}]
+    \draw[manualgray, thin] (-1.3,-1.3) rectangle (1.3,1.3);
+    \begin{scope} \clip (-1.3,-1.3) rectangle (1.3,1.3);
+      \draw[curva] (-1.3,-0.8) -- (1.3,1.0);
+    \end{scope}
+    \node at (0,-1.65) {coincidentes: infinitos};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Os três tipos de sistema, lidos geometricamente: retas concorrentes (uma
+solução), paralelas distintas (nenhuma) e coincidentes (infinitas).
+:::
+
 O sinal algébrico que distingue os casos aparece ao eliminar uma incógnita: se
 sobra uma equação do primeiro grau legítima, o sistema é determinado; se sobra uma
 igualdade falsa ($0 = k$, $k \neq 0$), é impossível; se sobra uma identidade ($0 =
