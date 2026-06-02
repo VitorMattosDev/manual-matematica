@@ -34,10 +34,12 @@ jobs:
         # O setup do Quarto não põe o tlmgr no PATH dos passos seguintes, então o
         # localizamos pelo diretório do TinyTeX e o adicionamos ao PATH.
         run: |
-          TLBIN="$(dirname "$(find "$HOME" -type f -name tlmgr -path '*TinyTeX*' 2>/dev/null | head -1)")"
-          echo "tlmgr em: $TLBIN"
-          echo "$TLBIN" >> "$GITHUB_PATH"
-          "$TLBIN/tlmgr" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts
+          TLMGR="$(find "$HOME" /opt /usr/local -type f -name tlmgr 2>/dev/null | head -1)"
+          [ -z "$TLMGR" ] && TLMGR="$(find / -type f -name tlmgr 2>/dev/null | head -1)"
+          echo "tlmgr encontrado em: $TLMGR"
+          test -n "$TLMGR" || { echo "ERRO: tlmgr nao encontrado no runner"; exit 1; }
+          echo "$(dirname "$TLMGR")" >> "$GITHUB_PATH"
+          "$TLMGR" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts
 
       - name: Renderizar e publicar no GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
