@@ -29,7 +29,25 @@ de período $2\pi$ e têm imagem $[-1, 1]$.
 Seus gráficos são as **senoides**: ondas que oscilam entre $-1$ e $1$. O do seno
 parte da origem ($\operatorname{sen}0 = 0$), o do cosseno parte do alto ($\cos 0 =
 1$); um é o outro deslocado de $\tfrac{\pi}{2}$, pois $\cos x = \operatorname{sen}
-\!\left(x + \tfrac{\pi}{2}\right)$.
+\!\left(x + \tfrac{\pi}{2}\right)$ — como se vê na @fig-senoides.
+
+::: {#fig-senoides}
+```{.tikz}
+%%| filename: precalculo-senoides
+%%| alt: Gráficos de seno e cosseno sobre um período, oscilando entre menos 1 e 1; o cosseno é o seno adiantado de um quarto de período.
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-0.3,0) -- (7,0) node[right] {$x$};
+  \draw[eixo] (0,-1.4) -- (0,1.5) node[above] {$y$};
+  \draw[curva] plot[domain=0:6.6, samples=90] (\x, {sin(deg(\x))});
+  \draw[destaque] plot[domain=0:6.6, samples=90] (\x, {cos(deg(\x))});
+  \foreach \x/\l in {3.1416/\pi, 6.2832/2\pi} {\draw (\x,0.06) -- (\x,-0.06); \node[below] at (\x,-0.05) {$\l$};}
+  \node[manualblue] at (1.7,1.25) {$\operatorname{sen}x$}; \node[manualred] at (0.55,1.25) {$\cos x$};
+\end{tikzpicture}
+```
+
+As senoides do seno e do cosseno: oscilam entre $-1$ e $1$ com período $2\pi$; o
+cosseno é o seno adiantado de $\tfrac{\pi}{2}$.
+:::
 
 ::: {#def-amplitude-periodo}
 ## Amplitude e período
