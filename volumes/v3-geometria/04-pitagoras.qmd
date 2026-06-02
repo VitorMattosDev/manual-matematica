@@ -28,6 +28,45 @@ relativa à hipotenusa divide-a em duas **projeções**: $m$ (projeção do cate
 e $n$ (projeção do cateto $c$), com $m + n = a$.
 :::
 
+A @fig-triangulo-retangulo fixa essa configuração: a altura $h$ desce do ângulo
+reto $A$ até o pé $H$ sobre a hipotenusa, repartindo-a nas projeções $m$ e $n$.
+
+::: {#fig-triangulo-retangulo}
+```{.tikz}
+%%| filename: triangulo-retangulo-altura
+%%| alt: Triângulo ABC retângulo em A, com a altura AH baixada até a hipotenusa BC, dividindo-a nas projeções m (de B a H) e n (de H a C).
+\begin{tikzpicture}[scale=1.1]
+  \coordinate (B) at (0,0);
+  \coordinate (C) at (5,0);
+  \coordinate (A) at (3.2,2.4);
+  \coordinate (H) at (3.2,0);
+  % triângulo e altura
+  \draw[curva] (B) -- (C) -- (A) -- cycle;
+  \draw[destaque] (A) -- (H);
+  % ângulo reto em A
+  \coordinate (ab) at ($(A)!0.3cm!(B)$);
+  \coordinate (ac) at ($(A)!0.3cm!(C)$);
+  \draw[manualgray] (ab) -- ($(ab)+(ac)-(A)$) -- (ac);
+  % ângulo reto em H (lado de C)
+  \draw[manualgray] ($(H)+(0,0.3)$) -- ($(H)+(0.3,0.3)$) -- ($(H)+(0.3,0)$);
+  % rótulos dos lados
+  \node[left]        at ($(A)!0.5!(H)$) {$h$};
+  \node[above right] at ($(A)!0.5!(C)$) {$b$};
+  \node[above left]  at ($(A)!0.5!(B)$) {$c$};
+  \node[below]       at ($(B)!0.5!(H)$) {$m$};
+  \node[below]       at ($(H)!0.5!(C)$) {$n$};
+  % vértices
+  \node[ponto, label=above:$A$]       at (A) {};
+  \node[ponto, label=below left:$B$]  at (B) {};
+  \node[ponto, label=below right:$C$] at (C) {};
+  \node[ponto, label=below:$H$]       at (H) {};
+\end{tikzpicture}
+```
+
+A altura relativa à hipotenusa reparte o triângulo retângulo em dois menores,
+ambos semelhantes ao original.
+:::
+
 ::: {#prp-semelhanca-retangulo}
 ## Os três triângulos semelhantes
 A altura relativa à hipotenusa divide o triângulo retângulo em dois triângulos,
