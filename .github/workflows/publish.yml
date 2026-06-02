@@ -31,7 +31,13 @@ jobs:
         # As figuras .tikz são compiladas pelo filtro chamando pdflatex/dvisvgm
         # direto (fora do latexmk do Quarto), então o auto-install do Quarto não
         # as cobre. O TinyTeX base não traz estes pacotes nem o binário dvisvgm.
-        run: tlmgr install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts
+        # O setup do Quarto não põe o tlmgr no PATH dos passos seguintes, então o
+        # localizamos pelo diretório do TinyTeX e o adicionamos ao PATH.
+        run: |
+          TLBIN="$(dirname "$(find "$HOME" -type f -name tlmgr -path '*TinyTeX*' 2>/dev/null | head -1)")"
+          echo "tlmgr em: $TLBIN"
+          echo "$TLBIN" >> "$GITHUB_PATH"
+          "$TLBIN/tlmgr" install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts
 
       - name: Renderizar e publicar no GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
