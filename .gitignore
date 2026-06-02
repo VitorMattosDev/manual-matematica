@@ -5,9 +5,12 @@
 
 **/*.quarto_ipynb
 
-# artefatos de render local (LaTeX intermediario + figuras)
+# artefatos de render local (LaTeX intermediario)
 *.tex
-*_files/
+# NAO ignorar *_files/: o `quarto publish gh-pages` filtra recursos incidentais
+# por este .gitignore, e os SVGs das figuras ficam em <pagina>_files/mediabag/.
+# Ignorar *_files/ fazia os SVGs sumirem do site (404). O output do livro vai
+# para _book/ (ja ignorado), entao o fluxo normal nao deixa _files na arvore.
 
 # logs de build/diagnostico locais
 *.log
