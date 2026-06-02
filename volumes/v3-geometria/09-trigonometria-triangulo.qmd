@@ -28,6 +28,29 @@ $$
 $$
 :::
 
+Os nomes "oposto" e "adjacente" são relativos ao ângulo $\theta$ escolhido
+(@fig-razoes-triangulo): o cateto oposto fica de frente para $\theta$; o adjacente,
+encostado nele.
+
+::: {#fig-razoes-triangulo}
+```{.tikz}
+%%| filename: trig-razoes-triangulo
+%%| alt: Triângulo retângulo com o ângulo agudo teta num vértice; o cateto encostado em teta é o adjacente, o cateto de frente é o oposto, e o lado maior é a hipotenusa.
+\begin{tikzpicture}[scale=1.3, every node/.style={font=\footnotesize}]
+  \coordinate (A) at (0,0); \coordinate (B) at (3,0); \coordinate (C) at (3,1.8);
+  \draw[curva] (A) -- (B) -- (C) -- cycle;
+  \draw[manualgray] (2.72,0) -- (2.72,0.28) -- (3,0.28);
+  \pic[draw=manualred, angle radius=0.62cm, "$\theta$"] {angle=B--A--C};
+  \node[below] at (1.5,-0.03) {cateto adjacente};
+  \node[right] at (3.02,0.9) {cateto oposto};
+  \node[above left] at (1.4,0.95) {hipotenusa};
+\end{tikzpicture}
+```
+
+Os lados de um triângulo retângulo vistos do ângulo $\theta$: adjacente, oposto e
+hipotenusa.
+:::
+
 Que essas razões dependam só de $\theta$ — e não do triângulo escolhido — é
 exatamente a semelhança: dois triângulos retângulos com o mesmo ângulo agudo são
 semelhantes (caso AA, @thm-caso-aa), logo têm lados proporcionais e razões iguais.
