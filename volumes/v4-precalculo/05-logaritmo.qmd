@@ -27,6 +27,26 @@ A **função logarítmica** $\log_a \colon (0, \infty) \to \mathbb{R}$ é a **in
 da exponencial de base $a$.
 :::
 
+Por ser a inversa, seu gráfico é o da exponencial **refletido** na reta $y = x$
+(@fig-logaritmo): o que era domínio vira imagem, e vice-versa.
+
+::: {#fig-logaritmo}
+```{.tikz}
+%%| filename: precalculo-logaritmo
+%%| alt: Gráfico de y igual a a elevado a x e de y igual a log base a de x, simétricos em relação à reta tracejada y igual a x.
+\begin{tikzpicture}[scale=0.85, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-1.7,0) -- (3.7,0) node[right] {$x$};
+  \draw[eixo] (0,-1.7) -- (0,3.7) node[above] {$y$};
+  \draw[auxiliar] (-1.5,-1.5) -- (3.5,3.5); \node[manualgray] at (3.0,3.3) {$y=x$};
+  \draw[curva] plot[domain=-1.5:1.3, samples=50] (\x, {exp(\x)});
+  \draw[destaque] plot[domain=0.22:3.6, samples=50] (\x, {ln(\x)});
+  \node[manualblue] at (1.6,3.3) {$y=a^x$}; \node[manualred] at (3.2,1.4) {$y=\log_a x$};
+\end{tikzpicture}
+```
+
+A função logarítmica é a exponencial refletida na reta $y = x$.
+:::
+
 Por ser inversa da exponencial (que é bijetora de $\mathbb{R}$ em $(0,\infty)$,
 @thm-inversa-bijecao), o logaritmo existe e é único. As duas funções **desfazem-se
 mutuamente**:
