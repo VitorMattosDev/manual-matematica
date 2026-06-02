@@ -81,6 +81,38 @@ Para $a x^2 + b x + c = 0$ com coeficientes reais:
   $\mathbb{R}$).
 :::
 
+O sinal de $\Delta$ é a altura do gráfico em relação ao eixo (@fig-discriminante):
+as raízes reais são os pontos onde a parábola $y = a x^2 + b x + c$ cruza o eixo $x$.
+
+::: {#fig-discriminante}
+```{.tikz}
+%%| filename: equacao2grau-discriminante
+%%| alt: Três parábolas: a primeira cruza o eixo x em dois pontos (Delta maior que zero), a segunda toca o eixo num ponto (Delta igual a zero), a terceira não toca o eixo (Delta menor que zero).
+\begin{tikzpicture}[scale=0.95, every node/.style={font=\footnotesize}]
+  \begin{scope}[shift={(0,0)}]
+    \draw[eixo] (-1.5,0) -- (1.5,0);
+    \draw[curva] plot[domain=-1.28:1.28, samples=40] (\x, {\x*\x-0.7});
+    \fill[manualred] (-0.8367,0) circle (1.4pt); \fill[manualred] (0.8367,0) circle (1.4pt);
+    \node at (0,-1.05) {$\Delta>0$};
+  \end{scope}
+  \begin{scope}[shift={(3.4,0)}]
+    \draw[eixo] (-1.5,0) -- (1.5,0);
+    \draw[curva] plot[domain=-1.05:1.05, samples=40] (\x, {\x*\x});
+    \fill[manualred] (0,0) circle (1.4pt);
+    \node at (0,-1.05) {$\Delta=0$};
+  \end{scope}
+  \begin{scope}[shift={(6.8,0)}]
+    \draw[eixo] (-1.5,0) -- (1.5,0);
+    \draw[curva] plot[domain=-0.95:0.95, samples=40] (\x, {\x*\x+0.42});
+    \node at (0,-1.05) {$\Delta<0$};
+  \end{scope}
+\end{tikzpicture}
+```
+
+O discriminante conta os cruzamentos da parábola com o eixo $x$: duas raízes se
+$\Delta>0$, uma (dupla) se $\Delta=0$, nenhuma real se $\Delta<0$.
+:::
+
 ::: {.callout-note}
 ## O caso $\Delta < 0$ e os complexos
 A ausência de raízes reais quando $\Delta < 0$ não é o fim da história: ampliando
