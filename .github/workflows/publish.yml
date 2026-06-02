@@ -22,6 +22,17 @@ jobs:
         with:
           tinytex: true   # necessário para gerar o PDF
 
+      - name: Instalar Chrome headless
+        # Necessário para o Quarto rasterizar o diagrama mermaid do index.qmd no
+        # PDF; sem ele o render trava em [1/134] index.qmd no runner Ubuntu.
+        run: quarto install chrome-headless-shell --no-prompt
+
+      - name: Instalar pacotes LaTeX das figuras TikZ
+        # As figuras .tikz são compiladas pelo filtro chamando pdflatex/dvisvgm
+        # direto (fora do latexmk do Quarto), então o auto-install do Quarto não
+        # as cobre. O TinyTeX base não traz estes pacotes nem o binário dvisvgm.
+        run: tlmgr install standalone pgf pgfplots dvisvgm xcolor amsmath amsfonts
+
       - name: Renderizar e publicar no GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
