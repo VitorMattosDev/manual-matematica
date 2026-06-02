@@ -43,6 +43,29 @@ O resultado central da geometria do círculo relaciona os dois ângulos.
 Um ângulo inscrito mede **metade** do ângulo central que subtende o mesmo arco.
 :::
 
+A @fig-angulo-inscrito ilustra o enunciado: o ângulo inscrito $\theta$ no vértice
+$C$ e o ângulo central $2\theta$ no centro $O$ enxergam o mesmo arco $AB$.
+
+::: {#fig-angulo-inscrito}
+```{.tikz}
+%%| filename: circunferencia-angulo-inscrito
+%%| alt: Circunferência com pontos A, B no bordo e centro O; o ângulo central AOB mede 2 teta, e o ângulo inscrito ACB, no ponto C do bordo, mede teta, ambos subtendendo o arco AB.
+\begin{tikzpicture}[scale=1.5, every node/.style={font=\footnotesize}]
+  \draw[semithick] (0,0) circle (1);
+  \coordinate (O) at (0,0); \coordinate (A) at (200:1); \coordinate (B) at (340:1); \coordinate (C) at (80:1);
+  \draw[destaque] (A) -- (O) -- (B);
+  \draw[curva] (A) -- (C) -- (B);
+  \node[ponto, label=left:$A$] at (A) {}; \node[ponto, label=right:$B$] at (B) {};
+  \node[ponto, label=above:$C$] at (C) {}; \node[ponto, label={[below]right:$O$}] at (O) {};
+  \pic[draw=manualblue, angle radius=0.42cm, "$\theta$"] {angle=A--C--B};
+  \pic[draw=manualred, angle radius=0.3cm, "$2\theta$"] {angle=B--O--A};
+\end{tikzpicture}
+```
+
+O ângulo inscrito $\theta$ (em $C$) é metade do ângulo central $2\theta$ (em $O$)
+que subtende o mesmo arco $AB$.
+:::
+
 ::: {.proof}
 Tratamos o caso em que um lado do ângulo inscrito passa pelo centro (o caso geral
 reduz-se a este somando ou subtraindo dois casos). Seja $\hat{A}$ o ângulo
