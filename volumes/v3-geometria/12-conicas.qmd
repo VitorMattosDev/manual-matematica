@@ -37,6 +37,30 @@ traço é uma elipse. Quando os focos coincidem ($c = 0$), a soma constante vira
 o caso $a = b$.
 :::
 
+A @fig-elipse mostra a definição: para todo ponto $P$ da elipse, a soma das
+distâncias aos dois focos $F_1$ e $F_2$ é a mesma — é o barbante esticado do
+jardineiro.
+
+::: {#fig-elipse}
+```{.tikz}
+%%| filename: conicas-elipse
+%%| alt: Elipse com dois focos F1 e F2 sobre o eixo maior e um ponto P na curva; os segmentos de P a cada foco têm soma constante.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \draw[curva] (0,0) ellipse (2.2 and 1.4);
+  \coordinate (F1) at (-1.7,0); \coordinate (F2) at (1.7,0);
+  \fill (F1) circle (1.2pt); \node[below] at (F1) {$F_1$};
+  \fill (F2) circle (1.2pt); \node[below] at (F2) {$F_2$};
+  \coordinate (P) at (1.1,1.212);
+  \draw[destaque] (F1) -- (P) -- (F2);
+  \fill[manualred] (P) circle (1.2pt); \node[above right] at (P) {$P$};
+  \node[manualgray] at (0,-1.78) {$\overline{PF_1} + \overline{PF_2}$ é constante};
+\end{tikzpicture}
+```
+
+A elipse como lugar geométrico: $\overline{PF_1} + \overline{PF_2}$ é constante
+para todo ponto $P$ da curva.
+:::
+
 ::: {#exm-elipse}
 ## Lendo uma elipse
 A elipse $\dfrac{x^2}{25} + \dfrac{y^2}{9} = 1$ tem $a^2 = 25$ e $b^2 = 9$, logo $a
