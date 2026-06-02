@@ -41,6 +41,33 @@ $$
 as coordenadas de $P$.
 :::
 
+Geometricamente (@fig-circulo-trig), $\cos\theta$ e $\operatorname{sen}\theta$ são
+as projeções de $P$ sobre os eixos horizontal e vertical.
+
+::: {#fig-circulo-trig}
+```{.tikz}
+%%| filename: trigonometria-circulo
+%%| alt: Círculo de raio 1 centrado na origem; um raio faz ângulo teta com o eixo x e termina no ponto P, cuja abscissa é cosseno de teta (segmento horizontal) e ordenada é seno de teta (segmento vertical).
+\begin{tikzpicture}[scale=1.7, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-1.3,0) -- (1.35,0) node[right] {$x$};
+  \draw[eixo] (0,-1.3) -- (0,1.35) node[above] {$y$};
+  \draw[semithick] (0,0) circle (1);
+  \draw[manualgreen!75!black, very thick] (0,0) -- (0.574,0);
+  \draw[destaque, very thick] (0.574,0) -- (0.574,0.819);
+  \draw[curva] (0,0) -- (0.574,0.819);
+  \fill (0.574,0.819) circle (0.7pt);
+  \draw[manualgray] (0.32,0) arc (0:55:0.32);
+  \node at (28:0.46) {$\theta$};
+  \node[below, manualgreen!60!black] at (0.32,-0.02) {$\cos\theta$};
+  \node[right, destaque] at (0.574,0.45) {$\operatorname{sen}\theta$};
+  \node[above right] at (0.574,0.819) {$P$};
+\end{tikzpicture}
+```
+
+No círculo de raio $1$, $\cos\theta$ e $\operatorname{sen}\theta$ são a abscissa e
+a ordenada do ponto $P$ obtido girando $\theta$ a partir do eixo $x$.
+:::
+
 Para $\theta$ agudo, $P$ está no primeiro quadrante e recuperam-se as razões do
 triângulo retângulo de hipotenusa $1$ — a nova definição **estende** a antiga. Mas
 agora $\theta$ pode ser qualquer real, e a relação fundamental $\operatorname{sen}^2
