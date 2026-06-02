@@ -38,6 +38,29 @@ Seja dada uma equação. Obtém-se uma equação **equivalente** ao:
 2. multiplicar (ou dividir) os dois lados por um mesmo número **não nulo**.
 :::
 
+A imagem é a balança em equilíbrio (@fig-balanca): a igualdade é o fiel no
+centro, e toda operação feita **nos dois pratos** preserva o equilíbrio — e, com
+ele, as soluções.
+
+::: {#fig-balanca}
+```{.tikz}
+%%| filename: equacoes-balanca
+%%| alt: Balança de dois pratos em equilíbrio, com a expressão x mais 3 num prato e 8 no outro.
+\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+  \fill[manualgray!55] (-0.32,-1.0) -- (0.32,-1.0) -- (0.16,0) -- (-0.16,0) -- cycle;
+  \draw[manualgray] (-0.7,-1.0) -- (0.7,-1.0);
+  \draw[semithick] (-2,0.5) -- (2,0.5);
+  \draw[manualgray, semithick] (0,0) -- (0,0.5); \fill (0,0.5) circle (1.5pt);
+  \draw (-2,0.5) -- (-2,0.18); \draw[semithick] (-2.5,0.18) arc (180:360:0.5 and 0.26);
+  \draw (2,0.5) -- (2,0.18); \draw[semithick] (1.5,0.18) arc (180:360:0.5 and 0.26);
+  \node at (-2,-0.07) {$x+3$}; \node at (2,-0.07) {$8$};
+\end{tikzpicture}
+```
+
+A equação como balança: o que se faz num prato faz-se no outro, e o equilíbrio
+— as soluções — se mantém.
+:::
+
 ::: {.proof}
 Se $A = B$ é verdadeira para certo $x$, então $A + C = B + C$ também é, e
 reciprocamente subtraindo $C$ — logo o conjunto solução não muda. Para o produto
