@@ -66,6 +66,28 @@ recuar na outra, os $+r$ e $-r$ se cancelam). São $n$ colunas, logo $2 S_n = (a
 $\frac{n(n+1)}{2}$ do @prp-gauss.
 :::
 
+Esse pareamento tem forma de retângulo (@fig-soma-pa): empilhando os termos como
+barras e duplicando-os de cabeça para baixo, cada coluna soma $a_1 + a_n$, e as
+$n$ colunas formam um retângulo de área $2 S_n$.
+
+::: {#fig-soma-pa}
+```{.tikz}
+%%| filename: progressoes-soma-pa
+%%| alt: Barras azuis de alturas crescentes, os termos da PA, completadas por barras vermelhas invertidas, formando um retângulo de altura a1 mais an e largura n termos.
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\footnotesize}]
+  \foreach \i in {1,...,5}{
+    \fill[manualblue!35] (\i,0) rectangle (\i+0.8,\i*0.45);
+    \fill[manualred!16] (\i,\i*0.45) rectangle (\i+0.8,6*0.45);
+  }
+  \draw[manualgray, decorate, decoration={brace, amplitude=4pt, raise=2pt}] (6.8,6*0.45) -- (1,6*0.45); \node[above=5pt] at (3.9,6*0.45) {$a_1+a_n$};
+  \draw[manualgray, decorate, decoration={brace, mirror, amplitude=4pt, raise=2pt}] (1,0) -- (6.8,0); \node[below=5pt] at (3.9,0) {$n$ termos};
+\end{tikzpicture}
+```
+
+A soma $S_n$ (barras azuis) e sua cópia invertida (vermelhas) preenchem um
+retângulo $n \times (a_1 + a_n)$: logo $2 S_n = (a_1 + a_n)\, n$.
+:::
+
 ::: {#exm-pa}
 ## Uma PA concreta
 Na PA $3, 7, 11, 15, \dots$ tem-se $a_1 = 3$ e $r = 4$. O décimo termo é $a_{10} =
