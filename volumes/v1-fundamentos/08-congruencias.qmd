@@ -16,6 +16,29 @@ chegar a uma pérola, o **pequeno teorema de Fermat**, que diz algo surpreendent
 sobre potências módulo um primo. Tudo se apoia na divisão euclidiana (@sec-inteiros)
 e na identidade de Bézout (@sec-mdc).
 
+O relógio é a imagem certa (@fig-congruencia-relogio): contadas as horas em
+círculo, ao passar de $11$ volta-se a $0$ — os inteiros "dão a volta" a cada $n$.
+
+::: {#fig-congruencia-relogio}
+```{.tikz}
+%%| filename: congruencia-relogio
+%%| alt: Mostrador com doze posições de 0 a 11 em círculo; uma seta marcada +1 leva da posição 11 de volta à 0, ilustrando que 12 é congruente a 0 módulo 12.
+\begin{tikzpicture}[scale=1]
+  \draw[semithick] (0,0) circle (1.6);
+  \foreach \i in {0,...,11}{
+    \node[ponto] at ({90-\i*30}:1.6) {};
+    \node at ({90-\i*30}:1.95) {$\i$};
+  }
+  \node[manualgray, font=\footnotesize] at (0,0) {$\bmod\ 12$};
+  \draw[destaque, -{Stealth[length=5pt]}] (117:1.6) arc (117:93:1.6);
+  \node[destaque, font=\footnotesize] at (104:1.3) {$+1$};
+\end{tikzpicture}
+```
+
+Aritmética módulo $12$: ao passar de $11$ volta-se a $0$ (pois $12 \equiv 0$).
+Logo $13 \equiv 1$ e $25 \equiv 1$ — cada volta completa não muda a posição.
+:::
+
 ## A relação de congruência
 
 ::: {#def-congruencia}
