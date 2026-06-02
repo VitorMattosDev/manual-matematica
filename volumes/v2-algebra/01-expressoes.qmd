@@ -58,6 +58,28 @@ Essas propriedades foram construídas, uma a uma, ao longo do Volume I — dos
 naturais (@sec-naturais) até os reais. Aqui passam a ser a **caixa de ferramentas**
 da álgebra. A distributividade, em particular, é a que mais trabalha.
 
+Ela tem uma leitura de áreas (@fig-distributiva): um retângulo de altura $a$ e
+base $b + c$ tem área $a(b+c)$, igual à soma das áreas $ab$ e $ac$ das duas tiras.
+
+::: {#fig-distributiva}
+```{.tikz}
+%%| filename: expressoes-distributiva
+%%| alt: Retângulo de altura a e base b mais c, dividido em duas tiras de áreas ab e ac.
+\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+  \fill[manualblue!14] (0,0) rectangle (2,1.3);
+  \fill[manualred!14] (2,0) rectangle (3.2,1.3);
+  \draw[semithick] (0,0) rectangle (3.2,1.3);
+  \draw[semithick] (2,0) -- (2,1.3);
+  \node at (1,0.65) {$ab$}; \node at (2.6,0.65) {$ac$};
+  \draw[manualgray, decorate, decoration={brace, mirror, amplitude=4pt, raise=3pt}] (0,0) -- (2,0); \node[below=7pt] at (1,0) {$b$};
+  \draw[manualgray, decorate, decoration={brace, mirror, amplitude=4pt, raise=3pt}] (2,0) -- (3.2,0); \node[below=7pt] at (2.6,0) {$c$};
+  \draw[manualgray, decorate, decoration={brace, amplitude=4pt, raise=3pt}] (0,1.3) -- (0,0); \node[left=7pt] at (0,0.65) {$a$};
+\end{tikzpicture}
+```
+
+A distributividade $a(b+c) = ab + ac$ como soma de áreas.
+:::
+
 ::: {#def-termos-semelhantes}
 ## Termos semelhantes
 Dois termos são **semelhantes** quando têm exatamente a mesma parte literal (as
