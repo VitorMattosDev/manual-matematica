@@ -17,6 +17,11 @@ quarto publish gh-pages   # render + deploy manual (raramente necessário)
 - **PDF exige TeX local** (`quarto install tinytex`). Sem TeX, qualquer render do
   formato PDF falha com `No TeX installation was detected`. Para trabalhar só no
   site numa máquina sem TeX, comente o bloco `pdf:` em `_quarto.yml`.
+- **Figuras TikZ também exigem TeX**, inclusive no HTML: cada figura é compilada
+  por LaTeX → `dvisvgm` (SVG). Num capítulo com figura, o `quarto preview` numa
+  máquina sem TeX falhará nesse bloco. Toolchain completo:
+  `quarto install tinytex` e depois, no `bin/windows` do TinyTeX,
+  `tlmgr install dvisvgm pgfplots`.
 
 ## Estrutura
 
@@ -44,6 +49,10 @@ volumes/      capítulos, em volumes/vN-tema/NN-nome.qmd
 - Referência cruzada: `@thm-nome` → "Teorema 3.1" automático. **Nunca** escreva
   "Teorema 3.1" na mão.
 - Matemática: `$...$` em linha, `$$...$$` em destaque.
+- Figuras: **TikZ/PGFplots** num bloco ```` ```{.tikz} ```` envolto numa div
+  `::: {#fig-nome}` com legenda; referencie com `@fig-nome`. O padrão completo,
+  os estilos prontos (`curva`, `destaque`, `ponto`…) e a paleta estão no
+  `PLANO.md` (seção "Figuras"). **Nunca** escreva "Figura 4.1" na mão.
 
 ## Regras do projeto
 

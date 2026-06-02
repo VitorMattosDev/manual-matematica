@@ -65,3 +65,40 @@ gabarito. Resumo:
 Tipografia e cores ficam em `styles.css` (HTML) e no `include-in-header` do PDF
 em `_quarto.yml`. Mantê-las centralizadas garante que os próximos manuais
 (Física, Química…) herdem o mesmo padrão.
+
+## Figuras (TikZ / PGFplots)
+
+As figuras são escritas em **TikZ/PGFplots** dentro do próprio `.qmd` — texto
+versionável, sem arquivos de imagem soltos. O filtro `danmackinlay/tikz`
+(vendorizado em `_extensions/`) compila cada bloco em **SVG** (no HTML, via
+`dvisvgm`) ou embute o **PDF** direto (no livro em PDF).
+
+**Padrão de uma figura referenciável** (espelhe-o sempre):
+
+```markdown
+A @fig-nome mostra ...
+
+::: {#fig-nome}
+```{.tikz}
+%%| filename: nome-do-arquivo
+%%| alt: Texto alternativo descritivo (acessibilidade).
+\begin{tikzpicture}
+  ...
+\end{tikzpicture}
+```
+
+Legenda da figura, terminando em ponto.
+:::
+```
+
+- O **id vai na `div` `::: {#fig-...}`**, não no bloco de código — é assim que o
+  crossref do Quarto numera a figura e faz `@fig-nome` → "Figura 4.1".
+- A **legenda** é o parágrafo logo antes do `:::`.
+- **Preâmbulo e paleta são centralizados** no template padrão do filtro, em
+  `_extensions/danmackinlay/tikz/tikz.lua` (não repita `\usepackage` por figura).
+  Estilos prontos: `curva` (azul, traço grosso), `destaque` (vermelho),
+  `auxiliar` (cinza tracejado), `eixo`, `ponto`. Cores: `manualblue`,
+  `manualred`, `manualgreen`, `manualyellow`, `manualgray`.
+- O `_extensions/danmackinlay/tikz/tikz.lua` tem **patches locais** (marcados com
+  "Local patch") para Windows e para a saída PDF. **Não rode `quarto update`** na
+  extensão sem reaplicá-los.

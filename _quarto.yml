@@ -185,6 +185,15 @@ book:
 
 bibliography: references.bib
 
+# Figuras TikZ/PGFplots: o filtro compila cada bloco ```{.tikz} em SVG (HTML,
+# via dvisvgm) ou PDF embutido (livro PDF). O preâmbulo e a paleta das figuras
+# ficam no template padrão do filtro, em _extensions/danmackinlay/tikz/tikz.lua.
+filters:
+  - danmackinlay/tikz   # roda ANTES dos filtros do Quarto (marcador `quarto`
+  - quarto              # abaixo) para que o crossref @fig-… enxergue a figura.
+tikz:
+  svg-engine: dvisvgm
+
 # Rótulos em português para os ambientes de teorema, prova, etc.
 language:
   crossref-thm-title: "Teorema"
