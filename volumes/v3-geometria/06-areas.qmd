@@ -53,6 +53,29 @@ A = \frac{b \cdot h}{2}.
 $$
 :::
 
+O triângulo ocupa exatamente **metade** do retângulo de mesma base $b$ e mesma
+altura $h$ (@fig-area-triangulo).
+
+::: {#fig-area-triangulo}
+```{.tikz}
+%%| filename: areas-triangulo
+%%| alt: Triângulo de base b e altura h inscrito num retângulo de lados b e h; o triângulo ocupa metade do retângulo.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \fill[manualblue!7] (0,0) rectangle (4,2.2);
+  \draw[manualgray, thin] (0,0) rectangle (4,2.2);
+  \coordinate (A) at (0,0); \coordinate (B) at (4,0); \coordinate (C) at (1.4,2.2);
+  \fill[manualblue!22] (A) -- (B) -- (C) -- cycle;
+  \draw[curva] (A) -- (B) -- (C) -- cycle;
+  \draw[destaque, dashed] (C) -- (1.4,0);
+  \node[right, destaque] at (1.42,1.1) {$h$};
+  \draw[manualgray, decorate, decoration={brace, mirror, amplitude=4pt, raise=3pt}] (0,0) -- (4,0);
+  \node[below=7pt] at (2,0) {$b$};
+\end{tikzpicture}
+```
+
+A área do triângulo é metade da do retângulo de base $b$ e altura $h$: $A = bh/2$.
+:::
+
 ::: {.proof}
 Duplicando o triângulo e juntando as duas cópias por um lado, forma-se um
 **paralelogramo** de base $b$ e altura $h$ (uma cópia é o triângulo girado de
