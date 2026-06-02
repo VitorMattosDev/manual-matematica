@@ -428,7 +428,7 @@
     "href": "volumes/v1-fundamentos/06-mdc-euclides.html#o-algoritmo-de-euclides",
     "title": "6  MDC, MMC e o algoritmo de Euclides",
     "section": "6.3 O algoritmo de Euclides",
-    "text": "6.3 O algoritmo de Euclides\nO Lema 6.1 transforma o problema \\(\\gcd(a, b)\\) no problema menor \\(\\gcd(b, r)\\), com \\(0 \\leq r &lt; b\\). Repetindo, os segundos argumentos \\(b &gt; r &gt; \\dots \\geq 0\\) formam uma sequência estritamente decrescente de naturais, que por boa ordenação (Teorema 3.3) não pode descer para sempre: em algum momento o resto é \\(0\\). Quando isso acontece, \\(\\gcd(\\,\\cdot\\,, 0)\\) é o próprio primeiro argumento — e esse é o MDC procurado.\n\nExemplo 6.1 (Calculando \\(\\gcd(48, 18)\\)) Aplicamos divisões sucessivas, cada linha alimentando a próxima com o divisor e o resto: \\[\n\\begin{aligned}\n48 &= 18 \\cdot 2 + 12, &\\quad &\\gcd(48, 18) = \\gcd(18, 12),\\\\\n18 &= 12 \\cdot 1 + 6,  &\\quad &\\phantom{\\gcd(48, 18)} = \\gcd(12, 6),\\\\\n12 &= 6 \\cdot 2 + 0,   &\\quad &\\phantom{\\gcd(48, 18)} = \\gcd(6, 0) = 6.\n\\end{aligned}\n\\] O último resto não nulo é \\(6\\), e de fato \\(\\gcd(48, 18) = 6\\).\n\n\n\n\n\n\n\nDicaPor que o algoritmo termina e está correto\n\n\n\nDois fatos sustentam o método: ele termina, porque os restos decrescem em \\(\\mathbb{N}\\) e não há sequência infinita decrescente (boa ordenação); e ele dá a resposta certa, porque cada passo preserva o MDC (Lema 6.1). Terminação e correção — é o que se exige de qualquer algoritmo.",
+    "text": "6.3 O algoritmo de Euclides\nO Lema 6.1 transforma o problema \\(\\gcd(a, b)\\) no problema menor \\(\\gcd(b, r)\\), com \\(0 \\leq r &lt; b\\). Repetindo, os segundos argumentos \\(b &gt; r &gt; \\dots \\geq 0\\) formam uma sequência estritamente decrescente de naturais, que por boa ordenação (Teorema 3.3) não pode descer para sempre: em algum momento o resto é \\(0\\). Quando isso acontece, \\(\\gcd(\\,\\cdot\\,, 0)\\) é o próprio primeiro argumento — e esse é o MDC procurado.\n\nExemplo 6.1 (Calculando \\(\\gcd(48, 18)\\)) Aplicamos divisões sucessivas, cada linha alimentando a próxima com o divisor e o resto: \\[\n\\begin{aligned}\n48 &= 18 \\cdot 2 + 12, &\\quad &\\gcd(48, 18) = \\gcd(18, 12),\\\\\n18 &= 12 \\cdot 1 + 6,  &\\quad &\\phantom{\\gcd(48, 18)} = \\gcd(12, 6),\\\\\n12 &= 6 \\cdot 2 + 0,   &\\quad &\\phantom{\\gcd(48, 18)} = \\gcd(6, 0) = 6.\n\\end{aligned}\n\\] O último resto não nulo é \\(6\\), e de fato \\(\\gcd(48, 18) = 6\\).\n\nO algoritmo tem uma leitura geométrica (Figura 6.1): ladrilhar um retângulo \\(48 \\times 18\\) com os maiores quadrados possíveis reproduz exatamente as divisões sucessivas, e o menor quadrado usado tem lado \\(\\gcd(48, 18) = 6\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigura 6.1: Ladrilhando o retângulo \\(48 \\times 18\\): dois quadrados de lado \\(18\\), um de \\(12\\) e dois de \\(6\\). O lado do menor quadrado é \\(\\gcd(48, 18) = 6\\).\n\n\n\n\n\n\n\n\n\nDicaPor que o algoritmo termina e está correto\n\n\n\nDois fatos sustentam o método: ele termina, porque os restos decrescem em \\(\\mathbb{N}\\) e não há sequência infinita decrescente (boa ordenação); e ele dá a resposta certa, porque cada passo preserva o MDC (Lema 6.1). Terminação e correção — é o que se exige de qualquer algoritmo.",
     "crumbs": [
       "Volume I — Fundamentos: Lógica e Aritmética",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>MDC, MMC e o algoritmo de Euclides</span>"
@@ -604,7 +604,18 @@
     "href": "volumes/v1-fundamentos/09-racionais.html",
     "title": "9  Números racionais",
     "section": "",
-    "text": "9.1 Motivação\nOs inteiros do Capítulo 5 somam, subtraem e multiplicam sem sair de casa, mas a divisão exata só funciona por acaso: \\(6 / 3\\) é inteiro, \\(1 / 3\\) não. Para que a equação \\(b x = a\\) tenha sempre solução (com \\(b \\neq 0\\)), repetimos a estratégia que nos levou de \\(\\mathbb{N}\\) a \\(\\mathbb{Z}\\): ampliamos o sistema, agora acrescentando as frações. O resultado é o corpo dos racionais \\(\\mathbb{Q}\\).\nA construção é a mesma do capítulo dos inteiros — classes de pares —, só que agora o par \\((a, b)\\) representa o quociente \\(a / b\\). Em seguida descobrimos duas características que distinguem \\(\\mathbb{Q}\\) de \\(\\mathbb{Z}\\): os racionais são densos (entre dois quaisquer há sempre um terceiro, sem “buracos” de sucessor), e cada um tem uma representação decimal que ou termina ou se repete periodicamente. Essa última propriedade, no próximo capítulo, será exatamente o que os números irracionais violam.",
+    "text": "9.1 Motivação\nOs inteiros do Capítulo 5 somam, subtraem e multiplicam sem sair de casa, mas a divisão exata só funciona por acaso: \\(6 / 3\\) é inteiro, \\(1 / 3\\) não. Para que a equação \\(b x = a\\) tenha sempre solução (com \\(b \\neq 0\\)), repetimos a estratégia que nos levou de \\(\\mathbb{N}\\) a \\(\\mathbb{Z}\\): ampliamos o sistema, agora acrescentando as frações. O resultado é o corpo dos racionais \\(\\mathbb{Q}\\).\nA construção é a mesma do capítulo dos inteiros — classes de pares —, só que agora o par \\((a, b)\\) representa o quociente \\(a / b\\). Em seguida descobrimos duas características que distinguem \\(\\mathbb{Q}\\) de \\(\\mathbb{Z}\\): os racionais são densos (entre dois quaisquer há sempre um terceiro, sem “buracos” de sucessor), e cada um tem uma representação decimal que ou termina ou se repete periodicamente. Essa última propriedade, no próximo capítulo, será exatamente o que os números irracionais violam.\nA densidade é fácil de visualizar (Figura 9.1): entre dois racionais \\(a &lt; b\\), o ponto médio \\(m = \\frac{a+b}{2}\\) já é um racional entre eles — e o mesmo argumento, aplicado a \\(a\\) e \\(m\\), nunca termina.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Números racionais</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/09-racionais.html#motivação",
+    "href": "volumes/v1-fundamentos/09-racionais.html#motivação",
+    "title": "9  Números racionais",
+    "section": "",
+    "text": "Figura 9.1: Entre dois racionais \\(a\\) e \\(b\\) sempre cabe outro — por exemplo o ponto médio \\(m = \\frac{a+b}{2}\\). Repetindo, obtêm-se infinitos: \\(\\mathbb{Q}\\) é denso.",
     "crumbs": [
       "Volume I — Fundamentos: Lógica e Aritmética",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Números racionais</span>"
@@ -659,7 +670,18 @@
     "href": "volumes/v1-fundamentos/10-reais-introducao.html",
     "title": "10  Os números reais",
     "section": "",
-    "text": "10.1 Motivação\nFechamos o capítulo anterior com uma inquietação: \\(\\mathbb{Q}\\) é denso, sem saltos visíveis, e ainda assim furado. Não existe racional cujo quadrado seja \\(2\\) (Capítulo 7), embora exista um segmento — a diagonal do quadrado de lado \\(1\\) — cujo comprimento elevado ao quadrado dá exatamente \\(2\\). Há um ponto na reta que deveria se chamar \\(\\sqrt 2\\) e que nenhum racional ocupa.\nOs números reais \\(\\mathbb{R}\\) são a estrutura que tapa esses buracos: a reta completa, sem furos, onde todo comprimento, toda diagonal e todo limite têm endereço. Este capítulo é uma introdução intuitiva — a construção rigorosa (cortes de Dedekind, sequências de Cauchy) fica para o Volume VIII. Aqui o objetivo é entender o que falta a \\(\\mathbb{Q}\\) e qual propriedade, a completude, caracteriza \\(\\mathbb{R}\\) e o distingue de tudo o que veio antes.",
+    "text": "10.1 Motivação\nFechamos o capítulo anterior com uma inquietação: \\(\\mathbb{Q}\\) é denso, sem saltos visíveis, e ainda assim furado. Não existe racional cujo quadrado seja \\(2\\) (Capítulo 7), embora exista um segmento — a diagonal do quadrado de lado \\(1\\) — cujo comprimento elevado ao quadrado dá exatamente \\(2\\). Há um ponto na reta que deveria se chamar \\(\\sqrt 2\\) e que nenhum racional ocupa.\nA Figura 10.1 torna o buraco visível: a diagonal do quadrado de lado \\(1\\) mede \\(\\sqrt 2\\); rebatendo-a sobre a reta, ela aponta um lugar entre \\(1\\) e \\(2\\) que nenhuma fração alcança.\nOs números reais \\(\\mathbb{R}\\) são a estrutura que tapa esses buracos: a reta completa, sem furos, onde todo comprimento, toda diagonal e todo limite têm endereço. Este capítulo é uma introdução intuitiva — a construção rigorosa (cortes de Dedekind, sequências de Cauchy) fica para o Volume VIII. Aqui o objetivo é entender o que falta a \\(\\mathbb{Q}\\) e qual propriedade, a completude, caracteriza \\(\\mathbb{R}\\) e o distingue de tudo o que veio antes.",
+    "crumbs": [
+      "Volume I — Fundamentos: Lógica e Aritmética",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Os números reais</span>"
+    ]
+  },
+  {
+    "objectID": "volumes/v1-fundamentos/10-reais-introducao.html#motivação",
+    "href": "volumes/v1-fundamentos/10-reais-introducao.html#motivação",
+    "title": "10  Os números reais",
+    "section": "",
+    "text": "Figura 10.1: A diagonal do quadrado unitário mede \\(\\sqrt 2\\); rebatida sobre a reta, marca um ponto entre \\(1\\) e \\(2\\) que nenhum racional ocupa — um “buraco” em \\(\\mathbb{Q}\\).",
     "crumbs": [
       "Volume I — Fundamentos: Lógica e Aritmética",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Os números reais</span>"
