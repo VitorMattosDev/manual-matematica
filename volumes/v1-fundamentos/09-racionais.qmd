@@ -17,6 +17,29 @@ sucessor), e cada um tem uma **representação decimal** que ou termina ou se re
 periodicamente. Essa última propriedade, no próximo capítulo, será exatamente o
 que os números *irracionais* violam.
 
+A densidade é fácil de visualizar (@fig-racionais-densidade): entre dois
+racionais $a < b$, o **ponto médio** $m = \frac{a+b}{2}$ já é um racional entre
+eles — e o mesmo argumento, aplicado a $a$ e $m$, nunca termina.
+
+::: {#fig-racionais-densidade}
+```{.tikz}
+%%| filename: racionais-densidade
+%%| alt: Reta numérica com dois pontos a e b e, no meio, o ponto médio m; chaves indicam que entre a e b sempre cabe outro racional.
+\begin{tikzpicture}[scale=1]
+  \draw[eixo] (-0.3,0) -- (6.3,0);
+  \fill (0.6,0) circle (1.5pt) node[below, font=\small] {$a$};
+  \fill (5.4,0) circle (1.5pt) node[below, font=\small] {$b$};
+  \fill[manualred] (3,0) circle (1.7pt) node[below, manualred, font=\small] {$m$};
+  \draw[destaque, decorate, decoration={brace, amplitude=4pt, raise=2pt}] (0.6,0.18) -- (2.92,0.18);
+  \draw[destaque, decorate, decoration={brace, amplitude=4pt, raise=2pt}] (3.08,0.18) -- (5.4,0.18);
+  \node[above, manualred, font=\footnotesize] at (3,0.52) {sempre cabe outro};
+\end{tikzpicture}
+```
+
+Entre dois racionais $a$ e $b$ sempre cabe outro — por exemplo o ponto médio
+$m = \frac{a+b}{2}$. Repetindo, obtêm-se infinitos: $\mathbb{Q}$ é **denso**.
+:::
+
 ## Construção dos racionais
 
 Um racional deve representar um quociente $a / b$ com $b \neq 0$. E $1/2$, $2/4$ e
