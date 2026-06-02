@@ -68,6 +68,33 @@ $$
 O último resto não nulo é $6$, e de fato $\gcd(48, 18) = 6$.
 :::
 
+O algoritmo tem uma leitura geométrica (@fig-euclides-ladrilho): ladrilhar um
+retângulo $48 \times 18$ com os maiores quadrados possíveis reproduz exatamente
+as divisões sucessivas, e o menor quadrado usado tem lado $\gcd(48, 18) = 6$.
+
+::: {#fig-euclides-ladrilho}
+```{.tikz}
+%%| filename: euclides-ladrilho
+%%| alt: Retângulo 48 por 18 ladrilhado por quadrados; dois de lado 18, um de lado 12 e dois de lado 6; o menor quadrado, lado 6, é o máximo divisor comum.
+\begin{tikzpicture}[scale=0.7, every node/.style={font=\footnotesize}]
+  \fill[manualred!18] (6,0) rectangle (8,1);
+  \draw[semithick] (0,0) rectangle (8,3);
+  \draw[manualgray] (3,0) -- (3,3); \draw[manualgray] (6,0) -- (6,3);
+  \node at (1.5,1.5) {$18$}; \node at (4.5,1.5) {$18$};
+  \draw[manualgray] (6,1) -- (8,1); \node at (7,2) {$12$};
+  \draw[manualgray] (7,0) -- (7,1);
+  \node[manualred] at (6.5,0.5) {$6$}; \node[manualred] at (7.5,0.5) {$6$};
+  \draw[manualblue, decorate, decoration={brace, mirror, amplitude=5pt, raise=3pt}] (0,0) -- (8,0);
+  \node[below, manualblue] at (4,-0.6) {$48$};
+  \draw[manualblue, decorate, decoration={brace, amplitude=5pt, raise=3pt}] (0,0) -- (0,3);
+  \node[left, manualblue] at (-0.55,1.5) {$18$};
+\end{tikzpicture}
+```
+
+Ladrilhando o retângulo $48 \times 18$: dois quadrados de lado $18$, um de $12$ e
+dois de $6$. O lado do menor quadrado é $\gcd(48, 18) = 6$.
+:::
+
 ::: {.callout-tip}
 ## Por que o algoritmo termina e está correto
 Dois fatos sustentam o método: ele **termina**, porque os restos decrescem em
