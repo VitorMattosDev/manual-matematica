@@ -24,6 +24,37 @@ associa-se um **ângulo interno**. A soma dos ângulos internos é $180°$
 (@exm-soma-triangulo).
 :::
 
+Convenciona-se nomear cada lado pela letra minúscula do vértice **oposto**, como
+na @fig-triangulo-elementos.
+
+::: {#fig-triangulo-elementos}
+```{.tikz}
+%%| filename: triangulo-elementos
+%%| alt: Triângulo ABC com vértices A, B, C; os lados a, b, c opostos a cada vértice e os três ângulos internos alfa, beta, gama marcados.
+\begin{tikzpicture}[scale=1.0]
+  \coordinate (A) at (1.6,2.6);
+  \coordinate (B) at (0,0);
+  \coordinate (C) at (4,0);
+  \draw[curva] (A) -- (B) -- (C) -- cycle;
+  % ângulos internos
+  \pic[draw=manualred, angle radius=0.7cm, "$\alpha$"] {angle = B--A--C};
+  \pic[draw=manualred, angle radius=0.7cm, "$\beta$"]  {angle = C--B--A};
+  \pic[draw=manualred, angle radius=0.7cm, "$\gamma$"] {angle = A--C--B};
+  % lados (oposto ao vértice homônimo)
+  \node[below]       at ($(B)!0.5!(C)$) {$a$};
+  \node[above right] at ($(C)!0.5!(A)$) {$b$};
+  \node[above left]  at ($(A)!0.5!(B)$) {$c$};
+  % vértices
+  \node[ponto, label=above:$A$]       at (A) {};
+  \node[ponto, label=below left:$B$]  at (B) {};
+  \node[ponto, label=below right:$C$] at (C) {};
+\end{tikzpicture}
+```
+
+Os elementos de um triângulo: os vértices $A, B, C$, os lados opostos $a, b, c$ e
+os ângulos internos $\alpha, \beta, \gamma$, cuja soma é $180°$.
+:::
+
 Classificam-se os triângulos quanto aos **lados** — equilátero (três lados
 iguais), isósceles (ao menos dois iguais), escaleno (todos distintos) — e quanto
 aos **ângulos** — acutângulo, retângulo (um ângulo reto) ou obtusângulo.
