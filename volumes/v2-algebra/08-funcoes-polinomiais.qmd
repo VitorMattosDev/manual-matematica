@@ -47,6 +47,25 @@ Um polinômio de grau $n \geq 1$ tem **no máximo $n$ raízes reais** (contadas 
 multiplicidade).
 :::
 
+Cada raiz real é um ponto onde o gráfico cruza o eixo $x$ (@fig-raizes-grau), e
+um polinômio de grau $n$ não pode cruzá-lo mais de $n$ vezes.
+
+::: {#fig-raizes-grau}
+```{.tikz}
+%%| filename: funcoes-raizes-grau
+%%| alt: Gráfico de um polinômio de grau 3 que cruza o eixo x em três pontos vermelhos.
+\begin{tikzpicture}[scale=1]
+  \draw[eixo] (-2,0) -- (2,0) node[right] {$x$};
+  \draw[eixo] (0,-1.3) -- (0,1.4) node[above] {$y$};
+  \draw[curva] plot[domain=-1.72:1.72, samples=80] (\x, {0.6*\x*(\x-1.3)*(\x+1.3)});
+  \fill[manualred] (-1.3,0) circle (1.5pt); \fill[manualred] (0,0) circle (1.5pt); \fill[manualred] (1.3,0) circle (1.5pt);
+\end{tikzpicture}
+```
+
+As raízes reais são os cruzamentos com o eixo $x$. Este polinômio de grau $3$ tem
+três — o máximo possível.
+:::
+
 ::: {.proof}
 Indução em $n$. Se $n = 1$, $p(x) = a x + b$ tem a única raiz $-b/a$. Suponha o
 resultado para grau $n - 1$. Se $p$ (grau $n$) não tem raiz, nada a provar. Se tem
