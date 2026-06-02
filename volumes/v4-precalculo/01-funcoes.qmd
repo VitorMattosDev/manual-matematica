@@ -29,6 +29,26 @@ $$
 O elemento $f(x)$ é a **imagem** de $x$.
 :::
 
+Um **diagrama de flechas** (@fig-funcao-flechas) deixa as duas exigências visíveis:
+de cada elemento de $X$ sai **exatamente uma** flecha. (Um elemento de $Y$ pode
+receber várias, ou nenhuma.)
+
+::: {#fig-funcao-flechas}
+```{.tikz}
+%%| filename: funcoes-diagrama-flechas
+%%| alt: Dois conjuntos X e Y; de cada elemento de X (a, b, c) sai uma flecha para um elemento de Y; b e c apontam ambos para o 2.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \draw[manualgray] (0,0) ellipse (0.85 and 1.5); \draw[manualgray] (3.6,0) ellipse (0.85 and 1.5);
+  \node at (0,1.85) {$X$}; \node at (3.6,1.85) {$Y$};
+  \node[ponto, label=left:$a$] (a) at (0,0.7) {}; \node[ponto, label=left:$b$] (b) at (0,0) {}; \node[ponto, label=left:$c$] (c) at (0,-0.7) {};
+  \node[ponto, label=right:$1$] (y1) at (3.6,0.8) {}; \node[ponto, label=right:$2$] (y2) at (3.6,0) {}; \node[ponto, label=right:$3$] (y3) at (3.6,-0.8) {};
+  \draw[curva, -{Stealth[length=4pt]}] (a) -- (y1); \draw[curva, -{Stealth[length=4pt]}] (b) -- (y2); \draw[curva, -{Stealth[length=4pt]}] (c) -- (y2);
+\end{tikzpicture}
+```
+
+Uma função: de cada elemento de $X$ sai uma única flecha.
+:::
+
 Duas exigências definem o conceito: *todo* elemento do domínio tem imagem (nada
 fica sem associação) e essa imagem é *única* (nada se associa a dois valores). O
 conjunto das imagens efetivamente atingidas é a **imagem** de $f$:
