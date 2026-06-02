@@ -27,8 +27,23 @@ angular) e $b$ o **valor inicial** $f(0)$. Quando $a \neq 0$, é **bijetora**; q
 $a = 0$, é **constante**.
 :::
 
-O gráfico é a reta de equação $y = ax + b$ (@sec-analitica). A taxa $a$ governa o
-comportamento: a função **cresce** se $a > 0$, **decresce** se $a < 0$.
+O gráfico é a reta de equação $y = ax + b$ (@sec-analitica, @fig-afim). A taxa $a$
+governa o comportamento: a função **cresce** se $a > 0$, **decresce** se $a < 0$.
+
+::: {#fig-afim}
+```{.tikz}
+%%| filename: precalculo-afim
+%%| alt: Reta crescente no plano cartesiano, gráfico de y igual a a x mais b.
+\begin{tikzpicture}[scale=0.9, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-1.7,0) -- (2.3,0) node[right] {$x$};
+  \draw[eixo] (0,-1.5) -- (0,1.9) node[above] {$y$};
+  \draw[curva] (-1.5,{0.6*(-1.5)+0.4}) -- (2,{0.6*2+0.4});
+  \node[manualblue] at (1.5,1.85) {$y=ax+b$};
+\end{tikzpicture}
+```
+
+A função afim tem por gráfico uma reta; a taxa $a$ é a inclinação.
+:::
 
 ::: {#prp-taxa-afim}
 ## Taxa de variação constante
@@ -67,7 +82,23 @@ Seu gráfico é uma **parábola** (@sec-conicas), com **concavidade para cima** 
 
 As raízes (onde $f(x) = 0$) saem de Bhaskara (@thm-bhaskara), e o número delas é
 dado pelo discriminante. O ponto que organiza o gráfico, porém, é o **vértice** — o
-extremo da parábola.
+extremo da parábola (@fig-quadratica).
+
+::: {#fig-quadratica}
+```{.tikz}
+%%| filename: precalculo-quadratica
+%%| alt: Parábola com concavidade para cima no plano cartesiano, com o vértice marcado no ponto mais baixo.
+\begin{tikzpicture}[scale=0.9, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-1.9,0) -- (1.9,0) node[right] {$x$};
+  \draw[eixo] (0,-1.5) -- (0,1.9) node[above] {$y$};
+  \draw[curva] plot[domain=-1.6:1.6, samples=40] (\x, {1.05*\x*\x-1.1});
+  \fill[manualred] (0,-1.1) circle (1.3pt); \node[below right, manualred] at (0,-1.1) {vértice};
+  \node[manualblue] at (1.45,1.85) {$y=ax^2{+}bx{+}c$};
+\end{tikzpicture}
+```
+
+A função quadrática tem por gráfico uma parábola; o vértice é seu ponto extremo.
+:::
 
 ::: {#thm-vertice}
 ## Vértice da parábola
