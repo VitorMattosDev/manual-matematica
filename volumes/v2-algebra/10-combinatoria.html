@@ -1163,6 +1163,156 @@ m_1 \cdot m_2 \cdots m_k.
 \cdot 10 \cdot 10}_{\text{dígitos}} = 26^3 \cdot 10^4 = 175\,760\,000.
 \]</span></p>
 </div>
+<p>Em menor escala, o princípio é uma <strong>árvore de possibilidades</strong> (<a href="#fig-arvore-contagem" class="quarto-xref">Figura&nbsp;<span>20.1</span></a>): <span class="math inline">\(2\)</span> opções na primeira etapa, cada uma abrindo <span class="math inline">\(3\)</span> na segunda, dão <span class="math inline">\(2 \times 3 = 6\)</span> caminhos.</p>
+<div id="fig-arvore-contagem" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-arvore-contagem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="156.734157pt" height="88.702854pt" viewbox="-68.014948 -68.014946 156.734157 88.702854">
+<g id="tz_combinatoria_arvore_page1">
+<g stroke-miterlimit="10" transform="translate(10.352079,-66.183194)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#000">
+<g fill="#000">
+<path d="M1.83862 0C1.83862 1.01544 1.01544 1.83862 0 1.83862S-1.83862 1.01544-1.83862 0S-1.01544-1.83862 0-1.83862S1.83862-1.01544 1.83862 0ZM0 0" stroke="none"></path>
+</g>
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M-46.53094-42.67912C-46.53094-41.66368-47.35413-40.8405-48.36957-40.8405S-50.20819-41.66368-50.20819-42.67912S-49.38501-44.51775-48.36957-44.51775S-46.53094-43.69456-46.53094-42.67912ZM-48.36957-42.67912" stroke="none"></path>
+</g>
+<g transform="translate(-48.36957,-42.67912)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<path d="M-1.52852-1.3487L-46.84105-41.33043" fill="none"></path>
+<g fill="#000">
+<g fill="#000">
+<path d="M-74.98366-85.35825C-74.98366-84.3428-75.80684-83.51962-76.82228-83.51962S-78.6609-84.3428-78.6609-85.35825C-78.6609-86.37369-77.83772-87.19687-76.82228-87.19687S-74.98366-86.37369-74.98366-85.35825ZM-76.82228-85.35825" stroke="none"></path>
+</g>
+<g transform="translate(-76.82228,-85.35825)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<path d="M-49.50029-44.37527L-75.69153-83.6621" fill="none"></path>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M-46.53091-85.35825C-46.53091-84.3428-47.3541-83.51962-48.36954-83.51962S-50.20816-84.3428-50.20816-85.35825C-50.20816-86.37369-49.38498-87.19687-48.36954-87.19687S-46.53091-86.37369-46.53091-85.35825ZM-48.36954-85.35825" stroke="none"></path>
+</g>
+<g transform="translate(-48.36954,-85.35825)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<path d="M-48.36957-44.71774L-48.36954-83.31963" fill="none"></path>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M-18.07817-85.35825C-18.07817-84.3428-18.90135-83.51962-19.9168-83.51962C-20.93224-83.51962-21.75542-84.3428-21.75542-85.35825C-21.75542-86.37369-20.93224-87.19687-19.9168-87.19687C-18.90135-87.19687-18.07817-86.37369-18.07817-85.35825ZM-19.9168-85.35825" stroke="none"></path>
+</g>
+<g transform="translate(-19.9168,-85.35825)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<path d="M-47.23885-44.37527L-21.04755-83.6621" fill="none"></path>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M50.20824-42.67912C50.20824-41.66368 49.38506-40.8405 48.36961-40.8405C47.35417-40.8405 46.53099-41.66368 46.53099-42.67912S47.35417-44.51775 48.36961-44.51775C49.38506-44.51775 50.20824-43.69456 50.20824-42.67912ZM48.36961-42.67912" stroke="none"></path>
+</g>
+<g transform="translate(48.36961,-42.67912)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<path d="M1.52852-1.3487L46.8411-41.33043" fill="none"></path>
+<g fill="#000">
+<g fill="#000">
+<path d="M21.75552-85.35825C21.75552-84.3428 20.93234-83.51962 19.9169-83.51962S18.07828-84.3428 18.07828-85.35825C18.07828-86.37369 18.90146-87.19687 19.9169-87.19687S21.75552-86.37369 21.75552-85.35825ZM19.9169-85.35825" stroke="none"></path>
+</g>
+<g transform="translate(19.9169,-85.35825)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<path d="M47.23889-44.37527L21.04765-83.6621" fill="none"></path>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M50.20827-85.35825C50.20827-84.3428 49.38509-83.51962 48.36964-83.51962C47.3542-83.51962 46.53102-84.3428 46.53102-85.35825C46.53102-86.37369 47.3542-87.19687 48.36964-87.19687C49.38509-87.19687 50.20827-86.37369 50.20827-85.35825ZM48.36964-85.35825" stroke="none"></path>
+</g>
+<g transform="translate(48.36964,-85.35825)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<path d="M48.36961-44.71774L48.36964-83.31963" fill="none"></path>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M78.66101-85.35825C78.66101-84.3428 77.83783-83.51962 76.82239-83.51962S74.98376-84.3428 74.98376-85.35825C74.98376-86.37369 75.80695-87.19687 76.82239-87.19687S78.66101-86.37369 78.66101-85.35825ZM76.82239-85.35825" stroke="none"></path>
+</g>
+<g transform="translate(76.82239,-85.35825)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(10.352079,-66.183194)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke="#6c757d">
+<path d="M49.50034-44.37527L75.69164-83.6621" fill="none"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arvore-contagem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;20.1: Cada caminho da raiz até uma folha é um resultado: <span class="math inline">\(2\)</span> escolhas seguidas de <span class="math inline">\(3\)</span> produzem <span class="math inline">\(2 \times 3 = 6\)</span>.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="permutações-e-arranjos" class="level2" data-number="20.3">
 <h2 data-number="20.3" class="anchored" data-anchor-id="permutações-e-arranjos"><span class="header-section-number">20.3</span> Permutações e arranjos</h2>
