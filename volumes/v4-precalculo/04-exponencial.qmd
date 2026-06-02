@@ -24,6 +24,28 @@ f \colon \mathbb{R} \to (0, \infty), \qquad f(x) = a^x.
 $$
 :::
 
+O gráfico distingue dois regimes (@fig-exponencial): se $a > 1$ a função
+**cresce** (e dispara); se $0 < a < 1$, **decresce** rumo a zero. Ambos passam por
+$(0, 1)$, pois $a^0 = 1$.
+
+::: {#fig-exponencial}
+```{.tikz}
+%%| filename: precalculo-exponencial
+%%| alt: Duas curvas exponenciais passando por (0,1): uma crescente (base maior que 1) e uma decrescente (base entre 0 e 1).
+\begin{tikzpicture}[scale=0.85, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-2.2,0) -- (2.3,0) node[right] {$x$};
+  \draw[eixo] (0,-0.3) -- (0,3.7) node[above] {$y$};
+  \draw[curva] plot[domain=-1.85:1.85, samples=60] (\x, {2^\x});
+  \draw[destaque] plot[domain=-1.85:1.85, samples=60] (\x, {2^(-\x)});
+  \fill (0,1) circle (1.3pt); \node[below right] at (0,1) {$1$};
+  \node[manualblue] at (1.45,3.3) {$a>1$}; \node[manualred] at (-1.45,3.3) {$0<a<1$};
+\end{tikzpicture}
+```
+
+Exponenciais: crescente se $a > 1$, decrescente se $0 < a < 1$; ambas passam por
+$(0,1)$.
+:::
+
 Para expoentes inteiros e racionais, $a^x$ é a potência já conhecida; estende-se a
 expoentes irracionais por aproximação (continuidade), de modo que valem para todo
 real as **propriedades das potências**.
