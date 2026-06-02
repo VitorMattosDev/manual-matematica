@@ -54,6 +54,35 @@ a^2 - b^2 = (a + b)(a - b), \qquad a^2 \pm 2ab + b^2 = (a \pm b)^2.
 $$
 :::
 
+A diferença de quadrados tem prova visual (@fig-diferenca-quadrados): de um
+quadrado $a \times a$ recorta-se um quadrado $b \times b$; o que sobra, $a^2 -
+b^2$, reorganiza-se num retângulo $(a+b) \times (a-b)$.
+
+::: {#fig-diferenca-quadrados}
+```{.tikz}
+%%| filename: fatoracao-diferenca-quadrados
+%%| alt: À esquerda, quadrado a por a com um quadrado b por b recortado do canto, de área a² menos b²; à direita, um retângulo de base a mais b e altura a menos b, de mesma área.
+\begin{tikzpicture}[scale=0.7, every node/.style={font=\footnotesize}]
+  \fill[manualblue!18] (0,0) -- (3,0) -- (3,2) -- (2,2) -- (2,3) -- (0,3) -- cycle;
+  \draw[semithick] (0,0) rectangle (3,3);
+  \draw[manualgray] (2,2) rectangle (3,3);
+  \node at (1.4,1.3) {$a^2-b^2$};
+  \draw[manualgray, decorate, decoration={brace, amplitude=3pt, raise=2pt}] (0,3) -- (0,0); \node[left=5pt] at (0,1.5) {$a$};
+  \node[font=\scriptsize] at (2.5,2.5) {$b$};
+  \node at (3.9,1.5) {$=$};
+  \begin{scope}[shift={(4.7,0.5)}]
+    \fill[manualblue!18] (0,0) rectangle (4,2);
+    \draw[semithick] (0,0) rectangle (4,2);
+    \node at (2,1) {$(a{+}b)(a{-}b)$};
+    \draw[manualgray, decorate, decoration={brace, mirror, amplitude=3pt, raise=2pt}] (0,0) -- (4,0); \node[below=5pt] at (2,0) {$a+b$};
+    \draw[manualgray, decorate, decoration={brace, amplitude=3pt, raise=2pt}] (0,2) -- (0,0); \node[left=5pt] at (0,1) {$a-b$};
+  \end{scope}
+\end{tikzpicture}
+```
+
+$a^2 - b^2 = (a+b)(a-b)$: a região em L tem a mesma área do retângulo.
+:::
+
 ::: {.callout-tip}
 ## Reconhecer um quadrado perfeito
 Uma expressão $a^2 + 2ab + b^2$ delata-se por ter dois quadrados ($a^2$, $b^2$) e,
