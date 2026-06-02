@@ -33,8 +33,37 @@ Seja $P(n)$ uma afirmação sobre o natural $n$. Suponha que:
 Então $P(n)$ é verdadeira para todo $n \in \mathbb{N}$.
 :::
 
-A ideia é a do dominó: a base derruba a primeira peça; o passo garante que cada
-peça derruba a seguinte; logo todas caem.
+A ideia é a do dominó (@fig-inducao-domino): a base derruba a primeira peça; o
+passo garante que cada peça derruba a seguinte; logo todas caem.
+
+::: {#fig-inducao-domino}
+```{.tikz}
+%%| filename: inducao-domino
+%%| alt: Fila de peças de dominó; a primeira, P(1), está caindo e setas indicam que cada peça derruba a seguinte, P(2), P(3) e assim por diante.
+\begin{tikzpicture}[scale=1]
+  \def\h{1.0}\def\w{0.16}
+  \draw[manualgray, thin] (0,0) -- (5.5,0);
+  \begin{scope}[rotate around={-34:(0.35,0)}]
+    \fill[manualred!18] (0.35,0) rectangle ++(\w,\h);
+    \draw[destaque] (0.35,0) rectangle ++(\w,\h);
+  \end{scope}
+  \foreach \i in {1,...,5}{
+    \fill[manualblue!12] ({0.35+\i*0.95},0) rectangle ++(\w,\h);
+    \draw[semithick] ({0.35+\i*0.95},0) rectangle ++(\w,\h);
+  }
+  \foreach \i in {0,...,4}
+    \draw[-{Stealth[length=4pt]}, manualgray]
+      ({0.62+\i*0.95},\h+0.18) -- ({0.62+(\i+1)*0.95-0.07},\h+0.18);
+  \node[below, font=\footnotesize] at (0.43,-0.06) {$P(1)$};
+  \foreach \i/\lab in {1/2, 2/3, 3/4, 4/5, 5/6}
+    \node[below, font=\footnotesize] at ({0.43+\i*0.95},-0.06) {$P(\lab)$};
+  \node[font=\footnotesize] at (2.9,\h+0.55) {cada peça derruba a seguinte};
+\end{tikzpicture}
+```
+
+O efeito dominó: a **base** faz $P(1)$ cair e o **passo** garante que cada $P(k)$
+derruba $P(k+1)$ — por isso todas as peças caem.
+:::
 
 ::: {.callout-warning}
 ## Erro comum
