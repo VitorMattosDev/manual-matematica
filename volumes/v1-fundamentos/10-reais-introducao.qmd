@@ -8,6 +8,33 @@ visíveis, e ainda assim *furado*. Não existe racional cujo quadrado seja $2$
 cujo comprimento elevado ao quadrado dá exatamente $2$. Há um ponto na reta que
 deveria se chamar $\sqrt 2$ e que nenhum racional ocupa.
 
+A @fig-raiz-de-dois torna o buraco visível: a diagonal do quadrado de lado $1$
+mede $\sqrt 2$; rebatendo-a sobre a reta, ela aponta um lugar entre $1$ e $2$ que
+nenhuma fração alcança.
+
+::: {#fig-raiz-de-dois}
+```{.tikz}
+%%| filename: reais-raiz-de-dois
+%%| alt: Quadrado de lado 1 apoiado na reta numérica; sua diagonal, de comprimento raiz de 2, é rebatida por um arco até a reta, marcando o ponto raiz de 2 entre 1 e 2.
+\begin{tikzpicture}[scale=1.8]
+  \draw[eixo] (-0.15,0) -- (2.45,0);
+  \foreach \x in {0,1,2}{
+    \draw[semithick] (\x,0.05) -- (\x,-0.05);
+    \node[below, font=\footnotesize] at (\x,-0.05) {$\x$};
+  }
+  \draw[manualgray, thin] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+  \draw[curva] (0,0) -- (1,1);
+  \node[manualblue, above left, font=\footnotesize, inner sep=1pt] at (0.55,0.5) {$\sqrt2$};
+  \draw[destaque, dashed] (1,1) arc (45:0:1.41421);
+  \fill[manualred] (1.41421,0) circle (1.3pt);
+  \node[below, manualred, font=\footnotesize] at (1.414,-0.05) {$\sqrt2$};
+\end{tikzpicture}
+```
+
+A diagonal do quadrado unitário mede $\sqrt 2$; rebatida sobre a reta, marca um
+ponto entre $1$ e $2$ que nenhum racional ocupa — um "buraco" em $\mathbb{Q}$.
+:::
+
 Os **números reais** $\mathbb{R}$ são a estrutura que tapa esses buracos: a reta
 completa, sem furos, onde todo comprimento, toda diagonal e todo limite têm
 endereço. Este capítulo é uma introdução *intuitiva* — a construção rigorosa
