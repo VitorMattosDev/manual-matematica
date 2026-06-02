@@ -30,6 +30,38 @@ $$
 \frac{\overline{AB}}{\overline{BC}} = \frac{\overline{A'B'}}{\overline{B'C'}}.
 $$
 
+A @fig-tales mostra o feixe: as três paralelas $r, s, t$ cortadas pelas duas
+transversais. Repare que os segmentos de uma transversal são bem maiores que os
+da outra — o que se conserva é a razão entre eles.
+
+::: {#fig-tales}
+```{.tikz}
+%%| filename: teorema-de-tales
+%%| alt: Três retas paralelas horizontais r, s, t cortadas por duas transversais; numa elas determinam os pontos A, B, C e na outra A', B', C'.
+\begin{tikzpicture}[scale=1.0]
+  % feixe de três paralelas (espaçamento desigual, de propósito)
+  \foreach \y/\nome in {0/r, 2/s, 3.2/t}
+    \draw[auxiliar] (-0.6,\y) -- (7,\y) node[right, black] {$\nome$};
+  % pontos nas duas transversais
+  \coordinate (C) at (0,0);    \coordinate (B) at (0.8,2);  \coordinate (A) at (1.28,3.2);
+  \coordinate (Cl) at (4,0);   \coordinate (Bl) at (5.4,2); \coordinate (Al) at (6.24,3.2);
+  % transversais (estendidas um pouco além dos pontos extremos)
+  \draw[curva] ($(C)-(0.13,0.32)$) -- ($(A)+(0.13,0.32)$);
+  \draw[curva] ($(Cl)-(0.22,0.32)$) -- ($(Al)+(0.22,0.32)$);
+  % rótulos dos pontos
+  \node[ponto, label=left:$C$]        at (C)  {};
+  \node[ponto, label=left:$B$]        at (B)  {};
+  \node[ponto, label=above left:$A$]  at (A)  {};
+  \node[ponto, label=below right:$C'$] at (Cl) {};
+  \node[ponto, label=right:$B'$]      at (Bl) {};
+  \node[ponto, label=above right:$A'$] at (Al) {};
+\end{tikzpicture}
+```
+
+Um feixe de paralelas cortado por duas transversais: $\overline{AB}/\overline{BC}
+= \overline{A'B'}/\overline{B'C'}$.
+:::
+
 ::: {.callout-note}
 ## Proporção, não igualdade
 Tales não diz que os segmentos são iguais — diz que estão na mesma **razão**. Os
