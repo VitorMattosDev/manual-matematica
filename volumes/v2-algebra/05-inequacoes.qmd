@@ -82,6 +82,30 @@ produto:
 
 O produto é positivo onde há sinal $+$: o conjunto solução é $(-\infty, -2) \cup
 (1, +\infty)$. (Como a desigualdade é estrita, as raízes $-2$ e $1$ ficam de fora.)
+
+Na reta (@fig-quadro-sinal), as raízes partem $\mathbb{R}$ em três faixas; a
+solução é a união das faixas com sinal $+$, sem as raízes (bolinhas abertas).
+
+::: {#fig-quadro-sinal}
+```{.tikz}
+%%| filename: inequacoes-quadro-sinal
+%%| alt: Reta numérica com raízes -2 e 1 em círculos abertos; as faixas x menor que -2 e x maior que 1 têm sinal mais e estão destacadas; a faixa entre -2 e 1 tem sinal menos.
+\begin{tikzpicture}[scale=1]
+  \draw[eixo] (-3.5,0) -- (3.5,0) node[right] {$x$};
+  \draw[manualgreen, line width=2.2pt] (-3.35,0) -- (-2,0);
+  \draw[manualgreen, line width=2.2pt] (1,0) -- (3.35,0);
+  \draw[fill=white, semithick] (-2,0) circle (2.3pt);
+  \draw[fill=white, semithick] (1,0) circle (2.3pt);
+  \node[below=2pt] at (-2,0) {$-2$};
+  \node[below=2pt] at (1,0) {$1$};
+  \node[above, manualgreen] at (-2.7,0.12) {$+$};
+  \node[above, manualred] at (-0.5,0.12) {$-$};
+  \node[above, manualgreen] at (2.1,0.12) {$+$};
+  \node[font=\footnotesize, manualgreen] at (-2.55,0.62) {$(x{-}1)(x{+}2)>0$};
+\end{tikzpicture}
+```
+
+Estudo de sinal de $(x-1)(x+2)$: solução $(-\infty,-2)\cup(1,+\infty)$, em verde.
 :::
 
 Uma inequação do segundo grau $ax^2 + bx + c > 0$ reduz-se a isto: acham-se as
