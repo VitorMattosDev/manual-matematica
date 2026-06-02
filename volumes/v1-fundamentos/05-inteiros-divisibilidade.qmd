@@ -161,6 +161,34 @@ a = b q + r, \qquad 0 \leq r < b.
 $$
 :::
 
+Geometricamente (@fig-divisao-euclidiana), os múltiplos de $b$ ladrilham a reta;
+todo inteiro $a$ cai entre dois múltiplos consecutivos $bq$ e $b(q+1)$, e o resto
+$r$ é a distância de $a$ ao múltiplo à sua esquerda.
+
+::: {#fig-divisao-euclidiana}
+```{.tikz}
+%%| filename: divisao-euclidiana
+%%| alt: Reta numérica com os múltiplos de b (0, b, 2b, ..., bq, b(q+1)); o inteiro a fica entre bq e b(q+1), e o resto r é a distância de bq até a.
+\begin{tikzpicture}[scale=1]
+  \draw[eixo] (-0.3,0) -- (6.2,0);
+  \foreach \x/\lab in {0/0, 1.2/b, 2.4/2b, 4.0/{bq}, 5.2/{b(q{+}1)}}{
+    \draw[semithick] (\x,0.12) -- (\x,-0.12);
+    \node[below, font=\footnotesize] at (\x,-0.14) {$\lab$};
+  }
+  \node at (3.2,0) {$\cdots$};
+  \fill[manualred] (4.55,0) circle (1.7pt);
+  \node[above, manualred, font=\small] at (4.62,0.12) {$a$};
+  \draw[destaque, decorate, decoration={brace, amplitude=5pt, raise=1pt}] (4.55,0.3) -- (4.0,0.3);
+  \node[destaque, font=\footnotesize, above] at (4.2,0.48) {$r$};
+  \draw[manualblue, decorate, decoration={brace, mirror, amplitude=5pt, raise=1pt}] (4.0,-0.55) -- (5.2,-0.55);
+  \node[manualblue, font=\footnotesize, below] at (4.6,-0.75) {$b$};
+\end{tikzpicture}
+```
+
+A divisão euclidiana na reta: $a$ entre os múltiplos consecutivos $bq$ e
+$b(q+1)$, com resto $r = a - bq$ satisfazendo $0 \le r < b$.
+:::
+
 ::: {.proof}
 **Existência.** Considere o conjunto dos restos não negativos possíveis,
 $$
