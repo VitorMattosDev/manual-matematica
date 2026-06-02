@@ -99,6 +99,9 @@ Legenda da figura, terminando em ponto.
   Estilos prontos: `curva` (azul, traço grosso), `destaque` (vermelho),
   `auxiliar` (cinza tracejado), `eixo`, `ponto`. Cores: `manualblue`,
   `manualred`, `manualgreen`, `manualyellow`, `manualgray`.
+- No HTML o SVG é **embutido inline** no próprio `.qmd` renderizado (não fica em
+  `<pagina>_files/`): o `quarto publish gh-pages` não levava esses arquivos por
+  página ao site (404). Inline também deixa a figura autocontida.
 - O `_extensions/danmackinlay/tikz/tikz.lua` tem **patches locais** (marcados com
-  "Local patch") para Windows e para a saída PDF. **Não rode `quarto update`** na
-  extensão sem reaplicá-los.
+  "Local patch") para Windows, para a saída PDF e para o inline do SVG. **Não
+  rode `quarto update`** na extensão sem reaplicá-los.

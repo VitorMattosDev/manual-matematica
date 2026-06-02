@@ -417,8 +417,12 @@ $body$
         -- selectable / styleable in the rendered SVG. Note: dvisvgm must
         -- be the TeX-Live-integrated build (e.g. via tlmgr); standalone
         -- packages can fail to find the PostScript prologue files.
+        -- --no-fonts traces glyphs to paths instead of embedding WOFF fonts.
+        -- Because we inline the SVGs into the page, this avoids @font-face
+        -- font-family collisions between figures; remaining id collisions
+        -- (glyph/clip ids) are namespaced in Lua before inlining. (Local patch.)
         convert_args = {
-          '--font-format=woff',
+          '--no-fonts',
           '-o', svg_file,
           dvi_file,
         }
@@ -570,6 +574,31 @@ local function code_to_figure(conf)
 
       -- Cache the image
       cache_image(basename, hash, dgr_opt.opt, imgdata, out_format)
+    end
+
+    -- For SVG (HTML) output, embed the SVG inline instead of emitting an
+    -- external <page>_files/mediabag asset. `quarto publish gh-pages` copies the
+    -- site into a fresh git worktree and drops the per-page _files directories,
+    -- so the external SVGs 404 on GitHub Pages. Inlining sidesteps that entirely
+    -- and keeps each figure self-contained (text stays selectable). (Local patch.)
+    if out_format == 'svg' then
+      -- Drop the XML prolog / DOCTYPE so the <svg> root can live inside HTML.
+      local svg = imgdata:gsub('^.-(<svg)', '%1')
+      -- Namespace every id (and its references) with the figure's basename so
+      -- multiple inline SVGs on one page don't collide on glyph/clip ids.
+      -- dvisvgm emits single-quoted attributes (id='…', href='#…').
+      local prefix = 'tz_' .. basename:gsub('%W', '_') .. '_'
+      svg = svg:gsub("(\32id=')([^']*)", '%1' .. prefix .. '%2')
+      svg = svg:gsub("(url%(#)([^)]*)", '%1' .. prefix .. '%2')
+      svg = svg:gsub("(href='#)([^']*)", '%1' .. prefix .. '%2')
+      local raw = pandoc.RawInline('html', svg)
+      return dgr_opt.caption and
+          pandoc.Figure(
+            pandoc.Plain { raw },
+            dgr_opt.caption,
+            dgr_opt['fig-attr']
+          ) or
+          pandoc.Plain { raw }
     end
 
     -- Use the block's filename attribute or create a new name by hashing the image content.
