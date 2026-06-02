@@ -36,6 +36,27 @@ $$
 $$
 :::
 
+Em menor escala, o princípio é uma **árvore de possibilidades**
+(@fig-arvore-contagem): $2$ opções na primeira etapa, cada uma abrindo $3$ na
+segunda, dão $2 \times 3 = 6$ caminhos.
+
+::: {#fig-arvore-contagem}
+```{.tikz}
+%%| filename: combinatoria-arvore
+%%| alt: Árvore com uma raiz que se divide em 2 ramos, e cada um desses em mais 3, totalizando 6 folhas.
+\begin{tikzpicture}[scale=1,
+   level 1/.style={sibling distance=3.4cm}, level 2/.style={sibling distance=1.0cm},
+   every node/.style={font=\footnotesize}, edge from parent/.style={draw=manualgray, -}]
+  \node[ponto] {}
+   child {node[ponto] {} child {node[ponto] {}} child {node[ponto] {}} child {node[ponto] {}}}
+   child {node[ponto] {} child {node[ponto] {}} child {node[ponto] {}} child {node[ponto] {}}};
+\end{tikzpicture}
+```
+
+Cada caminho da raiz até uma folha é um resultado: $2$ escolhas seguidas de $3$
+produzem $2 \times 3 = 6$.
+:::
+
 ## Permutações e arranjos
 
 Quando se ordenam objetos, cada posição preenchida reduz as opções da seguinte —
