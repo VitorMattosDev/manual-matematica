@@ -37,6 +37,24 @@ contagens cruzadas — uma aplicação do princípio multiplicativo (@sec-combin
 Observe ainda: $V - A + F = 8 - 12 + 6 = 2$.
 :::
 
+::: {#fig-cubo}
+```{.tikz}
+%%| filename: poliedros-cubo
+%%| alt: Um cubo desenhado em perspectiva, com as três arestas ocultas tracejadas; tem 8 vértices, 12 arestas e 6 faces.
+\begin{tikzpicture}[scale=0.85]
+  \coordinate (A) at (0,0); \coordinate (B) at (2,0); \coordinate (C) at (2,2); \coordinate (D) at (0,2);
+  \coordinate (E) at (0.8,0.8); \coordinate (F) at (2.8,0.8); \coordinate (G) at (2.8,2.8); \coordinate (H) at (0.8,2.8);
+  \draw[curva, dashed] (E)--(F); \draw[curva, dashed] (E)--(H); \draw[curva, dashed] (A)--(E);
+  \draw[curva] (A)--(B)--(C)--(D)--cycle;
+  \draw[curva] (F)--(G)--(H);
+  \draw[curva] (B)--(F); \draw[curva] (C)--(G); \draw[curva] (D)--(H);
+\end{tikzpicture}
+```
+
+O cubo (arestas ocultas tracejadas): $V = 8$, $A = 12$, $F = 6$, e
+$V - A + F = 2$.
+:::
+
 ## A relação de Euler
 
 O valor $2$ do exemplo não é coincidência: vale para **todo** poliedro convexo.
