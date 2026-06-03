@@ -70,7 +70,26 @@ Quando $a = 0$, também se chama polinômio de **Maclaurin**.
 
 A escolha dos coeficientes não é arbitrária: $T_n$ é o único polinômio de grau
 $\leq n$ que tem, em $a$, **o mesmo valor e as mesmas $n$ primeiras derivadas** que
-$f$. Por isso cola tão bem ao gráfico perto de $a$.
+$f$. Por isso cola tão bem ao gráfico perto de $a$ (@fig-taylor): para
+$\operatorname{sen} x$ em $a = 0$, já $T_1 = x$ e $T_3 = x - \tfrac{x^3}{6}$ o
+acompanham numa vizinhança, descolando-se só mais longe.
+
+::: {#fig-taylor}
+```{.tikz}
+%%| filename: taylor-aproximacao
+%%| alt: Gráfico de seno de x e seus polinômios de Taylor T1 igual a x e T3, que coincidem com a curva perto da origem e se afastam longe dela.
+\begin{tikzpicture}[scale=0.75, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-3.4,0) -- (3.4,0) node[right] {$x$};
+  \draw[eixo] (0,-2.1) -- (0,2.1) node[above] {$y$};
+  \draw[auxiliar] (-2.2,-2.2) -- (2.2,2.2); \node[manualgray] at (2.5,1.7) {$T_1=x$};
+  \draw[destaque] plot[domain=-3.0:3.0, samples=60] (\x, {\x-\x*\x*\x/6}); \node[destaque] at (2.9,-1.1) {$T_3$};
+  \draw[curva] plot[domain=-3.3:3.3, samples=80] (\x, {sin(deg(\x))}); \node[manualblue] at (1.6,1.4) {$\operatorname{sen}x$};
+\end{tikzpicture}
+```
+
+$\operatorname{sen} x$ e seus polinômios de Taylor $T_1$ e $T_3$ em $a = 0$:
+coincidem perto da origem e se afastam longe.
+:::
 
 ::: {#exm-taylor-exp}
 ## Maclaurin da exponencial
