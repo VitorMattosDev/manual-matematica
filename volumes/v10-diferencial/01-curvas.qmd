@@ -28,6 +28,27 @@ $$
 e a **rapidez** é seu módulo $\|\alpha'(t)\|$.
 :::
 
+Em cada ponto, o vetor velocidade $\alpha'(t)$ é **tangente** ao traço, apontando no
+sentido do percurso (@fig-curva-tangente); seu módulo dá a rapidez.
+
+::: {#fig-curva-tangente}
+```{.tikz}
+%%| filename: curvas-tangente
+%%| alt: Uma curva no plano com dois pontos marcados; em cada ponto, uma seta tangente representa o vetor velocidade, apontando no sentido do percurso.
+\begin{tikzpicture}[scale=1.3, every node/.style={font=\footnotesize}]
+  \draw[curva, domain=0:4.2, samples=80] plot (\x, {0.7*sin(\x r)+0.05*\x*\x});
+  \node[ponto] at (1.0,{0.7*sin(1 r)+0.05}) {};
+  \draw[vetor, destaque] (1.0,{0.7*sin(1 r)+0.05}) -- ++(0.85,{0.85*(0.7*cos(1 r)+0.1)});
+  \node[below right] at (1.0,{0.7*sin(1 r)+0.05}) {$\alpha(t)$};
+  \node[destaque, right] at (1.95,{0.7*sin(1 r)+0.05+0.85*(0.7*cos(1 r)+0.1)}) {$\alpha'(t)$};
+  \node[ponto] at (3.0,{0.7*sin(3 r)+0.45}) {};
+  \draw[vetor, destaque] (3.0,{0.7*sin(3 r)+0.45}) -- ++(0.85,{0.85*(0.7*cos(3 r)+0.3)});
+\end{tikzpicture}
+```
+
+O vetor velocidade $\alpha'(t)$ é tangente à curva em cada ponto.
+:::
+
 A imagem $\alpha(I) \subseteq \mathbb{R}^n$ é o **traço** da curva — a figura
 geométrica desenhada. A função $\alpha$ é o **percurso**, que carrega informação extra:
 direção, rapidez, eventuais idas e voltas.
