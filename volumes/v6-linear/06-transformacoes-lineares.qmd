@@ -43,7 +43,32 @@ lineares.
 ## A matriz de uma transformação
 
 Aqui está o teorema que organiza tudo. Uma transformação linear fica **completamente
-determinada** pelo que faz com os vetores de uma base.
+determinada** pelo que faz com os vetores de uma base. Geometricamente
+(@fig-transformacao-linear), $T$ leva o quadrado unitário de lados $e_1, e_2$ no
+paralelogramo de lados $T e_1, T e_2$ — e isso já fixa $T$ em todo vetor.
+
+::: {#fig-transformacao-linear}
+```{.tikz}
+%%| filename: transformacoes-quadrado
+%%| alt: À esquerda, o quadrado unitário com os vetores e1 e e2; à direita, sua imagem por T, um paralelogramo de lados T e1 e T e2.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \begin{scope}
+    \fill[manualblue!12] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+    \draw[manualgray, thin] (0,0) grid (1,1);
+    \draw[vetor, destaque] (0,0) -- (1,0) node[below] {$e_1$};
+    \draw[vetor, manualgreen!65!black] (0,0) -- (0,1) node[left] {$e_2$};
+  \end{scope}
+  \node at (2.0,0.5) {\large $\xrightarrow{\;T\;}$};
+  \begin{scope}[shift={(3,0)}]
+    \fill[manualblue!12] (0,0) -- (1,0) -- (1.6,1) -- (0.6,1) -- cycle;
+    \draw[vetor, destaque] (0,0) -- (1,0) node[below] {$Te_1$};
+    \draw[vetor, manualgreen!65!black] (0,0) -- (0.6,1) node[above left] {$Te_2$};
+  \end{scope}
+\end{tikzpicture}
+```
+
+$T$ leva o quadrado de lados $e_1, e_2$ no paralelogramo de lados $Te_1, Te_2$.
+:::
 
 ::: {#thm-determinada-base}
 ## Linearidade é determinada na base
