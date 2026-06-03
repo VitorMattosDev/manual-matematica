@@ -30,6 +30,30 @@ O detalhe crucial é "$x \neq a$": o limite descreve o **comportamento em torno*
 $a$, não o valor *em* $a$ — que pode até não existir. É essa independência que
 permitirá dar sentido à velocidade instantânea.
 
+A @fig-limite mostra a ideia: mesmo que a função **não esteja definida** em $a$
+(o círculo aberto), ao aproximar $x$ de $a$ pelos dois lados os valores $f(x)$
+tendem a $L$.
+
+::: {#fig-limite}
+```{.tikz}
+%%| filename: limites-limite
+%%| alt: Gráfico de uma função que tende a L quando x se aproxima de a pelos dois lados, com um círculo aberto em (a, L) indicando que a função não está definida ali.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-0.3,0) -- (3.3,0) node[right] {$x$};
+  \draw[eixo] (0,-0.3) -- (0,2.6) node[above] {$y$};
+  \draw[curva] (0,0.5) -- (1.45,{0.6*1.45+0.5});
+  \draw[curva] (1.55,{0.6*1.55+0.5}) -- (3,{0.6*3+0.5});
+  \draw[auxiliar] (1.5,0) -- (1.5,1.4) -- (0,1.4);
+  \draw[fill=white, manualblue, thick] (1.5,1.4) circle (2.2pt);
+  \node[below] at (1.5,0) {$a$}; \node[left] at (0,1.4) {$L$};
+  \draw[-{Stealth[length=3pt]}, manualgray] (1.0,0.12) -- (1.38,0.12);
+  \draw[-{Stealth[length=3pt]}, manualgray] (2.0,0.12) -- (1.62,0.12);
+\end{tikzpicture}
+```
+
+Quando $x \to a$ (pelos dois lados), $f(x) \to L$ — ainda que $f(a)$ não exista.
+:::
+
 ::: {#exm-limite-removivel}
 ## Um limite onde a função nem existe
 Considere $f(x) = \dfrac{x^2 - 1}{x - 1}$, indefinida em $x = 1$ (dá $0/0$). Para
