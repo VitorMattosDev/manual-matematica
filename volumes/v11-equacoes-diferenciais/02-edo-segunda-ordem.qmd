@@ -70,6 +70,29 @@ Seja $\Delta = b^2 - 4c$ o discriminante (@sec-equacoes-2grau):
   x + c_2\operatorname{sen}\beta x)$ — **oscilação**.
 :::
 
+Os três casos têm comportamentos qualitativos distintos (@fig-amortecimento): a solução
+ou **oscila** com amplitude decrescente, ou retorna ao equilíbrio sem oscilar — depressa
+(amortecimento crítico) ou devagar (amortecimento forte).
+
+::: {#fig-amortecimento}
+```{.tikz}
+%%| filename: edo-amortecimento
+%%| alt: Três curvas y(t) partindo do mesmo valor: uma oscila com amplitude decrescente (raízes complexas), uma decai rápido sem oscilar (amortecimento crítico) e outra decai devagar (amortecimento forte).
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}, yscale=1.6]
+  \draw[eixo] (-0.2,0) -- (6.4,0) node[right]{$t$};
+  \draw[eixo] (0,-0.65) -- (0,1.15) node[above]{$y$};
+  \draw[curva, domain=0:6.2, samples=140] plot (\x, {exp(-0.35*\x)*cos(2.6*\x r)});
+  \draw[manualgreen!70!black, very thick, domain=0:6.2, samples=80] plot (\x, {(1+1.6*\x)*exp(-1.7*\x)});
+  \draw[destaque, very thick, domain=0:6.2, samples=80] plot (\x, {exp(-0.55*\x)});
+  \node[manualblue, anchor=west] at (3.3,0.42) {oscilação ($\Delta<0$)};
+  \node[manualgreen!60!black, anchor=west] at (1.5,0.62) {crítico ($\Delta=0$)};
+  \node[destaque, anchor=west] at (2.4,0.18) {forte ($\Delta>0$)};
+\end{tikzpicture}
+```
+
+Os três regimes de uma EDO linear de segunda ordem, conforme o discriminante.
+:::
+
 ::: {.callout-tip}
 ## Por que complexas geram oscilação
 Quando a característica tem raízes $\alpha\pm i\beta$, a fórmula de Euler $e^{i\beta x} =
