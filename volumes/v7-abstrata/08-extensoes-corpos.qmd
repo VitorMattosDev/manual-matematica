@@ -92,6 +92,29 @@ então os produtos $\{u_i v_j\}$ formam base de $L$ sobre $K$. Contando, há $[F
 \cdot[L:F]$ deles.
 :::
 
+Empilhando os corpos numa **torre** (@fig-torre-graus), o grau total é o produto dos
+graus dos degraus — como na extensão $\mathbb{Q}(\sqrt2, \sqrt3)/\mathbb{Q}$, de grau
+$2 \cdot 2 = 4$ (a do @exm-minimal).
+
+::: {#fig-torre-graus}
+```{.tikz}
+%%| filename: extensoes-torre-graus
+%%| alt: Torre vertical de corpos com Q na base, Q(raiz de 2) no meio e Q(raiz de 2, raiz de 3) no topo, cada degrau rotulado com grau 2, e uma chave indicando que o grau total da extensão é 2 vezes 2 igual a 4.
+\begin{tikzpicture}[every node/.style={font=\footnotesize}]
+  \node (K) at (0,0) {$\mathbb{Q}$};
+  \node (F) at (0,1.6) {$\mathbb{Q}(\sqrt2)$};
+  \node (L) at (0,3.2) {$\mathbb{Q}(\sqrt2,\sqrt3)$};
+  \draw[thick, manualgray] (K) -- (F) node[midway, right, manualblue] {$2$};
+  \draw[thick, manualgray] (F) -- (L) node[midway, right, manualblue] {$2$};
+  \draw[decorate,decoration={brace,amplitude=6pt},destaque] (1.7,3.2) -- (1.7,0)
+    node[midway,right=7pt,destaque]{$[\,L:\mathbb{Q}\,]=2\cdot 2=4$};
+\end{tikzpicture}
+```
+
+A torre $\mathbb{Q} \subset \mathbb{Q}(\sqrt2) \subset \mathbb{Q}(\sqrt2,\sqrt3)$: os
+graus dos degraus se multiplicam.
+:::
+
 ::: {#cor-grau-divide}
 ## O grau de um elemento divide o grau da extensão
 Numa extensão finita $L/K$, o grau do polinômio minimal de qualquer $\alpha \in L$
