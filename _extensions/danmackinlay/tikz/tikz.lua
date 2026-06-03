@@ -328,6 +328,7 @@ local function compile_tikz_to_svg(code, user_opts, conf, basename)  -- Added co
   auxiliar/.style={manualgray,thin,dashed},
   ponto/.style={fill=black,circle,inner sep=1.3pt},
   destaque/.style={manualred,thick},
+  vetor/.style={->,>=stealth,very thick},
 }
 $additional-packages$
 $for(header-includes)$
