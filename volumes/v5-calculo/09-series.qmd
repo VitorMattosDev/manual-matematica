@@ -52,6 +52,29 @@ Se $\lim_{N\to\infty} s_N = S$ existe e é finito, a série **converge** e $S$ �
 soma; caso contrário, **diverge**.
 :::
 
+A série geométrica $\tfrac12 + \tfrac14 + \tfrac18 + \cdots$ é o exemplo modelo
+(@fig-serie-geometrica): cada parcela cobre metade do que falta, e as somas
+parciais aproximam-se de $1$ sem ultrapassá-lo.
+
+::: {#fig-serie-geometrica}
+```{.tikz}
+%%| filename: series-geometrica
+%%| alt: Segmento de comprimento 1 dividido em pedaços de comprimento um meio, um quarto, um oitavo e assim por diante, que somados dão 1.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \fill[manualblue!28] (0,0) rectangle (4,0.7); \node at (2,0.35) {$\tfrac12$};
+  \fill[manualblue!20] (4,0) rectangle (6,0.7); \node at (5,0.35) {$\tfrac14$};
+  \fill[manualblue!14] (6,0) rectangle (7,0.7); \node at (6.5,0.35) {$\tfrac18$};
+  \fill[manualblue!10] (7,0) rectangle (7.5,0.7);
+  \fill[manualblue!7] (7.5,0) rectangle (7.75,0.7);
+  \draw[semithick] (0,0) rectangle (8,0.7);
+  \node[below] at (0,0) {$0$}; \node[below] at (8,0) {$1$};
+\end{tikzpicture}
+```
+
+A série geométrica $\tfrac12 + \tfrac14 + \tfrac18 + \cdots = 1$: cada termo cobre
+metade do que resta.
+:::
+
 ::: {.callout-warning}
 ## Termo e soma são coisas diferentes
 Não confunda a sequência dos **termos** $(a_n)$ com a sequência das **somas
