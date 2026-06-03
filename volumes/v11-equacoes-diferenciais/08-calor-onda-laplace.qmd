@@ -56,6 +56,28 @@ que ouvimos é o fundamental; a mistura de harmônicos (os pesos $b_n$, ditados 
 a corda foi dedilhada) é o **timbre** que distingue um violino de uma flauta tocando a
 mesma nota. A solução de d'Alembert mostra ainda que a onda viaja: $u = \frac12[f(x-ct) +
 f(x+ct)]$, duas cópias do perfil correndo em sentidos opostos a velocidade $c$.
+
+A @fig-modos mostra os primeiros modos estacionários de uma corda presa nas pontas: o
+fundamental ($n=1$) e os harmônicos ($n=2,3$), cada um com $n-1$ nós internos parados.
+
+::: {#fig-modos}
+```{.tikz}
+%%| filename: onda-modos-corda
+%%| alt: Os três primeiros modos estacionários de uma corda presa nas extremidades: n igual a 1 (fundamental, uma barriga), n igual a 2 (dois ventres) e n igual a 3 (três ventres), com as envoltórias tracejadas.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \def\L{3.0}
+  \foreach \n/\off/\lab in {1/2.6/{$n=1$ (fundamental)}, 2/1.3/{$n=2$}, 3/0/{$n=3$}}{
+    \draw[manualgray!50] (0,\off) -- (\L,\off);
+    \draw[curva, domain=0:3.0, samples=80] plot (\x, {\off + 0.42*sin((\n*pi*\x/3.0) r)});
+    \draw[auxiliar] plot[domain=0:3.0, samples=80] (\x, {\off - 0.42*sin((\n*pi*\x/3.0) r)});
+    \fill[black] (0,\off) circle (1.6pt); \fill[black] (\L,\off) circle (1.6pt);
+    \node[anchor=west] at (3.25,\off) {\lab};
+  }
+\end{tikzpicture}
+```
+
+Os modos estacionários $\operatorname{sen}(n\pi x/L)$: o fundamental e seus harmônicos.
+:::
 :::
 
 ::: {#exm-dalembert}
