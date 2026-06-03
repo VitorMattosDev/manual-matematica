@@ -52,6 +52,36 @@ A **distância** entre $f$ e $g$ é $\|f - g\|_\infty$. Com ela, **convergência
 uniforme $f_n \to f$ é exatamente $\|f_n - f\|_\infty \to 0$**.
 :::
 
+Geometricamente (@fig-tubo-uniforme), $\|f_n - f\|_\infty < \varepsilon$ significa que
+o gráfico inteiro de $f_n$ cabe num **tubo** de raio $\varepsilon$ em torno de $f$.
+Convergir uniformemente é fazer esse tubo encolher: a partir de certo $N$, toda a
+sequência mora dentro dele.
+
+::: {#fig-tubo-uniforme}
+```{.tikz}
+%%| filename: convergencia-tubo-uniforme
+%%| alt: Curva f com uma faixa sombreada de raio épsilon em torno dela, delimitada por f mais épsilon e f menos épsilon; uma função f n oscilante permanece inteiramente dentro dessa faixa.
+\begin{tikzpicture}[scale=1.5, every node/.style={font=\footnotesize}]
+  \fill[manualblue!8, domain=0:3.3, samples=80, variable=\x]
+    plot (\x,{1+0.4*sin(2*\x r)+0.25}) -- plot[domain=3.3:0] (\x,{1+0.4*sin(2*\x r)-0.25}) -- cycle;
+  \draw[auxiliar, domain=0:3.3, samples=80] plot (\x,{1+0.4*sin(2*\x r)+0.25});
+  \draw[auxiliar, domain=0:3.3, samples=80] plot (\x,{1+0.4*sin(2*\x r)-0.25});
+  \draw[curva, domain=0:3.3, samples=90] plot (\x,{1+0.4*sin(2*\x r)});
+  \draw[destaque, thin, domain=0:3.3, samples=140] plot (\x,{1+0.4*sin(2*\x r)+0.15*sin(8*\x r)});
+  \draw[eixo] (-0.1,0) -- (3.7,0) node[right]{$x$};
+  \draw[eixo] (0,0) -- (0,2.0) node[above]{$y$};
+  \draw[<->, manualgray] (0.8,{1+0.4*sin(1.6 r)}) -- (0.8,{1+0.4*sin(1.6 r)+0.25});
+  \node[manualgray, anchor=east] at (0.72,{1+0.4*sin(1.6 r)+0.13}) {$\varepsilon$};
+  \node[manualgray, anchor=west] at (3.38,1.5) {$f\pm\varepsilon$};
+  \node[manualblue, anchor=west] at (3.38,1.05) {$f$};
+  \node[destaque, anchor=west] at (1.45,0.42) {$f_n$};
+\end{tikzpicture}
+```
+
+Convergência uniforme: o gráfico de $f_n$ cabe inteiro no tubo de raio $\varepsilon$
+em torno de $f$.
+:::
+
 ::: {.callout-note}
 ## Funções como pontos de um espaço
 A norma do supremo transforma o conjunto $C[a,b]$ das funções contínuas num **espaço
