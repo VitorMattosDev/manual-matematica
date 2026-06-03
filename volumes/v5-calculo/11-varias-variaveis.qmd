@@ -38,6 +38,27 @@ mostra montanhas por linhas de mesma altitude. Para o paraboloide, as curvas de
 nível são círculos $x^2 + y^2 = k$.
 :::
 
+As curvas de nível do paraboloide $z = x^2 + y^2$ são círculos concêntricos
+(@fig-curvas-nivel); círculos mais espaçados indicam terreno mais plano, mais
+juntos, mais íngreme.
+
+::: {#fig-curvas-nivel}
+```{.tikz}
+%%| filename: varias-curvas-nivel
+%%| alt: Círculos concêntricos no plano, curvas de nível do paraboloide z igual a x ao quadrado mais y ao quadrado, rotuladas com as alturas 1, 2 e 3.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-2,0) -- (2,0) node[right] {$x$};
+  \draw[eixo] (0,-2) -- (0,2) node[above] {$y$};
+  \foreach \r/\z in {0.55/1, 1.05/2, 1.55/3} {
+    \draw[curva] (0,0) circle (\r);
+    \node[manualblue!70!black] at ({\r*0.707},{\r*0.707}) {$\z$};
+  }
+\end{tikzpicture}
+```
+
+Curvas de nível $x^2 + y^2 = k$ do paraboloide: um "mapa topográfico" da superfície.
+:::
+
 ## Derivadas parciais
 
 A ideia central: para derivar em $x$, trate $y$ como constante, e vice-versa.
