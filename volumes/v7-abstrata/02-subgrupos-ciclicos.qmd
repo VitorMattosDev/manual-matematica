@@ -79,6 +79,30 @@ um subgrupo de ordem $4$. Já o $1$ gera o grupo inteiro — $1$ é um **gerador
 $\mathbb{Z}_{12}$.
 :::
 
+Vendo $\mathbb{Z}_{12}$ como um relógio de doze posições (@fig-ciclico-z12), somar $1$
+avança um passo; o gerador $1$ dá uma volta completa. Já $\langle 3\rangle$ salta de
+três em três e aterrissa em apenas quatro posições, igualmente espaçadas — o subgrupo
+de ordem $4$.
+
+::: {#fig-ciclico-z12}
+```{.tikz}
+%%| filename: ciclicos-z12
+%%| alt: Os doze elementos de Z12 dispostos em círculo como um relógio; uma seta marca o gerador +1, e os elementos 0, 3, 6, 9 estão destacados formando um quadrado, o subgrupo gerado por 3.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \draw[auxiliar] (0,0) circle (1.6);
+  \draw[destaque, thick] (90:1.6) -- (0:1.6) -- (-90:1.6) -- (180:1.6) -- cycle;
+  \foreach \k in {0,...,11} {\fill[manualgray] ({90-30*\k}:1.6) circle (1.7pt);}
+  \foreach \k in {0,3,6,9} {\fill[manualred] ({90-30*\k}:1.6) circle (2.6pt);}
+  \foreach \k in {0,...,11} {\node at ({90-30*\k}:1.97) {\k};}
+  \draw[->,>=stealth,manualblue,thick] (74:1.6) arc[start angle=74,end angle=46,radius=1.6];
+  \node[manualblue] at (60:1.3) {$+1$};
+\end{tikzpicture}
+```
+
+$\mathbb{Z}_{12}$ como ciclo: o gerador $+1$ percorre tudo; $\langle 3\rangle = \{0,
+3, 6, 9\}$ ocupa quatro posições igualmente espaçadas.
+:::
+
 ## Grupos cíclicos
 
 ::: {#def-ciclico}
