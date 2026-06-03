@@ -101,6 +101,29 @@ vira $3y_1^2 + 7y_2^2 = 9$ — uma **elipse** (@sec-conicas), girada $45^\circ$ 
 relação aos eixos originais. O teorema espectral *endireita* a cônica.
 :::
 
+Os autovetores $q_1, q_2$ são os **eixos principais** da elipse (@fig-eixos-principais):
+ortogonais entre si (como garante o teorema espectral) e alinhados com as direções
+em que a curva se estica. É por isso que, escritos nessas coordenadas, o termo
+cruzado some.
+
+::: {#fig-eixos-principais}
+```{.tikz}
+%%| filename: espectral-eixos-principais
+%%| alt: Uma elipse girada 45 graus em relação aos eixos x e y; os autovetores ortonormais q1 e q2, com um ângulo reto entre eles na origem, apontam ao longo dos eixos maior e menor da elipse.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-2.3,0) -- (2.3,0) node[right]{$x$};
+  \draw[eixo] (0,-2.3) -- (0,2.3) node[above]{$y$};
+  \draw[curva, rotate=45] (0,0) ellipse [x radius=1.73, y radius=1.134];
+  \draw[manualgray] (0.177,0.177) -- (0.354,0) -- (0.177,-0.177);
+  \draw[vetor, destaque] (0,0) -- (1.22,1.22) node[above right]{$q_1$};
+  \draw[vetor, manualgreen!65!black] (0,0) -- (0.80,-0.80) node[below right]{$q_2$};
+\end{tikzpicture}
+```
+
+Os autovetores ortonormais $q_1, q_2$ são os eixos principais da elipse $5x^2 - 4xy +
+5y^2 = 9$, girada $45^\circ$ em relação a $x, y$.
+:::
+
 ## Classificação e positividade
 
 O sinal dos autovalores classifica a forma — e, com ela, a natureza de pontos
