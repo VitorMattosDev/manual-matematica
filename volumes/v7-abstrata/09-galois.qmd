@@ -65,6 +65,39 @@ corpo dos elementos fixados por $H$). Além disso, $[L : F] = |\operatorname{Gal
 e $|G| = [L : K]$.
 :::
 
+A @fig-correspondencia-galois exibe o dicionário para $\mathbb{Q}(\sqrt2,\sqrt3)/\mathbb{Q}$,
+cujo grupo de Galois é o de Klein $\mathbb{Z}_2\times\mathbb{Z}_2$ (@exr-gal-2): os três
+corpos intermediários correspondem aos três subgrupos de ordem $2$, e o reticulado de
+subgrupos é o de corpos **de cabeça para baixo** — pois a bijeção inverte inclusões.
+
+::: {#fig-correspondencia-galois}
+```{.tikz}
+%%| filename: galois-correspondencia
+%%| alt: À esquerda, o reticulado em diamante dos corpos intermediários de Q(raiz2,raiz3) com Q embaixo e Q(raiz2,raiz3) no topo; à direita, o reticulado invertido dos subgrupos com o grupo trivial no topo e o grupo todo embaixo; uma seta dupla entre eles indica que a correspondência inverte inclusões.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \node (Q)  at (0,0)      {$\mathbb{Q}$};
+  \node (F1) at (-1.4,1.5) {$\mathbb{Q}(\sqrt2)$};
+  \node (F2) at (0,1.5)    {$\mathbb{Q}(\sqrt6)$};
+  \node (F3) at (1.4,1.5)  {$\mathbb{Q}(\sqrt3)$};
+  \node (L)  at (0,3.0)    {$\mathbb{Q}(\sqrt2,\sqrt3)$};
+  \foreach \x in {F1,F2,F3} {\draw[manualgray] (Q) -- (\x); \draw[manualgray] (\x) -- (L);}
+  \node[manualgray] at (0,3.65) {corpos intermediários};
+  \node (E)  at (6.6,3.0)  {$\{e\}$};
+  \node (H1) at (5.3,1.5)  {$H_1$};
+  \node (H2) at (6.6,1.5)  {$H_2$};
+  \node (H3) at (7.9,1.5)  {$H_3$};
+  \node (G)  at (6.6,0)    {$\mathbb{Z}_2\!\times\!\mathbb{Z}_2$};
+  \foreach \x in {H1,H2,H3} {\draw[manualgray] (E) -- (\x); \draw[manualgray] (\x) -- (G);}
+  \node[manualgray] at (6.6,3.65) {subgrupos de $G$};
+  \draw[<->, thick, manualblue] (2.5,1.5) -- (4.4,1.5);
+  \node[manualblue, align=center] at (3.45,2.05) {inverte\\inclusões};
+\end{tikzpicture}
+```
+
+A correspondência para $\mathbb{Q}(\sqrt2,\sqrt3)/\mathbb{Q}$: o maior corpo $L$
+corresponde ao menor grupo $\{e\}$, e $\mathbb{Q}$ ao grupo todo $G$.
+:::
+
 ::: {.callout-tip}
 ## Por que isso é revolucionário
 A correspondência **traduz** problemas sobre corpos (objetos infinitos, contínuos) em
