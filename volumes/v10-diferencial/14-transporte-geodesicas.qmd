@@ -52,6 +52,37 @@ direção. No plano (curvatura zero), o transporte em qualquer laço devolve o v
 intacto. Essa é a definição operacional de curvatura (@sec-curvatura-riemann).
 :::
 
+A @fig-transporte-paralelo ilustra a holonomia na esfera: ao transportar um vetor ao
+longo do triângulo geodésico fechado, ele retorna girado de um ângulo $\theta$ em
+relação ao inicial — e esse ângulo mede a curvatura encerrada pelo laço.
+
+::: {#fig-transporte-paralelo}
+```{.tikz}
+%%| filename: transporte-holonomia
+%%| alt: Numa esfera, um vetor é transportado paralelamente ao longo de um triângulo geodésico fechado; ao voltar ao ponto inicial, o vetor final aparece girado de um ângulo theta em relação ao vetor inicial.
+\begin{tikzpicture}[scale=1.2, every node/.style={font=\footnotesize}]
+  \def\R{1.6}
+  \coordinate (N) at (0,1.6);
+  \coordinate (A) at (-1.0,-0.39);
+  \coordinate (B) at (1.0,-0.39);
+  \draw[manualgray, thick] (0,0) circle (\R);
+  \draw[manualgray!45, densely dashed] (\R,0) arc[start angle=0,end angle=180,x radius=\R,y radius=0.5];
+  \draw[manualgray!45] (\R,0) arc[start angle=0,end angle=-180,x radius=\R,y radius=0.5];
+  \draw[manualgray, thick, ->] (N) .. controls (-0.55,0.95) and (-1.0,0.2) .. (A);
+  \draw[manualgray, thick, ->] (A) .. controls (-0.5,-0.62) and (0.5,-0.62) .. (B);
+  \draw[manualgray, thick, ->] (B) .. controls (1.0,0.2) and (0.55,0.95) .. (N);
+  \node[ponto] at (N){}; \node[ponto] at (A){}; \node[ponto] at (B){};
+  \draw[vetor, manualblue] (N) -- ++(-0.78,-0.34) node[above left]{$v_{\text{ini}}$};
+  \draw[vetor, destaque] (N) -- ++(-0.18,-0.84) node[below]{$v_{\text{fin}}$};
+  \draw[manualgreen!60!black, ->] (-0.58,1.34) arc[start angle=204, end angle=256, radius=0.62];
+  \node[manualgreen!55!black] at (-0.28,1.02) {$\theta$};
+\end{tikzpicture}
+```
+
+Transporte paralelo ao longo de um laço fechado na esfera: o vetor volta girado de
+$\theta$ (a holonomia).
+:::
+
 ## Geodésicas
 
 A curva que transporta paralelamente seu **próprio** vetor tangente — a mais reta
