@@ -63,6 +63,30 @@ $$
 \cos\theta = \frac{\langle u, v\rangle}{\|u\|\,\|v\|}.
 $$
 
+A @fig-projecao reúne os dois conceitos: o ângulo $\theta$ entre $\vec u$ e
+$\vec v$ e a **projeção** de $\vec u$ sobre $\vec v$ — a "sombra" de $\vec u$ na
+direção de $\vec v$, de comprimento $\|\vec u\|\cos\theta$.
+
+::: {#fig-projecao}
+```{.tikz}
+%%| filename: produto-interno-projecao
+%%| alt: Vetores u e v a partir da origem, o ângulo teta entre eles e a projeção de u sobre v, com um ângulo reto onde a perpendicular de u encontra v.
+\begin{tikzpicture}[scale=1.1, every node/.style={font=\footnotesize}]
+  \coordinate (O) at (0,0); \coordinate (u) at (1.6,1.4); \coordinate (v) at (2.6,0); \coordinate (p) at (1.6,0);
+  \draw[vetor, manualblue] (O) -- (u) node[above] {$\vec u$};
+  \draw[vetor, manualgray] (O) -- (v) node[right] {$\vec v$};
+  \draw[auxiliar] (u) -- (p);
+  \draw[vetor, destaque] (O) -- (p);
+  \node[below, destaque] at (0.8,-0.05) {$\operatorname{proj}_{\vec v}\vec u$};
+  \pic[draw=manualgreen!60!black, angle radius=0.5cm, "$\theta$"] {angle=v--O--u};
+  \draw[manualgray] (1.4,0) -- (1.4,0.2) -- (1.6,0.2);
+\end{tikzpicture}
+```
+
+O ângulo $\theta$ entre $\vec u$ e $\vec v$ e a projeção de $\vec u$ sobre
+$\vec v$.
+:::
+
 ::: {.callout-note}
 ## A geometria importada de graça
 Com a norma vêm a **desigualdade triangular** $\|u + v\| \leq \|u\| + \|v\|$ e o
