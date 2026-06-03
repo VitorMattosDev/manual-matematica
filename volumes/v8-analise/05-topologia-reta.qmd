@@ -59,6 +59,35 @@ opostos — há conjuntos nenhum dos dois, e dois ($\emptyset$, $\mathbb{R}$) qu
 ambos.
 :::
 
+A @fig-aberto-fechado contrasta os dois casos. No aberto $(a, b)$, todo ponto $x$ tem
+folga: cabe uma vizinhança $(x - \varepsilon, x + \varepsilon)$ inteiramente dentro.
+No fechado $[a, b]$, os extremos $a, b$ pertencem ao conjunto — são justamente os
+limites de pontos internos.
+
+::: {#fig-aberto-fechado}
+```{.tikz}
+%%| filename: topologia-aberto-fechado
+%%| alt: Duas retas; em cima o intervalo aberto (a,b) com círculos vazados nos extremos e um ponto interior x com uma vizinhança épsilon cabendo dentro; embaixo o intervalo fechado [a,b] com círculos cheios nos extremos.
+\begin{tikzpicture}[scale=1.2, every node/.style={font=\footnotesize}]
+  \draw[manualblue, line width=2pt] (0,1.1) -- (4,1.1);
+  \fill[white] (0,1.1) circle (2.4pt); \draw[manualblue,thick] (0,1.1) circle (2.4pt);
+  \fill[white] (4,1.1) circle (2.4pt); \draw[manualblue,thick] (4,1.1) circle (2.4pt);
+  \node[below] at (0,1.0) {$a$}; \node[below] at (4,1.0) {$b$};
+  \fill[destaque] (2.4,1.1) circle (1.6pt); \node[destaque, below] at (2.4,1.02) {$x$};
+  \draw[destaque, thick] (1.9,1.42)--(1.9,1.18) (1.9,1.42)--(2.9,1.42) (2.9,1.42)--(2.9,1.18);
+  \node[destaque, above] at (2.4,1.42) {$(x-\varepsilon,\,x+\varepsilon)$};
+  \node[manualblue, anchor=east] at (-0.4,1.1) {aberto $(a,b)$};
+  \draw[manualgray, line width=2pt] (0,0) -- (4,0);
+  \fill[manualgray] (0,0) circle (2.4pt); \fill[manualgray] (4,0) circle (2.4pt);
+  \node[below] at (0,-0.1) {$a$}; \node[below] at (4,-0.1) {$b$};
+  \node[manualgray, anchor=east] at (-0.4,0) {fechado $[a,b]$};
+\end{tikzpicture}
+```
+
+Aberto: cada ponto tem uma vizinhança contida no conjunto. Fechado: contém seus
+próprios extremos.
+:::
+
 ::: {#def-fecho-interior}
 ## Fecho, interior, fronteira
 O **fecho** $\overline{A}$ é o menor fechado contendo $A$ (acrescenta os pontos de
