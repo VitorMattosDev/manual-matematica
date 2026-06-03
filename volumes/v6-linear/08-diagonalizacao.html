@@ -1158,6 +1158,138 @@ A = P D P^{-1}, \qquad\text{equivalentemente}\qquad P^{-1} A P = D.
 \]</span></p>
 </div>
 <p>O significado de <span class="math inline">\(A = PDP^{-1}\)</span>: <span class="math inline">\(P^{-1}\)</span> traduz o vetor para a base de autovetores, <span class="math inline">\(D\)</span> aplica a transformação (esticando cada eixo), e <span class="math inline">\(P\)</span> traduz de volta. É a mesma transformação, vista por outro ângulo.</p>
+<p>Na base de autovetores, a transformação não mistura as direções: cada eigen-eixo é apenas <strong>esticado</strong> pelo seu autovalor (<a href="#fig-diagonalizacao" class="quarto-xref">Figura&nbsp;<span>62.1</span></a>). É essa ausência de mistura que a palavra “diagonal” expressa.</p>
+<div id="fig-diagonalizacao" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagonalizacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="120.34677pt" height="80.245191pt" viewbox="-68.014948 -68.014946 120.34677 80.245191">
+<defs>
+<path id="tz_diagonalizacao_esticamento_g0-21" d="M2.996762-2.287422C3.291656-1.562142 3.777833-.263014 3.865504-.119552C4.000996 .079701 4.160399 .079701 4.351681 .079701C4.582814 .079701 4.646575 .079701 4.646575-.01594C4.646575-.055791 4.630635-.079701 4.598755-.103611C4.503113-.215193 4.463263-.294894 4.407472-.446326L2.614197-4.99726C2.558406-5.148692 2.406974-5.531258 1.586052-5.531258C1.506351-5.531258 1.3868-5.531258 1.3868-5.419676C1.3868-5.324035 1.466501-5.316065 1.506351-5.308095C1.665753-5.284184 1.817186-5.268244 2.000498-4.805978L2.574346-3.371357L2.885181-2.566376L.605729-.454296C.518057-.374595 .438356-.278954 .438356-.167372C.438356-.00797 .573848 .095641 .70934 .095641C.820922 .095641 .932503 .00797 1.004234-.071731L2.996762-2.287422Z"></path>
+<path id="tz_diagonalizacao_esticamento_g0-118" d="M3.961146-2.901121C3.961146-3.52279 3.602491-3.52279 3.57061-3.52279C3.379328-3.52279 3.156164-3.315567 3.156164-3.108344C3.156164-2.980822 3.219925-2.925031 3.291656-2.86127C3.474969-2.701868 3.58655-2.478705 3.58655-2.223661C3.58655-1.857036 3.060523-.143462 2.14396-.143462C1.801245-.143462 1.522291-.326775 1.522291-.828892C1.522291-1.267248 1.761395-1.896887 1.952677-2.375093C2.048319-2.630137 2.072229-2.693898 2.072229-2.83736C2.072229-3.267746 1.721544-3.514819 1.354919-3.514819C.565878-3.514819 .239103-2.391034 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.70137-3.012702 1.044085-3.291656 1.331009-3.291656C1.45056-3.291656 1.522291-3.219925 1.522291-3.028643C1.522291-2.84533 1.45056-2.662017 1.370859-2.462765C.980324-1.458531 .948443-1.195517 .948443-.948443C.948443-.079701 1.657783 .079701 2.11208 .079701C3.435118 .079701 3.961146-2.295392 3.961146-2.901121Z"></path>
+<path id="tz_diagonalizacao_esticamento_g1-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_diagonalizacao_esticamento_g1-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+</defs>
+<g id="tz_diagonalizacao_esticamento_page1">
+<g stroke-miterlimit="10" transform="translate(-48.469393,-2.255063)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M-19.41885-4.78017L100.97922 24.85684" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+<path d="M-5.97499-14.33963L25.39386 60.94528" fill="none"></path>
+</g>
+</g>
+</g>
+<g fill="#2c7f10" stroke="#2c7f10">
+<g stroke-width="0.8">
+<g fill="#f2faef">
+<path d="M0 0L69.90848 17.20837L90.07451 65.60649L20.16603 48.39809Z"></path>
+</g>
+</g>
+</g>
+<g fill="#1b599f" stroke="#1b599f">
+<g stroke-width="0.8">
+<g fill="#eaf3fd">
+<path d="M0 0L38.83818 9.56035L53.77591 45.41083L14.93771 35.85046Z"></path>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M0 0L36.3137 8.93901" fill="none"></path>
+<g transform="matrix(0.97098,0.23898,-0.23898,0.97098,36.31369,8.93901)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+<g transform="translate(42.57115,2.38293)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-48.469393,-2.255063)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-48.469393" y="-2.255063" href="#tz_diagonalizacao_esticamento_g0-118"></use>
+<use x="-44.34591" y="-1.148115" href="#tz_diagonalizacao_esticamento_g1-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M0 0L13.70706 32.8968" fill="none"></path>
+<g transform="matrix(0.38458,0.92302,-0.92302,0.38458,13.70705,32.8968)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+<g transform="translate(2.6992,34.68379)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-48.469393,-2.255063)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-48.469393" y="-2.255063" href="#tz_diagonalizacao_esticamento_g0-118"></use>
+<use x="-44.34591" y="-1.148115" href="#tz_diagonalizacao_esticamento_g1-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#22640d" stroke="#22640d">
+<g fill="#22640d" stroke="#22640d">
+</g>
+<g transform="translate(73.44145,14.98615)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-48.469393,-2.255063)scale(-1,-1)">
+<g fill="#22640d">
+<g stroke="none">
+<g fill="#23640d">
+<use x="-48.469393" y="-2.255063" href="#tz_diagonalizacao_esticamento_g0-21"></use>
+<use x="-43.529513" y="-1.148115" href="#tz_diagonalizacao_esticamento_g1-49"></use>
+<use x="-39.378469" y="-2.255063" href="#tz_diagonalizacao_esticamento_g0-118"></use>
+<use x="-35.254986" y="-1.148115" href="#tz_diagonalizacao_esticamento_g1-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#22640d" stroke="#22640d">
+<g fill="#22640d" stroke="#22640d">
+</g>
+<g transform="translate(-0.79752,53.04216)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-48.469393,-2.255063)scale(-1,-1)">
+<g fill="#22640d">
+<g stroke="none">
+<g fill="#23640d">
+<use x="-48.469393" y="-2.255063" href="#tz_diagonalizacao_esticamento_g0-21"></use>
+<use x="-43.529513" y="-1.148115" href="#tz_diagonalizacao_esticamento_g1-50"></use>
+<use x="-39.378469" y="-2.255063" href="#tz_diagonalizacao_esticamento_g0-118"></use>
+<use x="-35.254986" y="-1.148115" href="#tz_diagonalizacao_esticamento_g1-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagonalizacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;62.1: Na base de autovetores, <span class="math inline">\(A\)</span> apenas estica cada eixo: <span class="math inline">\(v_1 \mapsto \lambda_1 v_1\)</span> e <span class="math inline">\(v_2 \mapsto \lambda_2 v_2\)</span> — daí ser diagonal.
+</figcaption>
+</figure>
+</div>
 <div id="thm-criterio-diagonalizacao" class="theorem">
 <p><span class="theorem-title"><strong>Teorema 62.1 (Critério de diagonalização)</strong></span> Uma matriz <span class="math inline">\(n\times n\)</span> é diagonalizável se, e somente se, possui <span class="math inline">\(n\)</span> autovetores <strong>linearmente independentes</strong>. Nesse caso:</p>
 <ul>

@@ -1169,7 +1169,142 @@ T(u + v) = T(u) + T(v) \qquad\text{e}\qquad T(cv) = c\,T(v).
 </section>
 <section id="a-matriz-de-uma-transformação" class="level2" data-number="60.3">
 <h2 data-number="60.3" class="anchored" data-anchor-id="a-matriz-de-uma-transformação"><span class="header-section-number">60.3</span> A matriz de uma transformação</h2>
-<p>Aqui está o teorema que organiza tudo. Uma transformação linear fica <strong>completamente determinada</strong> pelo que faz com os vetores de uma base.</p>
+<p>Aqui está o teorema que organiza tudo. Uma transformação linear fica <strong>completamente determinada</strong> pelo que faz com os vetores de uma base. Geometricamente (<a href="#fig-transformacao-linear" class="quarto-xref">Figura&nbsp;<span>60.1</span></a>), <span class="math inline">\(T\)</span> leva o quadrado unitário de lados <span class="math inline">\(e_1, e_2\)</span> no paralelogramo de lados <span class="math inline">\(T e_1, T e_2\)</span> — e isso já fixa <span class="math inline">\(T\)</span> em todo vetor.</p>
+<div id="fig-transformacao-linear" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-transformacao-linear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="145.71202pt" height="55.731168pt" viewbox="-68.014948 -68.014953 145.71202 55.731168">
+<defs>
+<path id="tz_transformacoes_quadrado_g0-0" d="M7.878456-2.749689C8.081694-2.749689 8.296887-2.749689 8.296887-2.988792S8.081694-3.227895 7.878456-3.227895H1.41071C1.207472-3.227895 .992279-3.227895 .992279-2.988792S1.207472-2.749689 1.41071-2.749689H7.878456Z"></path>
+<path id="tz_transformacoes_quadrado_g0-33" d="M9.97061-2.749689C9.313076-2.247572 8.990286-1.75741 8.894645-1.601993C8.356663-.777086 8.261021-.02391 8.261021-.011955C8.261021 .131507 8.404483 .131507 8.500125 .131507C8.703362 .131507 8.715318 .107597 8.763138-.107597C9.038107-1.279203 9.743462-2.283437 11.094396-2.833375C11.237858-2.881196 11.273724-2.905106 11.273724-2.988792S11.201993-3.108344 11.178082-3.120299C10.652055-3.323537 9.205479-3.921295 8.751183-5.929763C8.715318-6.073225 8.703362-6.109091 8.500125-6.109091C8.404483-6.109091 8.261021-6.109091 8.261021-5.965629C8.261021-5.941719 8.368618-5.188543 8.870735-4.387547C9.109838-4.028892 9.456538-3.610461 9.97061-3.227895H1.08792C.872727-3.227895 .657534-3.227895 .657534-2.988792S.872727-2.749689 1.08792-2.749689H9.97061Z"></path>
+<path id="tz_transformacoes_quadrado_g1-84" d="M3.602491-4.821918C3.674222-5.108842 3.682192-5.124782 4.008966-5.124782H4.614695C5.443587-5.124782 5.539228-4.861768 5.539228-4.463263C5.539228-4.26401 5.491407-3.921295 5.483437-3.881445C5.467497-3.793773 5.459527-3.722042 5.459527-3.706102C5.459527-3.602491 5.531258-3.57858 5.579078-3.57858C5.66675-3.57858 5.69863-3.626401 5.72254-3.777833L5.937733-5.276214C5.937733-5.387796 5.842092-5.387796 5.69863-5.387796H1.004234C.804981-5.387796 .789041-5.387796 .73325-5.220423L.247073-3.841594C.231133-3.801743 .207223-3.737983 .207223-3.690162C.207223-3.626401 .263014-3.57858 .326775-3.57858C.414446-3.57858 .430386-3.618431 .478207-3.753923C.932503-5.029141 1.163636-5.124782 2.375093-5.124782H2.685928C2.925031-5.124782 2.933001-5.116812 2.933001-5.053051C2.933001-5.029141 2.901121-4.869738 2.893151-4.837858L1.841096-.653549C1.769365-.350685 1.745455-.263014 .916563-.263014C.661519-.263014 .581818-.263014 .581818-.111582C.581818-.103611 .581818 0 .71731 0C.932503 0 1.482441-.02391 1.697634-.02391H2.375093C2.598257-.02391 3.156164 0 3.379328 0C3.443088 0 3.56264 0 3.56264-.151432C3.56264-.263014 3.474969-.263014 3.259776-.263014C3.068493-.263014 3.004732-.263014 2.797509-.278954C2.542466-.302864 2.510585-.334745 2.510585-.438356C2.510585-.470237 2.518555-.502117 2.542466-.581818L3.602491-4.821918Z"></path>
+<path id="tz_transformacoes_quadrado_g1-101" d="M1.601993-1.817186C1.777335-1.817186 2.375093-1.825156 2.797509-1.976588C3.490909-2.215691 3.514819-2.693898 3.514819-2.81345C3.514819-3.259776 3.092403-3.514819 2.574346-3.514819C1.673724-3.514819 .390535-2.805479 .390535-1.39477C.390535-.581818 .884682 .079701 1.761395 .079701C3.004732 .079701 3.674222-.71731 3.674222-.828892C3.674222-.900623 3.594521-.956413 3.5467-.956413S3.474969-.932503 3.435118-.884682C2.805479-.143462 1.912827-.143462 1.777335-.143462C1.195517-.143462 1.020174-.637609 1.020174-1.083935C1.020174-1.323039 1.091905-1.681694 1.123786-1.817186H1.601993ZM1.187547-2.040349C1.44259-3.012702 2.16787-3.291656 2.574346-3.291656C2.893151-3.291656 3.196015-3.132254 3.196015-2.81345C3.196015-2.040349 1.888917-2.040349 1.554172-2.040349H1.187547Z"></path>
+<path id="tz_transformacoes_quadrado_g2-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_transformacoes_quadrado_g2-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+</defs>
+<g id="tz_transformacoes_quadrado_page1">
+<g stroke-miterlimit="10" transform="translate(-52.696735,-25.87652)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#e5f0fc" stroke="#e5f0fc">
+<path d="M0 0H28.45274V28.45274H0Z" stroke="none"></path>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<path d="M0 0H28.45274M0 28.44275H28.45274M0 0V28.45274M28.44275 0V28.45274M28.45274 28.45274" fill="none"></path>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M0 0H25.8528" fill="none"></path>
+<g transform="translate(25.8528,0.0)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+<g transform="translate(24.39789,-7.17741)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.696735,-25.87652)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-52.696735" y="-25.87652" href="#tz_transformacoes_quadrado_g1-101"></use>
+<use x="-48.768352" y="-24.769571" href="#tz_transformacoes_quadrado_g2-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#29760f" stroke="#29760f">
+<path d="M0 0V25.25275" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,25.25275)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+<g transform="translate(-12.04268,27.28607)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.696735,-25.87652)scale(-1,-1)">
+<g fill="#29760f">
+<g stroke="none">
+<g fill="#297610">
+<use x="-52.696735" y="-25.87652" href="#tz_transformacoes_quadrado_g1-101"></use>
+<use x="-48.768352" y="-24.769571" href="#tz_transformacoes_quadrado_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(48.17412,7.49179)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.696735,-25.87652)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="-47.756855" y="-32.653596" href="#tz_transformacoes_quadrado_g1-84"></use>
+<use x="-52.696735" y="-25.87652" href="#tz_transformacoes_quadrado_g0-0"></use>
+<use x="-47.254421" y="-25.87652" href="#tz_transformacoes_quadrado_g0-33"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#e5f0fc" stroke="#e5f0fc">
+<path d="M85.35823 0H113.81097L130.88278 28.45274H102.43004Z" stroke="none"></path>
+</g>
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M85.35823 0H111.21103" fill="none"></path>
+<g transform="translate(111.21103,0.0)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+<g transform="translate(106.69148,-9.19963)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.696735,-25.87652)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-52.696735" y="-25.87652" href="#tz_transformacoes_quadrado_g1-84"></use>
+<use x="-46.590377" y="-25.87652" href="#tz_transformacoes_quadrado_g1-101"></use>
+<use x="-42.661993" y="-24.769571" href="#tz_transformacoes_quadrado_g2-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#29760f" stroke="#29760f">
+<path d="M85.35823 0L100.78366 25.70886" fill="none"></path>
+<g transform="matrix(0.5145,0.85747,-0.85747,0.5145,100.78366,25.70885)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+<g transform="translate(84.25809,33.49681)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-52.696735,-25.87652)scale(-1,-1)">
+<g fill="#29760f">
+<g stroke="none">
+<g fill="#297610">
+<use x="-52.696735" y="-25.87652" href="#tz_transformacoes_quadrado_g1-84"></use>
+<use x="-46.590377" y="-25.87652" href="#tz_transformacoes_quadrado_g1-101"></use>
+<use x="-42.661993" y="-24.769571" href="#tz_transformacoes_quadrado_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transformacao-linear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;60.1: <span class="math inline">\(T\)</span> leva o quadrado de lados <span class="math inline">\(e_1, e_2\)</span> no paralelogramo de lados <span class="math inline">\(Te_1, Te_2\)</span>.
+</figcaption>
+</figure>
+</div>
 <div id="thm-determinada-base" class="theorem">
 <p><span class="theorem-title"><strong>Teorema 60.1 (Linearidade é determinada na base)</strong></span> Se <span class="math inline">\(\{v_1, \dots, v_n\}\)</span> é base de <span class="math inline">\(V\)</span>, então uma transformação linear <span class="math inline">\(T: V \to W\)</span> fica <strong>totalmente determinada</strong> pelos valores <span class="math inline">\(T(v_1), \dots, T(v_n)\)</span>. Pois qualquer <span class="math inline">\(v = \sum c_i v_i\)</span> tem imagem forçada <span class="math display">\[
 T(v) = c_1 T(v_1) + \cdots + c_n T(v_n).
