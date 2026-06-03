@@ -114,6 +114,30 @@ grupos, do teorema do núcleo e da imagem da álgebra linear (@thm-nucleo-imagem
 resultado mais aplicado de toda a teoria.
 :::
 
+Essa decomposição se lê de um golpe no diagrama da @fig-primeiro-isomorfismo:
+$\varphi$ é a composição de três passos — projetar no quociente ($\pi$), aplicar o
+isomorfismo ($\cong$) e incluir na imagem ($\iota$).
+
+::: {#fig-primeiro-isomorfismo}
+```{.tikz}
+%%| filename: isomorfismo-primeiro-teorema
+%%| alt: Diagrama comutativo em quadrado: G no topo à esquerda liga-se a H por phi; desce por pi até G sobre ker phi; este liga-se por um isomorfismo a Im phi; e Im phi inclui-se em H.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}, >=Stealth]
+  \node (G) at (0,1.9) {$G$};
+  \node (H) at (3.4,1.9) {$H$};
+  \node (Q) at (0,0) {$G/\ker\varphi$};
+  \node (I) at (3.4,0) {$\operatorname{Im}\varphi$};
+  \draw[->, manualblue, thick] (G) -- (H) node[midway, above] {$\varphi$};
+  \draw[->>, manualgray, thick] (G) -- (Q) node[midway, left] {$\pi$};
+  \draw[->, destaque, thick] (Q) -- (I) node[midway, below] {$\cong$};
+  \draw[>=Hooks,->, manualgray, thick] (I) -- (H) node[midway, right] {$\iota$};
+\end{tikzpicture}
+```
+
+Todo homomorfismo $\varphi$ se fatora como $\iota \circ {\cong} \circ\, \pi$:
+projetar, identificar, incluir.
+:::
+
 ::: {#exm-aplicacao-primeiro}
 ## Identificando um quociente
 O determinante $\det: GL_n(\mathbb{R}) \to \mathbb{R}^*$ é homomorfismo sobrejetor
