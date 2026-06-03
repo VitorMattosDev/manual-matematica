@@ -30,6 +30,33 @@ O significado de $A = PDP^{-1}$: $P^{-1}$ traduz o vetor para a base de autoveto
 $D$ aplica a transformação (esticando cada eixo), e $P$ traduz de volta. É a mesma
 transformação, vista por outro ângulo.
 
+Na base de autovetores, a transformação não mistura as direções: cada eigen-eixo é
+apenas **esticado** pelo seu autovalor (@fig-diagonalizacao). É essa ausência de
+mistura que a palavra "diagonal" expressa.
+
+::: {#fig-diagonalizacao}
+```{.tikz}
+%%| filename: diagonalizacao-esticamento
+%%| alt: A célula unitária gerada por dois autovetores v1 e v2 é levada a um paralelogramo esticado, com cada eixo multiplicado por seu autovalor lambda1 e lambda2.
+\begin{tikzpicture}[scale=1.05, every node/.style={font=\footnotesize}]
+  \def\ax{1.3}\def\ay{0.32}\def\bx{0.5}\def\by{1.2}\def\la{1.8}\def\lb{1.35}
+  \draw[auxiliar] ({-0.5*\ax},{-0.5*\ay}) -- ({2.6*\ax},{2.6*\ay});
+  \draw[auxiliar] ({-0.4*\bx},{-0.4*\by}) -- ({1.7*\bx},{1.7*\by});
+  \draw[manualgreen!70!black, thick, fill=manualgreen!7]
+    (0,0) -- ({\la*\ax},{\la*\ay}) -- ({\la*\ax+\lb*\bx},{\la*\ay+\lb*\by}) -- ({\lb*\bx},{\lb*\by}) -- cycle;
+  \draw[manualblue!70!black, thick, fill=manualblue!10]
+    (0,0) -- ({\ax},{\ay}) -- ({\ax+\bx},{\ay+\by}) -- ({\bx},{\by}) -- cycle;
+  \draw[vetor, destaque] (0,0) -- ({\ax},{\ay}) node[below right] {$v_1$};
+  \draw[vetor, manualblue] (0,0) -- ({\bx},{\by}) node[left] {$v_2$};
+  \node[manualgreen!55!black, right] at ({\la*\ax},{\la*\ay}) {$\lambda_1 v_1$};
+  \node[manualgreen!55!black, above left] at ({\lb*\bx},{\lb*\by}) {$\lambda_2 v_2$};
+\end{tikzpicture}
+```
+
+Na base de autovetores, $A$ apenas estica cada eixo: $v_1 \mapsto \lambda_1 v_1$ e
+$v_2 \mapsto \lambda_2 v_2$ — daí ser diagonal.
+:::
+
 ::: {#thm-criterio-diagonalizacao}
 ## Critério de diagonalização
 Uma matriz $n\times n$ é diagonalizável se, e somente se, possui $n$ autovetores
