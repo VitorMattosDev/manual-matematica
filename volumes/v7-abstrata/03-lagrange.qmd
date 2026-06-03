@@ -102,6 +102,32 @@ ladrilho tem $|H|$ peças e eles cobrem as $|G|$ peças do grupo, o número de p
 ladrilho **tem** de dividir o total. É a essência de Lagrange.
 :::
 
+A @fig-classes-laterais mostra o ladrilhamento num caso concreto: $H = \langle 3\rangle$
+parte $\mathbb{Z}_{12}$ em três classes laterais de quatro elementos cada. Como
+$3 \times 4 = 12$, fica claro por que $|H| = 4$ divide $|G| = 12$.
+
+::: {#fig-classes-laterais}
+```{.tikz}
+%%| filename: lagrange-classes-laterais
+%%| alt: O grupo Z12 dividido em três blocos retangulares de igual tamanho, rotulados H, 1+H e 2+H, cada um com quatro elementos, sob uma chave indicando que juntos formam G.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \draw[manualblue!70!black, thick, fill=manualblue!10] (0,0) rectangle (1.5,2.4);
+  \node at (0.75,2.78) {$H$};
+  \foreach \v [count=\i from 0] in {0,3,6,9} {\node at (0.75,{2.0-0.55*\i}) {$\v$};}
+  \draw[manualgreen!70!black, thick, fill=manualgreen!10] (1.9,0) rectangle (3.4,2.4);
+  \node at (2.65,2.78) {$1{+}H$};
+  \foreach \v [count=\i from 0] in {1,4,7,10} {\node at (2.65,{2.0-0.55*\i}) {$\v$};}
+  \draw[manualyellow!85!black, thick, fill=manualyellow!12] (3.8,0) rectangle (5.3,2.4);
+  \node at (4.55,2.78) {$2{+}H$};
+  \foreach \v [count=\i from 0] in {2,5,8,11} {\node at (4.55,{2.0-0.55*\i}) {$\v$};}
+  \draw[decorate,decoration={brace,amplitude=5pt,mirror},manualgray] (0,-0.15) -- (5.3,-0.15) node[midway,below=6pt]{$G=\mathbb{Z}_{12}$};
+\end{tikzpicture}
+```
+
+As classes laterais de $H = \langle 3\rangle$ ladrilham $\mathbb{Z}_{12}$ em três
+blocos de tamanho $|H| = 4$.
+:::
+
 ## O teorema de Lagrange
 
 ::: {#thm-lagrange}
