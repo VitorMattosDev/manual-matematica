@@ -42,6 +42,35 @@ $$
 limite pontual.
 :::
 
+A @fig-pontual-xn revela o mecanismo: à medida que $n$ cresce, $x^n$ é empurrada para
+baixo em todo $[0, 1)$, mas permanece fixa em $1$ no ponto $x = 1$. No limite resta
+uma função que vale $0$ até $1$ e salta para $1$ — uma descontinuidade que nenhuma das
+$f_n$ tinha.
+
+::: {#fig-pontual-xn}
+```{.tikz}
+%%| filename: seqfuncoes-pontual-xn
+%%| alt: Várias curvas y igual a x elevado a n no intervalo de 0 a 1, com n crescente empurrando as curvas para baixo; o limite é a função nula em [0,1) com um salto para 1 em x igual a 1, marcado por um círculo aberto na base e um ponto cheio no topo.
+\begin{tikzpicture}[scale=3.2, every node/.style={font=\footnotesize}]
+  \draw[eixo] (0,0) -- (1.22,0) node[right]{$x$};
+  \draw[eixo] (0,0) -- (0,1.2) node[above]{$y$};
+  \draw (1,0.015)--(1,-0.015) node[below]{$1$};
+  \node[left] at (0,1) {$1$};
+  \foreach \n in {1,2,4,8,16}{\draw[manualblue, thick, domain=0:1, samples=90] plot (\x,{pow(\x,\n)});}
+  \draw[destaque, line width=1.2pt] (0,0) -- (0.975,0);
+  \fill[white] (1,0) circle (0.9pt); \draw[destaque] (1,0) circle (0.9pt);
+  \fill[destaque] (1,1) circle (1.3pt);
+  \node[manualblue, anchor=west] at (0.62,0.93) {$n{=}1$};
+  \node[manualblue, anchor=west] at (0.88,0.18) {$n{=}16$};
+  \draw[->,manualblue,thin] (0.55,0.72) -- (0.78,0.28); \node[manualblue] at (0.45,0.55) {$n\!\nearrow$};
+  \node[destaque, anchor=west] at (0.5,0.07) {limite descontínuo};
+\end{tikzpicture}
+```
+
+As funções $f_n(x) = x^n$ convergem pontualmente para uma função descontínua: a
+convergência é lenta perto de $x = 1$.
+:::
+
 ::: {.callout-warning}
 ## A intuição falha
 Por décadas, matemáticos (inclusive Cauchy) acreditaram que "o limite de funções
