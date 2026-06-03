@@ -44,6 +44,27 @@ $$
 Ou seja, **derivar a integral devolve o integrando**.
 :::
 
+A função área $F(x)$ é a área sob $f$ de $a$ até $x$ (@fig-funcao-area); ao
+mover $x$ um pouco, $F$ cresce à taxa $f(x)$ — a altura da curva ali.
+
+::: {#fig-funcao-area}
+```{.tikz}
+%%| filename: tfc-funcao-area
+%%| alt: Curva f com a região sob ela, de a até x, sombreada e rotulada A de x.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-0.3,0) -- (3.3,0) node[right] {$x$};
+  \draw[eixo] (0,-0.3) -- (0,2.6) node[above] {$y$};
+  \fill[manualblue!18] (0.5,0) -- plot[domain=0.5:2.2, samples=40] (\x, {0.4*\x*\x+0.5}) -- (2.2,0) -- cycle;
+  \draw[curva] plot[domain=0:2.9, samples=50] (\x, {0.4*\x*\x+0.5});
+  \draw[auxiliar] (2.2,0) -- (2.2,{0.4*2.2*2.2+0.5});
+  \node[below] at (0.5,0) {$a$}; \node[below] at (2.2,0) {$x$};
+  \node[manualblue!60!black] at (1.35,0.55) {$F(x)$};
+\end{tikzpicture}
+```
+
+A função área $F(x) = \int_a^x f(t)\,dt$; o TFC diz que $F'(x) = f(x)$.
+:::
+
 ::: {.proof}
 *(Esboço.)* O acréscimo $F(x + h) - F(x) = \int_x^{x+h} f(t)\,dt$ é a área de uma
 fatia fina, $\approx f(x)\cdot h$ (retângulo de altura $f(x)$, largura $h$). Logo
