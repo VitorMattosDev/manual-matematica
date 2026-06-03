@@ -45,6 +45,27 @@ Os **extremos** (máximos e mínimos locais) de uma função derivável ocorrem 
 críticos.
 :::
 
+Num pico ou vale, a tangente é horizontal (@fig-max-min) — é o que $f'(x) = 0$
+exprime.
+
+::: {#fig-max-min}
+```{.tikz}
+%%| filename: aplic-derivada-max-min
+%%| alt: Curva com um máximo local e um mínimo local; em cada um a reta tangente é horizontal.
+\begin{tikzpicture}[scale=1.1, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-2.1,0) -- (2.1,0) node[right] {$x$};
+  \draw[eixo] (0,-1.2) -- (0,1.2) node[above] {$y$};
+  \draw[curva] plot[domain=-1.92:1.92, samples=60] (\x, {\x*\x*\x/3-\x});
+  \draw[destaque, dashed] (-1.55,0.667) -- (-0.45,0.667);
+  \draw[destaque, dashed] (0.45,-0.667) -- (1.55,-0.667);
+  \fill[manualred] (-1,0.667) circle (1.4pt); \fill[manualred] (1,-0.667) circle (1.4pt);
+  \node[above] at (-1,0.72) {máximo}; \node[below] at (1,-0.72) {mínimo};
+\end{tikzpicture}
+```
+
+Nos extremos locais a tangente é horizontal: $f'(x) = 0$.
+:::
+
 ::: {#thm-teste-primeira-derivada}
 ## Teste da primeira derivada
 Seja $c$ um ponto crítico de $f$. Se $f'$ muda de **positiva para negativa** em $c$,
