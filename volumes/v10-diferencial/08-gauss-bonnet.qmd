@@ -44,6 +44,40 @@ explica matematicamente uma frustração milenar dos cartógrafos: o mapa perfei
 impossível, não por falta de técnica, mas por um teorema.
 :::
 
+A curvatura positiva da esfera tem uma consequência visível (@fig-triangulo-esferico):
+os ângulos de um **triângulo geodésico** somam **mais** que $\pi$. O excesso $\alpha +
+\beta + \gamma - \pi$ é exatamente a curvatura total $\iint_T K\,dA$ encerrada — a versão
+local do teorema de Gauss-Bonnet.
+
+::: {#fig-triangulo-esferico}
+```{.tikz}
+%%| filename: gauss-bonnet-triangulo
+%%| alt: Uma esfera com um triângulo geodésico cujos lados são arcos de grandes círculos; os ângulos alfa, beta e gama nos vértices somam mais que pi.
+\begin{tikzpicture}[scale=1.1, every node/.style={font=\footnotesize}]
+  \def\R{1.6}
+  \coordinate (N) at (0,1.6);
+  \coordinate (A) at (-1.0,-0.39);
+  \coordinate (B) at (1.0,-0.39);
+  \draw[manualgray, thick] (0,0) circle (\R);
+  \draw[manualgray!45, densely dashed] (\R,0) arc[start angle=0,end angle=180,x radius=\R,y radius=0.5];
+  \draw[manualgray!45] (\R,0) arc[start angle=0,end angle=-180,x radius=\R,y radius=0.5];
+  \fill[manualblue!12] (N) .. controls (-0.55,0.95) and (-1.0,0.2) .. (A)
+     .. controls (-0.5,-0.62) and (0.5,-0.62) .. (B)
+     .. controls (1.0,0.2) and (0.55,0.95) .. (N) -- cycle;
+  \draw[destaque, thick] (N) .. controls (-0.55,0.95) and (-1.0,0.2) .. (A);
+  \draw[destaque, thick] (N) .. controls (0.55,0.95) and (1.0,0.2) .. (B);
+  \draw[destaque, thick] (A) .. controls (-0.5,-0.62) and (0.5,-0.62) .. (B);
+  \node[ponto] at (N){}; \node[ponto] at (A){}; \node[ponto] at (B){};
+  \node[above] at (N) {$\gamma$};
+  \node[left] at (A) {$\alpha$}; \node[right] at (B) {$\beta$};
+  \node[manualblue!70!black] at (0,0.35) {$\alpha+\beta+\gamma>\pi$};
+\end{tikzpicture}
+```
+
+Num triângulo geodésico da esfera, a soma dos ângulos excede $\pi$ — o excesso é a
+curvatura encerrada.
+:::
+
 ::: {#cor-isometrias-curvatura}
 ## Distinguindo superfícies
 Duas superfícies com curvaturas gaussianas diferentes (em pontos correspondentes) não
