@@ -68,6 +68,26 @@ avança, esse triedro gira, e o modo como gira **é** a geometria da curva. Curv
 torção são as taxas desse giro.
 :::
 
+A @fig-frenet mostra o triedro num ponto: $T$ ao longo da curva, $N$ apontando para o
+lado côncavo (centro de curvatura) e $B$ perpendicular ao plano osculador.
+
+::: {#fig-frenet}
+```{.tikz}
+%%| filename: frenet-triedro
+%%| alt: Um arco de curva com o triedro de Frenet num ponto: o vetor tangente T ao longo da curva, o vetor normal N apontando para o lado côncavo, e o vetor binormal B saindo do plano da curva.
+\begin{tikzpicture}[scale=1.5, every node/.style={font=\footnotesize}]
+  \draw[curva, domain=-60:60, samples=60] plot ({1.4*sin(\x)}, {1.4-1.4*cos(\x)});
+  \coordinate (P) at (0,0);
+  \node[ponto] at (P) {};
+  \draw[vetor, manualblue] (P) -- (0.95,0.18) node[right] {$T$};
+  \draw[vetor, destaque] (P) -- (-0.18,0.95) node[above] {$N$};
+  \draw[vetor, manualgreen!70!black] (P) -- (-0.62,-0.5) node[below left] {$B$};
+\end{tikzpicture}
+```
+
+O triedro de Frenet $\{T, N, B\}$: o referencial ortonormal que acompanha a curva.
+:::
+
 ## Torção
 
 ::: {#def-torcao}
