@@ -1186,6 +1186,196 @@ window.Quarto = {
 <p>Eis o fenômeno central: transportar um vetor paralelamente ao longo de um <strong>laço fechado</strong> numa variedade curva o devolve <strong>girado</strong> em relação ao original. O ângulo de rotação (a <strong>holonomia</strong>) mede a curvatura encerrada pelo laço. Numa esfera, leve um vetor do equador ao polo, lateralmente de volta e desça: ele volta apontando para outra direção. No plano (curvatura zero), o transporte em qualquer laço devolve o vetor intacto. Essa é a definição operacional de curvatura (<a href="15-curvatura-riemann.html" class="quarto-xref"><span>Capítulo 106</span></a>).</p>
 </div>
 </div>
+<p>A <a href="#fig-transporte-paralelo" class="quarto-xref">Figura&nbsp;<span>105.1</span></a> ilustra a holonomia na esfera: ao transportar um vetor ao longo do triângulo geodésico fechado, ele retorna girado de um ângulo <span class="math inline">\(\theta\)</span> em relação ao inicial — e esse ângulo mede a curvatura encerrada pelo laço.</p>
+<div id="fig-transporte-paralelo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-transporte-paralelo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="109.647442pt" height="111.091178pt" viewbox="-68.014948 -68.014951 109.647442 111.091178">
+<defs>
+<path id="tz_transporte_holonomia_g0-18" d="M3.817684-3.913325C3.817684-4.909589 3.435118-5.610959 2.773599-5.610959C1.586052-5.610959 .350685-3.395268 .350685-1.617933C.350685-.852802 .613699 .079701 1.40274 .079701C2.566376 .079701 3.817684-2.080199 3.817684-3.913325ZM1.243337-2.901121C1.617933-4.511083 2.271482-5.387796 2.765629-5.387796C3.243836-5.387796 3.243836-4.534994 3.243836-4.383562C3.243836-3.937235 3.100374-3.291656 3.004732-2.901121H1.243337ZM2.933001-2.630137C2.558406-1.028144 1.904857-.143462 1.41071-.143462C.980324-.143462 .932503-.781071 .932503-1.147696C.932503-1.649813 1.083935-2.295392 1.171606-2.630137H2.933001Z"></path>
+<path id="tz_transporte_holonomia_g0-118" d="M3.961146-2.901121C3.961146-3.52279 3.602491-3.52279 3.57061-3.52279C3.379328-3.52279 3.156164-3.315567 3.156164-3.108344C3.156164-2.980822 3.219925-2.925031 3.291656-2.86127C3.474969-2.701868 3.58655-2.478705 3.58655-2.223661C3.58655-1.857036 3.060523-.143462 2.14396-.143462C1.801245-.143462 1.522291-.326775 1.522291-.828892C1.522291-1.267248 1.761395-1.896887 1.952677-2.375093C2.048319-2.630137 2.072229-2.693898 2.072229-2.83736C2.072229-3.267746 1.721544-3.514819 1.354919-3.514819C.565878-3.514819 .239103-2.391034 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.70137-3.012702 1.044085-3.291656 1.331009-3.291656C1.45056-3.291656 1.522291-3.219925 1.522291-3.028643C1.522291-2.84533 1.45056-2.662017 1.370859-2.462765C.980324-1.458531 .948443-1.195517 .948443-.948443C.948443-.079701 1.657783 .079701 2.11208 .079701C3.435118 .079701 3.961146-2.295392 3.961146-2.901121Z"></path>
+<path id="tz_transporte_holonomia_g1-12" d="M2.546451-2.594271C2.480697-2.588294 2.456787-2.588294 2.438854-2.582316C2.426899-2.576339 2.414944-2.576339 2.331258-2.576339H1.267248V-3.209963C1.267248-3.801743 1.942715-4.016936 2.385056-4.016936C2.552428-4.016936 2.797509-3.993026 2.982814-3.873474C2.917061-3.849564 2.767621-3.777833 2.767621-3.580573C2.767621-3.36538 2.940971-3.275716 3.066501-3.275716C3.198007-3.275716 3.371357-3.359402 3.371357-3.58655C3.371357-3.939228 3.012702-4.208219 2.408966-4.208219C1.739477-4.208219 .818929-3.927273 .818929-3.221918V-2.576339H.268991V-2.343213H.818929V-.490162C.818929-.233126 .759153-.233126 .3467-.233126V0C.526027-.011955 1.004234-.02391 1.052055-.02391C1.291158-.02391 1.524284-.017933 1.763387 0V-.233126C1.350934-.233126 1.291158-.233126 1.291158-.490162V-2.343213H2.612204C2.86924-2.343213 2.911083-2.271482 2.911083-2.020423V-.490162C2.911083-.233126 2.851308-.233126 2.438854-.233126V0C2.618182-.011955 3.096389-.02391 3.144209-.02391C3.383313-.02391 3.616438-.017933 3.855542 0V-.233126C3.443088-.233126 3.383313-.233126 3.383313-.490162V-2.64807L2.546451-2.594271Z"></path>
+<path id="tz_transporte_holonomia_g1-105" d="M1.356912-3.682192C1.356912-3.861519 1.207472-4.040847 .998257-4.040847C.812951-4.040847 .639601-3.897385 .639601-3.682192S.812951-3.323537 .998257-3.323537C1.207472-3.323537 1.356912-3.502864 1.356912-3.682192ZM.406476-2.570361V-2.337235C.800996-2.337235 .854795-2.295392 .854795-2.002491V-.490162C.854795-.233126 .795019-.233126 .382565-.233126V0C.555915-.011955 1.022167-.02391 1.081943-.02391S1.596015-.011955 1.751432 0V-.233126C1.380822-.233126 1.327024-.233126 1.327024-.484184V-2.636115L.406476-2.570361Z"></path>
+<path id="tz_transporte_holonomia_g1-110" d="M3.269738-1.80523C3.269738-2.391034 2.934994-2.636115 2.331258-2.636115C1.80523-2.636115 1.476463-2.361146 1.303113-2.074222V-2.636115L.376588-2.570361V-2.337235C.795019-2.337235 .848817-2.295392 .848817-2.002491V-.490162C.848817-.233126 .789041-.233126 .376588-.233126V0C.418431-.005978 .824907-.02391 1.093898-.02391S1.75741-.005978 1.817186 0V-.233126C1.404732-.233126 1.344956-.233126 1.344956-.490162V-1.542217C1.344956-2.199751 1.906849-2.444832 2.27746-2.444832C2.677958-2.444832 2.773599-2.193773 2.773599-1.823163V-.490162C2.773599-.233126 2.713823-.233126 2.30137-.233126V0C2.343213-.005978 2.749689-.02391 3.01868-.02391S3.682192-.005978 3.741968 0V-.233126C3.329514-.233126 3.269738-.233126 3.269738-.490162V-1.80523Z"></path>
+</defs>
+<g id="tz_transporte_holonomia_page1">
+<g stroke-miterlimit="10" transform="translate(-13.191225,-11.747497)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.8">
+<path d="M54.62932 0C54.62932 30.17133 30.17133 54.62932 0 54.62932S-54.62932 30.17133-54.62932 0S-30.17133-54.62932 0-54.62932S54.62932-30.17133 54.62932 0ZM0 0" fill="none"></path>
+</g>
+</g>
+<g fill="#bdc1c5" stroke="#bdc1c5">
+<g stroke-dasharray="3.0,2.0" stroke-dashoffset="0.0">
+<path d="M54.62932 0C54.62932 9.42848 30.17133 17.07158 0 17.07158S-54.62932 9.42848-54.62932 0" fill="none"></path>
+</g>
+</g>
+<g fill="#bdc1c5" stroke="#bdc1c5">
+<path d="M54.62932 0C54.62932-9.42848 30.17133-17.07158 0-17.07158S-54.62932-9.42848-54.62932 0" fill="none"></path>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.8">
+<path d="M0 54.63983C-18.77885 32.43593-34.1432 6.82852-34.14954-12.51839" fill="none"></path>
+<g transform="matrix(-0.0003,-0.99998,0.99998,-0.0003,-34.14964,-12.91838)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.8">
+<path d="M-34.14977-13.31836C-17.07158-21.1686 17.07158-21.1686 33.42294-13.65244" fill="none"></path>
+<g transform="matrix(0.90855,0.41762,-0.41762,0.90855,33.78635,-13.4854)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.8">
+<path d="M34.14977-13.31836C34.1432 6.82852 18.77885 32.43593 .51657 54.02905" fill="none"></path>
+<g transform="matrix(-0.64574,0.7635,-0.7635,-0.64574,0.2583,54.33444)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.56 3.12257C-2.0923 1.24901-1.05006 .3643 0 0C-1.05006-.3643-2.0923-1.24901-2.56-3.12257" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M1.83862 54.63983C1.83862 55.65527 1.01544 56.47845 0 56.47845S-1.83862 55.65527-1.83862 54.63983S-1.01544 52.80121 0 52.80121S1.83862 53.62439 1.83862 54.63983ZM0 54.63983" stroke="none"></path>
+</g>
+<g transform="translate(0.0,54.63983)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-13.191225,-11.747497)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M-32.31114-13.31836C-32.31114-12.30292-33.13432-11.47974-34.14977-11.47974C-35.1652-11.47974-35.98839-12.30292-35.98839-13.31836S-35.1652-15.15698-34.14977-15.15698C-33.13432-15.15698-32.31114-14.3338-32.31114-13.31836ZM-34.14977-13.31836" stroke="none"></path>
+</g>
+<g transform="translate(-34.14977,-13.31836)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-13.191225,-11.747497)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#000">
+<g fill="#000">
+<path d="M35.98839-13.31836C35.98839-12.30292 35.1652-11.47974 34.14977-11.47974C33.13432-11.47974 32.31114-12.30292 32.31114-13.31836S33.13432-15.15698 34.14977-15.15698C35.1652-15.15698 35.98839-14.3338 35.98839-13.31836ZM34.14977-13.31836" stroke="none"></path>
+</g>
+<g transform="translate(34.14977,-13.31836)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-13.191225,-11.747497)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#2780e3" stroke="#2780e3">
+<path d="M0 54.63983L-23.6984 44.30988" fill="none"></path>
+<g transform="matrix(-0.91664,-0.39957,0.39957,-0.91664,-23.6984,44.30988)">
+<path d="M3.2 0L-1.92 2.56L0 0L-1.92-2.56" stroke="none"></path>
+</g>
+<g transform="translate(-43.48123,48.26027)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-13.191225,-11.747497)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="-13.191225" y="-11.747497" href="#tz_transporte_holonomia_g0-118"></use>
+<use x="-9.067742" y="-10.456303" href="#tz_transporte_holonomia_g1-105"></use>
+<use x="-6.964543" y="-10.456303" href="#tz_transporte_holonomia_g1-110"></use>
+<use x="-2.924183" y="-10.456303" href="#tz_transporte_holonomia_g1-105"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g stroke-width="1.2">
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M0 54.63983L-5.60078 28.50185" fill="none"></path>
+<g transform="matrix(-0.20952,-0.97778,0.97778,-0.20952,-5.60077,28.50186)">
+<path d="M2.59995 0L-1.55997 2.07996L0 0L-1.55997-2.07996" stroke="none"></path>
+</g>
+<g transform="translate(-12.6038,18.78226)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-13.191225,-11.747497)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="-13.191225" y="-11.747497" href="#tz_transporte_holonomia_g0-118"></use>
+<use x="-9.067742" y="-10.341651" href="#tz_transporte_holonomia_g1-12"></use>
+<use x="-4.861349" y="-10.341651" href="#tz_transporte_holonomia_g1-110"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#256d0e" stroke="#256d0e">
+<path d="M-19.80312 45.75175C-17.15317 39.79971-11.90752 35.39777-5.97374 33.91855" fill="none"></path>
+<g transform="matrix(0.9703,-0.24185,0.24185,0.9703,-5.77968,33.8702)">
+<g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <g stroke-linecap="round">
+ <g stroke-linejoin="round">
+ <path d="M-2.07999 2.39998C-1.69998 .95998-.85318 .28 0 0C-.85318-.28-1.69998-.95998-2.07999-2.39998" fill="none"></path>
+ </g>
+ </g>
+ </g>
+</g>
+</g>
+<g fill="#22640d" stroke="#22640d">
+<g fill="#22640d" stroke="#22640d">
+</g>
+<g transform="translate(-11.66074,32.04843)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-13.191225,-11.747497)scale(-1,-1)">
+<g fill="#22640d">
+<g stroke="none">
+<g fill="#23640d">
+<use x="-13.191225" y="-11.747497" href="#tz_transporte_holonomia_g0-18"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transporte-paralelo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;105.1: Transporte paralelo ao longo de um laço fechado na esfera: o vetor volta girado de <span class="math inline">\(\theta\)</span> (a holonomia).
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="geodésicas" class="level2" data-number="105.3">
 <h2 data-number="105.3" class="anchored" data-anchor-id="geodésicas"><span class="header-section-number">105.3</span> Geodésicas</h2>
