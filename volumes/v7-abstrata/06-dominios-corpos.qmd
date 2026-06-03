@@ -74,6 +74,31 @@ hierarquia é: anéis ⊋ domínios ⊋ corpos, com $\mathbb{Z}$ separando as du
 classes.
 :::
 
+A @fig-hierarquia-aneis dispõe as três classes como elipses encaixadas, cada exemplo
+no menor recinto a que pertence: $\mathbb{Z}_6$ é só anel, $\mathbb{Z}$ chega a
+domínio, e $\mathbb{Q}, \mathbb{R}, \mathbb{Z}_p$ são corpos.
+
+::: {#fig-hierarquia-aneis}
+```{.tikz}
+%%| filename: dominios-hierarquia
+%%| alt: Três elipses aninhadas rotuladas anéis comutativos, domínios e corpos; Z6 está só na elipse externa, Z na intermediária, e Q, R e Zp na interna.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \draw[manualblue!60!black, thick, fill=manualblue!8]   (0,0) ellipse (3.2 and 2.35);
+  \draw[manualgreen!55!black, thick, fill=manualgreen!10] (0,-0.35) ellipse (2.3 and 1.65);
+  \draw[manualyellow!80!black, thick, fill=manualyellow!16] (0,-0.6) ellipse (1.35 and 0.9);
+  \node[manualblue!60!black] at (0,1.95) {anéis comutativos};
+  \node[manualgreen!45!black] at (0,0.92) {domínios};
+  \node[manualyellow!75!black] at (0,-0.2) {corpos};
+  \node at (0,-0.72) {$\mathbb{Q},\ \mathbb{R},\ \mathbb{Z}_p$};
+  \node at (0,-1.55) {$\mathbb{Z}$};
+  \node at (0,-2.0) {$\mathbb{Z}_6$};
+\end{tikzpicture}
+```
+
+A hierarquia anel $\supsetneq$ domínio $\supsetneq$ corpo, com um exemplo em cada
+faixa.
+:::
+
 ## O caso finito: domínio = corpo
 
 Um resultado elegante e nada óbvio une os dois conceitos quando há finitos elementos.
