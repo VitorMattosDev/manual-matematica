@@ -77,6 +77,31 @@ métricas diferentes, geometrias radicalmente distintas — e, no entanto, a teo
 se segue é a mesma.
 :::
 
+A @fig-bolas-metricas sobrepõe as três: a bola unitária da métrica do táxi ($d_1$) é
+um losango, a da euclidiana ($d_2$) um círculo, e a do máximo ($d_\infty$) um
+quadrado — encaixadas uma na outra.
+
+::: {#fig-bolas-metricas}
+```{.tikz}
+%%| filename: metricas-bolas-unitarias
+%%| alt: As bolas unitárias de três métricas no plano, centradas na origem: um losango (métrica do táxi d1), um círculo (euclidiana d2) e um quadrado (máximo d-infinito), encaixados.
+\begin{tikzpicture}[scale=1.7, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-1.45,0)--(1.55,0) node[right]{};
+  \draw[eixo] (0,-1.45)--(0,1.55);
+  \draw[manualyellow!85!black, thick] (-1,-1) rectangle (1,1);
+  \draw[manualblue, thick] (0,0) circle (1);
+  \draw[manualred, thick] (1,0)--(0,1)--(-1,0)--(0,-1)--cycle;
+  \node[below right] at (1,0) {$1$};
+  \node[manualred] at (0.40,0.27) {$d_1$};
+  \node[manualblue] at (0.74,0.78) {$d_2$};
+  \node[manualyellow!75!black] at (1.16,1.08) {$d_\infty$};
+\end{tikzpicture}
+```
+
+A mesma bola $B(0,1)$, três métricas: losango ($d_1$), círculo ($d_2$) e quadrado
+($d_\infty$).
+:::
+
 ## Convergência e continuidade
 
 Tudo o que fizemos na reta transcreve-se trocando $|x - y|$ por $d(x, y)$.
