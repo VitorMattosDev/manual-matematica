@@ -38,6 +38,27 @@ $\lambda < 0$, invertido; se $\lambda = 0$, colapsado na origem ($v$ está no n�
 Todos os demais vetores mudam de direção sob $A$.
 :::
 
+A @fig-autovetor torna isso visível: o autovetor $v$ permanece sobre a sua reta
+(apenas esticado para $\lambda v$), enquanto um vetor qualquer $w$ é girado para
+fora dela.
+
+::: {#fig-autovetor}
+```{.tikz}
+%%| filename: autovalores-autovetor
+%%| alt: Um autovetor v e sua imagem Tv igual a lambda v sobre a mesma reta; um vetor w cuja imagem Tw aponta para outra direção.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \draw[auxiliar] (-0.9,-0.45) -- (2.7,1.35);
+  \draw[vetor, destaque] (0,0) -- (1.4,0.7) node[below right] {$v$};
+  \draw[vetor, manualblue] (0,0) -- (2.24,1.12) node[above] {$Tv=\lambda v$};
+  \draw[vetor, manualgray] (0,0) -- (0.1,1.5) node[left] {$w$};
+  \draw[vetor, manualgreen!65!black] (0,0) -- (1.1,1.25) node[above left] {$Tw$};
+\end{tikzpicture}
+```
+
+O autovetor $v$ fica sobre sua reta ($Tv = \lambda v$); um vetor genérico $w$ sai
+dela.
+:::
+
 ::: {#exm-autovetor-direto}
 ## Verificando um autovetor
 Para $A = \left[\begin{smallmatrix} 2 & 0 \\ 0 & 3 \end{smallmatrix}\right]$, o vetor
