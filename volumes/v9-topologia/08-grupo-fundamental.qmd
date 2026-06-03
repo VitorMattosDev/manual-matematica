@@ -42,6 +42,31 @@ um laço que dá a volta no buraco **não pode** — o buraco está no caminho. 
 obstrução que o grupo fundamental mede.
 :::
 
+A @fig-lacos mostra a distinção num anel: o laço verde, pequeno, encolhe a um ponto
+(contrátil); o laço vermelho, que dá a volta no buraco, **não** pode ser encolhido sem
+sair do espaço. É essa diferença que torna $\pi_1$ do anel não trivial.
+
+::: {#fig-lacos}
+```{.tikz}
+%%| filename: fundamental-lacos-anel
+%%| alt: Um anel (coroa circular) com um buraco no centro; um laço vermelho baseado em x-zero dá a volta no buraco e não é contrátil, enquanto um pequeno laço verde no material é contrátil.
+\begin{tikzpicture}[scale=1.4, every node/.style={font=\footnotesize}]
+  \fill[manualblue!10, even odd rule] (0,0) circle (1.5) (0,0) circle (0.6);
+  \draw[manualgray, thick] (0,0) circle (1.5);
+  \draw[manualgray, thick] (0,0) circle (0.6);
+  \node[manualgray] at (0,0) {buraco};
+  \draw[destaque, thick, ->] (0,1.05) arc[start angle=90, end angle=-269, radius=1.05];
+  \node[destaque] at (1.28,0.95) {não contrátil};
+  \draw[manualgreen!70!black, thick, ->] (-0.95,0.55) circle (0.22);
+  \node[manualgreen!60!black, anchor=east] at (-1.25,0.55) {contrátil};
+  \fill[black] (0,1.05) circle (1.5pt); \node[above] at (0,1.12) {$x_0$};
+\end{tikzpicture}
+```
+
+No anel, o laço em torno do buraco não se contrai; o pequeno laço sim — por isso
+$\pi_1 \neq \{e\}$.
+:::
+
 ## A operação de grupo
 
 ::: {#def-concatenacao}
