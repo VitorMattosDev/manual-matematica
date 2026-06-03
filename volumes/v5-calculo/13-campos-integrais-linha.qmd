@@ -33,6 +33,27 @@ No plano, $\mathbf{F}(x, y) = (P(x, y),\, Q(x, y))$; no espaço, $\mathbf{F}(x, 
   central, pois aponta na direção de maior crescimento de $f$.
 :::
 
+Desenha-se um campo plantando, em vários pontos, o vetor que ali lhe corresponde
+(@fig-campo-rotacao): o campo de rotação $\mathbf{F}(x,y) = (-y, x)$ gira em torno
+da origem.
+
+::: {#fig-campo-rotacao}
+```{.tikz}
+%%| filename: campos-rotacao
+%%| alt: Vetores plantados numa grade do plano, todos girando em torno da origem, representando o campo F igual a menos y, x.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \foreach \x in {-1.2,-0.6,...,1.2}
+    \foreach \y in {-1.2,-0.6,...,1.2} {
+      \draw[-{Stealth[length=4pt]}, manualblue] (\x,\y) -- ++({-\y*0.32},{\x*0.32});
+    }
+  \node[below] at (0,-1.75) {$\mathbf{F}(x,y) = (-y,\,x)$};
+\end{tikzpicture}
+```
+
+O campo de rotação $\mathbf{F}(x,y) = (-y, x)$: cada vetor é tangente a um círculo
+centrado na origem.
+:::
+
 ::: {.callout-tip}
 ## Campos como fotografias de movimento
 Imagine setas plantadas em cada ponto do plano. O campo é o retrato instantâneo de um
