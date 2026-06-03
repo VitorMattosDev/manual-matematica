@@ -27,6 +27,25 @@ A = \int_a^b \bigl[f(x) - g(x)\bigr]\,dx.
 $$
 :::
 
+A região é a faixa entre as duas curvas (@fig-area-entre); a cada $x$, sua altura
+é $f(x) - g(x)$, e integrar soma essas alturas.
+
+::: {#fig-area-entre}
+```{.tikz}
+%%| filename: integral-area-entre
+%%| alt: Região sombreada entre duas curvas, a de cima f e a de baixo g, num intervalo.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-2.1,0) -- (2.1,0) node[right] {$x$};
+  \draw[eixo] (0,-0.3) -- (0,2.7) node[above] {$y$};
+  \fill[manualblue!16] plot[domain=-1.732:1.732, samples=40] (\x, {2.2}) -- plot[domain=1.732:-1.732, samples=40] (\x, {0.6*\x*\x+0.4}) -- cycle;
+  \draw[destaque] (-2,2.2) -- (2,2.2); \node[right, destaque] at (1.3,2.48) {$f(x)$};
+  \draw[curva] plot[domain=-1.95:1.95, samples=50] (\x, {0.6*\x*\x+0.4}); \node[manualblue] at (1.85,1.7) {$g(x)$};
+\end{tikzpicture}
+```
+
+A área entre $f$ (em cima) e $g$ (embaixo) soma as alturas $f(x) - g(x)$.
+:::
+
 ::: {.proof}
 *(Esboço.)* Fatie a região em retângulos verticais finos de largura $dx$. À altura
 $x$, o retângulo vai de $g(x)$ a $f(x)$, logo tem altura $f(x) - g(x)$ e área
