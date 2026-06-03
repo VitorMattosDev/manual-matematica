@@ -53,6 +53,26 @@ abstração é justamente esse: o que provarmos vale para todos eles ao mesmo te
 - $\{0\}$: o **espaço trivial**, só com o vetor nulo.
 :::
 
+No protótipo $\mathbb{R}^2$, a soma de vetores é a **regra do paralelogramo**
+(@fig-soma-vetores): $\vec u + \vec v$ é a diagonal do paralelogramo de lados
+$\vec u$ e $\vec v$.
+
+::: {#fig-soma-vetores}
+```{.tikz}
+%%| filename: espacos-soma-vetores
+%%| alt: Dois vetores u e v a partir da origem e sua soma u mais v, diagonal do paralelogramo que eles formam.
+\begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \coordinate (u) at (2.2,0.4); \coordinate (v) at (0.8,1.6);
+  \draw[manualgray, thin, dashed] (u) -- ($(u)+(v)$); \draw[manualgray, thin, dashed] (v) -- ($(u)+(v)$);
+  \draw[vetor, destaque] (0,0) -- (u) node[below right] {$\vec u$};
+  \draw[vetor, manualgreen!65!black] (0,0) -- (v) node[above left] {$\vec v$};
+  \draw[vetor, manualblue] (0,0) -- ($(u)+(v)$) node[above right] {$\vec u+\vec v$};
+\end{tikzpicture}
+```
+
+A regra do paralelogramo: $\vec u + \vec v$ é a diagonal.
+:::
+
 Todos satisfazem os sete axiomas — verificá-lo em cada caso é rotineiro, e é o que
 autoriza tratá-los pela mesma teoria.
 
