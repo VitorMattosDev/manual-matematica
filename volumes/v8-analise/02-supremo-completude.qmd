@@ -59,6 +59,29 @@ adotada como o **axioma central** da análise. Tudo o que segue brota dela.
 - $\sup\{1 - \frac1n : n \in \mathbb{N}\} = 1$, embora $1$ nunca seja atingido.
 :::
 
+Esse último caso aparece na @fig-supremo: os elementos $1 - \frac1n$ se acumulam
+junto a $1$ sem nunca alcançá-lo. Mesmo assim $1$ é o supremo — a **menor** das cotas
+superiores (todo o intervalo à direita), separando-as dos pontos que não são cota.
+
+::: {#fig-supremo}
+```{.tikz}
+%%| filename: supremo-cota-minima
+%%| alt: Reta real com os pontos 1 menos 1 sobre n acumulando-se à esquerda de 1; um círculo aberto em 1 marca o supremo, não atingido; uma chave à direita de 1 indica o conjunto das cotas superiores.
+\begin{tikzpicture}[scale=2.0, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-0.25,0) -- (2.4,0) node[right]{$\mathbb{R}$};
+  \foreach \x/\l in {0/0,1/1,2/2} {\draw (\x,0.05)--(\x,-0.05) node[below=1pt]{$\l$};}
+  \foreach \n in {1,...,9} {\fill[manualblue] ({1-1/\n},0) circle (1.3pt);}
+  \node[manualblue] at (0.5,0.3) {$A$};
+  \fill[white] (1,0) circle (1.8pt); \draw[destaque, thick] (1,0) circle (1.8pt);
+  \node[destaque, above] at (1,0.3) {$\sup A = 1$};
+  \draw[decorate,decoration={brace,amplitude=4pt,mirror},manualgreen!55!black] (1,-0.16) -- (2.3,-0.16)
+    node[midway,below=4pt,manualgreen!50!black]{cotas superiores};
+\end{tikzpicture}
+```
+
+$A = \{1 - \frac1n\}$ tem supremo $1$, a menor cota superior, embora $1 \notin A$.
+:::
+
 ::: {#prp-caracterizacao-sup}
 ## Caracterização do supremo
 $s = \sup A$ se, e somente se: (i) $a \leq s$ para todo $a \in A$; e (ii) para todo
