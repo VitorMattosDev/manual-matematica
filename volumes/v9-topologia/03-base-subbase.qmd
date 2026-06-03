@@ -58,6 +58,33 @@ teríamos topologia. Os intervalos abertos satisfazem (2): a interseção de doi
 intervalos é um intervalo.
 :::
 
+A @fig-criterio-base ilustra a condição (2): dado um ponto $x$ na interseção de dois
+básicos $B_1$ e $B_2$, é sempre possível encaixar um terceiro básico $B_3$ entre $x$ e
+essa interseção.
+
+::: {#fig-criterio-base}
+```{.tikz}
+%%| filename: base-criterio
+%%| alt: Dois conjuntos básicos B1 e B2 que se sobrepõem; na região de interseção, sombreada, um ponto x está contido num terceiro básico menor B3 inteiramente dentro da interseção.
+\begin{tikzpicture}[scale=1.5, every node/.style={font=\footnotesize}]
+  \begin{scope}
+    \clip (-0.5,0) circle (1.15);
+    \fill[manualgray!12] (0.7,0) circle (1.15);
+  \end{scope}
+  \draw[manualblue, thick] (-0.5,0) circle (1.15);
+  \draw[manualred, thick] (0.7,0) circle (1.15);
+  \draw[manualgreen!70!black, thick] (0.1,0.15) circle (0.34);
+  \fill[black] (0.1,0.15) circle (1.3pt); \node[above right] at (0.12,0.15) {$x$};
+  \node[manualblue] at (-1.15,0.95) {$B_1$};
+  \node[manualred] at (1.35,0.95) {$B_2$};
+  \node[manualgreen!60!black] at (0.1,-0.32) {$B_3$};
+\end{tikzpicture}
+```
+
+O critério para base: todo $x \in B_1 \cap B_2$ tem um básico $B_3$ com $x \in B_3
+\subseteq B_1 \cap B_2$.
+:::
+
 ::: {#exm-gerando}
 ## Gerando uma topologia a partir de uma base
 A coleção dos intervalos semiabertos $[a, b)$ satisfaz o critério e gera a **topologia
