@@ -37,6 +37,40 @@ comportamento **perto** de $a$, não **em** $a$. É a tradução exata de "$f(x)
 perto de $L$ quanto se queira, bastando $x$ perto de $a$".
 :::
 
+A @fig-epsilon-delta mostra a dança: fixada a faixa horizontal de raio $\varepsilon$
+em torno de $L$, encontra-se uma faixa vertical de raio $\delta$ em torno de $a$ tão
+estreita que o gráfico, sobre ela, não escapa da faixa horizontal.
+
+::: {#fig-epsilon-delta}
+```{.tikz}
+%%| filename: continuidade-epsilon-delta
+%%| alt: Gráfico de uma função contínua passando pelo ponto (a, L); uma faixa horizontal de raio épsilon em torno de L e uma faixa vertical de raio delta em torno de a se cruzam, e o trecho do gráfico sobre a faixa delta permanece dentro da faixa épsilon.
+\begin{tikzpicture}[scale=1.7, every node/.style={font=\footnotesize}]
+  \def\a{1.5}\def\Lv{1.5}\def\eps{0.45}\def\del{0.43}
+  \fill[manualblue!9] (0.7,{\Lv-\eps}) rectangle (2.45,{\Lv+\eps});
+  \fill[manualred!8] ({\a-\del},0.6) rectangle ({\a+\del},2.15);
+  \draw[eixo] (0.55,0.6) -- (2.6,0.6) node[right]{$x$};
+  \draw[eixo] (0.7,0.55) -- (0.7,2.2) node[above]{$y$};
+  \draw[curva, domain=0.78:2.4, samples=60] plot (\x, {0.3*\x*\x+0.825});
+  \draw[auxiliar] (\a,0.6) -- (\a,\Lv) -- (0.7,\Lv);
+  \draw[auxiliar] (0.7,{\Lv+\eps}) -- (2.45,{\Lv+\eps});
+  \draw[auxiliar] (0.7,{\Lv-\eps}) -- (2.45,{\Lv-\eps});
+  \draw[auxiliar] ({\a-\del},0.6) -- ({\a-\del},2.1);
+  \draw[auxiliar] ({\a+\del},0.6) -- ({\a+\del},2.1);
+  \fill[destaque] (\a,\Lv) circle (1.4pt);
+  \node[below] at (\a,0.58) {$a$};
+  \draw[<->, manualred] ({\a-\del},0.74) -- (\a,0.74); \node[manualred] at ({\a-\del/2},0.88) {$\delta$};
+  \draw[<->, manualred] (\a,0.74) -- ({\a+\del},0.74); \node[manualred] at ({\a+\del/2},0.88) {$\delta$};
+  \node[left] at (0.7,\Lv) {$L$};
+  \node[left, manualblue] at (0.7,{\Lv+\eps}) {$L{+}\varepsilon$};
+  \node[left, manualblue] at (0.7,{\Lv-\eps}) {$L{-}\varepsilon$};
+\end{tikzpicture}
+```
+
+A definição ε-δ: a faixa $\delta$ em torno de $a$ é levada pela função inteiramente
+dentro da faixa $\varepsilon$ em torno de $L$.
+:::
+
 ## Continuidade
 
 ::: {#def-continuidade-analise}
