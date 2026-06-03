@@ -80,6 +80,29 @@ pela fórmula de Euler (@sec-taylor) — exatamente como na EDO de segunda ordem
 plano de fase.
 :::
 
+No **plano de fase** (@fig-plano-fase), cada solução é uma trajetória; quando os
+autovalores têm parte real negativa, as trajetórias **espiralam** para a origem — um
+atrator estável.
+
+::: {#fig-plano-fase}
+```{.tikz}
+%%| filename: sistemas-plano-fase
+%%| alt: Plano de fase com uma trajetória que espirala em direção à origem, marcada por setas que indicam o sentido do movimento; a origem é um atrator estável.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-2.4,0) -- (2.4,0) node[right]{$x$};
+  \draw[eixo] (0,-2.4) -- (0,2.4) node[above]{$y$};
+  \tikzset{seta/.style={postaction={decorate}, decoration={markings,
+     mark=at position 0.32 with {\arrow{stealth}}, mark=at position 0.72 with {\arrow{stealth}}}}}
+  \draw[curva, seta, domain=0:13, samples=200] plot ({2.1*exp(-0.13*\x)*cos(\x r)}, {2.1*exp(-0.13*\x)*sin(\x r)});
+  \fill[destaque] (0,0) circle (1.8pt);
+  \node[destaque, below right] at (0,0) {atrator};
+\end{tikzpicture}
+```
+
+Plano de fase de um sistema com autovalores complexos de parte real negativa: espiral
+estável.
+:::
+
 ## Estabilidade e plano de fase
 
 ::: {#def-estabilidade}
