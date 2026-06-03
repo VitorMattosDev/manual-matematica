@@ -31,6 +31,37 @@ A soma inferior subestima a área (retângulos por baixo do gráfico); a superio
 superestima (por cima). A área verdadeira, se existe, está entre as duas — para
 **toda** partição.
 
+A @fig-darboux mostra ambas: os retângulos azuis (altura $m_i$) formam a soma
+inferior $L$; as faixas vermelhas, acrescentadas até a altura $M_i$, completam a soma
+superior. A área vermelha total é a diferença $U - L$ — a incerteza sobre a integral.
+
+::: {#fig-darboux}
+```{.tikz}
+%%| filename: integral-somas-darboux
+%%| alt: Curva crescente sobre um intervalo dividido em cinco subintervalos; em cada um, um retângulo azul até o valor mínimo da função (soma inferior) e uma faixa vermelha acima, até o valor máximo, representando o excesso da soma superior.
+\begin{tikzpicture}[scale=1.5, every node/.style={font=\footnotesize}]
+  \foreach \i in {0,1,2,3,4}{
+    \pgfmathsetmacro\xa{\i*0.6}
+    \pgfmathsetmacro\xb{(\i+1)*0.6}
+    \pgfmathsetmacro\ha{0.2*\xa*\xa+0.4}
+    \pgfmathsetmacro\hb{0.2*\xb*\xb+0.4}
+    \fill[manualblue!15] (\xa,0) rectangle (\xb,\ha);
+    \fill[manualred!22] (\xa,\ha) rectangle (\xb,\hb);
+    \draw[manualgray,thin] (\xa,0) rectangle (\xb,\hb);
+  }
+  \draw[curva, domain=0:3, samples=70] plot (\x, {0.2*\x*\x+0.4});
+  \draw[eixo] (-0.1,0) -- (3.4,0) node[right]{$x$};
+  \draw[eixo] (0,-0.1) -- (0,2.5) node[above]{$y$};
+  \node[below] at (0,0) {$a$}; \node[below] at (3,0) {$b$};
+  \node[manualblue!60!black] at (0.95,0.32) {$L$};
+  \node[manualred!70!black] at (2.5,2.0) {$U-L$};
+\end{tikzpicture}
+```
+
+Somas de Darboux: a soma inferior $L$ (azul) e o excesso $U - L$ (vermelho) que a
+separa da soma superior.
+:::
+
 ::: {#prp-refinamento}
 ## Refinamento aproxima
 Refinar uma partição (acrescentar pontos) **aumenta** a soma inferior e **diminui** a
