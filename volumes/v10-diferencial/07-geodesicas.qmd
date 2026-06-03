@@ -45,6 +45,28 @@ uma geodésica parece perfeitamente reta — ela não "vira" para nenhum lado.
   curvas que viram retas ao desenrolar o cilindro no plano.
 :::
 
+Na esfera (@fig-geodesica), as geodésicas são os **grandes círculos** — os de raio
+máximo, centrados no centro da esfera (como o equador). Os demais paralelos, de raio
+menor, **não** são geodésicas: vistos de dentro da superfície, eles "viram".
+
+::: {#fig-geodesica}
+```{.tikz}
+%%| filename: geodesicas-grande-circulo
+%%| alt: Uma esfera com seu equador destacado como grande círculo (uma geodésica) e um círculo de latitude menor, tracejado, que não é geodésica.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \def\R{1.6}
+  \draw[manualgray, thick] (0,0) circle (\R);
+  \draw[manualblue, very thick, densely dashed] (\R,0) arc[start angle=0, end angle=180, x radius=\R, y radius=0.5];
+  \draw[manualblue, very thick] (\R,0) arc[start angle=0, end angle=-180, x radius=\R, y radius=0.5];
+  \node[manualblue, below] at (0,-0.58) {geodésica (grande círculo)};
+  \draw[manualgray, dashed] (0,0.9) ellipse[x radius=1.28, y radius=0.30];
+  \node[manualgray, above] at (0,1.2) {não geodésica};
+\end{tikzpicture}
+```
+
+Na esfera, os grandes círculos são as geodésicas; os paralelos menores, não.
+:::
+
 ## Geodésicas como caminhos mais curtos
 
 ::: {#thm-geodesica-minima}
