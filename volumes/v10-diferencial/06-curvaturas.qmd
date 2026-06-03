@@ -83,6 +83,36 @@ Conforme a curvatura gaussiana, um ponto é:
 - **planar** se $S_p = 0$.
 :::
 
+A @fig-tipos-curvatura mostra os três casos genéricos: a cúpula fica de um lado do
+plano tangente ($K > 0$), a calha é reta numa direção ($K = 0$), e a sela curva-se em
+sentidos opostos ($K < 0$).
+
+::: {#fig-tipos-curvatura}
+```{.tikz}
+%%| filename: curvaturas-tipos-pontos
+%%| alt: Três superfícies em perspectiva: uma cúpula (ponto elíptico, K positivo), uma calha cilíndrica (ponto parabólico, K igual a zero) e uma sela (ponto hiperbólico, K negativo).
+\begin{tikzpicture}[every node/.style={font=\footnotesize}]
+  \begin{axis}[name=ax1, hide axis, width=5.2cm, height=5.2cm, view={130}{22},
+       samples=20, domain=-1:1, y domain=-1:1]
+    \addplot3[mesh, manualblue, line width=0.3pt] {-(x^2+y^2)};
+  \end{axis}
+  \node[below] at (ax1.south) {elíptico: $K>0$};
+  \begin{axis}[name=ax2, hide axis, width=5.2cm, height=5.2cm, view={130}{22},
+       at={(ax1.east)}, anchor=west, samples=20, domain=-1:1, y domain=-1:1]
+    \addplot3[mesh, manualgreen!70!black, line width=0.3pt] {x^2};
+  \end{axis}
+  \node[below] at (ax2.south) {parabólico: $K=0$};
+  \begin{axis}[name=ax3, hide axis, width=5.2cm, height=5.2cm, view={130}{22},
+       at={(ax2.east)}, anchor=west, samples=20, domain=-1:1, y domain=-1:1]
+    \addplot3[mesh, manualred, line width=0.3pt] {x^2-y^2};
+  \end{axis}
+  \node[below] at (ax3.south) {hiperbólico: $K<0$};
+\end{tikzpicture}
+```
+
+Os três tipos de ponto segundo o sinal da curvatura gaussiana $K$.
+:::
+
 ::: {#exm-sela}
 ## A sela tem curvatura negativa
 No ponto central de uma sela (parabolóide hiperbólico $z = x^2 - y^2$), uma curvatura
