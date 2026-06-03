@@ -34,6 +34,34 @@ que permite passar de informação local (válida perto de cada ponto) para glob
 no espaço todo) — o mecanismo de incontáveis demonstrações.
 :::
 
+A @fig-cobertura mostra a ideia: o intervalo $[a, b]$ é coberto por uma família de
+abertos (acima); a compacidade garante que **alguns poucos** deles — uma subcobertura
+finita (abaixo) — já bastam para cobri-lo.
+
+::: {#fig-cobertura}
+```{.tikz}
+%%| filename: compacidade-cobertura
+%%| alt: O intervalo de a até b coberto, acima, por vários intervalos abertos sobrepostos; abaixo, apenas três deles, destacados, ainda cobrem todo o intervalo, formando uma subcobertura finita.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \draw[line width=2pt, black] (0,0) -- (5,0);
+  \node[below] at (0,-0.05) {$a$}; \node[below] at (5,-0.05) {$b$};
+  \draw[manualgray, line width=2pt] (-0.2,0.35) -- (1.3,0.35);
+  \draw[manualgray, line width=2pt] (0.9,0.55) -- (2.3,0.55);
+  \draw[manualgray, line width=2pt] (1.9,0.35) -- (3.2,0.35);
+  \draw[manualgray, line width=2pt] (2.8,0.55) -- (4.1,0.55);
+  \draw[manualgray, line width=2pt] (3.7,0.35) -- (5.2,0.35);
+  \node[manualgray, anchor=west] at (5.25,0.45) {cobertura aberta};
+  \draw[manualblue, line width=2.4pt] (-0.2,-0.5) -- (2.3,-0.5);
+  \draw[manualblue, line width=2.4pt] (1.9,-0.75) -- (4.1,-0.75);
+  \draw[manualblue, line width=2.4pt] (3.7,-0.5) -- (5.2,-0.5);
+  \node[manualblue, anchor=west] at (5.25,-0.62) {subcobertura finita};
+\end{tikzpicture}
+```
+
+Compacidade: de toda cobertura aberta de $[a,b]$ (cinza) extrai-se uma subcobertura
+finita (azul).
+:::
+
 ::: {#exm-compactos-topologicos}
 ## Compactos e não compactos
 - $[a, b]$ é compacto (Heine-Borel, @thm-heine-borel).
