@@ -1196,6 +1196,128 @@ B(x, r) = \{y \in X : d(x, y) &lt; r\}.
 <div id="exm-bolas" class="theorem example">
 <p><span class="theorem-title"><strong>Exemplo 84.2 (A forma das bolas depende da métrica)</strong></span> No plano, a “bola” unitária <span class="math inline">\(B(0, 1)\)</span> é um <strong>disco</strong> na métrica euclidiana, um <strong>quadrado</strong> (girado) na do táxi e um <strong>único ponto</strong> na discreta. A mesma definição, métricas diferentes, geometrias radicalmente distintas — e, no entanto, a teoria que se segue é a mesma.</p>
 </div>
+<p>A <a href="#fig-bolas-metricas" class="quarto-xref">Figura&nbsp;<span>84.1</span></a> sobrepõe as três: a bola unitária da métrica do táxi (<span class="math inline">\(d_1\)</span>) é um losango, a da euclidiana (<span class="math inline">\(d_2\)</span>) um círculo, e a do máximo (<span class="math inline">\(d_\infty\)</span>) um quadrado — encaixadas uma na outra.</p>
+<div id="fig-bolas-metricas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bolas-metricas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="151.606117pt" height="144.965061pt" viewbox="-68.014948 -68.014946 151.606117 144.965061">
+<defs>
+<path id="tz_metricas_bolas_unitarias_g0-49" d="M3.484932-1.888917C2.857285-2.558406 2.223661-2.636115 1.906849-2.636115C1.135741-2.636115 .555915-2.020423 .555915-1.285181C.555915-.585803 1.105853 .059776 1.888917 .059776C2.618182 .059776 3.227895-.424408 3.592528-.932503L3.813699-.687422C4.441345-.017933 5.074969 .059776 5.391781 .059776C6.162889 .059776 6.742715-.555915 6.742715-1.291158C6.742715-1.990535 6.192777-2.636115 5.409714-2.636115C4.680448-2.636115 4.070735-2.15193 3.706102-1.643836L3.484932-1.888917ZM3.90934-1.416687C4.250062-1.882939 4.758157-2.379078 5.463512-2.379078C6.109091-2.379078 6.545455-1.853051 6.545455-1.291158C6.545455-.711333 6.043337-.298879 5.4934-.298879C5.021171-.298879 4.608717-.579826 3.90934-1.416687ZM3.38929-1.159651C3.048568-.6934 2.540473-.19726 1.835118-.19726C1.189539-.19726 .753176-.723288 .753176-1.285181C.753176-1.865006 1.255293-2.27746 1.80523-2.27746C2.27746-2.27746 2.689913-1.996513 3.38929-1.159651Z"></path>
+<path id="tz_metricas_bolas_unitarias_g1-100" d="M4.28792-5.292154C4.29589-5.308095 4.319801-5.411706 4.319801-5.419676C4.319801-5.459527 4.28792-5.531258 4.192279-5.531258C4.160399-5.531258 3.913325-5.507347 3.730012-5.491407L3.283686-5.459527C3.108344-5.443587 3.028643-5.435616 3.028643-5.292154C3.028643-5.180573 3.140224-5.180573 3.235866-5.180573C3.618431-5.180573 3.618431-5.132752 3.618431-5.061021C3.618431-5.0132 3.55467-4.750187 3.514819-4.590785L3.124284-3.036613C3.052553-3.172105 2.82142-3.514819 2.335243-3.514819C1.3868-3.514819 .342715-2.406974 .342715-1.227397C.342715-.398506 .876712 .079701 1.490411 .079701C2.000498 .079701 2.438854-.326775 2.582316-.486177C2.725778 .063761 3.267746 .079701 3.363387 .079701C3.730012 .079701 3.913325-.223163 3.977086-.358655C4.136488-.645579 4.24807-1.107846 4.24807-1.139726C4.24807-1.187547 4.216189-1.243337 4.120548-1.243337S4.008966-1.195517 3.961146-.996264C3.849564-.557908 3.698132-.143462 3.387298-.143462C3.203985-.143462 3.132254-.294894 3.132254-.518057C3.132254-.669489 3.156164-.757161 3.180075-.860772L4.28792-5.292154ZM2.582316-.860772C2.183811-.310834 1.769365-.143462 1.514321-.143462C1.147696-.143462 .964384-.478207 .964384-.892653C.964384-1.267248 1.179577-2.12005 1.354919-2.470735C1.586052-2.956912 1.976588-3.291656 2.343213-3.291656C2.86127-3.291656 3.012702-2.709838 3.012702-2.614197C3.012702-2.582316 2.81345-1.801245 2.765629-1.594022C2.662017-1.219427 2.662017-1.203487 2.582316-.860772Z"></path>
+<path id="tz_metricas_bolas_unitarias_g2-49" d="M2.145953-3.795766C2.145953-3.975093 2.122042-3.975093 1.942715-3.975093C1.548194-3.592528 .938481-3.592528 .723288-3.592528V-3.359402C.878705-3.359402 1.273225-3.359402 1.63188-3.526775V-.508095C1.63188-.310834 1.63188-.233126 1.016189-.233126H.759153V0C1.08792-.02391 1.554172-.02391 1.888917-.02391S2.689913-.02391 3.01868 0V-.233126H2.761644C2.145953-.233126 2.145953-.310834 2.145953-.508095V-3.795766Z"></path>
+<path id="tz_metricas_bolas_unitarias_g2-50" d="M3.21594-1.117808H2.99477C2.982814-1.034122 2.923039-.639601 2.833375-.573848C2.791532-.537983 2.307347-.537983 2.223661-.537983H1.105853L1.870984-1.159651C2.074222-1.321046 2.606227-1.703611 2.791532-1.882939C2.970859-2.062267 3.21594-2.367123 3.21594-2.791532C3.21594-3.53873 2.540473-3.975093 1.739477-3.975093C.968369-3.975093 .430386-3.466999 .430386-2.905106C.430386-2.600249 .687422-2.564384 .753176-2.564384C.902615-2.564384 1.075965-2.67198 1.075965-2.887173C1.075965-3.01868 .998257-3.209963 .735243-3.209963C.872727-3.514819 1.23736-3.741968 1.649813-3.741968C2.27746-3.741968 2.612204-3.275716 2.612204-2.791532C2.612204-2.367123 2.331258-1.93076 1.912827-1.548194L.496139-.251059C.436364-.191283 .430386-.185305 .430386 0H3.030635L3.21594-1.117808Z"></path>
+<path id="tz_metricas_bolas_unitarias_g3-49" d="M2.502615-5.076961C2.502615-5.292154 2.486675-5.300125 2.271482-5.300125C1.944707-4.98132 1.522291-4.790037 .765131-4.790037V-4.527024C.980324-4.527024 1.41071-4.527024 1.872976-4.742217V-.653549C1.872976-.358655 1.849066-.263014 1.091905-.263014H.812951V0C1.139726-.02391 1.825156-.02391 2.183811-.02391S3.235866-.02391 3.56264 0V-.263014H3.283686C2.526526-.263014 2.502615-.358655 2.502615-.653549V-5.076961Z"></path>
+</defs>
+<g id="tz_metricas_bolas_unitarias_page1">
+<g stroke-miterlimit="10" transform="translate(2.057987,6.87718)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M-70.13571 0H72.973" fill="none"></path>
+<g transform="translate(72.973,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(78.50595,0.0)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(2.057987,6.87718)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none"></g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0-70.13571V72.973" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,72.973)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+</g>
+</g>
+<g fill="#d96314" stroke="#d96314">
+<g stroke-width="0.8">
+<path d="M-48.36957-48.36957V48.36957H48.36957V-48.36957ZM48.36957 48.36957" fill="none"></path>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="0.8">
+<path d="M48.36957 0C48.36957 26.71411 26.71411 48.36957 0 48.36957S-48.36957 26.71411-48.36957 0S-26.71411-48.36957 0-48.36957S48.36957-26.71411 48.36957 0ZM0 0" fill="none"></path>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M48.36957 0L0 48.36957L-48.36957 0L0-48.36957Z" fill="none"></path>
+</g>
+</g>
+<g transform="translate(51.90254,-8.68852)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(2.057987,6.87718)scale(-1,-1)">
+<g fill="#000">
+<g stroke="none">
+<use x="2.057987" y="6.87718" href="#tz_metricas_bolas_unitarias_g3-49"></use>
+</g>
+</g>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g fill="#d7433b" stroke="#d7433b">
+</g>
+<g transform="translate(15.0774,10.83775)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(2.057987,6.87718)scale(-1,-1)">
+<g fill="#d7433b">
+<g stroke="none">
+<g fill="#d7433b">
+<use x="2.057987" y="6.87718" href="#tz_metricas_bolas_unitarias_g1-100"></use>
+<use x="6.415304" y="7.984128" href="#tz_metricas_bolas_unitarias_g2-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g fill="#2780e3" stroke="#2780e3">
+</g>
+<g transform="translate(31.5236,35.50597)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(2.057987,6.87718)scale(-1,-1)">
+<g fill="#2780e3">
+<g stroke="none">
+<g fill="#2780e3">
+<use x="2.057987" y="6.87718" href="#tz_metricas_bolas_unitarias_g1-100"></use>
+<use x="6.415304" y="7.984128" href="#tz_metricas_bolas_unitarias_g2-50"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#c05812" stroke="#c05812">
+<g fill="#c05812" stroke="#c05812">
+</g>
+<g transform="translate(50.0054,49.96144)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(2.057987,6.87718)scale(-1,-1)">
+<g fill="#c05812">
+<g stroke="none">
+<g fill="#bf5812">
+<use x="2.057987" y="6.87718" href="#tz_metricas_bolas_unitarias_g1-100"></use>
+<use x="6.415304" y="7.873444" href="#tz_metricas_bolas_unitarias_g0-49"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bolas-metricas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;84.1: A mesma bola <span class="math inline">\(B(0,1)\)</span>, três métricas: losango (<span class="math inline">\(d_1\)</span>), círculo (<span class="math inline">\(d_2\)</span>) e quadrado (<span class="math inline">\(d_\infty\)</span>).
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="convergência-e-continuidade" class="level2" data-number="84.4">
 <h2 data-number="84.4" class="anchored" data-anchor-id="convergência-e-continuidade"><span class="header-section-number">84.4</span> Convergência e continuidade</h2>
