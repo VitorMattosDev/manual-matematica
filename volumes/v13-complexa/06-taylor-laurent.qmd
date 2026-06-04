@@ -47,6 +47,29 @@ $$
 A parte com $n < 0$ é a **parte principal**, que captura a singularidade.
 :::
 
+A série de Laurent converge numa **coroa** (@fig-coroa-laurent) entre dois raios $r$ e
+$R$ em torno de $z_0$ — uma região anular que pode contornar uma singularidade central
+sem incluí-la.
+
+::: {#fig-coroa-laurent}
+```{.tikz}
+%%| filename: laurent-coroa
+%%| alt: Duas circunferências concêntricas de raios r e R em torno de um ponto z0 marcado com um xis; a região anular entre elas, sombreada, é a coroa de convergência da série de Laurent.
+\begin{tikzpicture}[scale=1.2, every node/.style={font=\footnotesize}]
+  \fill[manualblue!12, even odd rule] (0,0) circle (1.7) (0,0) circle (0.7);
+  \draw[manualblue, thick] (0,0) circle (1.7);
+  \draw[manualblue, thick] (0,0) circle (0.7);
+  \node[destaque] at (0,0) {$\times$};
+  \node[below right] at (0,0) {$z_0$};
+  \draw[->, manualgray] (0,0) -- (35:0.7) node[midway, above left]{$r$};
+  \draw[->, manualgray] (0,0) -- (125:1.7) node[midway, below left]{$R$};
+  \node[manualblue!70!black] at (0,-2.0) {coroa de convergência};
+\end{tikzpicture}
+```
+
+A coroa $r < |z - z_0| < R$ onde a série de Laurent converge.
+:::
+
 ::: {#exm-laurent}
 ## Uma expansão de Laurent
 A função $f(z) = \frac{e^z}{z}$ em torno de $0$: usando a série de $e^z$ (@sec-taylor) e
