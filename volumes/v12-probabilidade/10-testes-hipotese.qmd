@@ -71,6 +71,31 @@ obtidos, **supondo $H_0$ verdadeira**. Se $p < \alpha$, rejeita-se $H_0$ (result
 "estatisticamente significativo").
 :::
 
+A @fig-teste mostra a geometria de um teste bilateral: sob $H_0$, a estatística segue a
+curva central; as **caudas** além dos valores críticos $\pm z_{\alpha/2}$ formam a
+**região de rejeição** (área total $\alpha$). Cair nelas é ser "extremo demais".
+
+::: {#fig-teste}
+```{.tikz}
+%%| filename: testes-regiao-rejeicao
+%%| alt: Curva normal padrão com as duas caudas além de menos e mais z-alfa-meios sombreadas como região de rejeição; a região central é a de não rejeição de H zero.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}, yscale=2.4]
+  \fill[destaque!18, domain=-3.2:-1.8, samples=40, variable=\x] (-3.2,0) -- plot (\x,{exp(-\x*\x/2)}) -- (-1.8,0) -- cycle;
+  \fill[destaque!18, domain=1.8:3.2, samples=40, variable=\x] (1.8,0) -- plot (\x,{exp(-\x*\x/2)}) -- (3.2,0) -- cycle;
+  \draw[curva, domain=-3.3:3.3, samples=120] plot (\x,{exp(-\x*\x/2)});
+  \draw[eixo] (-3.6,0) -- (3.7,0) node[right]{};
+  \draw (-1.8,0.02)--(-1.8,-0.02) node[below]{$-z_{\alpha/2}$};
+  \draw (1.8,0.02)--(1.8,-0.02) node[below]{$z_{\alpha/2}$};
+  \node[destaque, anchor=east] at (-1.85,0.32) {rejeita $H_0$};
+  \node[destaque, anchor=west] at (1.85,0.32) {rejeita $H_0$};
+  \node[manualgray] at (0,0.42) {não rejeita};
+\end{tikzpicture}
+```
+
+Teste bilateral: as caudas além de $\pm z_{\alpha/2}$ são a região de rejeição (área
+$\alpha$).
+:::
+
 ::: {.callout-warning}
 ## O que o valor-p NÃO é
 O valor-p **não** é "a probabilidade de $H_0$ ser verdadeira" — esse é o erro mais comum
