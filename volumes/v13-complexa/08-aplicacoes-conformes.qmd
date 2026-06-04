@@ -29,6 +29,32 @@ o **mesmo** ângulo $\theta$ (em magnitude e sentido).
 Se $f$ é holomorfa em $z_0$ e $f'(z_0) \neq 0$, então $f$ é **conforme** em $z_0$.
 :::
 
+A @fig-conforme mostra o que isso significa: duas curvas que se cruzam em ângulo reto
+são levadas por $f$ em duas curvas que ainda se cruzam **em ângulo reto** — a forma
+local é girada e dilatada, mas os ângulos sobrevivem.
+
+::: {#fig-conforme}
+```{.tikz}
+%%| filename: conformes-preserva-angulo
+%%| alt: À esquerda, duas retas perpendiculares cruzando-se com marca de ângulo reto; uma seta f leva a, à direita, duas curvas que se cruzam ainda em ângulo reto.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \draw[manualblue, thick] (-1.4,0) -- (1.4,0);
+  \draw[destaque, thick] (0,-1.2) -- (0,1.4);
+  \draw[manualgray] (0,0.28) -- (0.28,0.28) -- (0.28,0);
+  \node at (0,-1.7) {duas curvas em $z_0$};
+  \draw[vetor, thick, black] (2.0,0) -- (3.2,0) node[midway, above]{$f$};
+  \begin{scope}[xshift=5.3cm]
+    \draw[manualblue, thick] plot[smooth, tension=0.9] coordinates {(-1.5,-0.5) (-0.3,0.05) (1.1,1.1)};
+    \draw[destaque, thick] plot[smooth, tension=0.9] coordinates {(0.9,-1.2) (0.05,-0.2) (-0.9,1.2)};
+    \draw[manualgray] (-0.16,0.24) -- (0.12,0.30) -- (0.18,0.02);
+    \node at (-0.2,-1.7) {imagens: mesmo ângulo};
+  \end{scope}
+\end{tikzpicture}
+```
+
+Uma aplicação conforme preserva os ângulos entre curvas que se cruzam.
+:::
+
 ::: {.callout-tip}
 ## Por que a derivada não nula garante ângulos
 Perto de $z_0$, $f$ age como a multiplicação por $f'(z_0)$ — e multiplicar por um
