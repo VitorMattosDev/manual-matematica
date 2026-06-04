@@ -63,6 +63,32 @@ $$
 a última igualdade sendo a **fórmula de Euler** (@sec-taylor).
 :::
 
+A @fig-plano-complexo reúne as duas leituras de $z$: as coordenadas cartesianas
+$(a, b)$ e as polares $(r, \theta)$ — módulo (distância à origem) e argumento (ângulo
+com o eixo real).
+
+::: {#fig-plano-complexo}
+```{.tikz}
+%%| filename: complexos-plano-argand
+%%| alt: O plano complexo com um ponto z igual a a mais b i; a parte real a e imaginária b em linhas tracejadas, o módulo r como vetor da origem ao ponto, e o argumento teta como ângulo com o eixo real.
+\begin{tikzpicture}[scale=1.3, every node/.style={font=\footnotesize}]
+  \coordinate (O) at (0,0);
+  \coordinate (X1) at (1,0);
+  \coordinate (Z) at (2.2,1.6);
+  \draw[eixo] (-0.4,0) -- (3.0,0) node[right]{$\operatorname{Re}$};
+  \draw[eixo] (0,-0.4) -- (0,2.3) node[above]{$\operatorname{Im}$};
+  \draw[auxiliar] (Z) -- (2.2,0); \draw[auxiliar] (Z) -- (0,1.6);
+  \draw[vetor, manualblue] (O) -- (Z);
+  \node[ponto] at (Z) {}; \node[above right] at (Z) {$z = a + bi$};
+  \node[below] at (2.2,0) {$a$}; \node[left] at (0,1.6) {$b$};
+  \node[manualblue, above left] at (1.05,0.85) {$r=|z|$};
+  \pic[draw=manualgreen!60!black, angle radius=0.7cm, "$\theta$"] {angle=X1--O--Z};
+\end{tikzpicture}
+```
+
+O ponto $z = a + bi$ no plano complexo, em coordenadas cartesianas e polares.
+:::
+
 ::: {#thm-de-moivre}
 ## Multiplicação, potências e De Moivre
 Na forma polar, multiplicar **multiplica módulos e soma argumentos**:
