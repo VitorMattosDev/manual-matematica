@@ -71,6 +71,36 @@ $$
 "Quebra-se" $A$ pelos cenários $B_i$.
 :::
 
+A @fig-arvore-bayes organiza o cálculo: cada caminho da raiz a uma folha multiplica a
+probabilidade do cenário $P(B_i)$ pela condicional $P(A \mid B_i)$. Somar os caminhos
+que levam a $A$ dá $P(A)$ (probabilidade total); Bayes percorre a árvore ao contrário.
+
+::: {#fig-arvore-bayes}
+```{.tikz}
+%%| filename: bayes-arvore
+%%| alt: Árvore de probabilidade de dois estágios: a raiz ramifica nos cenários B1 e B2 com probabilidades P(B1) e P(B2); cada um ramifica em A e A complementar com as probabilidades condicionais P(A dado Bi).
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \coordinate (R) at (0,1.5);
+  \coordinate (B1) at (2.2,2.7); \coordinate (B2) at (2.2,0.3);
+  \coordinate (A1) at (4.6,3.3); \coordinate (C1) at (4.6,2.1);
+  \coordinate (A2) at (4.6,0.9); \coordinate (C2) at (4.6,-0.3);
+  \node[ponto] at (R){};
+  \draw[manualblue] (R) -- (B1) node[midway, above left]{$P(B_1)$};
+  \draw[manualblue] (R) -- (B2) node[midway, below left]{$P(B_2)$};
+  \node[ponto] at (B1){}; \node[ponto] at (B2){};
+  \node[left] at (B1) {$B_1$}; \node[left] at (B2) {$B_2$};
+  \draw[destaque] (B1) -- (A1) node[midway, above]{$P(A\mid B_1)$};
+  \draw[manualgray] (B1) -- (C1);
+  \draw[destaque] (B2) -- (A2) node[midway, above]{$P(A\mid B_2)$};
+  \draw[manualgray] (B2) -- (C2);
+  \node[right] at (A1) {$A$}; \node[right] at (C1) {$A^c$};
+  \node[right] at (A2) {$A$}; \node[right] at (C2) {$A^c$};
+\end{tikzpicture}
+```
+
+Árvore de dois estágios: cada caminho multiplica $P(B_i)$ por $P(A \mid B_i)$.
+:::
+
 ::: {#thm-bayes}
 ## Teorema de Bayes
 Para uma partição $B_1, \dots, B_n$ e um evento observado $A$ (com $P(A) > 0$):
