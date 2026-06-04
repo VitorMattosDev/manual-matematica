@@ -57,6 +57,30 @@ a célebre **curva em sino**, centrada em $\mu$ (média) e com largura $\sigma$
 (desvio-padrão). A $N(0, 1)$ é a **normal padrão**.
 :::
 
+A @fig-normal resume a **regra empírica**: cerca de $68\%$ da probabilidade cai a um
+desvio-padrão da média ($\mu \pm \sigma$), e cerca de $95\%$ a dois ($\mu \pm 2\sigma$).
+
+::: {#fig-normal}
+```{.tikz}
+%%| filename: distribuicoes-normal-empirica
+%%| alt: A curva em sino da distribuição normal, com a faixa de um desvio-padrão em torno da média cobrindo 68 por cento da área e a de dois desvios cobrindo 95 por cento.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}, yscale=2.4]
+  \fill[manualblue!9, domain=-2:2, samples=70, variable=\x] (-2,0) -- plot (\x,{exp(-\x*\x/2)}) -- (2,0) -- cycle;
+  \fill[manualblue!22, domain=-1:1, samples=50, variable=\x] (-1,0) -- plot (\x,{exp(-\x*\x/2)}) -- (1,0) -- cycle;
+  \draw[curva, domain=-3.2:3.2, samples=120] plot (\x,{exp(-\x*\x/2)});
+  \draw[eixo] (-3.4,0) -- (3.5,0) node[right]{$x$};
+  \foreach \x/\l in {-2/{$\mu{-}2\sigma$},-1/{$\mu{-}\sigma$},0/{$\mu$},1/{$\mu{+}\sigma$},2/{$\mu{+}2\sigma$}}{
+    \draw (\x,0.02)--(\x,-0.02); \node[below] at (\x,0) {\l};
+  }
+  \node[manualblue!70!black] at (0,0.5) {$68\%$};
+  \node[manualblue!55!black] at (0,1.06) {$95\%$};
+\end{tikzpicture}
+```
+
+A regra empírica da normal: $68\%$ dentro de $\mu \pm \sigma$, $95\%$ dentro de
+$\mu \pm 2\sigma$.
+:::
+
 ::: {.callout-tip}
 ## A regra 68–95–99,7
 Para qualquer normal: cerca de **68%** dos dados caem a $1\sigma$ da média, **95%** a
