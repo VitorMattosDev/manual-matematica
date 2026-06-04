@@ -73,6 +73,30 @@ médias amostrais: cada um é a soma de muitos efeitos pequenos e independentes.
 razão profunda da onipresença da normal (@sec-distribuicoes).
 :::
 
+A @fig-tcl ilustra a convergência: partindo de uma população nada normal (um dado, $n=1$,
+uniforme), a distribuição da média amostral $\bar X_n$ vai ficando **estreita e em
+forma de sino** à medida que $n$ cresce.
+
+::: {#fig-tcl}
+```{.tikz}
+%%| filename: tcl-medias-amostrais
+%%| alt: A distribuição da média amostral para n igual a 1 (uniforme, plana), n igual a 5 (sino largo) e n igual a 30 (sino alto e estreito), todas centradas na média mu, mostrando a convergência para a normal.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}, yscale=1.5]
+  \draw[eixo] (0.3,0) -- (6.8,0) node[right]{$\bar X_n$};
+  \draw[eixo] (0.5,0) -- (0.5,1.9) node[above]{};
+  \draw[manualgray, very thick] (1.0,0.42) -- (6.0,0.42);
+  \node[manualgray, anchor=west] at (5.7,0.55) {$n=1$};
+  \draw[manualgreen!70!black, very thick, domain=0.6:6.4, samples=90] plot (\x,{1.0*exp(-(\x-3.5)*(\x-3.5)/(2*0.62*0.62))});
+  \node[manualgreen!60!black, anchor=west] at (4.7,0.95) {$n=5$};
+  \draw[manualblue, very thick, domain=2.4:4.6, samples=90] plot (\x,{1.75*exp(-(\x-3.5)*(\x-3.5)/(2*0.28*0.28))});
+  \node[manualblue, anchor=west] at (3.65,1.72) {$n=30$};
+  \draw (3.5,0.02)--(3.5,-0.02); \node[below] at (3.5,0) {$\mu$};
+\end{tikzpicture}
+```
+
+A distribuição da média amostral $\bar X_n$ vira um sino estreito conforme $n$ cresce.
+:::
+
 ::: {#exm-tcl-dados}
 ## A média de dados vira normal
 A distribuição de um único dado é uniforme (nada parecido com um sino). Mas a **média de
