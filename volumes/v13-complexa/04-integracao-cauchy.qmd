@@ -55,6 +55,28 @@ cada uma e usando as equações de Cauchy-Riemann (@thm-cauchy-riemann) — que 
 integrandos do tipo $Q_x - P_y$ se anularem —, ambas dão zero.
 :::
 
+A @fig-cauchy ilustra o enunciado: se $f$ é holomorfa em toda a região cercada por uma
+curva fechada $\gamma$ (sem singularidades dentro), a integral ao longo de $\gamma$ é
+**zero** — não importa o formato da curva.
+
+::: {#fig-cauchy}
+```{.tikz}
+%%| filename: cauchy-contorno-fechado
+%%| alt: Uma curva fechada orientada gama no plano complexo, cercando uma região onde f é holomorfa; a integral de contorno de f é zero.
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\footnotesize}]
+  \tikzset{seta/.style={postaction={decorate}, decoration={markings,
+     mark=at position 0.18 with {\arrow{stealth}}, mark=at position 0.68 with {\arrow{stealth}}}}}
+  \fill[manualblue!6] plot[smooth cycle, tension=0.85] coordinates {(0,1) (1.3,1.5) (2.6,0.8) (2.2,-0.7) (0.7,-1.0) (-0.7,-0.2)};
+  \draw[curva, seta] plot[smooth cycle, tension=0.85] coordinates {(0,1) (1.3,1.5) (2.6,0.8) (2.2,-0.7) (0.7,-1.0) (-0.7,-0.2)};
+  \node[manualblue] at (2.5,1.4) {$\gamma$};
+  \node at (0.9,0.2) {$f$ holomorfa};
+  \node at (0.9,-0.3) {$\displaystyle\oint_\gamma f\,dz = 0$};
+\end{tikzpicture}
+```
+
+Teorema de Cauchy: sem singularidades dentro de $\gamma$, a integral fechada é nula.
+:::
+
 ::: {.callout-tip}
 ## Holomorfia é "conservativa"
 O teorema de Cauchy diz que toda função holomorfa se comporta como um campo conservativo
