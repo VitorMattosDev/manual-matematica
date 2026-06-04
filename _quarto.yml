@@ -182,6 +182,7 @@ book:
         - volumes/v13-complexa/08-aplicacoes-conformes.qmd
   appendices:
     - notacao.qmd
+    - indice-remissivo.qmd
 
 bibliography: references.bib
 
