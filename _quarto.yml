@@ -121,6 +121,14 @@ book:
         - volumes/v8-analise/08-integral-riemann.qmd
         - volumes/v8-analise/09-sequencias-funcoes.qmd
         - volumes/v8-analise/10-convergencia-uniforme.qmd
+        - volumes/v8-analise/11-medida-motivacao.qmd
+        - volumes/v8-analise/12-medida-lebesgue.qmd
+        - volumes/v8-analise/13-conjuntos-mensuraveis.qmd
+        - volumes/v8-analise/14-funcoes-mensuraveis.qmd
+        - volumes/v8-analise/15-integral-lebesgue.qmd
+        - volumes/v8-analise/16-teoremas-convergencia.qmd
+        - volumes/v8-analise/17-riemann-vs-lebesgue.qmd
+        - volumes/v8-analise/18-espacos-lp.qmd
     - part: "Volume IX — Topologia"
       chapters:
         - volumes/v9-topologia/01-espacos-metricos.qmd
@@ -180,6 +188,26 @@ book:
         - volumes/v13-complexa/06-taylor-laurent.qmd
         - volumes/v13-complexa/07-residuos.qmd
         - volumes/v13-complexa/08-aplicacoes-conformes.qmd
+    - part: "Volume XIV — Análise Funcional"
+      chapters:
+        - volumes/v14-funcional/01-espacos-normados.qmd
+        - volumes/v14-funcional/02-espacos-hilbert.qmd
+        - volumes/v14-funcional/03-bases-ortonormais.qmd
+        - volumes/v14-funcional/04-operadores-limitados.qmd
+        - volumes/v14-funcional/05-hahn-banach.qmd
+        - volumes/v14-funcional/06-principios-fundamentais.qmd
+        - volumes/v14-funcional/07-operadores-compactos.qmd
+        - volumes/v14-funcional/08-teorema-espectral.qmd
+    - part: "Volume XV — Matemática Discreta e Teoria dos Grafos"
+      chapters:
+        - volumes/v15-discreta/01-contagem.qmd
+        - volumes/v15-discreta/02-recorrencias.qmd
+        - volumes/v15-discreta/03-funcoes-geradoras.qmd
+        - volumes/v15-discreta/04-grafos-introducao.qmd
+        - volumes/v15-discreta/05-arvores-conexidade.qmd
+        - volumes/v15-discreta/06-euler-hamilton.qmd
+        - volumes/v15-discreta/07-planaridade-coloracao.qmd
+        - volumes/v15-discreta/08-emparelhamentos-fluxos.qmd
   appendices:
     - notacao.qmd
     - indice-remissivo.qmd

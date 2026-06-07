@@ -235,6 +235,53 @@ não pelo número.
 
 ---
 
+# FASE 3 — Fechamento de lacunas (rigor e amplitude)
+
+Tampam buracos identificados na revisão de escopo: a **teoria da medida** (que
+o Vol. VIII pedia, por sustentar os axiomas de Kolmogorov do Vol. XII), a
+**análise funcional** (que fecha as séries de Fourier do Vol. XI) e a
+**matemática discreta** (amplia o público para além da trilha de cálculo). A
+medida entra como extensão do Vol. VIII (mesmo padrão da extensão do Vol. V); os
+demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
+
+## Extensão do Volume VIII — Teoria da Medida e Integral de Lebesgue
+*Objetivo: o rigor que sustenta a probabilidade e a análise moderna. Pré-req.: Vol. VIII.*
+
+- [ ] `volumes/v8-analise/11-medida-motivacao.qmd` — Por que medir: limitações de Riemann, conteúdo de Jordan, σ-álgebras.
+- [ ] `volumes/v8-analise/12-medida-lebesgue.qmd` — Medida exterior e medida de Lebesgue em ℝ.
+- [ ] `volumes/v8-analise/13-conjuntos-mensuraveis.qmd` — Conjuntos mensuráveis (Carathéodory); conjunto de Vitali não mensurável.
+- [ ] `volumes/v8-analise/14-funcoes-mensuraveis.qmd` — Funções mensuráveis e aproximação por funções simples.
+- [ ] `volumes/v8-analise/15-integral-lebesgue.qmd` — A integral de Lebesgue.
+- [ ] `volumes/v8-analise/16-teoremas-convergencia.qmd` — Convergência monótona, lema de Fatou e convergência dominada.
+- [ ] `volumes/v8-analise/17-riemann-vs-lebesgue.qmd` — Riemann × Lebesgue; critério de Lebesgue de integrabilidade.
+- [ ] `volumes/v8-analise/18-espacos-lp.qmd` — Espaços $L^p$; desigualdades de Hölder e Minkowski; completude (Riesz–Fischer).
+
+## Volume XIV — Análise Funcional
+*Objetivo: espaços de dimensão infinita, operadores e espectro. Pré-req.: Vols. VIII (estendido), IX, VI.*
+
+- [ ] `volumes/v14-funcional/01-espacos-normados.qmd` — Espaços normados e de Banach.
+- [ ] `volumes/v14-funcional/02-espacos-hilbert.qmd` — Espaços de Hilbert; projeção e ortogonalidade.
+- [ ] `volumes/v14-funcional/03-bases-ortonormais.qmd` — Bases ortonormais e séries de Fourier abstratas.
+- [ ] `volumes/v14-funcional/04-operadores-limitados.qmd` — Operadores lineares limitados e espaço dual.
+- [ ] `volumes/v14-funcional/05-hahn-banach.qmd` — Teorema de Hahn–Banach.
+- [ ] `volumes/v14-funcional/06-principios-fundamentais.qmd` — Banach–Steinhaus, aplicação aberta e gráfico fechado.
+- [ ] `volumes/v14-funcional/07-operadores-compactos.qmd` — Operadores compactos.
+- [ ] `volumes/v14-funcional/08-teorema-espectral.qmd` — Teorema espectral para operadores autoadjuntos compactos.
+
+## Volume XV — Matemática Discreta e Teoria dos Grafos
+*Objetivo: contagem, estruturas discretas e grafos. Pré-req.: Vols. I, II.*
+
+- [ ] `volumes/v15-discreta/01-contagem.qmd` — Princípios de contagem; inclusão–exclusão; princípio da casa dos pombos.
+- [ ] `volumes/v15-discreta/02-recorrencias.qmd` — Relações de recorrência.
+- [ ] `volumes/v15-discreta/03-funcoes-geradoras.qmd` — Funções geradoras.
+- [ ] `volumes/v15-discreta/04-grafos-introducao.qmd` — Grafos: conceitos básicos e representações.
+- [ ] `volumes/v15-discreta/05-arvores-conexidade.qmd` — Conexidade e árvores.
+- [ ] `volumes/v15-discreta/06-euler-hamilton.qmd` — Caminhos eulerianos e hamiltonianos.
+- [ ] `volumes/v15-discreta/07-planaridade-coloracao.qmd` — Planaridade e coloração de grafos.
+- [ ] `volumes/v15-discreta/08-emparelhamentos-fluxos.qmd` — Emparelhamentos e fluxos em redes.
+
+---
+
 *Este roadmap é uma proposta de escopo, não um contrato fechado: capítulos podem
 ser fundidos, divididos ou reordenados conforme a obra evolui — mas qualquer
 mudança deve ser refletida aqui e no `_quarto.yml` antes de seguir.*
