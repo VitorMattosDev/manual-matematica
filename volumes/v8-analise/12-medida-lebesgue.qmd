@@ -1,0 +1,192 @@
+# Medida exterior de Lebesgue {#sec-medida-lebesgue}
+
+## Motivação
+
+No capítulo anterior decidimos medir conjuntos por **coberturas enumeráveis** de
+intervalos — o salto de Jordan (finito) para Lebesgue (enumerável). Agora
+executamos a ideia. A cada conjunto $A \subseteq \mathbb{R}$, por mais
+esburacado, associamos um número: o ínfimo dos comprimentos totais de todas as
+maneiras de cobri-lo por intervalos. É a **medida exterior** $m^*(A)$, e ela está
+definida para *todo* conjunto. O preço de tamanha generalidade é que $m^*$ não é
+aditiva — apenas *sub*aditiva. Recuperar a aditividade exigirá selecionar os
+conjuntos bons (próximo capítulo); aqui estabelecemos $m^*$ e suas propriedades.
+
+## A definição
+
+::: {#def-medida-exterior}
+## Medida exterior
+Para $A \subseteq \mathbb{R}$, a **medida exterior de Lebesgue** é
+$$
+m^*(A) = \inf\left\{ \sum_{n=1}^{\infty} \ell(I_n) \ : \ A \subseteq
+\bigcup_{n=1}^{\infty} I_n,\ I_n \text{ intervalos abertos} \right\},
+$$
+onde $\ell(I) = b - a$ é o comprimento de $I = (a,b)$. O ínfimo é tomado sobre
+todas as coberturas enumeráveis de $A$ por intervalos abertos.
+:::
+
+O conjunto sobre o qual tomamos o ínfimo nunca é vazio (a reta toda se cobre por
+$(-n, n)$), e a soma pode ser $+\infty$. Assim $m^*(A) \in [0, +\infty]$ está
+sempre bem definido. Note que admitir $+\infty$ é essencial: $m^*(\mathbb{R}) =
++\infty$.
+
+## Propriedades básicas
+
+::: {#prp-medida-exterior-props}
+## Propriedades de $m^*$
+A medida exterior satisfaz:
+
+1. **(vazio)** $m^*(\emptyset) = 0$;
+2. **(monotonia)** se $A \subseteq B$, então $m^*(A) \le m^*(B)$;
+3. **(subaditividade enumerável)** para qualquer sequência $A_1, A_2, \dots$,
+   $$
+   m^*\!\left(\bigcup_{n=1}^\infty A_n\right) \le \sum_{n=1}^\infty m^*(A_n).
+   $$
+:::
+
+::: {.proof}
+*(1)* e *(2)* são imediatas: $\emptyset$ se cobre por intervalos de comprimento
+total tão pequeno quanto se queira; e toda cobertura de $B$ cobre $A$, logo o
+ínfimo para $A$ é sobre um conjunto maior de coberturas.
+
+*(3)* É o argumento $\varepsilon/2^n$, central na teoria. Se algum $m^*(A_n) =
+\infty$, nada há a provar. Senão, dado $\varepsilon > 0$, escolha para cada $n$
+uma cobertura $\{I_{n,k}\}_k$ de $A_n$ com
+$\sum_k \ell(I_{n,k}) \le m^*(A_n) + \varepsilon/2^n$. A família dupla
+$\{I_{n,k}\}_{n,k}$ é enumerável e cobre $\bigcup_n A_n$, então
+$$
+m^*\!\left(\bigcup_n A_n\right) \le \sum_{n}\sum_k \ell(I_{n,k}) \le \sum_n
+\left(m^*(A_n) + \frac{\varepsilon}{2^n}\right) = \sum_n m^*(A_n) + \varepsilon.
+$$
+Como $\varepsilon$ é arbitrário, segue a desigualdade.
+:::
+
+::: {.callout-warning}
+## Subaditiva, não aditiva
+A @prp-medida-exterior-props dá apenas $\le$, mesmo para conjuntos **disjuntos**.
+Existem conjuntos disjuntos $A, B$ com $m^*(A \cup B) < m^*(A) + m^*(B)$ — é
+exatamente o que o conjunto de Vitali exibirá (@sec-conjuntos-mensuraveis). A
+igualdade só vale na σ-álgebra dos mensuráveis. Por isso $m^*$ ainda não é "a"
+medida: é uma aproximação por cima, boa para *todos* os conjuntos, mas grosseira
+demais para somar.
+:::
+
+## A medida exterior de um intervalo é seu comprimento
+
+Tudo desmoronaria se $m^*$ não recuperasse o óbvio nos intervalos. Recupera —
+mas a prova é instrutiva, pois usa a **compacidade** (@sec-compacidade) de
+$[a,b]$.
+
+::: {#thm-medida-intervalo}
+## Normalização
+Para todo intervalo $I$ de extremos $a < b$, $m^*(I) = b - a$.
+:::
+
+::: {.proof}
+*(≤)* O intervalo $[a,b]$ é coberto pelo único intervalo $(a-\varepsilon,
+b+\varepsilon)$, de comprimento $b - a + 2\varepsilon$. Logo $m^*([a,b]) \le b -
+a$, e o mesmo para os intervalos contidos nele.
+
+*(≥)* Basta mostrar que toda cobertura de $[a,b]$ por abertos $\{I_n\}$ tem
+$\sum_n \ell(I_n) \ge b - a$. Como $[a,b]$ é **compacto**, uma subcobertura
+**finita** $I_{n_1}, \dots, I_{n_m}$ já cobre $[a,b]$. Um argumento elementar
+(reordenando os intervalos finitos que cobrem um intervalo fechado e somando
+seus comprimentos, que necessariamente "atravessam" de $a$ a $b$) mostra que
+$\sum_{j} \ell(I_{n_j}) \ge b - a$. A fortiori $\sum_n \ell(I_n) \ge b - a$,
+e tomando o ínfimo, $m^*([a,b]) \ge b - a$.
+:::
+
+::: {.callout-note}
+## Onde entra a compacidade
+A passagem de cobertura enumerável para **finita** é o coração da prova — e é
+precisamente a compacidade de $[a,b]$ (Heine–Borel, @sec-compacidade). Sem ela,
+infinitos intervalos minúsculos poderiam, em princípio, conspirar; a finitude os
+disciplina. Eis a topologia da reta sustentando a medida.
+:::
+
+## Invariância por translação
+
+::: {#prp-invariancia-translacao}
+## Translação preserva $m^*$
+Para todo $A \subseteq \mathbb{R}$ e $t \in \mathbb{R}$,
+$m^*(A + t) = m^*(A)$, onde $A + t = \{x + t : x \in A\}$.
+:::
+
+::: {.proof}
+Trasladar uma cobertura $\{I_n\}$ de $A$ por $t$ produz uma cobertura
+$\{I_n + t\}$ de $A + t$ com o mesmo comprimento total, pois $\ell(I + t) =
+\ell(I)$. Isso dá $m^*(A+t) \le m^*(A)$; aplicando a $-t$, a igualdade.
+:::
+
+## Conjuntos de medida nula
+
+O conceito mais útil da teoria, e o que dá sentido à expressão "**quase em todo
+ponto**" que dominará os capítulos seguintes.
+
+::: {#def-medida-nula}
+## Conjunto nulo
+$A$ tem **medida (exterior) nula** se $m^*(A) = 0$: para todo $\varepsilon > 0$,
+$A$ cabe numa união enumerável de intervalos de comprimento total $<
+\varepsilon$.
+:::
+
+::: {#prp-enumeravel-nulo}
+## Todo enumerável é nulo
+Todo conjunto enumerável tem medida nula. Em particular,
+$m^*(\mathbb{Q}) = 0$.
+:::
+
+::: {.proof}
+Um ponto é nulo: $\{x\} \subseteq (x - \varepsilon, x + \varepsilon)$ dá
+$m^*(\{x\}) \le 2\varepsilon$, logo $0$. Um enumerável $\{x_n\}$ é união
+enumerável de pontos; pela subaditividade, $m^*(\{x_n : n\}) \le \sum_n 0 = 0$.
+:::
+
+Confirmamos assim a intuição do capítulo anterior: $\mathbb{Q} \cap [0,1]$ tem
+medida $0$, e portanto os irracionais de $[0,1]$ têm medida $1$. A função de
+Dirichlet integra a $0$ na teoria de Lebesgue, como veremos. Há ainda nulos
+**não** enumeráveis — o conjunto de Cantor é o exemplo célebre (@exr-cantor-nulo).
+
+## Exercícios
+
+::: {#exr-mstar-ponto}
+Mostre diretamente da definição que $m^*(\{x\}) = 0$ e que
+$m^*([a,b]) = m^*((a,b))$ (a medida exterior não enxerga os extremos).
+:::
+
+::: {#exr-cantor-nulo}
+O **conjunto de Cantor** $C$ é obtido de $[0,1]$ removendo o terço médio aberto,
+depois os terços médios dos dois pedaços restantes, e assim por diante. Mostre
+que $m^*(C) = 0$. *(Sugestão: após $n$ passos restam $2^n$ intervalos de
+comprimento $3^{-n}$; cubra $C$ por eles.)* Conclua que existe conjunto nulo
+**não enumerável**, pois $C$ tem a cardinalidade de $\mathbb{R}$.
+:::
+
+::: {#exr-mstar-translacao-escala}
+Mostre que $m^*(\lambda A) = |\lambda|\, m^*(A)$ para $\lambda \in \mathbb{R}$,
+onde $\lambda A = \{\lambda x : x \in A\}$. *(A medida escala como comprimento.)*
+:::
+
+::: {#exr-uniao-nulo}
+Prove que uma união **enumerável** de conjuntos de medida nula tem medida nula.
+*(É o que torna "quase todo ponto" robusto: descartar uma quantidade enumerável
+de conjuntos nulos ainda descarta só um nulo.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-cantor-nulo
+Após o $n$-ésimo passo da construção, $C$ está contido na união de $2^n$
+intervalos fechados, cada um de comprimento $3^{-n}$, de comprimento total
+$(2/3)^n$. Logo $m^*(C) \le (2/3)^n$ para **todo** $n$, e como $(2/3)^n \to 0$,
+temos $m^*(C) = 0$. Ainda assim $C$ é não enumerável (seus pontos são exatamente
+os de $[0,1]$ com expansão ternária só de $0$ e $2$, em bijeção com $\{0,1\}^{
+\mathbb{N}}$). Portanto $C$ é nulo e não enumerável.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-uniao-nulo
+Sejam $A_1, A_2, \dots$ nulos. Pela subaditividade enumerável
+(@prp-medida-exterior-props), $m^*\!\left(\bigcup_n A_n\right) \le \sum_n
+m^*(A_n) = \sum_n 0 = 0$. Logo a união é nula.
+:::
