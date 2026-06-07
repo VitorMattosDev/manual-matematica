@@ -271,7 +271,7 @@ demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
 ## Volume XV — Matemática Discreta e Teoria dos Grafos
 *Objetivo: contagem, estruturas discretas e grafos. Pré-req.: Vols. I, II.*
 
-- [ ] `volumes/v15-discreta/01-contagem.qmd` — Princípios de contagem; inclusão–exclusão; princípio da casa dos pombos.
+- [x] `volumes/v15-discreta/01-contagem.qmd` — Princípios de contagem; inclusão–exclusão; princípio da casa dos pombos.
 - [ ] `volumes/v15-discreta/02-recorrencias.qmd` — Relações de recorrência.
 - [ ] `volumes/v15-discreta/03-funcoes-geradoras.qmd` — Funções geradoras.
 - [ ] `volumes/v15-discreta/04-grafos-introducao.qmd` — Grafos: conceitos básicos e representações.

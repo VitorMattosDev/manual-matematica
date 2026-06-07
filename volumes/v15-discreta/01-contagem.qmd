@@ -1,0 +1,157 @@
+# Princípios de contagem {#sec-contagem}
+
+## Motivação
+
+A análise combinatória do Volume II (@sec-combinatoria) ensinou a contar
+arranjos, permutações e combinações. Mas muitos problemas de contagem não cabem
+nessas fórmulas: quantos números até $100$ não são divisíveis por $2$ nem por
+$3$? De quantos modos $n$ cartas podem ser devolvidas todas no envelope errado?
+Para esses, precisamos de **princípios** mais gerais — o da **inclusão–exclusão**,
+que conta uniões corrigindo as sobreposições, e o da **casa dos pombos**, que
+garante coincidências sem exibi-las. Este capítulo abre o Volume de matemática
+discreta com essas duas ferramentas, simples de enunciar e surpreendentemente
+poderosas, e que reaparecerão em recorrências, grafos e teoria dos números.
+
+## Os princípios elementares
+
+Recapitulando a base, em linguagem de conjuntos:
+
+::: {#prp-soma-produto}
+## Princípios da soma e do produto
+Para conjuntos finitos, denotando por $|A|$ a cardinalidade:
+
+- **(soma)** se $A$ e $B$ são **disjuntos**, $|A \cup B| = |A| + |B|$;
+- **(produto)** $|A \times B| = |A|\cdot|B|$ — uma escolha em $A$ *e* uma em $B$
+  combinam-se multiplicativamente.
+:::
+
+A soma exige disjunção. Quando os conjuntos se sobrepõem, contamos a interseção
+duas vezes e precisamos descontá-la — é o ponto de partida da inclusão–exclusão.
+
+## Inclusão–exclusão
+
+::: {#thm-inclusao-exclusao}
+## Princípio da inclusão–exclusão
+Para conjuntos finitos $A_1, \dots, A_n$,
+$$
+\left|\bigcup_{i=1}^n A_i\right| = \sum_{i} |A_i| - \sum_{i<j} |A_i \cap A_j| +
+\sum_{i<j<k} |A_i \cap A_j \cap A_k| - \cdots + (-1)^{n+1}\,|A_1 \cap \cdots \cap
+A_n|.
+$$
+Em forma compacta, $\displaystyle \left|\bigcup_i A_i\right| =
+\sum_{\emptyset \ne S \subseteq \{1,\dots,n\}} (-1)^{|S|+1}\Big|\bigcap_{i\in S}
+A_i\Big|$.
+:::
+
+::: {.proof}
+Conte a contribuição de um elemento $x$ que pertença a exatamente $m \ge 1$ dos
+conjuntos. Ele é contado $\binom{m}{1}$ vezes nas interseções simples,
+$\binom{m}{2}$ nas duplas, e assim por diante, com sinais alternados. Sua
+contribuição total ao lado direito é
+$$
+\sum_{j=1}^m (-1)^{j+1}\binom mj = -\sum_{j=1}^m (-1)^{j}\binom mj =
+-\left[\underbrace{\sum_{j=0}^m (-1)^{j}\binom mj}_{=\,(1-1)^m = 0} - \binom m0
+\right] = -(0 - 1) = 1.
+$$
+Cada elemento da união é, portanto, contado uma única vez — como deveria.
+:::
+
+::: {#exm-coprimos-100}
+## Quantos inteiros até 100 não são divisíveis por 2 nem por 3
+Seja $A$ os múltiplos de $2$ e $B$ os de $3$ em $\{1,\dots,100\}$. Então $|A| =
+50$, $|B| = 33$, e $|A\cap B|$ = múltiplos de $6$ = $16$. Por inclusão–exclusão,
+$|A \cup B| = 50 + 33 - 16 = 67$, então os **não** divisíveis por $2$ nem $3$ são
+$100 - 67 = 33$.
+:::
+
+::: {#exm-desarranjos}
+## Desarranjos: o problema dos envelopes
+Um **desarranjo** é uma permutação sem pontos fixos — todas as $n$ cartas no
+envelope errado. Seja $A_i$ o conjunto das permutações que fixam $i$. As
+permutações *com* algum ponto fixo são $\bigcup_i A_i$; por inclusão–exclusão,
+$|A_i| = (n-1)!$, $|A_i\cap A_j| = (n-2)!$, etc., e o número de desarranjos é
+$$
+D_n = n!\left(1 - \frac1{1!} + \frac1{2!} - \cdots + \frac{(-1)^n}{n!}\right)
+\approx \frac{n!}{e}.
+$$
+Surpreendentemente, a fração de permutações que são desarranjos tende a $1/e
+\approx 0{,}368$ — quase $37\%$ — **independentemente** de $n$.
+:::
+
+## O princípio da casa dos pombos
+
+A contraparte da contagem exata: um princípio de **existência** que não constrói
+nada, apenas garante.
+
+::: {#thm-casa-pombos}
+## Princípio da casa dos pombos
+Se $n$ objetos são distribuídos em $k$ caixas e $n > k$, então **alguma** caixa
+contém pelo menos dois objetos. Mais geralmente, alguma caixa contém ao menos
+$\left\lceil n/k \right\rceil$ objetos.
+:::
+
+::: {.proof}
+Se toda caixa tivesse no máximo $\lceil n/k\rceil - 1$ objetos, o total seria no
+máximo $k(\lceil n/k\rceil - 1) < n$ — contradição. (A versão simples é o caso
+$\lceil n/k\rceil = 2$, isto é $n > k$.)
+:::
+
+::: {.callout-tip}
+## Poder a partir do nada
+A casa dos pombos não diz **qual** caixa, nem **quais** objetos — só que a
+coincidência existe. Essa modéstia é sua força: prova existência onde a
+construção seria impossível. Exemplos: duas pessoas em São Paulo têm o mesmo
+número de fios de cabelo (mais pessoas que fios possíveis); em qualquer grupo de
+$13$ pessoas, duas fazem aniversário no mesmo mês; toda sequência de $n^2+1$
+números reais distintos contém uma subsequência monótona de comprimento $n+1$
+(Erdős–Szekeres).
+:::
+
+::: {#exm-pombos-divisibilidade}
+## Uma aplicação aritmética
+Entre quaisquer $n+1$ inteiros escolhidos de $\{1, 2, \dots, 2n\}$, há sempre
+dois em que um divide o outro. *Prova:* escreva cada número como $2^a \cdot m$ com
+$m$ ímpar. Há apenas $n$ ímpares em $\{1,\dots,2n\}$ (as "caixas"), e $n+1$
+números (os "pombos"); dois deles têm o mesmo $m$, e então o de menor expoente
+divide o outro.
+:::
+
+## Exercícios
+
+::: {#exr-ie-tres}
+Quantos inteiros em $\{1,\dots,1000\}$ não são divisíveis por $2$, $3$ nem $5$?
+Use inclusão–exclusão com três conjuntos.
+:::
+
+::: {#exr-desarranjo-pequeno}
+Calcule $D_4$, o número de desarranjos de $4$ elementos, pela fórmula e
+listando-os para conferir.
+:::
+
+::: {#exr-pombos-soma}
+Mostre que, dados $5$ inteiros quaisquer, há dois cuja diferença é divisível por
+$4$. *(Quais são as caixas?)*
+:::
+
+::: {#exr-pombos-pontos}
+Mostre que, entre quaisquer $5$ pontos num quadrado de lado $2$, há dois a
+distância $\le \sqrt 2$. *(Divida o quadrado em quatro.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ie-tres
+Sejam $A, B, C$ os múltiplos de $2, 3, 5$. Então $|A| = 500$, $|B| = 333$, $|C| =
+200$; $|A\cap B| = 166$ (mult. de $6$), $|A\cap C| = 100$ (de $10$), $|B\cap C| =
+66$ (de $15$); $|A\cap B\cap C| = 33$ (de $30$). Inclusão–exclusão:
+$|A\cup B\cup C| = 500+333+200 - 166-100-66 + 33 = 734$. Logo os não divisíveis
+por $2,3,5$ são $1000 - 734 = 266$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-pombos-soma
+As caixas são os restos na divisão por $4$: $\{0,1,2,3\}$, quatro caixas. Com $5$
+inteiros (pombos), dois caem na mesma caixa, isto é, têm o mesmo resto mód $4$;
+sua diferença é então divisível por $4$.
+:::
