@@ -1,0 +1,197 @@
+# Conjuntos mensuráveis {#sec-conjuntos-mensuraveis}
+
+## Motivação
+
+A medida exterior $m^*$ mede todo conjunto, mas falha em ser aditiva: para
+disjuntos $A, B$ pode ocorrer $m^*(A \cup B) < m^*(A) + m^*(B)$. Precisamos
+isolar os conjuntos "bem-comportados", onde a igualdade volta a valer. A ideia
+genial de **Carathéodory** é definir esses conjuntos não por uma propriedade
+intrínseca, mas pela maneira como **partem** todos os outros: $E$ é mensurável se
+serve de "faca limpa", cortando qualquer conjunto teste em duas partes cujas
+medidas exteriores somam de volta o todo. O resultado é uma σ-álgebra sobre a
+qual $m^*$ é, enfim, uma medida genuína.
+
+## O critério de Carathéodory
+
+::: {#def-mensuravel-caratheodory}
+## Conjunto mensurável
+Um conjunto $E \subseteq \mathbb{R}$ é **(Lebesgue-)mensurável** se, para todo
+conjunto teste $A \subseteq \mathbb{R}$,
+$$
+m^*(A) = m^*(A \cap E) + m^*(A \cap E^c).
+$$
+Denotamos por $\mathcal{M}$ a coleção dos conjuntos mensuráveis e, para
+$E \in \mathcal{M}$, escrevemos $m(E) = m^*(E)$, a **medida de Lebesgue** de $E$.
+:::
+
+Como a subaditividade já garante $m^*(A) \le m^*(A\cap E) + m^*(A \cap E^c)$
+sempre, a condição equivale a verificar apenas a desigualdade $\ge$. E ela é
+trivial quando $m^*(A) = \infty$. Assim, na prática:
+
+> $E$ é mensurável $\iff$ para todo $A$ com $m^*(A) < \infty$,
+> $\quad m^*(A) \ge m^*(A \cap E) + m^*(A \cap E^c)$.
+
+::: {.callout-note}
+## Por que essa definição estranha
+Poderíamos tentar "$E$ é mensurável se $m^*(E) + m^*(E^c) = m^*(\mathbb{R})$",
+mas isso é vacuamente inútil ($\infty$). O critério de Carathéodory testa $E$
+contra **todo** $A$ — exige que $E$ corte bem não só a reta, mas qualquer pedaço
+dela. Essa exigência uniforme é exatamente o que se propaga por complementos e
+uniões enumeráveis, fazendo de $\mathcal{M}$ uma σ-álgebra.
+:::
+
+## $\mathcal{M}$ é uma σ-álgebra e $m$ é uma medida
+
+::: {#thm-M-sigma-algebra}
+## Estrutura dos mensuráveis
+A coleção $\mathcal{M}$ é uma σ-álgebra que contém todos os conjuntos de medida
+exterior nula e todos os intervalos. Sobre ela, $m = m^*|_{\mathcal{M}}$ é
+**enumeravelmente aditiva**: para $E_1, E_2, \dots \in \mathcal{M}$ dois a dois
+disjuntos,
+$$
+m\!\left(\bigcup_{n} E_n\right) = \sum_n m(E_n).
+$$
+:::
+
+::: {.proof}
+*(Esboço — a verificação completa é longa, mas cada passo é mecânico.)*
+
+**Nulos são mensuráveis.** Se $m^*(E) = 0$, então para todo $A$:
+$m^*(A \cap E) \le m^*(E) = 0$ e $m^*(A \cap E^c) \le m^*(A)$ por monotonia;
+somando, $\le m^*(A)$. Logo $E \in \mathcal{M}$.
+
+**Complemento.** A definição é simétrica em $E$ e $E^c$, então
+$E \in \mathcal{M} \Rightarrow E^c \in \mathcal{M}$. E $\mathbb{R} \in \mathcal{M}$
+trivialmente.
+
+**União finita.** Mostra-se que $E_1, E_2 \in \mathcal{M} \Rightarrow E_1 \cup E_2
+\in \mathcal{M}$ aplicando o critério duas vezes e usando a subaditividade. Por
+indução, $\mathcal{M}$ é fechada por uniões finitas — é uma álgebra.
+
+**Aditividade finita sobre disjuntos.** Para $E_1, E_2$ disjuntos mensuráveis,
+testando com $A = E_1 \cup E_2$ na definição de mensurabilidade de $E_1$ obtém-se
+$m^*(E_1 \cup E_2) = m^*(E_1) + m^*(E_2)$.
+
+**União enumerável e σ-aditividade.** Dada uma sequência disjunta $\{E_n\}$,
+sejam $S_N = \bigcup_{n\le N} E_n$. Testando a definição com as somas parciais e
+passando ao limite, mostra-se que $\bigcup_n E_n \in \mathcal{M}$ e que
+$m(\bigcup_n E_n) = \sum_n m(E_n)$. O caso de uniões não disjuntas segue
+escrevendo-as como uniões disjuntas. Por fim, todo intervalo satisfaz o critério,
+logo $\mathcal{M} \supseteq \mathcal{B}(\mathbb{R})$.
+:::
+
+::: {#cor-borel-mensuravel}
+## Boréis são mensuráveis
+Como $\mathcal{M}$ é uma σ-álgebra contendo os intervalos abertos e
+$\mathcal{B}(\mathbb{R})$ é a *menor* tal σ-álgebra (@def-borel),
+$\mathcal{B}(\mathbb{R}) \subseteq \mathcal{M}$. Todo conjunto de Borel é
+mensurável; $\mathcal{M}$ é ainda maior, pois contém também todos os subconjuntos
+de conjuntos nulos (é a **completação** de Borel).
+:::
+
+## Continuidade da medida
+
+A σ-aditividade tem uma consequência que usaremos constantemente: a medida
+respeita limites de sequências monótonas de conjuntos.
+
+::: {#prp-continuidade-medida}
+## Continuidade por baixo e por cima
+Sejam $E_n \in \mathcal{M}$.
+
+1. Se $E_1 \subseteq E_2 \subseteq \cdots$, então $m\!\left(\bigcup_n E_n\right) =
+   \lim_n m(E_n)$.
+2. Se $E_1 \supseteq E_2 \supseteq \cdots$ e $m(E_1) < \infty$, então
+   $m\!\left(\bigcap_n E_n\right) = \lim_n m(E_n)$.
+:::
+
+::: {.proof}
+*(1)* Escreva a união crescente como união disjunta $E_1 \cup (E_2 \setminus E_1)
+\cup (E_3 \setminus E_2) \cup \cdots$. Pela σ-aditividade, a medida da união é a
+série $\sum_k m(E_k \setminus E_{k-1})$, cujas somas parciais são exatamente
+$m(E_n)$ (telescopagem). *(2)* aplica-se *(1)* aos complementos
+$E_1 \setminus E_n$; a hipótese $m(E_1) < \infty$ evita o indeterminado
+$\infty - \infty$.
+:::
+
+## Um conjunto não mensurável: Vitali
+
+Chegamos à promessa do @sec-medida-motivacao: nem todo conjunto é mensurável. A
+construção usa o **axioma da escolha** e a invariância por translação para
+fabricar um conjunto que quebraria a σ-aditividade se fosse mensurável.
+
+::: {#thm-vitali}
+## Existe conjunto não mensurável
+Existe $V \subseteq [0,1]$ que não pertence a $\mathcal{M}$.
+:::
+
+::: {.proof}
+Em $[0,1]$, defina $x \sim y$ se $x - y \in \mathbb{Q}$. É uma relação de
+equivalência; pelo **axioma da escolha**, forme $V$ tomando **um** representante
+de cada classe. Enumere os racionais de $[-1,1]$ como $q_1, q_2, \dots$ e
+considere os transladados $V_n = V + q_n$.
+
+Eles são **disjuntos**: se $V_n$ e $V_m$ se cruzassem, dois representantes
+distintos diferiririam por um racional, contradizendo a escolha de um por classe.
+E eles cobrem $[0,1]$ e estão contidos em $[-1,2]$:
+$$
+[0,1] \subseteq \bigcup_{n} V_n \subseteq [-1, 2].
+$$
+Se $V$ fosse mensurável, todos os $V_n$ teriam a mesma medida $c = m(V)$ (por
+invariância por translação). Pela σ-aditividade,
+$m\!\left(\bigcup_n V_n\right) = \sum_n c$. Mas essa soma vale $0$ (se $c = 0$)
+ou $\infty$ (se $c > 0$) — nunca um número em $[1, 3]$, como as inclusões exigem.
+Contradição. Logo $V \notin \mathcal{M}$.
+:::
+
+::: {.callout-warning}
+## O preço da generalidade
+O conjunto de Vitali confirma que a restrição a $\mathcal{M}$ não é preguiça
+técnica: é **necessária**. Nenhuma medida invariante por translação e
+σ-aditiva pode medir *todo* subconjunto de $\mathbb{R}$. A construção depende
+crucialmente do axioma da escolha — e, de fato, há modelos da teoria dos
+conjuntos (sem escolha) em que *todo* conjunto é mensurável. A não
+mensurabilidade é uma sombra do infinito não construtivo.
+:::
+
+## Exercícios
+
+::: {#exr-mensuravel-simetria}
+Verifique, direto da @def-mensuravel-caratheodory, que $\emptyset$ e $\mathbb{R}$
+são mensuráveis e que $E \in \mathcal{M} \iff E^c \in \mathcal{M}$.
+:::
+
+::: {#exr-medida-completa}
+Mostre que se $m^*(N) = 0$ e $E \subseteq N$, então $E \in \mathcal{M}$ com
+$m(E) = 0$. *(A medida de Lebesgue é **completa**: subconjuntos de nulos são
+mensuráveis.)*
+:::
+
+::: {#exr-continuidade-contraexemplo}
+Mostre que a hipótese $m(E_1) < \infty$ na @prp-continuidade-medida(2) é
+necessária: exiba $E_n = [n, \infty)$ com $\bigcap_n E_n = \emptyset$ mas
+$m(E_n) = \infty$ para todo $n$.
+:::
+
+::: {#exr-vitali-naonulo}
+Usando a prova do @thm-vitali, explique por que $V$ **não** pode ter medida
+exterior $0$. *(Se tivesse, a subaditividade daria $m^*([0,1]) = 0$.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-medida-completa
+Por monotonia, $m^*(E) \le m^*(N) = 0$, logo $m^*(E) = 0$. Mas todo conjunto de
+medida exterior nula é mensurável (primeiro passo da prova do
+@thm-M-sigma-algebra): para qualquer teste $A$, $m^*(A\cap E) \le m^*(E) = 0$ e
+$m^*(A \cap E^c) \le m^*(A)$, somando $\le m^*(A)$. Logo $E \in \mathcal{M}$ e
+$m(E) = 0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-continuidade-contraexemplo
+Os $E_n = [n,\infty)$ são encaixados decrescentes, mensuráveis, com $m(E_n) =
+\infty$. Sua interseção é vazia (nenhum real está em todos), de medida $0$. Então
+$\lim_n m(E_n) = \infty \ne 0 = m(\bigcap_n E_n)$: a continuidade por cima falha.
+A finitude de $m(E_1)$ é o que a salva no caso geral.
+:::
