@@ -1,0 +1,148 @@
+# Riemann versus Lebesgue {#sec-riemann-vs-lebesgue}
+
+## Motivação
+
+Construímos uma integral nova. Ela substitui a antiga ou apenas a estende? E em
+que medida exata uma função é Riemann-integrável? Este capítulo responde às duas
+perguntas com um único teorema espetacular — o **critério de Lebesgue** — que
+caracteriza a integrabilidade de Riemann pela *medida do conjunto de
+descontinuidades*. De quebra, mostramos que onde Riemann funciona, Lebesgue
+concorda, de modo que nada se perde na troca: a integral de Lebesgue é uma
+genuína **extensão** da de Riemann.
+
+## Lebesgue contém Riemann
+
+::: {#thm-riemann-implica-lebesgue}
+## Compatibilidade
+Se $f : [a,b] \to \mathbb{R}$ é limitada e Riemann-integrável, então $f$ é
+Lebesgue-integrável e as duas integrais coincidem:
+$$
+\int_a^b f(x)\, dx \ =\ \int_{[a,b]} f\, dm.
+$$
+:::
+
+::: {.proof}
+*(Esboço.)* Tome partições $P_n$ uniformes com $2^n$ subintervalos e forme as
+funções simples em escada $\ell_n$ (alturas $= \inf f$ em cada subintervalo) e
+$u_n$ (alturas $= \sup f$). Então $\ell_n \le f \le u_n$, as escadas são
+monótonas ($\ell_n \uparrow$, $u_n \downarrow$), e suas integrais de Lebesgue
+são exatamente as somas de Darboux $L(f,P_n)$ e $U(f,P_n)$
+(@sec-integral-riemann). Como $f$ é Riemann-integrável, $L(f,P_n)$ e $U(f,P_n)$
+convergem ao mesmo valor — a integral de Riemann. Pela convergência monótona
+(@thm-convergencia-monotona), os limites $\ell = \lim \ell_n$ e $u = \lim u_n$
+satisfazem $\int \ell = \int u$, donde $\ell = u = f$ q.t.p. e $\int_{[a,b]} f\,
+dm$ é o valor comum.
+:::
+
+A integral de Lebesgue, portanto, **não contradiz** nada do Cálculo: toda
+integral já calculada por antiderivada permanece válida. O que ela faz é integrar
+*mais* funções e — sobretudo — oferecer os teoremas de convergência.
+
+## O critério de Lebesgue
+
+A pergunta "quais funções limitadas são Riemann-integráveis?" tem uma resposta
+exata e bela, formulada na linguagem da medida que acabamos de construir.
+
+::: {#thm-criterio-lebesgue}
+## Critério de Lebesgue para integrabilidade de Riemann
+Uma função limitada $f : [a,b] \to \mathbb{R}$ é Riemann-integrável **se, e
+somente se**, o conjunto dos seus pontos de descontinuidade tem medida de
+Lebesgue nula. Em símbolos, $f$ é Riemann-integrável $\iff$ $f$ é contínua
+**q.t.p.**
+:::
+
+::: {.proof}
+*(Ideia.)* A oscilação de $f$ num ponto $x$ é $\omega(x) = \lim_{\delta\to 0}
+\big(\sup_{|y-x|<\delta} f - \inf_{|y-x|<\delta} f\big)$; $f$ é contínua em $x$
+$\iff \omega(x) = 0$. O conjunto de descontinuidades é
+$D = \bigcup_k \{x : \omega(x) \ge 1/k\}$. Mostra-se que a diferença
+$U(f,P) - L(f,P)$ pode ser feita $< \varepsilon$ por alguma partição **se, e só
+se**, cada $\{\omega \ge 1/k\}$ pode ser coberto por intervalos de comprimento
+total arbitrariamente pequeno — isto é, se, e só se, $m(D) = 0$. O critério de
+Riemann (@thm-criterio-riemann) traduz-se exatamente nessa condição de medida.
+:::
+
+::: {.callout-tip}
+## A fronteira finalmente nomeada
+No @sec-integral-riemann dissemos vagamente que funções com "poucas
+descontinuidades" são integráveis. Agora "poucas" tem significado preciso:
+**medida nula**. Funções contínuas ($D = \emptyset$) ou monótonas ($D$
+enumerável) entram; a de Dirichlet, descontínua em *todo* ponto ($D = [0,1]$,
+medida $1$), fica de fora. A medida de Lebesgue era a linguagem que faltava para
+descrever a própria integral de Riemann.
+:::
+
+::: {#exm-criterio-aplicado}
+## Aplicações imediatas
+- **Contínuas:** $D = \emptyset$, medida $0$ — Riemann-integráveis (recupera
+  @thm-continua-integravel).
+- **Monótonas:** $D$ é enumerável, medida $0$ — integráveis (recupera
+  @thm-monotona-integravel).
+- **Dirichlet $\chi_{\mathbb{Q}}$:** descontínua em todo ponto, $m(D) = 1 \ne 0$
+  — **não** Riemann-integrável (mas Lebesgue-integrável, valor $0$).
+- **Função de Thomae** ($f(p/q) = 1/q$ nos racionais, $0$ nos irracionais):
+  descontínua exatamente nos racionais, $m(D) = 0$ — **é** Riemann-integrável,
+  com integral $0$. Um exemplo surpreendente que o critério resolve num passo.
+:::
+
+## O que Lebesgue ganha
+
+Vale resumir o saldo da troca, pois ele justifica todo o Volume.
+
+::: {.callout-note}
+## Por que migrar para Lebesgue
+1. **Integra mais funções** — toda Riemann-integrável e muitas além (Dirichlet,
+   limites pontuais de integráveis).
+2. **Teoremas de convergência** robustos (@sec-teoremas-convergencia): troca-se
+   $\lim$ e $\int$ com hipóteses pontuais, não uniformes.
+3. **Completude dos espaços de funções** — $L^1$, $L^2$, … são completos
+   (@sec-espacos-lp), o que Riemann nunca forneceu; é a base da análise
+   funcional (Vol. XIV) e das séries de Fourier.
+4. **Fundamenta a probabilidade** — os axiomas de Kolmogorov são axiomas de
+   medida; esperança é integral de Lebesgue.
+
+O **único** preço: integrais impróprias condicionalmente convergentes (como
+$\int_0^\infty \frac{\sin x}{x}\,dx$) não são "integrais de Lebesgue", pois esta
+é absoluta. Um preço pequeno diante do que se ganha.
+:::
+
+## Exercícios
+
+::: {#exr-thomae}
+Verifique que a função de Thomae é contínua em todo irracional e descontínua em
+todo racional. Conclua, pelo @thm-criterio-lebesgue, que ela é
+Riemann-integrável, e calcule sua integral.
+:::
+
+::: {#exr-indicadora-cantor-riemann}
+A indicadora $\chi_C$ do conjunto de Cantor é Riemann-integrável? Use o critério
+de Lebesgue. *(Onde $\chi_C$ é descontínua?)*
+:::
+
+::: {#exr-composicao-riemann}
+Dê um exemplo mostrando que a composição de duas funções Riemann-integráveis
+pode não ser Riemann-integrável, e discuta à luz do critério de descontinuidades.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-thomae
+Em um irracional $x_0$: dado $\varepsilon > 0$, há apenas finitos racionais $p/q$
+em $[0,1]$ com $1/q \ge \varepsilon$ (pois $q \le 1/\varepsilon$); evitando-os por
+uma vizinhança, $f < \varepsilon$ ali, e como $f(x_0) = 0$, $f$ é contínua em
+$x_0$. Em um racional $p/q$: há irracionais arbitrariamente próximos onde $f = 0$,
+mas $f(p/q) = 1/q > 0$, logo descontínua. Assim $D = \mathbb{Q}\cap[0,1]$, de
+medida $0$; pelo critério, $f$ é Riemann-integrável. Como $f = 0$ q.t.p.,
+$\int_0^1 f = 0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-indicadora-cantor-riemann
+$\chi_C$ é descontínua exatamente nos pontos de fronteira de $C$ — e como $C$ não
+tem interior, suas descontinuidades estão contidas em $C$, que tem medida nula
+(@exr-cantor-nulo). Logo $m(D) = 0$ e, pelo @thm-criterio-lebesgue, $\chi_C$
+**é** Riemann-integrável, com $\int_0^1 \chi_C = m(C) = 0$. Contraste com
+Dirichlet: ambos têm integral $0$, mas só Dirichlet falha em Riemann, pois sua
+descontinuidade é densa de medida total.
+:::
