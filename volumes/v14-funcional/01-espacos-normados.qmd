@@ -1,0 +1,183 @@
+# Espaços normados e de Banach {#sec-espacos-normados}
+
+## Motivação
+
+A álgebra linear (Vol. VI) estudou espaços vetoriais e, com produto interno,
+mediu comprimentos e ângulos — mas quase sempre em **dimensão finita**. A análise
+funcional dá o salto decisivo: estudar espaços vetoriais de **dimensão infinita**,
+cujos "vetores" são funções. O espaço $C[a,b]$ das funções contínuas, os espaços
+$L^p$ (@sec-espacos-lp), o espaço das sequências somáveis — todos são espaços
+vetoriais onde cada ponto é uma função inteira.
+
+Em dimensão infinita, a geometria e a análise se entrelaçam: precisamos de uma
+noção de **tamanho de um vetor** (norma) e de **convergência** que sejam
+compatíveis com a estrutura linear, e — crucialmente — de **completude**, sem a
+qual limites de funções escapam do espaço. Este capítulo estabelece o vocabulário:
+norma, espaço de Banach, e o fato surpreendente que separa as duas dimensões — em
+dimensão infinita, nem toda norma é equivalente, e a bola fechada deixa de ser
+compacta.
+
+## Normas
+
+::: {#def-norma}
+## Espaço normado
+Uma **norma** num espaço vetorial $X$ (sobre $\mathbb{R}$ ou $\mathbb{C}$) é uma
+função $\|\cdot\| : X \to [0,\infty)$ tal que, para todos $x, y \in X$ e escalar
+$\lambda$:
+
+1. $\|x\| = 0 \iff x = 0$ (**definida positiva**);
+2. $\|\lambda x\| = |\lambda|\,\|x\|$ (**homogênea**);
+3. $\|x + y\| \le \|x\| + \|y\|$ (**desigualdade triangular**).
+
+O par $(X, \|\cdot\|)$ é um **espaço normado**. A norma induz a métrica
+$d(x,y) = \|x - y\|$, e com ela toda a topologia do Volume IX.
+:::
+
+::: {#exm-espacos-normados}
+## Os espaços de trabalho
+- $\mathbb{R}^n$ com $\|x\|_p = \left(\sum_i |x_i|^p\right)^{1/p}$, $1 \le p \le
+  \infty$ (a norma euclidiana é $p = 2$).
+- $C[a,b]$, funções contínuas, com a **norma do sup**
+  $\|f\|_\infty = \max_{[a,b]} |f|$.
+- $L^p(E)$, com $\|f\|_p = \left(\int_E |f|^p\right)^{1/p}$ (@sec-espacos-lp).
+- $\ell^p$, sequências $(x_n)$ com $\sum_n |x_n|^p < \infty$, norma
+  $\left(\sum_n |x_n|^p\right)^{1/p}$.
+:::
+
+## Espaços de Banach
+
+A convergência só é útil se os limites permanecerem no espaço. Daí a definição
+central.
+
+::: {#def-banach}
+## Espaço de Banach
+Um espaço normado $X$ é um **espaço de Banach** se for **completo**: toda
+sequência de Cauchy em $X$ converge a um elemento de $X$.
+:::
+
+::: {.callout-note}
+## Por que completude é inegociável
+Os métodos da análise funcional — existência de soluções de equações, pontos
+fixos, projeções — produzem objetos como **limites** de sequências aproximantes.
+Sem completude, o limite pode não existir no espaço, e o método falha. É a mesma
+razão pela qual os reais precisam ser completos (Vol. VIII): em $\mathbb{Q}$, a
+sequência das aproximações de $\sqrt 2$ é de Cauchy mas não converge. A
+completude é o que torna a análise possível.
+:::
+
+::: {#exm-banach-sim-nao}
+## Completos e incompletos
+- $\mathbb{R}^n$, $\ell^p$ ($1\le p\le\infty$) e $L^p(E)$ são Banach — a
+  completude de $L^p$ é o teorema de Riesz–Fischer (@thm-riesz-fischer).
+- $C[a,b]$ com a norma do sup **é** Banach: convergência uniforme de contínuas é
+  contínua (@sec-convergencia-uniforme).
+- $C[a,b]$ com a norma $\|f\|_1 = \int_a^b |f|$ **não** é completo. Uma sequência
+  de contínuas pode ser de Cauchy em $\|\cdot\|_1$ e convergir (em média) a uma
+  função descontínua, fora de $C[a,b]$. É precisamente esse buraco que $L^1$
+  preenche — $L^1$ é o **completamento** de $(C[a,b], \|\cdot\|_1)$.
+:::
+
+A norma vem com uma propriedade analítica básica, que usaremos sem comentário:
+
+::: {#prp-norma-continua}
+## A norma é contínua
+A aplicação $x \mapsto \|x\|$ é contínua, pois $\big|\|x\| - \|y\|\big| \le \|x -
+y\|$ (consequência da desigualdade triangular). As operações $(x,y)\mapsto x+y$ e
+$(\lambda, x)\mapsto \lambda x$ também são contínuas.
+:::
+
+## Dimensão finita: tudo é equivalente
+
+Em dimensão finita, a escolha da norma é irrelevante para a topologia — um fato
+que **falha** dramaticamente em dimensão infinita e por isso merece destaque.
+
+::: {#thm-normas-equivalentes}
+## Equivalência das normas em dimensão finita
+Em um espaço vetorial de **dimensão finita**, quaisquer duas normas
+$\|\cdot\|_a$ e $\|\cdot\|_b$ são **equivalentes**: existem constantes $0 < c \le
+C$ com
+$$
+c\,\|x\|_a \le \|x\|_b \le C\,\|x\|_a \quad \text{para todo } x.
+$$
+Em consequência, todo espaço normado de dimensão finita é **completo** (Banach) e
+sua bola fechada é **compacta**.
+:::
+
+::: {.proof}
+*(Esboço.)* Basta comparar uma norma qualquer $\|\cdot\|$ com a euclidiana
+$\|\cdot\|_2$ numa base $e_1,\dots,e_n$. A função $x \mapsto \|x\|$ é contínua na
+topologia de $\|\cdot\|_2$ (pela desigualdade triangular e Cauchy–Schwarz). A
+esfera unitária $\{\|x\|_2 = 1\}$ é **compacta** (Heine–Borel, @sec-compacidade),
+e nela a função contínua e positiva $\|x\|$ atinge um mínimo $c > 0$ e um máximo
+$C$. Homogeneidade estende a desigualdade a todo $x$. A compacidade da bola e a
+completude seguem das de $\mathbb{R}^n$.
+:::
+
+## Dimensão infinita: a compacidade se perde
+
+Eis o divisor de águas. O teorema de Riesz mostra que a compacidade da bola é
+**exclusiva** da dimensão finita.
+
+::: {#thm-riesz-compacidade}
+## Teorema de Riesz (bola compacta ⟺ dimensão finita)
+Num espaço normado $X$, a bola unitária fechada $\overline{B} = \{x : \|x\| \le
+1\}$ é compacta **se, e somente se**, $\dim X < \infty$.
+:::
+
+::: {.callout-warning}
+## A intuição finita não vale mais
+Em dimensão infinita, sequências limitadas **não** precisam ter subsequência
+convergente. Em $\ell^2$, os vetores da base canônica $e_n = (0,\dots,0,1,0,\dots)$
+têm $\|e_n\| = 1$, mas $\|e_n - e_m\| = \sqrt 2$ para $n \ne m$: nenhuma
+subsequência é de Cauchy. A bola unitária, embora fechada e limitada, **não** é
+compacta. Toda a dificuldade — e a riqueza — da análise funcional nasce daqui:
+sem compacidade da bola, garantir existência de mínimos, de pontos fixos e de
+autovalores exige ideias novas (convergência fraca, operadores compactos), que os
+próximos capítulos desenvolvem.
+:::
+
+## Exercícios
+
+::: {#exr-norma-sup-banach}
+Prove que $(C[a,b], \|\cdot\|_\infty)$ é completo. *(Use que o limite uniforme de
+funções contínuas é contínuo — @sec-convergencia-uniforme.)*
+:::
+
+::: {#exr-normas-rn}
+Em $\mathbb{R}^2$, esboce as bolas unitárias das normas $\|\cdot\|_1$,
+$\|\cdot\|_2$ e $\|\cdot\|_\infty$ e exiba constantes explícitas mostrando sua
+equivalência.
+:::
+
+::: {#exr-c1-incompleto}
+Mostre que $(C[0,1], \|\cdot\|_1)$ não é completo, exibindo uma sequência de
+contínuas, de Cauchy em $\|\cdot\|_1$, cujo limite (em $L^1$) é descontínuo.
+*(Sugestão: funções que aproximam um degrau.)*
+:::
+
+::: {#exr-en-sem-subsequencia}
+Em $\ell^2$, mostre que a sequência $(e_n)$ da base canônica é limitada mas não
+admite subsequência convergente, confirmando que $\overline{B}$ não é compacta.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-c1-incompleto
+Seja $f_n$ contínua, igual a $0$ em $[0, \tfrac12]$, a $1$ em $[\tfrac12 +
+\tfrac1n, 1]$, e linear no meio. Para $m > n$, $\|f_n - f_m\|_1$ é a área de uma
+região de largura $\le \frac1n$ e altura $\le 1$, logo $\le \frac1n \to 0$: a
+sequência é de Cauchy em $\|\cdot\|_1$. Mas $f_n \to f$ em $L^1$, onde $f =
+\chi_{(1/2, 1]}$ é **descontínua** — não há limite contínuo. Logo $(C[0,1],
+\|\cdot\|_1)$ é incompleto.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-en-sem-subsequencia
+Cada $e_n$ tem norma $1$, então $(e_n)$ é limitada. Para $n \ne m$,
+$\|e_n - e_m\|_2^2 = 1 + 1 = 2$, logo $\|e_n - e_m\| = \sqrt 2$. Qualquer
+subsequência tem termos a distância $\sqrt2$ entre si, portanto **não** é de
+Cauchy, e em particular não converge. A bola unitária fechada de $\ell^2$ contém
+$(e_n)$ e não é (sequencialmente) compacta — coerente com o @thm-riesz-compacidade,
+já que $\dim \ell^2 = \infty$.
+:::
