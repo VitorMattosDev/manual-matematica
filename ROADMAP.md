@@ -276,7 +276,7 @@ demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
 - [x] `volumes/v15-discreta/03-funcoes-geradoras.qmd` — Funções geradoras.
 - [x] `volumes/v15-discreta/04-grafos-introducao.qmd` — Grafos: conceitos básicos e representações.
 - [x] `volumes/v15-discreta/05-arvores-conexidade.qmd` — Conexidade e árvores.
-- [ ] `volumes/v15-discreta/06-euler-hamilton.qmd` — Caminhos eulerianos e hamiltonianos.
+- [x] `volumes/v15-discreta/06-euler-hamilton.qmd` — Caminhos eulerianos e hamiltonianos.
 - [ ] `volumes/v15-discreta/07-planaridade-coloracao.qmd` — Planaridade e coloração de grafos.
 - [ ] `volumes/v15-discreta/08-emparelhamentos-fluxos.qmd` — Emparelhamentos e fluxos em redes.
 

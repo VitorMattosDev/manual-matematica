@@ -1,0 +1,170 @@
+# Caminhos eulerianos e hamiltonianos {#sec-euler-hamilton}
+
+## Motivação
+
+Em 1736, Euler enfrentou um enigma da cidade de Königsberg: seria possível
+passear pela cidade cruzando cada uma das suas **sete pontes** exatamente uma vez,
+voltando ao ponto de partida? Ao reduzir o mapa a um grafo — terras viram
+vértices, pontes viram arestas — Euler resolveu o problema e, no gesto, **fundou a
+teoria dos grafos**. Seu critério é de uma simplicidade definitiva e depende
+apenas da paridade dos graus. O problema gêmeo, de visitar cada **vértice** uma
+vez (caminho hamiltoniano), parece igualmente inocente, mas esconde uma das
+dificuldades centrais da computação. O contraste entre os dois — fácil e difícil,
+quase idênticos no enunciado — é uma das lições mais profundas da matemática
+discreta.
+
+## Caminhos e circuitos eulerianos
+
+::: {#def-euleriano}
+## Trilha e circuito eulerianos
+Uma **trilha** é um passeio que não repete **arestas**. Uma **trilha euleriana**
+percorre **todas** as arestas do grafo. Se ela é fechada (volta ao início), é um
+**circuito euleriano**, e o grafo é dito **euleriano**.
+:::
+
+::: {#thm-euler}
+## Teorema de Euler
+Seja $G$ um grafo conexo. Então:
+
+1. $G$ tem um **circuito** euleriano $\iff$ todo vértice tem grau **par**;
+2. $G$ tem uma **trilha** euleriana (aberta) $\iff$ exatamente **dois** vértices
+   têm grau ímpar (e a trilha começa em um e termina no outro).
+:::
+
+::: {.proof}
+*(Necessidade.)* Cada vez que a trilha **passa** por um vértice, usa duas arestas
+incidentes (uma para entrar, uma para sair), contribuindo $2$ ao seu grau. Logo,
+num circuito (fechado), todo vértice tem grau par; numa trilha aberta, apenas o
+início e o fim — onde sobra uma aresta — têm grau ímpar. *(Suficiência.)* Constrói-se
+o circuito por indução, encaixando subcircuitos: começando em qualquer vértice e
+saindo sempre que possível, a paridade par garante que só se pode "ficar preso" de
+volta ao início; os ciclos restantes se costuram (algoritmo de Hierholzer).
+:::
+
+::: {#exm-konigsberg}
+## As pontes de Königsberg
+As quatro regiões de terra, ligadas pelas sete pontes, formam o multigrafo da
+@fig-konigsberg. Os graus são $3, 3, 3, 5$ — **quatro** vértices de grau ímpar.
+Pelo @thm-euler, não há trilha euleriana (que exigiria $0$ ou $2$ ímpares), muito
+menos circuito. O passeio sonhado é **impossível** — e Euler provou que a resposta
+não depende de esperteza, mas da paridade.
+:::
+
+::: {#fig-konigsberg}
+```{.tikz}
+%%| filename: konigsberg
+%%| alt: Multigrafo de quatro vertices representando as regioes de Konigsberg, ligados por sete arestas (pontes); o vertice central liga-se as demais por arestas duplas.
+\begin{tikzpicture}[scale=1.4,
+    vert/.style={circle, draw, fill=manualblue!15, semithick, inner sep=1.5pt, font=\small, minimum size=7mm}]
+  \node[vert] (N) at (0,1.4) {$N$};
+  \node[vert] (S) at (0,-1.4) {$S$};
+  \node[vert] (W) at (-1.8,0) {$W$};
+  \node[vert] (E) at (1.8,0) {$E$};
+  \draw[semithick] (W) to[bend left=18] (N);
+  \draw[semithick] (W) to[bend right=18] (N);
+  \draw[semithick] (W) to[bend left=18] (S);
+  \draw[semithick] (W) to[bend right=18] (S);
+  \draw[semithick] (E) to[bend left=18] (N);
+  \draw[semithick] (E) to[bend right=18] (S);
+  \draw[semithick] (W) -- (E);
+\end{tikzpicture}
+```
+
+Königsberg como multigrafo: graus $\deg(W) = 5$, $\deg(N) = \deg(S) = \deg(E) =
+3$. Quatro vértices ímpares — sem trilha euleriana.
+:::
+
+## Caminhos e ciclos hamiltonianos
+
+Troque "arestas" por "vértices" no enunciado e o problema muda de natureza.
+
+::: {#def-hamiltoniano}
+## Caminho e ciclo hamiltonianos
+Um **caminho hamiltoniano** visita **cada vértice exatamente uma vez**. Se é
+fechado, é um **ciclo hamiltoniano**, e o grafo é **hamiltoniano**.
+:::
+
+::: {.callout-warning}
+## Gêmeos, mas não idênticos
+Euler (todas as **arestas**) tem critério **simples** e teste **rápido**: basta
+contar paridades de graus. Hamilton (todos os **vértices**) **não** tem critério
+simples conhecido — decidir se um grafo é hamiltoniano é um problema
+**NP-completo**, sem algoritmo eficiente conhecido. Dois enunciados quase iguais,
+duas dificuldades em mundos opostos. É um dos exemplos mais eloquentes de que, em
+matemática, pequenas mudanças de enunciado podem cruzar a fronteira entre o fácil
+e o intratável.
+:::
+
+Não havendo critério exato, contentamo-nos com **condições suficientes**: grafos
+"densos o bastante" são hamiltonianos.
+
+::: {#thm-dirac-ore}
+## Condições de Dirac e de Ore
+Seja $G$ um grafo com $n \ge 3$ vértices.
+
+- **(Dirac)** Se todo vértice tem grau $\ge n/2$, então $G$ é hamiltoniano.
+- **(Ore)** Se $\deg(u) + \deg(v) \ge n$ para todo par de vértices **não
+  adjacentes** $u, v$, então $G$ é hamiltoniano.
+:::
+
+A condição de Ore generaliza a de Dirac (se todos têm grau $\ge n/2$, qualquer
+soma é $\ge n$). Ambas são **suficientes, não necessárias** — há grafos
+hamiltonianos esparsos (o ciclo $C_n$ tem todos os graus $= 2$) que não as
+satisfazem.
+
+## O caixeiro-viajante
+
+::: {#def-tsp}
+## Problema do caixeiro-viajante (TSP)
+Dado um grafo completo ponderado, o **problema do caixeiro-viajante** pede o ciclo
+hamiltoniano de **menor peso total** — a rota mais curta que visita todas as
+cidades e retorna à origem.
+:::
+
+O TSP é o protótipo dos problemas de otimização combinatória difíceis: encontrar
+o ótimo exato é NP-difícil, e a abordagem gulosa (sempre ir à cidade mais próxima)
+pode errar feio — em contraste gritante com a árvore geradora mínima
+(@thm-agm-guloso), onde a ganância acerta. A teoria dos grafos, aqui, toca a
+fronteira da complexidade computacional.
+
+## Exercícios
+
+::: {#exr-euler-aplicar}
+Quais dos grafos $K_4$, $K_5$, $C_6$ e $K_{3,3}$ têm circuito euleriano? E trilha
+euleriana aberta? Justifique pela paridade dos graus.
+:::
+
+::: {#exr-euler-desenho}
+Mostre que a figura de uma "casinha" (um quadrado com um telhado triangular e as
+duas diagonais do telhado) pode ser desenhada sem tirar o lápis do papel, e diga
+onde se deve começar.
+:::
+
+::: {#exr-dirac-verificar}
+Verifique que $K_5$ satisfaz a condição de Dirac e exiba um ciclo hamiltoniano
+nele.
+:::
+
+::: {#exr-hamilton-bipartido}
+Mostre que $K_{2,3}$ **não** tem ciclo hamiltoniano. *(Num bipartido, um ciclo
+alterna os lados — o que exige lados de igual tamanho.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-euler-aplicar
+- $K_4$: todos de grau $3$ (ímpar), quatro ímpares — **nem** trilha nem circuito.
+- $K_5$: todos de grau $4$ (par) — tem **circuito** euleriano.
+- $C_6$: todos de grau $2$ (par) — tem **circuito** euleriano.
+- $K_{3,3}$: todos de grau $3$ (ímpar), seis ímpares — **nenhum** dos dois.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-hamilton-bipartido
+Em $K_{2,3}$, os lados têm $2$ e $3$ vértices. Um ciclo num grafo bipartido
+alterna entre os lados, logo visita o mesmo número de vértices de cada lado — só é
+possível se os lados têm **igual** tamanho. Como $2 \ne 3$, não há ciclo
+hamiltoniano em $K_{2,3}$. (Em geral, $K_{r,s}$ é hamiltoniano $\iff r = s \ge
+2$.)
+:::
