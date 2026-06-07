@@ -260,7 +260,7 @@ demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
 *Objetivo: espaços de dimensão infinita, operadores e espectro. Pré-req.: Vols. VIII (estendido), IX, VI.*
 
 - [x] `volumes/v14-funcional/01-espacos-normados.qmd` — Espaços normados e de Banach.
-- [ ] `volumes/v14-funcional/02-espacos-hilbert.qmd` — Espaços de Hilbert; projeção e ortogonalidade.
+- [x] `volumes/v14-funcional/02-espacos-hilbert.qmd` — Espaços de Hilbert; projeção e ortogonalidade.
 - [ ] `volumes/v14-funcional/03-bases-ortonormais.qmd` — Bases ortonormais e séries de Fourier abstratas.
 - [ ] `volumes/v14-funcional/04-operadores-limitados.qmd` — Operadores lineares limitados e espaço dual.
 - [ ] `volumes/v14-funcional/05-hahn-banach.qmd` — Teorema de Hahn–Banach.

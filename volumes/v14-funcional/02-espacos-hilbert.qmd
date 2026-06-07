@@ -1,0 +1,189 @@
+# Espaços de Hilbert {#sec-espacos-hilbert}
+
+## Motivação
+
+Um espaço de Banach tem comprimento, mas não **ângulo**. Para recuperar a
+geometria plena da álgebra linear — ortogonalidade, projeção, o teorema de
+Pitágoras — precisamos de um **produto interno**. Um espaço de Banach cuja norma
+provém de um produto interno é um **espaço de Hilbert**, e é o ambiente mais
+perfeito da análise funcional: nele, dimensão infinita comporta-se quase como
+finita. O exemplo-mor é $L^2$ (@def-l2-produto-interno), o palco das séries de
+Fourier e da mecânica quântica. Este capítulo desenvolve a geometria de Hilbert e
+seu resultado central, o **teorema da projeção**, do qual decorre toda a teoria
+de aproximação ótima.
+
+## Produto interno
+
+::: {#def-produto-interno}
+## Espaço com produto interno
+Um **produto interno** num espaço vetorial $H$ (complexo) é uma aplicação
+$\langle\cdot,\cdot\rangle : H \times H \to \mathbb{C}$ tal que:
+
+1. $\langle x, x\rangle \ge 0$, com igualdade só se $x = 0$;
+2. $\langle x, y\rangle = \overline{\langle y, x\rangle}$ (**hermitiana**);
+3. linear na primeira variável: $\langle \alpha x + \beta z, y\rangle = \alpha
+   \langle x,y\rangle + \beta\langle z,y\rangle$.
+
+A **norma associada** é $\|x\| = \sqrt{\langle x,x\rangle}$. (No caso real,
+omite-se a conjugação.)
+:::
+
+::: {#thm-cauchy-schwarz-hilbert}
+## Desigualdade de Cauchy–Schwarz
+Para todos $x, y \in H$, $\ |\langle x,y\rangle| \le \|x\|\,\|y\|$, com igualdade
+se, e somente se, $x$ e $y$ são linearmente dependentes.
+:::
+
+Cauchy–Schwarz garante que $\|\cdot\|$ satisfaz a desigualdade triangular, logo é
+de fato uma norma. O produto interno também é caracterizado geometricamente:
+
+::: {#prp-lei-paralelogramo}
+## Identidade do paralelogramo
+A norma de um espaço com produto interno satisfaz
+$$
+\|x + y\|^2 + \|x - y\|^2 = 2\|x\|^2 + 2\|y\|^2.
+$$
+Reciprocamente, uma norma que cumpre essa identidade provém de um produto interno
+(que se recupera pela **identidade de polarização**).
+:::
+
+Esse é o teste decisivo: $L^2$ satisfaz o paralelogramo (é Hilbert), mas $L^p$
+com $p \ne 2$, e $C[a,b]$ com a norma do sup, **não** — são Banach sem produto
+interno (@exr-paralelogramo-falha).
+
+::: {#def-hilbert}
+## Espaço de Hilbert
+Um **espaço de Hilbert** é um espaço com produto interno que é **completo** na
+norma associada — isto é, um espaço de Banach cuja norma vem de um produto
+interno.
+:::
+
+::: {#exm-hilbert}
+## Exemplos
+$\mathbb{R}^n$ e $\mathbb{C}^n$ com o produto interno usual; $\ell^2$ com
+$\langle x,y\rangle = \sum_n x_n \overline{y_n}$; e $L^2(E)$ com $\langle f,g
+\rangle = \int_E f\overline{g}\, dm$ (@def-l2-produto-interno). Estes dois
+últimos são os protótipos de Hilbert de dimensão infinita.
+:::
+
+## Ortogonalidade e Pitágoras
+
+::: {#def-ortogonalidade}
+## Ortogonalidade
+Dois vetores são **ortogonais**, $x \perp y$, se $\langle x,y\rangle = 0$. Para um
+conjunto $S \subseteq H$, o **complemento ortogonal** é
+$$
+S^\perp = \{x \in H : \langle x, s\rangle = 0 \text{ para todo } s \in S\}.
+$$
+$S^\perp$ é sempre um subespaço **fechado** (interseção de núcleos de funcionais
+contínuos).
+:::
+
+::: {#prp-pitagoras}
+## Teorema de Pitágoras
+Se $x \perp y$, então $\|x + y\|^2 = \|x\|^2 + \|y\|^2$. Mais geralmente, para
+$x_1, \dots, x_n$ dois a dois ortogonais, $\big\|\sum_i x_i\big\|^2 = \sum_i
+\|x_i\|^2$.
+:::
+
+A prova é expandir $\langle x+y, x+y\rangle$ e usar $\langle x,y\rangle = 0$. A
+mesma geometria do plano euclidiano, agora em dimensão qualquer.
+
+## O teorema da projeção
+
+A propriedade que faz dos Hilbert o melhor dos mundos: existência e unicidade do
+**ponto mais próximo** num subespaço (ou convexo) fechado.
+
+::: {#thm-projecao}
+## Teorema da projeção
+Seja $H$ um espaço de Hilbert e $M \subseteq H$ um subespaço **fechado**. Então
+todo $x \in H$ se escreve de modo **único** como
+$$
+x = m + m^\perp, \qquad m \in M,\ m^\perp \in M^\perp.
+$$
+O vetor $m = P_M x$ é o **único ponto de $M$ mais próximo de $x$**, caracterizado
+por $x - m \perp M$. A aplicação $P_M$ (a **projeção ortogonal**) é linear, com
+$\|P_M x\| \le \|x\|$, e $H = M \oplus M^\perp$.
+:::
+
+::: {.proof}
+*(Existência do ponto mais próximo.)* Seja $d = \inf_{y\in M}\|x - y\|$ e
+$(y_n)$ uma sequência minimizante. Pela identidade do paralelogramo aplicada a
+$x - y_n$ e $x - y_m$,
+$$
+\|y_n - y_m\|^2 = 2\|x-y_n\|^2 + 2\|x-y_m\|^2 - 4\Big\|x - \tfrac{y_n+y_m}{2}
+\Big\|^2 \le 2\|x-y_n\|^2 + 2\|x-y_m\|^2 - 4d^2,
+$$
+pois $\frac{y_n+y_m}2 \in M$ (convexidade). O lado direito $\to 0$, logo $(y_n)$
+é de **Cauchy**; pela completude converge a $m \in M$ (fechado), com $\|x-m\| =
+d$. A condição $x - m \perp M$ e a unicidade saem de minimizar
+$t \mapsto \|x - m - t\,u\|^2$ para $u \in M$.
+:::
+
+::: {.callout-tip}
+## Onde completude e Pitágoras se encontram
+Note o que a prova usou: a **completude** (para garantir que a sequência
+minimizante converge) e a **identidade do paralelogramo** (a marca do produto
+interno). Tire qualquer uma e o teorema desmorona — em $C[a,b]$ com a norma do
+sup, pode **não** existir ponto mais próximo num subespaço fechado. A projeção é
+o privilégio geométrico de Hilbert, e a base de toda aproximação ótima: mínimos
+quadrados, melhor aproximação por polinômios, coeficientes de Fourier.
+:::
+
+::: {#cor-riesz-representacao}
+## Teorema de representação de Riesz
+Todo funcional linear contínuo $\varphi : H \to \mathbb{C}$ se representa por um
+**único** vetor $v \in H$: $\varphi(x) = \langle x, v\rangle$ para todo $x$, com
+$\|\varphi\| = \|v\|$. Assim $H$ é **isomorfo ao seu próprio dual** — uma
+autodualidade que só Hilbert possui.
+:::
+
+::: {.proof}
+Se $\varphi = 0$, tome $v = 0$. Senão, $M = \ker\varphi$ é fechado e $M \ne H$;
+pelo @thm-projecao, $M^\perp$ é não trivial, gerado por um vetor $z$. Ajustando
+escala, $v = \overline{\varphi(z)}\,z/\|z\|^2$ funciona: verifica-se $\varphi(x) =
+\langle x, v\rangle$ decompondo $x$ em $M \oplus M^\perp$.
+:::
+
+## Exercícios
+
+::: {#exr-polarizacao}
+Prove a identidade de polarização (caso real):
+$\langle x,y\rangle = \tfrac14\big(\|x+y\|^2 - \|x-y\|^2\big)$. Conclua que o
+produto interno é determinado pela norma.
+:::
+
+::: {#exr-paralelogramo-falha}
+Mostre que a norma do sup em $C[0,1]$ **não** satisfaz a identidade do
+paralelogramo, exibindo $f, g$ que a violam. Conclua que $(C[0,1],
+\|\cdot\|_\infty)$ não é um espaço de Hilbert.
+:::
+
+::: {#exr-projecao-mmq}
+Em $\mathbb{R}^3$, calcule a projeção ortogonal de $x = (1,2,3)$ sobre o plano
+$M = \{(a,b,c) : a + b + c = 0\}$, usando $x - P_M x \perp M$.
+:::
+
+::: {#exr-complemento-fechado}
+Mostre que $S^\perp$ é sempre um subespaço fechado, mesmo quando $S$ não é
+subespaço, e que $S^\perp = (\overline{\operatorname{span} S})^\perp$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-paralelogramo-falha
+Tome $f(t) = 1$ (constante) e $g(t) = t$ em $[0,1]$. Então $\|f\|_\infty = 1$,
+$\|g\|_\infty = 1$, $\|f+g\|_\infty = \max(1+t) = 2$ e $\|f-g\|_\infty =
+\max|1-t| = 1$. A identidade exigiria $2^2 + 1^2 = 2\cdot1 + 2\cdot1$, isto é
+$5 = 4$ — **falso**. Logo a norma do sup não vem de produto interno, e
+$(C[0,1],\|\cdot\|_\infty)$ é Banach mas não Hilbert.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-projecao-mmq
+$M$ é o plano normal a $u = (1,1,1)$. A projeção sobre a **reta** $\langle u
+\rangle$ é $\frac{\langle x,u\rangle}{\|u\|^2}u = \frac{1+2+3}{3}(1,1,1) =
+2(1,1,1)$. Então $P_M x = x - 2(1,1,1) = (-1, 0, 1)$. De fato $(-1)+0+1 = 0$
+(está em $M$) e $x - P_M x = (2,2,2) \parallel u \perp M$. ✓
+:::
