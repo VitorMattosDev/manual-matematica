@@ -34,6 +34,9 @@ rode o script novamente para atualizar esta página.
 - [Aplicação de Gauss](volumes/v10-diferencial/05-segunda-forma.qmd#def-aplicacao-gauss) · Vol. X
 - [Arco-seno, arco-cosseno, arco-tangente](volumes/v4-precalculo/06-trigonometricas.qmd#def-arco-funcoes) · Vol. IV
 - [Área do retângulo](volumes/v3-geometria/06-areas.qmd#def-area-retangulo) · Vol. III
+- [Árvore e floresta](volumes/v15-discreta/05-arvores-conexidade.qmd#def-arvore) · Vol. XV
+- [Árvore geradora](volumes/v15-discreta/05-arvores-conexidade.qmd#def-arvore-geradora) · Vol. XV
+- [Árvore geradora mínima (AGM)](volumes/v15-discreta/05-arvores-conexidade.qmd#def-agm) · Vol. XV
 - [Autoespaço](volumes/v6-linear/07-autovalores.qmd#def-autoespaco) · Vol. VI
 - [Autovalor e autovetor](volumes/v6-linear/07-autovalores.qmd#def-autovalor) · Vol. VI
 - [Axiomas de incidência](volumes/v3-geometria/01-euclidiana-axiomas.qmd#def-axiomas-incidencia) · Vol. III
@@ -46,12 +49,14 @@ rode o script novamente para atualizar esta página.
 - [Base](volumes/v6-linear/05-base-dimensao.qmd#def-base-vetorial) · Vol. VI
 - [Base (prévia)](volumes/v9-topologia/02-espacos-topologicos.qmd#def-base-preview) · Vol. IX
 - [Base de uma topologia](volumes/v9-topologia/03-base-subbase.qmd#def-base-topologia) · Vol. IX
+- [Base ortonormal (de Hilbert)](volumes/v14-funcional/03-bases-ortonormais.qmd#def-base-ortonormal) · Vol. XIV
 - [Bernoulli e binomial](volumes/v12-probabilidade/05-distribuicoes.qmd#def-bernoulli-binomial) · Vol. XII
 - [Boas propriedades de um estimador](volumes/v12-probabilidade/09-estatistica-estimacao.qmd#def-propriedades-estimador) · Vol. XII
 - [Bola aberta](volumes/v9-topologia/01-espacos-metricos.qmd#def-bola) · Vol. IX
 
 ### C
 
+- [Caminho e ciclo hamiltonianos](volumes/v15-discreta/06-euler-hamilton.qmd#def-hamiltoniano) · Vol. XV
 - [Campo conservativo e potencial](volumes/v5-calculo/13-campos-integrais-linha.qmd#def-conservativo) · Vol. V
 - [Campo vetorial](volumes/v5-calculo/13-campos-integrais-linha.qmd#def-campo-vetorial) · Vol. V
 - [Campos vetoriais e tensoriais](volumes/v10-diferencial/10-campos-tensores.qmd#def-campo-vetorial-var) · Vol. X
@@ -64,6 +69,7 @@ rode o script novamente para atualizar esta página.
 - [Classificação pelos autovalores](volumes/v11-equacoes-diferenciais/03-sistemas-edo.qmd#def-estabilidade) · Vol. XI
 - [Cobertura aberta e compacidade](volumes/v8-analise/05-topologia-reta.qmd#def-cobertura) · Vol. VIII
 - [Coeficiente de correlação](volumes/v12-probabilidade/07-vetores-aleatorios.qmd#def-correlacao) · Vol. XII
+- [Coloração e número cromático](volumes/v15-discreta/07-planaridade-coloracao.qmd#def-coloracao) · Vol. XV
 - [Combinação e coeficiente binomial](volumes/v2-algebra/10-combinatoria.qmd#def-combinacao) · Vol. II
 - [Combinação linear e span](volumes/v6-linear/04-espacos-vetoriais.qmd#def-combinacao-linear) · Vol. VI
 - [Componente conexa](volumes/v9-topologia/05-conexidade.qmd#def-componente) · Vol. IX
@@ -77,6 +83,11 @@ rode o script novamente para atualizar esta página.
 - [Conjunto aberto](volumes/v8-analise/05-topologia-reta.qmd#def-aberto) · Vol. VIII
 - [Conjunto das partes](volumes/v1-fundamentos/02-conjuntos.qmd#def-partes) · Vol. I
 - [Conjunto fechado](volumes/v8-analise/05-topologia-reta.qmd#def-fechado) · Vol. VIII
+- [Conjunto mensurável](volumes/v8-analise/13-conjuntos-mensuraveis.qmd#def-mensuravel-caratheodory) · Vol. VIII
+- [Conjunto nulo](volumes/v8-analise/12-medida-lebesgue.qmd#def-medida-nula) · Vol. VIII
+- [Conjunto ortonormal](volumes/v14-funcional/03-bases-ortonormais.qmd#def-ortonormal) · Vol. XIV
+- [Conjuntos de Borel](volumes/v8-analise/11-medida-motivacao.qmd#def-borel) · Vol. VIII
+- [Conteúdo de Jordan](volumes/v8-analise/11-medida-motivacao.qmd#def-conteudo-jordan) · Vol. VIII
 - [Continuidade uniforme](volumes/v8-analise/06-continuidade.qmd#def-uniforme) · Vol. VIII
 - [Convergência absoluta](volumes/v8-analise/04-series.qmd#def-absoluta) · Vol. VIII
 - [Convergência em espaço métrico](volumes/v9-topologia/01-espacos-metricos.qmd#def-convergencia-metrica) · Vol. IX
@@ -85,6 +96,7 @@ rode o script novamente para atualizar esta página.
 - [Coordenadas](volumes/v3-geometria/11-geometria-analitica.qmd#def-coordenadas) · Vol. III
 - [Corpo](volumes/v7-abstrata/06-dominios-corpos.qmd#def-corpo) · Vol. VII
 - [Corpo de decomposição](volumes/v7-abstrata/09-galois.qmd#def-corpo-decomposicao) · Vol. VII
+- [Corte](volumes/v15-discreta/08-emparelhamentos-fluxos.qmd#def-corte) · Vol. XV
 - [Corte de Dedekind](volumes/v8-analise/01-construcao-reais.qmd#def-corte) · Vol. VIII
 - [Cota superior e inferior](volumes/v8-analise/02-supremo-completude.qmd#def-cotas) · Vol. VIII
 - [Cota superior e supremo](volumes/v1-fundamentos/10-reais-introducao.qmd#def-supremo) · Vol. I
@@ -123,6 +135,8 @@ rode o script novamente para atualizar esta página.
 - [Elemento algébrico](volumes/v7-abstrata/08-extensoes-corpos.qmd#def-algebrico) · Vol. VII
 - [Elementos do triângulo retângulo](volumes/v3-geometria/04-pitagoras.qmd#def-elementos-retangulo) · Vol. III
 - [Elipse](volumes/v3-geometria/12-conicas.qmd#def-elipse) · Vol. III
+- [Emparelhamento](volumes/v15-discreta/08-emparelhamentos-fluxos.qmd#def-emparelhamento) · Vol. XV
+- [Equação característica](volumes/v15-discreta/02-recorrencias.qmd#def-equacao-caracteristica) · Vol. XV
 - [Equação da reta](volumes/v3-geometria/11-geometria-analitica.qmd#def-equacao-reta) · Vol. III
 - [Equação de campo de Einstein](volumes/v10-diferencial/15-curvatura-riemann.qmd#def-equacao-einstein) · Vol. X
 - [Equação diferencial ordinária](volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.qmd#def-edo) · Vol. XI
@@ -131,24 +145,32 @@ rode o script novamente para atualizar esta página.
 - [Equação e solução](volumes/v2-algebra/02-equacoes-1grau.qmd#def-equacao) · Vol. II
 - [Equivalência lógica](volumes/v1-fundamentos/01-logica.qmd#def-equivalencia) · Vol. I
 - [Espaço amostral e eventos](volumes/v12-probabilidade/01-espacos-probabilidade.qmd#def-espaco-amostral) · Vol. XII
+- [Espaço com produto interno](volumes/v14-funcional/02-espacos-hilbert.qmd#def-produto-interno) · Vol. XIV
 - [Espaço compacto](volumes/v9-topologia/06-compacidade.qmd#def-compacto) · Vol. IX
 - [Espaço conexo](volumes/v9-topologia/05-conexidade.qmd#def-conexo) · Vol. IX
 - [Espaço cotangente](volumes/v10-diferencial/10-campos-tensores.qmd#def-covetor) · Vol. X
+- [Espaço de Banach](volumes/v14-funcional/01-espacos-normados.qmd#def-banach) · Vol. XIV
+- [Espaço de Hilbert](volumes/v14-funcional/02-espacos-hilbert.qmd#def-hilbert) · Vol. XIV
+- [Espaço dual](volumes/v14-funcional/04-operadores-limitados.qmd#def-dual) · Vol. XIV
 - [Espaço métrico](volumes/v9-topologia/01-espacos-metricos.qmd#def-metrica) · Vol. IX
 - [Espaço métrico completo](volumes/v9-topologia/01-espacos-metricos.qmd#def-completo) · Vol. IX
+- [Espaço normado](volumes/v14-funcional/01-espacos-normados.qmd#def-norma) · Vol. XIV
 - [Espaço tangente](volumes/v10-diferencial/09-variedades.qmd#def-espaco-tangente) · Vol. X
 - [Espaço topológico](volumes/v9-topologia/02-espacos-topologicos.qmd#def-topologia) · Vol. IX
 - [Espaço vetorial](volumes/v6-linear/04-espacos-vetoriais.qmd#def-espaco-vetorial) · Vol. VI
+- [Espectro e autovalores](volumes/v14-funcional/07-operadores-compactos.qmd#def-espectro) · Vol. XIV
 - [Esperança](volumes/v12-probabilidade/06-esperanca-variancia.qmd#def-esperanca-geral) · Vol. XII
 - [Esperança e variância (contínuas)](volumes/v12-probabilidade/04-vars-continuas.qmd#def-esperanca-continua) · Vol. XII
 - [Estimação por máxima verossimilhança](volumes/v12-probabilidade/09-estatistica-estimacao.qmd#def-verossimilhanca) · Vol. XII
 - [Eventos independentes](volumes/v12-probabilidade/02-condicional-bayes.qmd#def-independencia-prob) · Vol. XII
+- [Expoentes conjugados](volumes/v8-analise/18-espacos-lp.qmd#def-expoentes-conjugados) · Vol. VIII
 - [Exponencial complexa](volumes/v13-complexa/03-funcoes-elementares.qmd#def-exponencial-complexa) · Vol. XIII
 - [Expressão algébrica](volumes/v2-algebra/01-expressoes.qmd#def-expressao) · Vol. II
 - [Extensão de corpos](volumes/v7-abstrata/08-extensoes-corpos.qmd#def-extensao) · Vol. VII
 
 ### F
 
+- [Famílias importantes](volumes/v15-discreta/04-grafos-introducao.qmd#def-grafos-especiais) · Vol. XV
 - [Fatorial](volumes/v2-algebra/10-combinatoria.qmd#def-fatorial) · Vol. II
 - [Fecho, interior, fronteira](volumes/v8-analise/05-topologia-reta.qmd#def-fecho-interior) · Vol. VIII
 - [Forma escalonada](volumes/v6-linear/01-sistemas-gauss.qmd#def-forma-escalonada) · Vol. VI
@@ -171,10 +193,15 @@ rode o script novamente para atualizar esta página.
 - [Função densidade de probabilidade](volumes/v12-probabilidade/04-vars-continuas.qmd#def-densidade) · Vol. XII
 - [Função derivada](volumes/v5-calculo/02-derivada.qmd#def-funcao-derivada) · Vol. V
 - [Função exponencial](volumes/v4-precalculo/04-exponencial.qmd#def-exponencial) · Vol. IV
+- [Função geradora exponencial](volumes/v15-discreta/03-funcoes-geradoras.qmd#def-egf) · Vol. XV
+- [Função geradora ordinária](volumes/v15-discreta/03-funcoes-geradoras.qmd#def-funcao-geradora) · Vol. XV
 - [Função inversa](volumes/v4-precalculo/01-funcoes.qmd#def-inversa) · Vol. IV
+- [Função mensurável](volumes/v8-analise/14-funcoes-mensuraveis.qmd#def-funcao-mensuravel) · Vol. VIII
 - [Função polinomial](volumes/v2-algebra/08-funcoes-polinomiais.qmd#def-funcao-polinomial) · Vol. II
 - [Função quadrática](volumes/v4-precalculo/02-afim-quadratica.qmd#def-quadratica) · Vol. IV
+- [Função simples](volumes/v8-analise/14-funcoes-mensuraveis.qmd#def-funcao-simples) · Vol. VIII
 - [Função tangente](volumes/v4-precalculo/06-trigonometricas.qmd#def-funcao-tangente) · Vol. IV
+- [Funcional sublinear](volumes/v14-funcional/05-hahn-banach.qmd#def-funcional-sublinear) · Vol. XIV
 - [Funções injetoras, sobrejetoras e bijetoras](volumes/v4-precalculo/01-funcoes.qmd#def-tipos) · Vol. IV
 - [Funções seno e cosseno](volumes/v4-precalculo/06-trigonometricas.qmd#def-funcoes-sen-cos) · Vol. IV
 
@@ -183,6 +210,11 @@ rode o script novamente para atualizar esta página.
 - [Geodésica](volumes/v10-diferencial/07-geodesicas.qmd#def-geodesica) · Vol. X
 - [Geodésica](volumes/v10-diferencial/14-transporte-geodesicas.qmd#def-geodesica-var) · Vol. X
 - [Gráfico](volumes/v4-precalculo/01-funcoes.qmd#def-grafico) · Vol. IV
+- [Gráfico de um operador](volumes/v14-funcional/06-principios-fundamentais.qmd#def-grafico) · Vol. XIV
+- [Grafo](volumes/v15-discreta/04-grafos-introducao.qmd#def-grafo) · Vol. XV
+- [Grafo conexo](volumes/v15-discreta/05-arvores-conexidade.qmd#def-conexo) · Vol. XV
+- [Grafo planar](volumes/v15-discreta/07-planaridade-coloracao.qmd#def-planar) · Vol. XV
+- [Grau de um vértice](volumes/v15-discreta/04-grafos-introducao.qmd#def-grau) · Vol. XV
 - [Grupo](volumes/v7-abstrata/01-grupos.qmd#def-grupo) · Vol. VII
 - [Grupo cíclico](volumes/v7-abstrata/02-subgrupos-ciclicos.qmd#def-ciclico) · Vol. VII
 - [Grupo de Galois](volumes/v7-abstrata/09-galois.qmd#def-grupo-galois) · Vol. VII
@@ -207,8 +239,12 @@ rode o script novamente para atualizar esta página.
 - [Independência de variáveis](volumes/v12-probabilidade/07-vetores-aleatorios.qmd#def-independencia-vars) · Vol. XII
 - [Independência linear](volumes/v6-linear/05-base-dimensao.qmd#def-independencia) · Vol. VI
 - [Inequação](volumes/v2-algebra/05-inequacoes.qmd#def-inequacao) · Vol. II
+- [Integrabilidade](volumes/v8-analise/15-integral-lebesgue.qmd#def-funcao-integravel-naoneg) · Vol. VIII
+- [Integral de $f \ge 0$](volumes/v8-analise/15-integral-lebesgue.qmd#def-integral-naonegativa) · Vol. VIII
 - [Integral de contorno](volumes/v13-complexa/04-integracao-cauchy.qmd#def-integral-contorno) · Vol. XIII
 - [Integral de fluxo](volumes/v5-calculo/14-integrais-superficie.qmd#def-fluxo) · Vol. V
+- [Integral de função simples](volumes/v8-analise/15-integral-lebesgue.qmd#def-integral-simples) · Vol. VIII
+- [Integral de Lebesgue](volumes/v8-analise/15-integral-lebesgue.qmd#def-integral-geral) · Vol. VIII
 - [Integral de linha (trabalho)](volumes/v5-calculo/13-campos-integrais-linha.qmd#def-integral-linha) · Vol. V
 - [Integral de Riemann (via Darboux)](volumes/v8-analise/08-integral-riemann.qmd#def-integral-darboux) · Vol. VIII
 - [Integral de superfície (escalar)](volumes/v5-calculo/14-integrais-superficie.qmd#def-integral-superficie-escalar) · Vol. V
@@ -217,6 +253,7 @@ rode o script novamente para atualizar esta página.
 - [Inteiros](volumes/v1-fundamentos/05-inteiros-divisibilidade.qmd#def-inteiros) · Vol. I
 - [Intervalo de confiança](volumes/v12-probabilidade/10-testes-hipotese.qmd#def-intervalo-confianca) · Vol. XII
 - [Isometria](volumes/v10-diferencial/04-primeira-forma.qmd#def-isometria) · Vol. X
+- [Isomorfismo](volumes/v15-discreta/04-grafos-introducao.qmd#def-isomorfismo-grafos) · Vol. XV
 - [Isomorfismo musical](volumes/v10-diferencial/12-metricas-riemannianas.qmd#def-subir-descer) · Vol. X
 
 ### L
@@ -238,9 +275,11 @@ rode o script novamente para atualizar esta página.
 - [Matriz canônica](volumes/v6-linear/06-transformacoes-lineares.qmd#def-matriz-transformacao) · Vol. VI
 - [Matriz de covariância](volumes/v12-probabilidade/07-vetores-aleatorios.qmd#def-matriz-covariancia) · Vol. XII
 - [Matriz diagonalizável](volumes/v6-linear/08-diagonalizacao.qmd#def-diagonalizavel) · Vol. VI
+- [Matriz e listas de adjacência](volumes/v15-discreta/04-grafos-introducao.qmd#def-representacoes) · Vol. XV
 - [Matriz inversa](volumes/v6-linear/02-matrizes.qmd#def-inversa-matriz) · Vol. VI
 - [Matrizes notáveis](volumes/v6-linear/02-matrizes.qmd#def-matrizes-especiais) · Vol. VI
 - [Máximo divisor comum](volumes/v1-fundamentos/06-mdc-euclides.qmd#def-mdc) · Vol. I
+- [Medida exterior](volumes/v8-analise/12-medida-lebesgue.qmd#def-medida-exterior) · Vol. VIII
 - [Medidas de posição e dispersão](volumes/v12-probabilidade/09-estatistica-estimacao.qmd#def-medidas-descritivas) · Vol. XII
 - [Menor e cofator](volumes/v6-linear/03-determinantes.qmd#def-cofator) · Vol. VI
 - [Métrica pseudo-riemanniana](volumes/v10-diferencial/12-metricas-riemannianas.qmd#def-pseudo-riemanniana) · Vol. X
@@ -262,10 +301,16 @@ rode o script novamente para atualizar esta página.
 - [O número de Euler](volumes/v4-precalculo/04-exponencial.qmd#def-numero-e) · Vol. IV
 - [Operação binária](volumes/v7-abstrata/01-grupos.qmd#def-operacao-binaria) · Vol. VII
 - [Operações elementares sobre linhas](volumes/v6-linear/01-sistemas-gauss.qmd#def-operacoes-elementares) · Vol. VI
+- [Operador adjunto](volumes/v14-funcional/04-operadores-limitados.qmd#def-adjunto) · Vol. XIV
+- [Operador compacto](volumes/v14-funcional/07-operadores-compactos.qmd#def-operador-compacto) · Vol. XIV
 - [Operador de forma (Weingarten)](volumes/v10-diferencial/05-segunda-forma.qmd#def-operador-forma) · Vol. X
+- [Operador limitado e sua norma](volumes/v14-funcional/04-operadores-limitados.qmd#def-operador-limitado) · Vol. XIV
+- [Operadores autoadjuntos e unitários](volumes/v14-funcional/04-operadores-limitados.qmd#def-autoadjunto) · Vol. XIV
 - [Ordem](volumes/v7-abstrata/01-grupos.qmd#def-ordem-grupo) · Vol. VII
 - [Ordem em $\mathbb{N}$](volumes/v1-fundamentos/04-naturais.qmd#def-ordem) · Vol. I
+- [Ortogonalidade](volumes/v14-funcional/02-espacos-hilbert.qmd#def-ortogonalidade) · Vol. XIV
 - [Os dois tipos de erro](volumes/v12-probabilidade/10-testes-hipotese.qmd#def-erros-teste) · Vol. XII
+- [Os espaços $L^p$](volumes/v8-analise/18-espacos-lp.qmd#def-espaco-lp) · Vol. VIII
 
 ### P
 
@@ -274,6 +319,7 @@ rode o script novamente para atualizar esta página.
 - [Parametrização e elemento de área](volumes/v5-calculo/14-integrais-superficie.qmd#def-superficie-param) · Vol. V
 - [Parametrização por comprimento de arco](volumes/v10-diferencial/01-curvas.qmd#def-parametrizacao-arco) · Vol. X
 - [Partição e somas](volumes/v8-analise/08-integral-riemann.qmd#def-particao) · Vol. VIII
+- [Passeio, caminho e ciclo](volumes/v15-discreta/05-arvores-conexidade.qmd#def-caminho) · Vol. XV
 - [Plano de Argand-Gauss](volumes/v13-complexa/01-numeros-complexos.qmd#def-plano-complexo) · Vol. XIII
 - [Plano tangente](volumes/v10-diferencial/03-superficies.qmd#def-plano-tangente) · Vol. X
 - [Poliedro](volumes/v3-geometria/07-poliedros.qmd#def-poliedro) · Vol. III
@@ -293,6 +339,7 @@ rode o script novamente para atualizar esta página.
 - [Primo e composto](volumes/v1-fundamentos/07-primos-tfa.qmd#def-primo) · Vol. I
 - [Probabilidade condicional](volumes/v12-probabilidade/02-condicional-bayes.qmd#def-condicional) · Vol. XII
 - [Problema de contorno e autovalores](volumes/v11-equacoes-diferenciais/06-edp-introducao.qmd#def-problema-sturm-liouville) · Vol. XI
+- [Problema do caixeiro-viajante (TSP)](volumes/v15-discreta/06-euler-hamilton.qmd#def-tsp) · Vol. XV
 - [Produto de matrizes](volumes/v6-linear/02-matrizes.qmd#def-produto-matriz) · Vol. VI
 - [Produto interno](volumes/v6-linear/09-produto-interno.qmd#def-produto-interno) · Vol. VI
 - [Produto tensorial e contração](volumes/v10-diferencial/10-campos-tensores.qmd#def-operacoes-tensores) · Vol. X
@@ -305,12 +352,15 @@ rode o script novamente para atualizar esta página.
 ### Q
 
 - [Quantificadores](volumes/v1-fundamentos/01-logica.qmd#def-quantificadores) · Vol. I
+- [Quase em todo ponto](volumes/v8-analise/14-funcoes-mensuraveis.qmd#def-quase-sempre) · Vol. VIII
 
 ### R
 
 - [Racionais](volumes/v1-fundamentos/09-racionais.qmd#def-racionais) · Vol. I
 - [Radiano](volumes/v3-geometria/10-trigonometria-circulo.qmd#def-radiano) · Vol. III
 - [Reais via Cauchy](volumes/v8-analise/01-construcao-reais.qmd#def-reais-cauchy) · Vol. VIII
+- [Recorrência linear de ordem $k$](volumes/v15-discreta/02-recorrencias.qmd#def-recorrencia-linear) · Vol. XV
+- [Rede e fluxo](volumes/v15-discreta/08-emparelhamentos-fluxos.qmd#def-rede-fluxo) · Vol. XV
 - [Região do tipo I](volumes/v5-calculo/12-integrais-multiplas.qmd#def-regiao-tipo1) · Vol. V
 - [Resíduo](volumes/v13-complexa/06-taylor-laurent.qmd#def-residuo) · Vol. XIII
 - [Reta tangente](volumes/v5-calculo/02-derivada.qmd#def-reta-tangente) · Vol. V
@@ -342,6 +392,7 @@ rode o script novamente para atualizar esta página.
 - [Subbase](volumes/v9-topologia/03-base-subbase.qmd#def-subbase) · Vol. IX
 - [Subconjunto](volumes/v1-fundamentos/02-conjuntos.qmd#def-subconjunto) · Vol. I
 - [Subespaço](volumes/v6-linear/04-espacos-vetoriais.qmd#def-subespaco) · Vol. VI
+- [Subgrafo](volumes/v15-discreta/04-grafos-introducao.qmd#def-subgrafo) · Vol. XV
 - [Subgrupo](volumes/v7-abstrata/02-subgrupos-ciclicos.qmd#def-subgrupo) · Vol. VII
 - [Subgrupo gerado](volumes/v7-abstrata/02-subgrupos-ciclicos.qmd#def-gerado) · Vol. VII
 - [Subgrupo normal](volumes/v7-abstrata/04-quociente-isomorfismo.qmd#def-normal) · Vol. VII
@@ -372,6 +423,7 @@ rode o script novamente para atualizar esta página.
 - [Triângulos semelhantes](volumes/v3-geometria/03-semelhanca-tales.qmd#def-semelhanca) · Vol. III
 - [Triedro de Frenet](volumes/v10-diferencial/02-frenet.qmd#def-triedro) · Vol. X
 - [Trigonométricas complexas](volumes/v13-complexa/03-funcoes-elementares.qmd#def-trig-complexa) · Vol. XIII
+- [Trilha e circuito eulerianos](volumes/v15-discreta/06-euler-hamilton.qmd#def-euleriano) · Vol. XV
 
 ### U
 
@@ -396,4 +448,6 @@ rode o script novamente para atualizar esta página.
 
 ### Símbolos
 
+- [$L^2$ e seu produto interno](volumes/v8-analise/18-espacos-lp.qmd#def-l2-produto-interno) · Vol. VIII
 - [$T_3$ e $T_4$](volumes/v9-topologia/07-separacao.qmd#def-regular-normal) · Vol. IX
+- [σ-álgebra](volumes/v8-analise/11-medida-motivacao.qmd#def-sigma-algebra) · Vol. VIII

@@ -57,4 +57,25 @@ novos volumes forem escritos.
 | $f'(x),\ \frac{df}{dx}$ | derivada de $f$ |
 | $\int_a^b f(x)\,dx$ | integral definida |
 | $\sum_{i} a_i$ | somatório (soma dos $a_i$) |
+| $\mathcal{A},\ \mathcal{M}$ | σ-álgebra; conjuntos Lebesgue-mensuráveis |
+| $\mathcal{B}(\mathbb{R})$ | σ-álgebra de Borel |
+| $m^{*},\ m$ | medida exterior; medida de Lebesgue |
+| $\chi_A$ | função indicadora de $A$ ($1$ em $A$, $0$ fora) |
+| q.t.p. | quase em todo ponto (a menos de medida nula) |
+| $\int_E f\,dm$ | integral de Lebesgue de $f$ sobre $E$ |
+| $L^p(E),\ \|f\|_p$ | espaço de funções $p$-integráveis; norma $L^p$ |
+| $\langle f, g\rangle$ | produto interno |
+| $\operatorname*{ess\,sup}$ | supremo essencial |
+| $\|x\|,\ \|T\|$ | norma de vetor; norma de operador |
+| $X^{*}$ | espaço dual (funcionais lineares limitados) |
+| $\mathcal{B}(X,Y),\ \mathcal{K}(X)$ | operadores limitados; operadores compactos |
+| $T^{*}$ | operador adjunto |
+| $\sigma(T)$ | espectro de um operador |
+| $S^{\perp}$ | complemento ortogonal de $S$ |
+| $G = (V, E)$ | grafo de vértices $V$ e arestas $E$ |
+| $\deg(v)$ | grau do vértice $v$ |
+| $K_n,\ K_{r,s},\ C_n,\ P_n$ | grafos completo, bipartido completo, ciclo, caminho |
+| $\chi(G)$ | número cromático de um grafo |
+| $N(S)$ | vizinhança de $S$ (vizinhos dos vértices de $S$) |
+| $D_n,\ p(n)$ | número de desarranjos; número de partições de $n$ |
 | $\square$ | fim de demonstração |

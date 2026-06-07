@@ -21,6 +21,12 @@ compromisso fechado.
 | VIII | Análise Real | Construção de ℝ · Topologia da reta · Continuidade · Integral de Riemann |
 | IX | Topologia | Espaços topológicos · Compacidade · Conexidade |
 | X | Geometria Diferencial | Curvas · Superfícies · Variedades |
+| XIV | Análise Funcional | Espaços de Banach e Hilbert · Operadores · Teorema espectral |
+| XV | Matemática Discreta | Contagem · Recorrências · Grafos · Fluxos |
+
+(Os Volumes XI–XV e as extensões dos Vols. V, VIII e X estão detalhados no
+`ROADMAP.md`; a tabela acima é só o esqueleto inicial. O Vol. VIII inclui a
+extensão de **teoria da medida e Lebesgue**.)
 
 Dependências entre volumes estão no grafo em `index.qmd` (bloco `mermaid`).
 

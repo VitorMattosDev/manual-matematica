@@ -58,6 +58,11 @@ flowchart TD
     V5 --> V12
     V5 --> V13["Vol. XIII — Análise Complexa"]
     V8 --> V13
+    V8 --> V14["Vol. XIV — Análise Funcional"]
+    V9 --> V14
+    V6 --> V14
+    V1 --> V15["Vol. XV — Matemática Discreta"]
+    V2 --> V15
 ```
 :::
 
@@ -76,6 +81,12 @@ Pré-requisitos de cada volume (o diagrama interativo está na versão em HTML):
 - **Vol. XI — Equações Diferenciais:** Vols. V e VI.
 - **Vol. XII — Probabilidade e Estatística:** Vols. II e V.
 - **Vol. XIII — Análise Complexa:** Vols. V e VIII.
+- **Vol. XIV — Análise Funcional:** Vols. VIII (incl. teoria da medida), IX e VI.
+- **Vol. XV — Matemática Discreta e Teoria dos Grafos:** Vols. I e II.
+
+O Volume VIII inclui, ao final, uma extensão de **teoria da medida e integração de
+Lebesgue**, que fundamenta a probabilidade do Vol. XII e a análise funcional do
+Vol. XIV.
 :::
 
 ## Como contribuir

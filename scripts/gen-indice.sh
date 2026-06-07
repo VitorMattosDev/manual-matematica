@@ -37,7 +37,7 @@ done \
     $k=~tr/áàâãäçéèêëíìîïóòôõöúùûü/aaaaaceeeeiiiiooooouuuu/; print "$k\t$t\t$l\n";' \
 | LC_ALL=C sort -t$'\t' -k1,1 -k2,2 \
 | awk -F'\t' '
-    BEGIN{ split("I II III IV V VI VII VIII IX X XI XII XIII", R, " "); cur=""; symbuf="" }
+    BEGIN{ split("I II III IV V VI VII VIII IX X XI XII XIII XIV XV", R, " "); cur=""; symbuf="" }
     { key=$1; title=$2; loc=$3;
       vn=loc; sub(/^volumes\/v/,"",vn); sub(/-.*/,"",vn); rom=R[vn];
       line=sprintf("- [%s](%s) · Vol. %s", title, loc, rom);
