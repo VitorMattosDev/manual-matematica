@@ -252,7 +252,7 @@ demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
 - [x] `volumes/v8-analise/13-conjuntos-mensuraveis.qmd` — Conjuntos mensuráveis (Carathéodory); conjunto de Vitali não mensurável.
 - [x] `volumes/v8-analise/14-funcoes-mensuraveis.qmd` — Funções mensuráveis e aproximação por funções simples.
 - [x] `volumes/v8-analise/15-integral-lebesgue.qmd` — A integral de Lebesgue.
-- [ ] `volumes/v8-analise/16-teoremas-convergencia.qmd` — Convergência monótona, lema de Fatou e convergência dominada.
+- [x] `volumes/v8-analise/16-teoremas-convergencia.qmd` — Convergência monótona, lema de Fatou e convergência dominada.
 - [ ] `volumes/v8-analise/17-riemann-vs-lebesgue.qmd` — Riemann × Lebesgue; critério de Lebesgue de integrabilidade.
 - [ ] `volumes/v8-analise/18-espacos-lp.qmd` — Espaços $L^p$; desigualdades de Hölder e Minkowski; completude (Riesz–Fischer).
 

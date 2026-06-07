@@ -1,0 +1,187 @@
+# Teoremas de convergência {#sec-teoremas-convergencia}
+
+## Motivação
+
+Eis a razão de ser de toda a construção. A pergunta que a integral de Riemann
+nunca soube responder bem é: quando vale
+$$
+\lim_{n\to\infty} \int f_n = \int \lim_{n\to\infty} f_n \, ?
+$$
+Trocar limite com integral é a operação mais frequente da análise — em séries de
+funções, em equações diferenciais, em probabilidade. Em Riemann, ela exige
+**convergência uniforme** (@sec-convergencia-uniforme), uma hipótese forte e
+muitas vezes falsa. A integral de Lebesgue oferece três teoremas — **convergência
+monótona**, **lema de Fatou** e **convergência dominada** — que permitem a troca
+sob hipóteses dramaticamente mais fracas, apenas com convergência **pontual**.
+São a coroação do Volume e a ferramenta que se usará para sempre.
+
+## Convergência monótona
+
+::: {#thm-convergencia-monotona}
+## Teorema da Convergência Monótona (Beppo Levi)
+Seja $(f_n)$ uma sequência de funções mensuráveis em $E$ com
+$$
+0 \le f_1 \le f_2 \le \cdots \quad\text{e}\quad f_n(x) \to f(x) \ \text{ para todo
+} x.
+$$
+Então $f$ é mensurável e
+$$
+\int_E f_n\, dm \ \longrightarrow\ \int_E f\, dm.
+$$
+(O limite e a integral comutam, mesmo que ambos sejam $+\infty$.)
+:::
+
+::: {.proof}
+*(Esboço.)* Como $f_n \uparrow f$, a monotonia da integral dá
+$\int f_n \le \int f_{n+1} \le \int f$, então $L := \lim_n \int f_n$ existe em
+$[0,\infty]$ e $L \le \int f$. Para a desigualdade inversa, fixe uma simples
+$0 \le \varphi \le f$ e um $c \in (0,1)$; os conjuntos $E_n = \{x : f_n(x) \ge
+c\,\varphi(x)\}$ crescem para $E$, e $\int f_n \ge c\int_{E_n}\varphi$. Pela
+continuidade da medida (@prp-continuidade-medida), $\int_{E_n}\varphi \to
+\int_E\varphi$, logo $L \ge c\int_E \varphi$. Fazendo $c \to 1$ e tomando o
+supremo sobre $\varphi$, $L \ge \int_E f$. Portanto $L = \int_E f$.
+:::
+
+A convergência monótona é o que dá sentido pleno à
+@def-integral-naonegativa: como toda $f \ge 0$ é limite crescente de simples
+$\varphi_n \uparrow f$ (@thm-aproximacao-simples), o teorema garante
+$\int f = \lim_n \int \varphi_n$. É também o motor da σ-aditividade da integral.
+
+::: {#cor-series-integral}
+## Integração termo a termo de séries não negativas
+Se $g_k \ge 0$ são mensuráveis, então
+$$
+\int_E \sum_{k=1}^\infty g_k\, dm = \sum_{k=1}^\infty \int_E g_k\, dm.
+$$
+:::
+
+::: {.proof}
+As somas parciais $f_n = \sum_{k\le n} g_k$ crescem para a soma total; aplique a
+@thm-convergencia-monotona e a linearidade finita.
+:::
+
+## Lema de Fatou
+
+Quando a monotonia falha, ainda sobra uma desigualdade — fraca, mas
+surpreendentemente útil, e a base da prova da convergência dominada.
+
+::: {#thm-fatou}
+## Lema de Fatou
+Para qualquer sequência de funções mensuráveis $f_n \ge 0$ em $E$,
+$$
+\int_E \liminf_{n\to\infty} f_n\, dm \ \le\ \liminf_{n\to\infty} \int_E f_n\, dm.
+$$
+:::
+
+::: {.proof}
+Seja $g_n = \inf_{k \ge n} f_k$. Então $g_n \ge 0$, $g_n \uparrow \liminf f_n$, e
+$g_n \le f_k$ para todo $k \ge n$, donde $\int g_n \le \inf_{k\ge n}\int f_k$.
+Pela convergência monótona aplicada a $(g_n)$,
+$$
+\int \liminf f_n = \lim_n \int g_n \le \lim_n \inf_{k\ge n}\int f_k = \liminf_n
+\int f_n. \qquad
+$$
+:::
+
+::: {.callout-warning}
+## A desigualdade pode ser estrita: massa que escapa
+Tome $f_n = \chi_{[n, n+1]}$ em $\mathbb{R}$. Pontualmente $f_n \to 0$, logo
+$\int \liminf f_n = 0$; mas $\int f_n = 1$ para todo $n$, logo $\liminf \int f_n
+= 1$. A desigualdade de Fatou é $0 \le 1$ — **estrita**. A "massa" de integral
+escapou para o infinito sem que a função limite a registrasse. É exatamente esse
+escape que a hipótese de dominação, a seguir, proíbe.
+:::
+
+## Convergência dominada
+
+O teorema mais usado da análise. Uma única função integrável que segura toda a
+sequência basta para liberar a troca de limite e integral.
+
+::: {#thm-convergencia-dominada}
+## Teorema da Convergência Dominada (Lebesgue)
+Seja $(f_n)$ uma sequência de funções mensuráveis em $E$ com $f_n(x) \to f(x)$
+q.t.p. Suponha que exista $g \in L^1(E)$ **dominando** toda a sequência:
+$$
+|f_n(x)| \le g(x) \quad \text{q.t.p., para todo } n.
+$$
+Então $f \in L^1(E)$, $\displaystyle \lim_n \int_E f_n\, dm = \int_E f\, dm$, e
+mais ainda $\displaystyle \int_E |f_n - f|\, dm \to 0$.
+:::
+
+::: {.proof}
+Como $|f| \le g$ q.t.p., $f \in L^1$. As funções $g + f_n \ge 0$ e $g - f_n \ge
+0$ são não negativas; aplicando o lema de Fatou a cada uma:
+$$
+\int (g + f) \le \liminf \int (g + f_n), \qquad \int (g - f) \le \liminf \int (g
+- f_n).
+$$
+A primeira dá $\int f \le \liminf \int f_n$; a segunda, $-\int f \le \liminf
+(-\int f_n) = -\limsup \int f_n$, ou seja $\limsup \int f_n \le \int f$.
+Juntas: $\limsup \int f_n \le \int f \le \liminf \int f_n$, forçando a igualdade
+$\lim \int f_n = \int f$. A afirmação $\int|f_n - f| \to 0$ sai do mesmo
+argumento aplicado a $|f_n - f| \le 2g$.
+:::
+
+::: {.callout-tip}
+## Por que dominada é tão poderosa
+Compare com Riemann, onde a troca $\lim\int = \int\lim$ exigia convergência
+**uniforme** (@sec-convergencia-uniforme) — controle simultâneo em *toda* a reta.
+Aqui basta convergência **pontual** mais uma **única** cota integrável $g$. A
+dominação é a hipótese que impede a massa de escapar para o infinito (como no
+contraexemplo de Fatou) ou de concentrar-se numa ponta. Na prática, exibir o
+dominador $g$ é quase sempre fácil — e o teorema faz o resto.
+:::
+
+::: {#exm-dominada-uso}
+## Um cálculo típico
+Calcule $\lim_n \int_0^1 \frac{\cos(x/n)}{1 + x^2}\, dx$. Pontualmente,
+$\frac{\cos(x/n)}{1+x^2} \to \frac{1}{1+x^2}$, e a sequência é dominada por
+$g(x) = \frac{1}{1+x^2} \in L^1([0,1])$. Pela convergência dominada,
+$$
+\lim_n \int_0^1 \frac{\cos(x/n)}{1+x^2}\, dx = \int_0^1 \frac{dx}{1+x^2} =
+\arctan 1 = \frac{\pi}{4}.
+$$
+:::
+
+## Exercícios
+
+::: {#exr-monotona-uso}
+Use a convergência monótona para calcular $\lim_n \int_0^1 n x^{n}\,(1-x)\, dx$
+— ou, mais simples, justifique $\int_0^1 \sum_{k=1}^\infty x^k\, dx =
+\sum_{k=1}^\infty \int_0^1 x^k\, dx$ e some a série.
+:::
+
+::: {#exr-fatou-estrito}
+Exiba uma sequência $f_n \ge 0$ em $[0,1]$ com $f_n \to 0$ pontualmente mas
+$\int_0^1 f_n\, dm = 1$ para todo $n$ (massa concentrando-se, não escapando).
+*(Sugestão: "torres" $n\,\chi_{[0,1/n]}$.)*
+:::
+
+::: {#exr-dominada-aplicacao}
+Calcule $\lim_n \int_0^\infty \frac{e^{-x/n}}{1+x^2}\, dx$ justificando a troca de
+limite e integral. *(Encontre o dominador.)*
+:::
+
+::: {#exr-contraexemplo-sem-dominador}
+No @exr-fatou-estrito, por que a convergência dominada **não** se aplica? Ou
+seja, mostre que não existe $g \in L^1$ dominando todas as torres.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-fatou-estrito
+Tome $f_n = n\,\chi_{[0,1/n]}$. Para $x \in (0,1]$ fixo, assim que $n > 1/x$
+tem-se $f_n(x) = 0$, logo $f_n(x) \to 0$; e $f_n(0) = n$ não importa (ponto de
+medida nula). Mas $\int_0^1 f_n\, dm = n \cdot m([0,1/n]) = n \cdot \frac1n = 1$
+para todo $n$. Assim $\lim \int f_n = 1 \ne 0 = \int \lim f_n$: a troca falha,
+pois não há dominador integrável.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-dominada-aplicacao
+Para cada $x \ge 0$, $\frac{e^{-x/n}}{1+x^2} \to \frac{1}{1+x^2}$ quando $n\to
+\infty$. E $0 \le \frac{e^{-x/n}}{1+x^2} \le \frac{1}{1+x^2} =: g(x)$, com
+$\int_0^\infty g = \frac\pi2 < \infty$, logo $g \in L^1$. Pela convergência
+dominada, o limite é $\int_0^\infty \frac{dx}{1+x^2} = \frac{\pi}{2}$.
+:::
