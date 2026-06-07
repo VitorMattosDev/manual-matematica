@@ -1,0 +1,174 @@
+# Relações de recorrência {#sec-recorrencias}
+
+## Motivação
+
+Muitas sequências discretas não vêm de uma fórmula fechada, mas de uma **regra
+que liga cada termo aos anteriores**: a população de coelhos de Fibonacci, o
+número de maneiras de ladrilhar uma faixa, o custo de um algoritmo recursivo. Uma
+**relação de recorrência** define a sequência por essa regra mais condições
+iniciais. A pergunta central é: dá para "resolver" a recorrência, obtendo uma
+fórmula explícita para o $n$-ésimo termo? Para uma classe ampla e importante — as
+**lineares com coeficientes constantes** — a resposta é sim, e o método é um eco
+perfeito do que o Volume XI fez com as EDOs lineares: um polinômio característico
+cujas raízes geram as soluções. Este capítulo é o análogo discreto daquele
+contínuo.
+
+## Recorrências lineares homogêneas
+
+::: {#def-recorrencia-linear}
+## Recorrência linear de ordem $k$
+Uma **recorrência linear homogênea de ordem $k$ com coeficientes constantes** é
+$$
+a_n = c_1 a_{n-1} + c_2 a_{n-2} + \cdots + c_k a_{n-k}, \qquad n \ge k,
+$$
+com $c_k \ne 0$. Dadas as $k$ **condições iniciais** $a_0, \dots, a_{k-1}$, a
+sequência fica unicamente determinada.
+:::
+
+A estratégia: procurar soluções **geométricas** $a_n = r^n$. Substituindo, $r^n =
+c_1 r^{n-1} + \cdots + c_k r^{n-k}$; dividindo por $r^{n-k}$, obtém-se uma equação
+polinomial em $r$.
+
+::: {#def-equacao-caracteristica}
+## Equação característica
+A **equação característica** da recorrência é
+$$
+r^k = c_1 r^{k-1} + c_2 r^{k-2} + \cdots + c_k, \qquad \text{isto é}\quad r^k -
+c_1 r^{k-1} - \cdots - c_k = 0.
+$$
+:::
+
+::: {#thm-solucao-recorrencia}
+## Solução por raízes características
+Se a equação característica tem **raízes distintas** $r_1, \dots, r_k$, então a
+solução geral é
+$$
+a_n = \alpha_1 r_1^n + \alpha_2 r_2^n + \cdots + \alpha_k r_k^n,
+$$
+e as constantes $\alpha_i$ são determinadas pelas condições iniciais. Se uma raiz
+$r$ tem **multiplicidade** $m$, ela contribui com os termos $r^n, n r^n, n^2 r^n,
+\dots, n^{m-1} r^n$.
+:::
+
+::: {.callout-note}
+## O mesmo enredo das EDOs
+Compare com as EDOs lineares de coeficientes constantes (@sec-edo-segunda-ordem):
+lá, $y'' = c_1 y' + c_2 y$ levava à equação característica $r^2 = c_1 r + c_2$, e
+raízes múltiplas geravam soluções $e^{rt}, t\,e^{rt}$. Aqui, $a_n = r^n$ faz o
+papel de $e^{rt}$, e raízes múltiplas geram $r^n, n r^n$. O contínuo e o discreto
+contam a mesma história em dialetos diferentes — derivada vira diferença, $e^{rt}$
+vira $r^n$. A estrutura de espaço vetorial das soluções (dimensão $k$) é idêntica.
+:::
+
+## Fibonacci e a razão áurea
+
+::: {#exm-fibonacci}
+## A fórmula de Binet
+A sequência de Fibonacci $F_n = F_{n-1} + F_{n-2}$, com $F_0 = 0$, $F_1 = 1$, tem
+equação característica $r^2 = r + 1$, cujas raízes são a **razão áurea** $\varphi
+= \frac{1+\sqrt5}{2}$ e $\psi = \frac{1-\sqrt5}{2}$. Logo $F_n = \alpha\varphi^n +
+\beta\psi^n$, e as condições iniciais dão $\alpha = -\beta = 1/\sqrt5$:
+$$
+F_n = \frac{1}{\sqrt5}\left(\varphi^n - \psi^n\right) = \frac{1}{\sqrt5}\left[
+\left(\frac{1+\sqrt5}{2}\right)^{\!n} - \left(\frac{1-\sqrt5}{2}\right)^{\!n}
+\right].
+$$
+Como $|\psi| < 1$, o segundo termo some, e $F_n$ é o inteiro mais próximo de
+$\varphi^n/\sqrt5$ — uma fórmula fechada com $\sqrt5$ que sempre devolve inteiros.
+:::
+
+::: {#exm-raiz-dupla}
+## Uma raiz dupla
+Resolva $a_n = 4a_{n-1} - 4a_{n-2}$, $a_0 = 1$, $a_1 = 3$. A característica $r^2 -
+4r + 4 = (r-2)^2 = 0$ tem raiz dupla $r = 2$, então $a_n = (\alpha + \beta
+n)2^n$. As condições dão $\alpha = 1$ e $2(\alpha + \beta) = 3$, logo $\beta =
+\tfrac12$ e $a_n = (1 + \tfrac n2)2^n = (2 + n)2^{n-1}$.
+:::
+
+## Recorrências não homogêneas
+
+Quando há um termo "forçante" $f(n)$, a solução combina a homogênea com uma
+particular — outra vez como nas EDOs.
+
+::: {#thm-recorrencia-nao-homogenea}
+## Solução geral do caso não homogêneo
+Para $a_n = c_1 a_{n-1} + \cdots + c_k a_{n-k} + f(n)$, a solução geral é
+$$
+a_n = a_n^{(h)} + a_n^{(p)},
+$$
+onde $a_n^{(h)}$ é a solução geral da homogênea associada e $a_n^{(p)}$ é
+**qualquer** solução particular. Para $f(n)$ polinomial, exponencial ou produto
+dos dois, busca-se $a_n^{(p)}$ do mesmo tipo (método dos coeficientes a
+determinar).
+:::
+
+::: {#exm-torre-hanoi}
+## Torre de Hanói
+O número mínimo de movimentos para transferir $n$ discos satisfaz $H_n = 2H_{n-1}
++ 1$, $H_1 = 1$. A homogênea $H_n = 2H_{n-1}$ dá $\alpha 2^n$; uma particular
+constante $H^{(p)} = c$ exige $c = 2c + 1$, logo $c = -1$. Então $H_n = \alpha
+2^n - 1$, e $H_1 = 1$ dá $\alpha = 1$: $\boxed{H_n = 2^n - 1}$.
+:::
+
+## Recorrências de divisão e algoritmos
+
+Algoritmos do tipo "dividir para conquistar" geram recorrências como $T(n) =
+a\,T(n/b) + f(n)$. O **teorema mestre** (que enunciamos sem prova) dá sua ordem de
+crescimento — assunto da análise de algoritmos, mas vale registrar a conexão.
+
+::: {#thm-mestre}
+## Teorema mestre (forma simplificada)
+Para $T(n) = a\,T(n/b) + \Theta(n^d)$, com $a \ge 1$, $b > 1$:
+$$
+T(n) = \begin{cases}
+\Theta(n^d), & \text{se } a < b^d,\\
+\Theta(n^d \log n), & \text{se } a = b^d,\\
+\Theta(n^{\log_b a}), & \text{se } a > b^d.
+\end{cases}
+$$
+:::
+
+A busca binária ($a=1, b=2, d=0$) dá $\Theta(\log n)$; o mergesort ($a=2, b=2,
+d=1$) dá $\Theta(n\log n)$; a multiplicação de Karatsuba ($a=3, b=2, d=1$) dá
+$\Theta(n^{\log_2 3}) \approx \Theta(n^{1{,}585})$ — mais rápida que o $\Theta(n^2)$
+ingênuo. As recorrências são, assim, a linguagem da eficiência algorítmica.
+
+## Exercícios
+
+::: {#exr-rec-distintas}
+Resolva $a_n = 5a_{n-1} - 6a_{n-2}$ com $a_0 = 0$, $a_1 = 1$. *(Raízes $2$ e
+$3$.)*
+:::
+
+::: {#exr-rec-ladrilhos}
+Seja $t_n$ o número de modos de ladrilhar uma faixa $1\times n$ com peças
+$1\times1$ e $1\times2$. Mostre que $t_n = t_{n-1} + t_{n-2}$ e identifique a
+sequência. Resolva.
+:::
+
+::: {#exr-rec-nao-homogenea}
+Resolva $a_n = 3a_{n-1} + 2^n$, $a_0 = 1$. *(Busque particular da forma
+$c\,2^n$.)*
+:::
+
+::: {#exr-rec-soma}
+Mostre que $S_n = \sum_{i=0}^n F_i$ satisfaz $S_n = S_{n-1} + F_n$ e prove, por
+indução ou recorrência, que $S_n = F_{n+2} - 1$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-rec-distintas
+Característica $r^2 - 5r + 6 = (r-2)(r-3) = 0$, raízes $2, 3$. Solução $a_n =
+\alpha 2^n + \beta 3^n$. De $a_0 = \alpha + \beta = 0$ e $a_1 = 2\alpha + 3\beta =
+1$, vem $\beta = 1$, $\alpha = -1$. Logo $a_n = 3^n - 2^n$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-rec-nao-homogenea
+Homogênea: $a_n^{(h)} = \alpha 3^n$. Particular $a_n^{(p)} = c\,2^n$ exige $c\,2^n
+= 3c\,2^{n-1} + 2^n$, isto é $2c = 3c + 2$, logo $c = -2$ e $a_n^{(p)} = -2^{n+1}$.
+Geral: $a_n = \alpha 3^n - 2^{n+1}$. De $a_0 = \alpha - 2 = 1$, $\alpha = 3$.
+Assim $a_n = 3^{n+1} - 2^{n+1}$.
+:::

@@ -272,7 +272,7 @@ demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
 *Objetivo: contagem, estruturas discretas e grafos. Pré-req.: Vols. I, II.*
 
 - [x] `volumes/v15-discreta/01-contagem.qmd` — Princípios de contagem; inclusão–exclusão; princípio da casa dos pombos.
-- [ ] `volumes/v15-discreta/02-recorrencias.qmd` — Relações de recorrência.
+- [x] `volumes/v15-discreta/02-recorrencias.qmd` — Relações de recorrência.
 - [ ] `volumes/v15-discreta/03-funcoes-geradoras.qmd` — Funções geradoras.
 - [ ] `volumes/v15-discreta/04-grafos-introducao.qmd` — Grafos: conceitos básicos e representações.
 - [ ] `volumes/v15-discreta/05-arvores-conexidade.qmd` — Conexidade e árvores.
