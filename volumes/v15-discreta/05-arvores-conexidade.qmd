@@ -1,0 +1,178 @@
+# Conexidade e árvores {#sec-arvores-conexidade}
+
+## Motivação
+
+Um grafo serve para conectar — então a pergunta mais natural é: o que está
+conectado a quê, e por quais caminhos? A **conexidade** formaliza a ideia de "dá
+para ir de um vértice a outro". E entre os grafos conexos, há uma classe de
+elegância singular: as **árvores**, conexas e sem ciclos, que são a estrutura mais
+econômica possível para manter tudo ligado. Árvores estão por toda parte — na
+hierarquia de arquivos, nas estruturas de dados, na filogenia, na otimização de
+redes. Este capítulo desenvolve caminhos, conexidade e árvores, culminando nas
+**árvores geradoras mínimas**, o problema de conectar com custo mínimo.
+
+## Caminhos e conexidade
+
+::: {#def-caminho}
+## Passeio, caminho e ciclo
+Um **passeio** é uma sequência de vértices consecutivamente adjacentes. Um
+**caminho** é um passeio sem repetir vértices. Um **ciclo** é um caminho fechado
+(volta ao início) de comprimento $\ge 3$. O **comprimento** é o número de arestas
+percorridas.
+:::
+
+::: {#def-conexo}
+## Grafo conexo
+Um grafo é **conexo** se há um caminho entre cada par de vértices. Em geral, a
+relação "$u$ alcança $v$" é de equivalência, e suas classes são as **componentes
+conexas** — os "pedaços" maximais do grafo.
+:::
+
+A distância entre dois vértices é o comprimento do menor caminho que os liga;
+ela faz de cada componente conexa um espaço métrico discreto, e algoritmos como a
+**busca em largura** a calculam eficientemente.
+
+## Árvores
+
+::: {#def-arvore}
+## Árvore e floresta
+Uma **árvore** é um grafo **conexo** e **acíclico** (sem ciclos). Uma **floresta**
+é um grafo acíclico (cujas componentes são árvores). Uma **folha** é um vértice de
+grau $1$.
+:::
+
+As árvores admitem uma quantidade notável de caracterizações equivalentes — todas
+dizendo, de ângulos diferentes, "conexo com o mínimo de arestas".
+
+::: {#thm-caracterizacao-arvore}
+## Caracterizações de árvore
+Para um grafo $G$ com $n$ vértices, são equivalentes:
+
+1. $G$ é uma árvore (conexo e acíclico);
+2. $G$ é conexo e tem exatamente $n - 1$ arestas;
+3. $G$ é acíclico e tem exatamente $n - 1$ arestas;
+4. existe um **único** caminho entre cada par de vértices;
+5. $G$ é conexo, mas remover qualquer aresta o desconecta (**minimalmente
+   conexo**);
+6. $G$ é acíclico, mas adicionar qualquer aresta cria um ciclo (**maximalmente
+   acíclico**).
+:::
+
+::: {.proof}
+*(Esboço de $1 \Rightarrow 2$, por indução em $n$.)* Uma árvore com $n \ge 2$
+vértices tem uma **folha** $\ell$ (senão todo grau $\ge 2$ forçaria um ciclo).
+Remover $\ell$ e sua única aresta deixa uma árvore com $n-1$ vértices, que por
+indução tem $n-2$ arestas; recolocando $\ell$, são $n-1$ arestas. As demais
+equivalências saem da contagem $m = n-1$ combinada com conexidade/aciclicidade,
+ou do lema dos apertos de mão.
+:::
+
+::: {.callout-tip}
+## "$n-1$ arestas" é o número mágico
+Toda árvore com $n$ vértices tem **exatamente** $n-1$ arestas — nem uma a mais,
+nem a menos. Menos que isso seria desconexo; mais que isso criaria um ciclo. É o
+limiar exato da conexidade: $n-1$ é o mínimo de arestas para conectar $n$
+vértices, e atingir esse mínimo *é* ser uma árvore. Daí a relevância em redes:
+uma árvore é a forma mais barata de manter tudo conectado.
+:::
+
+::: {#prp-folhas}
+## Toda árvore tem folhas
+Toda árvore com $n \ge 2$ vértices possui ao menos **duas** folhas.
+:::
+
+::: {.proof}
+A soma dos graus é $2m = 2(n-1) = 2n - 2$. Se houvesse no máximo uma folha, ao
+menos $n-1$ vértices teriam grau $\ge 2$, dando soma $\ge 2(n-1) + 1 = 2n - 1 >
+2n - 2$ — contradição. Logo há $\ge 2$ folhas.
+:::
+
+## Árvores geradoras
+
+::: {#def-arvore-geradora}
+## Árvore geradora
+Uma **árvore geradora** de um grafo conexo $G$ é um subgrafo que é árvore e contém
+**todos** os vértices de $G$. Toda grafo conexo tem ao menos uma (remova arestas
+de ciclos até secar os ciclos, mantendo a conexidade).
+:::
+
+::: {#thm-cayley}
+## Fórmula de Cayley
+O número de árvores geradoras **distintas** do grafo completo $K_n$ (equivalente:
+de árvores rotuladas com $n$ vértices) é
+$$
+n^{\,n-2}.
+$$
+:::
+
+Para $n = 4$, são $4^2 = 16$ árvores rotuladas — um resultado surpreendente cuja
+prova (por código de Prüfer, uma bijeção com as sequências de $\{1,\dots,n\}^{n-2}$)
+é uma joia combinatória.
+
+## Árvore geradora mínima
+
+O problema aplicado por excelência: conectar tudo ao **menor custo**.
+
+::: {#def-agm}
+## Árvore geradora mínima (AGM)
+Num grafo conexo com **pesos** $w(e) \ge 0$ nas arestas, uma **árvore geradora
+mínima** é uma árvore geradora cuja soma dos pesos das arestas é a menor possível.
+:::
+
+::: {#thm-agm-guloso}
+## Algoritmos gulosos resolvem a AGM
+A AGM pode ser construída por algoritmos **gulosos**: o de **Kruskal** (adicionar
+arestas em ordem crescente de peso, descartando as que formariam ciclo) e o de
+**Prim** (crescer a árvore a partir de um vértice, sempre pela aresta de saída
+mais barata) produzem, ambos, uma árvore geradora de peso mínimo.
+:::
+
+::: {.callout-note}
+## Quando a ganância funciona
+A AGM é um dos raros problemas de otimização em que a estratégia **gulosa** — a
+cada passo, a escolha localmente mais barata — leva ao **ótimo global**. A razão é
+a "propriedade do corte": a aresta mais leve que cruza qualquer partição dos
+vértices pertence a alguma AGM. Essa estrutura (de **matroide**) é o que garante
+a correção dos algoritmos de Kruskal e Prim — um contraste com problemas como o
+caixeiro-viajante (@sec-euler-hamilton), onde a ganância falha e a dificuldade é
+genuína.
+:::
+
+## Exercícios
+
+::: {#exr-arvore-arestas}
+Um grafo conexo com $10$ vértices e $9$ arestas: o que se pode afirmar sobre ele?
+E se tivesse $12$ arestas?
+:::
+
+::: {#exr-floresta-componentes}
+Mostre que uma floresta com $n$ vértices e $c$ componentes tem exatamente $n - c$
+arestas.
+:::
+
+::: {#exr-cayley-pequeno}
+Liste as $16$ árvores geradoras rotuladas de $K_4$ (ou conte-as por tipo de
+formato) confirmando a fórmula de Cayley para $n = 4$.
+:::
+
+::: {#exr-kruskal-mao}
+Aplique o algoritmo de Kruskal a um grafo de $4$ vértices com arestas de pesos
+$1, 2, 3, 4, 5$ (à sua escolha) e exiba a AGM resultante.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-arvore-arestas
+Conexo com $n = 10$ e $m = 9 = n - 1$: pela caracterização (@thm-caracterizacao-arvore,
+item 2), é uma **árvore** — acíclico, com caminho único entre cada par. Com $12$
+arestas ($> n - 1$), não pode ser árvore: contém ao menos $12 - 9 = 3$ ciclos
+independentes (o **número ciclomático** $m - n + 1 = 3$).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-floresta-componentes
+Cada componente é uma árvore; uma árvore com $n_i$ vértices tem $n_i - 1$ arestas.
+Somando sobre as $c$ componentes: $m = \sum_i (n_i - 1) = \left(\sum_i n_i\right)
+- c = n - c$. (Para $c = 1$ recupera-se $n - 1$, a árvore.)
+:::
