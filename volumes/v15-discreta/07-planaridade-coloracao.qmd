@@ -1,0 +1,176 @@
+# Planaridade e coloração {#sec-planaridade-coloracao}
+
+## Motivação
+
+Dois dos problemas mais visuais e famosos da teoria dos grafos. O primeiro: quais
+grafos podem ser desenhados no plano **sem arestas se cruzando**? Circuitos
+impressos, mapas, redes de tubulação — todos preferem o plano sem cruzamentos. O
+segundo, intimamente ligado ao primeiro: de quantas **cores** preciso para pintar
+os vértices (ou as regiões de um mapa) de modo que vizinhos nunca compartilhem a
+cor? Essa pergunta inocente sobre mapas gerou o **Teorema das Quatro Cores**,
+cuja prova, em 1976, foi a primeira de um grande teorema a depender essencialmente
+de um **computador** — um marco filosófico. Este capítulo liga geometria,
+combinatória e o nascimento da matemática assistida por máquina, com a fórmula de
+Euler como fio condutor.
+
+## Grafos planares e a fórmula de Euler
+
+::: {#def-planar}
+## Grafo planar
+Um grafo é **planar** se pode ser desenhado no plano sem que duas arestas se
+cruzem. Tal desenho é uma **imersão plana**, e divide o plano em regiões chamadas
+**faces** (incluindo a face externa, ilimitada).
+:::
+
+::: {#thm-euler-planar}
+## Fórmula de Euler para grafos planares
+Para um grafo planar **conexo** com $V$ vértices, $E$ arestas e $F$ faces (numa
+imersão plana qualquer),
+$$
+V - E + F = 2.
+$$
+:::
+
+::: {.proof}
+Indução no número de arestas. Se $G$ é uma árvore, $E = V - 1$ e há uma única face
+($F = 1$), dando $V - (V-1) + 1 = 2$. ✓ Caso contrário, $G$ tem um ciclo; remova
+uma de suas arestas. Isso funde duas faces em uma ($F$ cai $1$) e diminui $E$ em
+$1$, mantendo $V - E + F$ invariante. Por indução, o valor permanece $2$.
+:::
+
+::: {.callout-tip}
+## Um invariante que não vê o desenho
+O espantoso da fórmula de Euler é que $V - E + F = 2$ **independe** de *como* se
+desenha o grafo planar — qualquer imersão dá o mesmo número de faces. É um
+**invariante topológico** (a característica de Euler da esfera), o mesmo que no
+Volume III contava $V - A + F = 2$ para os poliedros convexos
+(@sec-poliedros): um poliedro, "achatado" no plano, *é* um grafo planar. Geometria
+do espaço e combinatória de redes, o mesmo teorema.
+:::
+
+## Limites e grafos não planares
+
+A fórmula de Euler tem consequências quantitativas que **proíbem** certos grafos
+de serem planares.
+
+::: {#cor-cota-arestas}
+## Cota de arestas
+Todo grafo planar simples com $V \ge 3$ vértices satisfaz $E \le 3V - 6$. Se além
+disso não tem triângulos, $E \le 2V - 4$.
+:::
+
+::: {.proof}
+Cada face é limitada por $\ge 3$ arestas, e cada aresta confina $2$ faces, logo
+$3F \le 2E$. Substituindo $F = 2 - V + E$ na desigualdade: $3(2 - V + E) \le 2E$,
+isto é $E \le 3V - 6$. Sem triângulos, cada face tem $\ge 4$ arestas e a conta dá
+$E \le 2V - 4$.
+:::
+
+::: {#exm-k5-k33}
+## Os dois grafos proibidos
+- $K_5$ tem $V = 5$, $E = 10$; mas $3V - 6 = 9 < 10$. Viola a cota: **não
+  planar**.
+- $K_{3,3}$ tem $V = 6$, $E = 9$; é bipartido (sem triângulos), e $2V - 4 = 8 < 9$.
+  **Não planar**.
+:::
+
+Esses dois são, num sentido preciso, os **únicos** obstáculos à planaridade:
+
+::: {#thm-kuratowski}
+## Teorema de Kuratowski
+Um grafo é planar **se, e somente se**, não contém uma subdivisão de $K_5$ nem de
+$K_{3,3}$. Toda não planaridade se deve, no fundo, a um desses dois grafos
+escondido dentro.
+:::
+
+## Coloração de vértices
+
+::: {#def-coloracao}
+## Coloração e número cromático
+Uma **$k$-coloração** atribui a cada vértice uma de $k$ cores de modo que vértices
+adjacentes recebam cores **distintas**. O **número cromático** $\chi(G)$ é o menor
+$k$ para o qual existe uma $k$-coloração.
+:::
+
+::: {#exm-numeros-cromaticos}
+## Alguns valores
+$\chi(K_n) = n$ (todos adjacentes); $\chi(C_n) = 2$ se $n$ par, $3$ se ímpar; um
+grafo é **bipartido** $\iff \chi(G) \le 2 \iff$ não tem ciclo ímpar. O número
+cromático mede o quão "entrelaçado" é o grafo.
+:::
+
+A coloração modela conflitos: cores = horários de provas, frequências de rádio,
+registradores de um compilador; arestas = incompatibilidades. Minimizar cores é
+minimizar recursos — e, como Hamilton, calcular $\chi(G)$ é em geral
+**NP-difícil**.
+
+## O Teorema das Quatro Cores
+
+O ápice histórico, originado da pergunta: quantas cores bastam para qualquer mapa?
+Mapas planos correspondem a grafos planares (regiões → vértices, fronteiras →
+arestas), então a pergunta é sobre $\chi$ de grafos planares.
+
+::: {#thm-cinco-cores}
+## Teorema das Cinco Cores
+Todo grafo planar é $5$-colorível: $\chi(G) \le 5$.
+:::
+
+A prova das cinco cores é elegante e acessível (usa a cota $E \le 3V - 6$ para
+garantir um vértice de grau $\le 5$, e recoloração por "cadeias de Kempe"). Já a
+fronteira final foi muito mais dura:
+
+::: {#thm-quatro-cores}
+## Teorema das Quatro Cores
+Todo grafo planar é $4$-colorível: $\chi(G) \le 4$.
+:::
+
+::: {.callout-note}
+## A prova que precisou de um computador
+Conjecturado em 1852, o Teorema das Quatro Cores resistiu por mais de um século.
+Appel e Haken o provaram em 1976 reduzindo todos os mapas possíveis a um conjunto
+de **1936 configurações inevitáveis** e verificando cada uma **por computador** —
+algo impossível de checar à mão. Foi a primeira vez que um teorema central
+dependeu de uma máquina, abrindo um debate filosófico que persiste: uma
+demonstração que nenhum humano pode ler inteira ainda "explica" por que o
+resultado é verdadeiro? A matemática discreta colocou, aqui, uma questão sobre a
+natureza da própria prova.
+:::
+
+## Exercícios
+
+::: {#exr-euler-faces}
+Um grafo planar conexo tem $V = 8$ vértices e $E = 13$ arestas. Quantas faces tem
+qualquer imersão plana dele?
+:::
+
+::: {#exr-planar-k4}
+Mostre que $K_4$ é planar exibindo uma imersão sem cruzamentos, e confira a
+fórmula de Euler.
+:::
+
+::: {#exr-cromatico-petersen}
+Determine $\chi(C_5)$ e $\chi(K_{3,3})$, justificando os limites inferior e
+superior.
+:::
+
+::: {#exr-planar-grau5}
+Use a cota $E \le 3V - 6$ para mostrar que todo grafo planar tem ao menos um
+vértice de grau $\le 5$. *(É o passo inicial do Teorema das Cinco Cores.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-euler-faces
+Pela fórmula de Euler, $V - E + F = 2$, logo $F = 2 - V + E = 2 - 8 + 13 = 7$.
+Qualquer imersão plana desse grafo tem **7 faces** (contando a externa) — número
+independente do desenho.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-planar-grau5
+Suponha, por absurdo, que todo vértice tenha grau $\ge 6$. Pelo lema dos apertos
+de mão, $2E = \sum_v \deg(v) \ge 6V$, isto é $E \ge 3V$. Mas a planaridade força
+$E \le 3V - 6 < 3V$ — contradição. Logo existe vértice de grau $\le 5$. Esse
+vértice de grau pequeno é o que permite a indução nas provas de coloração.
+:::
