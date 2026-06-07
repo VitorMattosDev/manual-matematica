@@ -1,0 +1,234 @@
+# Funções mensuráveis {#sec-funcoes-mensuraveis}
+
+## Motivação
+
+Já sabemos medir conjuntos. Para integrar à la Lebesgue, lembre o plano: fatiamos
+o **contradomínio** e perguntamos quanto mede o conjunto onde $f$ cai em cada
+faixa. Para que essa pergunta faça sentido, esses conjuntos
+$\{x : f(x) > c\}$ precisam ser **mensuráveis**. As funções para as quais isso
+sempre vale são as **funções mensuráveis** — a classe certa para a integração,
+muito mais ampla que as contínuas. Veremos que ela é fechada por quase toda
+operação imaginável (somas, produtos, limites pontuais) e que toda função
+mensurável é limite de funções **simples**, os tijolos com que construiremos a
+integral.
+
+## Definição
+
+::: {#def-funcao-mensuravel}
+## Função mensurável
+Uma função $f : E \to \mathbb{R}$, com $E \in \mathcal{M}$, é **mensurável** se
+para todo $c \in \mathbb{R}$ o conjunto
+$$
+\{x \in E : f(x) > c\} = f^{-1}((c, \infty))
+$$
+é mensurável.
+:::
+
+A escolha de "$> c$" é convencional: usar $\ge c$, $< c$ ou $\le c$ dá a mesma
+classe de funções, pois esses conjuntos se obtêm uns dos outros por complementos
+e interseções enumeráveis — todas operações permitidas em $\mathcal{M}$. Por
+exemplo, $\{f \ge c\} = \bigcap_n \{f > c - \tfrac1n\}$.
+
+::: {.callout-note}
+## Mensurável é "contínua para a medida"
+Compare: $f$ é **contínua** se a pré-imagem de todo *aberto* é aberta; $f$ é
+**mensurável** se a pré-imagem de todo *intervalo* (e logo de todo boreliano) é
+mensurável. A mensurabilidade é a versão da continuidade adequada à teoria da
+medida — exige muito menos, e é por isso que a classe é tão robusta.
+:::
+
+::: {#prp-continua-mensuravel}
+## Contínuas são mensuráveis
+Toda função contínua $f : \mathbb{R} \to \mathbb{R}$ é mensurável. Mais
+geralmente, toda função monótona é mensurável.
+:::
+
+::: {.proof}
+Se $f$ é contínua, $\{f > c\} = f^{-1}((c,\infty))$ é a pré-imagem de um aberto,
+logo aberto, logo boreliano, logo mensurável (@cor-borel-mensuravel). Se $f$ é
+monótona, cada $\{f > c\}$ é um intervalo (ou semirreta), também mensurável.
+:::
+
+## Operações preservam mensurabilidade
+
+A força da classe está em sua estabilidade. Tudo o que se faz com funções
+permanece mensurável.
+
+::: {#thm-operacoes-mensuraveis}
+## Álgebra das funções mensuráveis
+Se $f, g : E \to \mathbb{R}$ são mensuráveis e $\lambda \in \mathbb{R}$, então
+$f + g$, $\lambda f$, $fg$, $|f|$, $\max(f,g)$ e $\min(f,g)$ são mensuráveis. A
+composição $\varphi \circ f$ com $\varphi$ contínua também é.
+:::
+
+::: {.proof}
+*(Amostra.)* Para $f + g$: vale $f(x) + g(x) > c \iff f(x) > c - g(x) \iff$
+existe um racional $q$ com $f(x) > q > c - g(x)$. Logo
+$$
+\{f + g > c\} = \bigcup_{q \in \mathbb{Q}} \big(\{f > q\} \cap \{g > c - q\}\big),
+$$
+união **enumerável** de mensuráveis, portanto mensurável. Para $\varphi \circ f$
+com $\varphi$ contínua, $\{\varphi\circ f > c\} = f^{-1}(\varphi^{-1}((c,\infty)))$;
+o aberto $\varphi^{-1}((c,\infty))$ é união enumerável de intervalos, cuja
+pré-imagem por $f$ é mensurável. Os demais casos ($|f| = \varphi\circ f$ com
+$\varphi(t)=|t|$; $fg = \tfrac14[(f+g)^2 - (f-g)^2]$) reduzem-se a esses.
+:::
+
+O ponto verdadeiramente decisivo — o que distingue Lebesgue de Riemann — é o
+comportamento sob **limites**.
+
+::: {#thm-limites-mensuraveis}
+## Limites preservam mensurabilidade
+Seja $(f_n)$ uma sequência de funções mensuráveis em $E$. Então
+$$
+\sup_n f_n, \quad \inf_n f_n, \quad \limsup_n f_n, \quad \liminf_n f_n
+$$
+são mensuráveis. Em particular, se $f_n \to f$ pontualmente, $f$ é mensurável.
+:::
+
+::: {.proof}
+A identidade-chave é
+$$
+\Big\{\sup_n f_n > c\Big\} = \bigcup_{n} \{f_n > c\},
+$$
+pois o supremo excede $c$ exatamente quando *algum* $f_n$ o faz. União enumerável
+de mensuráveis: mensurável. Analogamente $\inf$. Então
+$\limsup f_n = \inf_N \sup_{n \ge N} f_n$ e $\liminf f_n = \sup_N \inf_{n\ge N}
+f_n$ são mensuráveis por composição dessas operações. Se $f_n \to f$, então
+$f = \limsup f_n$, mensurável.
+:::
+
+::: {.callout-warning}
+## O abismo entre Riemann e Lebesgue
+Limite pontual de funções contínuas **não** precisa ser contínuo — nem
+Riemann-integrável. Mas é sempre **mensurável**. É essa estabilidade sob limites
+que permitirá os teoremas de convergência (@sec-teoremas-convergencia), onde
+trocamos livremente $\lim$ e $\int$ — algo que a integral de Riemann jamais
+sustentou.
+:::
+
+## Funções simples e o teorema de aproximação
+
+Os átomos da integração são as funções que assumem finitos valores.
+
+::: {#def-funcao-simples}
+## Função simples
+Uma **função simples** é uma função mensurável $\varphi : E \to \mathbb{R}$ que
+assume apenas finitos valores $a_1, \dots, a_k$. Ela se escreve
+$$
+\varphi = \sum_{i=1}^{k} a_i\, \chi_{A_i}, \qquad A_i = \{x : \varphi(x) = a_i\}
+\in \mathcal{M},
+$$
+onde $\chi_A$ é a **função indicadora** de $A$ ($1$ em $A$, $0$ fora).
+:::
+
+O teorema a seguir é a ponte que torna a integral possível: integraremos funções
+simples trivialmente e, por limite, todas as mensuráveis não negativas.
+
+::: {#thm-aproximacao-simples}
+## Aproximação por funções simples
+Seja $f : E \to [0, \infty]$ mensurável. Existe uma sequência **crescente** de
+funções simples não negativas $0 \le \varphi_1 \le \varphi_2 \le \cdots$ com
+$\varphi_n(x) \to f(x)$ para todo $x \in E$. Se $f$ é limitada, a convergência é
+**uniforme**.
+:::
+
+::: {.proof}
+A construção é explícita ("escada diádica"). Para cada $n$, fatie o
+contradomínio até a altura $n$ em pedaços de altura $2^{-n}$ e defina
+$$
+\varphi_n(x) =
+\begin{cases}
+\dfrac{k}{2^n}, & \text{se } \dfrac{k}{2^n} \le f(x) < \dfrac{k+1}{2^n},\ 0 \le k
+< n2^n,\\[2mm]
+n, & \text{se } f(x) \ge n.
+\end{cases}
+$$
+Cada $\varphi_n$ é simples (finitos valores, conjuntos mensuráveis pois $f$ é
+mensurável). Refinar a malha de $2^{-n}$ para $2^{-(n+1)}$ só pode aumentar o
+valor, logo $\varphi_n \le \varphi_{n+1}$. E para $x$ com $f(x) < \infty$, assim
+que $n > f(x)$ tem-se $|f(x) - \varphi_n(x)| \le 2^{-n} \to 0$; onde $f(x) =
+\infty$, $\varphi_n(x) = n \to \infty = f(x)$. Se $f \le M$, então para $n > M$
+a cota $|f - \varphi_n| \le 2^{-n}$ vale uniformemente.
+:::
+
+A @fig-escada-diadica ilustra a ideia: cada degrau aproxima a curva por baixo, e
+refinar a altura dobra o número de degraus.
+
+::: {#fig-escada-diadica}
+```{.tikz}
+%%| filename: escada-diadica
+%%| alt: Curva crescente aproximada por baixo por uma função em escada com degraus horizontais de alturas multiplas de uma unidade fixa.
+\begin{tikzpicture}[scale=1.4, every node/.style={font=\footnotesize}]
+  \draw[eixo] (-0.1,0) -- (3.4,0) node[right]{$x$};
+  \draw[eixo] (0,-0.1) -- (0,2.4) node[above]{$y$};
+  \draw[curva, domain=0:3, samples=80] plot (\x, {0.55*\x+0.25*sin(120*\x)+0.3});
+  \foreach \k in {0,...,5}{
+    \pgfmathsetmacro\xa{\k*0.5}
+    \pgfmathsetmacro\xb{(\k+1)*0.5}
+    \pgfmathsetmacro\hh{0.55*\xa+0.25*sin(120*\xa)+0.3}
+    \draw[destaque] (\xa,\hh) -- (\xb,\hh);
+    \draw[manualgray,thin] (\xb,\hh) -- (\xb, {0.55*\xb+0.25*sin(120*\xb)+0.3});
+  }
+  \node[manualred!70!black] at (2.5,0.7) {$\varphi_n$};
+  \node[manualblue!70!black] at (2.2,1.9) {$f$};
+\end{tikzpicture}
+```
+
+A escada $\varphi_n$ aproxima $f$ por baixo; refinar a altura dos degraus
+($2^{-n} \to 2^{-(n+1)}$) faz $\varphi_n \uparrow f$.
+:::
+
+## Quase em todo ponto
+
+A medida nula permite ignorar conjuntos desprezíveis, e isso entra na linguagem.
+
+::: {#def-quase-sempre}
+## Quase em todo ponto
+Uma propriedade vale **quase em todo ponto** (q.t.p.) se o conjunto onde falha
+tem medida nula. Duas funções são **iguais q.t.p.** se diferem apenas num
+conjunto de medida $0$.
+:::
+
+Pela completude da medida (@exr-medida-completa), uma função igual q.t.p. a uma
+mensurável é também mensurável. Na integração de Lebesgue, funções iguais q.t.p.
+são indistinguíveis — o que prepara os espaços $L^p$ do @sec-espacos-lp.
+
+## Exercícios
+
+::: {#exr-indicadora-mensuravel}
+Mostre que $\chi_A$ é mensurável se, e somente se, $A \in \mathcal{M}$. Conclua
+que a função de Dirichlet $\chi_{\mathbb{Q}}$ é mensurável (embora não seja
+Riemann-integrável).
+:::
+
+::: {#exr-sup-mensuravel}
+Prove a identidade $\{\inf_n f_n < c\} = \bigcup_n \{f_n < c\}$ e use-a para
+mostrar que $\inf_n f_n$ é mensurável.
+:::
+
+::: {#exr-qtp-mensuravel}
+Seja $f$ mensurável e $g = f$ q.t.p. Prove que $g$ é mensurável. *(Use a
+completude da medida.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-indicadora-mensuravel
+Para $\chi_A$, o conjunto $\{\chi_A > c\}$ é: $\emptyset$ se $c \ge 1$; igual a
+$A$ se $0 \le c < 1$; e $E$ se $c < 0$. Esses são todos mensuráveis exatamente
+quando $A \in \mathcal{M}$ (o caso $0\le c<1$ força $A$ mensurável, e a recíproca
+é imediata). Como $\mathbb{Q} \in \mathcal{M}$ (é boreliano, sendo enumerável),
+$\chi_{\mathbb{Q}}$ é mensurável. Ela falha em ser Riemann-integrável
+(@sec-integral-riemann), mas será Lebesgue-integrável, com integral $0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-qtp-mensuravel
+Seja $N = \{x : f(x) \ne g(x)\}$, com $m(N) = 0$. Para todo $c$,
+$\{g > c\} = \big(\{f > c\} \setminus N\big) \cup \big(\{g > c\} \cap N\big)$. O
+primeiro conjunto é mensurável; o segundo é subconjunto de $N$, nulo, logo
+mensurável por completude (@exr-medida-completa). União de mensuráveis:
+mensurável. Logo $g$ é mensurável.
+:::
