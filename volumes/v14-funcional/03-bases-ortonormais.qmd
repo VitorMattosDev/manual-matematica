@@ -1,0 +1,182 @@
+# Bases ortonormais e séries de Fourier {#sec-bases-ortonormais}
+
+## Motivação
+
+Na álgebra linear (Vol. VI), uma base ortonormal permitia escrever todo vetor
+pelas suas coordenadas — os produtos internos com os vetores da base. Em dimensão
+infinita, a ideia sobrevive, mas a "soma" vira **série**, e questões de
+convergência tomam o palco. O resultado é magnífico: num espaço de Hilbert
+separável, todo vetor é a soma de uma série de suas projeções sobre uma base
+ortonormal, e a norma se reparte exatamente entre os coeficientes (Parseval). É
+aqui que as **séries de Fourier** (@sec-series-fourier, no Vol. XI) encontram seu
+verdadeiro lar: os coeficientes de Fourier são coordenadas, a convergência é em
+$L^2$, e a identidade de Parseval é o teorema de Pitágoras em dimensão infinita.
+Este capítulo paga, com geometria, a dívida deixada pelas séries de Fourier.
+
+## Conjuntos ortonormais e a desigualdade de Bessel
+
+::: {#def-ortonormal}
+## Conjunto ortonormal
+Um conjunto $\{e_n\}_{n} \subseteq H$ é **ortonormal** se $\langle e_i, e_j
+\rangle = \delta_{ij}$ (ortogonais e de norma $1$). Os números $\hat{x}(n) =
+\langle x, e_n\rangle$ são os **coeficientes de Fourier** de $x$ na família.
+:::
+
+::: {#thm-bessel}
+## Desigualdade de Bessel
+Para todo conjunto ortonormal enumerável $\{e_n\}$ e todo $x \in H$,
+$$
+\sum_{n} |\langle x, e_n\rangle|^2 \ \le\ \|x\|^2.
+$$
+Em particular, a série dos quadrados dos coeficientes converge.
+:::
+
+::: {.proof}
+Seja $s_N = \sum_{n=1}^N \langle x,e_n\rangle e_n$ a projeção de $x$ sobre
+$\operatorname{span}\{e_1,\dots,e_N\}$. Um cálculo direto dá $\langle x - s_N,
+s_N\rangle = 0$, logo por Pitágoras (@prp-pitagoras) $\|x\|^2 = \|s_N\|^2 + \|x -
+s_N\|^2 \ge \|s_N\|^2 = \sum_{n=1}^N |\langle x,e_n\rangle|^2$. Fazendo $N\to
+\infty$, segue Bessel.
+:::
+
+::: {.callout-note}
+## A projeção é a melhor aproximação
+A soma parcial $s_N$ é exatamente a projeção ortogonal de $x$ sobre o subespaço
+gerado por $e_1,\dots,e_N$ (@thm-projecao). Logo, entre todas as combinações
+lineares desses vetores, **$s_N$ é a que mais se aproxima de $x$**. Truncar uma
+série de Fourier não é uma aproximação qualquer: é a *ótima* em norma $L^2$. Esse
+é o princípio dos mínimos quadrados, em dimensão infinita.
+:::
+
+## Bases ortonormais
+
+Quando a desigualdade de Bessel vira igualdade para todo $x$, o conjunto é
+"grande o bastante" para representar tudo.
+
+::: {#def-base-ortonormal}
+## Base ortonormal (de Hilbert)
+Um conjunto ortonormal $\{e_n\}$ num espaço de Hilbert $H$ é uma **base
+ortonormal** se for **completo** no sentido de que seu fecho linear é denso —
+equivalentemente, se o único vetor ortogonal a todos os $e_n$ é o nulo. (Atenção:
+não é base no sentido algébrico; as somas são infinitas.)
+:::
+
+::: {#thm-base-ortonormal}
+## Caracterização das bases ortonormais
+Para um conjunto ortonormal $\{e_n\}$ num Hilbert separável $H$, são equivalentes:
+
+1. $\{e_n\}$ é uma base ortonormal (fecho linear denso);
+2. **(expansão de Fourier)** todo $x \in H$ satisfaz $\displaystyle x = \sum_n
+   \langle x,e_n\rangle\, e_n$, com convergência na norma de $H$;
+3. **(identidade de Parseval)** $\displaystyle \|x\|^2 = \sum_n |\langle x,e_n
+   \rangle|^2$ para todo $x$;
+4. o único $x$ com $\langle x, e_n\rangle = 0$ para todo $n$ é $x = 0$.
+:::
+
+::: {.proof}
+*(Esboço $1 \Rightarrow 2$.)* Por Bessel, $\sum_n |\hat x(n)|^2 < \infty$, então
+as somas parciais $s_N$ formam uma sequência de **Cauchy** (pois $\|s_N - s_M\|^2
+= \sum_{M<n\le N}|\hat x(n)|^2 \to 0$). Pela completude, $s_N \to s \in H$. O
+vetor $x - s$ é ortogonal a todo $e_n$; como o fecho linear é denso, $x - s = 0$,
+logo $x = \sum_n \hat x(n) e_n$. *(2 ⟺ 3)* é Pitágoras no limite; *(3 ⟺ 4)* e
+*(4 ⟺ 1)* são diretas.
+:::
+
+::: {.callout-tip}
+## Parseval é Pitágoras em dimensão infinita
+A identidade $\|x\|^2 = \sum_n |\langle x,e_n\rangle|^2$ diz que o comprimento ao
+quadrado de um vetor é a soma dos quadrados de suas coordenadas — exatamente o
+teorema de Pitágoras, agora com infinitas coordenadas ortogonais. Toda a energia
+de $x$ se reparte, sem perdas, entre os eixos $e_n$.
+:::
+
+## O caso de honra: Fourier em $L^2$
+
+Apliquemos a maquinaria ao espaço $L^2$ do círculo, $L^2[-\pi, \pi]$, fechando o
+arco aberto no Volume XI.
+
+::: {#thm-fourier-l2}
+## Completude do sistema trigonométrico
+A família $\left\{ e_n(t) = \dfrac{1}{\sqrt{2\pi}}\, e^{int} \right\}_{n \in
+\mathbb{Z}}$ é uma **base ortonormal** de $L^2[-\pi,\pi]$. Portanto, para toda
+$f \in L^2[-\pi,\pi]$:
+$$
+f = \sum_{n=-\infty}^{\infty} \hat f(n)\, e_n \quad \text{(em } L^2\text{)},
+\qquad \hat f(n) = \frac{1}{\sqrt{2\pi}}\int_{-\pi}^{\pi} f(t)\, e^{-int}\, dt,
+$$
+e vale a **identidade de Parseval** $\displaystyle \int_{-\pi}^{\pi} |f|^2\, dt =
+\sum_{n=-\infty}^{\infty} |\hat f(n)|^2$.
+:::
+
+::: {.callout-note}
+## O que muda em relação ao Volume XI
+No Vol. XI, a convergência da série de Fourier era uma questão **pontual**
+delicada (fenômeno de Gibbs, condições de Dirichlet) — e nem sempre ocorria. Em
+$L^2$, a história é límpida: a série **sempre** converge **na norma de $L^2$**
+(em média quadrática), para *toda* função de quadrado integrável, sem hipótese
+alguma de continuidade. A ortonormalidade de $\{e_n\}$ se verifica por integração
+direta; a completude (densidade) vem do teorema de aproximação de Weierstrass.
+Essa é a razão de ser de $L^2$: é o espaço onde Fourier simplesmente funciona.
+:::
+
+::: {#exm-parseval-basileia}
+## Parseval calcula uma série
+Aplicando Parseval a $f(t) = t$ em $[-\pi,\pi]$, cujos coeficientes são
+calculáveis, obtém-se $\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}$ — o
+**problema de Basileia**, resolvido como um corolário geométrico da identidade de
+Parseval. A energia de $f(t) = t$ se reparte entre os harmônicos, e a soma das
+parcelas reproduz $\int_{-\pi}^\pi t^2\, dt$.
+:::
+
+## Separabilidade e isomorfismo com $\ell^2$
+
+::: {#thm-isomorfismo-l2}
+## Todo Hilbert separável é $\ell^2$
+Todo espaço de Hilbert separável de dimensão infinita possui uma base ortonormal
+enumerável e é **isometricamente isomorfo** a $\ell^2$, via $x \mapsto (\langle
+x, e_n\rangle)_n$. Em outras palavras, **a menos de isomorfismo, só existe um**
+espaço de Hilbert separável de dimensão infinita.
+:::
+
+Esse teorema unifica $L^2[-\pi,\pi]$, $\ell^2$ e qualquer outro Hilbert separável:
+são todos "o mesmo" espaço, vestido de roupas diferentes. A transformada de
+Fourier $f \mapsto (\hat f(n))_n$ é o isomorfismo concreto entre $L^2$ do círculo
+e $\ell^2$ — funções de um lado, sequências de coeficientes do outro.
+
+## Exercícios
+
+::: {#exr-ortonormalidade-trig}
+Verifique que $\left\{\frac{1}{\sqrt{2\pi}}e^{int}\right\}_{n\in\mathbb{Z}}$ é
+ortonormal em $L^2[-\pi,\pi]$, calculando $\int_{-\pi}^\pi e^{int}e^{-imt}\, dt$.
+:::
+
+::: {#exr-bessel-estrita}
+Dê um exemplo de conjunto ortonormal **não** completo (logo, com Bessel estrita
+para algum $x$). *(Sugestão: remova um vetor de uma base ortonormal de
+$\ell^2$.)*
+:::
+
+::: {#exr-basileia}
+Calcule os coeficientes de Fourier de $f(t) = t$ em $[-\pi,\pi]$ e aplique
+Parseval para obter $\sum_{n\ge 1} \frac1{n^2} = \frac{\pi^2}{6}$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-ortonormalidade-trig
+$\int_{-\pi}^\pi e^{int}e^{-imt}\,dt = \int_{-\pi}^\pi e^{i(n-m)t}\,dt$. Se $n =
+m$, o integrando é $1$ e a integral vale $2\pi$. Se $n \ne m$, a primitiva é
+$\frac{e^{i(n-m)t}}{i(n-m)}$, periódica de período $2\pi$, logo a integral nos
+extremos $\pm\pi$ se anula. Dividindo por $2\pi$ (o fator $\frac1{\sqrt{2\pi}}$ ao
+quadrado), $\langle e_n, e_m\rangle = \delta_{nm}$: ortonormal.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-basileia
+Para $f(t)=t$ ímpar, os coeficientes (na convenção real) são $b_n =
+\frac1\pi\int_{-\pi}^\pi t\sin(nt)\,dt = \frac{2(-1)^{n+1}}{n}$. Parseval na forma
+real, $\frac1\pi\int_{-\pi}^\pi t^2\,dt = \sum_{n\ge1} b_n^2$, dá $\frac1\pi\cdot
+\frac{2\pi^3}{3} = \sum_{n\ge1}\frac{4}{n^2}$, ou seja $\frac{2\pi^2}{3} =
+4\sum_{n\ge1}\frac1{n^2}$. Logo $\sum_{n\ge1}\frac1{n^2} = \frac{\pi^2}{6}$.
+:::
