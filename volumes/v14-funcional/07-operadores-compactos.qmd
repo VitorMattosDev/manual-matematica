@@ -1,0 +1,172 @@
+# Operadores compactos {#sec-operadores-compactos}
+
+## Motivação
+
+A grande perda da dimensão infinita foi a compacidade da bola (@thm-riesz-compacidade):
+sequências limitadas deixam de ter subsequências convergentes, e com isso evaporam
+os teoremas de existência (de mínimos, de autovalores) que em dimensão finita eram
+gratuitos. Os **operadores compactos** são a classe que **recupera** parte dessa
+compacidade. São, num sentido preciso, os operadores "mais próximos" dos de
+dimensão finita — limites de operadores de posto finito. Sobre eles, a teoria
+espectral renasce quase intacta: o espectro é discreto, os autovalores se
+acumulam só em zero, e os autovetores formam bases. É o que torna tratáveis as
+**equações integrais** e os problemas de **Sturm–Liouville**, e o que o próximo
+capítulo coroará com o teorema espectral.
+
+## Definição
+
+::: {#def-operador-compacto}
+## Operador compacto
+Um operador $T \in \mathcal{B}(X,Y)$ é **compacto** se a imagem da bola unitária,
+$T(\overline{B_X})$, tem **fecho compacto** em $Y$. Equivalentemente: para toda
+sequência limitada $(x_n)$ em $X$, a sequência $(Tx_n)$ admite **subsequência
+convergente** em $Y$.
+:::
+
+A definição "implanta" compacidade à força: $T$ comprime conjuntos limitados em
+conjuntos relativamente compactos. Operadores de **posto finito** (imagem de
+dimensão finita) são sempre compactos, pois nestes a bola-imagem é limitada num
+espaço de dimensão finita, onde fechado e limitado é compacto.
+
+::: {#exm-operadores-compactos}
+## Exemplos
+- Todo operador de **posto finito** é compacto.
+- A **inclusão** $C^1[0,1] \hookrightarrow C[0,1]$ é compacta (teorema de
+  Arzelà–Ascoli: funções com derivada limitada são equicontínuas).
+- O **operador integral** $(Tf)(x) = \int_0^1 k(x,y) f(y)\, dy$ com núcleo $k$
+  contínuo é compacto em $C[0,1]$ e em $L^2[0,1]$ — o exemplo que motivou toda a
+  teoria.
+- A **identidade** $I$ em dimensão infinita **não** é compacta (sua bola-imagem é
+  a própria bola, não compacta, @thm-riesz-compacidade).
+:::
+
+## Estrutura da classe
+
+::: {#thm-compactos-ideal}
+## Os compactos formam um ideal fechado
+Seja $X$ Banach e $\mathcal{K}(X) \subseteq \mathcal{B}(X)$ o conjunto dos
+operadores compactos. Então:
+
+1. $\mathcal{K}(X)$ é um **subespaço vetorial fechado** de $\mathcal{B}(X)$ (na
+   norma de operador);
+2. é um **ideal bilateral**: se $T$ é compacto e $S$ é limitado, então $ST$ e
+   $TS$ são compactos;
+3. todo limite (na norma de operador) de operadores de posto finito é compacto.
+   Em espaços de Hilbert, vale a **recíproca**: todo compacto é limite de
+   operadores de posto finito.
+:::
+
+::: {.callout-note}
+## Compactos ≈ "quase dimensão finita"
+A propriedade 3 é a chave: num Hilbert, $T$ é compacto **se, e somente se**, pode
+ser aproximado em norma por operadores de posto finito. Por isso os compactos
+herdam tantas propriedades da dimensão finita — eles *são* limites de operadores
+finitos. Toda a riqueza espectral que se segue vem dessa proximidade.
+:::
+
+## A alternativa de Fredholm
+
+O teorema que faz dos compactos a ferramenta para resolver equações. Trata
+equações da forma $(I - T)x = y$, onde $T$ é compacto — exatamente as **equações
+integrais de Fredholm de segunda espécie**.
+
+::: {#thm-fredholm}
+## Alternativa de Fredholm
+Seja $T$ compacto num espaço de Banach $X$ e considere $S = I - T$. Então **exatamente
+uma** das alternativas vale:
+
+1. a equação homogênea $(I - T)x = 0$ só tem a solução trivial $x = 0$ — e então
+   $(I - T)$ é **bijetor**, com inverso limitado, de modo que $(I-T)x = y$ tem
+   **solução única** para todo $y$;
+2. ou $(I - T)x = 0$ tem solução não trivial — e então o **núcleo é de dimensão
+   finita**, e $(I-T)x = y$ tem solução se, e só se, $y$ satisfaz finitas
+   condições de ortogonalidade.
+:::
+
+::: {.callout-tip}
+## "Unicidade implica existência"
+A alternativa de Fredholm ressuscita, para $I - T$ com $T$ compacto, o
+comportamento das **matrizes** $n\times n$: ou o sistema homogêneo só tem a
+solução nula (e aí o operador é invertível, existência para todo $y$), ou tem
+soluções não triviais (e aí há obstruções). Em dimensão infinita, isso é falso em
+geral — mas a perturbação compacta da identidade restaura o "teorema do núcleo e
+da imagem". É o que permite resolver equações integrais com a mesma lógica da
+álgebra linear.
+:::
+
+## Espectro de um operador compacto
+
+::: {#def-espectro}
+## Espectro e autovalores
+O **espectro** de $T \in \mathcal{B}(X)$ é $\sigma(T) = \{\lambda \in \mathbb{C} :
+T - \lambda I \text{ não é invertível}\}$. Um $\lambda$ é **autovalor** se $T -
+\lambda I$ tem núcleo não trivial, isto é, $Tx = \lambda x$ para algum $x \ne 0$.
+:::
+
+Em dimensão finita, espectro = autovalores (raízes do polinômio característico).
+Em dimensão infinita o espectro é maior e mais sutil — mas para compactos ele é
+tão dócil quanto no caso finito:
+
+::: {#thm-espectro-compacto}
+## Espectro de operadores compactos (Riesz–Schauder)
+Seja $T$ compacto num espaço de Banach de dimensão infinita. Então:
+
+1. $0 \in \sigma(T)$ (a identidade não é compacta, então $T$ não é invertível);
+2. todo $\lambda \in \sigma(T)$ com $\lambda \ne 0$ é um **autovalor**, com
+   **autoespaço de dimensão finita**;
+3. o conjunto dos autovalores é **finito ou enumerável**, e seu único ponto de
+   acumulação possível é $0$.
+:::
+
+::: {.callout-note}
+## Espectro discreto: o retorno do caso finito
+Fora da origem, o espectro de um compacto é uma sequência discreta de autovalores
+$\lambda_1, \lambda_2, \dots$ tendendo a $0$, cada um com multiplicidade finita —
+exatamente como os autovalores de uma matriz, agora em número possivelmente
+infinito mas controlado. É essa estrutura que o teorema espectral do
+@sec-teorema-espectral organiza em uma **base de autovetores**, resolvendo
+problemas de contorno e equações integrais por "diagonalização".
+:::
+
+## Exercícios
+
+::: {#exr-posto-finito-compacto}
+Mostre diretamente, da definição, que todo operador de posto finito é compacto.
+*(Use que fechado e limitado em dimensão finita é compacto.)*
+:::
+
+::: {#exr-identidade-nao-compacta}
+Mostre que a identidade $I$ num espaço de Hilbert de dimensão infinita não é
+compacta, exibindo uma sequência limitada $(x_n)$ tal que $(Ix_n)$ não tem
+subsequência convergente.
+:::
+
+::: {#exr-compacto-mais-limitado}
+Mostre que, se $T$ é compacto e $S$ é limitado, então $TS$ é compacto. *(Use a
+caracterização por sequências.)*
+:::
+
+::: {#exr-fredholm-aplicacao}
+Considere a equação integral $x(s) - \lambda\int_0^1 k(s,t)x(t)\,dt = y(s)$ com
+$k$ contínuo. Explique, pela alternativa de Fredholm, por que ela tem solução
+única para todo $y$ exceto para um conjunto discreto de valores de $\lambda$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-identidade-nao-compacta
+Tome a base ortonormal $(e_n)$. A sequência $(e_n)$ é limitada ($\|e_n\| = 1$),
+mas $\|e_n - e_m\| = \sqrt2$ para $n \ne m$ (@exr-en-sem-subsequencia), logo
+$(I e_n) = (e_n)$ não tem subsequência de Cauchy, nem convergente. Portanto $I$
+não é compacta. Coerente: a bola unitária não é compacta em dimensão infinita.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-compacto-mais-limitado
+Seja $(x_n)$ limitada, digamos $\|x_n\| \le M$. Como $S$ é limitado, $(Sx_n)$ é
+limitada ($\|Sx_n\| \le \|S\|M$). Como $T$ é compacto, $(T(Sx_n))$ admite
+subsequência convergente. Logo $TS$ leva limitadas em sequências com subsequência
+convergente: é compacto. *(Para $ST$: $(Tx_n)$ tem subsequência convergente
+$Tx_{n_k} \to z$; como $S$ é contínuo, $S T x_{n_k} \to Sz$.)*
+:::
