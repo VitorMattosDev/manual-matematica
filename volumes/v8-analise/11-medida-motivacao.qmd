@@ -1,0 +1,203 @@
+# Por que medir {#sec-medida-motivacao}
+
+## Motivação
+
+A integral de Riemann (@sec-integral-riemann) tem um defeito estrutural, e não
+um mero detalhe técnico. Vimos que a função de **Dirichlet** — que vale $1$ nos
+racionais e $0$ nos irracionais — não é integrável, porque suas somas superiores
+valem $1$ e as inferiores valem $0$ em qualquer partição. O problema é que
+Riemann particiona o **domínio** em intervalinhos, e numa função que oscila
+violentamente nenhum intervalo é "quase constante".
+
+A ideia de Lebesgue é particionar o **contradomínio**. Para integrar $f$,
+agrupamos os pontos onde $f$ assume valores próximos: para cada faixa de valores
+$[y, y + \Delta y)$, perguntamos *qual o tamanho do conjunto* $\{x : y \le f(x)
+< y + \Delta y\}$. Para a função de Dirichlet, esse conjunto é "os racionais" ou
+"os irracionais" — e gostaríamos de dizer que os racionais têm tamanho $0$ e os
+irracionais ocupam todo o comprimento. Mas o que é o "tamanho" de um conjunto
+tão esburacado quanto $\mathbb{Q} \cap [0,1]$? Comprimento de um intervalo
+sabemos medir; de um conjunto arbitrário, não. Precisamos primeiro de uma teoria
+da **medida** — uma noção de tamanho para conjuntos —, e só depois a integral
+nasce dela. Este capítulo prepara o terreno: o que queremos de uma medida, por
+que o ingênuo não funciona, e a estrutura (σ-álgebra) onde a medida vai viver.
+
+## O que esperamos de uma medida
+
+Queremos atribuir a cada conjunto $A \subseteq \mathbb{R}$ um número
+$\mu(A) \in [0, +\infty]$, o seu "comprimento", satisfazendo o mínimo razoável:
+
+1. **Normalização:** a medida de um intervalo é o seu comprimento,
+   $\mu([a,b]) = b - a$.
+2. **Invariância por translação:** $\mu(A + t) = \mu(A)$ — deslocar não muda o
+   tamanho.
+3. **Aditividade enumerável:** se $A_1, A_2, \dots$ são dois a dois disjuntos,
+   $$
+   \mu\!\left(\bigcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} \mu(A_n).
+   $$
+
+A terceira propriedade é a alma da teoria. A aditividade **finita** já seria
+esperada de qualquer noção de tamanho; exigi-la para uniões *enumeráveis* é o que
+permitirá trocar limites com integrais — os grandes teoremas do
+@sec-teoremas-convergencia dependem disso. É também uma exigência forte demais
+para ser concedida a *todos* os conjuntos, como veremos.
+
+::: {.callout-warning}
+## Não dá para medir tudo
+Existe um teorema-obstáculo: **não há** função $\mu$ definida em *todos* os
+subconjuntos de $\mathbb{R}$ que satisfaça as três propriedades acima
+simultaneamente. A construção de um conjunto que estraga a aditividade — o
+**conjunto de Vitali** — aparece em @sec-conjuntos-mensuraveis. A saída é
+renunciar a medir todo conjunto e restringir $\mu$ a uma família suficientemente
+rica, porém não a todos: os conjuntos **mensuráveis**.
+:::
+
+## A primeira tentativa: conteúdo de Jordan
+
+Antes de Lebesgue, a noção natural de tamanho era o **conteúdo de Jordan**, que
+formaliza exatamente o espírito de Riemann. Cobrimos o conjunto por
+intervalos por fora e por dentro.
+
+::: {#def-conteudo-jordan}
+## Conteúdo de Jordan
+Para $A \subseteq [a,b]$ limitado, o **conteúdo interior** $\underline{c}(A)$ é o
+supremo dos comprimentos totais de uniões finitas de intervalos contidas em $A$;
+o **conteúdo exterior** $\overline{c}(A)$ é o ínfimo dos comprimentos totais de
+uniões finitas de intervalos que cobrem $A$. Se ambos coincidem, $A$ é
+**Jordan-mensurável** e $c(A)$ é o valor comum.
+:::
+
+O conteúdo de Jordan funciona para figuras razoáveis (intervalos, polígonos), mas
+herda o defeito de Riemann: só admite uniões **finitas** de intervalos.
+
+::: {#exm-jordan-racionais}
+## Os racionais não têm conteúdo de Jordan
+Seja $A = \mathbb{Q} \cap [0,1]$. Qualquer união finita de intervalos contida em
+$A$ é vazia (todo intervalo não trivial contém irracionais), logo
+$\underline{c}(A) = 0$. Mas $A$ é denso: qualquer cobertura de $A$ por intervalos
+cobre quase todo $[0,1]$, e na verdade $\overline{c}(A) = 1$. Como
+$0 \ne 1$, **$A$ não é Jordan-mensurável.**
+:::
+
+O remédio é deixar as coberturas serem **enumeráveis**. Com infinitos intervalos,
+podemos enfileirar os racionais $q_1, q_2, \dots$ e cobrir $q_n$ por um intervalo
+de comprimento $\varepsilon / 2^n$; o total é $\varepsilon$, tão pequeno quanto se
+queira. Isso sugere que a medida "certa" de $\mathbb{Q} \cap [0,1]$ é $0$ — e é
+exatamente o que a **medida exterior de Lebesgue** (@sec-medida-lebesgue) dará, ao
+permitir coberturas enumeráveis.
+
+::: {.callout-note}
+## A mudança de finito para enumerável
+Jordan ⟶ Lebesgue é a passagem de coberturas *finitas* para *enumeráveis*. É a
+mesma passagem que distingue a aditividade finita da enumerável. Toda a potência
+da teoria — e toda a sua sutileza — vem de admitir o infinito enumerável aqui.
+:::
+
+## A estrutura onde a medida vive: σ-álgebras
+
+Como não mediremos todo conjunto, precisamos especificar a família dos conjuntos
+"bons". Para que a teoria seja fechada sob as operações que faremos (complementar,
+unir enumeravelmente, intersectar), essa família precisa de uma estrutura.
+
+::: {#def-sigma-algebra}
+## σ-álgebra
+Uma **σ-álgebra** sobre um conjunto $X$ é uma coleção $\mathcal{A}$ de
+subconjuntos de $X$ tal que:
+
+1. $X \in \mathcal{A}$;
+2. se $A \in \mathcal{A}$, então $A^c = X \setminus A \in \mathcal{A}$ (fechada
+   por complementar);
+3. se $A_1, A_2, \dots \in \mathcal{A}$, então $\bigcup_{n=1}^\infty A_n \in
+   \mathcal{A}$ (fechada por união **enumerável**).
+
+O par $(X, \mathcal{A})$ é um **espaço mensurável**, e os elementos de
+$\mathcal{A}$ são os conjuntos **mensuráveis**.
+:::
+
+As três propriedades já garantem todas as outras de que precisamos: o
+$\emptyset = X^c$ é mensurável, e como
+$\bigcap_n A_n = \left(\bigcup_n A_n^c\right)^c$ (De Morgan, @sec-conjuntos), a
+família é fechada também por **interseção enumerável** e por diferença. O prefixo
+"σ" significa precisamente "fechada por operações enumeráveis", em contraste com
+uma mera *álgebra de conjuntos*, fechada só por uniões finitas.
+
+::: {#exm-sigma-algebras-triviais}
+## Exemplos extremos
+A menor σ-álgebra sobre $X$ é $\{\emptyset, X\}$; a maior é o conjunto das partes
+$\mathcal{P}(X)$. A teoria interessante vive entre as duas: rica o bastante para
+conter os intervalos, pequena o bastante para excluir os conjuntos patológicos.
+:::
+
+## A σ-álgebra de Borel
+
+Qual σ-álgebra usar em $\mathbb{R}$? A menor que contenha os intervalos — assim
+todo conjunto "construído a partir de intervalos por operações enumeráveis" é
+mensurável. A interseção de uma família qualquer de σ-álgebras ainda é uma
+σ-álgebra (verificação direta), então a seguinte definição faz sentido.
+
+::: {#def-borel}
+## Conjuntos de Borel
+A **σ-álgebra de Borel** $\mathcal{B}(\mathbb{R})$ é a menor σ-álgebra que contém
+todos os intervalos abertos. Seus elementos são os **conjuntos de Borel**.
+:::
+
+Os borelianos incluem todos os abertos, todos os fechados, as uniões enumeráveis
+de fechados, as interseções enumeráveis de abertos, e assim por diante — uma
+hierarquia riquíssima que cobre praticamente todo conjunto que se encontra na
+prática. É sobre eles (e um pouco mais) que construiremos a medida de Lebesgue.
+
+::: {.callout-note}
+## O caminho à frente
+O plano dos próximos capítulos: (1) definir a **medida exterior** $m^*$ por
+coberturas enumeráveis, válida para todo conjunto, mas só *sub*aditiva
+(@sec-medida-lebesgue); (2) isolar os conjuntos **mensuráveis** pelo critério de
+Carathéodory, onde $m^*$ vira de fato aditiva (@sec-conjuntos-mensuraveis); (3)
+medir funções e, enfim, (4) **integrá-las** (@sec-integral-lebesgue). A
+recompensa fecha a dívida do Volume XII: os axiomas de Kolmogorov da
+probabilidade *são* os axiomas de uma medida com $\mu(X) = 1$.
+:::
+
+## Exercícios
+
+::: {#exr-medida-numeravel}
+Mostre que, se a medida satisfaz as três propriedades exigidas, então todo
+conjunto enumerável $\{x_1, x_2, \dots\} \subseteq \mathbb{R}$ tem medida $0$.
+*(Sugestão: cada ponto tem medida $0$, pois $\{x\} \subseteq [x, x+\varepsilon]$;
+use aditividade enumerável.)*
+:::
+
+::: {#exr-jordan-cantor}
+Explique por que a aditividade *finita* não basta para concluir que
+$\mathbb{Q} \cap [0,1]$ tem medida $0$, mas a *enumerável* basta.
+:::
+
+::: {#exr-sigma-intersecao}
+Prove que a interseção de uma família arbitrária $\{\mathcal{A}_i\}_{i \in I}$ de
+σ-álgebras sobre $X$ é uma σ-álgebra. *(É o que faz a @def-borel bem definida.)*
+:::
+
+::: {#exr-sigma-finita-vs-sigma}
+Dê exemplo de uma **álgebra** de conjuntos (fechada por união finita e
+complementar) que **não** seja uma σ-álgebra. *(Sugestão: uniões finitas de
+intervalos de $\mathbb{R}$ da forma $(a,b]$.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-medida-numeravel
+Primeiro, $\mu(\{x\}) = 0$: como $\{x\} \subseteq [x, x+\varepsilon]$, a
+monotonia dá $\mu(\{x\}) \le \varepsilon$ para todo $\varepsilon > 0$, logo
+$\mu(\{x\}) = 0$. Agora $\{x_1, x_2, \dots\} = \bigcup_n \{x_n\}$ é união
+enumerável **disjunta**, então pela aditividade enumerável
+$\mu(\{x_1, x_2, \dots\}) = \sum_n \mu(\{x_n\}) = \sum_n 0 = 0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-sigma-finita-vs-sigma
+Seja $\mathcal{A}$ a coleção das uniões finitas de intervalos
+$(a,b] \subseteq \mathbb{R}$ (incluindo $\emptyset$ e $\mathbb{R}$, com a
+convenção usual nos extremos infinitos). Ela é fechada por união finita e por
+complementar — é uma álgebra. Mas não por união enumerável:
+$\bigcup_{n=1}^\infty (n, n+1 - \tfrac1n]$ não é uma união *finita* de intervalos,
+escapando de $\mathcal{A}$. Logo $\mathcal{A}$ não é σ-álgebra.
+:::

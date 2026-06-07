@@ -247,7 +247,7 @@ demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
 ## Extensão do Volume VIII — Teoria da Medida e Integral de Lebesgue
 *Objetivo: o rigor que sustenta a probabilidade e a análise moderna. Pré-req.: Vol. VIII.*
 
-- [ ] `volumes/v8-analise/11-medida-motivacao.qmd` — Por que medir: limitações de Riemann, conteúdo de Jordan, σ-álgebras.
+- [x] `volumes/v8-analise/11-medida-motivacao.qmd` — Por que medir: limitações de Riemann, conteúdo de Jordan, σ-álgebras.
 - [ ] `volumes/v8-analise/12-medida-lebesgue.qmd` — Medida exterior e medida de Lebesgue em ℝ.
 - [ ] `volumes/v8-analise/13-conjuntos-mensuraveis.qmd` — Conjuntos mensuráveis (Carathéodory); conjunto de Vitali não mensurável.
 - [ ] `volumes/v8-analise/14-funcoes-mensuraveis.qmd` — Funções mensuráveis e aproximação por funções simples.
