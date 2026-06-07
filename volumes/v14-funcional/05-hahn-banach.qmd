@@ -1,0 +1,155 @@
+# O teorema de Hahn–Banach {#sec-hahn-banach}
+
+## Motivação
+
+No capítulo anterior vimos que o dual $X^*$ — os funcionais lineares limitados —
+é a ferramenta para sondar um espaço. Mas surge uma dúvida desconfortável: e se
+$X^*$ for pobre demais? E se existirem vetores que *nenhum* funcional limitado
+distingue? O **teorema de Hahn–Banach** é a garantia, de uma vez por todas, de
+que isso não acontece: sempre há funcionais em abundância. Todo funcional definido
+num subespaço se **estende** ao espaço todo sem aumentar a norma; em particular,
+para todo vetor não nulo existe um funcional que o "enxerga". É um dos pilares da
+análise funcional, e seu poder vem de não exigir completude nem produto interno —
+vale em qualquer espaço normado, à custa de um argumento de **lema de Zorn**.
+
+## A forma analítica
+
+::: {#def-funcional-sublinear}
+## Funcional sublinear
+Um **funcional sublinear** em $X$ é $p : X \to \mathbb{R}$ com $p(x+y) \le p(x) +
+p(y)$ (subaditivo) e $p(\lambda x) = \lambda\, p(x)$ para $\lambda \ge 0$
+(positivamente homogêneo). Toda **norma** ou **seminorma** é sublinear.
+:::
+
+::: {#thm-hahn-banach-analitico}
+## Hahn–Banach (forma analítica)
+Seja $p$ um funcional sublinear em $X$ e $f$ um funcional linear definido num
+subespaço $M \subseteq X$, com $f(x) \le p(x)$ para todo $x \in M$. Então existe
+uma **extensão** linear $F : X \to \mathbb{R}$ de $f$ (isto é, $F|_M = f$)
+satisfazendo
+$$
+F(x) \le p(x) \quad \text{para todo } x \in X.
+$$
+:::
+
+::: {.proof}
+*(Ideia.)* O passo central estende $f$ a um subespaço uma dimensão maior, $M
+\oplus \mathbb{R}x_0$, escolhendo o valor $F(x_0) = c$ num intervalo
+$[\sup_{y\in M}(f(y) - p(y - x_0)),\ \inf_{z\in M}(p(z + x_0) - f(z))]$, que a
+subaditividade de $p$ garante ser não vazio. O **lema de Zorn** organiza essas
+extensões parciais numa cadeia e fornece uma extensão maximal, que tem de ser o
+espaço todo.
+:::
+
+## A forma normada
+
+A versão que usaremos o tempo todo controla a **norma** da extensão.
+
+::: {#cor-hahn-banach-normado}
+## Extensão preservando a norma
+Seja $M \subseteq X$ um subespaço e $f \in M^*$ um funcional limitado em $M$.
+Então existe $F \in X^*$ com $F|_M = f$ e $\|F\|_{X^*} = \|f\|_{M^*}$.
+:::
+
+::: {.proof}
+Aplique o @thm-hahn-banach-analitico com $p(x) = \|f\|_{M^*}\,\|x\|$, que é
+sublinear (é múltiplo da norma) e domina $f$ em $M$. A extensão $F$ satisfaz
+$F(x) \le \|f\|\,\|x\|$, e o mesmo para $-x$, logo $|F(x)| \le \|f\|\,\|x\|$, isto
+é $\|F\| \le \|f\|$. Como $F$ estende $f$, $\|F\| \ge \|f\|$. Igualdade.
+:::
+
+## As consequências de separação
+
+Daqui saem os corolários que justificam todo o capítulo: o dual é rico.
+
+::: {#cor-funcional-norma}
+## Há funcionais que "enxergam" cada vetor
+Para todo $x_0 \ne 0$ em $X$, existe $F \in X^*$ com $\|F\| = 1$ e $F(x_0) =
+\|x_0\|$. Em consequência,
+$$
+\|x_0\| = \max_{\|F\| \le 1,\ F \in X^*} |F(x_0)|,
+$$
+uma fórmula **dual** para a norma.
+:::
+
+::: {.proof}
+No subespaço unidimensional $M = \mathbb{R}x_0$, defina $f(\lambda x_0) =
+\lambda\|x_0\|$, que tem norma $1$. Estenda por @cor-hahn-banach-normado a $F \in
+X^*$ com $\|F\| = 1$ e $F(x_0) = \|x_0\|$.
+:::
+
+::: {#cor-separa-pontos}
+## O dual separa pontos
+Se $x \ne y$ em $X$, existe $F \in X^*$ com $F(x) \ne F(y)$. Logo, se $F(x) =
+F(y)$ para *todo* $F \in X^*$, então $x = y$.
+:::
+
+::: {.callout-tip}
+## A garantia que muda tudo
+Sem Hahn–Banach, a teoria de dualidade poderia ser oca. Com ele, sabemos que
+$X^*$ é sempre **grande o bastante**: distingue qualquer par de pontos, calcula a
+norma, e permite definir a topologia fraca com conteúdo. É também o que viabiliza
+a **bidualidade** $X \hookrightarrow X^{**}$ (todo $x$ define um funcional em
+$X^*$, e a imersão é isométrica precisamente por @cor-funcional-norma); espaços em
+que essa imersão é sobrejetora chamam-se **reflexivos** — como os $L^p$ e $\ell^p$
+com $1 < p < \infty$, mas não $L^1$ nem $L^\infty$.
+:::
+
+## A forma geométrica
+
+Hahn–Banach tem uma face geométrica igualmente célebre: separar conjuntos convexos
+por hiperplanos.
+
+::: {#thm-hahn-banach-geometrico}
+## Separação de convexos
+Sejam $A, B \subseteq X$ convexos, não vazios e **disjuntos**, com $A$ aberto.
+Então existem $F \in X^*$ real e $\alpha \in \mathbb{R}$ tais que
+$$
+F(a) < \alpha \le F(b) \quad \text{para todos } a \in A,\ b \in B.
+$$
+O **hiperplano** $\{F = \alpha\}$ separa $A$ de $B$. Se ambos são fechados e um é
+compacto, a separação pode ser **estrita** dos dois lados.
+:::
+
+A versão geométrica é a base da teoria de otimização convexa e da dualidade em
+programação — o hiperplano separador é o objeto que certifica a impossibilidade
+de um sistema, e os multiplicadores de Lagrange e os preços-sombra são exatamente
+os funcionais $F$ que Hahn–Banach produz.
+
+## Exercícios
+
+::: {#exr-hb-norma-dual}
+Deduza do @cor-funcional-norma que a imersão canônica $J : X \to X^{**}$, dada
+por $(Jx)(F) = F(x)$, é uma **isometria**: $\|Jx\|_{X^{**}} = \|x\|_X$.
+:::
+
+::: {#exr-hb-subespaco-fechado}
+Seja $M \subsetneq X$ um subespaço fechado e $x_0 \notin M$. Mostre, via
+Hahn–Banach, que existe $F \in X^*$ com $F|_M = 0$ e $F(x_0) \ne 0$. *(Funcionais
+detectam quem está fora de um subespaço fechado.)*
+:::
+
+::: {#exr-hb-hilbert-direto}
+Num espaço de Hilbert, prove o @cor-funcional-norma **sem** Hahn–Banach, usando o
+teorema de representação de Riesz. *(Mostra que em Hilbert a riqueza do dual é
+elementar; Hahn–Banach é a generalização a espaços sem produto interno.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-hb-norma-dual
+Para todo $F$ com $\|F\| \le 1$: $|(Jx)(F)| = |F(x)| \le \|F\|\,\|x\| \le \|x\|$,
+logo $\|Jx\| \le \|x\|$. Reciprocamente, pelo @cor-funcional-norma existe $F_0$
+com $\|F_0\| = 1$ e $F_0(x) = \|x\|$, então $\|Jx\| \ge |(Jx)(F_0)| = \|x\|$.
+Combinando, $\|Jx\|_{X^{**}} = \|x\|_X$: a imersão canônica preserva norma.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-hb-hilbert-direto
+Em Hilbert, dado $x_0 \ne 0$, tome $v = x_0/\|x_0\|$ e defina $F(x) = \langle x,
+v\rangle$. Por Cauchy–Schwarz $\|F\| \le 1$, e $F(x_0) = \langle x_0, x_0\rangle/
+\|x_0\| = \|x_0\|$, com $|F(x_0)| = \|x_0\| = \|F\|\,\|x_0\|$ forçando $\|F\| = 1$.
+Riesz fornece o funcional explicitamente — sem Zorn. A força de Hahn–Banach é
+funcionar mesmo sem produto interno.
+:::

@@ -263,7 +263,7 @@ demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
 - [x] `volumes/v14-funcional/02-espacos-hilbert.qmd` — Espaços de Hilbert; projeção e ortogonalidade.
 - [x] `volumes/v14-funcional/03-bases-ortonormais.qmd` — Bases ortonormais e séries de Fourier abstratas.
 - [x] `volumes/v14-funcional/04-operadores-limitados.qmd` — Operadores lineares limitados e espaço dual.
-- [ ] `volumes/v14-funcional/05-hahn-banach.qmd` — Teorema de Hahn–Banach.
+- [x] `volumes/v14-funcional/05-hahn-banach.qmd` — Teorema de Hahn–Banach.
 - [ ] `volumes/v14-funcional/06-principios-fundamentais.qmd` — Banach–Steinhaus, aplicação aberta e gráfico fechado.
 - [ ] `volumes/v14-funcional/07-operadores-compactos.qmd` — Operadores compactos.
 - [ ] `volumes/v14-funcional/08-teorema-espectral.qmd` — Teorema espectral para operadores autoadjuntos compactos.
