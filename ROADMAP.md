@@ -266,7 +266,7 @@ demais são Volumes XIV–XV, numerados após o XIII para não renumerar.
 - [x] `volumes/v14-funcional/05-hahn-banach.qmd` — Teorema de Hahn–Banach.
 - [x] `volumes/v14-funcional/06-principios-fundamentais.qmd` — Banach–Steinhaus, aplicação aberta e gráfico fechado.
 - [x] `volumes/v14-funcional/07-operadores-compactos.qmd` — Operadores compactos.
-- [ ] `volumes/v14-funcional/08-teorema-espectral.qmd` — Teorema espectral para operadores autoadjuntos compactos.
+- [x] `volumes/v14-funcional/08-teorema-espectral.qmd` — Teorema espectral para operadores autoadjuntos compactos.
 
 ## Volume XV — Matemática Discreta e Teoria dos Grafos
 *Objetivo: contagem, estruturas discretas e grafos. Pré-req.: Vols. I, II.*

@@ -1,0 +1,157 @@
+# O teorema espectral {#sec-teorema-espectral}
+
+## Motivação
+
+Na álgebra linear (Vol. VI), o teorema espectral disse que toda matriz simétrica
+real é diagonalizável por uma base ortonormal de autovetores. É um dos resultados
+mais úteis da matemática — e a pergunta natural é: sobrevive em dimensão infinita?
+A resposta, para operadores **compactos autoadjuntos** num espaço de Hilbert, é um
+"sim" quase literal. Reunindo a geometria de Hilbert (@sec-espacos-hilbert), as
+bases ortonormais (@sec-bases-ortonormais) e o espectro discreto dos compactos
+(@sec-operadores-compactos), obtemos: existe uma base ortonormal de autovetores, e
+o operador se "diagonaliza" como uma soma sobre autovalores que tendem a zero.
+Este é o ponto culminante do Volume — e a ferramenta que resolve os problemas de
+**Sturm–Liouville**, dando fundamento rigoroso à separação de variáveis das EDPs
+(@sec-edp-introducao) e às séries de Fourier generalizadas.
+
+## O passo decisivo: existe um autovalor
+
+Em dimensão infinita não há polinômio característico; a existência de autovalores
+precisa ser conquistada pela análise. A compacidade e a autoadjunticidade,
+juntas, a entregam.
+
+::: {#lem-norma-autovalor}
+## A norma é atingida como autovalor
+Seja $T$ um operador **compacto autoadjunto** num espaço de Hilbert $H \ne \{0\}$.
+Então $\|T\|$ ou $-\|T\|$ é autovalor de $T$ — em particular, $T$ possui um
+autovetor associado a um autovalor $\lambda_1$ com $|\lambda_1| = \|T\|$.
+:::
+
+::: {.proof}
+*(Ideia.)* Para $T$ autoadjunto, $\|T\| = \sup_{\|x\|=1} |\langle Tx, x\rangle|$.
+Tome uma sequência $(x_n)$ com $\|x_n\| = 1$ e $\langle Tx_n, x_n\rangle \to
+\lambda$, $|\lambda| = \|T\|$. Um cálculo mostra $\|Tx_n - \lambda x_n\|^2 \le
+\|T\|^2 - 2\lambda\langle Tx_n,x_n\rangle + \lambda^2 \to 0$. Pela **compacidade**,
+$(Tx_n)$ tem subsequência convergente; combinando, $(x_n)$ converge a um $x$ com
+$\|x\| = 1$ e $Tx = \lambda x$. Eis o autovetor.
+:::
+
+::: {.callout-note}
+## Onde cada hipótese entra
+**Autoadjunto** garante que $\|T\|$ se lê pela forma quadrática $\langle Tx,
+x\rangle$ (real!) e que autovalores são reais. **Compacto** garante que a
+sequência maximizante tem limite — é a compacidade recuperada do
+@sec-operadores-compactos. Sem uma das duas, o supremo poderia não ser atingido e
+não haveria autovetor. As duas juntas fazem o milagre.
+:::
+
+## O teorema espectral
+
+Aplicando o lema repetidamente, no complemento ortogonal de cada autovetor já
+encontrado, esgotamos o operador.
+
+::: {#thm-espectral-compacto}
+## Teorema espectral (Hilbert–Schmidt)
+Seja $T$ um operador **compacto autoadjunto** num espaço de Hilbert separável
+$H$. Então existe uma **base ortonormal** $\{e_n\}$ de $H$ formada por
+autovetores de $T$, $Te_n = \lambda_n e_n$, com autovalores **reais** $\lambda_n$
+que, se em número infinito, satisfazem $\lambda_n \to 0$. Para todo $x \in H$,
+$$
+Tx = \sum_n \lambda_n \langle x, e_n\rangle\, e_n.
+$$
+:::
+
+::: {.proof}
+*(Esboço.)* Pelo @lem-norma-autovalor, obtenha $\lambda_1$ com $|\lambda_1| =
+\|T\|$ e autovetor unitário $e_1$. O subespaço $H_1 = \{e_1\}^\perp$ é invariante
+por $T$ (pela autoadjunticidade), e $T|_{H_1}$ é de novo compacto autoadjunto;
+aplique o lema nele para obter $\lambda_2, e_2$ com $|\lambda_2| = \|T|_{H_1}\|
+\le |\lambda_1|$. Iterando, produz-se uma sequência ortonormal de autovetores com
+$|\lambda_1| \ge |\lambda_2| \ge \cdots$. Como $T$ é compacto, $\lambda_n \to 0$
+(@thm-espectro-compacto). O fecho do span dos $e_n$ é tudo, exceto possivelmente o
+núcleo $\ker T$ (autovalor $0$), cuja base ortonormal completa a de $H$.
+:::
+
+::: {.callout-tip}
+## "Diagonalização" em dimensão infinita
+A fórmula $Tx = \sum_n \lambda_n \langle x,e_n\rangle e_n$ é a versão infinita de
+$A = Q\Lambda Q^{\mathsf T}$: nas coordenadas da base de autovetores, $T$ apenas
+**multiplica a $n$-ésima coordenada por $\lambda_n$**. Resolver $Tx = y$, ou
+$(T-\mu)x = y$, vira dividir coordenada a coordenada. É exatamente assim que a
+separação de variáveis resolve a equação do calor e da onda: os autovetores são os
+**modos** (harmônicos), e os autovalores, as frequências.
+:::
+
+## Aplicação: Sturm–Liouville
+
+A joia que amarra todo o Volume aos anteriores. Considere o problema de contorno
+$$
+-\big(p(x)\,u'\big)' + q(x)\,u = \lambda\, w(x)\, u, \qquad u(a) = u(b) = 0,
+$$
+com $p > 0$ — o **problema de Sturm–Liouville**, onipresente na física-matemática.
+
+::: {#thm-sturm-liouville}
+## Teorema de Sturm–Liouville
+Sob hipóteses brandas sobre $p, q, w$, o problema acima possui uma sequência
+infinita de **autovalores reais** $\lambda_1 < \lambda_2 < \cdots \to +\infty$, e
+as **autofunções** correspondentes $u_1, u_2, \dots$ formam uma **base
+ortonormal** de $L^2([a,b], w\,dx)$.
+:::
+
+::: {.callout-note}
+## Por que o teorema espectral resolve
+O truque é inverter o operador diferencial: a solução do problema de contorno
+define um **operador integral** $G$ (com o **núcleo de Green** $k(x,y)$), que é
+**compacto e autoadjunto** em $L^2$. Os autovalores de $G$ são os $1/\lambda_n$, e
+o @thm-espectral-compacto dá a base de autofunções. Assim, a expansão de uma
+condição inicial em série de autofunções — que no Volume XI fizemos para
+$\{\sin(nx)\}$ por separação de variáveis, sem justificar a completude — fica
+**rigorosamente fundamentada**: $\{u_n\}$ é base ortonormal porque $G$ é compacto
+autoadjunto. As séries de Fourier são o caso particular $p = w = 1$, $q = 0$.
+:::
+
+Com isso, o arco se fecha. A teoria da medida deu os espaços $L^2$ completos; a
+geometria de Hilbert deu projeção e ortogonalidade; os princípios fundamentais
+deram as automaticidades; os compactos recuperaram a compacidade; e o teorema
+espectral devolveu, em dimensão infinita, o velho sonho de diagonalizar — agora a
+serviço das equações diferenciais de toda a física.
+
+## Exercícios
+
+::: {#exr-espectral-autoadjunto-real}
+Mostre que todo autovalor de um operador autoadjunto é **real** e que autovetores
+associados a autovalores **distintos** são ortogonais. *(Generaliza o caso
+simétrico do Vol. VI.)*
+:::
+
+::: {#exr-espectral-normalizado}
+Verifique a fórmula $Tx = \sum_n \lambda_n\langle x,e_n\rangle e_n$ aplicando-a a
+um autovetor $e_k$ e a um vetor do núcleo de $T$.
+:::
+
+::: {#exr-green-compacto}
+Para $-u'' = f$ em $[0,1]$ com $u(0)=u(1)=0$, mostre que a solução é $u(x) =
+\int_0^1 k(x,y)f(y)\,dy$ com $k(x,y) = \min(x,y) - xy$, e argumente que o operador
+$f \mapsto u$ é compacto e autoadjunto em $L^2[0,1]$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-espectral-autoadjunto-real
+Se $Tx = \lambda x$ com $x \ne 0$, então $\lambda\|x\|^2 = \langle Tx, x\rangle =
+\langle x, Tx\rangle = \overline\lambda\|x\|^2$, logo $\lambda = \overline\lambda$
+é real. Se $Tx = \lambda x$ e $Ty = \mu y$ com $\lambda \ne \mu$ (reais), então
+$\lambda\langle x,y\rangle = \langle Tx,y\rangle = \langle x,Ty\rangle =
+\mu\langle x,y\rangle$, donde $(\lambda - \mu)\langle x,y\rangle = 0$ e $\langle
+x,y\rangle = 0$: ortogonais.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-espectral-normalizado
+Para $x = e_k$: $\langle e_k, e_n\rangle = \delta_{kn}$, então $\sum_n
+\lambda_n\langle e_k,e_n\rangle e_n = \lambda_k e_k = Te_k$. ✓ Para $x \in \ker T$
+($Tx = 0$): $x$ é ortogonal a todo autovetor de autovalor não nulo, logo todos os
+termos $\langle x, e_n\rangle$ com $\lambda_n \ne 0$ se anulam, e a soma dá $0 =
+Tx$. ✓ A fórmula só "vê" as componentes de autovalor não nulo.
+:::
