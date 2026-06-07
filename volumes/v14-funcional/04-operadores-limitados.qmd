@@ -1,0 +1,172 @@
+# Operadores lineares limitados {#sec-operadores-limitados}
+
+## Motivação
+
+Espaços são apenas metade da história; a outra metade são as **aplicações** entre
+eles. Em dimensão finita, toda transformação linear é automaticamente contínua e
+representável por uma matriz (Vol. VI). Em dimensão infinita, surge uma novidade:
+existem transformações lineares **descontínuas**, e a continuidade passa a ser uma
+hipótese — equivalente à **limitação**. Os operadores lineares limitados formam,
+eles próprios, um espaço de Banach, com uma norma que mede o quanto o operador
+"estica" os vetores. Entre eles, os mais simples são os **funcionais** (operadores
+a valores escalares), cujo conjunto é o **dual** do espaço — objeto que governa
+toda a teoria, da convergência fraca ao teorema de Hahn–Banach.
+
+## Continuidade igual a limitação
+
+::: {#def-operador-limitado}
+## Operador limitado e sua norma
+Sejam $X, Y$ espaços normados. Um operador linear $T : X \to Y$ é **limitado** se
+existe $C \ge 0$ com $\|Tx\| \le C\|x\|$ para todo $x$. A **norma do operador** é
+$$
+\|T\| = \sup_{x \ne 0} \frac{\|Tx\|}{\|x\|} = \sup_{\|x\|=1} \|Tx\|,
+$$
+o menor $C$ que serve.
+:::
+
+::: {#thm-continuidade-limitacao}
+## Contínuo ⟺ limitado
+Para um operador linear $T : X \to Y$, são equivalentes: (i) $T$ é contínuo; (ii)
+$T$ é contínuo em $0$; (iii) $T$ é limitado.
+:::
+
+::: {.proof}
+*(iii)$\Rightarrow$(i)* Se $\|Tx\| \le C\|x\|$, então $\|Tx - Tx'\| = \|T(x-x')\|
+\le C\|x - x'\|$: $T$ é (Lipschitz, logo uniformemente) contínuo.
+*(i)$\Rightarrow$(ii)* trivial. *(ii)$\Rightarrow$(iii)* Por continuidade em $0$,
+há $\delta$ com $\|x\| \le \delta \Rightarrow \|Tx\| \le 1$. Para $x \ne 0$,
+aplique a $\delta x/\|x\|$: $\|T(\delta x/\|x\|)\| \le 1$, isto é $\|Tx\| \le
+\frac1\delta\|x\|$. Logo $T$ é limitado com $C = 1/\delta$.
+:::
+
+::: {.callout-warning}
+## Operadores descontínuos existem
+A linearidade **não** garante continuidade em dimensão infinita. No espaço dos
+polinômios com a norma do sup em $[0,1]$, a derivação $D : p \mapsto p'$ é linear
+mas **não limitada**: para $p_n(t) = t^n$, $\|p_n\|_\infty = 1$ mas $\|D p_n\|_
+\infty = \|n t^{n-1}\|_\infty = n \to \infty$. A razão profunda: o domínio não é
+completo. Em espaços de Banach, operadores definidos em *todo* o espaço tendem a
+ser limitados (é o que o teorema do gráfico fechado, @sec-principios-fundamentais,
+precisará para a derivação em domínios adequados).
+:::
+
+## O espaço dos operadores
+
+::: {#thm-bxy-banach}
+## $\mathcal{B}(X,Y)$ é Banach
+O conjunto $\mathcal{B}(X,Y)$ dos operadores lineares limitados de $X$ em $Y$,
+com a norma de operador, é um espaço normado. Se $Y$ é **completo**, então
+$\mathcal{B}(X,Y)$ é um **espaço de Banach**.
+:::
+
+::: {.proof}
+*(Completude.)* Seja $(T_n)$ de Cauchy em $\mathcal{B}(X,Y)$. Para cada $x$,
+$\|T_n x - T_m x\| \le \|T_n - T_m\|\,\|x\| \to 0$, logo $(T_n x)$ é de Cauchy em
+$Y$; como $Y$ é completo, defina $Tx = \lim_n T_n x$. A linearidade passa ao
+limite, e mostra-se que $T$ é limitado e $\|T_n - T\| \to 0$. Logo
+$\mathcal{B}(X,Y)$ é completo.
+:::
+
+A composição de operadores limitados é limitada, com $\|ST\| \le \|S\|\,\|T\|$ —
+por isso $\mathcal{B}(X) = \mathcal{B}(X,X)$ é uma **álgebra de Banach**, o
+ambiente da teoria espectral (@sec-teorema-espectral).
+
+## O espaço dual
+
+O caso $Y = \mathbb{C}$ (ou $\mathbb{R}$) merece nome próprio.
+
+::: {#def-dual}
+## Espaço dual
+O **dual** de um espaço normado $X$ é $X^* = \mathcal{B}(X, \mathbb{C})$, o espaço
+dos **funcionais lineares limitados** $\varphi : X \to \mathbb{C}$, com a norma
+$\|\varphi\| = \sup_{\|x\|=1}|\varphi(x)|$. Como $\mathbb{C}$ é completo, $X^*$ é
+**sempre** um espaço de Banach, mesmo que $X$ não seja.
+:::
+
+::: {#exm-duais-conhecidos}
+## Duais concretos
+- $(\ell^p)^* = \ell^q$ para $1 \le p < \infty$, com $\frac1p + \frac1q = 1$: a
+  dualidade é $\varphi_y(x) = \sum_n x_n y_n$, e Hölder (@thm-holder) dá a norma.
+- Analogamente $(L^p)^* = L^q$ para $1 \le p < \infty$.
+- Para um Hilbert $H$, o teorema de representação de Riesz
+  (@cor-riesz-representacao) dá $H^* \cong H$: todo funcional é $\langle \cdot,
+  v\rangle$. Hilbert é **autodual**.
+:::
+
+::: {.callout-note}
+## Por que o dual importa
+O dual é a maneira de "sondar" um espaço por medições lineares. Muitas
+propriedades de $x$ se leem testando-o contra todos os $\varphi \in X^*$ — e a
+pergunta "há funcionais suficientes para separar pontos?" é exatamente o que o
+**teorema de Hahn–Banach** (@sec-hahn-banach) responderá afirmativamente. O dual
+também define a **convergência fraca** ($x_n \rightharpoonup x$ se $\varphi(x_n)
+\to \varphi(x)$ para todo $\varphi$), uma noção mais frouxa que recupera parte da
+compacidade perdida em dimensão infinita.
+:::
+
+## O adjunto
+
+Operadores entre espaços de Hilbert têm um "transposto" natural, generalizando a
+matriz transposta conjugada.
+
+::: {#def-adjunto}
+## Operador adjunto
+Seja $T \in \mathcal{B}(H)$ num Hilbert $H$. O **adjunto** $T^* \in
+\mathcal{B}(H)$ é o único operador que satisfaz
+$$
+\langle Tx, y\rangle = \langle x, T^* y\rangle \quad \text{para todos } x, y \in
+H.
+$$
+Sua existência e unicidade decorrem do teorema de Riesz. Vale $\|T^*\| = \|T\|$ e
+$\|T^*T\| = \|T\|^2$.
+:::
+
+::: {#def-autoadjunto}
+## Operadores autoadjuntos e unitários
+$T$ é **autoadjunto** (ou hermitiano) se $T^* = T$; é **unitário** se $T^*T =
+TT^* = I$ (preserva o produto interno). Os autoadjuntos generalizam as matrizes
+simétricas; são os operadores com **espectro real**, centrais na física quântica
+e no teorema espectral do @sec-teorema-espectral.
+:::
+
+## Exercícios
+
+::: {#exr-norma-operador-integral}
+Seja $T : C[0,1] \to C[0,1]$ dado por $(Tf)(x) = \int_0^x f(t)\,dt$. Mostre que
+$T$ é limitado e calcule (ou estime) $\|T\|$ na norma do sup.
+:::
+
+::: {#exr-derivacao-ilimitada}
+Mostre em detalhe que a derivação $D : p \mapsto p'$ no espaço dos polinômios com
+norma do sup em $[0,1]$ é linear mas não limitada.
+:::
+
+::: {#exr-shift-norma}
+No espaço $\ell^2$, o **shift** $S(x_1, x_2, \dots) = (0, x_1, x_2, \dots)$.
+Mostre que $S$ é limitado com $\|S\| = 1$, e calcule seu adjunto $S^*$.
+:::
+
+::: {#exr-composicao-norma}
+Prove que $\|ST\| \le \|S\|\,\|T\|$ e dê um exemplo em que a desigualdade é
+estrita.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-norma-operador-integral
+Para $\|f\|_\infty \le 1$, $|(Tf)(x)| = \left|\int_0^x f\right| \le \int_0^x|f|
+\le x \le 1$, logo $\|Tf\|_\infty \le 1$ e $T$ é limitado com $\|T\| \le 1$.
+Tomando $f \equiv 1$: $(Tf)(x) = x$, $\|Tf\|_\infty = 1 = \|f\|_\infty$. Logo
+$\|T\| = 1$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-shift-norma
+Como $\|Sx\|^2 = \sum_n |x_n|^2 = \|x\|^2$, $S$ preserva norma: $\|S\| = 1$ (é uma
+**isometria**, embora não sobrejetora). O adjunto satisfaz $\langle Sx, y\rangle
+= \sum_n x_n \overline{y_{n+1}} = \langle x, S^*y\rangle$, donde $S^*(y_1, y_2,
+\dots) = (y_2, y_3, \dots)$ — o **shift à esquerda**. Note que $S^*S = I$ mas
+$SS^* \ne I$: $S$ não é unitário (a dimensão infinita permite isometrias não
+sobrejetoras).
+:::
