@@ -1,0 +1,186 @@
+# Espaços $L^p$ {#sec-espacos-lp}
+
+## Motivação
+
+A integral de Lebesgue não apenas integra funções: ela permite **medir o tamanho**
+de uma função e a **distância** entre duas. Definindo $\|f\|_p =
+\left(\int |f|^p\right)^{1/p}$, transformamos o conjunto das funções
+integráveis num **espaço métrico** — e, graças aos teoremas de convergência, num
+espaço **completo**. Esse é o ponto onde a teoria da medida deságua na análise
+funcional (Vol. XIV): os espaços $L^p$, e em especial o espaço de Hilbert $L^2$,
+são o palco natural das séries de Fourier, das equações diferenciais e da
+mecânica quântica. Aqui os construímos e provamos suas três propriedades
+fundamentais: as desigualdades de Hölder e Minkowski, e a completude
+(Riesz–Fischer).
+
+## Definição
+
+::: {#def-espaco-lp}
+## Os espaços $L^p$
+Seja $E \in \mathcal{M}$ e $1 \le p < \infty$. Para $f$ mensurável, defina
+$$
+\|f\|_p = \left(\int_E |f|^p\, dm\right)^{1/p}.
+$$
+O espaço $L^p(E)$ é o conjunto das (classes de) funções mensuráveis com
+$\|f\|_p < \infty$, **identificando** funções iguais q.t.p. Para $p = \infty$,
+$\|f\|_\infty = \operatorname*{ess\,sup}|f|$ é o **supremo essencial** (o menor
+$M$ com $|f| \le M$ q.t.p.), e $L^\infty(E)$ são as funções essencialmente
+limitadas.
+:::
+
+::: {.callout-note}
+## Por que quocientar por "igual q.t.p."
+Se $f = 0$ q.t.p. mas $f \ne 0$ em alguns pontos, então $\|f\|_p = 0$ embora $f$
+não seja a função nula. Para que $\|\cdot\|_p$ seja uma **norma** de verdade (com
+$\|f\| = 0 \Rightarrow f = 0$), declaramos iguais as funções que coincidem
+q.t.p. Os elementos de $L^p$ são, a rigor, **classes de equivalência** — mas
+trabalhamos com representantes, como de hábito. É a regra de ouro de Lebesgue
+(@prp-nula-integral) erguida a princípio estrutural.
+:::
+
+## As desigualdades fundamentais
+
+Tudo repousa numa relação entre expoentes.
+
+::: {#def-expoentes-conjugados}
+## Expoentes conjugados
+$p, q \in [1,\infty]$ são **conjugados** se $\frac1p + \frac1q = 1$ (com a
+convenção $\frac1\infty = 0$). Assim $2$ é conjugado de si mesmo; $1$ e $\infty$
+são conjugados.
+:::
+
+::: {#thm-holder}
+## Desigualdade de Hölder
+Sejam $p, q$ conjugados, $f \in L^p(E)$ e $g \in L^q(E)$. Então $fg \in L^1(E)$ e
+$$
+\int_E |fg|\, dm \ \le\ \|f\|_p\, \|g\|_q.
+$$
+:::
+
+::: {.proof}
+Para $p = 1, q = \infty$ é imediato ($|fg| \le |f|\,\|g\|_\infty$). Para $1 < p <
+\infty$, parte-se da **desigualdade de Young**: para $a, b \ge 0$,
+$ab \le \frac{a^p}{p} + \frac{b^q}{q}$ (consequência da concavidade do
+logaritmo). Normalizando $f$ e $g$ para $\|f\|_p = \|g\|_q = 1$, aplique Young
+com $a = |f(x)|$, $b = |g(x)|$ e integre:
+$$
+\int |fg| \le \frac1p \int |f|^p + \frac1q \int |g|^q = \frac1p + \frac1q = 1 =
+\|f\|_p\|g\|_q.
+$$
+O caso geral segue por homogeneidade.
+:::
+
+::: {#thm-minkowski}
+## Desigualdade de Minkowski (desigualdade triangular)
+Para $1 \le p \le \infty$ e $f, g \in L^p(E)$,
+$$
+\|f + g\|_p \ \le\ \|f\|_p + \|g\|_p.
+$$
+:::
+
+::: {.proof}
+*(Para $1 < p < \infty$.)* Escreva $|f+g|^p \le |f+g|^{p-1}(|f| + |g|)$ e integre,
+aplicando Hölder a cada parcela com expoentes $p$ e $q = \frac{p}{p-1}$:
+$$
+\|f+g\|_p^p \le \big(\|f\|_p + \|g\|_p\big)\,\big\||f+g|^{p-1}\big\|_q =
+\big(\|f\|_p + \|g\|_p\big)\,\|f+g\|_p^{p-1}.
+$$
+Dividindo por $\|f+g\|_p^{p-1}$ (se não nulo) chega-se ao resultado.
+:::
+
+Minkowski é precisamente o que faltava: ela diz que $\|\cdot\|_p$ satisfaz a
+desigualdade triangular, logo é uma **norma** e $L^p$ é um **espaço vetorial
+normado** (@sec-espacos-normados, no Vol. XIV).
+
+## Completude: o teorema de Riesz–Fischer
+
+A propriedade que coroa a teoria e que Riemann jamais conseguiu entregar.
+
+::: {#thm-riesz-fischer}
+## Riesz–Fischer
+Para $1 \le p \le \infty$, o espaço $L^p(E)$ é **completo**: toda sequência de
+Cauchy em $\|\cdot\|_p$ converge a um elemento de $L^p(E)$. Em outras palavras,
+$L^p$ é um **espaço de Banach**.
+:::
+
+::: {.proof}
+*(Esboço, $p < \infty$.)* Dada $(f_n)$ de Cauchy, extraia uma subsequência
+$(f_{n_k})$ com $\|f_{n_{k+1}} - f_{n_k}\|_p \le 2^{-k}$. A série
+$g = |f_{n_1}| + \sum_k |f_{n_{k+1}} - f_{n_k}|$ tem norma finita (Minkowski +
+soma geométrica), logo $g \in L^p$ e, pela @cor-series-integral, $g < \infty$
+q.t.p. Então a série telescópica $f_{n_1} + \sum_k (f_{n_{k+1}} - f_{n_k})$
+converge **absolutamente q.t.p.** a uma função $f$, com $|f| \le g$. A
+convergência dominada (@thm-convergencia-dominada), com dominador $g^p$, dá
+$\|f_{n_k} - f\|_p \to 0$; e como a sequência original é de Cauchy, ela toda
+converge a $f$. Logo $L^p$ é completo.
+:::
+
+::: {.callout-tip}
+## Onde a completude vem de Lebesgue
+Repare no maquinário: a prova usa Minkowski, a integração termo a termo de séries
+não negativas e a convergência dominada — **tudo** privilégio da integral de
+Lebesgue. Com a integral de Riemann, o espaço análogo (funções
+Riemann-integráveis com $\|\cdot\|_p$) é **incompleto**: sequências de Cauchy
+podem convergir a funções não Riemann-integráveis. A completude de $L^p$ é o
+presente que a teoria da medida dá à análise — e a razão de ela existir.
+:::
+
+## O caso de honra: $L^2$
+
+::: {#def-l2-produto-interno}
+## $L^2$ e seu produto interno
+O espaço $L^2(E)$ é especial: a norma $\|f\|_2$ provém de um **produto interno**
+$$
+\langle f, g \rangle = \int_E f\,\overline{g}\, dm,
+$$
+(com conjugação no caso complexo). Hölder com $p = q = 2$ é a desigualdade de
+**Cauchy–Schwarz**: $|\langle f,g\rangle| \le \|f\|_2\,\|g\|_2$.
+:::
+
+Sendo completo e munido de produto interno, $L^2(E)$ é um **espaço de Hilbert**
+(@sec-espacos-hilbert). É o ambiente onde "funções têm geometria": ângulos,
+ortogonalidade, projeções. As séries de Fourier (@sec-series-fourier, no Vol. XI)
+ganham aqui seu sentido definitivo — coeficientes de Fourier são *coordenadas* na
+base ortonormal $\{e^{inx}\}$, e a identidade de Parseval é o teorema de
+Pitágoras em dimensão infinita. Esse fio será retomado no Volume XIV.
+
+## Exercícios
+
+::: {#exr-inclusao-lp}
+Mostre que, se $m(E) < \infty$ e $1 \le p < r \le \infty$, então $L^r(E)
+\subseteq L^p(E)$. *(Sugestão: aplique Hölder a $|f|^p \cdot 1$.)* Mostre, com um
+exemplo em $E = (0,1)$, que a inclusão é estrita.
+:::
+
+::: {#exr-reta-toda-sem-inclusao}
+Mostre que em $E = \mathbb{R}$ (medida infinita) **não** há inclusão entre $L^1$ e
+$L^2$: exiba $f \in L^1 \setminus L^2$ e $g \in L^2 \setminus L^1$.
+:::
+
+::: {#exr-cauchy-schwarz}
+Use Cauchy–Schwarz para mostrar que, se $f \in L^2([0,1])$, então $f \in
+L^1([0,1])$ com $\|f\|_1 \le \|f\|_2$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-inclusao-lp
+Para $p < r < \infty$, sejam $s = r/p > 1$ e $s'$ seu conjugado. Por Hölder,
+$$
+\int_E |f|^p \cdot 1 \, dm \le \big\||f|^p\big\|_s \, \|1\|_{s'} =
+\left(\int_E |f|^r\right)^{p/r} m(E)^{1/s'} < \infty,
+$$
+pois $f \in L^r$ e $m(E) < \infty$. Logo $f \in L^p$. Em $(0,1)$, a função
+$f(x) = x^{-1/r}$ está em $L^p$ mas não em $L^r$ (a potência fica no limiar),
+mostrando que a inclusão é estrita.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-reta-toda-sem-inclusao
+Tome $f(x) = \frac1x \chi_{(1,\infty)}$, que tem $\int f^2 = \int_1^\infty x^{-2} = 1 <
+\infty$ (está em $L^2$) mas $\int |f| = \int_1^\infty x^{-1} = \infty$ (fora de
+$L^1$). E $g(x) = \frac{1}{\sqrt x}\chi_{(0,1)}$ tem $\int |g| = 2 < \infty$
+($L^1$) mas $\int g^2 = \int_0^1 x^{-1} = \infty$ (fora de $L^2$). Sem medida
+finita, nenhuma inclusão vale.
+:::
