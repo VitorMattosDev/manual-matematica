@@ -1,0 +1,191 @@
+# A integral de Lebesgue {#sec-integral-lebesgue}
+
+## Motivação
+
+Temos tudo de que precisávamos: uma medida $m$ nos conjuntos mensuráveis e a
+classe das funções mensuráveis, com seus átomos — as funções simples. Agora
+montamos a integral em três andares, do concreto ao geral:
+
+1. para **funções simples**, integrar é somar (valor) × (medida do conjunto);
+2. para **mensuráveis não negativas**, tomar o supremo das simples por baixo;
+3. para **mensuráveis quaisquer**, separar parte positiva e negativa.
+
+O resultado integra muito mais funções que Riemann — a de Dirichlet, por exemplo
+— e, sobretudo, comporta-se esplendidamente sob limites, como o próximo capítulo
+mostrará.
+
+## Integral de uma função simples
+
+::: {#def-integral-simples}
+## Integral de função simples
+Seja $\varphi = \sum_{i=1}^k a_i \chi_{A_i}$ uma função simples **não negativa**,
+com os $A_i \in \mathcal{M}$ disjuntos e $a_i \ge 0$. Sua integral é
+$$
+\int_E \varphi \, dm = \sum_{i=1}^k a_i\, m(A_i \cap E),
+$$
+com a convenção $0 \cdot \infty = 0$.
+:::
+
+É a "área" no sentido literal: altura $a_i$ vezes a medida da base $A_i$. Mostra-se
+que o valor não depende da representação escolhida de $\varphi$, e que a integral
+é linear e monótona nas funções simples.
+
+::: {#exm-integral-dirichlet}
+## A de Dirichlet, enfim integrada
+A função de Dirichlet é $\chi_{\mathbb{Q}}$, simples (assume os valores $0$ e
+$1$). Em $[0,1]$,
+$$
+\int_{[0,1]} \chi_{\mathbb{Q}}\, dm = 1 \cdot m(\mathbb{Q} \cap [0,1]) + 0 \cdot
+m(\text{irracionais}) = 1 \cdot 0 = 0.
+$$
+O monstro que Riemann não conseguia integrar (@sec-integral-riemann) tem integral
+de Lebesgue **zero** — e a razão é límpida: ele é não nulo apenas num conjunto de
+medida nula.
+:::
+
+## Integral de uma função não negativa
+
+::: {#def-integral-naonegativa}
+## Integral de $f \ge 0$
+Para $f : E \to [0,\infty]$ mensurável,
+$$
+\int_E f\, dm = \sup\left\{ \int_E \varphi\, dm \ : \ 0 \le \varphi \le f,\
+\varphi \text{ simples} \right\}.
+$$
+:::
+
+Pelo teorema de aproximação (@thm-aproximacao-simples), existe sempre uma
+sequência de simples $\varphi_n \uparrow f$, então o supremo é atingido como
+limite — fato que o **teorema da convergência monótona** (@sec-teoremas-convergencia)
+tornará preciso. A integral pode valer $+\infty$.
+
+::: {#def-funcao-integravel-naoneg}
+## Integrabilidade
+Uma função mensurável $f \ge 0$ é **integrável** se $\int_E f\, dm < \infty$.
+:::
+
+## Integral de uma função qualquer
+
+Para sinais mistos, decompomos em parte positiva e negativa.
+
+::: {#def-integral-geral}
+## Integral de Lebesgue
+Para $f : E \to \mathbb{R}$ mensurável, sejam $f^+ = \max(f, 0)$ e $f^- =
+\max(-f, 0)$, de modo que $f = f^+ - f^-$ e $|f| = f^+ + f^-$. Dizemos que $f$ é
+**integrável** (ou **somável**) se $\int_E |f|\, dm < \infty$ — equivalentemente,
+se $\int f^+$ e $\int f^-$ são ambas finitas — e então
+$$
+\int_E f\, dm = \int_E f^+\, dm - \int_E f^-\, dm.
+$$
+O espaço das funções integráveis em $E$ é denotado $L^1(E)$.
+:::
+
+::: {.callout-note}
+## Integrável $\iff$ absolutamente integrável
+Diferente da integral imprópria de Riemann, em Lebesgue $f$ é integrável **se, e
+só se,** $|f|$ é. Não há "convergência condicional": a integral de Lebesgue é
+intrinsecamente absoluta. Funções como $\frac{\sin x}{x}$ em $[1,\infty)$, que
+têm integral imprópria de Riemann mas $\int |f| = \infty$, **não** estão em
+$L^1$ — uma diferença que vale ter em mente.
+:::
+
+## Propriedades fundamentais
+
+::: {#thm-propriedades-integral}
+## Linearidade e monotonia
+Sejam $f, g \in L^1(E)$ e $\alpha, \beta \in \mathbb{R}$. Então:
+
+1. **(linearidade)** $\alpha f + \beta g \in L^1(E)$ e $\int (\alpha f + \beta g)
+   = \alpha \int f + \beta \int g$;
+2. **(monotonia)** se $f \le g$ q.t.p., então $\int_E f \le \int_E g$;
+3. **(desigualdade triangular)** $\left|\int_E f\right| \le \int_E |f|$.
+:::
+
+A monotonia e a desigualdade triangular seguem da definição; a linearidade exige
+um pouco de trabalho com as funções simples e a convergência monótona, mas é
+padrão. Registramos a propriedade que mais distingue Lebesgue:
+
+::: {#prp-nula-integral}
+## Conjuntos nulos não contam
+Se $f = g$ q.t.p., então $\int_E f = \int_E g$. Em particular, se $f = 0$
+q.t.p., então $\int_E f = 0$; e se $m(E) = 0$, então $\int_E f = 0$ para toda
+$f$.
+:::
+
+::: {.proof}
+A diferença $f - g$ é nula fora de um conjunto $N$ com $m(N) = 0$. Para qualquer
+simples $0 \le \varphi \le |f-g|$, $\varphi$ se anula fora de $N$, logo
+$\int \varphi = \sum a_i\, m(A_i \cap N) = 0$. Tomando o supremo,
+$\int |f - g| = 0$, e pela desigualdade triangular $\int f = \int g$.
+:::
+
+::: {.callout-tip}
+## A regra de ouro de Lebesgue
+*"O que acontece num conjunto de medida nula não afeta a integral."* É por isso
+que funções iguais q.t.p. são identificadas, que a de Dirichlet integra a zero, e
+que toda a teoria funciona "a menos de conjuntos nulos". Guarde este princípio:
+ele organiza tudo o que vem a seguir, dos teoremas de convergência aos espaços
+$L^p$.
+:::
+
+## A integral como medida
+
+Um último fato amarra a integral de volta à medida: integrar uma função não
+negativa produz uma **nova** medida.
+
+::: {#prp-integral-medida}
+## A integral define uma medida
+Seja $f \ge 0$ mensurável em $E$. A função de conjunto
+$$
+\nu(A) = \int_A f\, dm = \int_E f\,\chi_A\, dm, \qquad A \in \mathcal{M},\ A
+\subseteq E,
+$$
+é uma medida sobre os mensuráveis de $E$.
+:::
+
+A σ-aditividade de $\nu$ é a convergência monótona aplicada às somas parciais
+$\sum_{k\le N} \chi_{A_k}$. Essa construção — "medida com densidade $f$" — é a
+base da **probabilidade contínua**: uma densidade de probabilidade
+(@sec-vars-continuas, no Vol. XII) é exatamente um $f \ge 0$ com
+$\int_{\mathbb{R}} f\, dm = 1$, e $\nu$ é a distribuição correspondente. A dívida
+do @sec-medida-motivacao está, com isso, paga.
+
+## Exercícios
+
+::: {#exr-integral-simples-calc}
+Calcule $\int_{[0,3]} \varphi\, dm$ para $\varphi = 2\chi_{[0,1)} + 5\chi_{[1,2]}
++ 0\cdot\chi_{(2,3]}$.
+:::
+
+::: {#exr-integral-cantor}
+Seja $f = \chi_C$ a indicadora do conjunto de Cantor (@exr-cantor-nulo). Mostre
+que $\int_{[0,1]} f\, dm = 0$, embora $C$ seja não enumerável.
+:::
+
+::: {#exr-monotonia-estrita}
+Mostre que se $f \ge 0$ é mensurável e $\int_E f\, dm = 0$, então $f = 0$ q.t.p.
+*(Sugestão: considere os conjuntos $\{f > 1/n\}$ e mostre que têm medida nula.)*
+:::
+
+::: {#exr-l1-absoluta}
+Explique por que $f(x) = \frac{\sin x}{x}$ **não** pertence a $L^1([1,\infty))$,
+apesar de $\int_1^\infty \frac{\sin x}{x}\, dx$ convergir como integral imprópria
+de Riemann.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-integral-cantor
+$C$ tem medida nula (@exr-cantor-nulo), logo $f = \chi_C = 0$ q.t.p. Pela
+@prp-nula-integral, $\int_{[0,1]} \chi_C\, dm = 0$. A cardinalidade de $C$ é
+irrelevante: o que conta para a integral é a **medida**, e $m(C) = 0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-monotonia-estrita
+Seja $A_n = \{x \in E : f(x) > 1/n\}$. Em $A_n$, $f \ge \frac1n \chi_{A_n}$, logo
+$0 = \int_E f \ge \int_E \frac1n \chi_{A_n} = \frac1n m(A_n)$, forçando
+$m(A_n) = 0$. Mas $\{f > 0\} = \bigcup_n A_n$ é união enumerável de nulos, logo
+nula. Portanto $f = 0$ q.t.p.
+:::
