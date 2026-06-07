@@ -4,6 +4,8 @@ Primeiro título da série *Manuais de Ciências* — um livro aberto que vai da
 aritmética à geometria diferencial. Construído com [Quarto](https://quarto.org)
 e publicado no GitHub Pages.
 
+**📖 Leia online:** https://vitormattosdev.github.io/manual-matematica/
+
 ## Conteúdo
 
 A obra está **completa**, em 13 volumes que vão dos fundamentos à análise
