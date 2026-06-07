@@ -1,0 +1,171 @@
+# Emparelhamentos e fluxos {#sec-emparelhamentos-fluxos}
+
+## Motivação
+
+Fechamos o Volume com dois temas que coroam a teoria dos grafos por seu poder
+aplicado e pela elegância de seus teoremas de **dualidade**. O **emparelhamento**
+responde a problemas de atribuição: casar trabalhadores a tarefas, candidatos a
+vagas, órgãos a receptores — sempre maximizando os pares compatíveis. O **fluxo
+em redes** modela o transporte de uma quantidade através de uma rede com
+capacidades: água em tubos, dados em cabos, mercadorias em rotas. O notável é que
+ambos repousam num mesmo princípio profundo — o teorema **fluxo máximo / corte
+mínimo** —, que diz que o melhor que se pode transportar é exatamente o que o
+gargalo mais estreito permite. É a teoria onde a combinatória encontra a
+otimização, com algoritmos eficientes e teoremas min–max de rara beleza.
+
+## Emparelhamentos
+
+::: {#def-emparelhamento}
+## Emparelhamento
+Um **emparelhamento** $M$ num grafo é um conjunto de arestas **sem vértices em
+comum** (duas a duas não adjacentes). Um vértice em alguma aresta de $M$ é
+**saturado**. $M$ é **máximo** se tem o maior número possível de arestas, e
+**perfeito** se satura *todos* os vértices.
+:::
+
+O caso mais estudado é o **bipartido**: lados $X$ (trabalhadores) e $Y$ (tarefas),
+arestas = compatibilidades. Quando se pode atribuir a *cada* trabalhador uma tarefa
+distinta? A resposta é o teorema de Hall.
+
+::: {#thm-hall}
+## Teorema de Hall (dos casamentos)
+Num grafo bipartido com lados $X$ e $Y$, existe um emparelhamento que **satura
+$X$** (cada vértice de $X$ é casado) se, e somente se, vale a **condição de Hall**:
+para todo subconjunto $S \subseteq X$,
+$$
+|N(S)| \ge |S|,
+$$
+onde $N(S)$ é o conjunto dos vizinhos de $S$ em $Y$.
+:::
+
+::: {.callout-tip}
+## "Nenhum grupo é grande demais para seus vizinhos"
+A condição de Hall é intuitiva: se algum conjunto de $k$ trabalhadores conhece, no
+total, menos de $k$ tarefas, é impossível dar a cada um a sua — há gente demais
+para vagas de menos. O teorema diz que esse obstáculo óbvio é o **único**: se
+nenhum grupo é grande demais para seu conjunto de vizinhos, o emparelhamento
+existe. É um teorema **min–max** disfarçado e a base de todo escalonamento e
+atribuição.
+:::
+
+::: {#exm-baralho}
+## Uma aplicação clássica
+Distribua um baralho de $52$ cartas em $13$ pilhas de $4$. Então é sempre possível
+escolher uma carta de cada pilha de modo a obter as $13$ denominações (Ás, $2$,
+…, Rei), uma de cada. *Prova:* o grafo bipartido pilhas × denominações satisfaz
+Hall, pois quaisquer $k$ pilhas contêm $4k$ cartas, que se distribuem por ao menos
+$k$ denominações (cada denominação tem só $4$ cartas no total).
+:::
+
+## Redes de fluxo
+
+::: {#def-rede-fluxo}
+## Rede e fluxo
+Uma **rede de fluxo** é um dígrafo com uma **fonte** $s$, um **sorvedouro** $t$ e
+uma **capacidade** $c(e) \ge 0$ em cada aresta. Um **fluxo** atribui a cada aresta
+um valor $0 \le f(e) \le c(e)$ respeitando a **conservação**: em todo vértice
+exceto $s$ e $t$, o que entra é igual ao que sai. O **valor** do fluxo é o total
+que sai de $s$.
+:::
+
+::: {#def-corte}
+## Corte
+Um **corte** $(A, B)$ separa os vértices em dois lados com $s \in A$ e $t \in B$.
+Sua **capacidade** é a soma das capacidades das arestas que vão de $A$ para $B$ —
+o "gargalo" daquela divisão. Todo fluxo de $s$ a $t$ é limitado pela capacidade de
+qualquer corte.
+:::
+
+## O teorema fluxo máximo / corte mínimo
+
+O resultado central, um dos mais célebres teoremas min–max da matemática.
+
+::: {#thm-maxflow-mincut}
+## Fluxo máximo = corte mínimo (Ford–Fulkerson)
+Em toda rede de fluxo, o **valor máximo** de um fluxo de $s$ a $t$ é igual à
+**capacidade mínima** de um corte que separa $s$ de $t$:
+$$
+\max_{f} \ \text{valor}(f) \ = \ \min_{(A,B)} \ \text{capacidade}(A,B).
+$$
+:::
+
+::: {.proof}
+*(Ideia.)* Que $\max \le \min$ é claro: todo fluxo cruza todo corte, logo é
+limitado por sua capacidade. Para a igualdade, parta de um fluxo máximo e considere
+o **grafo residual** (capacidades não usadas, mais arestas de "devolução"). Se não
+há caminho aumentante de $s$ a $t$ no residual (e não há, no ótimo), então o
+conjunto $A$ dos vértices alcançáveis de $s$ no residual define um corte cujas
+arestas para $B$ estão **saturadas** — sua capacidade iguala o valor do fluxo.
+Esse corte realiza o mínimo.
+:::
+
+::: {.callout-note}
+## O gargalo manda
+A mensagem é límpida e quase física: **o quanto se pode transportar é exatamente o
+quanto o estrangulamento mais apertado deixa passar**. Aumentar a capacidade de
+qualquer aresta fora do corte mínimo não ajuda em nada; só desentupir o gargalo
+aumenta o fluxo. O algoritmo de Ford–Fulkerson encontra o ótimo procurando
+repetidamente **caminhos aumentantes** — e, de quebra, sua prova *constrói* o corte
+mínimo. Eficiência e certificado de otimalidade no mesmo gesto.
+:::
+
+## A unidade por trás de tudo
+
+Emparelhamento e fluxo não são tópicos separados: um é caso do outro.
+
+::: {#prp-hall-via-fluxo}
+## Hall e König como fluxo
+O emparelhamento máximo bipartido **é** um problema de fluxo: ligue $s$ a cada
+vértice de $X$ e cada vértice de $Y$ a $t$, todas as arestas com capacidade $1$.
+Um fluxo inteiro de valor $k$ corresponde a um emparelhamento de $k$ arestas, e o
+teorema fluxo-máximo/corte-mínimo se especializa no **teorema de König** ($\max$
+emparelhamento $=$ $\min$ cobertura por vértices, em bipartidos), do qual Hall é
+corolário.
+:::
+
+Assim se encerra o Volume — e a Fase 3 do Manual. De uma contagem de subconjuntos
+(@sec-contagem) chegamos a teoremas min–max que unificam atribuição, transporte e
+dualidade, com algoritmos que os resolvem. A matemática discreta revela-se não um
+apêndice, mas uma trama que costura combinatória, álgebra, otimização e
+computação — o complemento exato da trilha contínua que o restante da obra
+percorreu.
+
+## Exercícios
+
+::: {#exr-hall-verificar}
+No grafo bipartido com $X = \{1,2,3\}$, $Y = \{a,b,c\}$ e arestas $1a, 1b, 2a,
+3c$, existe emparelhamento que satura $X$? Verifique a condição de Hall.
+:::
+
+::: {#exr-hall-falha}
+Exiba um bipartido onde a condição de Hall **falha** para algum $S$, e confirme
+que não há emparelhamento saturando $X$.
+:::
+
+::: {#exr-corte-rede}
+Numa rede com $s \to a$ ($c=3$), $s \to b$ ($c=2$), $a \to t$ ($c=2$), $b \to t$
+($c=3$) e $a \to b$ ($c=1$), encontre o fluxo máximo e um corte mínimo, conferindo
+a igualdade.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-hall-verificar
+Vizinhanças: $N(\{1\}) = \{a,b\}$, $N(\{2\}) = \{a\}$, $N(\{3\}) = \{c\}$,
+$N(\{1,2\}) = \{a,b\}$, $N(\{1,2,3\}) = \{a,b,c\}$ — todas satisfazem $|N(S)| \ge
+|S|$. Logo Hall vale e há emparelhamento saturando $X$: por exemplo $\{1b, 2a,
+3c\}$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-corte-rede
+Construa o fluxo $s\to a = 3$, $s\to b = 2$ (sai $5$ de $s$); reparta a saída de
+$a$ por $a\to t = 2$ e $a\to b = 1$ (conserva $a$: entra $3$, sai $3$); então $b$
+recebe $2 + 1 = 3$ e envia $b\to t = 3$. Em $t$ chegam $2 + 3 = 5$. Valor do fluxo
+$= 5$. Para um corte de mesma capacidade, tome $A = \{s\}$, $B = \{a,b,t\}$: as
+arestas de $A$ para $B$ são $s\to a$ e $s\to b$, de capacidade $3 + 2 = 5$.
+Verifica-se que **todo** corte tem capacidade $\ge 5$ (o corte $\{s,a,b\}\mid\{t\}$
+vale $2+3=5$; o corte $\{s,a\}\mid\{b,t\}$ vale $2+2+1=5$). Logo
+$\max\text{-fluxo} = \min\text{-corte} = 5$.
+:::
