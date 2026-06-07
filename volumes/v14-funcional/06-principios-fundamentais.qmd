@@ -1,0 +1,184 @@
+# Os princípios fundamentais {#sec-principios-fundamentais}
+
+## Motivação
+
+Hahn–Banach não usou completude. Os três teoremas deste capítulo —
+**Banach–Steinhaus**, da **aplicação aberta** e do **gráfico fechado** — usam, e
+muito: todos brotam de uma única raiz topológica, o **teorema de Baire**, válido
+em espaços completos. Eles formam, com Hahn–Banach, os "quatro pilares" da
+análise funcional. Sua mensagem comum é de **automaticidade**: hipóteses
+aparentemente fracas (limitação pontual, bijetividade, gráfico fechado) forçam
+conclusões fortes (limitação uniforme, continuidade da inversa, continuidade do
+operador). É a completude trabalhando nos bastidores, convertendo "pouco" em
+"muito".
+
+## A raiz: o teorema de Baire
+
+::: {#thm-baire}
+## Teorema de Baire
+Num espaço métrico **completo**, uma interseção enumerável de abertos densos é
+densa. Equivalentemente: se um espaço completo é união enumerável de fechados,
+então **algum** deles tem interior não vazio.
+:::
+
+A intuição: num espaço completo, não se pode "exaurir" o espaço com uma coleção
+enumerável de conjuntos "magros" (fechados sem interior). Algum pedaço tem de ser
+"gordo". Essa dicotomia magro/gordo é o que, aplicada aos espaços de operadores,
+produz os três teoremas a seguir.
+
+## Banach–Steinhaus: limitação uniforme
+
+::: {#thm-banach-steinhaus}
+## Princípio da limitação uniforme
+Seja $X$ um espaço de **Banach**, $Y$ normado, e $\{T_i\}_{i\in I} \subseteq
+\mathcal{B}(X,Y)$ uma família de operadores limitados. Se a família é
+**pontualmente limitada** — para cada $x$, $\sup_i \|T_i x\| < \infty$ — então é
+**uniformemente limitada**:
+$$
+\sup_{i\in I} \|T_i\| < \infty.
+$$
+:::
+
+::: {.proof}
+*(Esboço via Baire.)* Os conjuntos $E_n = \{x : \sup_i \|T_i x\| \le n\}$ são
+fechados e, pela limitação pontual, cobrem $X = \bigcup_n E_n$. Por Baire, algum
+$E_N$ tem interior: contém uma bola $B(x_0, r)$. Daí, para $\|x\| \le r$,
+$\|T_i x\| \le \|T_i(x_0 + x)\| + \|T_i x_0\| \le 2N$, uniformemente em $i$.
+Reescalando, $\|T_i\| \le 2N/r$ para todo $i$.
+:::
+
+::: {.callout-tip}
+## "Limitado ponto a ponto" já é "limitado em bloco"
+A força é a passagem do pontual ao uniforme **de graça**. Uma aplicação típica:
+se $(T_n)$ converge pontualmente, $T_n x \to Tx$, então $\sup_n \|T_n\| < \infty$
+e o limite $T$ é automaticamente **limitado**, com $\|T\| \le \liminf\|T_n\|$.
+Sem completude isso falha. É também a ferramenta que prova a existência de funções
+contínuas cuja série de Fourier **diverge** num ponto — a limitação uniforme das
+somas parciais falharia, então elas não são uniformemente limitadas.
+:::
+
+## Aplicação aberta e inversa limitada
+
+::: {#thm-aplicacao-aberta}
+## Teorema da aplicação aberta
+Sejam $X, Y$ espaços de **Banach** e $T \in \mathcal{B}(X,Y)$ **sobrejetor**.
+Então $T$ é uma **aplicação aberta**: leva abertos em abertos.
+:::
+
+::: {#cor-inversa-limitada}
+## Teorema da inversa limitada
+Se $T \in \mathcal{B}(X,Y)$ é uma **bijeção** entre espaços de Banach, então
+$T^{-1}$ é automaticamente **limitado**. Em consequência, $T$ é um isomorfismo
+topológico.
+:::
+
+::: {.proof}
+*(Do corolário.)* Pelo @thm-aplicacao-aberta, $T$ é aberta; logo $T^{-1}$ é
+contínua (a pré-imagem por $T^{-1}$ de um aberto é $T$ do aberto, que é aberto).
+Continuidade de $T^{-1}$ é a sua limitação.
+:::
+
+::: {.callout-note}
+## A surpresa do corolário
+Que uma bijeção linear contínua tenha inversa contínua **não** é óbvio em
+dimensão infinita — em geral, a inversa de uma função contínua bijetora não
+precisa ser contínua. A completude de **ambos** os espaços é o que torna a
+inversa automática. Consequência prática: se uma equação $Tx = y$ tem solução
+única para cada $y$ e $T$ é contínuo, então a solução **depende continuamente**
+dos dados (o problema é "bem-posto") — sem precisar estimar nada à mão.
+:::
+
+## Gráfico fechado
+
+O terceiro pilar troca a verificação de continuidade por algo bem mais fácil de
+checar.
+
+::: {#def-grafico}
+## Gráfico de um operador
+O **gráfico** de $T : X \to Y$ é $\Gamma(T) = \{(x, Tx) : x \in X\} \subseteq X
+\times Y$. Dizemos que $T$ é **fechado** se $\Gamma(T)$ é fechado: sempre que
+$x_n \to x$ **e** $Tx_n \to y$, tem-se $y = Tx$.
+:::
+
+::: {#thm-grafico-fechado}
+## Teorema do gráfico fechado
+Sejam $X, Y$ espaços de **Banach** e $T : X \to Y$ linear. Se $T$ é **fechado**,
+então $T$ é **limitado** (contínuo).
+:::
+
+::: {.callout-tip}
+## Por que isso facilita a vida
+Para provar continuidade pela definição, é preciso mostrar: se $x_n \to x$, então
+$Tx_n \to Tx$ — ou seja, garantir que $(Tx_n)$ converge **e** ao valor certo. O
+gráfico fechado divide o trabalho: basta supor que $(Tx_n)$ **já** converge a
+algum $y$ e mostrar apenas que $y = Tx$. Verificar essa coerência costuma ser
+trivial (por uma fórmula explícita de $T$), ao passo que provar a convergência
+era o difícil — e o teorema a dá de brinde. É o método-padrão para estabelecer
+que operadores naturais (diferenciais, com domínio adequado) são limitados.
+:::
+
+::: {.proof}
+*(Esboço.)* $\Gamma(T)$ é um subespaço fechado de $X \times Y$ (Banach), logo é
+ele mesmo Banach. As projeções $\pi_X : \Gamma(T) \to X$, $(x,Tx)\mapsto x$, e
+$\pi_Y : (x,Tx)\mapsto Tx$ são contínuas, e $\pi_X$ é uma bijeção. Pelo
+@cor-inversa-limitada, $\pi_X^{-1}$ é limitada; então $T = \pi_Y \circ \pi_X^{-1}$
+é composição de limitados, limitado.
+:::
+
+## O retrato de família
+
+::: {.callout-note}
+## Os quatro pilares
+- **Hahn–Banach** (@sec-hahn-banach): há funcionais em abundância. *(Não precisa
+  de completude.)*
+- **Banach–Steinhaus**: limitação pontual ⟹ uniforme.
+- **Aplicação aberta / inversa limitada**: bijeção contínua ⟹ inversa contínua.
+- **Gráfico fechado**: gráfico fechado ⟹ contínuo.
+
+Os três últimos repousam em **Baire** e exigem completude. Juntos, eles tornam a
+análise funcional uma teoria de *automaticidades*: a estrutura (Banach, Hilbert)
+faz o trabalho pesado, e propriedades que pareceriam exigir verificação caso a
+caso passam a ser garantidas de antemão.
+:::
+
+## Exercícios
+
+::: {#exr-bs-limite}
+Use Banach–Steinhaus para mostrar que, se $T_n x \to Tx$ para todo $x$ (com $T_n
+\in \mathcal{B}(X,Y)$, $X$ Banach), então $T$ é limitado e $\|T\| \le \liminf_n
+\|T_n\|$.
+:::
+
+::: {#exr-baire-q}
+Use o teorema de Baire para mostrar que $\mathbb{R}$ **não** é enumerável.
+*(Sugestão: $\mathbb{R} = \bigcup_{q} \{q\}$ seria união enumerável de fechados
+de interior vazio.)*
+:::
+
+::: {#exr-inversa-necessita-completude}
+Dê um exemplo de bijeção linear contínua entre espaços normados cuja inversa
+**não** é contínua, evidenciando que a completude é necessária no
+@cor-inversa-limitada. *(Sugestão: identidade entre $(C[0,1], \|\cdot\|_\infty)$ e
+$(C[0,1], \|\cdot\|_1)$.)*
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-baire-q
+Se $\mathbb{R}$ fosse enumerável, $\mathbb{R} = \{x_1, x_2, \dots\} = \bigcup_n
+\{x_n\}$. Cada $\{x_n\}$ é fechado de interior vazio (um ponto não contém
+intervalo). Como $\mathbb{R}$ é completo, Baire proíbe que ele seja união
+enumerável de fechados de interior vazio. Contradição: $\mathbb{R}$ é não
+enumerável.
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-inversa-necessita-completude
+Seja $I : (C[0,1], \|\cdot\|_\infty) \to (C[0,1], \|\cdot\|_1)$ a identidade. Ela
+é contínua, pois $\|f\|_1 \le \|f\|_\infty$, e é bijetora. Mas $I^{-1}$ **não** é
+contínua: as funções $f_n$ do @exr-c1-incompleto têm $\|f_n\|_1 \to 0$ enquanto
+$\|f_n\|_\infty = 1$, logo nenhum $C$ satisfaz $\|f\|_\infty \le C\|f\|_1$. A
+razão: $(C[0,1],\|\cdot\|_1)$ **não** é completo, e o @cor-inversa-limitada exige
+ambos completos.
+:::
