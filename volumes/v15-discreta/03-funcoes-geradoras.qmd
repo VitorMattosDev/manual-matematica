@@ -1,0 +1,171 @@
+# Funções geradoras {#sec-funcoes-geradoras}
+
+## Motivação
+
+Uma **função geradora** é um truque de uma elegância quase mágica: codificar uma
+sequência inteira $(a_0, a_1, a_2, \dots)$ como os coeficientes de uma série de
+potências,
+$$
+A(x) = a_0 + a_1 x + a_2 x^2 + \cdots = \sum_{n\ge 0} a_n x^n,
+$$
+e então **manipular a sequência fazendo álgebra com a função**. Recorrências
+viram equações algébricas; convoluções de sequências viram produtos de funções;
+identidades combinatórias caem de expansões em série. É a ponte que liga a
+combinatória discreta (Vol. II) à análise (Vol. V), transformando problemas de
+contagem em cálculo. O símbolo $x$ é apenas um "cabide" formal onde penduramos os
+termos — não nos importamos com convergência, só com os coeficientes — mas, como
+veremos, quando há convergência a análise paga dividendos extras.
+
+## A ideia formal
+
+::: {#def-funcao-geradora}
+## Função geradora ordinária
+A **função geradora (ordinária)** da sequência $(a_n)_{n\ge0}$ é a série formal
+$A(x) = \sum_{n\ge0} a_n x^n$. Operações sobre sequências traduzem-se em operações
+sobre funções:
+
+- **soma:** $(a_n + b_n) \leftrightarrow A(x) + B(x)$;
+- **deslocamento:** $(a_{n-1}) \leftrightarrow x\,A(x)$;
+- **convolução:** $\left(\sum_{k=0}^n a_k b_{n-k}\right) \leftrightarrow
+  A(x)\,B(x)$.
+:::
+
+A convolução é a operação-estrela: o produto de funções geradoras gera a sequência
+das somas $\sum_k a_k b_{n-k}$, que conta combinações "uma parte de cada lado".
+
+::: {#exm-geradoras-basicas}
+## O dicionário essencial
+$$
+\frac{1}{1-x} = \sum_{n\ge0} x^n, \qquad \frac{1}{(1-x)^2} = \sum_{n\ge0}(n+1)x^n,
+\qquad e^x = \sum_{n\ge0}\frac{x^n}{n!},
+$$
+$$
+(1+x)^m = \sum_{n\ge0}\binom mn x^n, \qquad \frac{1}{1-ax} = \sum_{n\ge0} a^n x^n.
+$$
+Estas (do Volume V, séries de potências) são os tijolos com que se montam quase
+todas as outras.
+:::
+
+## Resolvendo recorrências
+
+O método universal: multiplicar a recorrência por $x^n$, somar sobre $n$,
+reconhecer a função geradora, isolar $A(x)$ e reexpandir.
+
+::: {#exm-fibonacci-geradora}
+## Fibonacci por função geradora
+Seja $F(x) = \sum_{n\ge0} F_n x^n$ com $F_n = F_{n-1} + F_{n-2}$, $F_0 = 0$, $F_1
+= 1$. Multiplicando a recorrência por $x^n$ e somando para $n \ge 2$:
+$$
+F(x) - F_1 x = x\big(F(x) - F_0\big) + x^2 F(x) \ \Longrightarrow\ F(x) =
+\frac{x}{1 - x - x^2}.
+$$
+Decompondo em frações parciais sobre as raízes $\varphi, \psi$ de $1 - x - x^2$ e
+reexpandindo cada $\frac{1}{1 - rx}$ como série geométrica, recupera-se a fórmula
+de Binet (@exm-fibonacci) **sem adivinhar** a forma da solução — a função
+geradora a entrega.
+:::
+
+::: {.callout-tip}
+## Por que isto é mais poderoso que a característica
+O método da equação característica (@sec-recorrencias) exige *adivinhar* que as
+soluções são $r^n$. As funções geradoras **deduzem** a forma da solução a partir
+da recorrência, funcionam para recorrências não lineares e não homogêneas, e dão
+de brinde fórmulas para somas e convoluções. É uma máquina mais geral — ao custo
+de manipular séries.
+:::
+
+## Contagem com geradoras
+
+Funções geradoras contam configurações pela regra: **somar opções vira somar
+séries; combinar partes independentes vira multiplicar**.
+
+::: {#exm-moedas}
+## Trocar moedas
+De quantas formas pagar $n$ centavos com moedas de $1$, $2$ e $5$? Cada tipo de
+moeda contribui com um fator geométrico (quantas moedas daquele tipo): o número
+buscado é o coeficiente de $x^n$ em
+$$
+\frac{1}{1-x}\cdot\frac{1}{1-x^2}\cdot\frac{1}{1-x^5}.
+$$
+O produto "mistura" as escolhas independentes de cada moeda, e o coeficiente de
+$x^n$ conta exatamente as combinações que somam $n$. É o método-padrão para
+**partições** e problemas de troco.
+:::
+
+::: {#thm-particoes-geradora}
+## Função geradora das partições
+O número $p(n)$ de **partições** de $n$ (modos de escrever $n$ como soma de
+inteiros positivos, sem ordem) tem função geradora
+$$
+\sum_{n\ge0} p(n)\, x^n = \prod_{k\ge1} \frac{1}{1 - x^k}.
+$$
+Cada fator $\frac{1}{1-x^k} = 1 + x^k + x^{2k} + \cdots$ escolhe quantas parcelas
+iguais a $k$ entram na partição.
+:::
+
+Esse produto infinito é a porta de entrada da teoria das partições de Euler — um
+elo surpreendente entre combinatória, análise e teoria dos números.
+
+## Funções geradoras exponenciais
+
+Para objetos **rotulados** (onde a ordem interna importa), o cabido certo não é
+$x^n$, e sim $x^n/n!$.
+
+::: {#def-egf}
+## Função geradora exponencial
+A **função geradora exponencial** (EGF) de $(a_n)$ é $\hat A(x) = \sum_{n\ge0}
+a_n \frac{x^n}{n!}$. Aqui o produto $\hat A(x)\hat B(x)$ gera $\sum_k \binom nk
+a_k b_{n-k}$ — a convolução **binomial**, adequada a estruturas rotuladas.
+:::
+
+::: {#exm-desarranjos-egf}
+## Desarranjos, de novo
+A EGF dos desarranjos (@exm-desarranjos) é $\sum_n D_n \frac{x^n}{n!} =
+\frac{e^{-x}}{1-x}$. O fator $e^{-x}$ "proíbe pontos fixos" e $\frac1{1-x}$
+permuta o resto; o coeficiente reproduz $D_n = n!\sum_{j=0}^n \frac{(-1)^j}{j!}$.
+A EGF torna transparente a aproximação $D_n/n! \to e^{-1}$.
+:::
+
+## Exercícios
+
+::: {#exr-gf-recorrencia}
+Use funções geradoras para resolver $a_n = 2a_{n-1} + 1$, $a_0 = 0$. *(Some
+$\sum a_n x^n$ e reconheça $\frac{1}{1-2x}$ e $\frac1{1-x}$.)*
+:::
+
+::: {#exr-gf-convolucao}
+Mostre, via $\frac{1}{(1-x)^2} = \frac1{1-x}\cdot\frac1{1-x}$, que $\sum_{k=0}^n 1
+= n+1$, lendo a convolução dos coeficientes.
+:::
+
+::: {#exr-gf-moedas}
+Quantas formas há de pagar $6$ centavos com moedas de $1$ e $2$? Expanda
+$\frac{1}{(1-x)(1-x^2)}$ até $x^6$ e leia o coeficiente.
+:::
+
+::: {#exr-gf-catalan}
+Os números de Catalan satisfazem $C_0 = 1$ e $C_{n+1} = \sum_{k=0}^n C_k
+C_{n-k}$. Mostre que sua função geradora $C(x)$ obedece $C(x) = 1 + x\,C(x)^2$ e
+conclua $C(x) = \frac{1 - \sqrt{1-4x}}{2x}$.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gf-recorrencia
+Seja $A(x) = \sum_{n\ge0} a_n x^n$. De $a_n = 2a_{n-1} + 1$ para $n\ge1$:
+$A(x) - a_0 = 2x A(x) + \frac{x}{1-x}$ (a série $\sum_{n\ge1} x^n$). Com $a_0 =
+0$: $A(x)(1 - 2x) = \frac{x}{1-x}$, logo $A(x) = \frac{x}{(1-x)(1-2x)}$. Frações
+parciais: $\frac{1}{1-2x} - \frac1{1-x}$, cujos coeficientes dão $a_n = 2^n - 1$
+(coerente com Hanói, @exm-torre-hanoi).
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-gf-catalan
+Multiplicando a recorrência por $x^{n+1}$ e somando, o lado esquerdo dá $C(x) -
+C_0 = C(x) - 1$, e o direito é $x$ vezes a convolução $\sum_n\left(\sum_k C_k
+C_{n-k}\right)x^n = x\,C(x)^2$. Logo $C(x) - 1 = x C(x)^2$, isto é $xC^2 - C + 1 =
+0$. Resolvendo a quadrática em $C$ e escolhendo o sinal que mantém $C(0) = C_0 =
+1$ (finito), $C(x) = \frac{1 - \sqrt{1-4x}}{2x}$. Expandindo, $C_n =
+\frac1{n+1}\binom{2n}{n}$.
+:::
