@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>87&nbsp; Funções mensuráveis – Manual de Matemática</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../volumes/v8-analise/15-integral-lebesgue.html" rel="next">
+<link href="../../volumes/v8-analise/13-conjuntos-mensuraveis.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0c8451610aad1f95a6e9630bfa8776ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v8-analise/01-construcao-reais.html">Volume VIII — Análise Real</a></li><li class="breadcrumb-item"><a href="../../volumes/v8-analise/14-funcoes-mensuraveis.html"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Funções mensuráveis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Manual de Matemática</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/VitorMattosDev/manual-matematica" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume I — Fundamentos: Lógica e Aritmética</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/01-logica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lógica e demonstrações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/02-conjuntos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conjuntos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/03-inducao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Indução e Boa Ordenação</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/04-naturais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Números naturais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/05-inteiros-divisibilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inteiros e divisibilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/06-mdc-euclides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MDC, MMC e o algoritmo de Euclides</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/07-primos-tfa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Números primos e o Teorema Fundamental da Aritmética</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/08-congruencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Congruências e aritmética modular</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/09-racionais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Números racionais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v1-fundamentos/10-reais-introducao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Os números reais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume II — Álgebra Elementar</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/01-expressoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Expressões algébricas e manipulação</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/02-equacoes-1grau.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Equações do primeiro grau</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/03-sistemas-lineares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Sistemas lineares elementares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/04-equacoes-2grau.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equações do segundo grau</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/05-inequacoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Inequações e estudo de sinal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/06-polinomios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Polinômios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/07-fatoracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Produtos notáveis e fatoração</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/08-funcoes-polinomiais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Funções polinomiais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/09-progressoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Progressões aritméticas e geométricas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v2-algebra/10-combinatoria.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Análise combinatória e binômio de Newton</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume III — Geometria e Trigonometria</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/01-euclidiana-axiomas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Geometria euclidiana: axiomas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/02-triangulos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Triângulos e congruência</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/03-semelhanca-tales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Semelhança e o teorema de Tales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/04-pitagoras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Teorema de Pitágoras e relações métricas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/05-circunferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Circunferência: ângulos e potência de ponto</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/06-areas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Áreas de figuras planas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/07-poliedros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Geometria espacial: poliedros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/08-volumes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Volumes e sólidos de revolução</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/09-trigonometria-triangulo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Trigonometria no triângulo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/10-trigonometria-circulo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Círculo trigonométrico e identidades</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/11-geometria-analitica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Geometria analítica: ponto, reta e circunferência</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v3-geometria/12-conicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Cônicas: elipse, parábola e hipérbole</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume IV — Pré-cálculo (Funções)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v4-precalculo/01-funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">O conceito de função</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v4-precalculo/02-afim-quadratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Funções afim e quadrática</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v4-precalculo/03-modular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Função modular</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v4-precalculo/04-exponencial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Função exponencial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v4-precalculo/05-logaritmo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Logaritmos e função logarítmica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v4-precalculo/06-trigonometricas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Funções trigonométricas e inversas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v4-precalculo/07-sequencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Sequências e a noção de limite</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume V — Cálculo</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/01-limites.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Limites e continuidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/02-derivada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">A derivada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/03-regras-derivacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Regras de derivação</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/04-aplicacoes-derivada.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Aplicações da derivada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/05-integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">A integral definida</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/06-tfc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">O Teorema Fundamental do Cálculo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/07-tecnicas-integracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Técnicas de integração</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/08-aplicacoes-integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Aplicações da integral</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/09-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Sequências e séries numéricas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/10-taylor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Séries de potências e séries de Taylor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/11-varias-variaveis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Cálculo de várias variáveis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/12-integrais-multiplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Integrais múltiplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/13-campos-integrais-linha.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Campos vetoriais, conservativos e integrais de linha</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/14-integrais-superficie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Integrais de superfície e fluxo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v5-calculo/15-green-stokes-divergencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Teoremas de Green, de Stokes e da divergência</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume VI — Álgebra Linear</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/01-sistemas-gauss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Sistemas lineares e eliminação de Gauss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/02-matrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Matrizes e operações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/03-determinantes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Determinantes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/04-espacos-vetoriais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Espaços vetoriais e subespaços</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/05-base-dimensao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Independência linear, bases e dimensão</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/06-transformacoes-lineares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Transformações lineares e matriz associada</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/07-autovalores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Autovalores e autovetores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/08-diagonalizacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Diagonalização</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/09-produto-interno.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Espaços com produto interno e ortogonalidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v6-linear/10-teorema-espectral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Formas quadráticas e teorema espectral</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume VII — Álgebra Abstrata</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/01-grupos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Operações binárias e grupos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/02-subgrupos-ciclicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Subgrupos e grupos cíclicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/03-lagrange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Homomorfismos e teorema de Lagrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/04-quociente-isomorfismo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Grupos quociente e teoremas de isomorfismo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/05-aneis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">Anéis e ideais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/06-dominios-corpos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">Domínios de integridade e corpos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/07-aneis-polinomios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">Anéis de polinômios</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/08-extensoes-corpos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">Extensões de corpos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v7-abstrata/09-galois.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">Introdução à teoria de Galois</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Volume VIII — Análise Real</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/01-construcao-reais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">Construção dos reais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/02-supremo-completude.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">Supremo, ínfimo e completude</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/03-sequencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">Sequências e convergência</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/04-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">Séries numéricas (rigoroso)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/05-topologia-reta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">Topologia da reta</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/06-continuidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">Limites e continuidade (ε-δ)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/07-derivacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">Derivação rigorosa e o teorema do valor médio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/08-integral-riemann.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">A integral de Riemann</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/09-sequencias-funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">82</span>&nbsp; <span class="chapter-title">Sequências e séries de funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/10-convergencia-uniforme.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">83</span>&nbsp; <span class="chapter-title">Convergência uniforme</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/11-medida-motivacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">84</span>&nbsp; <span class="chapter-title">Por que medir</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/12-medida-lebesgue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">85</span>&nbsp; <span class="chapter-title">Medida exterior de Lebesgue</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/13-conjuntos-mensuraveis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">86</span>&nbsp; <span class="chapter-title">Conjuntos mensuráveis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/14-funcoes-mensuraveis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Funções mensuráveis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/15-integral-lebesgue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">88</span>&nbsp; <span class="chapter-title">A integral de Lebesgue</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/16-teoremas-convergencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">89</span>&nbsp; <span class="chapter-title">Teoremas de convergência</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/17-riemann-vs-lebesgue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">90</span>&nbsp; <span class="chapter-title">Riemann versus Lebesgue</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v8-analise/18-espacos-lp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">91</span>&nbsp; <span class="chapter-title">Espaços <span class="math inline">\(L^p\)</span></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume IX — Topologia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v9-topologia/01-espacos-metricos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">92</span>&nbsp; <span class="chapter-title">Espaços métricos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v9-topologia/02-espacos-topologicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">93</span>&nbsp; <span class="chapter-title">Espaços topológicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v9-topologia/03-base-subbase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">94</span>&nbsp; <span class="chapter-title">Base, subbase e geração de topologias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v9-topologia/04-continuidade-homeomorfismos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">95</span>&nbsp; <span class="chapter-title">Continuidade e homeomorfismos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v9-topologia/05-conexidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">96</span>&nbsp; <span class="chapter-title">Conexidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v9-topologia/06-compacidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">97</span>&nbsp; <span class="chapter-title">Compacidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v9-topologia/07-separacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">98</span>&nbsp; <span class="chapter-title">Axiomas de separação</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v9-topologia/08-grupo-fundamental.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">99</span>&nbsp; <span class="chapter-title">Introdução à topologia algébrica: grupo fundamental</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume X — Geometria Diferencial</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/01-curvas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">100</span>&nbsp; <span class="chapter-title">Curvas parametrizadas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/02-frenet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">101</span>&nbsp; <span class="chapter-title">Curvatura, torção e triedro de Frenet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/03-superficies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">102</span>&nbsp; <span class="chapter-title">Superfícies regulares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/04-primeira-forma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">103</span>&nbsp; <span class="chapter-title">Primeira forma fundamental</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/05-segunda-forma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">104</span>&nbsp; <span class="chapter-title">Aplicação de Gauss e segunda forma fundamental</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/06-curvaturas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">105</span>&nbsp; <span class="chapter-title">Curvaturas gaussiana e média</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/07-geodesicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">106</span>&nbsp; <span class="chapter-title">Geodésicas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/08-gauss-bonnet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">107</span>&nbsp; <span class="chapter-title">Teorema Egregium e teorema de Gauss-Bonnet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/09-variedades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">108</span>&nbsp; <span class="chapter-title">Introdução a variedades diferenciáveis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/10-campos-tensores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">109</span>&nbsp; <span class="chapter-title">Espaço tangente, campos vetoriais e tensoriais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/11-algebra-tensorial-formas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">110</span>&nbsp; <span class="chapter-title">Álgebra tensorial e formas diferenciais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/12-metricas-riemannianas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">111</span>&nbsp; <span class="chapter-title">Métricas riemannianas e pseudo-riemannianas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/13-conexoes-derivada-covariante.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">112</span>&nbsp; <span class="chapter-title">Conexões e derivada covariante</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/14-transporte-geodesicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">113</span>&nbsp; <span class="chapter-title">Transporte paralelo e geodésicas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v10-diferencial/15-curvatura-riemann.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">114</span>&nbsp; <span class="chapter-title">Tensor de curvatura de Riemann</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume XI — Equações Diferenciais</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v11-equacoes-diferenciais/01-edo-primeira-ordem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">115</span>&nbsp; <span class="chapter-title">EDOs de primeira ordem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v11-equacoes-diferenciais/02-edo-segunda-ordem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">116</span>&nbsp; <span class="chapter-title">EDOs lineares de segunda ordem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v11-equacoes-diferenciais/03-sistemas-edo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">117</span>&nbsp; <span class="chapter-title">Sistemas de EDOs lineares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v11-equacoes-diferenciais/04-laplace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">118</span>&nbsp; <span class="chapter-title">Transformada de Laplace</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v11-equacoes-diferenciais/05-solucoes-serie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">119</span>&nbsp; <span class="chapter-title">Soluções em série de potências</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v11-equacoes-diferenciais/06-edp-introducao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">120</span>&nbsp; <span class="chapter-title">Introdução às EDPs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v11-equacoes-diferenciais/07-series-fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">121</span>&nbsp; <span class="chapter-title">Séries de Fourier</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v11-equacoes-diferenciais/08-calor-onda-laplace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">122</span>&nbsp; <span class="chapter-title">As equações do calor, da onda e de Laplace</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume XII — Probabilidade e Estatística</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/01-espacos-probabilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">123</span>&nbsp; <span class="chapter-title">Espaços de probabilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/02-condicional-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">124</span>&nbsp; <span class="chapter-title">Probabilidade condicional e teorema de Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/03-vars-discretas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">125</span>&nbsp; <span class="chapter-title">Variáveis aleatórias discretas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/04-vars-continuas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">126</span>&nbsp; <span class="chapter-title">Variáveis aleatórias contínuas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/05-distribuicoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">127</span>&nbsp; <span class="chapter-title">Distribuições notáveis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/06-esperanca-variancia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">128</span>&nbsp; <span class="chapter-title">Esperança, variância e momentos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/07-vetores-aleatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">129</span>&nbsp; <span class="chapter-title">Vetores aleatórios, covariância e correlação</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/08-lgn-tcl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">130</span>&nbsp; <span class="chapter-title">Leis dos grandes números e teorema central do limite</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/09-estatistica-estimacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">131</span>&nbsp; <span class="chapter-title">Estatística descritiva e estimação</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v12-probabilidade/10-testes-hipotese.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">132</span>&nbsp; <span class="chapter-title">Testes de hipótese e intervalos de confiança</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume XIII — Análise Complexa</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v13-complexa/01-numeros-complexos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">133</span>&nbsp; <span class="chapter-title">Números complexos e o plano complexo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v13-complexa/02-holomorfas-cauchy-riemann.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">134</span>&nbsp; <span class="chapter-title">Funções holomorfas e Cauchy-Riemann</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v13-complexa/03-funcoes-elementares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">135</span>&nbsp; <span class="chapter-title">Funções elementares complexas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v13-complexa/04-integracao-cauchy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">136</span>&nbsp; <span class="chapter-title">Integração complexa e teorema de Cauchy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v13-complexa/05-formula-integral-cauchy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">137</span>&nbsp; <span class="chapter-title">Fórmula integral de Cauchy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v13-complexa/06-taylor-laurent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">138</span>&nbsp; <span class="chapter-title">Séries de Taylor e de Laurent</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v13-complexa/07-residuos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">139</span>&nbsp; <span class="chapter-title">Teorema dos resíduos e aplicações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v13-complexa/08-aplicacoes-conformes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">140</span>&nbsp; <span class="chapter-title">Aplicações conformes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume XIV — Análise Funcional</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v14-funcional/01-espacos-normados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">141</span>&nbsp; <span class="chapter-title">Espaços normados e de Banach</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v14-funcional/02-espacos-hilbert.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">142</span>&nbsp; <span class="chapter-title">Espaços de Hilbert</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v14-funcional/03-bases-ortonormais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">143</span>&nbsp; <span class="chapter-title">Bases ortonormais e séries de Fourier</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v14-funcional/04-operadores-limitados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">144</span>&nbsp; <span class="chapter-title">Operadores lineares limitados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v14-funcional/05-hahn-banach.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">145</span>&nbsp; <span class="chapter-title">O teorema de Hahn–Banach</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v14-funcional/06-principios-fundamentais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">146</span>&nbsp; <span class="chapter-title">Os princípios fundamentais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v14-funcional/07-operadores-compactos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">147</span>&nbsp; <span class="chapter-title">Operadores compactos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v14-funcional/08-teorema-espectral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">148</span>&nbsp; <span class="chapter-title">O teorema espectral</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
+ <span class="menu-text">Volume XV — Matemática Discreta e Teoria dos Grafos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v15-discreta/01-contagem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">149</span>&nbsp; <span class="chapter-title">Princípios de contagem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v15-discreta/02-recorrencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">150</span>&nbsp; <span class="chapter-title">Relações de recorrência</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v15-discreta/03-funcoes-geradoras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">151</span>&nbsp; <span class="chapter-title">Funções geradoras</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v15-discreta/04-grafos-introducao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">152</span>&nbsp; <span class="chapter-title">Grafos: conceitos básicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v15-discreta/05-arvores-conexidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">153</span>&nbsp; <span class="chapter-title">Conexidade e árvores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v15-discreta/06-euler-hamilton.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">154</span>&nbsp; <span class="chapter-title">Caminhos eulerianos e hamiltonianos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v15-discreta/07-planaridade-coloracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">155</span>&nbsp; <span class="chapter-title">Planaridade e coloração</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../volumes/v15-discreta/08-emparelhamentos-fluxos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">156</span>&nbsp; <span class="chapter-title">Emparelhamentos e fluxos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../indice-remissivo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice remissivo</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação"><span class="header-section-number">87.1</span> Motivação</a></li>
+  <li><a href="#definição" id="toc-definição" class="nav-link" data-scroll-target="#definição"><span class="header-section-number">87.2</span> Definição</a></li>
+  <li><a href="#operações-preservam-mensurabilidade" id="toc-operações-preservam-mensurabilidade" class="nav-link" data-scroll-target="#operações-preservam-mensurabilidade"><span class="header-section-number">87.3</span> Operações preservam mensurabilidade</a></li>
+  <li><a href="#funções-simples-e-o-teorema-de-aproximação" id="toc-funções-simples-e-o-teorema-de-aproximação" class="nav-link" data-scroll-target="#funções-simples-e-o-teorema-de-aproximação"><span class="header-section-number">87.4</span> Funções simples e o teorema de aproximação</a></li>
+  <li><a href="#quase-em-todo-ponto" id="toc-quase-em-todo-ponto" class="nav-link" data-scroll-target="#quase-em-todo-ponto"><span class="header-section-number">87.5</span> Quase em todo ponto</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">87.6</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#soluções-selecionadas" id="toc-soluções-selecionadas" class="nav-link" data-scroll-target="#soluções-selecionadas">Soluções selecionadas</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v8-analise/14-funcoes-mensuraveis.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../volumes/v8-analise/01-construcao-reais.html">Volume VIII — Análise Real</a></li><li class="breadcrumb-item"><a href="../../volumes/v8-analise/14-funcoes-mensuraveis.html"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Funções mensuráveis</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-funcoes-mensuraveis" class="quarto-section-identifier"><span class="chapter-number">87</span>&nbsp; <span class="chapter-title">Funções mensuráveis</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="motivação" class="level2" data-number="87.1">
+<h2 data-number="87.1" class="anchored" data-anchor-id="motivação"><span class="header-section-number">87.1</span> Motivação</h2>
+<p>Já sabemos medir conjuntos. Para integrar à la Lebesgue, lembre o plano: fatiamos o <strong>contradomínio</strong> e perguntamos quanto mede o conjunto onde <span class="math inline">\(f\)</span> cai em cada faixa. Para que essa pergunta faça sentido, esses conjuntos <span class="math inline">\(\{x : f(x) &gt; c\}\)</span> precisam ser <strong>mensuráveis</strong>. As funções para as quais isso sempre vale são as <strong>funções mensuráveis</strong> — a classe certa para a integração, muito mais ampla que as contínuas. Veremos que ela é fechada por quase toda operação imaginável (somas, produtos, limites pontuais) e que toda função mensurável é limite de funções <strong>simples</strong>, os tijolos com que construiremos a integral.</p>
+</section>
+<section id="definição" class="level2" data-number="87.2">
+<h2 data-number="87.2" class="anchored" data-anchor-id="definição"><span class="header-section-number">87.2</span> Definição</h2>
+<div id="def-funcao-mensuravel" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 87.1 (Função mensurável)</strong></span> Uma função <span class="math inline">\(f : E \to \mathbb{R}\)</span>, com <span class="math inline">\(E \in \mathcal{M}\)</span>, é <strong>mensurável</strong> se para todo <span class="math inline">\(c \in \mathbb{R}\)</span> o conjunto <span class="math display">\[
+\{x \in E : f(x) &gt; c\} = f^{-1}((c, \infty))
+\]</span> é mensurável.</p>
+</div>
+<p>A escolha de “<span class="math inline">\(&gt; c\)</span>” é convencional: usar <span class="math inline">\(\ge c\)</span>, <span class="math inline">\(&lt; c\)</span> ou <span class="math inline">\(\le c\)</span> dá a mesma classe de funções, pois esses conjuntos se obtêm uns dos outros por complementos e interseções enumeráveis — todas operações permitidas em <span class="math inline">\(\mathcal{M}\)</span>. Por exemplo, <span class="math inline">\(\{f \ge c\} = \bigcap_n \{f &gt; c - \tfrac1n\}\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Mensurável é “contínua para a medida”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compare: <span class="math inline">\(f\)</span> é <strong>contínua</strong> se a pré-imagem de todo <em>aberto</em> é aberta; <span class="math inline">\(f\)</span> é <strong>mensurável</strong> se a pré-imagem de todo <em>intervalo</em> (e logo de todo boreliano) é mensurável. A mensurabilidade é a versão da continuidade adequada à teoria da medida — exige muito menos, e é por isso que a classe é tão robusta.</p>
+</div>
+</div>
+<div id="prp-continua-mensuravel" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposição 87.1 (Contínuas são mensuráveis)</strong></span> Toda função contínua <span class="math inline">\(f : \mathbb{R} \to \mathbb{R}\)</span> é mensurável. Mais geralmente, toda função monótona é mensurável.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Comprovação</em>. </span>Se <span class="math inline">\(f\)</span> é contínua, <span class="math inline">\(\{f &gt; c\} = f^{-1}((c,\infty))\)</span> é a pré-imagem de um aberto, logo aberto, logo boreliano, logo mensurável (<a href="13-conjuntos-mensuraveis.html#cor-borel-mensuravel" class="quarto-xref">Corolário&nbsp;<span>86.1</span></a>). Se <span class="math inline">\(f\)</span> é monótona, cada <span class="math inline">\(\{f &gt; c\}\)</span> é um intervalo (ou semirreta), também mensurável.</p>
+</div>
+</section>
+<section id="operações-preservam-mensurabilidade" class="level2" data-number="87.3">
+<h2 data-number="87.3" class="anchored" data-anchor-id="operações-preservam-mensurabilidade"><span class="header-section-number">87.3</span> Operações preservam mensurabilidade</h2>
+<p>A força da classe está em sua estabilidade. Tudo o que se faz com funções permanece mensurável.</p>
+<div id="thm-operacoes-mensuraveis" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 87.1 (Álgebra das funções mensuráveis)</strong></span> Se <span class="math inline">\(f, g : E \to \mathbb{R}\)</span> são mensuráveis e <span class="math inline">\(\lambda \in \mathbb{R}\)</span>, então <span class="math inline">\(f + g\)</span>, <span class="math inline">\(\lambda f\)</span>, <span class="math inline">\(fg\)</span>, <span class="math inline">\(|f|\)</span>, <span class="math inline">\(\max(f,g)\)</span> e <span class="math inline">\(\min(f,g)\)</span> são mensuráveis. A composição <span class="math inline">\(\varphi \circ f\)</span> com <span class="math inline">\(\varphi\)</span> contínua também é.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Comprovação</em>. </span><em>(Amostra.)</em> Para <span class="math inline">\(f + g\)</span>: vale <span class="math inline">\(f(x) + g(x) &gt; c \iff f(x) &gt; c - g(x) \iff\)</span> existe um racional <span class="math inline">\(q\)</span> com <span class="math inline">\(f(x) &gt; q &gt; c - g(x)\)</span>. Logo <span class="math display">\[
+\{f + g &gt; c\} = \bigcup_{q \in \mathbb{Q}} \big(\{f &gt; q\} \cap \{g &gt; c - q\}\big),
+\]</span> união <strong>enumerável</strong> de mensuráveis, portanto mensurável. Para <span class="math inline">\(\varphi \circ f\)</span> com <span class="math inline">\(\varphi\)</span> contínua, <span class="math inline">\(\{\varphi\circ f &gt; c\} = f^{-1}(\varphi^{-1}((c,\infty)))\)</span>; o aberto <span class="math inline">\(\varphi^{-1}((c,\infty))\)</span> é união enumerável de intervalos, cuja pré-imagem por <span class="math inline">\(f\)</span> é mensurável. Os demais casos (<span class="math inline">\(|f| = \varphi\circ f\)</span> com <span class="math inline">\(\varphi(t)=|t|\)</span>; <span class="math inline">\(fg = \tfrac14[(f+g)^2 - (f-g)^2]\)</span>) reduzem-se a esses.</p>
+</div>
+<p>O ponto verdadeiramente decisivo — o que distingue Lebesgue de Riemann — é o comportamento sob <strong>limites</strong>.</p>
+<div id="thm-limites-mensuraveis" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 87.2 (Limites preservam mensurabilidade)</strong></span> Seja <span class="math inline">\((f_n)\)</span> uma sequência de funções mensuráveis em <span class="math inline">\(E\)</span>. Então <span class="math display">\[
+\sup_n f_n, \quad \inf_n f_n, \quad \limsup_n f_n, \quad \liminf_n f_n
+\]</span> são mensuráveis. Em particular, se <span class="math inline">\(f_n \to f\)</span> pontualmente, <span class="math inline">\(f\)</span> é mensurável.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Comprovação</em>. </span>A identidade-chave é <span class="math display">\[
+\Big\{\sup_n f_n &gt; c\Big\} = \bigcup_{n} \{f_n &gt; c\},
+\]</span> pois o supremo excede <span class="math inline">\(c\)</span> exatamente quando <em>algum</em> <span class="math inline">\(f_n\)</span> o faz. União enumerável de mensuráveis: mensurável. Analogamente <span class="math inline">\(\inf\)</span>. Então <span class="math inline">\(\limsup f_n = \inf_N \sup_{n \ge N} f_n\)</span> e <span class="math inline">\(\liminf f_n = \sup_N \inf_{n\ge N}
+f_n\)</span> são mensuráveis por composição dessas operações. Se <span class="math inline">\(f_n \to f\)</span>, então <span class="math inline">\(f = \limsup f_n\)</span>, mensurável.</p>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>O abismo entre Riemann e Lebesgue
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Limite pontual de funções contínuas <strong>não</strong> precisa ser contínuo — nem Riemann-integrável. Mas é sempre <strong>mensurável</strong>. É essa estabilidade sob limites que permitirá os teoremas de convergência (<a href="16-teoremas-convergencia.html" class="quarto-xref"><span>Capítulo 89</span></a>), onde trocamos livremente <span class="math inline">\(\lim\)</span> e <span class="math inline">\(\int\)</span> — algo que a integral de Riemann jamais sustentou.</p>
+</div>
+</div>
+</section>
+<section id="funções-simples-e-o-teorema-de-aproximação" class="level2" data-number="87.4">
+<h2 data-number="87.4" class="anchored" data-anchor-id="funções-simples-e-o-teorema-de-aproximação"><span class="header-section-number">87.4</span> Funções simples e o teorema de aproximação</h2>
+<p>Os átomos da integração são as funções que assumem finitos valores.</p>
+<div id="def-funcao-simples" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 87.2 (Função simples)</strong></span> Uma <strong>função simples</strong> é uma função mensurável <span class="math inline">\(\varphi : E \to \mathbb{R}\)</span> que assume apenas finitos valores <span class="math inline">\(a_1, \dots, a_k\)</span>. Ela se escreve <span class="math display">\[
+\varphi = \sum_{i=1}^{k} a_i\, \chi_{A_i}, \qquad A_i = \{x : \varphi(x) = a_i\}
+\in \mathcal{M},
+\]</span> onde <span class="math inline">\(\chi_A\)</span> é a <strong>função indicadora</strong> de <span class="math inline">\(A\)</span> (<span class="math inline">\(1\)</span> em <span class="math inline">\(A\)</span>, <span class="math inline">\(0\)</span> fora).</p>
+</div>
+<p>O teorema a seguir é a ponte que torna a integral possível: integraremos funções simples trivialmente e, por limite, todas as mensuráveis não negativas.</p>
+<div id="thm-aproximacao-simples" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 87.3 (Aproximação por funções simples)</strong></span> Seja <span class="math inline">\(f : E \to [0, \infty]\)</span> mensurável. Existe uma sequência <strong>crescente</strong> de funções simples não negativas <span class="math inline">\(0 \le \varphi_1 \le \varphi_2 \le \cdots\)</span> com <span class="math inline">\(\varphi_n(x) \to f(x)\)</span> para todo <span class="math inline">\(x \in E\)</span>. Se <span class="math inline">\(f\)</span> é limitada, a convergência é <strong>uniforme</strong>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Comprovação</em>. </span>A construção é explícita (“escada diádica”). Para cada <span class="math inline">\(n\)</span>, fatie o contradomínio até a altura <span class="math inline">\(n\)</span> em pedaços de altura <span class="math inline">\(2^{-n}\)</span> e defina <span class="math display">\[
+\varphi_n(x) =
+\begin{cases}
+\dfrac{k}{2^n}, &amp; \text{se } \dfrac{k}{2^n} \le f(x) &lt; \dfrac{k+1}{2^n},\ 0 \le k
+&lt; n2^n,\\[2mm]
+n, &amp; \text{se } f(x) \ge n.
+\end{cases}
+\]</span> Cada <span class="math inline">\(\varphi_n\)</span> é simples (finitos valores, conjuntos mensuráveis pois <span class="math inline">\(f\)</span> é mensurável). Refinar a malha de <span class="math inline">\(2^{-n}\)</span> para <span class="math inline">\(2^{-(n+1)}\)</span> só pode aumentar o valor, logo <span class="math inline">\(\varphi_n \le \varphi_{n+1}\)</span>. E para <span class="math inline">\(x\)</span> com <span class="math inline">\(f(x) &lt; \infty\)</span>, assim que <span class="math inline">\(n &gt; f(x)\)</span> tem-se <span class="math inline">\(|f(x) - \varphi_n(x)| \le 2^{-n} \to 0\)</span>; onde <span class="math inline">\(f(x) =
+\infty\)</span>, <span class="math inline">\(\varphi_n(x) = n \to \infty = f(x)\)</span>. Se <span class="math inline">\(f \le M\)</span>, então para <span class="math inline">\(n &gt; M\)</span> a cota <span class="math inline">\(|f - \varphi_n| \le 2^{-n}\)</span> vale uniformemente.</p>
+</div>
+<p>A <a href="#fig-escada-diadica" class="quarto-xref">Figura&nbsp;<span>87.1</span></a> ilustra a ideia: cada degrau aproxima a curva por baixo, e refinar a altura dobra o número de degraus.</p>
+<div id="fig-escada-diadica" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-escada-diadica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="152.091796pt" height="112.1013pt" viewbox="-68.014948 -68.014945 152.091796 112.1013">
+<defs>
+<path id="tz_escada_diadica_g0-110" d="M1.751432-2.068244C1.721544-2.52254 1.303113-2.636115 1.075965-2.636115S.6934-2.49863 .585803-2.307347C.436364-2.062267 .364633-1.745455 .364633-1.721544C.364633-1.655791 .418431-1.63188 .472229-1.63188C.56787-1.63188 .573848-1.673724 .603736-1.769365C.723288-2.247572 .86675-2.438854 1.058032-2.438854C1.273225-2.438854 1.273225-2.193773 1.273225-2.133998C1.273225-2.038356 1.21345-1.799253 1.171606-1.63188C1.129763-1.470486 1.069988-1.225405 1.0401-1.093898C.998257-.944458 .962391-.789041 .920548-.639601C.878705-.472229 .806974-.17335 .806974-.137484C.806974-.005978 .908593 .059776 1.016189 .059776S1.225405-.011955 1.273225-.101619C1.285181-.137484 1.338979-.3467 1.368867-.466252L1.500374-1.004234C1.542217-1.159651 1.566127-1.267248 1.601993-1.404732C1.655791-1.60797 1.865006-1.924782 2.086177-2.145953C2.205729-2.259527 2.462765-2.438854 2.785554-2.438854C3.16812-2.438854 3.16812-2.133998 3.16812-2.020423C3.16812-1.667746 2.911083-1.028144 2.803487-.759153C2.767621-.657534 2.725778-.561893 2.725778-.460274C2.725778-.155417 3.000747 .059776 3.329514 .059776C3.93325 .059776 4.23213-.729265 4.23213-.860772C4.23213-.872727 4.226152-.944458 4.118555-.944458C4.034869-.944458 4.028892-.91457 3.993026-.800996C3.897385-.484184 3.652304-.137484 3.347447-.137484C3.233873-.137484 3.186052-.227148 3.186052-.352677C3.186052-.472229 3.227895-.573848 3.281694-.699377C3.371357-.932503 3.640349-1.60797 3.640349-1.942715C3.640349-2.432877 3.269738-2.636115 2.815442-2.636115C2.516563-2.636115 2.133998-2.540473 1.751432-2.068244Z"></path>
+<path id="tz_escada_diadica_g1-39" d="M2.279452 .071731C2.367123 .079701 2.462765 .079701 2.550436 .079701C3.953176 .079701 5.220423-1.139726 5.220423-2.375093C5.220423-2.956912 4.901619-3.514819 4.224159-3.514819C3.658281-3.514819 3.211955-3.124284 2.885181-2.606227C2.534496-2.040349 2.375093-1.530262 2.048319-.494147C1.179577-.621669 .661519-1.036115 .661519-1.617933C.661519-1.793275 .828892-2.662017 1.307098-3.188045C1.40274-3.291656 1.40274-3.307597 1.40274-3.339477C1.40274-3.347447 1.40274-3.435118 1.283188-3.435118C1.004234-3.435118 .406476-2.239601 .406476-1.538232C.406476-.940473 .757161-.270984 1.880946 .00797L1.641843 .757161C1.490411 1.243337 1.42665 1.42665 1.42665 1.482441C1.42665 1.673724 1.601993 1.729514 1.689664 1.729514C1.753425 1.729514 1.976588 1.697634 2.040349 1.41868C2.096139 1.139726 2.223661 .422416 2.279452 .071731ZM2.383064-.454296C2.534496-1.370859 2.614197-1.833126 3.068493-2.391034C3.443088-2.8533 3.833624-2.988792 4.144458-2.988792C4.638605-2.988792 4.94944-2.646077 4.94944-2.207721C4.94944-1.370859 3.937235-.446326 2.630137-.446326C2.558406-.446326 2.454795-.446326 2.383064-.454296Z"></path>
+<path id="tz_escada_diadica_g1-102" d="M3.052553-3.172105H3.793773C3.953176-3.172105 4.048817-3.172105 4.048817-3.323537C4.048817-3.435118 3.945205-3.435118 3.809714-3.435118H3.100374C3.227895-4.152428 3.307597-4.606725 3.387298-4.96538C3.419178-5.100872 3.443088-5.188543 3.56264-5.284184C3.666252-5.371856 3.730012-5.387796 3.817684-5.387796C3.937235-5.387796 4.064757-5.363885 4.168369-5.300125C4.128518-5.284184 4.080697-5.260274 4.040847-5.236364C3.905355-5.164633 3.809714-5.021171 3.809714-4.861768C3.809714-4.678456 3.953176-4.566874 4.128518-4.566874C4.359651-4.566874 4.574844-4.766127 4.574844-5.045081C4.574844-5.419676 4.192279-5.610959 3.809714-5.610959C3.53873-5.610959 3.036613-5.483437 2.781569-4.750187C2.709838-4.566874 2.709838-4.550934 2.494645-3.435118H1.896887C1.737484-3.435118 1.641843-3.435118 1.641843-3.283686C1.641843-3.172105 1.745455-3.172105 1.880946-3.172105H2.446824L1.872976-.079701C1.721544 .72528 1.601993 1.40274 1.179577 1.40274C1.155666 1.40274 .988294 1.40274 .836862 1.307098C1.203487 1.219427 1.203487 .884682 1.203487 .876712C1.203487 .6934 1.060025 .581818 .884682 .581818C.669489 .581818 .438356 .765131 .438356 1.067995C.438356 1.40274 .781071 1.625903 1.179577 1.625903C1.665753 1.625903 2.000498 1.115816 2.10411 .916563C2.391034 .390535 2.574346-.605729 2.590286-.68543L3.052553-3.172105Z"></path>
+<path id="tz_escada_diadica_g1-120" d="M3.993026-3.180075C3.642341-3.092403 3.626401-2.781569 3.626401-2.749689C3.626401-2.574346 3.761893-2.454795 3.937235-2.454795S4.383562-2.590286 4.383562-2.933001C4.383562-3.387298 3.881445-3.514819 3.58655-3.514819C3.211955-3.514819 2.909091-3.251806 2.725778-2.940971C2.550436-3.363387 2.13599-3.514819 1.809215-3.514819C.940473-3.514819 .454296-2.518555 .454296-2.295392C.454296-2.223661 .510087-2.191781 .573848-2.191781C.669489-2.191781 .68543-2.231631 .70934-2.327273C.892653-2.909091 1.370859-3.291656 1.785305-3.291656C2.096139-3.291656 2.247572-3.068493 2.247572-2.781569C2.247572-2.622167 2.15193-2.255542 2.088169-2.000498C2.032379-1.769365 1.857036-1.060025 1.817186-.908593C1.705604-.478207 1.41868-.143462 1.060025-.143462C1.028144-.143462 .820922-.143462 .653549-.255044C1.020174-.342715 1.020174-.67746 1.020174-.68543C1.020174-.868742 .876712-.980324 .70137-.980324C.486177-.980324 .255044-.797011 .255044-.494147C.255044-.127522 .645579 .079701 1.052055 .079701C1.474471 .079701 1.769365-.239103 1.912827-.494147C2.088169-.103611 2.454795 .079701 2.83736 .079701C3.706102 .079701 4.184309-.916563 4.184309-1.139726C4.184309-1.219427 4.120548-1.243337 4.064757-1.243337C3.969116-1.243337 3.953176-1.187547 3.929265-1.107846C3.769863-.573848 3.315567-.143462 2.8533-.143462C2.590286-.143462 2.399004-.318804 2.399004-.653549C2.399004-.812951 2.446824-.996264 2.558406-1.44259C2.614197-1.681694 2.789539-2.383064 2.82939-2.534496C2.940971-2.948941 3.219925-3.291656 3.57858-3.291656C3.618431-3.291656 3.825654-3.291656 3.993026-3.180075Z"></path>
+<path id="tz_escada_diadica_g1-121" d="M4.128518-3.004732C4.160399-3.116314 4.160399-3.132254 4.160399-3.188045C4.160399-3.387298 4.000996-3.435118 3.905355-3.435118C3.865504-3.435118 3.682192-3.427148 3.57858-3.219925C3.56264-3.180075 3.490909-2.893151 3.451059-2.725778L2.972852-.812951C2.964882-.789041 2.622167-.143462 2.040349-.143462C1.649813-.143462 1.514321-.430386 1.514321-.789041C1.514321-1.251308 1.785305-1.960648 1.968618-2.422914C2.048319-2.622167 2.072229-2.693898 2.072229-2.83736C2.072229-3.275716 1.721544-3.514819 1.354919-3.514819C.565878-3.514819 .239103-2.391034 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.70137-3.012702 1.044085-3.291656 1.331009-3.291656C1.45056-3.291656 1.522291-3.211955 1.522291-3.028643C1.522291-2.86127 1.458531-2.677958 1.40274-2.534496C1.075965-1.689664 .940473-1.283188 .940473-.908593C.940473-.127522 1.530262 .079701 2.000498 .079701C2.375093 .079701 2.646077-.087671 2.83736-.270984C2.725778 .175342 2.646077 .486177 2.343213 .868742C2.080199 1.195517 1.761395 1.40274 1.40274 1.40274C1.267248 1.40274 .964384 1.378829 .804981 1.139726C1.227397 1.107846 1.259278 .749191 1.259278 .70137C1.259278 .510087 1.115816 .406476 .948443 .406476C.773101 .406476 .494147 .541968 .494147 .932503C.494147 1.307098 .836862 1.625903 1.40274 1.625903C2.215691 1.625903 3.132254 .972354 3.371357 .00797L4.128518-3.004732Z"></path>
+</defs>
+<g id="tz_escada_diadica_page1">
+<g stroke-miterlimit="10" transform="translate(-62.458575,39.05005)scale(0.996264,-0.996264)">
+<g fill="#000" stroke="#000">
+<g stroke-width="0.4">
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M-3.9836 0H133.43425" fill="none"></path>
+<g transform="translate(133.43425,0.0)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(138.9672,-1.72221)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.458575,39.05005)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-62.458575" y="39.05005" href="#tz_escada_diadica_g1-120"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#808080" stroke="#808080">
+<g stroke-width="0.4">
+<path d="M0-3.9836V93.60057" fill="none"></path>
+<g transform="matrix(0.0,1.0,-1.0,0.0,0.0,93.60057)">
+<path d="M1.99997 0L-1.19998 1.59998L0 0L-1.19998-1.59998" stroke="none"></path>
+</g>
+<g transform="translate(-2.24423,100.68907)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.458575,39.05005)scale(-1,-1)">
+<g fill="#808080">
+<g stroke="none">
+<g fill="#808080">
+<use x="-62.458575" y="39.05005" href="#tz_escada_diadica_g1-121"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#2780e3" stroke="#2780e3">
+<g stroke-width="1.2">
+<path d="M0 11.95021L1.51222 13.57245L3.02446 15.18985L4.53671 16.79753L6.04893 18.3906L7.56119 19.96422L9.07343 21.51231L10.58565 23.03247L12.0979 24.51918L13.61014 25.96881L15.12239 27.37653L16.63461 28.73924L18.14687 30.05394L19.6591 31.31819L21.17133 32.52711L22.68358 33.68015L24.19582 34.77481L25.70807 35.8087L27.2203 36.78242L28.73254 37.6923L30.24478 38.54083L31.75702 39.32552L33.26927 40.0476L34.7815 40.7083L36.29375 41.30759L37.80598 41.84795L39.31824 42.32994L40.83046 42.75844L42.3427 43.13226L43.85495 43.45682L45.36717 43.73521L46.87943 43.96982L48.39166 44.16553L49.90392 44.32538L51.41614 44.45364L52.92838 44.55635L54.44063 44.63599L55.95287 44.6992L57.4651 44.74904L58.97734 44.7916L60.4896 44.8329L62.00183 44.87546L63.51405 44.92592L65.0263 44.98792L66.53854 45.06754L68.0508 45.16904L69.56302 45.29729L71.07527 45.45654L72.58751 45.65103L74.09973 45.88504L75.61198 46.1622L77.12422 46.48555L78.63647 46.85875L80.1487 47.28484L81.66093 47.76622L83.17319 48.30536L84.68542 48.90344L86.19766 49.56232L87.7099 50.28317L89.22215 51.06726L90.73439 51.91333L92.24661 52.822L93.75887 53.79391L95.2711 54.82658L96.78336 55.92064L98.29558 57.07185L99.80783 58.27957L101.32007 59.5426L102.83229 60.85611L104.34454 62.2182L105.85678 63.6247L107.36903 65.07312L108.88126 66.55922L110.39351 68.07874L111.90575 69.62685L113.41797 71.19926L114.93022 72.79173L116.44246 74.3994L117.95471 76.01678L119.46695 77.63965" fill="none"></path>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M0 11.95021H19.91681" fill="none"></path>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<path d="M19.91681 11.95021V31.52847" fill="none"></path>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M19.91681 31.52847H39.83366" fill="none"></path>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<path d="M39.83366 31.52847V42.48311" fill="none"></path>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M39.83366 42.48311H59.75049" fill="none"></path>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<path d="M59.75049 42.48311V44.81285" fill="none"></path>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M59.75049 44.81285H79.66733" fill="none"></path>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<path d="M79.66733 44.81285V47.1432" fill="none"></path>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M79.66733 47.1432H99.58415" fill="none"></path>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<path d="M99.58415 47.1432V58.09724" fill="none"></path>
+</g>
+</g>
+<g fill="#d7433b" stroke="#d7433b">
+<g stroke-width="0.8">
+<path d="M99.58415 58.09724H119.50099" fill="none"></path>
+</g>
+</g>
+<g fill="#6c757d" stroke="#6c757d">
+<g stroke-width="0.4">
+<path d="M119.50099 58.09724V77.67612" fill="none"></path>
+</g>
+</g>
+<g fill="#972f29" stroke="#972f29">
+<g fill="#972f29" stroke="#972f29">
+</g>
+<g transform="translate(94.25566,26.93898)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.458575,39.05005)scale(-1,-1)">
+<g fill="#972f29">
+<g stroke="none">
+<g fill="#972f29">
+<use x="-62.458575" y="39.05005" href="#tz_escada_diadica_g1-39"></use>
+<use x="-56.940298" y="40.046314" href="#tz_escada_diadica_g0-110"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="#1b599f" stroke="#1b599f">
+<g fill="#1b599f" stroke="#1b599f">
+</g>
+<g transform="translate(85.15129,73.6837)">
+<g stroke="none" transform="scale(-1.00375,1.00375)translate(-62.458575,39.05005)scale(-1,-1)">
+<g fill="#1b599f">
+<g stroke="none">
+<g fill="#1b5a9f">
+<use x="-62.458575" y="39.05005" href="#tz_escada_diadica_g1-102"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-escada-diadica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;87.1: A escada <span class="math inline">\(\varphi_n\)</span> aproxima <span class="math inline">\(f\)</span> por baixo; refinar a altura dos degraus (<span class="math inline">\(2^{-n} \to 2^{-(n+1)}\)</span>) faz <span class="math inline">\(\varphi_n \uparrow f\)</span>.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="quase-em-todo-ponto" class="level2" data-number="87.5">
+<h2 data-number="87.5" class="anchored" data-anchor-id="quase-em-todo-ponto"><span class="header-section-number">87.5</span> Quase em todo ponto</h2>
+<p>A medida nula permite ignorar conjuntos desprezíveis, e isso entra na linguagem.</p>
+<div id="def-quase-sempre" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 87.3 (Quase em todo ponto)</strong></span> Uma propriedade vale <strong>quase em todo ponto</strong> (q.t.p.) se o conjunto onde falha tem medida nula. Duas funções são <strong>iguais q.t.p.</strong> se diferem apenas num conjunto de medida <span class="math inline">\(0\)</span>.</p>
+</div>
+<p>Pela completude da medida (<a href="13-conjuntos-mensuraveis.html#exr-medida-completa" class="quarto-xref">Exercício&nbsp;<span>86.2</span></a>), uma função igual q.t.p. a uma mensurável é também mensurável. Na integração de Lebesgue, funções iguais q.t.p. são indistinguíveis — o que prepara os espaços <span class="math inline">\(L^p\)</span> do <a href="18-espacos-lp.html" class="quarto-xref"><span>Capítulo 91</span></a>.</p>
+</section>
+<section id="exercícios" class="level2" data-number="87.6">
+<h2 data-number="87.6" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">87.6</span> Exercícios</h2>
+<div id="exr-indicadora-mensuravel" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 87.1</strong></span> Mostre que <span class="math inline">\(\chi_A\)</span> é mensurável se, e somente se, <span class="math inline">\(A \in \mathcal{M}\)</span>. Conclua que a função de Dirichlet <span class="math inline">\(\chi_{\mathbb{Q}}\)</span> é mensurável (embora não seja Riemann-integrável).</p>
+</div>
+<div id="exr-sup-mensuravel" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 87.2</strong></span> Prove a identidade <span class="math inline">\(\{\inf_n f_n &lt; c\} = \bigcup_n \{f_n &lt; c\}\)</span> e use-a para mostrar que <span class="math inline">\(\inf_n f_n\)</span> é mensurável.</p>
+</div>
+<div id="exr-qtp-mensuravel" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 87.3</strong></span> Seja <span class="math inline">\(f\)</span> mensurável e <span class="math inline">\(g = f\)</span> q.t.p. Prove que <span class="math inline">\(g\)</span> é mensurável. <em>(Use a completude da medida.)</em></p>
+</div>
+<section id="soluções-selecionadas" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="soluções-selecionadas">Soluções selecionadas</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-indicadora-mensuravel" class="quarto-xref">Exercício&nbsp;<span>87.1</span></a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para <span class="math inline">\(\chi_A\)</span>, o conjunto <span class="math inline">\(\{\chi_A &gt; c\}\)</span> é: <span class="math inline">\(\emptyset\)</span> se <span class="math inline">\(c \ge 1\)</span>; igual a <span class="math inline">\(A\)</span> se <span class="math inline">\(0 \le c &lt; 1\)</span>; e <span class="math inline">\(E\)</span> se <span class="math inline">\(c &lt; 0\)</span>. Esses são todos mensuráveis exatamente quando <span class="math inline">\(A \in \mathcal{M}\)</span> (o caso <span class="math inline">\(0\le c&lt;1\)</span> força <span class="math inline">\(A\)</span> mensurável, e a recíproca é imediata). Como <span class="math inline">\(\mathbb{Q} \in \mathcal{M}\)</span> (é boreliano, sendo enumerável), <span class="math inline">\(\chi_{\mathbb{Q}}\)</span> é mensurável. Ela falha em ser Riemann-integrável (<a href="08-integral-riemann.html" class="quarto-xref"><span>Capítulo 81</span></a>), mas será Lebesgue-integrável, com integral <span class="math inline">\(0\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Solução do <a href="#exr-qtp-mensuravel" class="quarto-xref">Exercício&nbsp;<span>87.3</span></a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Seja <span class="math inline">\(N = \{x : f(x) \ne g(x)\}\)</span>, com <span class="math inline">\(m(N) = 0\)</span>. Para todo <span class="math inline">\(c\)</span>, <span class="math inline">\(\{g &gt; c\} = \big(\{f &gt; c\} \setminus N\big) \cup \big(\{g &gt; c\} \cap N\big)\)</span>. O primeiro conjunto é mensurável; o segundo é subconjunto de <span class="math inline">\(N\)</span>, nulo, logo mensurável por completude (<a href="13-conjuntos-mensuraveis.html#exr-medida-completa" class="quarto-xref">Exercício&nbsp;<span>86.2</span></a>). União de mensuráveis: mensurável. Logo <span class="math inline">\(g\)</span> é mensurável.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../volumes/v8-analise/13-conjuntos-mensuraveis.html" class="pagination-link" aria-label="Conjuntos mensuráveis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">86</span>&nbsp; <span class="chapter-title">Conjuntos mensuráveis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../volumes/v8-analise/15-integral-lebesgue.html" class="pagination-link" aria-label="A integral de Lebesgue">
+        <span class="nav-page-text"><span class="chapter-number">88</span>&nbsp; <span class="chapter-title">A integral de Lebesgue</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Manual de Matemática — licença CC BY-SA 4.0</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VitorMattosDev/manual-matematica/edit/main/volumes/v8-analise/14-funcoes-mensuraveis.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/VitorMattosDev/manual-matematica/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Construído com <a href="https://quarto.org">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
