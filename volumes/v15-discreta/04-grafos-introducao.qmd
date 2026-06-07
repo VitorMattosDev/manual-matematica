@@ -1,0 +1,185 @@
+# Grafos: conceitos básicos {#sec-grafos-introducao}
+
+## Motivação
+
+Um **grafo** é a abstração matemática de uma rede: pontos ligados por conexões.
+Cidades e estradas, pessoas e amizades, páginas e links, átomos e ligações,
+tarefas e dependências — todos são grafos. A teoria dos grafos, nascida de um
+enigma sobre as pontes de Königsberg (que resolveremos em @sec-euler-hamilton),
+tornou-se uma das áreas mais aplicadas da matemática, fundamento da ciência da
+computação e das redes. Sua beleza está em quão pouco se precisa supor — apenas
+"o que está ligado a quê" — e quanto se pode deduzir. Este capítulo fixa o
+vocabulário: vértices, arestas, grau, e o primeiro teorema da área, o **lema dos
+apertos de mão**.
+
+## Definição
+
+::: {#def-grafo}
+## Grafo
+Um **grafo** $G = (V, E)$ consiste de um conjunto finito $V$ de **vértices** e um
+conjunto $E$ de **arestas**, cada uma um par não ordenado $\{u, v\}$ de vértices
+distintos. Dizemos que $u$ e $v$ são **adjacentes** (vizinhos) e que a aresta os
+**incide**. Escrevemos $n = |V|$ e $m = |E|$.
+:::
+
+Esta é a definição de grafo **simples**: sem laços (arestas de um vértice a si
+mesmo) e sem arestas múltiplas. Variantes — **multigrafos** (arestas repetidas),
+**dígrafos** (arestas orientadas), grafos **ponderados** (arestas com peso) —
+surgem conforme a aplicação. A @fig-grafo-exemplo mostra um grafo pequeno.
+
+::: {#fig-grafo-exemplo}
+```{.tikz}
+%%| filename: grafo-exemplo
+%%| alt: Grafo com cinco vertices rotulados de A a E ligados por sete arestas, formando um ciclo externo com algumas cordas internas.
+\begin{tikzpicture}[scale=1.5,
+    vert/.style={circle, draw, fill=manualblue!15, semithick, inner sep=1.5pt, font=\small, minimum size=6mm}]
+  \node[vert] (A) at (90:1.3) {$A$};
+  \node[vert] (B) at (18:1.3) {$B$};
+  \node[vert] (C) at (-54:1.3) {$C$};
+  \node[vert] (D) at (-126:1.3) {$D$};
+  \node[vert] (E) at (162:1.3) {$E$};
+  \draw[semithick] (A)--(B) (B)--(C) (C)--(D) (D)--(E) (E)--(A);
+  \draw[semithick] (A)--(C) (A)--(D);
+\end{tikzpicture}
+```
+
+Um grafo com $V = \{A,B,C,D,E\}$ e sete arestas. Os vértices $A$ e $C$ são
+adjacentes; $B$ e $D$ não são.
+:::
+
+## Grau e o lema dos apertos de mão
+
+::: {#def-grau}
+## Grau de um vértice
+O **grau** $\deg(v)$ de um vértice é o número de arestas que o incidem
+(equivalentemente, o número de vizinhos, num grafo simples). Um vértice de grau
+$0$ é **isolado**.
+:::
+
+O primeiro teorema da teoria dos grafos é tão simples quanto fundamental.
+
+::: {#thm-apertos-mao}
+## Lema dos apertos de mão
+Em todo grafo, a soma dos graus é o dobro do número de arestas:
+$$
+\sum_{v \in V} \deg(v) = 2m.
+$$
+Em consequência, **o número de vértices de grau ímpar é par**.
+:::
+
+::: {.proof}
+Cada aresta $\{u,v\}$ contribui exatamente $1$ ao grau de $u$ e $1$ ao de $v$ —
+ou seja, $2$ ao total da soma dos graus. Somando sobre as $m$ arestas, $\sum_v
+\deg(v) = 2m$, que é par. Se houvesse um número ímpar de vértices de grau ímpar,
+a soma seria ímpar — impossível. Logo eles são em número par.
+:::
+
+::: {.callout-tip}
+## O nome e uma consequência social
+Numa festa, $\deg(v)$ é o número de apertos de mão de $v$. O lema diz: o total de
+apertos é par (cada aperto envolve duas mãos), e **o número de pessoas que deram
+um número ímpar de apertos é sempre par**. É um invariante que vale em qualquer
+rede, e o primeiro exemplo de como uma contagem global ($2m$) restringe a
+estrutura local (a paridade dos graus).
+:::
+
+## Grafos notáveis
+
+::: {#def-grafos-especiais}
+## Famílias importantes
+- **Completo** $K_n$: todos os pares de vértices são adjacentes; tem
+  $\binom n2 = \frac{n(n-1)}2$ arestas.
+- **Ciclo** $C_n$: $n$ vértices ligados em anel; todos de grau $2$.
+- **Caminho** $P_n$: $n$ vértices em sequência aberta.
+- **Bipartido**: $V$ se parte em dois conjuntos $X, Y$ com **toda** aresta
+  ligando $X$ a $Y$ (nenhuma interna). O **bipartido completo** $K_{r,s}$ tem
+  todas as $rs$ arestas possíveis entre lados.
+- **Regular**: todos os vértices têm o mesmo grau.
+:::
+
+## Isomorfismo e subgrafos
+
+Dois grafos podem ser "o mesmo" desenhado de outro jeito. A noção precisa:
+
+::: {#def-isomorfismo-grafos}
+## Isomorfismo
+Um **isomorfismo** entre $G = (V,E)$ e $H = (W,F)$ é uma bijeção $\varphi : V \to
+W$ que preserva adjacência: $\{u,v\} \in E \iff \{\varphi(u),\varphi(v)\} \in F$.
+Grafos isomorfos têm os mesmos **invariantes**: número de vértices, de arestas,
+sequência de graus, etc.
+:::
+
+::: {.callout-warning}
+## Invariantes não bastam
+Dois grafos com os mesmos invariantes (mesmo $n$, $m$ e até a mesma sequência de
+graus) podem **não** ser isomorfos. Os invariantes detectam diferenças, mas a
+igualdade deles não prova isomorfismo — exibir a bijeção, ou um invariante que os
+separe, é necessário. Decidir isomorfismo eficientemente é, aliás, um problema
+algorítmico notoriamente difícil.
+:::
+
+::: {#def-subgrafo}
+## Subgrafo
+$H$ é **subgrafo** de $G$ se $V(H) \subseteq V(G)$ e $E(H) \subseteq E(G)$. É
+**induzido** por $S \subseteq V$ se contém *todas* as arestas de $G$ entre
+vértices de $S$. Um **clique** é um subgrafo completo; um **conjunto
+independente** é um conjunto de vértices sem nenhuma aresta entre si.
+:::
+
+## Representações
+
+Para computar com grafos, duas estruturas de dados:
+
+::: {#def-representacoes}
+## Matriz e listas de adjacência
+A **matriz de adjacência** é $A \in \{0,1\}^{n\times n}$ com $A_{ij} = 1$ se
+$\{i,j\} \in E$. É **simétrica** (grafo não orientado) com diagonal nula. A
+**lista de adjacência** registra, para cada vértice, seus vizinhos — mais
+econômica para grafos esparsos.
+:::
+
+Um fato útil: a entrada $(i,j)$ da potência $A^k$ conta os **passeios de
+comprimento $k$** de $i$ a $j$. A álgebra linear do Volume VI volta a falar, agora
+sobre redes — o espectro de $A$ revela propriedades estruturais do grafo (a
+**teoria espectral de grafos**).
+
+## Exercícios
+
+::: {#exr-grafo-graus}
+No grafo da @fig-grafo-exemplo, liste o grau de cada vértice e verifique o lema
+dos apertos de mão.
+:::
+
+::: {#exr-grafo-arestas-kn}
+Quantas arestas tem $K_n$? E quantas tem o bipartido completo $K_{r,s}$? Qual a
+soma dos graus em cada caso?
+:::
+
+::: {#exr-grafo-regular-impar}
+Mostre que não existe grafo $3$-regular (todo vértice de grau $3$) com $5$
+vértices. *(Use o lema dos apertos de mão.)*
+:::
+
+::: {#exr-grafo-bipartido-ciclo}
+Mostre que o ciclo $C_n$ é bipartido se, e somente se, $n$ é par.
+:::
+
+### Soluções selecionadas {.unnumbered}
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-grafo-regular-impar
+Num grafo $3$-regular com $5$ vértices, a soma dos graus seria $5 \times 3 = 15$,
+**ímpar**. Mas pelo lema dos apertos de mão (@thm-apertos-mao) a soma dos graus é
+$2m$, sempre **par**. Contradição: tal grafo não existe. (Geral: não há grafo
+$r$-regular com $n$ vértices quando $rn$ é ímpar.)
+:::
+
+::: {.callout-tip collapse="true"}
+## Solução do @exr-grafo-bipartido-ciclo
+Se $n$ é par, colora os vértices do ciclo alternadamente de duas cores ao
+percorrê-lo; arestas sempre ligam cores distintas, logo $C_n$ é bipartido. Se $n$
+é ímpar, ao voltar ao início a coloração alternada entra em conflito (o último e
+o primeiro vértice teriam a mesma cor mas são adjacentes), então não há
+bipartição. Assim $C_n$ é bipartido $\iff n$ par — equivalente a "não conter
+ciclo ímpar", o critério geral de bipartição (@sec-arvores-conexidade).
+:::
