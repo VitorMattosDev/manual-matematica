@@ -104,7 +104,6 @@ notacao.qmd      apêndice de notação
 volumes/         capítulos, organizados por volume (v1-fundamentos … v10-diferencial)
 ROADMAP.md       sequência completa de volumes e capítulos (fila de trabalho), com status
 PLANO.md         guia de estilo e convenções de escrita
-CLAUDE.md        instruções e convenções do projeto para colaboradores/agentes
 references.bib   referências bibliográficas
 styles.css       estilos do site (HTML)
 .github/         deploy automático (GitHub Action)

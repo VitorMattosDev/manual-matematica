@@ -12,3 +12,12 @@
 # logs de build/diagnostico locais
 *.log
 _runwatch.log
+
+# Arquivos de trabalho com o Claude Code (mantidos só localmente)
+/CLAUDE.md
+/CLAUDE.local.md
+/PROMPT*.md
+/LICOES-MANUAIS.md
+/auto-manual.sh
+/auto-volumes.sh
+.claude/
